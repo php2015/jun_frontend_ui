@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://blog.java1234.com/static/bootstrap3/js/jquery-1.11.2.min.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+
+    /*let promise=new Promise((resolve,reject)=>{
+        console.log('promise初始化状态：pending '); // 同步执行
+        setTimeout(()=>{
+            console.log('开启定时器，模拟异步执行')
+            // resolve('异步返回，执行成功') // 状态改成fulfilled
+            reject('异步返回，执行失败') // 状态改成rejected
+        },1000)
+    });
+
+    promise
+        .then((data)=>{   // 第一个回调  成功resolve
+            console.log('resolve')
+            console.log(data)
+        },(data)=>{  // 第二个回调  成功reject
+            console.log('reject')
+            console.log(data)
+        })
+
+    console.log('代码继续执行')*/
+
+
+    let promise=new Promise((resolve,reject)=>{
+        console.log('promise初始化状态：pending '); // 同步执行
+        $.get('./data.json',{},function(result){
+            console.log('ajax异步操作');
+            if(result.ret){
+                console.log('执行OK')
+                resolve(result.data);
+            }else{
+                console.log('执行失败')
+                reject(result.data)
+            }
+        },'json');
+    });
+
+    promise
+        .then((data)=>{   // 第一个回调  成功resolve
+            console.log('resolve')
+            console.log(data)
+        },(data)=>{  // 第二个回调  成功reject
+            console.log('reject')
+            console.log(data.errorInfo)
+        })
+
+    console.log('代码继续执行')
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+1、HTML
+    <!doctype html>
+    <html>
+        <head>
+            <title></title>
+            <meta charset="utf-8"></meta>
+            <link href="css文件" rel="stylesheet"/>
+            <style>
+
+            </style>
+        </head>
+        <body>
+            <a id="" href="" target="" style="" class=""></a>
+            <span id=""></span>
+            <p></p>
+            <pre></pre>
+            <div></div>
+            <h1...h6></h1...h6>
+            <ul>
+                <li></li>
+            </ul>
+            <ol>
+                <li></li>
+            </ol>
+            <dl>
+                <dd></dd>
+            </dl>
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <table>
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td rowspan="3" colspan="4"></td>
+                    </tr>
+                </tbody>
+                <tfoot> 
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <form method="get|post">
+                <label></label>
+                <input type="email|text|password|radio|checkbox|submit|reset|button|hidden|number|time|date" name="" value="" placeholder=""/>
+                <select>
+                    <optgroup label="">
+                        <option value="">文本值</option>
+                    </optgroup>
+                </select>
+                <textarea rows="10" cols="80"></textarea>
+                <button></button>
+                <button type="button"></button> <input type="button"/>
+            </form>
+
+            <img src="" title="" alt=""/>
+            <audio>
+                <source src="" type="audio/mpeg"/>
+                <source src="" type="audio/ogg"/>
+            </auido>
+            <video>
+                <source src="" type="audio/mp4"/>
+                <source src="" type="audio/ogg"/>
+            </video>
+
+            <!-- 语义标签，仅仅表示内容是什么东西，没有特殊的效果，为了方便搜索引擎 -->
+            <address></address>
+            <abbr></abbr>
+            <code></code>
+            <blockquote></blockquote>
+            
+            <i></i>
+            <b></b> <strong></strong>
+            <small></small>
+            <sub></sub> <sup></sup>
+
+            <br/> <hr/>
+
+            <canvas></canvas>
+        </body>
+    </html>
+
+2、CSS（层叠样式表）
+    三种写法：
+        内联样式 style="css属性名:css属性值;"
+        内部样式
+            <head>
+                <style>
+
+                </style>
+            </head>
+        外部样式
+            <head>
+                <link href="" rel=""/>
+            </head>
+
+    三种选择器：
+        标签选择器
+            p {
+
+            }
+
+        类选择器
+            .类名称 {
+
+            }
+
+        id选择器
+            #id值 {
+
+            }
+
+    伪元素
+        a:link,a:active,a:visted
+        a:hover  
+
+        p::befoer
+        p::after
+        p:nth-child(odd) 奇数
+        p:nth-child(even) 偶数
+
+    常用css属性   
+        width: px|%|auto;
+        height: px|%|auto;
+        line-height:px;
+        text-align: center|left|right|justify;
+        color: rgb(0-255,0-255,0-255)|rgba(0-255,0-255,0-255,0.0-1.0)|#00ff00;
+        opacity: 0.0-1.0;
+        background-color:#ff0000;
+        background-image:url(../images/bg.png);
+        background-position: top center;
+        background-size:200px 200px;
+        background-repeat: no-repeat|repeat-x|repeat-y;
+        border:none;
+        border:1px solid|dashed|dotted #ff0000;
+        border-radius:10px; // 如果值为height的一半，则变成圆
+        font-size:14px;
+        font-family:宋体;
+        font-weight: bold;
+        display: block|inline-block|inline|none;
+        margin: top right bottom left;
+        margin:auto; // 元素的整体居中
+        padding: top right bottom left; // 会把元素撑大，需要适当地修改元素的宽和高
+        float:left|right;
+        clear:both|left|right;
+        box-shadow:10px 10px 10px 10px #00ff00;
+
+        list-style: none|cicle;
+
+        text-decoration:none|underline;
+
+        position:static|relative|fixed|absolute; // 如果某个元素想绝对定位，则此元素的父元素应该relative
+        z-index:0;// 值越大，出现在越上面
+
+        table:
+        border-spacing:0;
+        border-collapse:collapse|seperate;
+
+        transform:rotate(-30deg)

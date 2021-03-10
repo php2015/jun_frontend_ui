@@ -1,0 +1,231 @@
+html,body,ul,li,p,form,h3,h4 {
+    margin:0;
+    padding:0;
+}
+
+body {
+    background-color: #f6f6f6;
+}
+
+#logo {
+    width: 1100px;
+    height: 100px;
+    line-height: 100px;
+    margin:auto;
+}
+
+#logo img {
+    display: inline-block;
+    margin-top: 35px;
+}
+
+#search {
+    float: right;
+}
+
+#search input {
+    width: 400px;
+    height: 25px;
+    padding-left: 20px;
+}
+
+#menu {
+    background-color: #96b97d;
+    color:#fff;
+    height:30px;
+}
+
+#menu ul {
+    width: 1100px;
+    margin:auto;
+}
+
+#menu ul li {
+    height:30px;
+    line-height: 30px;
+    float:left;
+    margin-right: 25px;
+    list-style: none;
+}
+
+#menu a:link, #menu a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+#menu a:hover {
+    color:#e3efd9;
+}
+
+#content {
+    width: 1100px;
+    margin:20px auto;
+}
+
+#left-sider {
+    width: 15%;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    background-color:#fff;
+}
+
+#left-sider p {
+    height: 35px;
+    line-height: 35px;
+    background-color: #f2f2f2;
+    color:#999;
+    padding-left: 5px;
+}
+
+#left-sider ul li {
+    list-style: none;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #ccc;
+    padding-left: 5px;
+}
+
+#left-sider ul li:nth-child(odd) {
+    background-color: #fff;
+}
+
+#left-sider ul li:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+#left-sider a:link, #left-sider a:hover, #left-sider a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+#left-sider i {
+    display: inline-block;
+    margin-right:3px;
+}
+
+#main-content {
+    width: 82.5%;
+    margin-left:20px;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    background-color:#fff;
+}
+
+.item {
+    padding: 10px;
+}
+
+.item .title {
+    border-bottom: 1px solid #ccc;
+}
+
+.item-content {
+    width: 32%;
+    height: 80px;
+    background-color: #f6f6f6;
+    float: left;
+    margin: 10px 10px 10px 0px;
+    border-radius: 8px;
+}
+
+.item-content a {
+    display: block;
+}
+
+.item-content a:link, .item-content a:hover, .item-content a:visited {
+    color:#000;
+    text-decoration: none;
+}
+
+.item-content h4 {
+    margin-top:5px;
+    margin-bottom: 15px;
+    color: #64854c;
+}
+
+.item-content .img {
+    width: 10%;
+    float: left;
+    margin-left: 5px;
+}
+
+.item-content .text {
+    width: 83%;
+    color: #666;
+    font-size: 12px;
+    float: left;
+    margin-left: 10px;
+}
+
+#footer {
+    background-color: #fff;
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#footer .content {
+    padding: 15px;
+    width:800px;
+    margin: auto;
+}
+
+.content div {
+    width:13%;
+    border-left: 1px solid #ccc;
+    float: left;
+    margin-right: 20px;
+    padding-left: 20px;
+    color: #666;
+}
+
+.content ul li {
+    list-style: none;
+    margin-top: 5px;
+}
+
+.content a:link, .content a:visited {
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+}
+
+.content a:hover {
+    font-size: 12px;
+    color: #00ff00;
+    text-decoration: none;
+}
+
+.copy {
+    text-align: center;
+    margin: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+#back {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    border: 1px solid #ccc;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff;
+}
+
+#back i {
+    text-align: center;
+    width: 30px;
+
+}
+
+#back a:link {
+    color: #666;
+}
+
+#back a:hover {
+    color:#00ff00;
+}

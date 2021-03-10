@@ -1,0 +1,184 @@
+1、div
+
+2、样式（风格，外观，样子）
+	HTML元素看起来的样子
+	
+	style：
+		大小（宽和高）
+		边距：
+		边框：大小，颜色
+		文字：字体，大小，颜色，特殊效果（加粗，斜体，下划线，删除线）
+		背景：图片，颜色
+		图片：大小，位置
+		动画：
+		过渡：
+		
+3、如何给标签增加style样式
+	body及body内嵌的标签都可以有id, style属性
+	
+	大小： width 宽 height 高  单位px  也可以使用auto，表示自动设置宽和高
+	边框：border:1px solid red;    三个部分：边框的大小 边框的样式（solid|dotted） 边框的颜色
+		上 右 下 左 四个不同的边框，分别称为上边框border-top，右边框border-right，下边框border-bottom，左边框border-left
+	文字：
+		1）颜色 color:black|white|blue|yellow|red|pink|purple|gray|silver
+		2）大小 font-size:14px;    10|12|14|16|20
+		3）字体 font-family:楷体;    
+			从哪里看安装了哪些字体：word->选择字体
+				Win+E->C盘->Windows->Fonts
+		4）背景
+				纯色背景: background-color:green;
+				图片背景：background-image:url(1.jpg);
+							background-size:200px 200px;（一般情况下，图片设计人员设计的图片大小要与元素的大小一致）
+							background-repeat:repeat-x|repeat-y|no-repeat|repeat
+							background-position:-50px 50px
+							
+						background:url() 50px 50px repeat;
+		5）图片
+			<img style="width:100px;height:200px;"/>
+		6）位置
+			position:static|relative|absolute|fixed;
+				static表示静态的，默认的位置，元素本来出现在哪就出现在哪
+				relative表示相对的，相对于上一个兄弟元素来说(兄弟元素的下边，父元素的下边)，通过top和left分别指定离上一个元素的上距离和左距离
+				absolute表示绝对定位，相对于父元素来说（父元素上边），通过top和left分别指定离父元素的上距离和左距离
+					如果一个子元素不是相对于body绝对定位，而是相对于另外一个父元素进行定位，则父元素应该使用relative，子元素应该使用absolute
+					<body>
+						<div style="position:relative;">
+							<div style="position:absolute; left:100px; top:100px;"></div>
+						</div>
+					</body>
+					
+				fixed表示固定的，页面在滚动的时候，位置固定，不会随着滚动
+		7）边距
+			父子关系的元素：内边距（一个元素内部的内容与此元素的内边框的距离）
+				padding:上 右 下 左;
+				padding:上下 左右;
+				padding:上右下左;
+				padding-top:上内边距
+				padding-right:右内边距
+				padding-bottom:下内边距
+				padding-left:左内边距
+				
+				内边距会把元素撑大，有些时候需要在元素的宽度和高度上减去撑大的量
+			
+			兄弟关系的元素：外边距（一个元素的外边框与另一个兄弟元素的外边框的距离）
+				margin:上 右 下 左;
+				margin:上下 左右;
+				margin:上右下左;
+				margin-top:上外边距
+				margin-right:右外边距
+				margin-bottom:下外边距
+				margin-left:左外边距
+				
+				对于行内元素来说，不存在上下外边距，只有左右外边距
+				margin可以使用auto，表示设置自动边距
+				
+		8）如何把行内元素转化为块元素
+			display属性：none|block|inline-block|inline
+				none：元素在页面上不可见（隐藏元素）
+				block: 块元素
+				inline-block: 行内块元素
+				inline： 行内元素
+		9）对齐方式：
+			文字对齐
+			元素对齐
+			text-align:left(默认)|center|right;
+		10)颜色扩展
+			a、使用英文单词描述常用的颜色 black, white, blue, green, red, yellow, pink , purple, gray, silver, orange
+			b、RGB颜色值，任何一种颜色都可以由三种基础颜色混合而合（基原色）
+				Red
+				Green
+				Blue
+				每一个基原色由8位来描述, 11111111, 0-255
+				0,0,0     black
+				255,255,255    white
+				255,0,0    red
+				0,255,0    green
+				0,0,255    blue    
+				总颜色值：255*255*255
+				color:rgb(10,10,10);
+				
+				rgba，a表示透明度 alpha
+				a的值由0-1，0是完全透明，1是完全不透明，如rgba(100,100,100,0.3)
+			c、十六进制颜色值(推荐使用)
+				依然是基于RGB三种颜色
+				#000000   黑色   #后面跟上6个十六进制的数，每两个数为一组，第一组表示红色值，第二组表示绿色值，第三组表示蓝色值，每一组数字的范围从00-FF
+				#FF0000   红色
+				#00FF00   绿色 
+				#0000FF   蓝色
+				#ABCDFF
+				
+		颜色值可以参考如下网页（WEB安全色）：http://www.bootcss.com/p/websafecolors/
+				
+4、style样式 CSS
+	Cascade Style Sheet层叠样式表
+	
+	CSS选择器：
+		1）标签选择器
+			div {
+			
+			}
+			a {
+			 
+			}
+			P {
+			
+			}
+			span {
+			
+			}
+		
+			div：标签选择器，只能出现HTML标签名
+			标签选择器可能选中多个元素
+			
+		2）id选择器
+			#id_value {
+			
+			}
+			
+			<div id="id_value_1"></div>
+			<div id="id_value_2"></div>
+			通过id_value去选择id属性值为id_value的标签
+			
+			id选择器只能选中一个元素
+			
+		3）class选择器（类选择器）
+			.class_name {
+			
+			}
+			
+			<div class="class_name"></div>
+			<div class="class_name"></div>
+			
+			通过类的名称class_name去选择class属性值为class_name的元素
+			类选择器可以选中多个元素
+			
+	
+	CSS的用法 ：
+		1）内联样式：在标签上使用style属性
+			<div style="color:black;text-align:center;"></div>
+			出现在style属性里的  CSS属性名:CSS属性值;
+			
+		2）内部样式：
+			在head标签内添加 <style></style>
+			把所有css样式写到style标签内部
+		
+		3）外部样式(推荐写法)：
+			a、把所有css样式写到一个独立的后缀名为.css的文件中
+			b、在head标签内部使用link标签引用a步骤中写好的css样式文件
+				<link href="外部css文件路径" rel="stylesheet"/>
+				
+		三种样式的写法可以混合使用，优先级：内联样式>内部样式>外部样式
+		
+	层叠概念：
+		内联样式，内部样式，外部样式，同一个选择器出现多次，css属性可以叠加起来使用
+		
+	css的注释
+		1）单行注释 //
+		2）多行注释 /*
+		
+					*/
+					
+	更多的css属性请参考：w3shcool.com.cn
+					runoob.com
+			
+			

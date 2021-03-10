@@ -1,0 +1,217 @@
+﻿1、什么是网页？
+	用户通过浏览器能够正常浏览的包含有文字，图片，视频，音频等内容的具有一定格式及交互效果的页面
+
+	网页的后缀：.html, .htm, .jsp, .asp, .aspx, .php……
+
+	html网页是静态网页：一个后缀为.html的文本文件，所有的内容由开发者事先编写到此文本文件中
+	动态网页：后缀一般为.jsp, .asp, .aspx, .php等，大部分内容由服务器生成并写入到文体文件中，内容是动态生成的
+
+2、HTML是什么？
+	HTML, Hyper Text Markup Language 超文本标记语言
+
+	<html>
+	</html>
+	<a></a>
+	<div></div>
+
+	标记(标签)：<标记名 属性名="属性值" 属性名="属性值">内容</标记名>
+		开始标记 结束标记
+
+		空标记：<标记名 属性名="属性值" 属性名="属性值"/>，/表示标记的结束
+
+	内容：1）标记    <标记名>
+				<标记名>
+					内容
+				</标记名>
+			 </标记名>
+	      2）网页内容
+			<标记名>
+
+				网页内容
+			</标记名>
+
+	一对标记通常又称之为元素
+
+	由众多标记组合成一个文本文件，后缀名为.html，此文件就是静态网页文件
+
+3、常用的浏览器
+	1）Internet Explorer
+	2) FireFox 火狐
+	3）Google Chrome（推荐使用的）
+	4）360安全浏览器，QQ浏览器，UC浏览器，搜狗浏览器（尽量不要用）
+
+4、编码习惯 
+	1）英文大小写的问题，在html中，所有标记小写
+	2）格式：换行，对齐
+		开始标记和结束标记配对出现，并对齐。写了开始标记，立马写结束标记
+		缩进：标记里出现的子标签需要缩进（以空格缩进，以tab键缩进）	
+
+
+5、常用标签
+	根标签：<html></html>
+	网页头部：<head></head>
+		标题：<title></title>
+		元标签：<meta/>
+				keywords, description可以帮助搜索引擎收录网页并显示搜索结果
+		link:<link/>　用来引用外部CSS样式
+		style:<style></style> 用来编写内部CSS样式
+		script:<script></script> 用于引用外部的JavaScript脚本或内部编写JavaScript
+		base:<base/> 标签为页面上的所有链接规定默认地址或默认目标
+	身体部分（网页的主体内容）：<body></body>
+		1)a标签：打开新网页 <a href="新网页的url">内容</a>
+			href:指明新网页url	
+			target:指明网页的打开方式,_blank，新开窗口，_self覆盖本网页
+			
+			a标签的锚点
+
+			可以使用#号链接到指定页面中的某个位置，这个位置是由一个带有id属性的标签来确定的，
+			href="#id属性值"。详情请参考html_basic_1.html中的代码
+
+		2）br标签：换行，无内容，无属性的空标签<br/>
+		3) label标签，直接包含文本内容
+		4）span标签，直接包含文本内容
+		5）p标签，段落，在段落中出现的一些格式是无效的，比如换行，tab
+		6）h1-h6，标题标签，文字从大到小的，加粗
+		7) pre，预格式化标签，在源代码中是什么样的格式，那么在页面显示的时候就是什么样的格式
+		8) b, bold 文本加粗
+		9) i, italic 斜体文本
+		10）strong,文本强调，与b的效果一致
+		11）em， 文本强调，与i的效果一致
+		12) strike，带有删除线的文本
+		13）ins,带有下划线的插入文本
+		14）small，小号文本
+		15）sub，下标， sup, 上标
+
+		16) hr，水平线
+		
+		17）ol ordered list，有序列表 
+			ul unordered list, 无序列表 
+			li表示列表项
+		18) dl definition list, 定义列表 
+			dd表示列表项
+
+	标签的分类：
+		块元素：
+			一个元素会占满网页中的一整行
+			p, div，hr，ul, li,dl,dd
+		行内元素：
+			一个元素不会占满网页中的一整行
+			单纯的文本， a, img， label, span
+
+		布局元素：帮助做网页整体布局，让用户看到内容的排列方式
+			div, section, p
+		内容元素：显示用户所看到的内容
+			div, section, p, span, label
+
+	属性：所有标签都可以有的一个属性id，用于标识每一个标签，id不可重名，标签可以不给id
+
+6、编码
+	乱码：中文的显示出现问题，人看不懂的符号
+		计算机正常显示一种文字的方法，字符编码
+
+	ASCII	
+	iso-8859-1  英文字符，中文乱码
+	gb2312 常用简体中文，英文
+	gbk 绝大部分简体中文，英文
+	big5 简体中文+繁体中文，英文
+	UTF-8 简体中文，英文
+
+7、相关网络资源
+	1）http://www.w3school.com.cn/
+	2）http://www.w3cshcool.cn
+
+8、URL(Uniform Resource Locator, 统一资源定位符）
+	http://10.10.10.11:80/index.html
+	http://10.10.10.11:80/a/b/test.html
+
+	http://www.abc.com
+
+	网络协议://主机:端口号/资源
+
+	网络协议：http://
+	主机：ip地址
+	端口：80
+	资源：index.html或/a/b/test.html
+
+	如果没有详细指明某个资源，而是直接类似于http://www.baidu.com的情况，表示请求网站的默认资源，默认资源通常为/index.html或/index.jsp, /index.php
+
+
+	域名：一串与ip地址和端口号映射的英文字符，这串英文字符分成三个部分，每个部分用英文.号隔开
+	www.baidu.com
+	第一部分表示万维网（World Wide Web），通常是www
+	第二部分表示一个公司，组织，个人的名称（自定义的）
+	第三部分表示域名后缀：
+	.com国际化
+	.cn表示中国
+	.com.cn
+	.us表示美国
+	.hk表示香港
+	.tw表示台湾
+	.jp表示日本
+	.org非盈利性组织
+	.gov表示政府部门
+	.中国
+	.公司
+	.top
+	.me
+	.tv
+	.edu表示教育部门
+
+9、http
+	Hyper Text Transport Protocal 超文本传输协议
+
+10、进入网页的形式
+	1）直接在浏览器的地址栏输入url
+	2) 通过搜索引擎搜索相关的网页并点击进入
+
+11、搜索引擎优化（SEO， Search Engine Optimize）
+	通过优化网页描述，关键字，网页的代码和内容，以让浏览器把搜索结果显示到前面
+
+12、绝对路径和相对路径
+	1）在windows中，绝对路径以盘符开始 
+	2）相对路径，不是以盘符开始 
+		a
+			b	
+				index.html
+				c.png
+			c 
+				a.jpg
+			b.jpg
+
+	绝对路径引用 ：
+		a:\c\a.jpg
+		a:\b.jpg
+		a:\b\c.png
+
+	在index.html中使用相对路径的方式引用 a.jpg 和 b.jpg
+		..\b.jpg
+		..\c\a.jpg
+		.\c.png  如果是当前目录开头，则可以省略掉当前目录 c.png
+
+13、开发者工具
+	浏览器提供的便于开发者进行网页调试的工具， F12（fn+ F12）键
+	1）查看网页源代码
+	2）元素审查
+
+14、网页布局
+	让不同的标签组合成自己想要的格式
+
+15、网页的规范
+	w3c组织制定的规范
+	HTML:4.0 5.0
+	4.0为老版本，5.0是最新版
+
+
+	文档类型声明：<!doctype html> <!DOCTYPE HTML>    HTML5
+			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> HTML4
+16、网页解析
+	浏览器能够根据w3c组织制定的HTML规范来解析（解释）网页文档中的代码，碰到什么标签就会显示出对应的效果
+
+17、HTML里的注释
+	<!-- 注释内容：描述代码的作用，代码的逻辑，代码的注意点 -->
+	注释的内容会在网页源代码中显示
+	
+
+
+
+		

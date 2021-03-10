@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+   /* // 操作数据方法
+    // arr.push() 从后面添加元素，返回值为添加完后的数组的长度
+    let arr = [1,2,3,4,5]
+    console.log(arr.push(5))   // 6
+    console.log(arr) // [1,2,3,4,5,5]
+
+
+
+    // 2 arr.pop() 从后面删除元素，只能是一个，返回值是删除的元素
+    let arr2 = [1,2,3,4,5]
+    console.log(arr2.pop())     // 5
+    console.log(arr2)  //[1,2,3,4]
+
+
+
+    // 3 arr.shift() 从前面删除元素，只能删除一个 返回值是删除的元素
+    let arr3 = [1,2,3,4,5]
+    console.log(arr3.shift())  // 1
+    console.log(arr3)   // [2,3,4,5]
+
+
+
+    // 4 arr.unshift() 从前面添加元素, 返回值是添加完后的数组的长度
+    let arr4 = [1,2,3,4,5]
+    console.log(arr4.unshift(2))    // 6
+    console.log(arr4)  //[2,1,2,3,4,5]
+
+
+
+    // 5 arr.splice(i,n) 删除从i(索引值)开始之后的那个元素。返回值是删除的元素 　参数： i 索引值      n 个数
+    let arr5 = [1,2,3,4,5]
+    console.log(arr5.splice(2,2))     //[3,4]
+    console.log(arr5)    // [1,2,5]
+
+
+
+    // 6 arr.concat() 连接两个数组 返回值为连接后的新数组
+    let arr6 = [1,2,3,4,5]
+    console.log(arr6.concat([1,2]))  // [1,2,3,4,5,1,2]
+    console.log(arr6)   // [1,2,3,4,5]
+
+
+
+    // 7 str.split() 将字符串转化为数组
+    let str7 = '123456'
+    console.log(str7.split('')) // ["1", "2", "3", "4", "5", "6"]
+
+
+
+    // 8 arr.sort() 将数组进行排序,返回值是排好的数组，默认是按照最左边的数字进行排序，不是按照数字大小排序的，见例子。
+    let arr = [2,10,6,1,4,22,3]
+    console.log(arr.sort())   // [1, 10, 2, 22, 3, 4, 6]
+    let arr1 = arr.sort((a, b) =>a - b)
+    console.log(arr1)   // [1, 2, 3, 4, 6, 10, 22]
+    let arr2 = arr.sort((a, b) =>b-a)
+    console.log(arr2)  // [22, 10, 6, 4, 3, 2, 1]
+
+
+
+    // 9 arr.reverse() 将数组反转,返回值是反转后的数组
+    let arr = [1,2,3,4,5]
+    console.log(arr.reverse())    // [5,4,3,2,1]
+    console.log(arr)    // [5,4,3,2,1]
+
+
+
+    // 10 arr.slice(start,end) 切去索引值start到索引值end的数组，不包含end索引的值，返回值是切出来的数组
+    let arr = [1,2,3,4,5]
+    console.log (arr.slice(1,3))  // [2,3]
+    console.log(arr)    //  [1,2,3,4,5]
+
+
+
+    // 11 arr.filter(callback) 过滤数组，返回一个满足要求的数组
+    let arr = [1,2,3,4,5]
+    let arr1 = arr.filter( (i, v) => i < 3)
+    console.log(arr1)    // [1, 2]*/
+
+   // 创建数组
+
+   /*
+
+      Array.of()
+
+      将参数中所有值作为元素形成数组。
+
+   */
+
+   console.log(Array.of(1, 2, 3, 4)); // [1, 2, 3, 4]
+
+   // 参数值可为不同类型
+
+   console.log(Array.of(1, '2', true)); // [1, '2', true]
+
+   // 参数为空时返回空数组
+
+   console.log(Array.of()); // []
+
+
+
+   /*
+
+       Array.from()
+
+       将类数组对象或可迭代对象转化为数组。
+
+    */
+
+   // 参数为数组,返回与原数组一样的数组
+
+   console.log(Array.from([1, 2])); // [1, 2]
+
+   // 参数含空位
+
+   console.log(Array.from([1, , 3])); // [1, undefined, 3]
+
+
+
+   // 转换可迭代对象
+
+   // 转换 map
+
+   let map = new Map();
+
+   map.set('key0', 'value0');
+
+   map.set('key1', 'value1');
+
+   console.log(Array.from(map)); // [['key0', 'value0'],['key1','value1']]
+
+
+
+   // 转换 set
+
+   let arr = [1, 2, 3];
+
+   let set = new Set(arr);
+
+   console.log(Array.from(set)); // [1, 2, 3]
+
+
+
+   // 转换字符串
+
+   let str = 'abc';
+
+   console.log(Array.from(str)); // ["a", "b", "c"]
+
+
+   // 扩展方法
+
+   // 查找
+
+   /*
+
+        find()
+
+       查找数组中符合条件的元素,若有多个符合条件的元素，则返回第一个元素。
+
+    */
+
+   let arr2 = Array.of(1, 2, 3, 4);
+
+   console.log(arr2.find(item => item > 2)); // 3
+
+
+
+   /*
+
+       findIndex()
+
+       查找数组中符合条件的元素索引，若有多个符合条件的元素，则返回第一个元素索引。
+
+    */
+
+   let arr3 = Array.of(1, 2, 1, 3);
+
+   // 参数1：回调函数
+
+   // 参数2(可选)：指定回调函数中的 this 值
+
+   console.log(arr3.findIndex(item => item = 1)); // 0
+
+
+   // 填充
+
+   /*
+
+       fill()
+
+       将一定范围索引的数组元素内容填充为单个指定的值。
+
+    */
+
+   let arr4 = Array.of(1, 2, 3, 4,5);
+
+   // 参数1：用来填充的值
+
+   // 参数2：被填充的起始索引
+
+   // 参数3(可选)：被填充的结束索引，默认为数组末尾
+
+   console.log(arr4.fill(0,1,3)); // [1, 0, 0, 4, 5]
+
+   // 遍历
+
+   /*
+
+       entries()
+
+       遍历键值对。
+
+    */
+
+   for(let [key, value] of ['a', 'b'].entries()){
+
+       console.log(key, value);
+
+   }
+
+   // 0 "a"
+
+   // 1 "b"
+
+
+
+   // 不使用 for... of 循环
+
+   let entries = ['a', 'b'].entries();
+
+   console.log(entries.next().value); // [0, "a"]
+
+   console.log(entries.next().value); // [1, "b"]
+
+
+
+   /*
+
+       keys()
+
+       遍历键名。
+
+    */
+
+   for(let key of ['a', 'b'].keys()){
+
+       console.log(key);
+
+   }
+
+
+
+   /*
+
+       values()
+
+       遍历键值。
+
+    */
+
+   for(let value of ['a', 'b'].values()){
+
+       console.log(value);
+
+   }
+
+
+   // 包含
+
+   /*
+
+       includes()
+
+       数组是否包含指定值。
+
+    */
+
+   // 参数1：包含的指定值
+
+   console.log([1, 2, 3].includes(1));    // true
+
+   // 参数2：可选，搜索的起始索引，默认为0
+
+   console.log([1, 2, 3].includes(1, 2)); // false
+
+   // NaN 的包含判断
+
+   console.log([1, NaN, 3].includes(NaN)); // true
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<script type="text/javascript">
+
+    let func1=function(){
+        console.log(this);
+        console.log('普通无参匿名函数');
+    }
+    func1();
+
+    let func2=()=>console.log('箭头函数');
+    func2();
+
+    // 当然一个参数的时候，括号可以省略（我个人习惯，还是不省略，不然看着别扭）
+    let func3=a=>console.log(a);
+    func3('ccc')
+
+    // 两个或者两个以上参数情况 (括号不能省略)
+    let func4=(a,b)=>a+b;
+    console.log(func4(1,1));
+
+    let func5=(a,b)=>{
+        console.log(this)
+        return a+b;
+    }
+    console.log(func5(1,1));
+
+    // 重要特性 箭头函数没有this,所以this是定义的时候，外部所在的对象是它的this。不是调用的时候的this；
+    // 寻找的时候 找的是外部的function 假如没有的话 就是this，假如有的话 就是外部function所在对象；
+
+    let name='marry';
+    let obj={
+        name:'jack',
+        age:11,
+        getName:function(){
+            // console.log('xxx:',this)
+            document.getElementById('btn').onclick=function(){
+                console.log('按钮：'+this);
+            }
+
+            return this.name;
+        },
+        getName2:()=>{
+            document.getElementById('btn').onclick=()=>{
+                console.log(this.name);
+            }
+            // console.log('yyy:'+this);
+        }
+    }
+
+    // console.log(obj.getName());
+    console.log(obj.getName2());
+
+</script>
+</body>
+</html>

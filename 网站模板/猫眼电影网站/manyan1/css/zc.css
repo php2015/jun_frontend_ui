@@ -1,0 +1,134 @@
+html,body,div,p,ul,form,h3,h4,h2,h1{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.topd{
+    height: 58px;
+    width: 980px;
+    margin: auto;
+    position: relative;
+}
+
+.topd img{
+    position: absolute;
+    top: 8px;
+    left: 0px;
+}
+
+hr{
+    border-top:2px solid #e02025;
+}
+
+.content{
+    width: 980px;
+
+    margin: auto;
+    padding-top:30px ;
+}
+
+.cb1{
+    width: 980px;
+    margin: auto;
+    position: relative;
+}
+
+.cb1 form div{
+    width: 360px;
+    height: 36px;
+    padding: 7px;
+}
+
+.button1{
+    margin-left:113px; 
+    height: 22px;
+    color: #444;
+    cursor: pointer;
+}
+
+.button2{
+    margin-left: 111px;
+    margin-top: 8px;
+    background:linear-gradient(to bottom,#ec454a 0,#e02025 100%);
+    padding: 8px 25px;
+    border: none;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.cb1 form div label{
+    float: right;
+    line-height: 36px;
+    font-size: 14px;
+}
+
+.cb1 form div input{
+    float: right;
+    height: 30px;
+    width: 252px;
+    margin-left: 10px;
+}
+
+.cb1 form div input:focus{
+    outline:medium;
+    border: 2px solid #ec454a;
+}
+
+.dt{
+    margin-left:111px; 
+    height: 25px;
+    cursor: default;
+}
+
+span{
+    display: inline-block;
+    font-size: 12px;
+    height: 18px;
+    width: 82px;
+    color: #ffffff;
+    background-color: #00000010;
+    margin-right:0px; 
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.pts{
+    font-size: 13px;
+    margin-left: 295px;
+    margin-top: 10px;
+}
+
+.pts a{
+    text-decoration: none;
+    color: #ec454a;
+}
+
+.pts a:hover{
+    text-decoration: underline;
+}
+
+
+
+.d{
+    width: 100%;
+    margin-top: 50px;
+    border-top:1px solid #0000000e;
+    text-align: center;
+    padding-top:28px; 
+    font-size: 13px;
+    color: #999;
+}
+
+.d a{
+    text-decoration: none;
+    color: #999;
+}
+
+.d a:hover{
+    text-decoration: underline;
+}
+

@@ -1,0 +1,112 @@
+html,body,div,p,ul,li,a,span,img,input,h3{
+    margin:0;
+    padding:0;
+}
+#border{
+    width:1000px;
+    margin:auto;
+}
+#logo img{
+    float: left;
+}
+#form{
+    position: relative;
+    margin-top: 50px;
+    width:280px;
+    height:300px;
+    float: left;
+    margin-left:100px;
+}
+#form p{
+    margin-bottom:10px;
+    font-size: 14px;
+    float: left;
+    text-align: center;
+}
+#form .umber{
+    float: right;
+}
+.photo{
+    float: right;
+    margin: 2px 0 0 4px;
+}
+.umber a{
+    float:left;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+#deng{
+    position: relative;
+    padding-top:20px;
+}
+#deng img{
+    position: absolute;
+    top:35px;
+    left:2px;
+}
+#deng input{
+    width:245px;
+    height:36px;
+   padding-left:30px;
+    font-size: 16px;
+}
+#wod{
+    position: relative;
+}
+#wod input{
+    width:245px;
+    height:36px;
+    margin-top:20px;
+    padding-left:30px;
+    font-size: 16px;
+}
+#wod img{
+    position: absolute;
+    top:30px;
+    left:2px;
+}
+.seven{
+    font-size: 14px;
+    color: #666666;
+}
+#cod{
+    margin-top:10px;
+}
+#cod a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #ec454a;
+    margin-left:100px;
+}
+#lu {
+    margin-top:10px;
+}
+#lu button{
+    margin-bottom: 10px;
+    color: #fff;
+    border: none;
+    background-color:#ec454a;
+    width:280px;
+    height:34px;
+}
+#lu a{
+    text-decoration:none;
+    color: #ec454a;
+    font-size: 14px;
+}
+#bottom{
+    color: #9d9d9d;
+    height:150px;
+    line-height:150px;
+    width:100%;
+    text-align: center;
+    font-size: 12px;
+}
+#bottom a{
+    text-decoration: none;
+    color:#9d9d9d;
+}
+#bottom a:hover{
+    text-decoration:underline;
+}

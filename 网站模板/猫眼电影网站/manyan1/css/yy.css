@@ -1,0 +1,586 @@
+html,body,div,p,ul,form,h3{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    padding-bottom: -200px;
+}
+
+#logo{
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid #dacccc;
+    background: #fff;
+    position: fixed;
+    left:0px;
+    top: 0px;
+    z-index: 101;
+}
+
+.logo1{
+    float: left;
+}
+
+.logo1 img{
+    margin: 20px 0 0 75px;
+}
+
+.xl1{
+    float: left;
+    width: 50px;
+    height: 81px;
+    margin-left:10px;
+    line-height: 80px; 
+    position: relative;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.xl{
+    list-style: none;
+    width: 79px;
+    float: left;
+    margin-left: 30px;
+}
+
+.caret{
+    display: inline-block;
+    margin: 40px 0px;
+    vertical-align: middle;
+    border-top: 5px solid #666;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    transition: all .2s ease;
+}
+
+.caret1{
+    display: inline-block;
+    margin: 40px 0px;
+    vertical-align: middle;
+    border-top: 5px solid #666;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    transition: all .2s ease;
+}
+
+.xlts{
+    border-bottom:1px solid #d8d8d8;
+}
+
+.xlts1{
+    line-height: 80px;
+    margin-left: 20px; 
+    text-align: center;
+}
+
+.xlts a{
+    text-decoration:none;
+    color: #000;
+}
+
+.xl:hover{
+    height:81px; 
+    background: #fff;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    margin-left:28px;
+}
+
+.xl:hover .caret1{
+    transform: rotate(180deg);
+}
+
+.xl:hover .xl1{
+    padding-left:11px; 
+}
+
+.xl:hover .xlc{
+    display: block;
+}
+
+.xlc{
+    border-bottom: 1px solid #d8d8d8;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    width: 480px;
+    height: 333px;
+    overflow-y:auto; 
+    display: none;
+    position: absolute;
+    left:237px ;
+    top:81px;
+    background: #fff;
+    margin-left: -1px;
+}
+
+.xlcd1 li ul li{
+    list-style: none;
+}
+
+.ex1 span{
+    background: #0000002a;
+    font-weight: bold;
+    padding: 0 3px;
+    margin-left: 20px;
+}
+
+.ex1{
+    height: 20px;
+}
+
+.ex div{
+    float: left;
+    padding: 10px 0;
+}
+
+.ex2{
+    width: 430px;
+    line-height: 25px;
+    margin-left: 10px;
+}
+
+.ex2 a{
+    text-decoration: none;
+    color: #000;
+    padding: 0 5px;
+}
+
+.ex2 a:hover{
+    background: #ef4238;
+    color: #fff;
+}
+
+#logo2{
+    width: 400px;
+    height: 80px;
+    margin-left:45px; 
+    font-size: 18px;
+    line-height: 80px;
+    line-height: 80px;
+    text-align:center;
+    float: left;
+}
+
+.l21{
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+.l21z{
+    width: 80px;
+    height: 80px;
+    float: left;
+    background: #ef4238;
+}
+
+.l21 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.l21 a:hover{
+    color: #ef4238;
+}
+
+.l21z a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#appa{
+    display: block;
+    float: left;
+    width: 150px;
+    margin-left:30px; 
+}
+
+#app{
+    width: 170px;
+    text-align: center;
+    background: #fff;
+}
+
+.appf{
+    height: 50px;
+    width: 170px;
+    padding-top:30px; 
+}
+
+.appi1{
+    float: left;
+    padding-left: 25px;
+    margin-right: 5px;
+}
+
+.appspan1{
+    float: left;
+    margin-top: -28px;
+
+}
+
+#appa .appspan1{
+    color: #000;
+}
+
+.app1{
+    width: 148px;
+    height: 180px;
+    margin-left: -1px;
+    padding-top: 80px;
+    background: #fff;
+    border-left: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+}
+
+.app1 img{
+    padding-left:5px; 
+}
+
+#appa{
+    text-decoration: none;
+}
+
+#appa .appspan2{
+    color: #000;
+    font-size: 14px;
+}
+
+#appa .appspan3{
+    color: #979393;
+    font-size: 12px;
+}
+
+.app1{
+    display: none;
+}
+
+#appa:hover .appf{
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    margin-left:-1px; 
+    width: 148px;
+}
+
+#appa:hover .caret{
+    transform: rotate(180deg);
+}
+
+#appa:hover .app1{
+    margin-top: -1px;
+    display: block;
+}
+
+#sr{
+    height: 60px;
+    float: left;
+    padding-top:20px;
+}
+
+.sr1{
+    padding: 11px 40px 11px 15px;
+    border-radius: 20px;
+    border: 1px solid #b8b7b7;
+    float: left;
+    outline: medium;
+    font-size: 14px;
+}
+
+.srss{
+    width: 40px;
+    height: 40px;
+    background: #ef4238;
+    border-radius: 20px;
+    float: left;
+    margin-left: -38px;
+}
+
+#dl{
+    width: 80px;
+    height: 80px;
+    float: left;
+    background: #fff;
+    margin-left: 5px;
+}
+
+.dlp{
+    width: 40px;
+    height: 40px;
+    margin-left:10px;
+    margin-top: 20px; 
+    float: left;
+}
+
+.caret{
+    margin-left: 5px;
+}
+
+.dlxl{
+    height: 30px;
+    width: 80px;
+    display: none;
+    margin-left: -1px;
+    margin-top: -5px;
+    padding-top:30px ;
+    border-left: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+}
+
+.dlxl span{
+    margin-left:25px;
+}
+
+.dlspan{
+    text-decoration: none;
+    color: #00000088; 
+    font-size: 14px;   
+}
+
+.dlspan:hover{
+    color: #ef4238;
+    text-decoration:underline ;
+}
+
+#dl:hover{
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+}
+
+#dl:hover .caret{
+    transform: rotate(180deg);
+}
+
+#dl:hover .dlxl{
+    display: block;
+    background: #fff;
+}
+
+#d{
+    height: 81px;
+}
+
+
+
+
+
+
+
+
+
+
+#container{
+    width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#ch{
+    width: 1200px;
+    border:1px solid #cac2c2;
+}
+
+.chu{
+    width: 1150px;
+    margin: auto;
+    height: 30px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.chu li{
+    float: left;
+    list-style: none;
+    margin-right:30px;
+}
+
+.chulv{
+    color: #979393;
+    height: 30px;
+}
+
+.chuls{
+    background-color: #ef4238;
+    padding: 5px 10px;
+    margin-top:-5px;
+    color: #fff;
+    border-radius: 15px; 
+}
+
+.chula{
+    margin-bottom:10px;
+}
+
+.chula a{
+    text-decoration: none;
+    color: #383638;
+}
+
+.chula a:hover{
+    color: #ef4238;
+}
+
+#bian-1{
+    width: 1150px;
+    height: 1;
+    border-top:1px dotted #d4cccc;
+    margin: auto;
+}
+
+#bian-2{
+    width: 1150px;
+    height: 1;
+    border-top:1px dotted #d4cccc;
+    margin: auto;
+    margin-top:25px; 
+}
+
+#cc{
+    width: 1200px;
+    margin-top: 40px;
+}
+
+.cch{
+    width: 1200px;
+    height: 16px;
+}
+
+.cchs1{
+    background-color: #fa1206;
+}
+
+.cchs2{
+    font-size: 18px;
+    font-weight: bold;
+    color: #383638;
+}
+
+.ccb{
+    height: 46px;
+    padding:20px 0;
+    border-bottom: 1px dotted #c4b7b7e0; 
+}
+
+.ccbf{
+    height: 46px;
+    width: 500px;
+    float: left;
+}
+
+.ccbfs1{
+    color: #262426;
+    cursor: pointer;
+}
+
+.ccbfs1:hover{
+    color: #ef4238;
+}
+
+.ccbfs2{
+    display: inline-block;
+    color: #a7a4a4;
+    font-size: 14px;
+    padding-top:7px; 
+}
+
+.ccbr{
+    height: 46px;
+    width: 160px;
+    float: right;
+    margin-top: 10px;
+}
+
+.ccbrs1{
+    color: #979393;
+    font-size: 12px;
+}
+
+.ccbrs1 span{
+    color: #ef4238;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.ccbrs2{
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+    background-color: #ef4238;
+    padding: 6px 12px;
+    border-radius: 19px;
+    float: right;
+    box-shadow:0 5px 1px 0 #ef413825;
+    margin-top: -5px;
+}
+
+.ccbrs2:hover{
+    background-color: #f16961;
+}
+
+.cfoot{
+    width: 1120px;
+    margin: auto;
+    height: 32px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.cfoot span{
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.cfoots1v{
+    background-color: #ef4238;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: default;
+}
+
+.cfoots1{
+    padding: 5px 10px;
+    border: 1px solid #c0bcbc;
+    cursor: pointer;
+}
+
+.cfoots1:hover{
+    border: 1px solid #f83d1c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#foot{
+    height: 150px;
+    background: #262426;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 60px;
+    margin-top: 70px;
+}
+
+.fp2 a{
+    color: #ef4238;
+    text-decoration: none;
+}
+
+.fp2 a:hover{
+    text-decoration: underline;
+}
+
+.fp3 a{
+    text-decoration: none;
+    color: #666;
+}

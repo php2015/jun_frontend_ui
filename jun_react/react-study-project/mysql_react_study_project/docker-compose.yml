@@ -1,0 +1,16 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./docker/etc/mysql:/etc/mysql/conf.d
+      - ./init-sql/:/docker-entrypoint-initdb.d/
+      - ./db_data:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: react_study_mysql
+      MYSQL_DATABASE: react_study_mysql
+      MYSQL_USER: react_study_mysql
+      MYSQL_PASSWORD: react_study_mysql

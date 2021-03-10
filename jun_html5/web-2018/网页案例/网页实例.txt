@@ -1,0 +1,106 @@
+1、先考虑清楚需要做什么网页（网页内容）
+	网页整体的布局（div + css    margin+padding）
+	在每一个不同的区域里放详细内容
+	
+	先整体，后局部
+	
+	
+2、css的使用技巧
+	1)
+		html,body,div,form,ul,li,p{
+			margin:0;
+			padding:0;
+		}
+		
+		.class_a,.class_b {
+		
+		}
+		
+		#a,#b {
+		
+		}
+		
+		ul li {
+	
+		}
+		层级关系，找ul内部的li
+		
+		#a div {
+		
+		}
+		
+		.b span {
+		
+		}
+		
+		#a #b .c {
+		
+		}
+	
+	
+	2）ul li的修改
+	
+		list-style: none;
+		
+	3）元素的浮动
+		float: left | right
+		表示块元素在同一行内往左或往右浮动
+		
+		在所有浮动元素的最后面需要添加一个块元素，用于清除浮动
+		clear:left|right|both;
+		
+	4）百分比的用法 
+		width:50%;
+					此元素宽度是父元素宽度的50%;
+					涉及到尺寸的，都可以使用百分比
+					
+	5）a标签的样式
+		状态：链接状态a:link
+			鼠标经过状态a:hover
+			鼠标点击状态（a标签的激活状态）a:active
+			已访问状态a:visited
+			
+			a:hover {
+			
+			}
+			
+			a:link, a:active {
+			
+			}
+			
+		以:开头的，在css中通常称为伪元素/伪类，通常用于描述标签的一种状态
+		
+	6）转义字符 
+		空格: &nbsp;
+		大于号：&gt;  greater than
+		大于等于：&ge;  greater equal
+		小于号：&lt;  lower than
+		小于等于：&le;   lower equal
+		&: &amp;
+		版权符号：&copy;
+		
+	7）图标字体 
+		用图片做成的字体，与字体的用法完全一致，可以指定大小，颜色，以及其他文字效果
+		
+		fontawesome
+			css样式文件，开发者直接使用由fontawesome提供的css文件来引用指定的图标
+			.ttf的字体文件，此字体是图标
+			
+			用法：
+				1）下载fontawesome
+				2）解压出来 
+				3）把解压出来的css目录内的文件copy到自己项目的css目录中
+				4）把解压出来的fonts目录copy到自己项目的与css同一级别的目录
+				5）在页面中引用第二步Copy过来的css样式文件，fontawesome.css
+				6）使用css样式类来引用图标
+					<i class="图标的类"></i>
+
+					
+					<i class="fa fa-bars"></i>
+
+					http://www.fontawesome.com.cn/faicons/ 可查看所有图标
+		
+		iconfont
+		
+		
+	

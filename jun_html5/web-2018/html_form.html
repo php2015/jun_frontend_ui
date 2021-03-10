@@ -1,0 +1,108 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<title>HTML</title>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<h4>欢迎注册**网</h4>
+		<form method="get" action="html_form.html">
+			<label for="email_id">邮箱：</label>
+			<input id="email_id" type="email" name="email" placeholder="请输入邮箱"/>
+			<br/>
+			<label for="nickname">昵称：</label>
+			<input id="nickname" type="text" name="nickname" placeholder="请输入昵称" value="nickname"/>
+			<br/>
+			<label for="pwd">密码：</label>
+			<input id="pwd" type="password" name="pwd" placeholder="请输入密码"/>
+			<br/>
+			<label for="con_pwd">确认密码：</label>
+			<input id="con_pwd" type="password" name="con_pwd" placeholder="请输入确认密码"/>
+			<br/>
+			<label for="age">年龄：</label>
+			<input id="age" type="number" name="age" placeholder="请输入年龄"/>
+			<br/>
+			<label>性别：</label>
+			<input type="radio" name="gender" value="male" checked="checked"/> 男
+			<input type="radio" name="gender" value="female" />女
+			<input type="radio" name="gender" value="other"/> 其他
+			<br/>
+			<label>是否成年：</label>
+			<input type="radio" name="adult" value="yes"/> 是
+			<input type="radio" name="adult" value="no"/> 否
+			<br/>
+			<label>兴趣爱好：</label>
+			<input type="checkbox" name="hobby" value="reading"/>阅读
+			<input type="checkbox" name="hobby" value="sleeping" checked="checked"/>睡觉
+			<input type="checkbox" name="hobby" value="eating" checked="checked"/>吃
+			<input type="checkbox" name="hobby" value="running"/>跑步
+			<br/>
+			<label>喜欢的颜色：</label>
+			<input type="color" name="color"/>
+			<br/>
+			<label>出生日期 ：</label>
+			<input type="date" name="birthday"/>
+			<br/>
+			<label>出生时间 ：</label>
+			<input type="datetime-local" name="birth-time"/>
+			<br/>
+			<label>时间 ：</label>
+			<input type="time" name="time"/>
+			<br/>
+			<label>上传头像：</label>
+			<input type="file" name="avatar"/>
+			<br/>
+			<input type="hidden" name="hidden_type"/>
+			<br/>
+			<input type="range" max="200" min="-200" name="range" value="100"/>
+			<br/>
+			<label>手机号：</label>
+			<input type="tel" name="phone-no"/>
+			<br/>
+			<label>个人网页：</label>
+			<input type="url" name="persernal_web"/>
+			<br/>
+			<label>所在城市：</label>
+			<select name="city">
+				<option value="beijing">北京</option>
+				<option value="shanghai">上海</option>
+				<option value="ganzhou">赣州</option>
+				<option value="newyork">纽约</option>
+				<option value="tokyo">东京</option>
+				<option value="nanjing">南京</option>
+			</select>
+			<br/>
+			<select name="city_1" multiple="multiple">
+				<option value="beijing">北京</option>
+				<option value="shanghai">上海</option>
+				<option value="ganzhou">赣州</option>
+				<option value="newyork">纽约</option>
+				<option value="tokyo">东京</option>
+				<option value="nanjing">南京</option>
+			</select>
+			<br/>
+			<select name="subject">
+				<optgroup label="信息工程学院">
+					<option value="jsj">计算机科学与技术</option>
+					<option value="tx">通信工程</option>
+					<option value="rj">软件工程</option>
+				</optgroup>
+				<optgroup label="经管学院">
+					<option value="kj">会计</option>
+					<option value="tl">管理学</option>
+					<option value="gj">国际贸易</option>
+				</optgroup>
+			</select>
+			<br/>
+			<label>个人简介（400字）：</label>
+			<textarea name="des" rows="20" cols="80"></textarea>
+			<br/>
+			
+			<input type="submit" value="确认提交"/>
+			<input type="reset" value="清空表单"/>
+			
+			<input type="button" value="注册"/>
+			<button type="button">确认注册</button>
+		</form> 
+	</body>
+</html>

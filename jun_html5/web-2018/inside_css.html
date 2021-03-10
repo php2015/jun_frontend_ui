@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>内部样式</title>
+		<meta charset="utf-8"/>
+		<style>
+			div {
+				// color:#0000ff;
+				font-size: 16px;
+				border: 1px solid red;
+			}
+			
+			p {
+				color: #ff0000;
+			}
+			
+			span {
+				display:inline-block;
+			}
+			
+			/*
+			img {
+				css属性名:css属性值;
+			}
+			*/
+			
+			/**
+				border-spacing: 0px; 边框距离 
+				border-collapse: collapse; 边框重叠
+			*/
+			table {
+				border: 1px solid #00ff00;
+				border-spacing: 0px;
+				border-collapse: collapse;
+			}
+			
+			td {
+				border: 1px solid #00ff00;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 内联样式 -->
+		<div>文本</div>
+		<div>
+			文本
+			<p>段落</p>
+		</div>
+		<p>段落</p>
+		<p>段落</p>
+		<span>span1</span>
+		<span>span1</span>
+		<table>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+		</table>
+	</body>
+</html>

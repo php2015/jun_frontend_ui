@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    /*
+	 Object.assign(target, source_1, ···)
+	 用于将源对象的所有可枚举属性复制到目标对象中。
+	 返回值是target对象
+	 如果目标对象和源对象有同名属性，或者多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+*/
+
+    let target = {a: 1};
+    let object2 = {b: 2};
+    let object3 = {c: 3};
+    let returnObj=Object.assign(target,object2,object3);
+    console.log(target) //  {a: 1, b: 2, c: 3}
+    console.log(returnObj) // {a: 1, b: 2, c: 3}
+
+    let sourceObj = { a: { b: 1}};
+    let targetObj = {c: 3};
+    Object.assign(targetObj, sourceObj);
+    targetObj.a.b = 2;
+    console.log(sourceObj.a.b);  // 2
+
+    /*
+	Object.is(value1, value2)
+	用来比较两个值是否严格相等，与（===）基本类似。
+ */
+
+    console.log(Object.is("q","q"));      // true
+    console.log(Object.is(1,1));          // true
+    console.log(Object.is("1",1));          // false
+    console.log("1"==1);  // true
+    console.log("1"===1);  // false 类型也要判断
+    console.log(Object.is([1],[1]));      // false
+    console.log(Object.is({q:1},{q:1}));  // false
+</script>
+</body>
+</html>

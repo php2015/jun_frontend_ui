@@ -1,0 +1,34 @@
+div {
+	// color:#0000ff;
+	font-size: 16px;
+	border: 1px solid red;
+	border-radius:50px;
+}
+
+p {
+	color: #ff0000;
+}
+
+span {
+	display:inline-block;
+}
+
+/*
+img {
+	css属性名:css属性值;
+}
+*/
+
+/**
+	border-spacing: 0px; 边框距离 
+	border-collapse: collapse; 边框重叠
+*/
+table {
+	border: 1px solid #00ff00;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+td {
+	border: 1px solid #00ff00;
+}

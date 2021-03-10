@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<title>HTML标签</title>
+	</head>
+	
+	<body>
+		<abbr>PRC</abbr>
+		<address>江西省赣州市章贡区 341000</address>
+		<article>这里可以放一篇完整的文章</article>
+		<aside>使用aside定义页面内容之外的内容</aside>
+		<blockquote>天才是99%的汗水加1%的灵感</blockquote>
+		<center>使用center的居中文本，但是HTML5中最好不要用</center>
+		<code>
+			public class Hello {
+			
+			}
+		</code>
+		<br/>
+		<progress value="50" max="100"></progress>
+		<time>10:55:00</time>
+		<hr/>
+		<img src="images\dog.jpeg" width="100px" height="100px" title="dog_title" alt="dog_alt"/>
+		<audio src="musics\那是你离开了北京的生活.mp3" controls="controls">您的浏览器不支持 audio 标签。</audio>
+		<audio controls="controls" loop="loop">
+			<source src="musics\那是你离开了北京的生活.mp3" type="audio/mpeg"/>
+			<source src="musics\那是你离开了北京的生活.mp3" type="audio/mpeg"/>
+			您的浏览器不支持 audio 标签。
+		</audio>
+		<video src="videos\戒烟.mp4" width="400px" height="280px" autoplay="autoplay" controls="controls">您的浏览器不支持 video 标签。</video>
+		<hr/>
+		<iframe src="html_basic_1.html" width="600px" height="300px" frameborder="0"></iframe>
+		<!-- frameset和frame尽量不要用，在chrome中没有作用 -->
+		<frameset cols="25%,*,25%">
+		  <frame src="html_basic_1.html">
+		  <frame src="html_basic_1.html">
+		  <frame src="html_basic_1.html">
+		</frameset>
+		
+		<hr/>
+		<h4>使用map来定义图像热点</h4>
+		<img src="images\dog.jpeg" alt="dog" usemap="#dogmap"/>
+
+		<map name="dogmap">
+		 <area shape ="rect" coords ="0,0,95,50" href ="html_basic.html" alt="Sun"/>
+		 <area shape ="circle" coords ="122,120,30" href ="html_basic_1.html" alt="Mercury"/>
+		</map>
+		
+	</body>
+</html>

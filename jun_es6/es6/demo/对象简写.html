@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    let username='java1234';
+    let pwd='123456';
+    /*let obj={
+        username:username,
+        pwd:pwd,
+        getUserName:function(){
+            return this.username;
+        }
+    }*/
+    let obj={
+        username,
+        pwd,
+        getUserName(){
+            return this.username;
+        }
+    }
+    // console.log(obj.username,obj.pwd);
+    console.log('es6',obj.getUserName());
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+html,body,div,p,ul,li,a,span,img,input,h3{
+    margin:0;
+    padding:0;
+}
+#top{
+    height:60px;
+    border-bottom:2px solid red;
+    line-height: 60px;
+}
+#top img{
+    margin-left:200px;
+    margin-top:10px;
+}
+#middle input{
+    margin-top:10px;
+    height:30px;
+    width:260px;
+}
+#middle input:visited{
+    border-color: #f76120;
+}
+#middle{
+   padding-top:20px;
+    width:800px;
+    margin:auto;
+}
+#middle button{
+    margin-left:85px;
+}
+#information{
+    margin-left:-47px;
+}
+#middle-top{
+    margin: 0 0 -10px 15px;
+}
+#middle-top  p{
+    font-size:14px;
+    color: #999;
+}
+.agree button{
+    width:180px;
+    height:35px;
+    margin-top:20px;
+    background-color: #e02025;
+    border:none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+.pwd{
+    margin-bottom: 10px;
+    margin-top:-10px;
+}
+#middle span{
+    display: inline-block;
+    width:84px;
+    text-align: center;
+    height:20px; 
+    background-color: rgb(235, 233, 233);
+}
+.qiang{
+    color: #fff;
+    margin-left:85px;
+    margin-bottom:-20px;
+}
+#middle .meiguo{
+    display: inline-block;
+    text-decoration: none;
+    margin:20px 0 0 80px;
+    font-size:14px;
+    color: #e02025;
+}
+#middle p{
+display:inline-block;
+}
+#bottom{
+    border-top:1px solid;
+    color: #999;
+    font-size:14px;
+    text-align: center;
+    margin-top:30px;
+    height:40px;
+    line-height:40px;
+}

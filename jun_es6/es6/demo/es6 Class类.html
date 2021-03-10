@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    // 定了一个类
+   class Person{
+       // 定义一个构造方法
+       constructor(name,age){
+           console.log('父类构造方法')
+           this.name=name;
+           this.age=age;
+       }
+
+       // 定义普通方法
+       getInfo(){
+           console.log('父类getInfo')
+           return `姓名：${this.name}；年龄：${this.age}`;
+       }
+   }
+
+   let person=new Person('Jack',10);
+   console.log(person);
+   console.log(person.getInfo());
+
+   // 用extends实现继承
+    class BlackPerson extends Person{
+        constructor(name,age,height){
+            super(name,age);
+            console.log('子类构造方法')
+            this.height=height;
+        }
+
+        // 重写父类方法
+        getInfo(){
+            console.log('子类getInfo')
+            return `姓名：${this.name}；年龄：${this.age}；身高：${this.height}`;
+        }
+    }
+
+    let xiaoHei=new BlackPerson('john',20,180);
+    console.log(xiaoHei)
+    console.log(xiaoHei.getInfo())
+
+
+</script>
+</body>
+</html>

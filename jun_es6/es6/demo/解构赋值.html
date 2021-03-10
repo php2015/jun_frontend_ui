@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    let obj={username:'java1234',pwd:'123456'};
+   /* let username=obj.username;
+    let pwd=obj.pwd;*/
+    let{username,pwd}=obj;
+    console.log(username,pwd);
+
+    function func({username,pwd}){
+        console.log(username,pwd);
+    }
+
+    func(obj);
+
+    let arr=[1,4,2,'ccc',false,'啦啦啦'];
+    let[,,,a,b]=arr;
+    console.log(a,b);
+</script>
+</body>
+</html>

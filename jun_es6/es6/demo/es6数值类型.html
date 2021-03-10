@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    // Number常用方法
+    /*
+        Number.isFinite() 用来检查一个数值是否为有限的（finite）
+                          对于非数字，不会做隐式类型转换，直接返回false
+        Number.isNaN() 用来检查一个值是否为NaN
+    */
+    console.log( Number.isFinite(1));   // true
+    console.log( Number.isFinite(0.1)); // true
+
+    // NaN 不是有限的
+    console.log( Number.isFinite(NaN)); // false
+    console.log( Number.isFinite(Infinity));  // false
+    console.log( Number.isFinite(-Infinity)); // false
+
+    // Number.isFinate 没有隐式的 Number() 类型转换，所有非数值都返回 false
+    console.log( Number.isFinite('foo')); // false
+    console.log( Number.isFinite('15'));  // false
+    console.log( Number.isFinite(true));  // false
+
+    // 用于检查一个值是否为 NaN 。
+    console.log(Number.isNaN(NaN));      // true
+    console.log(Number.isNaN(223)); // false
+
+    /*
+	Number.parseInt() 方法可解析一个字符串，并返回一个整数
+	Number.parseFloat() 方法可解析一个字符串，并返回一个浮点数
+    */
+    console.log(Number.parseInt('12.51')); // 12
+    console.log(Number.parseInt(12.34));   // 12
+    console.log(Number.parseFloat('123.45')) // 123.45
+    console.log(Number.parseFloat('123.45abc')) // 123.45
+
+
+    /*
+   Math.sign 判断数字的符号（正、负、0）。
+    */
+    console.log(Math.sign(2))  //  1
+    console.log(Math.sign(-2))  // -1
+
+    // 参数为 0 时，不同符号的返回不同
+    console.log(Math.sign(0))  // 0
+    console.log(Math.sign(-0))  // -0
+
+    // 判断前会对非数值进行转换
+    console.log(Math.sign('1'))  // 1
+    console.log(Math.sign('-1')) // -1
+
+    // 参数为非数值（无法转换为数值）时返回 NaN
+    console.log(Math.sign(NaN))  // NaN
+    console.log(Math.sign('hhh'))  // NaN
+
+    /*
+	    Math.cbrt 用于计算一个数的立方根。
+    */
+    console.log(Math.cbrt(27))  // 3
+
+    /*
+	    Math.trunc 用于返回数字的整数部分。
+    */
+    console.log(Math.trunc(12.3)); // 12
+    console.log(Math.trunc(12));   // 12
+
+    // 整数部分为 0 时也会判断符号
+    console.log(Math.trunc(-0.5)); // -0
+    console.log(Math.trunc(0.5));  // 0
+
+    // Math.trunc 会将非数值转为数值再进行处理
+    console.log(Math.trunc("12.3")); // 12
+
+    // 空值或无法转化为数值时时返回 NaN
+    console.log(Math.trunc());           // NaN
+    console.log(Math.trunc(NaN));        // NaN
+    console.log(Math.trunc("hhh"));      // NaN
+    console.log(Math.trunc("123.2hhh")); // NaN
+</script>
+</body>
+</html>

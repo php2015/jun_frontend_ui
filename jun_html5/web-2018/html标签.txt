@@ -1,0 +1,174 @@
+﻿1、代码编辑工具
+	1) 记事本
+	2) notepad++(代码着色，自动缩进，自动补齐结束标签，免费)
+		EditPlus
+		UltraEdit
+		VI/VIM（免费） GVIM
+		
+2、其他标签
+	1）语义标签：仅仅表示这个内容是什么含义
+		abbr: 定义缩写，只代码一种语义
+		address：定义地址
+		article： 定义文章
+		aside： 网页内容之外的内容
+		blockquote： 定义引用
+		code： 定义计算机代码
+		time： 定义时间，目前所有浏览器都不支持
+	
+	2）其他常用
+		progress：进度条， value当前进度，max最大进度 
+	
+	3）多媒体标签
+		img: 图片
+			<img src="图片路径" width="px" height="px" title="" alt=""/>
+		audio: mp3,ogg,wav的音频格式
+			<audio src="" autoplay="autoplay" controls="controls">不支持</audio>
+			
+			<audio>
+				<source src="音频路径" type="audio/mpeg|audio/ogg|audio/wav"/>
+				<source src="音频路径" type="audio/mpeg|audio/ogg|audio/wav"/>
+				不支持
+			</audio>
+			
+		video: mp4, ogg, WebM的视频格式
+			<video src="" autoplay="autoplay" controls="controls">不支持</video>
+			
+			<video>
+				<source src="视频路径" type="audio/mp4|audio/ogg"/>
+				<source src="视频路径" type="audio/mp4|audio/ogg"/>
+				不支持
+			</video>
+			
+			audio和video内部出现多个source，是为了解决浏览器兼容性问题。多个source是同一个音频或视频的不同格式的版本
+			
+	4、网页框架
+		iframe: <iframe src="网页地址" width="" height=""></iframe>
+		
+	5、图像映射
+		<img src="" usemap="#map_name"/>
+		
+		map: 用地定义图像映射，可以把一张图片分割成多个部分，每一个部分都可以当作一个链接，分割出来的每一个部分称为图片热点
+			如何对图片进行分割：通过area标签进行分割，通过area标签的shape属性，
+			shape属性可以是：rect方形分割（start_x, start_y, end_x, end_y），circle圆形分割（o_x, o_y, r）
+		<map name="map_name">
+			<area shape="rect" coords="0,0,95,50" href="new_html.html"></area>
+			<area shape="circle" coords="122,120,30" href="new_html.html"></area>
+		</map>
+		
+
+	6、表格
+		<table>
+			<caption>表格标题</caption>
+			
+			<thead>
+				<tr>
+					<th></th>
+					……
+				</tr>
+			</thead>
+		
+			<tbody>
+				<tr>
+					<td></td>
+					……
+				</tr>
+				……
+			</tbody>
+			
+			<tfoot>
+				<tr>
+					<td></td>
+					……
+				</tr>
+			</tfoot>
+			
+		</table>
+		
+		合并：
+		colspan，用于合并列， th或td上使用colspan="2"
+		rowspan，用于合并行， th或td上使用rowspan="4"
+		
+	7、HTML表单
+		1)form: 表示一个表单，在此表单中可以包含输入框，选择框，按钮等控件，输入的内容将来可以提交到远程服务器上
+		
+		form表单内部的元素（input, select等）都应该有name属性，此属性用于提交到服务器
+		
+			input
+				button    value可以更改按钮上的文本
+				checkbox    checked="checked"表示默认选择
+				color 
+				date 
+				datetime 
+				datetime-local 
+				email 
+				file 
+				hidden 
+				image 
+				month 
+				number 
+				password 
+				radio    checked="checked" 表示默认选中项
+				range       max  min
+				reset    value可以更改按钮上的文本
+				search 
+				submit  value可以更改按钮上的文本
+				tel 
+				text 
+				time 
+				url 
+				week
+				
+				value属性表示input的值 
+				placeholder属性用于提示信息
+				
+				radio和checkbox都有分组概念，name值一致，则为同一个组
+			
+			label标签，与某个具体的输入框绑定到一起，当点击label上的文字后，输入框可变成输入状态
+				<label for="input的id属性值一样">名称</label>
+				
+			select：下拉菜单 
+				<select multiple="multiple">
+					<option value="">北京</option>
+					……
+				</select>
+				
+				使用optgroup标签可以对option进行分组
+				<optgroup label="分组名称">
+					<option></option>
+					……
+				</optgroup>
+				
+			button：
+				<button>按钮的文本</button>   会进行提交，相当于<input type="submit"/>
+				如果不想进行提交，普通按钮<button type="button">按钮的文本</button>
+				
+		8、表单提交
+			file:///C:/Users/Administrator/Desktop/html_basic/html_form.html?email=646897706%40qq.com&nickname=nickname&pwd=123456&con_pwd=123456&age=12&gender=male&adult=no&hobby=sleeping&hobby=eating&color=%23000000&birthday=2018-07-02&birth-time=&time=&avatar=&hidden_type=&range=100&phone-no=&persernal_web=&city=ganzhou&city_1=ganzhou&subject=rj&des=%E5%BE%88%E5%A5%BD%EF%BC%81
+			
+			?email=646897706%40qq.com&nickname=nickname&pwd=123456&con_pwd=123456&age=12&gender=male&adult=no&hobby=sleeping&hobby=eating&color=%23000000&birthday=2018-07-02&birth-time=&time=&avatar=&hidden_type=&range=100&phone-no=&persernal_web=&city=ganzhou&city_1=ganzhou&city_1=beijing&subject=rj&des=很好！
+			
+			数据提交的过程中，每一个数据都采用name=value的形式
+			name=value, name也可以称为参数（parameter）
+			如果多个参数，每个参数间使用&连接
+			
+			从?开始的部分（包括问号），称为查询字符串
+			
+			两种提交方式：
+				get：
+					1）地址栏有变化，增加了查询字符串（Query String）
+					2）表单默认的提交方法
+					3）查询字符串在不同的浏览器中会有不同的大小限制，4096KB
+					4）所有提交数据都会出现在地址栏，数据不安全
+					5）不支持文件上传
+				post:
+					1)地址栏没有变化，不会增加查询字符串
+					2）不是默认的提交方法，必须给form表单使用method属性指定为post
+					3）没有数据大小的限制
+					4）所有提交的数据不会出现在地址栏，而是出现在form data里，数据相对于get方法来说更安全
+					5）支持文件上传
+					
+		9、开发者工具
+			1）元素审查
+			2）查看源代码
+			3）网络（追踪）：F12->Network->点击All->发起请求（get或post）->点击底部出现的请求链接->Headers->底部Query String Parameters(GET)或Form Data(POST)
+			

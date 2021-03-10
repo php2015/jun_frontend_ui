@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<link rel="stylesheet" href="">
+<style type="text/css">
+*{
+    box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+body{
+	background-image: -webkit-linear-gradient(317deg,rgba(0,0,0,1.00) 0%,rgba(18,24,73,1.00) 50.26%,rgba(0,20,100,1.00) 100%);
+	background-image: -moz-linear-gradient(317deg,rgba(0,0,0,1.00) 0%,rgba(18,24,73,1.00) 50.26%,rgba(0,20,100,1.00) 100%);
+	background-image: -o-linear-gradient(317deg,rgba(0,0,0,1.00) 0%,rgba(18,24,73,1.00) 50.26%,rgba(0,20,100,1.00) 100%);
+	background-image: linear-gradient(133deg,rgba(0,0,0,1.00) 0%,rgba(18,24,73,1.00) 50.26%,rgba(0,20,100,1.00) 100%);
+	margin: 0;
+	padding: 0;
+}
+canvas{
+	cursor: crosshair;
+	display: block;
+}
+button{
+	display: block;
+	color:#438ED8;
+	background-color: transparent;
+
+	position: absolute;
+	top:20px;
+	right: 20px;
+	padding: 5px 8px;
+
+	border-radius: 50px;
+	border: 2px solid #438ED8;
+
+	cursor: pointer;
+	outline:0 none !important;
+	blr:expression(this.onFocus=this.blur());
+
+}
+button:hover{
+	color:#f5f5f5;
+	background-color: #438ED8;
+}
+</style>
+
+</head>
+<body>
+<button type="button" id="button" onclick="showHeart(this);">爱心烟火</button>
+<canvas id="canvas">Your browser unsupported the canvas!</canvas>
+
+<script type="text/javascript">
+window.requestAnimFrame = ( function() {
+	return window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				function( callback ) {
+					window.setTimeout( callback, 1000 / 60 );
+				};
+})();
+
+// 使用的参数定义
+var canvas = document.getElementById('canvas'),
+	ctx = canvas.getContext('2d'),
+	audio = document.getElementById('audio'),
+	// 满屏
+	cw = window.innerWidth,
+	ch = window.innerHeight,
+	// 烟火数组
+	fireworks = [],
+	// 炸点数组
+	particles = [],
+	// 颜色色调
+	hue = 120,
+	//限制器，数值越小，可以发射的愈多
+	limiterTotal = 3,
+	limiterTick = 0,
+	//烟火自动循环播放时
+	timerTotal = 80,
+	timerTick = 0,
+	mousedown = false,
+	//鼠标坐标
+	mx,
+	my,
+	//爱心计时器
+	timer,
+	//爱心火焰判断
+	heartFireworks = false,
+	//爱心中心坐标
+	hx = cw / 2,
+	hy = ch / 2;
+
+	var angle = 10,
+		heartPoint=[];
+
+
+	//设置canvas的大小
+	canvas.width = cw;
+	canvas.height = ch;
+
+	//获得一个(min, max)范围内的随机数
+	function random(min, max){
+		return Math.random()*(max-min)+min;
+	}
+
+	//获取心形坐标
+	function getHeartPoint(offsetX, offsetY, angle) {
+		var t = angle / Math.PI;
+		var x = 9.75 * (16 * Math.pow(Math.sin(t), 3));
+		var y = - 10 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+		return new Array(offsetX + x, offsetY + y);
+	}
+	//计算两点之间的距离
+	function countDistance(p1x, p1y, p2x, p2y){
+		var xDistance = p1x - p2x,
+			yDistance = p1y - p2y;
+		return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+	}
+	// 制造firework
+	function Firework(sx, sy, tx, ty){
+		//console.log(sx+':'+sy+'::'+tx+':'+ty);
+		//实际坐标
+		this.x = sx;
+		this.y = sy;
+		//开始坐标
+		this.sx = sx;
+		this.sy = sy;
+		//目标坐标
+		this.tx = tx;
+		this.ty = ty;
+		//起点坐标与目标坐标的距离
+		this.distanceToTarget = countDistance(sx, sy, tx, ty);
+		//烟花移动跟随距离
+		this.distanceTraveled = 0;
+		//跟踪坐标创建烟火移动效果的数据
+		this.coordinates = [];
+		this.coordinateCount = 3;
+		//填充初始坐标与当前坐标
+		while(this.coordinateCount--){
+			this.coordinates.push([this.x, this.y]);
+		}
+		this.angle = Math.atan2(ty - sy, tx - sx);
+		this.speed = 2;
+		this.acceleration = 1.05;//加速度
+		this.brightness = random(50,70);//亮度
+		this.targetRadius = 1;// 圆的半径
+	}
+	//加载烟火
+	Firework.prototype.update = function(index) {
+		//删除栈顶坐标的数组
+		this.coordinates.pop();
+		//添加当前坐标数组
+		this.coordinates.unshift([this.x, this.y]);
+		//目标圆的半径循环指标
+		if (this.targetRadius < 8) {
+			this.targetRadius += 0.3;
+		} else{
+			this.targetRadius = 1;
+		}
+		//火焰速度
+		this.speed *= this.acceleration;
+		//获得当前的角速率，和速度
+		var vx = Math.cos(this.angle)*this.speed,
+			vy = Math.sin(this.angle)*this.speed;
+		//烟花跟随距离
+		this.distanceTraveled = countDistance(this.sx, this.sy, this.x + vx, this.y + vy);
+		//判断烟花是否已经到达指定的点
+		if (this.distanceTraveled >= this.distanceToTarget) {
+			//创建爆炸效果
+			createParticles(this.tx, this.ty);
+			//删除烟花，根据索引传递的值来删除
+			fireworks.splice(index, 1);
+		} else{
+			//目标没有到达，继续移动
+			this.x += vx;
+			this.y += vy;
+		}
+	};
+
+	//画出烟火
+	Firework.prototype.draw = function(){
+		ctx.beginPath();
+		//当前移动到的最后一个点画出一条线
+		ctx.moveTo( this.coordinates[ this.coordinates.length - 1][ 0 ], this.coordinates[ this.coordinates.length - 1][ 1 ]);
+		ctx.lineTo( this.x, this.y );
+		ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)';
+		ctx.stroke();
+		ctx.beginPath();
+		//画出目标点的圆
+		ctx.arc( this.tx, this.ty, this.targetRadius, 0, Math.PI * 2 );
+		ctx.stroke();
+	}
+
+	// 创建烟火粒子
+	function Particle(x, y){
+		this.x = x;
+		this.y = y;
+		//跟踪粒子坐标创建粒子移动轨迹
+		this.coordinates = [];
+		this.coordinateCount = 5;
+		while(this.coordinateCount --){
+			this.coordinates.push([this.x, this.y]);
+		}
+		//设置随机角度，随机发射速度
+		this.angle = random(0, Math.PI * 2);
+		this.speed = random(1, 10);
+		// f粒子摩擦系数
+		this.friction = 0.95;
+		//重力应用
+		this.gravity = 1;
+		//设置颜色值在+—20
+		this.hue = random(hue - 20, hue + 20);
+		this.brightness = random(50, 80);
+		this.alpha = 1;
+		//设置粒子逐渐消失
+		this.decay = random(0.015, 0.03);
+	};
+	//更新粒子
+	Particle.prototype.update = function(index) {
+		//移除最后坐标的数组
+		this.coordinates.pop();
+		//添加当前坐标的数组到开始的位置
+		this.coordinates.unshift([this.x, this.y]);
+		//显示落下的粒子
+		this.speed *= this.friction;
+		//应用速率
+		this.x += Math.cos(this.angle) * this.speed;
+		this.y += Math.sin(this.angle) * this.speed + this.gravity;
+		//粒子逐渐消失
+		this.alpha -= this.decay;
+		//根据索引移除粒子
+		if (this.alpha <= this.decay) {
+			particles.splice(index, 1);
+		}
+	};
+
+	//粒子绘图
+	Particle.prototype.draw = function() {
+		ctx.beginPath();
+		//跟踪最后一个点来绘制
+		ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+		ctx.lineTo(this.x, this.y);
+		ctx.strokeStyle = 'hsla('+this.hue+', 100%'+this.brightness+'%, '+this.alpha+')';
+		ctx.stroke();
+	};
+	//创建粒子簇
+	function createParticles(x, y){
+		//烟火粒子创建数量，为保证性能，最好不要太高
+		var particleCount = 30;
+		while(particleCount --){
+			particles.push(new Particle(x, y));
+		}
+	}
+	//主方法循环
+	function loop(){
+		//加载requestAnimFrame，就可以无限循环
+
+		requestAnimFrame(loop);
+		//随着时间推移，增加hue，实现颜色控制
+		hue += 0.5;
+		//一般情况下使用clearRect()来清除画布，但是我们想要一个拖拽的效果，不用完全清空画布
+		//所以将destination-out引入，设计了一个清除效果
+		ctx.globalCompositeOperation = 'destination-out';
+		//减少透明度，使烟花更加真实
+		ctx.fillStyle = 'rgba(0,0,0,0.5)';
+		ctx.fillRect(0,0,cw,ch);
+		//创建烟花可以重叠
+		ctx.globalCompositeOperation = 'lighter';
+
+		//循环遍历烟花，并更新
+		var i = fireworks.length;
+		while( i-- ){
+			fireworks[i].draw();
+			fireworks[i].update(i);
+		}
+		//循环遍历烟花爆炸粒子，并更新
+		var i = particles.length;
+		while( i-- ) {
+			particles[ i ].draw();
+			particles[ i ].update( i );
+		}
+		//
+
+
+		//发射随机烟火
+		if (timerTick >= timerTotal) {
+			if (!mousedown && !heartFireworks) {
+				//烟花从底部发射,如果鼠标没有操作则是发射到屏幕的上半部分
+				fireworks.push(new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 2 ) ) );
+				timerTick = 0;
+			}
+		} else{
+			timerTick ++;
+		}
+
+		//鼠标发射烟火
+		if (limiterTick >= limiterTotal) {
+			// if (mousedown) {
+			// 	//启动鼠标发射烟火
+			// 	fireworks.push(new Firework(cw/2, ch, mx,my));
+			// 	limiterTick = 0;
+			// }
+			if (!heartFireworks) {
+				if (mousedown) {
+					//启动鼠标发射烟火
+					fireworks.push(new Firework(cw/2, ch, mx,my));
+					limiterTick = 0;
+				}
+			} else{
+				if (mousedown) {
+					//启动鼠标发射爱心火焰
+					fireworks.push(new Firework( cw / 2, ch, heartPoint[0], heartPoint[1] ) );
+					limiterTick = 0;
+				}
+			}
+
+		} else{
+			limiterTick ++;
+		}
+
+		//爱心火焰发射
+		if (limiterTick >= limiterTotal) {
+			if (!mousedown && heartFireworks) {
+				fireworks.push(new Firework( cw / 2, ch, heartPoint[0], heartPoint[1] ) );
+				limiterTick = 0;
+			}
+		} else{
+			limiterTick ++;
+		};
+	}
+
+	//鼠标事件开始
+	canvas.addEventListener('mousemove', function(e){
+
+		mx = e.pageX - canvas.offsetLeft;
+		my = e.pageY - canvas.offsetTop;
+	});
+	// 鼠标点击事件
+	canvas.addEventListener('mousedown', function(e){
+		e.preventDefault();
+		mousedown = true;
+		hx = e.pageX - canvas.offsetLeft;
+		hy = e.pageY - canvas.offsetTop;
+	});
+	canvas.addEventListener('mouseup', function(e){
+		e.preventDefault();
+		mousedown = false;
+	});
+
+	console.log(!mousedown && !heartFireworks);
+
+	var timer;
+	//发射爱心火焰
+	function showHeart (btn) {
+		// console.log(btn);
+		// console.log(btn.innerHTML);
+		if (!heartFireworks) {
+			heartFireworks = true;
+			timer = setInterval(function () {
+				heartPoint = getHeartPoint(hx, hy, angle);
+				angle += 0.2;
+			}, 5);
+			btn.innerHTML = '普通火焰';
+		} else{
+			heartFireworks = false;
+			clearInterval(timer);
+			btn.innerHTML = '爱心火焰';
+		};
+	}
+
+	window.onload = loop;
+</script>
+<!-- http://thecodeplayer.com/walkthrough/canvas-fireworks-tutorial -->
+</body>
+</html>

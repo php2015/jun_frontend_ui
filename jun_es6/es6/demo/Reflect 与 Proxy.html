@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    let target = {
+        name:"小明",
+        age: 15
+    }
+
+    let handler = {
+        get(target, propKey, receive){
+            if(propKey in target){
+                console.log("success");
+            }else{
+                console.log("error")
+            }
+            return Reflect.get(target, propKey, receive);
+        },
+        set(target, propKey, value, receiver){
+            if(propKey=='age'){
+                if(!Number.isInteger(value)){
+                    throw new TypeError('The age is not an integer');
+                }else{
+                    console.log("set success");
+                }
+            }else{
+                console.log("set success");
+            }
+            return Reflect.set(target, propKey, value, receiver);
+        },
+        has(target,proKey){
+            console.log('handle has');
+            return proKey in target;
+        }
+    }
+
+    let pro = new Proxy(target,handler);
+    console.log('name' in pro)
+    console.log('sex' in pro)
+    /*pro.name='李四'
+    pro.age=34
+    console.log(pro.name)
+    console.log(pro.age)*/
+</script>
+</body>
+</html>
