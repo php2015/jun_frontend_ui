@@ -1,0 +1,44 @@
+* {
+   margin: 0px;
+   padding: 0px;
+   border: 0px;
+}
+body {
+	font-family: "ËÎÌו";
+	font-size: 12px;
+	color: #575757;
+	background-image: url(../images/bg.gif);
+	background-repeat: repeat-x;
+}
+.font01 {
+	color: #1e829a;
+}
+.font02 {
+	color: #FF3165;
+}
+.font03 {
+	color: #4BAB01;
+}
+.font04 {
+	color: #505278;
+}
+.font05 {
+	color: #1F89DD;
+}
+.font06 {
+	color: #665A32;
+}
+.font07 {
+	color: #FF6600;
+}
+.font08 {
+	color: #0000FD;
+}
+.font09 {
+	color: #675B35;
+}
+
+.font10 {
+	font-weight: bold;
+	color: #6698CD;
+}

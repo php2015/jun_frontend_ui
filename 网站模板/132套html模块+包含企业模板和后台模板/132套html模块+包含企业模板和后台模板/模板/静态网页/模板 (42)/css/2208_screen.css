@@ -1,0 +1,138 @@
+/***************************************************
+   HTML Element Styles
+ ***************************************************/
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 20px;
+  color: #000;
+  background-color: #EEE;
+}
+
+h1 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #690;
+}
+
+h2 {
+  font-size: 10px;
+  font-weight: bold;
+  color: #D0AD67;
+}
+
+h3 {
+  font-size: 10px;
+  font-weight: bold;
+  color: #069;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #690;
+  border-left: 5px solid #F90;
+  padding-left: 5px;
+}
+
+.subtitle {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+  border-left: 5px solid #FFF;
+  padding-left: 5px;
+}
+
+#lpanel .heading {
+  background-color: #690;
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-align: center;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#lpanel a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  padding-left: 15px;
+  background: url(../images/b-1.gif) no-repeat center left;
+}
+
+#lpanel a:hover {
+  color: #690;
+  background: url(../images/b-2.gif) no-repeat center left;
+}
+
+a {
+  color: #690;
+  text-decoration: none;
+  padding: 1px;
+}
+
+a:hover {
+  color: #666;
+  background-color: #EEE;
+}
+
+img {
+  float: right;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/***************************************************
+   Site Layout Containers
+ ***************************************************/
+
+#header {
+  width: 748px;
+  height: 150px;
+  margin: 5px;
+  padding: 10px;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  background: url(../images/banner.jpg) no-repeat top left;
+}
+
+#title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  background-color: #FFF;
+}
+
+#lpanel {
+  position: absolute;
+  top: 160px;
+  left: 0px;
+  margin: 5px;
+  padding: 10px;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  width: 150px;
+}
+
+#content {
+  width: 570px;
+  margin: 0px 200px 5px 182px;
+  padding: 10px;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+}
+
+#footer {
+  width: 570px;
+  margin: 5px 200px 5px 182px;
+  padding: 10px;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  text-align: right;
+}

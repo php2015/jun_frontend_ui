@@ -1,0 +1,142 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background: #ffffff url('img/bg.png') repeat;
+	font-family: 'trebuchet ms', verdana, tahoma, arial;
+	font-size: 70%;
+	line-height: 185%;
+	
+}
+
+body > #menu {
+	position: fixed;
+}
+
+a:active, a:visited, a:link {
+	color: #5E8E3E;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+
+#maincontainer h1
+{
+	border-bottom: 1px solid #808080;
+	font-family: arial;
+	font-weight: 100;
+	letter-spacing: 8px;
+	font-size: 150%;
+	text-align: right;
+}
+
+#maincontainer h2
+{
+	border-bottom: 1px solid #808080;
+	font-family: arial;
+	font-weight: 100;
+	letter-spacing: 8px;
+	font-size: 200%;
+	text-align: right;
+}
+
+#maincontainer {
+	position: fixed;
+	overflow: auto;
+	top: 0px;
+	left: 0px;
+	background-image: url('img/content_process.jpg');
+	background-repeat: repeat-x;
+	background-position: top;
+	background-color: #EFF0F4;
+	border-left: 1px solid #7699AD;
+	border-right: 1px solid #7699AD;
+	border-bottom: 1px solid #7699AD;
+	width: 700px;
+	height: 560px; /*560px;*/
+	margin-left: 185px;
+	padding: 20px;
+	
+}
+
+#menu {
+	clear:both;
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	width: 180px;
+	height: 600px; /*600px;*/
+	overflow: auto;
+	background-color: #EFF0F4;
+	border-right: 1px solid #7699AD;
+	border-bottom: 1px solid #7699AD;
+	
+}
+
+#menutop {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	width: 180px;
+	height: 500px; /*500px;*/
+	background-image: url('img/menu_top.jpg');
+	background-repeat: no-repeat;
+	background-position: top;
+	
+}
+
+#footer {
+	clear: both;
+	position:absolute;
+	background-color: #EFF0F4;
+	border-top: 1px solid #7699AD;
+	border-right: 1px solid #7699AD;
+	border-bottom: 1px solid #7699AD;
+	width: 921px;
+	height: 20px;
+	margin: 61% 0 0 0;
+	padding: 0 5px 0 0;
+	text-align: right;
+
+}
+
+/** Navi Formatierungen **/
+.navcontainer { 
+	width: 180px;
+	margin: 350px 0 0 0;	
+}
+
+.navcontainer ul {
+	background-color: #7598AC;z-index:2;
+	/* IE Fix */
+	filter:alpha(opacity=80);
+	/* FF AddOn */
+	-moz-opacity: 0.5;
+	margin-left: 0;
+	margin-top: 0;
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.navcontainer a {
+	display: block;
+	padding: 3px 25px;
+	width: 130px;
+	background-color: #ffffff;
+	border-bottom: 1px groove #999;
+}
+
+.navcontainer a:link, .navlist a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+.navcontainer a:hover {
+	background-color: #444;
+	color: #fff;
+}

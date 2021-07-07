@@ -1,0 +1,722 @@
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Author: Stamatis Kritikos
+	Company: SymiSun*
+	Latest update: 12th of April, 2008
+	©2008, www.symisun.com
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	*** Basic Styling ***
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	We set the page background, the font color and size, 
+	center the template...
+	We set the relative font size of IE5-5.5 differently 
+	to everything else, and we scale it from there.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+body {
+	background: #eee url("img/sharp.gif") repeat-y center top;
+	line-height: 1.1em;
+	color: #333;
+	font: small Tahoma, Arial, Verdana, Helvetica, sans-serif!important;
+	font /*IE5-5.5 Hack*/: x-small Tahoma, Arial, Verdana, Helvetica, sans-serif;
+	text-align: center; /* center template 1/2 */
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Global Whitespace Reset"
+	We define padding and margin for all elements and
+	we scale it from there if we need to.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+body, form, input {	
+	padding: 0px;
+	margin: 0px;
+}
+h1, h2, h4, h5, h6, p, pre, blockquote, form, label, ul, ol, dl, fieldset, address { 
+	margin: 5px 0; 	
+}
+dd, blockquote {
+	margin-left: 40px;
+}
+fieldset {
+	padding: 10px;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Global Hyperlink Control"
+	We keep the underline since users have gotten used
+	to that line defining a hyperlink and we just change 
+	the mouseover color.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+a:link {
+	color: #06c;
+}
+a:visited {
+	color: #888;
+}
+a:hover {
+	text-decoration: none;
+}
+a:focus, input:focus {
+	outline: none;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Heading Settings"
+	We define font size and color mostly among some 
+	other more specific things.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+h1, h2, h3 {
+	color: #369;
+	font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+}
+h1 {
+	font-size: 18px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+h2 {
+	font-size: 15px;
+}
+h3 {
+	font-size: 13px;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Global Image Control"
+	We remove the border from all images and we scale it
+	from there if we need to.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+img {
+	border: none;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	*** Layers Time ***
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Global Wrapper"
+	This is our parent layer which includes them all.
+	From here we mainly choose the width of our page.
+	We made it fixed and appropriate for 800x600 res.
+	However, if you change it, remember to also alter 
+	the width for the "center" layer. If you wish to go
+	for relative width, well... be careful.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#monster {
+	width: 774px;
+	text-align: center; /* center tabbed menu 1/2 */
+	margin: 0 auto; /* center template 2/2 */
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Site Logo" or "Site Header Graphic"
+	You could put the site title in this div or insert
+	an image in your html. If you want to place an old
+	classic header to your site, define a background
+	image within the "monster" div and insert a 
+	transparent image within this div in your html with
+	the height of your background image.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#tagline {
+	clear: both;
+	text-align: left;
+	margin: 10px 0 0 25px;
+	height: 50px;
+	position: relative;
+}
+#tagline a {
+	text-decoration: none;
+}
+#userbar {
+	font: normal 90% arial, serif;
+	color: #ccc;
+	position: absolute;
+	top: 5px;
+	right: 25px;
+}
+#userbar a {
+	text-decoration: underline;
+	color: #777;
+}
+#userbar a:hover {
+	text-decoration: none;
+	color: #333;
+}
+#logo-text {
+	color: #333;
+	font: normal 25px arial,serif;
+	position: absolute;
+	top: 6px;
+	left: 55px;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Tabbed Menu"
+	We mainly set the width of the tabs as a whole.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#navcontainer {
+	clear: left;
+	z-index: 3;
+	position: relative;
+	margin: 0 auto; /* center tabbed menu 2/2 */
+	width: 62%;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	The blue line below the tabs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#tabbar {
+	position: relative;
+	background: #1fa0dc url("img/overburn.gif") no-repeat center top;
+	font: bold italic 10px Verdana, Arial, Helvetica, sans-serif;
+	text-align: center;
+	clear: both;	 
+	height: 14px;	
+	margin: 0;	
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	The actual tabs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#navlist {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	clear: both;
+	font: bold 13px arial,serif;
+	text-transform: uppercase;
+}
+#navlist ul, #navlist, #navlist li  {
+	margin: 0;
+	padding: 0;
+}
+#navlist li {
+	float: left;
+	display: block;
+	width: 24.5%;
+	min-height: 20px; 
+}
+#navlist li a {
+	position: relative;
+	display: block;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+}
+#navlist li a.active, #navlist li a:active {
+	padding-bottom: 5px;
+	color: #fff; 
+	background: #003366 url("img/over.gif");
+	background-position: top center;
+}
+#navlist li a#taba.active, #navlist li a#taba:active {
+	padding-bottom: 5px;
+	color: #fff; 
+	background: #003366 url("img/over.gif");
+	background-position: top left;
+}
+#navlist li a#tabd.active, #navlist li a#tabd:active {
+	padding-bottom: 5px;
+	color: #fff; 
+	background: #003366 url("img/over.gif");
+	background-position: top right;
+}
+#navlist li a#tabd:hover {
+	color: #fff; 
+	background: #003366 url("img/slanter.gif");
+	background-position: bottom right;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Individual Tab Control"
+	We make each tab a seperate div so we can have better
+	control of the tabbed assembly.
+	One nice trick that we achieve this way is the use
+	of one image for the two edges of the menu without
+	bothering altering the width of the image.
+	If you want to add more tabs, just copy and paste
+	the whole code of "tabb" or "tabc", give it a name of 
+	your choice and remember to define it in your html.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#taba, #tabb, #tabc, #tabd {
+	padding: 4px;
+	height: 18px;
+	background-color: #546F9E;
+}
+#taba {
+	background: #003366 url("img/slanter.gif");
+	background-position: top left;
+	margin-right: -1px;
+}
+#tabb {
+	background: #1a9cda url("img/bg-blue-darker.gif");
+	margin-right: -1px;
+	border-left: 1px solid #fff;
+}
+#tabc {
+	background: #1a9cda url("img/bg-blue-darker.gif");
+	margin-right: -1px;
+	border-left: 1px solid #fff;
+}
+#tabd {
+	background: #003366 url("img/slanter.gif");
+	background-position: top right;
+	border-left: 1px solid #fff;
+}
+#tabb:hover, #tabc:hover {
+	background: #1a9cda url("img/bg-blue.gif");
+	color: #fff!important;
+}
+#taba:hover {
+	background: #1a9cda url("img/slanter.gif") bottom left;
+	color: #fff!important;
+}
+#tabd:hover {
+	background: #1a9cda url("img/slanter.gif") bottom right;
+	color: #fff!important;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Search Utility"
+	You can remove the "search" div from your html if
+	you don't want it to exist, or simply alter it's
+	content.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#search {
+	border-top: 2px solid #fff;
+	border-bottom: 2px solid #69c1fe;
+	background: #8ad5fb url("img/gradient.gif") repeat-x bottom center;
+	color: #fff;
+	height: 42px;
+	text-align: left;
+	position: relative;
+}
+#search label {
+	font-weight: bold;
+	color: #369;
+	position: absolute;
+	top: 5px;
+	left: 20px;
+	width: 220px;
+}
+#search .tbox {
+	width: 200px;
+	border-top: 1px solid #555;
+	border-left: 1px solid #555;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 1px;
+	color: #333;
+	background-color: #eee;
+	position: absolute;
+	top: 10px;
+	left: 252px;
+}
+#search .koumpi {
+	font: bold 15px arial, serif;
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: none;
+	text-align: left;
+	position: absolute;
+	top: 10px;
+	left: 463px;
+	color: #036;
+}
+#search ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	top: 5px;
+	right: 20px;
+}
+#search ul li {
+	font: 10px/140% Verdana, Arial, sans-serif;
+}
+#search ul li a:link, #search ul li a:visited {
+	color: #369;
+}
+#search ul li a:hover {
+	color: #036!important;
+	text-decoration: underline;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Columns"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Container Div for columns background trick
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#container {
+	margin: 0;
+	padding: 0;
+	background: #fff url("img/bg.gif") top left repeat-y;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Left Column
+	"sidemenu" div is included in here.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#left {
+	width: 160px;
+	float: left;
+	color: #555;
+	font-size: 11px;
+	text-align: left;
+	line-height: 14px;
+}
+#lc {
+	padding: 10px;
+}
+#lc p {
+	padding: 0 0 10px 2px;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Side Menu"
+	Remove it from your html if you don't need it.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.sidemenu {
+	font-family: Tahoma,Arial,sans-serif;
+	clear: left;
+	float: left;
+	width: 140px;
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+}
+.sidemenu ul {	
+	list-style: none;
+	width: 140px;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+.sidemenu li {
+	margin-bottom: 0;
+}
+.sidemenu li a {
+	font-weight: bold;
+	height: 13px;
+	text-decoration: none;
+	color: #505050!important;
+	display: block;
+	padding: 6px 0 4px 10px;
+	border-bottom: 1px solid #ccc;
+}
+.sidemenu li a:hover {
+	background: #fff;
+	color: #286ea0;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Sub menus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.sidemenu ul ul {
+	margin: 0 0 0 12px;
+	width: 128px;
+}
+.sidemenu ul ul a:link, .sidemenu ul ul a:visited {
+	color: #777!important;
+}
+.sidemenu ul ul a:hover {
+	background-color: #eee;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Center Column
+	Where the main content goes...
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#center {
+	width: 460px;
+	float: left;
+	color: #666;
+	line-height: 16px;
+	text-align: left;
+}
+#cc {
+	padding: 10px;
+}
+#center p, #center div div {
+	padding: 0 0 10px 10px;
+}
+#center ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0 10px;
+	font-size: 86%;
+}
+#center li {
+	padding: 0 0 0 18px;
+	margin: 2px 0;
+	background: url('img/check.gif') no-repeat 0 50%;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Right Column
+	Good for headlines, ads and so on...
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#right {
+	width: 150px;
+	float: right;
+	line-height: 14px;
+	color: #444;
+	font-size: 11px;
+	text-align: left;
+}
+#rc {
+	padding: 10px;
+}
+#rc p {
+	padding: 0 0 10px 2px;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Download button
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.download {
+	background: #bfe1b0;
+	border: 1px solid #508439;
+	margin: 6px 0 13px 0;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.download a {
+	padding: 3px 7px;
+	color: #235b0a;
+	text-decoration: none;
+	display: block;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Footer"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#footer {
+	background: #b4c6cf url("img/overburn2.gif") no-repeat center bottom;
+	clear: both;
+	position: relative;
+	text-align: center;
+	font-size: 10px;
+	line-height: 0.9em;
+	padding: 0;
+	color: #5b6469;
+}
+#footer a:link, #footer a:visited {
+	color: #666;
+	font-weight: bold;
+	text-decoration: none;
+}
+#footer a:hover {
+	color: #555!important;
+	font-weight: bold!important;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	"Footer Menu"
+	This could be a nice place to fill with useful 
+	shortcuts of pages within your site so they'd be
+	easily accessible.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+#footmenu {
+	background: #f1f1f1;
+	border-top: 4px solid #b4c6cf;
+	border-bottom: 3px solid #fff;
+	border-left: 5px solid #fff;
+	border-right: 5px solid #fff;
+	color: #bbb;
+	font: 10px Arial,Verdana,Helvetica,sans-serif;
+	text-align: center;
+	clear: both;
+	margin: 0 0 3px 0;
+	padding: 3px;
+}
+#footmenu a:link, #footmenu a:visited {
+	color: #444;
+}
+#footmenu a:hover {
+	color: #111!important;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Miscellaneous Styling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.author {
+	padding: 8px 0 13px 0;
+}
+.clear {
+	clear: both;
+}
+.hand {
+	cursor: pointer;
+}
+.star {
+	color: #369;
+}
+.smaller {
+	font-size: 0.8em;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Tables Styling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+td, th {
+	font: 10px Arial, Helvetica, sans-serif;
+}
+.datatable {
+	border: 1px solid #D6DDE6;
+	border-collapse: collapse;
+	width: 89%;
+}
+.datatable a {
+	text-decoration: none;
+}
+.datatable td {
+	border: 1px solid #D6DDE6;	
+	padding: 4px;
+}
+.datatable th {
+	border: 1px solid #828282;
+	background-color: #cbcbcb;
+	text-align: left;
+	padding-left: 4px;
+	color: #333;
+	font-weight: bold;
+}
+.datatable caption {
+	font: bold 0.9em Arial, Helvetica, sans-serif;
+	color: #33517A;
+	text-align: left;
+	padding-top: 3px;
+	padding-bottom: 8px;
+}
+.datatable tr.altrow {
+	background-color: #DFE7F2;
+}
+tr.altrow td {
+	color: #333!important;
+}
+.datatable tr:hover {
+	background-color: #dff;
+	color: #111;
+}
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Forms Styling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.form fieldset {
+	margin: 1em 0;
+	border-top: 1px solid #ccc;
+	border-bottom: none;
+	border-left: none;
+	border-right: none;
+}
+.form legend {
+	margin: 1em 0;
+	padding: 0 .5em;
+	color: #069;
+	font-size: 0.8em;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+.form label {
+	width: 130px;
+	padding: 0 1em;
+	text-align: right;
+	float: left;
+}
+.form select {
+	width: 154px;
+	border-top: 1px solid #555;
+	border-left: 1px solid #555;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 1px;
+	color: #333;
+	background-color: #eee;
+}
+.form .radio {
+	background-color: #fff;
+	border: none;
+	width: auto!important;
+	text-align: left;
+}
+.form fieldset div {
+	margin-bottom: .5em;
+	padding: 0;
+	display: block;
+}
+.form fieldset div input, .form fieldset div textarea {
+	width: 150px;
+	border-top: 1px solid #555;
+	border-left: 1px solid #555;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 1px;
+	color: #333;
+	background-color: #eee;
+}
+.form fieldset div select {
+	padding: 1px;
+}
+div.fm-multi div {
+	margin: 5px 0;
+}
+div.fm-multi input {
+	width: 1em;
+}
+div.fm-multi label {
+	display: block;
+	width: 300px;
+	padding-left: 5em;
+	text-align: left;
+	cursor: pointer;
+}
+#fm-submit {
+	clear: both;
+	padding-top: 1em;
+	text-align: right;
+}
+#fm-submit input {
+	border: none;
+	padding: 2px 3em;
+	background: #0477b4 url("img/bg-blue-darker.gif") repeat-x center center;
+	color: #fff;
+	font-weight: bold;
+}
+input:focus, textarea:focus {
+	background: #f7f7f7;
+	color: #000;
+}

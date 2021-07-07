@@ -1,0 +1,232 @@
+#box {
+	height: 882px;
+	width: auto;
+	border-top-width: 4px;
+	border-top-style: solid;
+	border-top-color: #053199;
+}
+#left {
+	float: left;
+	height: 776px;
+	width: 376px;
+}
+#logo {
+	height: 184px;
+	width: 376px;
+}
+#flash {
+	height: 592px;
+	width: 376px;
+}
+#main {
+	float: left;
+	height: 776px;
+	width: 608px;
+}
+#top_link {
+	background-image: url(../images/1203.gif);
+	background-repeat: no-repeat;
+	text-align: right;
+	height: 33px;
+	width: 595px;
+	padding-right: 13px;
+}
+#top_link li {
+	line-height: 33px;
+	color: #FFFFFF;
+	background-image: url(../images/1204.gif);
+	background-repeat: no-repeat;
+	background-position: 18px 13px;
+	float: right;
+	width: 80px;
+	list-style-type: none;
+}
+#menu {
+	background-image: url(../images/1205.gif);
+	background-repeat: no-repeat;
+	height: 76px;
+	width: 553px;
+	padding-top: 16px;
+	padding-left: 55px;
+}
+#menu img {
+	margin-right: 60px;
+}
+#main_left {
+	float: left;
+	height: 556px;
+	width: 423px;
+}
+#event {
+	background-image: url(../images/1210.gif);
+	background-repeat: no-repeat;
+	height: 93px;
+	width: 300px;
+	padding-top: 14px;
+	padding-bottom: 17px;
+	padding-left: 123px;
+}
+#event_title {
+	background-image: url(../images/1211.gif);
+	background-repeat: no-repeat;
+	text-align: right;
+	height: 19px;
+	width: 281px;
+}
+#event_cont {
+	line-height: 14px;
+	background-color: #DEF7FD;
+	padding: 10px;
+	height: 52px;
+	width: 259px;
+	border: 1px solid #A5D8E4;
+}
+#notice {
+	background-image: url(../images/1213.gif);
+	background-repeat: no-repeat;
+	height: 265px;
+	width: 394px;
+	margin-top: 5px;
+	padding-top: 13px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 19px;
+}
+#notice_title {
+	background-image: url(../images/1214.gif);
+	background-repeat: no-repeat;
+	text-align: right;
+	height: 12px;
+	width: 382px;
+	padding-top: 8px;
+	padding-right: 10px;
+}
+#notice_cont {
+	height: 118px;
+	width: 392px;
+	margin-top: 6px;
+	padding-left: 2px;
+}
+#notice_cont img {
+	vertical-align: top;
+	float: left;
+	margin-right: 7px;
+}
+#notice_cont li {
+	line-height: 20px;
+	background-image: url(../images/1217.gif);
+	background-repeat: no-repeat;
+	background-position: 1px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #729EC0;
+	list-style-type: none;
+	float: left;
+	padding-left: 10px;
+	width: 245px;
+}
+#news_title {
+	background-image: url(../images/1218.gif);
+	background-repeat: no-repeat;
+	text-align: right;
+	height: 10px;
+	width: 382px;
+	padding-top: 8px;
+	padding-right: 10px;
+	margin-top: 7px;
+}
+#news_cont {
+	height: 87px;
+	width: 392px;
+	margin-top: 6px;
+	padding-left: 2px;
+}
+#news_cont img {
+	vertical-align: top;
+	float: left;
+	margin-right: 7px;
+}
+#news_cont li {
+	line-height: 20px;
+	background-image: url(../images/1217.gif);
+	background-repeat: no-repeat;
+	background-position: 1px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #729EC0;
+	list-style-type: none;
+	float: left;
+	padding-left: 10px;
+	width: 245px;
+}
+#photo {
+	background-image: url(../images/1220.gif);
+	background-repeat: no-repeat;
+	height: 88px;
+	width: 388px;
+	margin-top: 5px;
+	padding-top: 33px;
+	padding-right: 12px;
+	padding-bottom: 12px;
+	padding-left: 23px;
+}
+#main_right {
+	float: left;
+	height: 556px;
+	width: 181px;
+	margin-left: 4px;
+}
+#link {
+	background-image: url(../images/1228.gif);
+	background-repeat: repeat-y;
+	height: 218px;
+	width: 172px;
+	padding-left: 9px;
+}
+#link img {
+	margin-bottom: 2px;
+}
+#help {
+	background-image: url(../images/1234.gif);
+	background-repeat: no-repeat;
+	height: 336px;
+	width: 172px;
+}
+#main_bottom {
+	background-image: url(../images/1238.gif);
+	background-repeat: no-repeat;
+	clear: left;
+	height: 95px;
+	width: 608px;
+}
+#bottom {
+	background-image: url(../images/1240.gif);
+	background-repeat: repeat-x;
+	clear: left;
+	height: 85px;
+	width: auto;
+	padding-top: 18px;
+}
+#bottom_logo {
+	background-image: url(../images/1241.gif);
+	background-repeat: no-repeat;
+	float: left;
+	height: 53px;
+	width: 153px;
+	margin-left: 116px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #CECECE;
+}
+#bottom_adress {
+	line-height: 16px;
+	color: #5E5D5D;
+	float: left;
+	height: 53px;
+	width: 600px;
+	margin-left: 26px;
+}
+#bottom_adress span {
+	margin-right: 10px;
+	margin-left: 10px;
+}

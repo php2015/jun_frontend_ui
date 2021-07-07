@@ -1,0 +1,309 @@
+/*
+Design by Metamorphosis Design
+http://www.metamorphozis.com
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+*
+{
+margin: 0px;
+padding: 0px;
+}
+
+a:link {
+	color: #ffffff;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #FF0000;
+}
+
+a:visited {
+	color: #ffffff;
+}
+
+body {
+	
+	background: #071301 url(images/back_all.gif) repeat-x;
+	font: 13px Arial, Helvetica, sans-serif;
+	color: #F2F2F2;
+}
+
+#content
+{
+	width: 100%;
+	text-align: left;
+
+	background: url(images/header.jpg) no-repeat;
+}
+
+#main
+{
+width: 651px;
+padding: 10px;
+margin-left: 25px;
+}
+
+#back
+{
+width: 1151px;
+}
+
+#header {
+	height: 531px;
+}
+
+#logo {
+
+width: 859px;
+height: 460px;
+text-align: left;
+padding-left: 20px;
+padding-top: 20px;
+}
+
+
+#logo a {
+	text-decoration: none;
+	text-transform: lowercase;
+	font-style: italic;
+	font-size: 18px;
+	color: #ffffff;
+}
+#logo H2 a
+{
+font-size: 10px;
+color: #ffffff;
+text-transform: uppercase;
+}
+
+
+#menu
+{
+background: url(images/menu.gif) no-repeat;
+height: 51px;
+padding-left: 70px;
+width: 779px;
+}
+
+#menu ul {
+	list-style: none;	
+}
+
+#menu li {
+	
+	display: inline; 
+	
+}
+
+#menu a {
+	float: left;
+	width: 100px;
+	height: 31px;
+    display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 14px;
+	padding-top: 20px;
+	text-transform: uppercase;
+}
+
+#menu a:hover {
+	width: 100px;
+    height: 31px;
+	color: #ffffff;
+	text-decoration: underline;
+	background: url(images/menu_r.gif) repeat-x;
+}
+
+
+
+
+#left
+{
+	width: 248px;
+}
+
+#left H3
+{
+width: 223px;
+height: 30px;
+font-size: 14px;
+font-weight: bold;
+padding-left: 25px;
+padding-top: 15px;
+text-transform: uppercase;
+color: #ffffff;
+background: url(images/title.gif) repeat-x;
+margin-top: 20px;
+}
+
+#left ul {
+	list-style: none;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	
+}
+
+#left .title_back
+{
+}
+
+#left .title_bottom
+{
+padding: 10px;
+}
+
+
+#left ul {
+	border: 0px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	padding-top: 20px;
+}
+
+
+#left li {
+	padding: 4px 4px;
+	border: 0px;
+}
+
+#left a {
+	color: #3AAC00;
+}
+#left a:visited {
+	color: #3AAC00;
+}
+
+#left td
+{
+color: #3AAC00;
+}
+
+#left th
+{
+color: #3AAC00;
+}
+
+#left caption
+{
+color: #3AAC00;
+}
+
+
+#left p
+{
+padding: 10px;
+}
+
+#calendar1 {
+	padding: 20px 10px 20px 10px;
+}
+
+#calendar table {
+	width: 100%;
+	text-align: center;
+}
+
+#calendar thead {
+
+}
+
+#calendar tbody td {
+	border: 1px solid #F1F1F1;
+}
+
+#calendar #prev {
+	text-align: left;
+}
+
+#calendar #next {
+	text-align: right;
+}
+
+#calendar tfoot a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#calendar #now {
+	background: #696969;
+	border: 1px solid #ff0000;
+	font-weight: bold;
+	color: #ffffff
+}
+
+#right
+{
+float: right;
+width: 370px;
+padding-right: 10px;
+}
+
+#right H4
+{
+	margin: 0;
+	padding: 0px;
+	font-size: 12px;
+	color: #3AAC00;
+}
+
+#right a
+{
+color: #3AAC00;
+text-decoration: underline;
+}
+
+#right p {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 10px;
+}
+
+#right ol, #right ul
+{
+margin-left: 30px;
+}
+
+
+#right h2 {
+	margin: 0;
+	padding: 0;
+	padding-top: 10px;
+	color: #3AAC00;
+}
+.date {
+	text-align: right;
+	color: #3AAC00;
+	font-size: 11px;
+}
+
+.date a {
+	color: #3AAC00;
+}
+
+
+
+#footer {
+	height: 64px;
+	clear: both;
+	padding-top: 30px;
+	background: url(images/footer.gif) repeat-x bottom;
+	border-top: 5px solid #3AAC00;
+}
+
+#footer p {
+	margin: 0;
+	width: 778px;
+	font-size: 10px;
+	text-align: center;
+	color: #ffffff;
+}
+
+#footer a {
+	color: #ffffff;
+}

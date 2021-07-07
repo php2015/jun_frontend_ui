@@ -1,0 +1,181 @@
+/* CSS Document */
+body {
+  background: #AAA url('images/back.gif') repeat-x;
+  padding: 20px;
+}
+
+h2{
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  font: 14px Arial;
+  color: #C00;
+}
+
+p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font: 12px Arial;
+  color: #AAA;
+  line-height: 200%;
+  text-indent: 15px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font: 32px Arial;
+  color: #000;
+}
+
+h1 strong {
+  color: #C00;
+  font-weight: normal;
+}
+
+a {
+  color: #5586DD;
+  text-decoration: none;
+  border-bottom: dotted #5586DD 1px;
+}
+
+a:hover {
+  background: #EEE;
+}
+
+img#logo {
+  float: right;
+}
+
+div#logoBack {
+  background: url('images/logo_back.png') no-repeat;
+  width: 883px;
+  height: 188px;
+}
+
+div#logoText {
+  padding-top: 60px;
+  padding-left: 80px;
+  font: 50px Arial;
+  color: #FFF;
+}
+
+div#logoEqu {
+  padding-left: 120px;
+  font: 18px Arial;
+  color: #FFF;
+}
+
+div#mainMenu {
+  background: url('images/text_back.gif') repeat-y;
+  text-align: center;
+  width: 883px;
+  height: 60px;
+}
+
+div#mainMenu a {
+  background: #064789;
+  text-align: center;
+  padding: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font: bold 14px Arial;
+  color: #FFF;
+  text-decoration: none; 
+  text-transform: uppercase;
+}
+
+div#mainMenu a:hover {
+  color: #AAF;
+  position: relative;
+  top: 5px;
+  border-top: solid #064789 5px;
+}
+
+div#contentLayout {
+  background: url('images/text_back.gif') repeat-y;
+  width: 883px;
+}
+
+table#layout {
+  border: 0px;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
+}
+
+table#layout td {
+  border: 0px;
+  padding: 0px;
+  vertical-align: top;
+}
+
+div#contentMenu {
+  background: #DDD url('images/con_menu_up.gif') no-repeat;
+  margin-left: 6px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 214px;
+}
+
+div#contentMenu a {
+  display: block;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 0px;
+  font: bold 12px Arial;
+  color: #C00;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+div#contentMenu a:hover {
+  color: #00C;
+  background: #C2D1DE;
+}
+
+div.contentText {
+  background: #DDD url('images/con_menu_up.gif') no-repeat;
+  margin-left: 6px;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 214px;
+  font: 12px Arial;
+  color: #777;
+}
+
+div.contentText p{
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  font: 12px Arial;
+  color: #777;
+  line-height: 180%;
+  text-indent: 15px;
+}
+
+div#content { 
+  margin-left: 50px;
+  padding-bottom: 30px;
+  width: 570px;
+}
+
+div#end {
+  background: url('images/end_back.gif') no-repeat;
+  margin-bottom: 30px;
+  width: 883px;
+  height: 57px;
+  font: 10px Arial;
+  color: #AAA;
+  text-align: center;
+}
+
+/* end of CSS document */
+

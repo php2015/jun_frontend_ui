@@ -1,0 +1,215 @@
+/*
+
+	lime-light2.css -- CSS file for mejobloggs's "Lime-Lite" template
+	mejobloggs: http://openwebdesign.org/userinfo.phtml?user=mejobloggs
+	
+	raZor made the original Lime-Light
+	raZor: http://openwebdesign.org/userinfo.phtml?user=raZor
+*/
+
+body {
+	margin: 15px 0;
+	text-align: center;
+	/* Above line is for IE5: Makes the #wrapper-outer be centered, as (#wrapper-outer) margin: 0 auto; doesn't work in IE5.  */
+	background: #253c01 url("images/zigzag_light.png") top left; /* You can also try zigzag_dark.png and see if you like the dark background better */
+	color: #020;
+}
+
+#wrapper-outer {
+	margin: 0 auto;
+	text-align: left; /* Sets the text left again, after centering it in the body (see IE5 note above) */
+	width: 90%;
+	border-right: solid 3px #444;
+	border-bottom: solid 3px #444;
+	border-left: solid 2px #aaa;
+	border-top: solid 2px #aaa;
+	background-color: #ccc;
+	/* The above line fixes a problem in IE when the #rightbar is longer than the #content
+		Try it yourself. Change the color to red to see it easily, and then set the font size in IE
+		to small, or add more content in #content */
+}
+
+#header, #footer {
+	background: #253c01 url("images/gradient_vert_light_dark.png") top left repeat-x;
+	/* #253c01 in the line above is the same as the dark colour in the gradient.
+		This means when the text size increases, it still looks fine with the gradient.
+		Try it yourself. Change the color, then increase your text size to see the results */
+	line-height: 2em;
+	font-size: 0.9em;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #8bb206;
+}
+
+#header {
+	border-bottom: solid 2px #685; /** Color is not quite right in my opinion **/
+}
+
+#header .rightSpan {
+	float: right;
+	padding: 2px 0 0 0; /* this breaks IE5 in smallest font size. Set it all to 0 if you are concerned */
+}
+
+#header #btnSearch {
+	color: #e80;
+	border: 1px solid #797;
+	background-color: transparent;
+	padding: 1px;
+	font-size: 0.7em;
+}
+
+#header #txtSearch {
+	background-color: white;
+	border: 1px solid #8a8;
+	margin-left: 10px;
+	font-size: 0.9em;
+}
+
+#header a, #footer a {
+	color: #8bb206;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+#header a:hover, #footer a:hover {
+	text-decoration: underline;
+}
+
+
+#banner {
+	background: #4b7902 url("images/banner_large.jpg") top left no-repeat;
+	height: 75px;
+	line-height: 75px;
+	padding-left: 160px;
+}
+
+#banner h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+#menu {
+	background: #253c01 url("images/gradient_vert_dark_light.png") bottom left repeat-x;
+	/* #253c01 in the line above is the same as the dark colour in the gradient.
+		This means when the text size increases, it still looks fine with the gradient.
+		Try it yourself. Change the color, then increase your text size to see the results */
+	border-top: 1px solid #8bb206;
+	border-bottom: 1px solid #8bb206;
+	height: 2em;
+	line-height: 2em;
+	font-size: 0.9em;
+	font-weight: bold;
+	overflow: hidden;
+	/* overflow:hidden is there because sometimes the borders on
+		the #menu li can keep going outside of the #menu for some reason.
+		overflow:hidden just hides anything that spills over */
+}
+
+#menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0.1em 0 0 0;
+}
+
+#menu li {
+	display: inline;
+	border-left: 1px solid #253c01;
+	border-right: 1px solid #4b7902;
+	padding: 0;
+	margin: 0;
+	float: left;
+	/* float: left is used for all browsers. Makes the #menu li's display as they should. Remove it to see what happens */
+}
+
+#menu a:link, #menu a:visited {
+	color: #8bb206;
+	text-decoration: none;
+	padding: 0 10px;
+	
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+#rightbar {
+	float: right;
+	margin: 15px 20px 10px 0;
+	width: 140px;
+}
+
+* html #rightbar { margin-right: 10px; } /*correct IE right margin*/ 
+
+#rightbar dl {
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+
+#rightbar dt {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+#rightbar dd {
+	margin: 0;
+	padding: 0;
+	
+}
+
+#rightbar a {
+	float: right;
+	clear: both;
+	border: 1px dashed green;
+	margin: 2px 0;
+	padding: 3px;
+	background-color: #ac8;
+}
+
+#rightbar a:hover {
+	border: 1px solid green;
+}
+
+#rightbar img {
+	border :0;
+}
+
+#wrapper-content {
+	border-top: 1px solid #898;
+	background: #f4f4f4 url("images/bg_light_dark.png") bottom left repeat-x;
+	/*	Fix a problem for me: Try bg_light_dark02.png. Have a look right at the bottom of the page, and you will notice that there is a noticable difference in colour. Why??
+		The only difference in the 02 image, is it is 100px higher. The bottom of the image is the same colour as #wrapper-outer background colour
+		The 02 background image is aligned to the bottom, so therefore should be the same colour. But nooo.
+		If you can explain this to me, email  m e j o b l o g g s .at.  g m a i l  .dot. c o m
+		(Yes, I am even spam aware in css files! Who knows what the crazy spammers will do next. Just remove the spaces, and apply common sense.)*/
+}
+
+#content {
+	padding: 15px;
+	background: transparent;
+	/* You can put a transparent gif/png of something above, that will be on top of the gradient. I thought an embossed grayscale
+		lemon or something would look all right, but I couldn't get it to look any good with my (lack of) design skills. */
+	margin: 15px 20% 15px 15px;
+	border: 1px dashed green;
+}
+
+* html #content {height:1%}
+/* The above line fixes a problem in IE. All other browsers ignore this, except IE5 Mac. If you remove it, then set
+	the font size to small in IE (so that the #rightbar is taller than #content), the content in #content vanishes! Oh joy.
+	This hack has to be used with the one below if you care about IE Mac */
+* > html #content {height:auto}
+/* Fixes the problem that height: 1% does in IE Mac. */
+
+/* The above 2 hacks can also be used to fix the IE 3 Pixel Jog. (see http://www.positioniseverything.net/explorer/threepxtest.html) */
+
+#footer {
+	border-top: solid 1px gray;
+	clear: both; /* Pushes the footer below the #content and #rightbar */
+}
+
+h2 { font-size: 1.3em; }
+
+h3 { font-size: 1em; }

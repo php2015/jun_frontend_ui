@@ -1,0 +1,267 @@
+/* Global Styles */
+
+* {
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+html, body {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	color:#000000;
+	background:#d0a06e;
+	margin:0 0 0 0;
+	padding:8px 0 0 0;
+}
+
+
+a, a:hover, a:active, a:visited {
+	color:#000000;
+	text-decoration:none;
+	font-size:11px;
+}
+
+form, input, select {
+	font-size:11px;
+	color:#000000;
+	margin:0 0 0 0;
+	padding:0 0 0 0;
+}
+
+/* Main Container Styles */
+
+#MainContainer {
+	width:780px;
+	margin:0 auto;
+}
+
+#MainContentArea {
+	background:url(../images/page_bg.jpg) bottom no-repeat;
+	height:543px;
+	width:780px;
+	margin:0 0 0 0;
+	padding:0 0 0 0;
+}
+
+#nav {
+	float:left;
+	margin:10px 0 0 0;
+}
+
+#nav ul { margin: 0; padding: 0; text-align: center; list-style-type: none; white-space: nowrap; }
+#nav li { margin: 0; padding: 0; font-size: 11px; display: inline; }
+#nav a:link, #nav a:visited, #nav a:hover, #nav a:active, #nav ul li.current {
+  padding: 0.2em 0.45em;
+  color: #000;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 1.75em;
+  font-size: 11px;
+}
+
+#subnav_content {
+	width:400px;
+	height:79px;
+	float:right;
+	padding:0 140px 0 0;
+}
+
+#subnav_container {
+	width:305px;
+	height:79px;
+	float:left;
+}
+
+#logo {
+	width:93px;
+	height:76px;
+	float:left;
+	margin:5px 0 0 0;
+}
+
+#subnav {
+	width:305px;
+	padding:5px 0 0 0;
+}
+
+#subnav ul { margin: 0; padding: 0; text-align: center; list-style-type: none; white-space: nowrap; }
+#subnav li { margin: 0; padding: 0; font-size: 10px; display: inline; }
+#subnav a:link, #subnav a:visited, #subnav a:hover, #subnav a:active, #subnav ul li.current {
+  padding: 0;
+  color: #000;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 1.75em;
+  font-size: 10px;
+}
+
+#page_title {
+	font-family:"Times New Roman", Times, serif;
+	font-size:24px;
+	width:238px;
+	height:22px;
+	color:#814f26;
+	font-weight:bold;
+	padding:40px 0 0 70px;
+}
+
+#clear {
+	clear:both;
+}
+
+#Gallery_container {
+	width:560px;
+	padding:30px 0 0 95px;
+}
+
+#gallery_top {
+	background:url(../images/gallery_top.jpg) top left no-repeat;
+	width:169px;
+	height:22px;
+	font-size:14px;
+	color:#674212;
+	padding:0 0 0 30px;
+	line-height:22px;
+}
+
+#gallery_box {
+	width:562px;
+	height:155px;
+	background:url(../images/gallery_bg.jpg) no-repeat;
+	float:left;
+	padding:0 0 0 15px;
+}
+
+.gallery {
+	width:102px;
+	height:134px;
+	float:left;
+	padding:15px 15px 0 15px;
+}
+
+.btn_vote {
+	padding:5px 0 2px 0;
+}
+
+img.border_line {
+	border:1px solid #000000;
+}
+
+#Announcement {
+	clear:both;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	color:#f20100;
+	float:left;
+	padding:5px 0 0 0;
+	width:100%;
+	text-align:center;
+}
+
+#Details_container {
+	width:100%;
+	float:left;
+	padding:10px 0 0 0;
+
+}
+
+#details {
+	width:270px;
+	float:left;
+	text-align:center;
+	padding:0 10px 0 140px;
+	line-height:24px;
+	font-size:12px;
+}
+
+#form_box {
+	background:url(../images/form_box.jpg) no-repeat;
+	width:272px;
+	height:153px;
+	float:left;
+	padding:0 0 0 15px;
+}
+
+#link {
+	color:#fe0404;
+	font-size:11px;
+}
+
+#link a, #link a:hover, #link a:active, #link a:visited {
+	color:#fe0404;
+	font-size:11px;
+	text-decoration:none;
+}
+
+#subheading {
+	color:#ffffff;
+	font-size:12px;
+	font-weight:bold;
+	padding:55px 0 8px 0;
+}
+
+#text_box {
+	width:213px;
+	height:20px;
+	line-height:20px;
+}
+
+#search_btn {
+	padding:8px 0 0 0;
+}
+
+#btn_search {
+	background:url(../images/btn_search.jpg) no-repeat;
+	width:59px;
+	height:22px;
+	border:none;
+	color:#000000;
+	cursor:pointer;
+}
+
+#footer {
+	float:left;
+	padding:5px 0 0 0;
+	width:100%;
+}
+
+#copyright_info {
+	width:280px;
+	float:left;
+	font-size:9px;
+	padding:0 0 0 120px;
+}
+
+
+#copyright_info a, #copyright_info a:hover, #copyright_info a:active, #copyright_info a:hover  {
+	font-size:9px;
+	text-decoration:none;
+}
+
+
+#copyright_info1 {
+	width:350px;
+	float:left;
+	font-size:9px;
+}
+
+#copyright_info1 ul {
+	margin:0; padding:0; list-style-type:none; white-space:nowrap;
+}
+
+#copyright_info1 li {
+	margin:0; padding:0; font-size:10px; color:#000000; display:inline;
+}
+
+
+#copyright_info1 a, #copyright_info1 a:hover, #copyright_info1 a:active, #copyright_info1 a:hover  {
+	font-size:9px;
+	text-decoration:none;
+}
+
+
+
+

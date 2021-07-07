@@ -1,0 +1,115 @@
+/* This CSS-file is alphabeticaly orderd. */
+.banner{
+	position: absolute;
+	top: 0;
+	left:0;
+}
+body{
+	background: #E3E3CB url(bg.gif) repeat-x top left;
+	text-align: center;
+	font: .69em "Verdana",sans-serif;
+	padding: 25px 0;
+	margin: 0;
+	color: #666;
+	line-height: 1.6em;
+}
+#boxmain{
+	margin: 0px auto;
+	text-align: left;
+	background: #FFF url(corner.gif) no-repeat top right;
+	width:480px;
+	padding: 5px;
+}
+.black{
+	background: #000;
+	color: #FFF;
+	padding: 1px .7em;
+	margin: 1px .3em;
+}
+h1{
+	background: #9C3;
+	color: #FFF;
+	font-size: 1em;
+	padding: 0 .5em;
+	margin: 0;
+	font-weight: normal;
+	width: 75%;
+}
+h2{
+	background: #1E2B4D;
+	color: #FFF;
+	padding: 1px .9em;
+	margin: 1px .3em;
+	font-size: 1em;
+	font-weight: normal;
+	display: inline;
+}
+#navigation{
+	position: absolute;
+	top: 130px;
+	left: 50%;
+	margin-left: 240px;
+	background: #FFF url(nav.gif) no-repeat top right;
+	width: 130px;
+	padding: 5px;
+	text-align: left;
+}
+#navigation ul{
+	list-style-type: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+#navigation ul li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+#navigation ul li a{
+	display: block;
+	color: #FFF;
+	margin: 3px 0 1px 0;
+	text-decoration: none;
+	padding: 0 .9em ;
+	font-weight: normal;
+}
+#navigation ul li a span{
+	color: #9C3;
+	font-weight: normal;
+}	
+#navigation ul li a:hover{
+	color: #B01216;
+}
+p{
+	margin-right: 2em;
+}
+p a{
+	color: #000;
+	border-bottom: 1px dotted #000;
+	text-decoration: none;
+}
+.subnav{
+	margin: 1em;
+	list-style-type: none;
+	padding: 0;
+	line-height: 1.3em;
+}
+.subnav li{
+	padding: 0;
+	margin: 0;
+	display: inline;
+}
+.subnav li a{
+	display: block;
+	color: #E41016;
+	padding: 0 1.3em;
+	text-decoration: none;
+}
+.subnav li a:hover{
+	background: #E41016;
+	color: #FFF;
+}
+.subnav li a.more{
+	text-align: right;
+	font-style: italic;
+	font-size: 0.8em;
+}

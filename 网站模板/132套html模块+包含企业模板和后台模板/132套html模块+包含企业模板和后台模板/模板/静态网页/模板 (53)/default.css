@@ -1,0 +1,46 @@
+/* the fons, margins, color, etc of everything */
+#html, body { font: 13px trebuchet ms; margin: 0; padding: 0; color: #666; height: 100%; }
+
+/* what holds everything in place */
+#container { background: #fff; width: 820px; margin: 10px auto; padding: 2px; }
+
+/* the banner image holder */
+#banner { width: 819px; background: url('images/bgb.jpg') top left no-repeat;  margin: 0 0 3px 0; position: relative; height: 150px; color: #fff; }
+
+/* the top navigation bar */
+#nav { background: #fff; width: 810px; background: #fff; text-align: right; padding: 5px; margin: 0 0 5px 0; }
+
+/* where all the main text is stored */
+#content { height: 100%; float: left; background: #fff; padding: 5px; width: 650px; margin-bottom: 20px;  }
+
+/* the right bar */
+#sidebar { float: right; width: 130px; border-left: 1px dotted #ccc; padding: 5px 0 0 10px; margin: 10px 0 10px 15px; }
+
+/* the links in the banner image */
+#topbar { text-align: right; color: #666; padding: 5px; margin-right: 55px; }
+
+/* footer */
+#footer { clear: both; background: url('images/blackbg.gif') repeat; border-top: 4px solid #666;  text-align: center; padding-bottom: 5px;  } 
+
+/* link styling */
+#content a { color: #87af7b; text-decoration: none; } #content a:hover { text-decoration: underline; }
+#topbar a { color: #87af7b; text-decoration: none; } #topbar a:hover { text-decoration: underline; }
+#nav a { color: #666; font-weight: bold; text-decoration: none; } #nav a:hover { text-decoration: underline; }
+#topbar a { color: #666; font-weight: bold; text-decoration: none; } #topbar a:hover { text-decoration: underline; }
+#footer a { color: #666; font-weight: bold; text-decoration: none; } #footer a:hover { text-decoration: underline; }
+#sidebar a { display: block; color: #666; text-decoration: none; padding: 5px 0 5px 0;} #sidebar a:hover { background: #deebd2; color: #666; }
+
+/* extra attributes */
+.headline { font-size: 18px; margin: 3px 0 3px 0; }
+.meta { background: url('images/bg.gif'); border-top: 1px solid #666; text-align: right; color: #666; text-transform: uppercase; letter-spacing: 2px; }
+.imageright { float: right; border: 1px solid #ccc; padding: 3px; margin: 3px 3px 0 7px; } .imageright:hover { border: 1px solid #666; }
+.imageleft { float: left; border: 1px solid #ccc; padding: 3px; margin: 3px 10px 0 0px; }  .imageleft:hover { border: 1px solid #666; }
+.sideimage { border: 1px solid #ccc; padding: 3px; margin: 4px; margin: 10px 0 5px 0; } .sideimage:hover { border: 1px solid #666; }
+#topbar ul { margin: 0; padding: 0; } #topbar li { list-style: none;  width: auto;  }
+#sidebar ul { margin: 5px 0 15px 20px; padding: 0; border-top: 1px solid #ccc; } #sidebar li { margin: 0; padding: 0; text-align: center; list-style-type: none;  border-bottom: 1px solid #ccc; }
+#content ul { margin: 5px 0 10px 30px; padding: 0; border-top: 1px solid #ccc; width: 320px; } #content li { display: block; text-align: left; margin: 0; padding: 0 0 0 10px; list-style-type: none; border-bottom: 1px solid #ccc; }
+#content li:hover { background: #deebd2; }
+strong { color: #87af7b; background: inherit; }
+blockquote { background: url('images/blockbg.jpg') repeat-x; color: #666; padding: 5px; border: 1px solid #ccc; margin: 5px 0 15px 0px; }
+#banner h1 { position: absolute; letter-spacing: -2px; font-size: 32px; top: 35px; left: 20px; }
+#topbar h3 { margin: 0 0 3px 0; padding: 0; }

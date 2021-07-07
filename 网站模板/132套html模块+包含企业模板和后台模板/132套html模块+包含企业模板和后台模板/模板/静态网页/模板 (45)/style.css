@@ -1,0 +1,266 @@
+/*Author Name: Hendrawan
+  Author NickName: Kodokhunt
+  URI 1:http://kodokhunt.blogsome.com
+  URI 2:http://dot.choosen.net
+  OFFICE 1:http://bascomp.org
+  OFFICE 2:http://choosen.net
+  */
+/*---------------|||||||||||Global------------------------------------------------------*/
+	
+	body {
+	  margin:0 auto;
+	  margin-bottom: 30px;
+	  margin-top: 0px;
+	  background:#2763A5 url(img/back.gif);
+	  }
+
+	a {
+	  color: #6DA6E2;
+	  text-decoration: none;
+	  font-weight: bold;
+	  }
+
+	a:hover {
+	  color:#2763A5;
+	  font-weight: bold;
+	  text-decoration: underline;
+	  }
+	  
+/*---------------|||||||||||Container------------------------------------------------------*/
+
+	#container {
+	  width: 750px;
+	  margin: 0 auto;
+	  font-family: Georgia, Times New Roman, Times, serif;
+	  font-size: 11px;
+	  line-height: 1.6em;
+	  margin-top:30px;
+	  color: #666;
+	  background-color: #fff;
+	  }
+	  
+	#container2 {
+	  width: 750px;
+	  margin: 0 auto;
+	  font-family: Georgia, Times New Roman, Times, serif;
+	  font-size: 11px;
+	  line-height: 1.6em;
+	  color: #666;
+	  background-color: #fff;
+	  }
+		
+/*---------------|||||||||||header-------------------------------------------------------------------*/
+
+	#header {
+	  width: 745px;
+	  border: 2px solid #fff;
+	  padding-bottom:10px;
+	  padding-top: 10px;
+	  clear: both;
+	  background:url(img/head.gif) no-repeat;
+	  }
+	  
+	#header p { 
+	  margin-top: -3px;
+	  margin-left: 30px;
+	  color: #fff;
+      font-family: Georgia, Times New Roman, Times, serif;
+	  }
+	  	
+	#header h1 {
+	  font-family: Georgia, Times New Roman, Times, serif;
+	  font-weight: bold;
+	  font-size: 32px;
+	  color: #fff;
+	  margin-bottom: 10px;
+	  margin-top:30px;
+	  margin-left: 10px;
+	  }
+	  
+	#header a {
+	  color: #6DA6E2;
+	  text-decoration: none;
+	  }
+
+	#header a:hover {
+	  color: #999;
+	  }
+	    
+/*---------------|||||||||||Menu-------------------------------------------------*/
+
+    #menu {
+      float:left;
+      width:745px;
+      font-size:93%;
+	  padding-bottom: 1px;	
+	  background:url(img/menu.gif);
+      line-height:normal;
+      }
+	  
+    #menu ul {
+	  margin:0;
+	  padding:10px 10px 0 20px;
+	  list-style:none;
+      }
+	  
+    #menu li {
+      display:inline;
+      margin:0;
+      padding:0;
+      }
+	  
+    #menu a {
+      float:left;
+      background:url(img/left.gif) no-repeat left top;
+      margin:0;
+      padding:0 0 0 6px;
+      text-decoration:none;
+      }
+	  
+    #menu a span {
+      float:left;
+      display:block;
+      background:url(img/right.gif) no-repeat right top;
+      padding:5px 15px 4px 6px;
+      color:#fff;
+      }
+	  
+    #menu a span {
+	  float:none;
+	  }
+	  
+    #menu a:hover {
+     background-position:0% -42px;
+      }
+	  
+    #menu a:hover span {
+     background-position:100% -42px;
+      }
+
+/*---------------|||||||||||Content------------------------------------------------*/
+
+	#content {
+	  width: 520px;
+	  padding-left: 10px;
+	  padding-right: 10px;
+	 padding-top: 10px;
+	  float: left; 
+	  }
+		
+	#content p {
+	  padding-bottom: 12px;
+	  border-bottom: 1px solid #ddd;
+	  }
+	  
+	#content h2 {
+	  color: #666;
+	  font-size: 16px;
+	  font-weight:bold;
+	  text-decoration:underline;
+	  font-family: Georgia, Times New Roman, Times, serif;
+	  background-color: #fff;
+	  }
+	  
+	#content h2 a {
+	  color: #666;
+	  text-decoration: none;
+	  }
+
+	#content h2 a:hover {
+	  color: #999;
+	  }
+
+/*---------------|||||||||||Sidebar------------------------------------------*/
+
+	#sidebar {
+	  width: 175px;
+	  padding-left: 19px;
+	  padding-right: 10px;
+	  padding-top: 10px;
+	  padding-bottom: 0.5em;
+	  float: right;background:#F1F1F1;
+	  border-right:4px solid #fff;
+	  }
+		
+	#sidebar p {
+	  padding-bottom: 10px;
+	  }
+	  
+    #sidebar h2 {
+	  color: #2763A5;
+	  font-size: 16px;
+	  padding-left:15px;
+	  background:url(img/arrow.gif)no-repeat bottom left;
+	  font-weight:bold;border-bottom: 1px solid #ddd;
+	  font-family: Georgia, Times New Roman, Times, serif;
+	  }
+	  
+/*---------------|||||||||||Footer-----------------------------------------------*/
+
+	#footer {
+	  clear: both;
+	  width: 745px;
+	  font-size:10px;border:2px solid #fff;
+       background:#2763A5 url(img/foot.gif);
+	   background-repeat: no-repeat;
+	  }
+		
+	#footer p {
+	  color:#fff;
+	  padding: 2px;
+	  text-align: center;
+	  }
+		
+	#footer p a {
+	  color: #fff;
+	  background:#2763A5 url(img/foot.gif);
+	  font-weight:100;
+	  border-bottom: 1px dotted #fff;
+	  }
+		
+	#footer p a:hover {
+	  color: #fff;
+	  text-decoration: none;
+	  border-bottom: 0px dotted #fff;
+	  }
+	
+/*---------------|||||||||||Search--------------------------------------------------------------*/
+
+	form {
+	  float:right;
+	  font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 11px;
+	  margin-right:5px;
+	  color:#fff;
+	  }
+		
+	input {
+	  background-color: #fff;
+	  color: #999;
+	  border: 1px solid #2763A5;
+	  font-size: 11px;
+	  padding: 3px;
+	  }
+		
+	.button {
+	  padding: 2px;
+	  background-color: #6DA6E2;
+	  color: #fff;
+	  border: 1px solid #2763A5;
+	  font-size: 11px;
+	  }
+	   
+/*---------------|||||||||||Others--------------------------------------------------------------*/		
+	
+	a img{
+	  border: none;
+	  }
+	.box {
+      background-color: #fff;
+      border: 1px solid #2763A5;
+	  padding: 5px;
+	  font-family: Georgia, Times New Roman, Times, serif;
+	  color: #000;
+	  font-size: 10px;
+	  }
+	

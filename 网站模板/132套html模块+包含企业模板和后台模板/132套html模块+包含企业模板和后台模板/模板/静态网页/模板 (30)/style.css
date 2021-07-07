@@ -1,0 +1,114 @@
+/* SimpliCssGreen by Jose Erlino M. Lontok */
+body{
+margin:0;
+background-color:#333333;
+}
+#page {
+width: 700px;
+padding-bottom:5px;
+background-color:#CCFFCC;
+margin: 0 auto;
+border-top: 8px #66CC66 solid;
+border-bottom: 8px #66CC66 solid;
+display:table;
+}
+#header h1 {
+font-size:24px;
+font-family:"Trebuchet MS", Verdana, SansSerif;
+color:#009900;
+letter-spacing:-3px;
+padding-left: 10px;
+}
+.h1_emp {
+font-size:30px;
+color:#66CC66;
+font-weight:bolder;
+letter-spacing:-3px;
+}
+#header_img{
+width:700px;
+height:248px;
+background-image:url(images/home_img.jpg);
+}
+
+#left{
+width:450px;
+float:left;
+border-right: 1px #339900 dashed;
+margin-top:5px;
+}
+.content {
+width: 430px;
+padding-left:10px;
+margin-top: 5px;
+}
+.content h2 {
+font-size:24px;
+color:#009900;
+font-family:Tahoma, Arial, Helvetica, sans-serif
+}
+.content p {
+color:#333333;
+font-size:12px;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+#sidebar {
+float:left;
+margin: 5px 0 0 10px;
+width: 230px;
+}
+#sidebar .sidebar_item{
+margin-top: 5px;
+}
+#sidebar .sidebar_item h3{
+margin-bottom: 0;
+color:#009900;
+font-size:20px;
+font-family:"Trebuchet MS", Verdana, SansSerif;
+}
+#sidebar .sidebar_item ul{
+padding: 0;
+margin: 0;
+}
+#sidebar .sidebar_item li{
+list-style-type:none;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+color:#333333;
+padding-top: 6px;
+}
+#sidebar .sidebar_item li a{
+text-decoration:none;
+border-left: 1px #009900 solid;
+color:#333333;
+padding-left: 4px;
+display:block;
+width: 100%;
+}
+#sidebar .sidebar_item li a:hover{
+background-color:#66CC66;
+color:#FFFFFF;
+text-align:right;
+padding-right: 8px;
+width:98%;
+}
+#footer {
+background-color:#009900;
+width: 700px;
+margin: 0 auto;
+}
+#footer p{
+margin:0;
+padding: 5px 16px;
+font-size:12px;
+color:#66CC66;
+font-family:"Trebuchet MS", Verdana, SansSerif;
+font-weight:bolder;
+}
+#footer p a{
+color:#66CC66;
+text-decoration:none;
+}
+#footer p a:hover{
+color:#FFFFFF;
+}
