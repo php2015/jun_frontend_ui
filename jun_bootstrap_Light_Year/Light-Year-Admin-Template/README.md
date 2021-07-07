@@ -4,7 +4,7 @@
 [http://lyear.itshubao.com](http://lyear.itshubao.com)
 
 #### 交流群
-703726776
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0419/100528_9d22ac7d_82992.png "光年后台模板交流群群聊二维码.png")
 
 #### 其他插件整合示例
 有些插件可能你并不一定能用上，这里对其他很多的一些插件整合以示例的形式出现，自己选择需要的插件下载。
