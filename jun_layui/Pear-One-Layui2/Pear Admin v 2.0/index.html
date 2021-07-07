@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="component/layui/css/layui.css" />
+		<link rel="stylesheet" href="admin/css/pearMenu.css"/>
+		<link rel="stylesheet" href="admin/css/pearTab.css" />
+		<link rel="stylesheet" href="admin/css/pearTheme.css"/>
+		<link rel="stylesheet" href="admin/css/pearLoad.css"/>
+		<link rel="stylesheet" href="admin/css/pearFrame.css"/>
+		<link rel="stylesheet" href="admin/css/pearAdmin.css"/>
+		<link rel="stylesheet" href="admin/css/pearSocial.css"/>
+	    <style id="pearone-bg-color">
+		     /** 自 定 义 主 题 */
+		</style>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin pear-admin">
+			
+			<div class="layui-header">
+				<ul class="layui-nav layui-layout-left">
+					<li class="collaspe layui-nav-item"><a href="#" class="layui-icon layui-icon-shrink-right"></a></li>
+					<li class="refresh layui-nav-item"><a href="#" class="layui-icon layui-icon-refresh-1"></a></li>
+				</ul>
+				<div id="control" class="layui-layout-control"></div>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
+					<li class="layui-nav-item layui-hide-xs"><a href="#" class="notice layui-icon layui-icon-notice"><span class="layui-badge-dot"></span></a></li>
+					
+					<li class="setting layui-nav-item"><a href="#" class="layui-icon layui-icon-more-vertical"></a></li>
+				</ul>
+			</div>
+
+			<div class="layui-side layui-bg-black">
+                <div class="layui-logo">
+					<img src="admin/images/logo.png" />
+				</div>
+				<div class="layui-side-scroll">
+					<div id="sideMenu"></div>
+				</div>
+			</div>
+
+			<div class="layui-body">
+			    <div id="content"></div>
+			</div>
+
+		</div>
+		
+		<div class="preloader"><div class="preloader-inner"></div></div>
+		
+		<div id="adminSocial"></div>
+		
+		<script src="component/layui/layui.js"></script>
+		
+		<script>
+			layui.use(['pearAdmin','pearSocial'],function(){
+				var pearAdmin = layui.pearAdmin;
+				var pearSocial = layui.pearSocial;
+				
+				/** Pear Admin 框 架 初 始 化 */
+				var config = {
+					keepLoad:1200,                        // 主 页 加 载 过 度 时 长
+					muiltTab:true,                        // 是 否 开 启 多 标 签 页 true 开启 false 关闭
+					control:false,                         // 是 否 开 启 多 系 统 菜 单 true 开启 false 关闭
+					theme:"dark-theme",                   // 默 认 主 题 样 式 dark-theme 默认主题 light-theme 亮主题
+					index:'view/console/console1.html',   // 默 认 加 载 主 页
+					data:'admin/data/menu.json'           // 菜 单 数 据 加 载 地 址
+				};
+				
+				pearAdmin.render(config);
+				
+				/** Pear Social 通 讯 组 件 初 始 化 */
+				var adminSocial = pearSocial.render({
+					elem: 'adminSocial',             // 依 赖 初 始 化 容 器
+				    socketAddress:'192.168.1.278',
+					data:'firendsController',
+				
+				});
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>
