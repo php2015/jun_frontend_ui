@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyl.ms.modules.user.mapper.UserInfoMapper">
+	<resultMap type="org.zyl.ms.modules.user.entity.UserInfo" id="UserInfo">
+		<id column="id" property="id"/>
+		<result column="user_name" 			property="userName"/>
+		<result column="user_head" 			property="userHead"/>
+		<result column="user_sex" 			property="userSex"/>
+		<result column="user_union_id" 			property="userUnionId"/>
+		<result column="user_nick_name" 			property="userNickName"/>
+		<result column="user_phone" 			property="userPhone"/>
+		<result column="user_phone_type" 			property="userPhoneType"/>
+		<result column="user_pass" 			property="userPass"/>
+		<result column="login_lng" 			property="loginLng"/>
+		<result column="login_lat" 			property="loginLat"/>
+		<result column="login_area_code" 			property="loginAreaCode"/>
+		<result column="login_area_name" 			property="loginAreaName"/>
+		<result column="user_signature" 			property="userSignature"/>
+		<result column="birthday" 			property="birthday"/>
+		<result column="user_last_time" 			property="userLastTime"/>
+		<result column="create_time" 			property="createTime"/>
+		<result column="update_time" 			property="updateTime"/>
+	</resultMap>
+ 
+	<insert id="create" parameterType="org.zyl.ms.modules.user.entity.UserInfo">
+		<selectKey resultType="long" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into tb_user_info(
+			user_name,
+			user_head,
+			user_sex,
+			user_union_id,
+			user_nick_name,
+			user_phone,
+			user_phone_type,
+			user_pass,
+			login_lng,
+			login_lat,
+			login_area_code,
+			login_area_name,
+			user_signature,
+			birthday,
+			user_last_time,
+			create_time,
+			update_time
+		)values(
+			#{userName},
+			#{userHead},
+			#{userSex},
+			#{userUnionId},
+			#{userNickName},
+			#{userPhone},
+			#{userPhoneType},
+			#{userPass},
+			#{loginLng},
+			#{loginLat},
+			#{loginAreaCode},
+			#{loginAreaName},
+			#{userSignature},
+			#{birthday},
+			now(),
+			now(),
+			now()
+		)
+	</insert>
+
+	<select id="query" resultMap="UserInfo">
+		select * from tb_user_info
+		<include refid="UserInfoFindCriteria"/>
+		<if test="order_by_column!=null and order_by_column!=''">order by ${order_by_column} ${order_by}</if>
+		<if test="offset!=null and rows!=null">limit ${rows} offset ${offset}</if>
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(1) from tb_user_info
+		<include refid="UserInfoFindCriteria"/>
+	</select>
+	
+	<select id="detail" resultMap="UserInfo">
+		select * from tb_user_info
+		<include refid="UserInfoFindCriteria"/>
+		limit 1
+	</select>
+	
+	<delete id="delete">
+		delete from tb_user_info
+		<include refid="UserInfoFindCriteria" />
+	</delete>
+	<update id="update">
+		update tb_user_info
+		<include refid="UserInfoUpdateCriteria"/>
+		<include refid="UserInfoFindCriteria"/>
+	</update>
+	<sql id="UserInfoFindCriteria">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="userName != null">and user_name = #{userName}</if>
+			<if test="userHead != null">and user_head = #{userHead}</if>
+			<if test="userSex != null">and user_sex = #{userSex}</if>
+			<if test="userUnionId != null">and user_union_id = #{userUnionId}</if>
+			<if test="userNickName != null">and user_nick_name = #{userNickName}</if>
+			<if test="userPhone != null">and user_phone = #{userPhone}</if>
+			<if test="userPhoneType != null">and user_phone_type = #{userPhoneType}</if>
+			<if test="userPass != null">and user_pass = #{userPass}</if>
+			<if test="loginLng != null">and login_lng = #{loginLng}</if>
+			<if test="loginLat != null">and login_lat = #{loginLat}</if>
+			<if test="loginAreaCode != null">and login_area_code = #{loginAreaCode}</if>
+			<if test="loginAreaName != null">and login_area_name = #{loginAreaName}</if>
+			<if test="userSignature != null">and user_signature = #{userSignature}</if>
+			<if test="birthday != null">and birthday = #{birthday}</if>
+		</where>
+	</sql>
+	<sql id="UserInfoUpdateCriteria">
+		<set>
+			<if test="updateUserName != null">user_name = #{updateUserName},</if>
+			<if test="updateUserHead != null">user_head = #{updateUserHead},</if>
+			<if test="updateUserSex != null">user_sex = #{updateUserSex},</if>
+			<if test="updateUserUnionId != null">user_union_id = #{updateUserUnionId},</if>
+			<if test="updateUserNickName != null">user_nick_name = #{updateUserNickName},</if>
+			<if test="updateUserPhone != null">user_phone = #{updateUserPhone},</if>
+			<if test="updateUserPhoneType != null">user_phone_type = #{updateUserPhoneType},</if>
+			<if test="updateUserPass != null">user_pass = #{updateUserPass},</if>
+			<if test="updateLoginLng != null">login_lng = #{updateLoginLng},</if>
+			<if test="updateLoginLat != null">login_lat = #{updateLoginLat},</if>
+			<if test="updateLoginAreaCode != null">login_area_code = #{updateLoginAreaCode},</if>
+			<if test="updateLoginAreaName != null">login_area_name = #{updateLoginAreaName},</if>
+			<if test="updateUserSignature != null">user_signature = #{updateUserSignature},</if>
+			<if test="updateBirthday != null">birthday = #{updateBirthday},</if>
+			<if test="updateUserLastTime != null">user_last_time = #{updateUserLastTime},</if>
+			<if test="updateCreateTime != null">create_time = #{updateCreateTime},</if>
+			<if test="updateUpdateTime != null">update_time = #{updateUpdateTime},</if>
+		</set>
+	</sql>
+</mapper>

@@ -1,0 +1,100 @@
+<section class="content-header">
+	<h1>
+		<span>角色权限</span>
+		<small>权限菜单修改</small>
+	</h1>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<!-- Horizontal Form -->
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">菜单修改</h3>
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<form class="form-horizontal ajax_save_menu">
+					<div class="box-body ajax_load_menu_detail">
+						
+					</div>
+					<div class="box-footer text-center">
+						<button type="button" class="btn btn-default" onclick="fun_to_link('pages/role/menu_list.html')"><i class="fa fa-reply"></i> 返回</button>&nbsp;&nbsp;
+						<button type="button" class="btn btn-info bg-olive" onclick="fun_ajax_save_menu();"><i class="fa fa-save"></i> 保存</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript">
+	$(function(){
+		fun_ajax_load_menu_detail();
+	});
+	function fun_ajax_load_menu_detail(){
+		$.basic_zyl.get_data_cross_domain({
+			url: api_path + "/system/menu/detail.html",
+			data: {"id":window._menu_id},
+			callback: function(d) {
+				$(".ajax_load_menu_detail").html(template(document.getElementById('t:ajax_load_menu_detail').innerHTML, d));
+				fun_init_input_style();
+			}
+		});
+	}
+	
+	function fun_ajax_save_menu(){
+		var _data = $(".ajax_save_menu").serializeJson();
+		_data.id=window._menu_id;
+		
+		$.basic_zyl.get_data_cross_domain({
+			url: api_path + "/system/menu/update.html",
+			data: _data,
+			callback: function(d) {
+				fun_succ();
+				fun_to_link("pages/role/menu_list.html");
+			}
+		});
+	}
+
+</script>
+<script type="text/html" id="t:ajax_load_menu_detail">
+	<div class="form-group">
+		<label for="input1" class="col-sm-2 control-label">名称</label>
+
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="input1" name="menuName" placeholder="菜单名" value="<%=data.menuName%>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="input2" class="col-sm-2 control-label">链接地址</label>
+
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="input2" name="menuLink" placeholder="地址" value="<%=data.menuLink%>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="input3" class="col-sm-2 control-label">图标</label>
+
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="input3" name="menuIcon" placeholder="图标" value="<%=data.menuIcon%>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="input4" class="col-sm-2 control-label">排序</label>
+
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="input4" name="menuSort" placeholder="排序" value="<%=data.menuSort%>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="input4" class="col-sm-2 control-label">是否链接</label>
+
+		<div class="col-sm-10 icheck" style="">
+			<label><input type="radio" name="menuIsLink" value="0" checked="checked"/>否</label>
+			<label><input type="radio" name="menuIsLink" value="1" />是</label>
+		</div>
+	</div>
+</script>
+

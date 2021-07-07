@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyl.ms.modules.system.mapper.SystemMenuMapper">
+	<resultMap type="org.zyl.ms.modules.system.entity.SystemMenu" id="SystemMenu">
+		<id column="id" property="id"/>
+		<result column="menu_name" 			property="menuName"/>
+		<result column="menu_icon" 			property="menuIcon"/>
+		<result column="menu_link" 			property="menuLink"/>
+		<result column="menu_sort" 			property="menuSort"/>
+		<result column="menu_parent_id" 			property="menuParentId"/>
+		<result column="menu_is_link" 			property="menuIsLink"/>
+		<result column="create_time" 			property="createTime"/>
+		<result column="update_time" 			property="updateTime"/>
+	</resultMap>
+ 
+	<insert id="create" parameterType="org.zyl.ms.modules.system.entity.SystemMenu">
+		<selectKey resultType="long" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into tb_system_menu(
+			menu_name,
+			menu_icon,
+			menu_link,
+			menu_sort,
+			menu_parent_id,
+			menu_is_link,
+			create_time,
+			update_time
+		)values(
+			#{menuName},
+			#{menuIcon},
+			#{menuLink},
+			#{menuSort},
+			#{menuParentId},
+			#{menuIsLink},
+			now(),
+			now()
+		)
+	</insert>
+
+	<select id="query" resultMap="SystemMenu">
+		select * from tb_system_menu
+		<include refid="SystemMenuFindCriteria"/>
+		<if test="order_by_column!=null and order_by_column!=''">order by ${order_by_column} ${order_by}</if>
+		<if test="offset!=null and rows!=null">limit ${rows} offset ${offset}</if>
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(1) from tb_system_menu
+		<include refid="SystemMenuFindCriteria"/>
+	</select>
+	
+	<select id="detail" resultMap="SystemMenu">
+		select * from tb_system_menu
+		<include refid="SystemMenuFindCriteria"/>
+		limit 1
+	</select>
+	
+	<delete id="delete">
+		delete from tb_system_menu
+		<include refid="SystemMenuFindCriteria" />
+	</delete>
+	<update id="update">
+		update tb_system_menu
+		<include refid="SystemMenuUpdateCriteria"/>
+		<include refid="SystemMenuFindCriteria"/>
+	</update>
+	<sql id="SystemMenuFindCriteria">
+		<where>
+			<if test="id != null and id != 0">and id = #{id}</if>
+			<if test="menuName != null">and menu_name = #{menuName}</if>
+			<if test="menuIcon != null">and menu_icon = #{menuIcon}</if>
+			<if test="menuLink != null">and menu_link = #{menuLink}</if>
+			<if test="menuSort != null">and menu_sort = #{menuSort}</if>
+			<if test="menuParentId != null">and menu_parent_id = #{menuParentId}</if>
+			<if test="menuIsLink != null">and menu_is_link = #{menuIsLink}</if>
+			<if test="roleId != null">and id in (select r.menu_id from tb_system_role_menu r where r.role_id=#{roleId})</if>
+		</where>
+	</sql>
+	<sql id="SystemMenuUpdateCriteria">
+		<set>
+			<if test="updateMenuName != null">menu_name = #{updateMenuName},</if>
+			<if test="updateMenuIcon != null">menu_icon = #{updateMenuIcon},</if>
+			<if test="updateMenuLink != null">menu_link = #{updateMenuLink},</if>
+			<if test="updateMenuSort != null">menu_sort = #{updateMenuSort},</if>
+			<if test="updateMenuParentId != null">menu_parent_id = #{updateMenuParentId},</if>
+			<if test="updateMenuIsLink != null">menu_is_link = #{updateMenuIsLink},</if>
+			<if test="updateCreateTime != null">create_time = #{updateCreateTime},</if>
+			<if test="updateUpdateTime != null">update_time = #{updateUpdateTime},</if>
+		</set>
+	</sql>
+</mapper>

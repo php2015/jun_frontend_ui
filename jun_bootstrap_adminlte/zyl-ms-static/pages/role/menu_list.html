@@ -1,0 +1,78 @@
+<style type="text/css">
+	.btn_top {
+		margin-top: 0;
+		margin-right: 0;
+		float: left;
+	}
+</style>
+
+<section class="content-header">
+	<h1>
+		<span>角色权限</span>
+		<small>菜单管理</small>
+	</h1>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">菜单列表</h3>
+
+					<div class="box-tools" style="width: 100px;">
+						<button type="button" class="btn bg-olive margin btn-sm btn_top" onclick="fun_to_link('pages/user/user_create.html')"><i class="fa fa-plus"></i> 添加菜单</button>
+					</div>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-hover">
+						<tbody class="ajax_load_menu_list"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript">
+	fun_ajax_load_menu_list(1);
+	
+	function fun_ajax_load_menu_list(i){
+		$.basic_zyl.get_data_cross_domain({
+			url: api_path + "/system/menu/query.html",
+			data: {"pageNo":i,"pageSize":1000},
+			callback: function(d) {
+				$(".ajax_load_menu_list").html(template(document.getElementById('t:ajax_load_menu_list').innerHTML, d));
+			}
+		});
+	}
+	function fun_to_update(i){
+		_menu_id = i;
+		fun_to_link("pages/role/menu_update.html");
+	}
+</script>
+<script type="text/html" id="t:ajax_load_menu_list">
+	<tr>
+		<th>序号</th>
+		<th>名称</th>
+		<th>图标</th>
+		<th>链接地址</th>
+		<th>排序</th>
+		<th>状态</th>
+		<th>操作</th>
+	</tr>
+	<%for(var i=0;i<datas.length;i++){var item=datas[i];%>
+	<tr>
+		<td><%=(pageNo-1)*pageSize +i+1%></td>
+		<td><%=item.menuName%></td>
+		<td><i class="fa <%=item.menuIcon%>" style="color:#666;"></i></td>
+		<td><%=item.menuLink%></td>
+		<td><%=item.menuSort%></td>
+		<td><%=item.menuIsLink%></td>
+		<td><button type="button" onclick="fun_to_update(<%=item.id%>)" class="btn bg-olive btn-xs">编辑</button></td>
+	</tr>
+	<%}if(pageNo==1&&datas.length<=0){%>
+		<tr><td colspan="5"><div class="no_data">暂无数据</div></td></tr>
+	<%}%>
+</script>

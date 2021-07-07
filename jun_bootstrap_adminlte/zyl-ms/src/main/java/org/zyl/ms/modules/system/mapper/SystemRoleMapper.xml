@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyl.ms.modules.system.mapper.SystemRoleMapper">
+	<resultMap type="org.zyl.ms.modules.system.entity.SystemRole" id="SystemRole">
+		<id column="id" property="id"/>
+		<result column="role_name" 			property="roleName"/>
+		<result column="role_desc" 			property="roleDesc"/>
+	</resultMap>
+ 
+	<insert id="create" parameterType="org.zyl.ms.modules.system.entity.SystemRole">
+		<selectKey resultType="long" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into tb_system_role(
+			role_name,
+			role_desc
+		)values(
+			#{roleName},
+			#{roleDesc}
+		)
+	</insert>
+
+	<select id="query" resultMap="SystemRole">
+		select * from tb_system_role
+		<include refid="SystemRoleFindCriteria"/>
+		<if test="order_by_column!=null and order_by_column!=''">order by ${order_by_column} ${order_by}</if>
+		<if test="offset!=null and rows!=null">limit ${rows} offset ${offset}</if>
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(1) from tb_system_role
+		<include refid="SystemRoleFindCriteria"/>
+	</select>
+	
+	<select id="detail" resultMap="SystemRole">
+		select * from tb_system_role
+		<include refid="SystemRoleFindCriteria"/>
+		limit 1
+	</select>
+	
+	<delete id="delete">
+		delete from tb_system_role
+		<include refid="SystemRoleFindCriteria" />
+	</delete>
+	<update id="update">
+		update tb_system_role
+		<include refid="SystemRoleUpdateCriteria"/>
+		<include refid="SystemRoleFindCriteria"/>
+	</update>
+	<sql id="SystemRoleFindCriteria">
+		<where>
+			<if test="roleName != null">and role_name = #{roleName}</if>
+			<if test="roleDesc != null">and role_desc = #{roleDesc}</if>
+		</where>
+	</sql>
+	<sql id="SystemRoleUpdateCriteria">
+		<set>
+			<if test="updateRoleName != null">role_name = #{updateRoleName},</if>
+			<if test="updateRoleDesc != null">role_desc = #{updateRoleDesc},</if>
+		</set>
+	</sql>
+</mapper>
