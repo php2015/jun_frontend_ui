@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>选择样式二 - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+.recharge-amount li {
+    min-width: 110px;
+    cursor: pointer;
+    margin: 0px 5px 10px;
+    padding: 5px 15px;
+    color: #4d5259;
+    text-align: center;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 3px solid transparent;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .175);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .175);
+}
+.recharge-amount li.active {
+    border-color: #926dde;
+}
+.recharge-amount li input {
+    display: none;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>选择样式二</h4></div>
+        <div class="card-body">
+          
+          <p>常见的选择充值金额功能。</p>
+          <ul class="list-inline recharge-amount">
+            <li>
+              <input type="radio" name="amount" value="6" />
+              <i class="mdi mdi-currency-btc fa-2x"></i>
+              <p>60个金币</p>
+              <p>6元</p>
+            </li>
+            <li>
+              <input type="radio" name="amount" value="12" />
+              <i class="mdi mdi-currency-btc fa-2x"></i>
+              <p>120个金币</p>
+              <p>12元</p>
+            </li>
+            <li>
+              <input type="radio" name="amount" value="30" />
+              <i class="mdi mdi-currency-btc fa-2x"></i>
+              <p>300个金币</p>
+              <p>30元</p>
+            </li>
+            <li>
+              <input type="radio" name="amount" value="68" />
+              <i class="mdi mdi-currency-btc fa-2x"></i>
+              <p>730个金币</p>
+              <p><span class="text-purple">68元</span> <small><s class="text-lighter">73元</s></small></p>
+            </li>
+            <li>
+              <input type="radio" name="amount" value="108" />
+              <i class="mdi mdi-currency-btc fa-2x"></i>
+              <p>1160个金币</p>
+              <p><span class="text-purple">108元</span> <small><s class="text-lighter">116元</s></small></p>
+            </li>
+            <li>
+              <input type="radio" name="amount" value="158" />
+              <i class="mdi mdi-currency-btc fa-2x"></i>
+              <p>1700个金币</p>
+              <p><span class="text-purple">158元</span> <small><s class="text-lighter">170元</s></small></p>
+            </li>
+          </ul>
+          
+          <div class="form-group">
+            <button class="btn btn-default" id="getChose">获取选中值</button>
+            <pre class="m-t-10" id="console"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', '.recharge-amount li', function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        $(this).siblings().find('input').prop('checked', 0);
+        $(this).find('input').prop('checked', 1);
+    });
+    
+    $('#getChose').on('click', function() {
+        var amount = $('input[name="amount"]:checked').val();
+        if ((typeof(amount) =='undefined')) {
+            amount = '您未选择充值金额';
+        }
+        $('#console').append(amount+'\n');
+    });
+});
+</script>
+</body>
+</html>

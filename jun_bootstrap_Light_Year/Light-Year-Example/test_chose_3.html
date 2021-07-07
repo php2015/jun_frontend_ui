@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>选择样式三 - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+.list-chose span {
+    cursor: pointer;
+    background-color: #fff;
+    padding-right: 16px;
+	-webkit-transition: .2s linear;
+	transition: .2s linear
+}
+.list-chose span input {
+    display: none;
+}
+.list-chose span:hover,
+.list-chose span.active {
+    border-color: #33cabb;
+}
+.list-chose span.active:after {
+    font-family: 'Material Design Icons';
+    content: "\f12c";
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    -wekit-border-radius: 0 0 0 14px;
+    border-radius: 0 0 0 14px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #33cabb;
+    color: #fff;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>选择样式三</h4></div>
+        <div class="card-body">
+
+          <div class="form-group">
+            <p class="list-chose">
+              <span class="label label-outline-default active"><input type="radio" name="deploy" value="1" checked />官方配置一</span>
+              <span class="label label-outline-default"><input type="radio" name="deploy" value="2" />官方配置二</span>
+              <span class="label label-outline-default"><input type="radio" name="deploy" value="3" />官方配置三</span>
+            </p>
+          </div>
+          
+          <div class="form-group">
+            <button class="btn btn-default" id="getChose">获取选中值</button>
+            <pre class="m-t-10" id="console"></pre>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', '.list-chose span', function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        $(this).siblings().find('input').prop('checked', 0);
+        $(this).find('input').prop('checked', 1);
+    });
+    
+    $('#getChose').on('click', function() {
+        var deploy = $('input[name="deploy"]:checked').val();
+        if ((typeof(deploy) =='undefined')) {
+            deploy = '您未选择配置';
+        }
+        $('#console').append('你选中的配置是：' + deploy + '\n');
+    });
+});
+</script>
+</body>
+</html>

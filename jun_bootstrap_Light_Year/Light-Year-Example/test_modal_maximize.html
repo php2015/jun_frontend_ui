@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>模态框的最大化 - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style type="text/css">
+.modal-fullscreen-btn {
+    border: none;
+    background-color: transparent;
+    text-shadow: 0 1px 0 #fff;
+    color: #000;
+    opacity: 0.2;
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+.modal-fullscreen-btn .mdi:before {
+    content: "\f293";
+}
+.modal-fullscreen-btn:hover {
+    opacity: .5;
+}
+.modal-fullscreen {
+    padding-left: 0px!important;
+}
+.modal-fullscreen .modal-fullscreen-btn {
+    opacity: .8;
+}
+.modal-fullscreen .modal-fullscreen-btn .mdi:before {
+    content: "\f294";
+}
+.modal-fullscreen .modal-dialog {
+    width: -webkit-calc(100% - 20px);
+	width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    margin: 8px auto;
+}
+.modal-fullscreen .modal-dialog .modal-body {
+    height: -webkit-calc(100vh - 56px - 69px - 20px);
+    height: calc(100vh - 56px - 69px - 20px);
+    overflow-y: auto;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>模态框的最大化</h4></div>
+        <div class="card-body">
+          
+          <p>这里旨在对模态框增加最大化的功能(因为是模态框的原因，在保留模态框的一些样式基础上最最大化处理)。css和绑定事件的js可以放到通用的文件当中，模态框新增最大化按钮即可。</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            打开模态框
+          </button>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="modal-fullscreen-btn pull-right m-r-5"><i class="mdi"></i></button>
+                  <h4 class="modal-title" id="myModalLabel">标题</h4>
+                </div>
+                <div class="modal-body">
+                内容
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(document).on('click', '.modal-fullscreen-btn', function(){
+        $(this).closest('.modal').toggleClass('modal-fullscreen');
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>可用的一些布局(动画篇) - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/animate.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+/* 图标动画 */
+.animations-box .badge {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    box-shadow: 0 0 0 rgba(249, 104, 104, 0.9);
+    animation: pulse-danger 2s infinite;
+}
+.dot {
+    display: block;
+    position: absolute;
+    top: -0.5rem;
+    right: -0.1rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c03c;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(34, 192, 60, 0.9);
+    animation: pulse-success 2s infinite;
+}
+@-webkit-keyframes pulse-success {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(34, 192, 60, 0.9);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(34, 192, 60, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(34, 192, 60, 0);
+    }
+}
+@keyframes pulse-success {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(34, 192, 60, 0.9);
+        box-shadow: 0 0 0 0 rgba(34, 192, 60, 0.7);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(34, 192, 60, 0);
+        box-shadow: 0 0 0 10px rgba(34, 192, 60, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(34, 192, 60, 0);
+        box-shadow: 0 0 0 0 rgba(34, 192, 60, 0);
+    }
+}
+@-webkit-keyframes pulse-danger {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(249, 104, 104, 0.9);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(249, 104, 104, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(249, 104, 104, 0);
+    }
+}
+@keyframes pulse-danger {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(249, 104, 104, 0.9);
+        box-shadow: 0 0 0 0 rgba(249, 104, 104, 0.7);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(249, 104, 104, 0);
+        box-shadow: 0 0 0 10px rgba(249, 104, 104, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(249, 104, 104, 0);
+        box-shadow: 0 0 0 0 rgba(249, 104, 104, 0);
+    }
+}
+.bell-animations {
+    display: inline-block;
+    -webkit-animation: ring 4s .7s ease-in-out infinite;
+    -webkit-transform-origin: 50% 4px;
+    -moz-animation: ring 4s .7s ease-in-out infinite;
+    -moz-transform-origin: 50% 4px;
+    animation: ring 4s .7s ease-in-out infinite;
+    transform-origin: 50% 4px;
+}
+@-webkit-keyframes ring {
+    0% { -webkit-transform: rotateZ(0); }
+    1% { -webkit-transform: rotateZ(30deg); }
+    3% { -webkit-transform: rotateZ(-28deg); }
+    5% { -webkit-transform: rotateZ(34deg); }
+    7% { -webkit-transform: rotateZ(-32deg); }
+    9% { -webkit-transform: rotateZ(30deg); }
+    11% { -webkit-transform: rotateZ(-28deg); }
+    13% { -webkit-transform: rotateZ(26deg); }
+    15% { -webkit-transform: rotateZ(-24deg); }
+    17% { -webkit-transform: rotateZ(22deg); }
+    19% { -webkit-transform: rotateZ(-20deg); }
+    21% { -webkit-transform: rotateZ(18deg); }
+    23% { -webkit-transform: rotateZ(-16deg); }
+    25% { -webkit-transform: rotateZ(14deg); }
+    27% { -webkit-transform: rotateZ(-12deg); }
+    29% { -webkit-transform: rotateZ(10deg); }
+    31% { -webkit-transform: rotateZ(-8deg); }
+    33% { -webkit-transform: rotateZ(6deg); }
+    35% { -webkit-transform: rotateZ(-4deg); }
+    37% { -webkit-transform: rotateZ(2deg); }
+    39% { -webkit-transform: rotateZ(-1deg); }
+    41% { -webkit-transform: rotateZ(1deg); }
+    43% { -webkit-transform: rotateZ(0); }
+    100% { -webkit-transform: rotateZ(0); }
+}
+/* 背景动画 */
+.wave {
+    background-color: #f9fafb;
+    overflow: hidden;
+    position: relative;
+}
+.wave > div {
+    z-index: 1;
+}
+.wave:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: -1;
+}
+.wave:after {
+    content: ' ';
+    width: 1000px;
+    height: 1025px;
+    position: absolute;
+    bottom: 65%;
+    left: -250px;
+    border-radius: 35%;
+    background: white;
+    z-index: 0;
+}
+.wave:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.wave-animate:after {
+    -webkit-animation: animate-wave 15s infinite linear;
+    animation: animate-wave 15s infinite linear;
+}
+.wave-animate-slower:after {
+    -webkit-animation: animate-wave 30s infinite linear;
+    animation: animate-wave 30s infinite linear;
+}
+.wave-animate-slow:after {
+    -webkit-animation: animate-wave 25s infinite linear;
+    animation: animate-wave 25s infinite linear;
+}
+.wave-animate-fast:after {
+    -webkit-animation: animate-wave 10s infinite linear;
+    animation: animate-wave 10s infinite linear;
+}
+.wave-animate-faster:after {
+    -webkit-animation: animate-wave 5s infinite linear;
+    animation: animate-wave 5s infinite linear;
+}
+.wave.wave-primary {
+    background-color: rgba(51, 202, 187, 0.1) !important;
+}
+.wave.wave-primary .svg-icon svg g [fill] {
+    fill: #33cabb;
+}
+.wave.wave-secondary {
+    background-color: rgba(77, 82, 89, 0.1) !important;
+}
+.wave.wave-secondary .svg-icon svg g [fill] {
+    fill: #4d5259;
+}
+.wave.wave-success {
+    background-color: rgba(21, 195, 119, 0.1) !important;
+}
+.wave.wave-success .svg-icon svg g [fill] {
+    fill: #15c377;
+}
+.wave.wave-info {
+    background-color: rgba(72, 176, 247, 0.1) !important;
+}
+.wave.wave-info .svg-icon svg g [fill] {
+    fill: #48b0f7;
+}
+.wave.wave-warning {
+  background-color: rgba(250, 166, 75, 0.1) !important;
+}
+.wave.wave-warning .svg-icon svg g [fill] {
+    fill: #faa64b;
+}
+.wave.wave-danger {
+    background-color: rgba(249, 104, 104, 0.1) !important;
+}
+.wave.wave-danger .svg-icon svg g [fill] {
+    fill: #f96868;
+}
+.wave.wave-light {
+    background-color: rgba(249, 250, 251, 0.1) !important;
+}
+.wave.wave-light .svg-icon svg g [fill] {
+    fill: #f9fafb;
+}
+.wave.wave-dark {
+    background-color: rgba(70, 81, 97, 0.1) !important;
+}
+.wave.wave-dark .svg-icon svg g [fill] {
+    fill: #465161;
+}
+.wave.wave-white {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.wave.wave-white .svg-icon svg g [fill] {
+    fill: #ffffff;
+}
+@-webkit-keyframes animate-wave {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate-wave {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* 动画css库演示 */
+#myTabContent li {
+    margin: 10px 10px 0 0;
+    padding: 5px 10px;
+    background-color: #eee;
+    cursor: pointer;
+}
+#myTabContent li.active {
+    color: #f35626;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>可用的一些布局 - 动画篇</h4></div>
+        <div class="card-body">
+          
+          <p>布局来源于网络，大家看需要使用，O(∩_∩)O。<span class="text-danger">目前这些布局是基于bootstrap 3.3.7。</span></p>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>图标动画</h4></div>
+        <div class="card-body">
+          
+          <span class="position-relative animations-box">
+            <i class="mdi mdi-message-text-outline fa-1-5x"></i>
+            <span class="badge bg-danger">3</span>
+          </span>
+          <br/>
+          <span class="position-relative animations-box">
+            <i class="mdi mdi-bell fa-1-5x"></i>
+            <span class="dot bg-success"></span>
+          </span>
+          <br/>
+          <span class="position-relative animations-box">
+            <i class="mdi mdi-bell bell-animations fa-1-5x"></i>
+            <span class="dot bg-success"></span>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4">
+	  <!--begin::Iconbox-->
+	  <div class="card wave wave-animate-slow wave-primary">
+	    <div class="card-body position-relative">
+          <a href="#!" class="text-dark fa-1-5x">第四十九回</a>
+	      <div class="m-t-10 m-b-10">薛招讨大破围城将 盖苏文失计飞刀阵</div>
+          <p>诗曰：枉去扶余借救兵，苏文难获大唐君。飞刀失去雄师丧，天意谁能谋得成。</p>
+	    </div>
+	  </div>
+	</div>
+    
+    <div class="col-md-4">
+      <div class="card wave wave-animate wave-danger">
+	    <div class="card-body position-relative">
+	      <a href="#!" class="text-dark fa-1-5x">第五十回</a>
+	      <div class="m-t-10 m-b-10">扶余国二次借兵 朱皮仙播弄神通</div>
+          <p>诗曰：苏文几次上仙山，再炼飞刀又设坛。怎奈唐王洪福大，机谋枉用也徒然。</p>
+	    </div>
+	  </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card wave wave-animate-fast wave-info">
+		<div class="card-body position-relative">
+		  <a href="#!" class="text-dark fa-1-5x">第五十一回</a>
+		  <div class="m-t-10 m-b-10">香山弟子除妖法 唐国元戎演阵图</div>
+          <p>诗曰：龟灵妖法仗红珠，千载精华功不殊。指望威名成海国，那知一旦露形躯。</p>
+		</div>
+	  </div>
+    </div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>动画样式示例</h4></div>
+        <div class="card-body">
+          
+          <p>模板中的样式文件animate.css是一个随时可用的跨浏览器动画库，供您在项目中使用。这里单独对改文件的动画做个示例。</p>
+          <div class="text-center m-tb-15"><h2 id="animate">Animate.css</h2></div>
+          <ul id="myTabs" class="nav nav-tabs" role="tablist">
+            <li class="active"><a data-toggle="tab" href="#attention-seekers">Attention Seekers</a></li>
+		    <li><a data-toggle="tab" href="#bouncing-entrances">Bouncing Entrances</a></li>
+		    <li><a data-toggle="tab" href="#bouncing-exits">Bouncing Exits</a></li>
+		    <li><a data-toggle="tab" href="#fading-entrances">Fading Entrances</a></li>
+		    <li><a data-toggle="tab" href="#fading-exits">Fading Exits</a></li>
+		    <li><a data-toggle="tab" href="#flippers">Flippers</a></li>
+		    <li><a data-toggle="tab" href="#lightspeed">Lightspeed</a></li>
+		    <li><a data-toggle="tab" href="#rotating-entrances">Rotating Entrances</a></li>
+		    <li><a data-toggle="tab" href="#rotating-exits">Rotating Exits</a></li>
+		    <li><a data-toggle="tab" href="#sliders">Sliders</a></li>
+		    <li><a data-toggle="tab" href="#specials">Specials</a></li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="attention-seekers">
+		      <ul class="list-inline">
+		        <li>bounce</li>
+		        <li>flash</li>
+		        <li>pulse</li>
+		        <li>rubberBand</li>
+		        <li>shake</li>
+		        <li>swing</li>
+		        <li>tada</li>
+		        <li>wobble</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="bouncing-entrances">
+		      <ul class="list-inline">
+		        <li>bounceIn</li>
+		        <li>bounceInDown</li>
+		        <li>bounceInLeft</li>
+		        <li>bounceInRight</li>
+		        <li>bounceInUp</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="bouncing-exits">
+		      <ul class="list-inline">
+		        <li>bounceOut</li>
+		        <li>bounceOutDown</li>
+		        <li>bounceOutLeft</li>
+		        <li>bounceOutRight</li>
+		        <li>bounceOutUp</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="fading-entrances">
+		      <ul class="list-inline">
+		        <li>fadeIn</li>
+		        <li>fadeInDown</li>
+		        <li>fadeInDownBig</li>
+		        <li>fadeInLeft</li>
+		        <li>fadeInLeftBig</li>
+		        <li>fadeInRight</li>
+		        <li>fadeInRightBig</li>
+		        <li>fadeInUp</li>
+		        <li>fadeInUpBig</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="fading-exits">
+		      <ul class="list-inline">
+		        <li>fadeOut</li>
+		        <li>fadeOutDown</li>
+		        <li>fadeOutDownBig</li>
+		        <li>fadeOutLeft</li>
+		        <li>fadeOutLeftBig</li>
+		        <li>fadeOutRight</li>
+		        <li>fadeOutRightBig</li>
+		        <li>fadeOutUp</li>
+		        <li>fadeOutUpBig</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="flippers">
+		      <ul class="list-inline">
+		        <li>flip</li>
+		        <li>flipInX</li>
+		        <li>flipInY</li>
+		        <li>flipOutX</li>
+		        <li>flipOutY</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="lightspeed">
+		      <ul class="list-inline">
+		        <li>lightSpeedIn</li>
+		        <li>lightSpeedOut</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="rotating-entrances">
+		      <ul class="list-inline">
+		        <li>rotateIn</li>
+		        <li>rotateInDownLeft</li>
+		        <li>rotateInDownRight</li>
+		        <li>rotateInUpLeft</li>
+		        <li>rotateInUpRight</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="rotating-exits">
+		      <ul class="list-inline">
+		        <li>rotateOut</li>
+		        <li>rotateOutDownLeft</li>
+		        <li>rotateOutDownRight</li>
+		        <li>rotateOutUpLeft</li>
+		        <li>rotateOutUpRight</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="sliders">
+		      <ul class="list-inline">
+		        <li>slideInDown</li>
+		        <li>slideInLeft</li>
+		        <li>slideInRight</li>
+		        <li>slideOutLeft</li>
+		        <li>slideOutRight</li>
+		        <li>slideOutUp</li>
+		      </ul>
+            </div>
+            <div class="tab-pane fade" id="specials">
+		      <ul class="list-inline">
+		        <li>hinge</li>
+		        <li>rollIn</li>
+		        <li>rollOut</li>
+		      </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var $animate = $('#animate');
+	var $btn = $('#myTabContent').find('li');
+	$btn.click(function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		$animate.removeClass().addClass($(this).text() + ' animated infinite');
+		setTimeout(removeClass, 1000);
+	});
+
+	function removeClass(){
+		$animate.removeClass();
+	}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>聊天 - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+.lyear-chat-room {
+    position: relative;
+    background-color: #fff;
+    height: 100%;
+}
+.lyear-chat-side {
+    position: fixed;
+    height: -moz-calc(100% - 68px);
+    height: -webkit-calc(100% - 68px);
+    height: calc(100% - 68px);
+    width: 240px;
+    z-index: 3;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.08);
+}
+.lyear-chat-side.lyear-chat-user-open {
+    left: 0 !important;
+}
+.lyear-chat-search .form-control {
+    border: 0px;
+    height: 36px;
+    -webkit-box-shadow: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #f6f6f7;
+    box-shadow: none;
+}
+.lyear-chat-search .has-feedback {
+    position: relative;
+}
+.lyear-chat-search .has-feedback .form-control {
+    padding-left: 38px;
+    padding-right: 12px;
+}
+.lyear-chat-search .has-feedback .mdi {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    z-index: 4;
+    color: #c4c4c4;
+}
+/* 用户列表 */
+.lyear-chat-sidebar-scroll {
+    height: -moz-calc(100% - 97px);
+    height: -webkit-calc(100% - 97px);
+    height: calc(100% - 97px);
+    position: relative;
+    background-color: #fff;
+  }
+.lyear-chat-users {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+}
+.lyear-chat-users .list-group-item {
+    margin-bottom: 0px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #f6f6f7;
+	-webkit-transition: all .2s;
+	-khtml-transition: all .2s;
+	-o-transition: all .2s;
+	transition: all .2s
+}
+.lyear-chat-users .list-group-item .list-chat-user-name {
+    font-size: 14px;
+    margin-bottom: 0px;
+    color: #4d5259;
+}
+.lyear-chat-users .list-group-item .list-chat-user-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 10px;
+    height: 18px;
+    color: #999;
+    margin-bottom: 0px;
+}
+.lyear-chat-users .list-group-item+.list-group-item.active {
+    margin-top: 0px;
+}
+.chat-user-avatar {
+    width: 40px;
+    height: 40px;
+}
+.lyear-chat-users .list-group-item.active {
+    background-color: #f9fafb;
+    border-color: #f9fafb;
+    z-index: 0;
+}
+.list-chat-user-info {
+    height: 21px;
+    overflow: hidden;
+}
+.list-chat-user-info time {
+    color: #8b95a5;
+    margin-right: 5px;
+}
+.list-chat-user-info .badge {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: .25em .5em;
+    color: #fff;
+    background-color: #33cabb;
+}
+/*聊天右侧*/
+#lyear-chat-content {
+    height: 100%;
+    padding-left: 240px;
+}
+#lyear-chat-header {
+    height: 61px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f6f6f7;
+    background-color: #f9fafb;
+}
+.lyear-chat-menu {
+    position: relative;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.lyear-chat-my-info .chat-user-avatar,
+.lyear-chat-user-info .chat-user-avatar {
+    float: left;
+}
+.lyear-chat-user-wrap,
+.lyear-chat-my-wrap {
+    float: left;
+}
+.lyear-chat-my-box {
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #f6f6f7;
+}
+.lyear-chat-my-box .dropdown,
+.lyear-chat-menu .dropdown {
+    padding-top: 10px;
+}
+/*清屏和历史消息*/
+.lyear-chat-tools a {
+    font-size: 22px;
+    color: #868e96;
+    padding: 0 5px;
+    line-height: 40px;
+}
+.lyear-chat-tools a:last-child {
+    padding-right: 0px;
+}
+/*聊天主要内容区域*/
+.lyear-chat-container {
+    position: relative;
+    height: -moz-calc(100% - 61px);
+    height: -webkit-calc(100% - 61px);
+    height: calc(100% - 61px);
+}
+/*聊天内容输入区域*/
+#lyear-chat-footer {
+    position: absolute;
+    z-index: 2;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #f9fafb;
+}
+#lyear-chat-footer .lyear-chat-expression {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    left: 13px;
+    top: 16px;
+    position: absolute;
+    z-index: 2;
+}
+#lyear-chat-footer .lyear-chat-expression i {
+    font-size: 20px;
+    color: #999;
+	-webkit-transition: all .2s;
+	-khtml-transition: all .2s;
+	-o-transition: all .2s;
+	transition: all .2s
+}
+.lyear-chat-expression .emoj-box {
+    position: relative;
+}
+/*表情*/
+#facebox {
+    width: 280px;
+    background-color: #fff;
+    padding: 10px;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.075);
+    -khtml-box-shadow: 0 0 4px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.075);
+    -ms-box-shadow: 0 0 4px rgba(0, 0, 0, 0.075);
+    -o-box-shadow: 0 0 4px rgba(0, 0, 0, 0.075);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.075);
+}
+#facebox img {
+    border: 1px solid #fff;
+}
+#facebox img:hover {
+    border-color: #1565c0;
+    cursor: pointer;
+}
+/**/
+#lyear-chat-comment {
+    
+}
+.lyear-chat-wrapper {
+    position: relative;
+    height: -moz-calc(100% - 58px);
+    height: -webkit-calc(100% - 58px);
+    height: calc(100% - 58px);
+}
+.lyear-chat-send-box {
+    padding-left: 80px;
+}
+.lyear-chat-message-list {
+    padding: 20px;
+}
+.lyear-chat-message {
+    margin-bottom: 20px;
+    width: 100%;
+    display: table;
+    overflow: hidden;
+}
+.lyear-chat-message:before {
+    content: " ";
+    display: block;
+}
+.lyear-chat-message:last-of-type {
+    margin-bottom: 0;
+}
+.lyear-chat-wrapper .chat-user-avatar {
+	float: left;
+}
+.lyear-chat-message .lyear-chat-message-wrapper {
+	max-width: 70%;
+	display: table;
+	margin: 0 15px;
+	position: relative
+}
+.lyear-chat-message .lyear-chat-message-wrapper:before {
+	content: " ";
+	display: block;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	top: 5px;
+	position: absolute;
+	z-index: 2
+}
+.lyear-chat-message .lyear-chat-message-wrapper p {
+	padding: 8px;
+	color: #fff;
+	border-top: 1px solid;
+	font-weight: 200;
+    margin: 0px;
+	line-height: 1.5em;
+}
+.lyear-chat-message .lyear-chat-message-wrapper p:first-of-type {
+	border-top: 0!important
+}
+.lyear-chat-message.lyear-chat-message-recipient .lyear-chat-message-content,
+.lyear-chat-message.lyear-chat-message-recipient .lyear-chat-message-wrapper {
+	float: left
+}
+.lyear-chat-message.lyear-chat-message-sender .lyear-chat-message-content,
+.lyear-chat-message.lyear-chat-message-sender .lyear-chat-message-wrapper,
+.lyear-chat-message.lyear-chat-message-sender img.chat-user-avatar {
+	float: right
+}
+.lyear-chat-message.lyear-chat-message-recipient .lyear-chat-message-content {
+	background-color: #33cabb;
+	color: #fff
+}
+.lyear-chat-message.lyear-chat-message-recipient .lyear-chat-message-wrapper:before {
+	left: -10px;
+	border-right-color: #33cabb
+}
+.lyear-chat-message.lyear-chat-message-recipient p {
+	border: none
+}
+.lyear-chat-message.lyear-chat-message-sender .lyear-chat-message-content {
+	background-color: #48b0f7
+}
+.lyear-chat-message.lyear-chat-message-sender .lyear-chat-message-wrapper:before {
+	right: -10px;
+	border-left-color: #48b0f7
+}
+.lyear-chat-message.lyear-chat-message-sender p {
+	border: none
+}
+.lyear-chat-message .lyear-chat-message-content {
+    width: 100%;
+	overflow: hidden;
+    -webkit-border-radius: 2px;
+	border-radius: 2px
+}
+.lyear-chat-message .lyear-chat-message-content:before {
+	content: " ";
+	display: block
+}
+.lyear-chat-message .lyear-chat-message-content img {
+    /*max-width: 50%;*//*base64图片外的p元素不会自适应宽度*/
+}
+.lyear-chat-message .lyear-message-details {
+	clear: both;
+	width: 100%;
+	display: table;
+	overflow: hidden
+}
+.lyear-chat-message .lyear-message-details:before {
+	content: " ";
+	display: block
+}
+.lyear-chat-message .lyear-message-details span.chat-today {
+	margin-right: 4px;
+	color: #868e96
+}
+/*历史消息*/
+#historyModal .modal-body {
+    padding: 0px;
+}
+.history-messages-box {
+    position: relative;
+    height: 320px;
+    overflow-y: auto;
+}
+.history-messages-pages {
+    height: 32px;
+    border-top: 1px solid #f6f6f7;
+}
+.history-messages-pages .pagination {
+    margin: 0px;
+}
+.history-message-sender small {
+    color: #48b0f7;
+}
+.history-message-recipient small {
+    color: #33cabb;
+}
+.history-message-item {
+    padding: 5px 15px;
+}
+.history-message-item p {
+    font-size: 14px;
+    margin: 0px;
+}
+.history-message-item.active {
+    background-color: #FFEDC4;
+}
+/*用户状态*/
+[class*='user-status-'] {
+    position: relative;
+}
+[class*='user-status-']::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    background-color: #33cabb;
+}
+.user-status-success::after {
+    background-color: #15c377;
+}
+.user-status-danger::after {
+    background-color: #f96868;
+}
+.user-status-secondary::after {
+    background-color: #a5b3c7;
+}
+/* 用户签名 */
+.edit-autograph {
+    height: 18px;
+    border: none;
+    line-height: 18px;
+    padding: 0px;
+    margin: 0px;
+}
+.edit-autograph:focus {
+    border: none;
+    outline: none;
+}
+/* 打开聊天侧边栏按钮 */
+.lyear-chat-toggler {
+    display: none;
+    background-color: #fff;
+    height: 48px;
+    width: 24px;
+    border-top-right-radius: 48px;
+    border-bottom-right-radius: 48px;
+    border: 1px solid #ebebeb;
+    border-left: none;
+    position: absolute;
+    top: 50%;
+    right: -24px;
+    margin-top: -24px;
+    font-family: "Material Design Icons";
+    padding-left: 2px;
+    color: #616a78;
+    cursor: pointer;
+    -webkit-box-shadow: 3px 0px 9px rgba(0, 0, 0, 0.075);
+    box-shadow: 3px 0px 9px rgba(0, 0, 0, 0.075);
+}
+.lyear-chat-toggler:after {
+    content: "\f142";
+}
+/* 响应式处理 */
+@media (max-width: 800px) {
+  .lyear-chat-side {
+      left: -240px;
+  }
+  #lyear-chat-content {
+      padding-left: 0px;
+  }
+  .lyear-chat-toggler {
+      display: inline-block;
+  }
+}
+</style>
+</head>
+  
+<body>
+<div class="lyear-layout-web">
+  <div class="lyear-layout-container">
+    <!--左侧导航-->
+    <aside class="lyear-layout-sidebar">
+      
+      <!-- logo -->
+      <div id="logo" class="sidebar-header">
+        <a href="index.html"><img src="images/logo-sidebar.png" title="LightYear" alt="LightYear" /></a>
+      </div>
+      <div class="lyear-layout-sidebar-info lyear-scroll"> 
+        
+        <nav class="sidebar-main">
+          <ul class="nav-drawer">
+            <li class="nav-item active"> <a class="multitabs" href="lyear_main.html"><i class="mdi mdi-home"></i> <span>后台首页</span></a> </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> <span>UI 元素</span></a>
+              <ul class="nav nav-subnav">
+                <li> <a class="multitabs" href="lyear_ui_typography.html">排版</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_grid.html">栅格</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_icon.html">图标</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_alerts.html">警告框</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_buttons.html">按钮</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_button_group.html">按钮组</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_cards.html">卡片</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_tables.html">表格</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_modal.html">模态框</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_dropdown.html">下拉菜单</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_tooltips.html">工具提示</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_tabs.html">标签页</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_pagination.html">分页</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_popovers.html">POP提示</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_images.html">图片</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_badges.html">徽章</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_progress.html">进度条</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_list_group.html">列表组</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_media_object.html">媒体对象</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_navbar.html">导航栏</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_scrollspy.html">滚动监听</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_spinners.html">加载状态</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_toasts.html">消息弹窗</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_timeline.html">时光轴</a> </li>
+                <li> <a class="multitabs" href="lyear_ui_other.html">其他</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> <span>表单</span></a>
+              <ul class="nav nav-subnav">
+                <li> <a class="multitabs" href="lyear_forms_elements.html">基本元素</a> </li>
+                <li> <a class="multitabs" href="lyear_forms_input_group.html">输入框组</a> </li>
+                <li> <a class="multitabs" href="lyear_forms_radio.html">单选框</a> </li>
+                <li> <a class="multitabs" href="lyear_forms_checkbox.html">复选框</a> </li>
+                <li> <a class="multitabs" href="lyear_forms_switches.html">开关</a> </li>
+                <li> <a class="multitabs" href="lyear_forms_range.html">范围选择</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-view-dashboard"></i> <span>工具类</span></a>
+              <ul class="nav nav-subnav">
+                <li> <a class="multitabs" href="lyear_utilities_borders.html">边框</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_colors.html">颜色</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_display.html">显示属性</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_flex.html">弹性布局</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_float.html">浮动</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_sizing.html">尺寸</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_spacing.html">间隔</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_stretched_link.html">延伸链接</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_text.html">文本</a> </li>
+                <li> <a class="multitabs" href="lyear_utilities_other.html">其他</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> <span>示例页面</span></a>
+              <ul class="nav nav-subnav">
+                <li> <a class="multitabs" href="lyear_pages_doc.html">文档列表</a> </li>
+                <li> <a class="multitabs" href="lyear_pages_gallery.html">图库列表</a> </li>
+                <li> <a class="multitabs" href="lyear_pages_config.html">网站配置</a> </li>
+                <li> <a class="multitabs" href="lyear_pages_rabc.html">设置权限</a> </li>
+                <li> <a class="multitabs" href="lyear_pages_add_doc.html">新增文档</a> </li>
+                <li> <a class="multitabs" href="lyear_pages_guide.html">表单向导</a> </li>
+                <li> <a class="multitabs" href="lyear_pages_data_table.html">表格插件</a> </li>
+                <li> <a href="lyear_pages_login_1.html" target="_blank">登录页面1</a> </li>
+                <li> <a href="lyear_pages_login_2.html" target="_blank">登录页面2</a> </li>
+                <li> <a href="lyear_pages_login_3.html" target="_blank">登录页面3</a> </li>
+                <li> <a href="lyear_pages_login_4.html" target="_blank">登录页面4</a> </li>
+                <li> <a href="lyear_pages_error.html" target="_blank">错误页面</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-language-javascript"></i> <span>JS 插件</span></a>
+              <ul class="nav nav-subnav">
+                <li> <a class="multitabs" href="lyear_js_datepicker.html">日期选取器</a> </li>
+                <li> <a class="multitabs" href="lyear_js_colorpicker.html">选色器</a> </li>
+                <li> <a class="multitabs" href="lyear_js_chartjs.html">Chart.js</a> </li>
+                <li> <a class="multitabs" href="lyear_js_jconfirm.html">对话框</a> </li>
+                <li> <a class="multitabs" href="lyear_js_tags_input.html">标签插件</a> </li>
+                <li> <a class="multitabs" href="lyear_js_notify.html">通知消息</a> </li>
+                <li> <a class="multitabs" href="lyear_js_maxlength.html">长度判断</a> </li>
+                <li> <a class="multitabs" href="lyear_js_select.html">下拉选择</a> </li>
+                <li> <a class="multitabs" href="lyear_js_fullcalendar.html">日程插件</a> </li>
+                <li> <a class="multitabs" href="lyear_js_loading.html">loading插件</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+              <a href="javascript:void(0)"><i class="mdi mdi-menu"></i> <span>多级菜单</span></a>
+              <ul class="nav nav-subnav">
+                <li> <a href="#!">一级菜单</a> </li>
+                <li class="nav-item nav-item-has-subnav"> 
+                  <a href="#!">一级菜单</a>
+                  <ul class="nav nav-subnav">
+                    <li> <a href="#!">二级菜单</a> </li>
+                    <li class="nav-item nav-item-has-subnav"> 
+                      <a href="#!">二级菜单</a>
+                      <ul class="nav nav-subnav">
+                        <li> <a href="#!">三级菜单</a> </li>
+                        <li> <a href="#!">三级菜单</a> </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li> <a href="#!">一级菜单</a> </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+          <p class="copyright">Copyright &copy; 2019. <a target="_blank" href="http://lyear.itshubao.com">IT书包</a> All rights reserved.</p>
+        </div>
+      </div>
+      
+    </aside>
+    <!--End 左侧导航-->
+    
+    <!--头部信息-->
+    <header class="lyear-layout-header">
+      
+      <nav class="navbar">
+      
+        <div class="navbar-left">
+          <div class="lyear-aside-toggler">
+            <span class="lyear-toggler-bar"></span>
+            <span class="lyear-toggler-bar"></span>
+            <span class="lyear-toggler-bar"></span>
+          </div>
+        </div>
+        
+        <ul class="navbar-right d-flex align-items-center">
+          <li class="dropdown dropdown-notice">
+            <span data-toggle="dropdown" class="icon-item">
+              <i class="mdi mdi-bell-outline"></i>
+              <span class="badge badge-danger">10</span>
+            </span>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="lyear-notifications">
+                
+                <div class="lyear-notifications-title clearfix"  data-stopPropagation="true"><a href="#!" class="float-right">查看全部</a>你有 10 条未读消息</div>
+                <div class="lyear-notifications-info lyear-scroll">
+                  <a href="#!" class="dropdown-item" title="树莓派销量猛增，疫情期间居家工作学习、医疗领域都需要它">树莓派销量猛增，疫情期间居家工作学习、医疗领域都需要它</a>
+                  <a href="#!" class="dropdown-item" title="GNOME 用户体验团队将为 GNOME Shell 提供更多改进">GNOME 用户体验团队将为 GNOME Shell 提供更多改进</a>
+                  <a href="#!" class="dropdown-item" title="Linux On iPhone 即将面世，支持 iOS 的双启动">Linux On iPhone 即将面世，支持 iOS 的双启动</a>
+                  <a href="#!" class="dropdown-item" title="GitHub 私有仓库完全免费面向团队提供">GitHub 私有仓库完全免费面向团队提供</a>
+                  <a href="#!" class="dropdown-item" title="Wasmtime 为 WebAssembly 增加 Go 语言绑定">Wasmtime 为 WebAssembly 增加 Go 语言绑定</a>
+                  <a href="#!" class="dropdown-item" title="红帽借“订阅”成开源一哥，首创者 Cormier 升任总裁">红帽借“订阅”成开源一哥，首创者 Cormier 升任总裁</a>
+                  <a href="#!" class="dropdown-item" title="Zend 宣布推出两项 PHP 新产品">Zend 宣布推出两项 PHP 新产品</a>
+                </div>
+                
+              </div>
+            </div>
+          </li>
+          <!--切换主题配色-->
+		  <li class="dropdown dropdown-skin">
+		    <span data-toggle="dropdown" class="icon-item"><i class="mdi mdi-palette"></i></span>
+			<ul class="dropdown-menu dropdown-menu-right" data-stopPropagation="true">
+			  <li class="drop-title"><p>LOGO</p></li>
+			  <li class="drop-skin-li clearfix">
+                <span class="inverse">
+                  <input type="radio" name="logo_bg" value="default" id="logo_bg_1" checked>
+                  <label for="logo_bg_1"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_2" id="logo_bg_2">
+                  <label for="logo_bg_2"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_3" id="logo_bg_3">
+                  <label for="logo_bg_3"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_4" id="logo_bg_4">
+                  <label for="logo_bg_4"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_5" id="logo_bg_5">
+                  <label for="logo_bg_5"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_6" id="logo_bg_6">
+                  <label for="logo_bg_6"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_7" id="logo_bg_7">
+                  <label for="logo_bg_7"></label>
+                </span>
+                <span>
+                  <input type="radio" name="logo_bg" value="color_8" id="logo_bg_8">
+                  <label for="logo_bg_8"></label>
+                </span>
+			  </li>
+			  <li class="drop-title"><p>头部</p></li>
+			  <li class="drop-skin-li clearfix">
+                <span class="inverse">
+                  <input type="radio" name="header_bg" value="default" id="header_bg_1" checked>
+                  <label for="header_bg_1"></label>                      
+                </span>                                                    
+                <span>                                                     
+                  <input type="radio" name="header_bg" value="color_2" id="header_bg_2">
+                  <label for="header_bg_2"></label>                      
+                </span>                                                    
+                <span>                                                     
+                  <input type="radio" name="header_bg" value="color_3" id="header_bg_3">
+                  <label for="header_bg_3"></label>
+                </span>
+                <span>
+                  <input type="radio" name="header_bg" value="color_4" id="header_bg_4">
+                  <label for="header_bg_4"></label>                      
+                </span>                                                    
+                <span>                                                     
+                  <input type="radio" name="header_bg" value="color_5" id="header_bg_5">
+                  <label for="header_bg_5"></label>                      
+                </span>                                                    
+                <span>                                                     
+                  <input type="radio" name="header_bg" value="color_6" id="header_bg_6">
+                  <label for="header_bg_6"></label>                      
+                </span>                                                    
+                <span>                                                     
+                  <input type="radio" name="header_bg" value="color_7" id="header_bg_7">
+                  <label for="header_bg_7"></label>
+                </span>
+                <span>
+                  <input type="radio" name="header_bg" value="color_8" id="header_bg_8">
+                  <label for="header_bg_8"></label>
+                </span>
+				</li>
+			  <li class="drop-title"><p>侧边栏</p></li>
+			  <li class="drop-skin-li clearfix">
+                <span class="inverse">
+                  <input type="radio" name="sidebar_bg" value="default" id="sidebar_bg_1" checked>
+                  <label for="sidebar_bg_1"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_2" id="sidebar_bg_2">
+                  <label for="sidebar_bg_2"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_3" id="sidebar_bg_3">
+                  <label for="sidebar_bg_3"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_4" id="sidebar_bg_4">
+                  <label for="sidebar_bg_4"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_5" id="sidebar_bg_5">
+                  <label for="sidebar_bg_5"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_6" id="sidebar_bg_6">
+                  <label for="sidebar_bg_6"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_7" id="sidebar_bg_7">
+                  <label for="sidebar_bg_7"></label>
+                </span>
+                <span>
+                  <input type="radio" name="sidebar_bg" value="color_8" id="sidebar_bg_8">
+                  <label for="sidebar_bg_8"></label>
+                </span>
+			  </li>
+		    </ul>
+		  </li>
+          <!--切换主题配色-->
+          <li class="dropdown dropdown-profile">
+            <a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle">
+              <img class="img-avatar img-avatar-48 m-r-10" src="images/users/avatar.jpg" alt="笔下光年" />
+              <span>笔下光年</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <a class="multitabs dropdown-item" data-url="lyear_pages_profile.html" href="javascript:void(0)"><i class="mdi mdi-account"></i> 个人信息</a>
+              </li>
+              <li>
+                <a class="multitabs dropdown-item" data-url="lyear_pages_edit_pwd.html" href="javascript:void(0)"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-delete"></i> 清空缓存</a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="lyear_pages_login_1.html"><i class="mdi mdi-logout-variant"></i> 退出登录</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        
+      </nav>
+      
+    </header>
+    <!--End 头部信息-->
+    
+    <!--页面主要内容-->
+    <main class="lyear-layout-content">
+
+      <div class="lyear-chat-room">
+        <aside class="lyear-chat-side">
+          <div class="lyear-chat-my-box clearfix">
+            <div class="lyear-chat-my-info float-left clearfix">
+              <img src="images/users/avatar.jpg" class="chat-user-avatar img-avatar">
+              <div class="lyear-chat-my-wrap m-l-10">
+                <p class="mb-0">笔下光年</p>
+                <p class="m-0 small text-muted my-autograph" title="点击可编辑">笔尖流淌逝去的光年...</p>
+              </div>
+            </div>
+            <div class="float-right">
+              <div class="dropdown">
+                <a href="#!" data-toggle="dropdown" class="text-default"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-toggle="tooltip" title="" data-original-title="个人设置"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#!" class="dropdown-item"><i class="mdi mdi-account-plus"></i> 添加好友</a></li>
+                  <li><a href="#!" class="dropdown-item"><i class="mdi mdi-message"></i> 发起群聊</a></li>
+                  <li><a href="#!" class="dropdown-item"><i class="mdi mdi-share-variant"></i> 分享</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="lyear-chat-search">
+            <div class="has-feedback">
+              <input type="text" placeholder="输入关键词，回车搜索" class="form-control" name="keywords" id="keywords" />
+              <span class="mdi mdi-account" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="lyear-chat-sidebar-scroll lyear-need-scroll">
+            <div class="list-group lyear-chat-users">
+              <a href="#!" class="list-group-item active" data-user-id="1" data-autograph="力大无穷的娃娃">
+                <span class="float-left user-status-success">
+                  <img src="images/users/avatar-1.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">大娃</h4>
+                  <time class="float-right">12:11</time>
+                </div>
+                <p class="list-chat-user-text">您知道的有点多啊</p><!--最后一条聊天数据-->
+              </a>
+              <a href="#!" class="list-group-item" data-user-id="2" data-autograph="我是千里眼顺风耳">
+                <span class="float-left user-status-success">
+                  <img src="images/users/avatar-2.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">二娃</h4>
+                  <time class="float-right">18:25</time>
+                </div>
+                <p class="list-chat-user-text"></p>
+              </a>
+              <a href="#!" class="list-group-item" data-user-id="3" data-autograph="刀枪不入">
+                <span class="float-left user-status-success">
+                  <img src="images/users/avatar-3.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">三娃</h4>
+                  <span class="badge float-right">3</span>
+                  <time class="float-right">09:11</time>
+                </div>
+                <p class="list-chat-user-text">您是谁，您去救我爷爷吗</p>
+              </a>
+              <a href="#!" class="list-group-item" data-user-id="4" data-autograph="喷火娃">
+                <span class="float-left user-status-success">
+                  <img src="images/users/avatar-4.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">火娃</h4>
+                  <time class="float-right">02:11</time>
+                </div>
+                <p class="list-chat-user-text"></p>
+              </a>
+              <a href="#!" class="list-group-item" data-user-id="5" data-autograph="喷水娃">
+                <span class="float-left user-status-danger">
+                  <img src="images/users/avatar-5.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">水娃</h4>
+                  <time class="float-right">16:11</time>
+                </div>
+                <p class="list-chat-user-text">哎呦，痛死我啦...</p>
+              </a>
+              <a href="#!" class="list-group-item" data-user-id="6" data-autograph="隐身娃">
+                <span class="float-left user-status-secondary">
+                  <img src="images/users/avatar-6.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">六娃</h4>
+                  <time class="float-right">17:06</time>
+                </div>
+                <p class="list-chat-user-text"></p>
+              </a>
+              <a href="#!" class="list-group-item" data-user-id="7" data-autograph="给我收...">
+                <span class="float-left user-status-danger">
+                  <img src="images/users/avatar-7.png" alt="" class="img-avatar chat-user-avatar m-r-10">
+                </span>
+                <div class="list-chat-user-info clearfix">
+                  <h4 class="list-chat-user-name float-left">七娃</h4>
+                  <span class="badge float-right">1</span>
+                  <time class="float-right">18:38</time>
+                </div>
+                <p class="list-chat-user-text">呆，你才是妖精</p>
+              </a>
+            </div>
+          </div>
+          <button class="lyear-chat-toggler"></button>
+        </aside>
+        <section id="lyear-chat-content">
+          <!--data-user-id默认第一个好友的id值，切换时修改-->
+          <header id="lyear-chat-header" data-user-id="1">
+            <ul class="lyear-chat-menu clearfix">
+
+              <li class="lyear-chat-user-info float-left clearfix">
+                <img src="images/users/avatar-1.png" class="chat-user-avatar img-avatar" />
+                <div class="m-l-10 lyear-chat-user-wrap">
+                  <p class="mb-0" id="friend-name">大娃</p>
+                  <p class="m-0 small text-muted" id="friend-text">力大无凶...</p>
+                </div>
+              </li>
+              <li class="float-right lyear-chat-tools">
+                <a href="#!" id="clear-all" data-toggle="tooltip" title="清屏"><i class="mdi mdi-delete-empty"></i></a>
+                <a href="#!" id="history-message" data-toggle="tooltip" title="历史消息"><i class="mdi mdi-history"></i></a>
+              </li>
+            </ul>
+          </header>
+          <div class="lyear-chat-container">
+            
+            <div class="lyear-chat-wrapper lyear-need-scroll">
+              
+              <!--显示默认第一个好友的记录，id中-1为第一个好友的id值-->
+              <div class='lyear-chat-message-list' id="chat-by-1">
+          
+                <div class='lyear-chat-message lyear-chat-message-recipient clearfix'>
+                  <img  class='chat-user-avatar img-avatar' src='images/users/avatar-1.png' />
+                  <div class='lyear-chat-message-wrapper'>
+                    <div class='lyear-chat-message-content'>
+                      <p>嗨，您有没有兴趣资助我们的新项目！</p>
+                    </div>
+                    <div class='lyear-message-details'> <span class='chat-today small'>2017/5/23 11:02:53</span> </div>
+                  </div>
+                </div>
+                <div class='lyear-chat-message lyear-chat-message-sender clearfix'>
+                  <img class='chat-user-avatar img-avatar' src='images/users/avatar.jpg' />
+                  <div class='lyear-chat-message-wrapper'>
+                    <div class='lyear-chat-message-content'>
+                      <p>这首《西江月》词，大抵说人的婚姻，乃前生注定，非人力可以勉强。</p>
+                    </div>
+                    <div class='lyear-message-details'> <span class='chat-today small'>11:53:14</span> </div>
+                  </div>
+                </div>
+                <div class='lyear-chat-message lyear-chat-message-recipient clearfix'>
+                  <img  class='chat-user-avatar img-avatar' src='images/users/avatar-1.png' />
+                  <div class='lyear-chat-message-wrapper'>
+                    <div class='lyear-chat-message-content'>
+                      <p>你咋知道的，是不是有点懂得太多了</p>
+                    </div>
+                    <div class='lyear-message-details'> <span class='chat-today small'>11:58:53</span> </div>
+                  </div>
+                </div>
+                
+              </div>
+              
+            </div>
+            <footer id="lyear-chat-footer">
+              <form class="form-horizontal lyear-chat-form" onsubmit="return false;">
+                <ul class="lyear-chat-expression list-inline">
+                  <li class="list-inline-item emoj-box"> <a href="#!"> <i class="mdi mdi-emoticon"></i> </a> </li>
+                  <li class="list-inline-item upload-box file-group">
+                    <a href="#!"> <i class="mdi mdi-image file-browser"></i><input type="file" class="d-none" accept="image/*" multiple> </a>
+                  </li>
+                </ul>
+                <div class="form-group m-10 lyear-chat-send-box">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="lyear-chat-comment" placeholder="输入信息...">
+                    <span class="input-group-append">
+                      <button type="button" class="btn btn-default btn-sender"><i class="mdi mdi-telegram"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </footer>
+            
+          </div>
+        </section>
+      </div>
+      
+    </main>
+    <!--End 页面主要内容-->
+  </div>
+</div>
+<!--历史消息-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="historyModal" id="historyModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="historyModal">历史消息</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="history-messages-box lyear-need-scroll"></div>
+        <div class="history-messages-pages clearfix"></div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/popper.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/jquery.qqFace.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/main.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    // 滚动条
+    if($('.lyear-need-scroll')[0]) {
+        $('.lyear-need-scroll').each(function() {
+            new PerfectScrollbar(this, {
+	        	swipeEasing: false,
+	        	suppressScrollX: true
+	        });
+        });
+    }
+    
+    // 历史消息(这里只是做拉取历史消息演示，不指定聊天对方的ID)
+    $('#history-message').on('click', function() {
+        var $listHtml  = $('<div class="history-messages-list" />');
+        var $pagesHtml = '';
+        var $modalObj   = $('#historyModal');
+        
+        jQuery.post('test_chat_message.php', {type: 'history-all', page: 1, version: 4}).done(function(res) {
+            
+            var res     = eval('(' + res + ')');
+            var message = res.data;
+            
+            $modalObj.find('.history-messages-pages').html(res.pages);
+          
+            if (200 == res.code) {
+                $.each(message, function(index, value){
+                    var className = value.type == 'recipient' ? 'history-message-recipient' : 'history-message-sender';
+                    
+                    $msgHtml = "<div class='history-message-item " + className + "'>" + 
+                               "  <small>" + value.name + "(" + value.time + ")</small>" + 
+                               "  <p>" + value.msg + "</p>" + 
+                               "</div>";
+                    
+                    $listHtml.append($msgHtml);
+                });
+            }
+        }).fail(function () {
+            console.log('服务器错误');
+        });
+        
+        $modalObj.find('.history-messages-box').html($listHtml).hide().fadeIn('slow');
+        
+        $('#historyModal').modal();
+    });
+    
+    // 清屏
+    $('#clear-all').on('click', function() {
+        $('.lyear-chat-wrapper').find('.lyear-chat-message-list:visible').html('');
+    });
+    
+    // 历史消息点击选中
+    $('body').on('click', '.history-message-item', function() {
+        $(this).addClass('active').siblings().removeClass('active');
+    });
+    
+    // 历史消息分页操作(这里只是做拉取历史消息演示，不指定聊天对方的ID)
+    $('body').on('click', '.history-messages-pages li:not(.disabled) a', function() {
+        var $url      = $(this).data('url');
+        var $listHtml = $('<div class="history-messages-list" />');
+        var $modalObj   = $('#historyModal');
+       
+        jQuery.get($url).done(function(res) {
+            var res = eval('(' + res + ')');
+            var message = res.data,
+                tips    = res.msg;
+            
+            $modalObj.find('.history-messages-pages').html(res.pages);
+            
+            if (200 == res.code) {
+                $.each(message, function(index, value){
+                    var className = value.type == 'recipient' ? 'history-message-recipient' : 'history-message-sender';
+                    
+                    $msgHtml = "<div class='history-message-item " + className + "'>" + 
+                               "  <small>" + value.name + "(" + value.time + ")</small>" + 
+                               "  <p>" + value.msg + "</p>" + 
+                               "</div>";
+                    
+                    $listHtml.append($msgHtml);
+                });
+            } else {
+                console.log(tips);
+            }
+        }).fail(function () {
+            console.log('服务器错误');
+        });
+        
+        $modalObj.find('.history-messages-box').html($listHtml).hide().fadeIn('slow');
+    });
+    
+    // 点击聊天
+    $('.lyear-chat-users').find('.list-group-item').on('click', function() {
+        var $this        = $(this),
+            $chatWrapper = $('.lyear-chat-wrapper');
+        
+        $this.addClass('active').siblings().removeClass('active');
+        
+        var friendId   = $this.data('user-id'),
+            friendName = $this.find('.list-chat-user-name').text(),
+            friendText = $this.data('autograph'),
+            friendImg  = $this.find('.chat-user-avatar').attr('src');
+        
+        $('.lyear-chat-user-info').find('.chat-user-avatar').attr('src', friendImg);
+        $('#friend-name').text(friendName);
+        $('#friend-text').text(friendText);
+        $('#lyear-chat-header').attr('data-user-id', friendId);
+        
+        var $thisChat = $chatWrapper.find('#chat-by-'+friendId);
+        if ($thisChat.length > 0) {
+            $thisChat.fadeIn('slow').siblings().hide();
+            // 存在，如果有新消息，可追加新消息内容
+        } else {
+            // 不存在，则拉取最近的五条聊天记录并添加聊天内容框
+            var $listHtml = $('<div class="lyear-chat-message-list" id="chat-by-' + friendId + '" />');
+            jQuery.post('test_chat_message.php', {type: 'history'}).done(function(res) {
+                var res     = eval('(' + res + ')');
+                var message = res.data,
+                    tips    = res.msg;
+                
+                if (200 == res.code) {
+                    $.each(message, function(index, value){
+                        var className = value.type == 'recipient' ? 'lyear-chat-message-recipient' : 'lyear-chat-message-sender';
+                        $msgHtml = "<div class='lyear-chat-message clearfix " + className + "'>" + 
+                                   "  <img class='chat-user-avatar img-avatar' src='" + value.avatar + "' />" +
+                                   "  <div class='lyear-chat-message-wrapper'>" + 
+                                   "    <div class='lyear-chat-message-content'>" + 
+                                   "      <p>" + value.msg + "</p>" + 
+                                   "    </div>" + 
+                                   "    <div class='lyear-message-details'> <span class='chat-today small'>" + value.time + "</span> </div>" + 
+                                   "  </div>" + 
+                                   "</div>";
+                        $listHtml.append($msgHtml);
+                    });
+                } else {
+                    console.log(tips);
+                }
+            }).fail(function () {
+                console.log('服务器错误');
+            });
+            $chatWrapper.find('.lyear-chat-message-list').hide();
+            $chatWrapper.append($listHtml).hide().fadeIn('slow');
+        }
+        $this.find('.badge').remove();
+        $chatWrapper.animate({scrollTop: $chatWrapper[0].scrollHeight}, 500);
+    });
+    
+    // 绑定表情
+    $('.emoj-box').qqFace({
+        id: 'facebox', //表情ID
+        assign: 'lyear-chat-comment', //赋予到具体位置
+    });
+    
+    // 表情替换
+    var replace_face = function(str) {
+        return str.replace( /\[em_([0-9]*)\]/g, "<img src=\"images/face/$1.png\" />");
+    };
+    
+    // 发送消息(这里只发送到聊天内容中)
+    $('.btn-sender').on('click', function(e) {
+        clickBtnSend();
+    });
+    
+    // 回车发送消息
+    $('#lyear-chat-comment').keydown(function(event) {
+          if (event.keyCode == 13) {
+              clickBtnSend();
+          }
+    });
+    
+    // 发送消息通用方法
+    var clickBtnSend = function() {
+        var friendId = $('#lyear-chat-header').data('user-id'),
+            message  = replace_face($('#lyear-chat-comment').val());
+        
+        if (message.length <= 0) {
+            alert('发送消息不能为空');
+            return false;
+        }
+        sendMessage(friendId, message, 'text');
+        
+        // 清空输入框
+        $('#lyear-chat-comment').val('');
+    };
+    
+    // 发送消息通用方法
+    var sendMessage = function(friendId, message, type) {
+        var $chatBox = $('#chat-by-'+friendId),
+            date     = new Date(),
+            year     = date.getFullYear(),
+            month    = date.getMonth()+1;
+            day      = date.getDate();
+            hours    = date.getHours(),
+            minutes  = date.getMinutes(),
+            seconds  = date.getSeconds(),
+            datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds,
+            $msghtml = '';
+        
+        if (type == 'file') {
+            // 附件
+        } else {
+            // 文字
+            $msghtml = '<div class="lyear-chat-message clearfix lyear-chat-message-sender">' + 
+                       '  <img class="chat-user-avatar img-circle" src="images/users/avatar.jpg" />' + // 当前用户头像
+                       '  <div class="lyear-chat-message-wrapper">' + 
+                       '    <div class="lyear-chat-message-content">' + 
+                       '      <p>' + message + '</p>' + 
+                       '    </div>' + 
+                       '    <div class="lyear-message-details"> <span class="chat-today small">' + datetime + '</span> </div>' + 
+                       '  </div>' + 
+                       '</div>';
+        }
+        
+        // 追加内容
+        $chatBox.append($msghtml);
+        // 将滚动条置为底部
+        $chatBox.parent('.lyear-chat-wrapper').animate({scrollTop: $('.lyear-chat-wrapper')[0].scrollHeight}, 300);
+    };
+    
+    // 图片发送
+    $(document).on('click', '.file-browser', function() {
+        var $browser = $(this);
+        var file     = $browser.closest('.file-group').find('[type="file"]');
+        
+        file.on( 'click', function(e) {
+            e.stopPropagation();
+        });
+        file.trigger('click');
+        file.change(function() {
+            var files  = this.files,
+                friendId = $('#lyear-chat-header').data('user-id');
+            
+            $.each(files, function(index, val) {
+                if (/image/.test(val.type)) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(val);
+                    reader.onload = function(e) {
+                        var imgHtml = $('<img />');
+                        imgHtml.attr("src", this.result);
+                        
+                        sendMessage(friendId, imgHtml[0].outerHTML, 'images');
+                        
+                        // 之后操作处理base64上传，省略...
+                    }
+                } else {
+                    console.log('请上传图片');
+                }
+            });
+            
+            // 上传成功，重置file
+            file.after(file.clone().val(''));
+            file.remove();
+        });
+    });
+    
+    // 搜索(这里只搜索ul中的内容)
+    $('#keywords').keydown(function(event) {
+        if (event.keyCode == 13) {
+            var keyword = $(this).val();
+            $('.lyear-chat-users').find('.list-group-item').hide();
+            $('.lyear-chat-users').find(".list-chat-user-name").filter(":Contains("+keyword+")").parents('.list-group-item').fadeIn(300);
+        }
+    });
+    
+    // 点击修改我的签名
+    $('.my-autograph').on('click', function() {
+        var $this = $(this),
+            txt   = $this.text(),
+            input = $("<input type='text' class='edit-autograph' value='" + txt + "'/>");
+      
+        $this.html(input);
+        input.click(function() { return false; });
+        input.trigger("focus");
+        //文本框失去焦点后提交内容，重新变为文本
+        input.blur(function() {
+            var newtxt = $(this).val();
+            if (newtxt != txt) {
+                // 假装ajax调用后台修改成功
+                $this.html(newtxt);
+            } else {
+                $this.html(newtxt);
+            }
+        });
+    });
+    
+    // 点击展开用户列表
+    $('.lyear-chat-toggler').on('click', function() {
+        $('.lyear-chat-side').toggleClass('lyear-chat-user-open');
+    })
+});
+</script>
+</body>
+</html>

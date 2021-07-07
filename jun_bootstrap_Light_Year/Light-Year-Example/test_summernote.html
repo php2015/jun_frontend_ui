@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>富文本编辑器summernote - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="js/summernote/summernote.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>富文本编辑器 summernote</h4></div>
+        <div class="card-body">
+          
+          <p>插件使用summernote 0.8.18，官网地址：<a href="https://summernote.org/" target="_blank">https://summernote.org/</a></p>
+          <h5>默认使用</h5>
+          <p>给 &lt;textarea&gt; 加上 <code>data-provide="summernote"</code>。您可以使用数据属性应用 summernote 的选项。例如，要设置高度选项，请将 <code>data-height="150"</code> 添加到 <code>&lt;textarea&gt;</code> 中，对于 <code>minHeight</code> 选项，请使用 <code>data-min height="150"</code>。</p>
+          <form action="#!" method="post" id="example-from">
+            <div class="form-group">
+              <textarea data-provide="summernote" data-min-height="150"></textarea>
+            </div>
+          </form>
+          
+          <h5>简单工具栏</h5>
+          <textarea data-provide="summernote" data-toolbar="slim"></textarea>
+          
+          <h5>完整工具栏</h5>
+          <textarea data-provide="summernote" data-toolbar="full"></textarea>
+          
+          <h5>浮空模式</h5>
+          <p>给需要的元素加上 <code>data-air-mode="true"</code>，选择文本以查看编辑器。</p>
+          <div data-provide="summernote" data-air-mode="true">
+            <p>富家女逃难托乳母 贫穷汉有幸配淑女</p>
+            <ul>
+              <li>举金狮叔宝伤力 见白虎仁贵倾家</li>
+              <li>大王庄薛仁贵落魄 怜勇士柳金花赠衣</li>
+            </ul>
+            <p>射鸿雁薛礼逢故旧 赠盘缠周青同投军</p>
+          </div>
+          
+          <hr/>
+          <h5>单击可编辑</h5>
+          <div id="summernote-element">这里是文字信息</div>
+
+          <br>
+          <button class="btn btn-primary" data-summernote-edit="#summernote-element">修改</button>
+          <button class="btn btn-primary" data-summernote-save="#summernote-element">保存</button>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/summernote/summernote.min.js"></script>
+<script type="text/javascript" src="js/summernote/lang/summernote-zh-CN.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-provide="summernote"]').each(function() {
+        var options = {
+            dialogsInBody: true,
+            lang: 'zh-CN',
+            dialogsFade: true
+        };
+        
+        var config = {};
+        $.each( $(this).data(), function(key, value){
+            key = key.replace(/-([a-z])/g, function(x){return x[1].toUpperCase();});
+
+            if ( key == 'provide' ) {
+                return;
+            }
+
+            config[key] = value;
+        });
+        
+        options = $.extend(options, config);
+        
+        if ( options.toolbar ) {
+            switch( options.toolbar.toLowerCase() ) {
+              case 'slim':
+                options.toolbar = [
+                  // [groupName, [list of button]]
+                  ['style', ['bold', 'underline', 'clear']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol']],
+                  ['insert', ['link', 'picture']]
+                ];
+                break;
+    
+              case 'full':
+                options.toolbar = [
+                  // [groupName, [list of button]]
+                  ['para_style', ['style']],
+                  ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ['font', ['strikethrough', 'superscript', 'subscript']],
+                  ['fontsize', ['fontname', 'fontsize', 'height']],
+                  ['color', ['color']],
+                  ['para', ['ul', 'ol', 'paragraph', 'hr']],
+                  ['table', ['table']],
+                  ['insert', ['link', 'picture', 'video']],
+                  ['do', ['undo', 'redo']],
+                  ['misc', ['fullscreen', 'codeview', 'help']]
+                ];
+                break;
+            }
+        }
+        $(this).summernote(options);
+    });
+    
+    $(document).on('click', '[data-summernote-edit]', function(){
+        var target = $(this).data('summernote-edit');
+        $(target).summernote({focus: true});
+    });
+
+
+    $(document).on('click', '[data-summernote-save]', function(){
+        var target = $(this).data('summernote-save');
+        var markup = $(target).summernote('code');
+        $(target).summernote('destroy');
+        alert('修改完成');
+    });
+});
+</script>
+</body>
+</html>

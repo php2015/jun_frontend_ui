@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>选择样式一 - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+.list-chose li {
+    margin-bottom: 10px;
+}
+.list-chose li:last-child {
+    margin-bottom: 0px;
+}
+.list-chose li span.title {
+    font-weight: 700;
+}
+.list-chose li a {
+    color: #4d5259;
+    margin: 0px 5px;
+    padding: 3px 5px;
+    line-height: 30px;
+    white-space: nowrap;
+}
+.list-chose li a:hover,
+.list-chose li a.active {
+    background-color: #33cabb;
+    color: #fff;
+}
+.multi-chosen .mdi-close {
+    display: none;
+}
+.multi-chosen a.active .mdi-close {
+    display: inherit;
+}
+.list-chose li.positions {
+    position: relative;
+    height: 30px;
+    overflow: hidden;
+}
+.list-chose li a.more {
+    position: absolute;
+    cursor: pointer;
+    padding: 0px;
+    top: 0px;
+    right: 0px;
+}
+.list-chose li a.more:after {
+    font-family: "Material Design Icons";
+    content: "\f35d";
+    font-size: 18px;
+    -webkit-transition: -webkit-transform 0.25s linear;
+    transition: -webkit-transform 0.25s linear;
+    transition: transform 0.25s linear;
+    transition: transform 0.25s linear, -webkit-transform 0.25s linear;
+}
+.list-chose li.positions.on {
+    height: auto;
+}
+.list-chose li.positions.on a.more:after {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.list-chose li a.more:hover {
+    color: #4d5259;
+    background-color: transparent;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>选择样式一</h4></div>
+        <div class="card-body">
+          
+          <p>该示例是做页面的实际跳转的，也就是 <code>localtion.href</code>，跳转后选项的选中效果也是用js实现的，也可以用程序实现。</p>
+          <ul class="list-unstyled list-chose">
+            <li class="multi-chosen positions">
+              <span class="title">工作地点：</span>
+              <a href="javascript:;" data-search-name="cs" data-search-id="-1" class="active">全国</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="1">北京</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="2">上海</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="3">深圳</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="4">广州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="5">杭州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="6">成都</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="7">南京</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="8">武汉</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="9">西安</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="10">厦门</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="11">长沙</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="12">苏州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="13">天津</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="14">重庆</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="15">郑州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="16">青岛</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="17">合肥</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="18">福州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="19">济南</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="20">大连</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="21">珠海</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="22">无锡</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="23">佛山</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="24">东莞</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="25">宁波</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="26">常州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="27">沈阳</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="28">石家庄</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="29">昆明</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="30">南昌</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="31">南宁</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="32">哈尔滨</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="33">海口</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="34">中山</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="35">惠州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="36">贵阳</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="37">长春</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="38">太原</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="39">嘉兴</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="40">泰安</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="41">昆山</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="42">烟台</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="43">兰州</a>
+              <a href="javascript:;" data-search-name="cs" data-search-id="44">泉州</a>
+              <a href="javascript:;" class="more"></a>
+            </li>
+            <li class="multi-chosen">
+              <span class="title">工作性质：</span>
+              <a href="javascript:;" data-search-name="gzxz" data-search-id="-1" class="active">不限</a>
+              <a href="javascript:;" data-search-name="gzxz" data-search-id="1">应届 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="gzxz" data-search-id="2">实习 <i class="mdi mdi-close"></i></a>
+            </li>
+            <li class="multi-chosen">
+              <span class="title">学历要求：</span>
+              <a href="javascript:;" data-search-name="xl" data-search-id="-1" class="active">不限</a>
+              <a href="javascript:;" data-search-name="xl" data-search-id="1">大专 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="xl" data-search-id="2">本科 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="xl" data-search-id="3">硕士 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="xl" data-search-id="4">博士 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="xl" data-search-id="5">不要求 <i class="mdi mdi-close"></i></a>
+            </li>
+            <li class="multi-chosen">
+              <span class="title">公司规模：</span>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="-1" class="active">不限</a>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="1">少于15人 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="2">15-50人 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="3">50-150人 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="4">150-500人 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="5">500-2000人 <i class="mdi mdi-close"></i></a>
+              <a href="javascript:;" data-search-name="gsgm" data-search-id="6">2000人以上 <i class="mdi mdi-close"></i></a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', 'li.positions .more', function() {
+        $(this).parent('li').toggleClass('on');
+    });
+    var queryConfig = new Array();
+    var host      = window.location.host;
+    var pathname  = window.location.pathname;
+    var protocol  = document.location.protocol;
+    var queryStr  = location.search.substr(1);
+    queryStr = queryStr.split('&');
+    for (let i = 0; i < queryStr.length; i++) {
+        let q = queryStr[i].split('=')
+        if (q.length === 2) {
+            queryConfig[q[0]] = q[1];
+        }
+        $('li.multi-chosen a').each(function() {
+            if ($(this).data('search-name') == q[0] && $(this).data('search-id') == q[1]) {
+                $(this).addClass('active').siblings().removeClass('active');
+            }
+        });
+    }
+  
+    $(document).on('click', 'li a i.mdi-close', function() {
+        var name = $(this).parent('a').data('search-name');
+        delete queryConfig[name];
+        var urlStr = assemblyURL(queryConfig);
+        window.location.href = urlStr;
+    });
+    
+    $(document).on('click', 'li.multi-chosen a:not(.more)', function(ev) {
+        if(ev.target!=this) return false;
+        var name = $(this).data('search-name');
+        var id = $(this).data('search-id');
+        queryConfig[name] = id;
+        var urlStr = assemblyURL(queryConfig);
+        window.location.href = urlStr;
+    });
+    
+    // 组装url地址
+    function assemblyURL(queryConfig) {
+        var _str = "";
+        for(var o in queryConfig){
+            if(queryConfig[o] != -1){
+                _str += o + "=" + queryConfig[o] + "&";
+            } 
+        }
+        var query_str = _str.substring(0, _str.length-1);
+        
+        return protocol + '//' + host + pathname + '?' + query_str;
+    }
+});
+</script>
+</body>
+</html>

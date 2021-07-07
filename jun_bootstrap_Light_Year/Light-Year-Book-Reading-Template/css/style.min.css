@@ -1,0 +1,718 @@
+/** -------------------------------------
+ * Light Year Book Reading Template 光年书籍阅读HTML模板
+ * 基于Bootstrap v3.3.7
+ * http://www.bixiaguangnian.com
+ * yinqi<3331653644@qq.com>
+ * -------------------------------------- */
+body {
+  font-family: "微軟正黑體", "微软雅黑", "Work Sans", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  background: #fff;
+  overflow-y: scroll;
+}
+a {
+  color: #1ab394;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+a:hover, a:active, a:focus {
+  color: #1ab394;
+  outline: none;
+  text-decoration: none;
+}
+
+p, ul, ol {
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 38px;
+}
+
+h1, h2, h3, h4, h5, h6, figure {
+  color: #333;
+  font-family: "微軟正黑體", "微软雅黑", "Work Sans", Arial, sans-serif;
+  font-weight: 400;
+  margin: 0 0 30px 0;
+}
+
+::-webkit-selection {
+  color: #fff;
+  background: #33cabb;
+}
+
+::-moz-selection {
+  color: #fff;
+  background: #33cabb;
+}
+
+::selection {
+  color: #fff;
+  background: #33cabb;
+}
+
+/** -------------------------------------
+ * 通用样式
+ * -------------------------------------- */
+.p-50 {
+    padding: 50px;
+}
+.no-bottom {
+    padding: 0px;
+    margin-bottom: 0px;
+}
+
+/** -------------------------------------
+ * 重设样式
+ * -------------------------------------- */
+
+/** -------------------------------------
+ * loading
+ * 样式来自于Bootstrap v4
+ * -------------------------------------- */
+.lyear-loading {
+    position: fixed;
+    background-color: #fff;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+@-webkit-keyframes spinner-border {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner-border {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.spinner-border {
+    position: absolute;
+    display: inline-block;
+    left: -moz-calc(50% - 4rem);
+    left: -webkit-calc(50% - 4rem);
+    left: calc(50% - 4rem);
+    top: -moz-calc(50% - 4rem);
+    top: -webkit-calc(50% - 4rem);
+    top: calc(50% - 4rem);
+    width: 4rem;
+    height: 4rem;
+    vertical-align: text-bottom;
+    border: .15em solid currentColor;
+    border-right-color: transparent;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-animation: spinner-border .75s linear infinite;
+    animation: spinner-border .75s linear infinite;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 选项卡 */
+.nav-tabs {
+    border-bottom-color: #f2f2f2;
+}
+
+.nav-tabs li a, .nav-tabs li a:hover, .nav-tabs li a:focus {
+	border: 0 !important;
+    border-bottom: 1px solid #f2f2f2!important;
+	background-color: #ffffff !important;
+	padding: 10px 20px !important;
+	color: #555555;
+}
+.nav-tabs li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
+	border-bottom: 1px solid #1ab394 !important;
+	color: #1ab394;
+}
+
+/** -------------------------------------
+ * 布局
+ * -------------------------------------- */
+.lyear-layout {
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+/* 左侧 */
+.lyear-aside {
+    width: 38.2%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    height: 100%;
+    z-index: 555;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.lyear-aside a {
+    color: rgba(255, 255, 255, 0.5);
+}
+.lyear-aside a:hover {
+    color: #fff;
+}
+.lyear-aside .logo-wrapper {
+    position: absolute;
+    z-index: 12;
+    padding: 30px;
+    bottom: 0;
+    top: 0;
+}
+.lyear-aside .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+}
+.lyear-aside .featured {
+    z-index: 12;
+    position: absolute;
+    bottom: 0;
+    padding: 30px;
+    width: 100%;
+}
+.lyear-aside .featured h4 {
+    color: #fff;
+    line-height: 32px;
+}
+.lyear-aside .featured h4 small {
+    color: #fff;
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+}
+.lyear-aside .featured .navigation-posts {
+    font-size: 12px;
+}
+.lyear-aside .featured .navigation-posts .nav-prev,
+.lyear-aside .featured .navigation-posts .nav-next {
+    width: auto;
+    display: inline;
+}
+.lyear-aside .featured .navigation-posts i:before {
+    vertical-align: text-bottom;
+}
+.lyear-aside .featured h2 {
+    color: #fff;
+    font-weight: 300;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    margin-bottom: 10px;
+}
+.lyear-aside .featured .meta-info span {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .05em;
+    margin-bottom: 15px;
+}
+
+/* 右侧 */
+.lyear-main-content {
+    margin-left: 38.1966%;
+    position: relative;
+    z-index: 999;
+}
+.lyear-author {
+    padding: 50px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.lyear-author > .gallery-grid {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 16.66666667%;
+}
+.lyear-author .captn {
+	background: rgba(0, 0, 0, 0.62);
+	position: absolute;
+	padding: 0 5px;
+	left: 0%;
+	bottom: -100%;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: .35s all;
+	transition: .35s all;
+	-moz-transition: .35s all;
+}
+.lyear-author .captn h4 {
+	font-size: 14px;
+	color: #fff;
+	margin: 15px 0 0 0;
+}
+.lyear-author .captn p {
+	margin: 0.5em 0 0 0;
+	color: #c5c5c5;
+	font-size: 12px;
+	line-height: 30px;
+}
+.gallery-grid:hover .captn {
+	bottom: 0%;
+}
+
+.lyear-list {}
+.lyear-list .list-item,
+.page-info .page-entry {
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2;
+}
+.lyear-list .list-item {
+    float: left;
+}
+.lyear-list .list-item > a {
+    float: left;
+    width: 15%;
+    position: relative;
+}
+.lyear-list .list-item > a.cover:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 5px;
+	bottom: 0;
+	width: 3px;
+	background: rgba(0, 0, 0, 0.06);
+	box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+}
+.lyear-list .list-item > a > img {
+    width: 100%;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#b5b4b2', Direction=135, Strength=5);
+    -webkit-box-shadow: 1px 1px 8px #b0b0b0;
+    -moz-box-shadow: 1px 1px 8px #b0b0b0;
+    box-shadow: 1px 1px 8px #b0b0b0;
+}
+.lyear-list .list-item .list-entry {
+	width: 80%;
+	float: left;
+	margin-left: 5%;
+	margin-top: 0px;
+}
+.lyear-list .list-item .list-entry p {
+	font-size: 18px;
+	line-height: 36px;
+}
+.lyear-list .list-item .list-entry a {
+	color: #555;
+}
+.lyear-list .list-item .list-entry a:hover {
+	color: #1ab394;
+}
+.lyear-list .list-item .list-entry h4 {
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: 100;
+	position: relative;
+}
+.lyear-list .list-item .list-entry h4 small {
+	position: absolute;
+	top: 4px;
+}
+.lyear-list .list-item .list-entry p:last-child,
+.page-info .page-entry p:last-child {
+	margin-bottom: 0;
+}
+
+.lyear-search {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.lyear-search::before {
+	content: '\f1c3';
+	font-family: 'Material-Design-Iconic-Font';
+	font-size: 24px;
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	transform: translateY(-50%);
+	color: rgba(97,106,120,0.4);
+	width: 40px;
+	text-align: center;
+	cursor: text;
+}
+.lyear-search input {
+	color: #616a78;
+    height: 48px;
+    font-size: 18px;
+	padding-left: 40px;
+	padding-right: 20px;
+	letter-spacing: .5px;
+	outline: none!important;
+    box-shadow: none;
+    background: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.lyear-search input:active,
+.lyear-search input:focus,
+#comments-form .form-control:active,
+#comments-form .form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #1ab394;
+}
+
+.lyear-footer {
+	background: #fafafa;
+	clear: both;
+	padding: 20px 30px !important;
+}
+.lyear-footer p {
+	font-size: 14px;
+	margin-bottom: 0px;
+}
+
+.list-item,
+.page-entry, 
+.lyear-column {
+    padding: 50px;
+}
+
+/* 分页 */
+.pagination {
+  margin-top: 25px;
+}
+.pagination li>a,
+.pagination li>span {
+    font-size: 14px;
+	border: none;
+	margin: 0 4px;
+	color: #777;
+	-webkit-transition: .3s ease-out;
+	-o-transition: .3s ease-out;
+	transition: .3s ease-out
+}
+.pagination .next,
+.pagination .previous {
+	line-height: 21px
+}
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+	background-color: transparent;
+	color: #5cc7b2
+}
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+	background-color: #5cc7b2;
+	border-radius: 2px
+}
+
+/* 书籍详细页 */
+.book-tabs-padding {
+    padding: 30px 50px 0px 50px;
+}
+.book-operation {
+	border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+	background-color: transparent;
+	padding: 30px 0;
+	margin-bottom: 30px;
+	float: none;
+}
+.book-category {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.book-article-list {}
+.book-article-list ul {
+    list-style: none;
+    padding: 20px 50px;
+    margin: 0px;
+}
+.book-article-list ul li {
+    width: 50%;
+    float: left;
+    border-bottom: 1px solid #f9f9f9;
+    padding: 10px 0px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.book-article-list ul li a {
+    color: #555;
+}
+.book-article-list ul li a:hover {
+	color: #1ab394;
+}
+
+/* 书籍评论 */
+.comments-wrapper {}
+.comments-number {
+    font-size: 26px;
+    line-height: 42px;
+    font-weight: 300;
+    padding: 10px 0;
+    margin-bottom: 0;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #f2f2f2;
+}
+.comments-wrapper .comments-lists {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.comments-lists {
+    list-style-type: none !important;    
+    counter-reset: li;
+    float: left;
+    width: 100%;
+    margin-top: 25px;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+.comments-lists .comment-li {
+    margin: 0;
+    position: relative;
+    width: 100%;
+}
+.comments-lists li:before {
+    content: "0" counter(li);
+    position: absolute;
+    letter-spacing: 0;
+    color: #e5e5e5;
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 22px;
+    counter-increment:li;
+    right:0;
+}
+.comments-lists .comment-info p {
+    margin-bottom: 0 !important;
+}
+.comments-lists .comment-content {
+    border-bottom: 1px solid #f2f2f2;
+    margin-bottom: 25px;
+}
+.comments-lists .comment-content .author-avatar {
+    float: left;
+    width: 8%;
+    margin-bottom: 15px;
+}
+.comments-lists .comment-content .author-avatar img {
+    position: relative;
+    -moz-box-shadow: 0 0px 0px 1px rgba(77, 82, 89, 0.075);
+    -webkit-box-shadow: 0 0px 0px 1px rgba(77, 82, 89, 0.075);
+    box-shadow: 0 0px 0px 1px rgba(77, 82, 89, 0.075);
+}
+.comment-entry {
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 88%;
+    float: left;
+    margin-left: 3%;
+}
+.comment-entry-meta {
+    position: relative;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: 0;
+}
+.comment-entry-meta cite {
+    font-style: normal;
+    margin-bottom: 0;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+}
+.author-name {
+    margin-bottom: 10px;
+}
+.comment-date {
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+    font-family: 'Merriweather', Georgia, serif;
+    margin-bottom: 0;
+}
+.comment-info {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-left: 0 !important;
+    padding: 0 25px 25px 0;
+    position: relative;
+    margin-bottom: 0;
+    word-wrap: break-word;
+}
+.comment-info p {
+    font-size: 16px;
+}
+#comments-form .form-control {
+    box-shadow: none;
+    background: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    height: auto;
+    font-size: 18px;
+    font-weight: 300;
+}
+#comments-form .btn-primary {
+    font-size: 16px;
+    background: #1ab394;
+    color: #fff;
+    border: 2px solid #1ab394;
+}
+
+/* 文章详细 */
+.page-entry-meta {
+    width: 100%;
+    background-color: #f9f9f9;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+.btn.collect-btn {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: 10px;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
+/* 关于作者 */
+.author-box {
+    position: relative;
+    border-bottom: 1px solid #f2f2f2;
+}
+.author-box .author-avatar {
+    float: left;
+}
+.author-box .description {
+    margin-left: 100px;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 300;
+}
+.author-box .description .author-name {
+    margin-bottom: 10px;
+}
+
+/* 返回顶部 */
+.gototop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.gototop.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gototop a {
+    width: 50px;
+    height: 50px;
+    display: table;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+}
+.gototop a:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+.gototop a i {
+    height: 50px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.gototop a:hover, .gototop a:active, .gototop a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+/** -------------------------------------
+ * 响应式
+ * -------------------------------------- */
+@media(max-width:1120px){
+  .lyear-author > .gallery-grid {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 768px){
+  .lyear-main-content {
+      margin-left: 0;
+  }
+  .lyear-aside {
+      width: 100%;
+      position: relative;
+      z-index: 999;
+      height: 380px;
+  }
+  .lyear-author > .gallery-grid {
+      width: 16.66666667%;
+  }
+  .list-item,
+  .page-entry, 
+  .lyear-column,
+  .p-50,
+  .book-article-list ul {
+      padding: 30px;
+  }
+  .lyear-list .book-item {
+      text-align: left;
+  }
+  .book-tabs-padding {
+  	  padding: 30px 30px 0px 30px;
+  }
+}
+@media screen and (max-width: 650px){
+  .lyear-author > .gallery-grid {
+      width: 25%;
+  }
+  .book-article-list ul li {
+      width: 100%;
+      float: none;
+  }
+}
+@media screen and (max-width: 460px){
+  .lyear-author > .gallery-grid {
+      width: 33.33333333%;
+  }
+  .lyear-list .list-item .list-entry h4 {
+      position: inherit;
+  }
+  .lyear-list .list-item .list-entry h4 small {
+      display: block;
+      position: inherit;
+      margin-top: 10px;
+  }
+}

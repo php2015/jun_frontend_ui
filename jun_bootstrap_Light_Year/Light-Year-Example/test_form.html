@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>表单示例 - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="js/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+/*bootstrap-select插件用到的，也可以不用*/
+.bootstrap-select.open .dropdown-toggle {
+    border-color: #33cabb!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(51, 202, 187, .6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(51, 202, 187, .6);
+}
+.bootstrap-select.open .dropdown-menu.open {
+    border: 1px solid #ebebeb;
+}
+/*示例二、三、四、五*/
+.p-t-5 {
+    padding-top: 5px;
+}
+.p-t-8 {
+    padding-top: 8px;
+}
+.h-28 {
+    height: 28px;
+}
+/*示例三和四*/
+.w-120 {
+    width: 120px;
+    padding: 0px 15px;
+}
+.w-120-calc {
+    width: -moz-calc(100% - 120px);
+    width: -webkit-calc(100% - 120px);
+    width: calc(100% - 120px);
+    padding-right: 15px;
+}
+.col-md-offset-120 {
+    margin-left: 120px;
+}
+.mx-w-800 {
+    max-width: 800px;
+    margin: 0 auto;
+}
+/*示例五*/
+.input-group-controls {
+    height: 38px;
+    border: 1px solid #ececec;
+    padding-left: 15px;
+}
+.example-form .input-group-addon {
+    min-width: 120px;
+}
+</style>
+<style>
+
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>表单示例一</h4></div>
+        <div class="card-body">
+          
+          <p>如我在页面lyear_pages_add_doc中使用的那样，标题放在最上面是为了响应式的环境下有较好的体验，不至于因为宽度不够导致文字换行</p>
+          <form action="#!" method="post" id="example-from-1" class="row">
+            <div class="form-group col-md-12">
+              <label for="name">输入框</label>
+              <input type="text" class="form-control" id="name" name="name" value="" placeholder="输入框" />
+            </div>
+            <div class="form-group col-md-12">
+              <label for="password">密码框</label>
+              <input type="password" class="form-control" id="password" name="password" value="" placeholder="密码框" />
+              <small class="help-block">密码是用5-20位字符</small>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="type">(默认)选择框 - chrome更新后默认的黑色边框巨丑</label>
+              <select name="type" class="form-control" id="type">
+                <option value="1">小说</option>
+                <option value="2">古籍</option>
+                <option value="3">专辑</option>
+                <option value="4">自传</option>
+              </select>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="example">(使用插件)选择框</label>
+              <div class="form-controls">
+                <select class="form-control selectpicker" title="小伙子选择一个吧..." name="example-6" id="example">
+                  <option>吊打海内外的编程技术</option>
+                  <option>迷倒万千少女的颜值</option>
+                  <option>马云大大的财富</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="idname">开关</label>
+              <div class="form-controls">
+                <label class="lyear-switch switch-solid switch-primary">
+                  <input type="checkbox" checked="" value="1" id="idname"><span></span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label>复选框</label>
+              <div class="form-controls">
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>篮球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>足球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>排球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label>单选框</label>
+              <div class="form-controls">
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>羽毛球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>冰球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>网球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="desc">文本域</label>
+              <textarea name="desc" id="desc" placeholder="请输入内容" class="form-control"></textarea>
+            </div>
+            <div class="form-group col-md-12 m-b-0">
+              <button type="submit" class="btn btn-primary">立即提交</button>
+              <button type="reset" class="btn btn-default">重 置</button>
+            </div>
+
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>表单示例二</h4></div>
+        <div class="card-body">
+          
+          <p>文字和input在同一行，你可以选择响应式的布局，也可以采用固定宽度的方式。</p>
+          <form action="#!" method="post" id="example-from-1" class="form-horizontal">
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="name">输入框</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" id="name" name="name" value="" placeholder="输入框" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="password">密码框</label>
+              <div class="col-md-8">
+                <input type="password" class="form-control" id="password" name="password" value="" placeholder="密码框" />
+              </div>
+              <div class="col-md-2"><small class="help-block p-t-5">密码是用5-20位字符</small></div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="type">(默认)选择框</label>
+              <div class="col-md-10">
+                <select name="type" class="form-control" id="type">
+                  <option value="1">小说</option>
+                  <option value="2">古籍</option>
+                  <option value="3">专辑</option>
+                  <option value="4">自传</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="example">(使用插件)选择框</label>
+              <div class="col-md-10">
+                <select class="form-control selectpicker" title="小伙子选择一个吧..." name="example-6" id="example">
+                  <option>吊打海内外的编程技术</option>
+                  <option>迷倒万千少女的颜值</option>
+                  <option>马云大大的财富</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="idname">开关</label>
+              <div class="col-md-10 p-t-8 h-28">
+                <label class="lyear-switch switch-solid switch-primary">
+                  <input type="checkbox" checked="" value="1" id="idname"><span></span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">复选框</label>
+              <div class="col-md-10 h-28">
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>篮球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>足球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>排球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">单选框</label>
+              <div class="col-md-10 h-28">
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>羽毛球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>冰球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>网球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="desc">文本域</label>
+              <div class="col-md-10">
+                <textarea name="desc" id="desc" placeholder="请输入内容" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-10 col-md-offset-2">
+                <button type="submit" class="btn btn-primary">立即提交</button>
+                <button type="reset" class="btn btn-default">重 置</button>
+              </div>
+            </div>
+
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>表单示例三（固定文字位置宽度）</h4></div>
+        <div class="card-body">
+          
+          <p>文字处的宽度设置成固定值，这种方式适用于pc端，手机端会导致input太短。</p>
+          <form action="#!" method="post" id="example-from-1" class="form-horizontal">
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="name">输入框</label>
+              <div class="pull-left w-120-calc">
+                <input type="text" class="form-control" id="name" name="name" value="" placeholder="输入框" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="password">密码框</label>
+              <div class="pull-left w-120-calc">
+                <input type="password" class="form-control" id="password" name="password" value="" placeholder="密码框" />
+                <small class="help-block p-t-5">密码是用5-20位字符</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="type">选择框</label>
+              <div class="pull-left w-120-calc">
+                <select name="type" class="form-control" id="type">
+                  <option value="1">小说</option>
+                  <option value="2">古籍</option>
+                  <option value="3">专辑</option>
+                  <option value="4">自传</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="example">选择框</label>
+              <div class="pull-left w-120-calc">
+                <select class="form-control selectpicker" title="小伙子选择一个吧..." name="example-6" id="example">
+                  <option>吊打海内外的编程技术</option>
+                  <option>迷倒万千少女的颜值</option>
+                  <option>马云大大的财富</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="idname">开关</label>
+              <div class="pull-left w-120-calc p-t-8 h-28">
+                <label class="lyear-switch switch-solid switch-primary">
+                  <input type="checkbox" checked="" value="1" id="idname"><span></span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label">复选框</label>
+              <div class="pull-left w-120-calc h-28">
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>篮球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>足球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>排球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label">单选框</label>
+              <div class="pull-left w-120-calc h-28">
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>羽毛球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>冰球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>网球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="desc">文本域</label>
+              <div class="pull-left w-120-calc">
+                <textarea name="desc" id="desc" placeholder="请输入内容" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="pull-left w-120-calc col-md-offset-120">
+                <button type="submit" class="btn btn-primary">立即提交</button>
+                <button type="reset" class="btn btn-default">重 置</button>
+              </div>
+            </div>
+
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>表单示例四（给表单加上最大宽度，使其居中）</h4></div>
+        <div class="card-body">
+          
+          <p>新增样式 <code>mx-w-800</code>，指定最大宽度，让表单居中，你也可以自己定义。</p>
+          <form action="#!" method="post" id="example-from-1" class="form-horizontal mx-w-800">
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="name">输入框</label>
+              <div class="pull-left w-120-calc">
+                <input type="text" class="form-control" id="name" name="name" value="" placeholder="输入框" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="password">密码框</label>
+              <div class="pull-left w-120-calc">
+                <input type="password" class="form-control" id="password" name="password" value="" placeholder="密码框" />
+                <small class="help-block p-t-5">密码是用5-20位字符</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="type">选择框</label>
+              <div class="pull-left w-120-calc">
+                <select name="type" class="form-control" id="type">
+                  <option value="1">小说</option>
+                  <option value="2">古籍</option>
+                  <option value="3">专辑</option>
+                  <option value="4">自传</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="example">选择框</label>
+              <div class="pull-left w-120-calc">
+                <select class="form-control selectpicker" title="小伙子选择一个吧..." name="example-6" id="example">
+                  <option>吊打海内外的编程技术</option>
+                  <option>迷倒万千少女的颜值</option>
+                  <option>马云大大的财富</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="idname">开关</label>
+              <div class="pull-left w-120-calc p-t-8 h-28">
+                <label class="lyear-switch switch-solid switch-primary">
+                  <input type="checkbox" checked="" value="1" id="idname"><span></span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label">复选框</label>
+              <div class="pull-left w-120-calc h-28">
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>篮球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>足球</span>
+                </label>
+                <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                  <input type="checkbox"><span>排球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label">单选框</label>
+              <div class="pull-left w-120-calc h-28">
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>羽毛球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>冰球</span>
+                </label>
+                <label class="lyear-radio radio-inline radio-primary">
+                  <input type="radio" name="e"><span>网球</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="w-120 pull-left control-label" for="desc">文本域</label>
+              <div class="pull-left w-120-calc">
+                <textarea name="desc" id="desc" placeholder="请输入内容" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="pull-left w-120-calc col-md-offset-120">
+                <button type="submit" class="btn btn-primary">立即提交</button>
+                <button type="reset" class="btn btn-default">重 置</button>
+              </div>
+            </div>
+
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>表单示例五</h4></div>
+        <div class="card-body">
+          
+          <p>使用 <code>input-group-btn</code> 布局。</p>
+          <p>你也可以单独对该表单的 <code>input-group-addon</code> 指定一个最小的宽度。</p>
+          <form action="#!" method="post" id="example-from-1" class="row example-form">
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">输入框</span>
+                <input type="text" class="form-control" id="name" name="name" value="" placeholder="输入框" />
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">密码框</span>
+                <input type="password" class="form-control" id="password" name="password" value="" placeholder="密码框" />
+              </div>
+              <small class="help-block m-b-0">密码是用5-20位字符</small>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">选择框</span>
+                <select name="type" class="form-control" id="type">
+                  <option value="1">小说</option>
+                  <option value="2">古籍</option>
+                  <option value="3">专辑</option>
+                  <option value="4">自传</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">选择框</span>
+                <div class="form-controls">
+                  <select class="form-control selectpicker" title="小伙子选择一个吧..." name="example-6" id="example">
+                    <option>吊打海内外的编程技术</option>
+                    <option>迷倒万千少女的颜值</option>
+                    <option>马云大大的财富</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">开&nbsp;&nbsp;&nbsp;&nbsp;关</span>
+                <div class="form-controls input-group-controls p-t-8">
+                  <label class="lyear-switch switch-solid switch-primary">
+                    <input type="checkbox" checked="" value="1" id="idname"><span></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">复选框</span>
+                <div class="form-controls input-group-controls p-t-5">
+                  <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                    <input type="checkbox"><span>篮球</span>
+                  </label>
+                  <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                    <input type="checkbox"><span>足球</span>
+                  </label>
+                  <label class="lyear-checkbox checkbox-inline checkbox-primary">
+                    <input type="checkbox"><span>排球</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">单选框</span>
+                <div class="form-controls input-group-controls p-t-5">
+                  <label class="lyear-radio radio-inline radio-primary">
+                    <input type="radio" name="e"><span>羽毛球</span>
+                  </label>
+                  <label class="lyear-radio radio-inline radio-primary">
+                    <input type="radio" name="e"><span>冰球</span>
+                  </label>
+                  <label class="lyear-radio radio-inline radio-primary">
+                    <input type="radio" name="e"><span>网球</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="input-group m-b-10">
+                <span class="input-group-addon">文本域</span>
+                <div class="form-controls">
+                  <textarea name="desc" id="desc" placeholder="请输入内容" class="form-control"></textarea>
+                </div>
+              </div>
+              
+            </div>
+            <div class="form-group col-md-12">
+              <button type="submit" class="btn btn-primary">立即提交</button>
+              <button type="reset" class="btn btn-default">重 置</button>
+            </div>
+
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="js/bootstrap-select/i18n/defaults-zh_CN.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // 默认
+    $('.selectpicker').selectpicker();
+    // 菜单标题默认点击×不关闭，这里自己关一下
+    $('.bootstrap-select').find('.close').on('click', function(){
+        $(this).parents('.bootstrap-select').removeClass('open');
+        $(this).parent().parent().prev('.dropdown-toggle').attr('aria-expanded', 'false');
+    });
+});
+</script>
+</body>
+</html>

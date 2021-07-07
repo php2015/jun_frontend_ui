@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>可用的一些布局(数据统计篇) - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+/* 长条形的数据统计布局 */
+.card-banner {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 24px;
+    padding: 15px 0px;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.035);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.035);
+}
+.card-banner .card {
+    margin-bottom: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+.card-banner [class*=col] .card:before {
+    position: absolute;
+    height: calc(100%);
+    width: 1px;
+    background: rgba(77, 82, 89, 0.05);
+    content: '';
+    right: -15px;
+}
+.card-banner:not(.bg-white) [class*=col] .card:before {
+    background: rgba(255, 255, 255, 0.175);
+}
+@media screen and (max-width: 576px) {
+    .card-banner [class*=col-] .card:before {
+        width: calc(100% - 30px)!important;
+        right: 15px!important;
+        height: 1px!important;
+    }
+    .card-banner [class*=col-]:first-child .card:before{
+        display:none!important
+    }
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">可用的一些布局 - 数据统计篇</div></div>
+        <div class="card-body">
+          
+          <p>首页数据统计篇，大体上挺类似的，布局参考来源网络，大家看需要使用，O(∩_∩)O。<span class="text-danger">目前这些布局是基于bootstrap 4.4.1。</span></p>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!--横条形的统计-->
+  <div class="row">
+    <div class="col-sm-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-currency-cny fs-22"></i></span>
+            <span class="fs-22 lh-22">102,125.00</span>
+          </div>
+          <div class="text-right">今日收入</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-danger"><i class="mdi mdi-account fs-22"></i></span>
+            <span class="fs-22 lh-22">920,000</span>
+          </div>
+          <div class="text-right">用户总数</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-success"><i class="mdi mdi-arrow-down-bold fs-22"></i></span>
+            <span class="fs-22 lh-22">34,005,000</span>
+          </div>
+          <div class="text-right">下载总量</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-purple"><i class="mdi mdi-comment-outline fs-22"></i></span>
+            <span class="fs-22 lh-22">153 条</span>
+          </div>
+          <div class="text-right">新增留言</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row card-banner bg-white">
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-currency-cny fs-22"></i></span>
+            <span class="fs-22 lh-22">102,125.00</span>
+          </div>
+          <div class="text-right">今日收入</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-danger"><i class="mdi mdi-account fs-22"></i></span>
+            <span class="fs-22 lh-22">920,000</span>
+          </div>
+          <div class="text-right">用户总数</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-success"><i class="mdi mdi-arrow-down-bold fs-22"></i></span>
+            <span class="fs-22 lh-22">34,005,000</span>
+          </div>
+          <div class="text-right">下载总量</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-purple"><i class="mdi mdi-comment-outline fs-22"></i></span>
+            <span class="fs-22 lh-22">153 条</span>
+          </div>
+          <div class="text-right">新增留言</div>
+        </div>
+  	  </div>
+  	</div>
+  </div>
+  
+  <div class="row card-banner bg-primary">
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fs-22"></i></span>
+            <span class="fs-22 lh-22">102,125.00</span>
+          </div>
+          <div class="text-right">今日收入</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fs-22"></i></span>
+            <span class="fs-22 lh-22">920,000</span>
+          </div>
+          <div class="text-right">用户总数</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-arrow-down-bold fs-22"></i></span>
+            <span class="fs-22 lh-22">34,005,000</span>
+          </div>
+          <div class="text-right">下载总量</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+            <span class="fs-22 lh-22">153 条</span>
+          </div>
+          <div class="text-right">新增留言</div>
+        </div>
+  	  </div>
+  	</div>
+  </div>
+  
+  <!--第二种布局的统计-->
+  <div class="row">
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>今日收入</b></span>
+  	          <p class="text-muted m-b-10">毛利润</p>
+  	        </div>
+  	        <h4 class="text-info">$170</h4>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	        <div class="progress-bar bg-info w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">75%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>总收入</b></span>
+  	          <p class="text-muted m-b-10">纯利润</p>
+  	        </div>
+  	        <h3 class="text-success">$120</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	      	<div class="progress-bar bg-success w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">25%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>新订单</b></span>
+  	          <p class="text-muted m-b-10">新订单金额</p>
+  	        </div>
+  	        <h3 class="text-danger">15</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	        <div class="progress-bar bg-danger w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">50%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>新增用户</b></span>
+  	          <p class="text-muted m-b-10">新用户注册</p>
+  	        </div>
+  	        <h3 class="text-primary">12</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	        <div class="progress-bar bg-primary w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">25%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  
+  <div class="row card-banner bg-white">
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>今日收入</b></span>
+  	          <p class="text-muted m-b-10">毛利润</p>
+  	        </div>
+  	        <h3 class="text-info pull-right">$170</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	        <div class="progress-bar bg-info w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">75%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>总收入</b></span>
+  	          <p class="text-muted m-b-10">纯利润</p>
+  	        </div>
+  	        <h3 class="text-success pull-right">$120</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	      	<div class="progress-bar bg-success w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">25%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>新订单</b></span>
+  	          <p class="text-muted m-b-10">新订单金额</p>
+  	        </div>
+  	        <h3 class="text-danger pull-right">15</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	        <div class="progress-bar bg-danger w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">50%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span><b>新增用户</b></span>
+  	          <p class="text-muted m-b-10">新用户注册</p>
+  	        </div>
+  	        <h3 class="text-primary pull-right">12</h3>
+  	      </div>
+  	      <div class="progress m-b-5" style="height: 5px;">
+  	        <div class="progress-bar bg-primary w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="text-muted mb-0">上涨</p>
+  	        <p class="text-muted mb-0">25%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  
+  <div class="row card-banner bg-primary">
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span class="text-white"><b>今日收入</b></span>
+  	          <p class="text-fadest m-b-10">毛利润</p>
+  	        </div>
+  	        <h3 class="text-white">$170</h3>
+  	      </div>
+  	      <div class="progress m-b-5 bg-translucent" style="height: 5px;">
+  	        <div class="progress-bar bg-translucent w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="mb-0">上涨</p>
+  	        <p class="mb-0">75%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span class="text-white"><b>总收入</b></span>
+  	          <p class="text-fadest m-b-10">纯利润</p>
+  	        </div>
+  	        <h3 class="text-white">$120</h3>
+  	      </div>
+  	      <div class="progress m-b-5 bg-translucent" style="height: 5px;">
+  	      	<div class="progress-bar bg-translucent w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="mb-0">上涨</p>
+  	        <p class="mb-0">25%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span class="text-white"><b>新订单</b></span>
+  	          <p class="text-fadest m-b-10">新订单金额</p>
+  	        </div>
+  	        <h3 class="text-white">15</h3>
+  	      </div>
+  	      <div class="progress m-b-5 bg-translucent" style="height: 5px;">
+  	        <div class="progress-bar bg-translucent w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="mb-0">上涨</p>
+  	        <p class="mb-0">50%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+  	    <div class="card-body">
+  	      <div class="flex-box">
+  	        <div>
+  	          <span class="text-white"><b>新增用户</b></span>
+  	          <p class="text-fadest m-b-10">新用户注册</p>
+  	        </div>
+  	        <h3 class="text-white">12</h3>
+  	      </div>
+  	      <div class="progress m-b-5 bg-translucent" style="height: 5px;">
+  	        <div class="progress-bar bg-translucent w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  	      </div>
+  	      <div class="flex-box">
+  	        <p class="mb-0">上涨</p>
+  	        <p class="mb-0">25%</p>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+  </div>
+  
+  <!--第三种布局的统计-->
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总收入</p>
+              <h2>$58,000</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-currency-cny fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-success m-r-5">
+              <i class="mdi mdi-arrow-up"></i> 5.1%
+            </span> 相比上周上涨
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总订单</p>
+              <h2>9,621</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-shopping fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-danger m-r-5">
+              <span class="mdi mdi-arrow-down"></span> 2.6%
+            </span> 相比昨天下降
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总用户</p>
+              <h2>2,217</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-account fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-danger m-r-5">
+              <span class="mdi mdi-arrow-down"></span> 1.9%
+            </span> 相比昨天下降
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总留言</p>
+              <h2>2,217</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-comment-outline fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-success m-r-5">
+              <span class="mdi mdi-arrow-up"></span> 1.9%
+            </span> 相比上周上涨
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row card-banner bg-white">
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总收入</p>
+              <h2>$58,000</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-currency-cny fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-success m-r-5">
+              <i class="mdi mdi-arrow-up"></i> 5.1%
+            </span> 相比上周上涨
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总订单</p>
+              <h2>9,621</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-shopping fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-danger m-r-5">
+              <span class="mdi mdi-arrow-down"></span> 2.6%
+            </span> 相比昨天下降
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总用户</p>
+              <h2>2,217</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-account fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-danger m-r-5">
+              <span class="mdi mdi-arrow-down"></span> 1.9%
+            </span> 相比昨天下降
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="text-muted m-b-10">总留言</p>
+              <h2>2,217</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-primary"><i class="mdi mdi-comment-outline fs-22"></i></span>
+          </div>
+          <div>
+            <span class="text-success m-r-5">
+              <span class="mdi mdi-arrow-up"></span> 1.9%
+            </span> 相比上周上涨
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row card-banner bg-primary">
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="m-b-10">总收入</p>
+              <h2 class="text-white">$58,000</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fs-22"></i></span>
+          </div>
+          <div>
+            <span class="m-r-5">
+              <i class="mdi mdi-arrow-up"></i> 5.1%
+            </span> 相比上周上涨
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div class="pull-left">
+              <p class="m-b-10">总订单</p>
+              <h2 class="text-white">9,621</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-shopping fs-22"></i></span>
+          </div>
+          <div>
+            <span class="m-r-5">
+              <span class="mdi mdi-arrow-down"></span> 2.6%
+            </span> 相比昨天下降
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="m-b-10">总用户</p>
+              <h2 class="text-white">2,217</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fs-22"></i></span>
+          </div>
+          <div>
+            <span class="m-r-5">
+              <span class="mdi mdi-arrow-down"></span> 1.9%
+            </span> 相比昨天下降
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <div>
+              <p class="m-b-10">总留言</p>
+              <h2 class="text-white">2,217</h2>
+            </div>
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+          </div>
+          <div>
+            <span class="m-r-5">
+              <span class="mdi mdi-arrow-up"></span> 1.9%
+            </span> 相比上周上涨
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

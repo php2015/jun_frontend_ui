@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>可用的一些布局(其他篇) - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+/* 带标签的区域 */
+.shape {    
+	border-style: solid;
+    border-width: 0 70px 40px 0;
+    float: right;
+    height: 0px;
+    width: 0px;
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+.offer {
+	background: #fff;
+	border: 1px solid #ebebeb;
+	box-shadow: 0 1px 15px 1px rgba(77, 82, 89, .075);
+	margin: 15px 0; 
+	overflow: hidden;
+}
+.shape {
+	border-color: rgba(255, 255, 255, 0) #4d5259 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+}
+.offer-primary {
+    border-color: #33cabb;
+}
+.offer-primary .shape {
+	border-color: transparent #33cabb transparent transparent;
+}
+.offer-danger {
+    border-color: #f96868;
+}
+.offer-danger .shape {
+	border-color: transparent #f96868 transparent transparent;
+}
+.offer-success {
+	border-color: #15c377;
+}
+.offer-success .shape {
+	border-color: transparent #15c377 transparent transparent;
+}
+.offer-default {
+    border-color: #eff2f7;
+}
+.offer-default .shape {
+	border-color: transparent #eff2f7 transparent transparent;
+}
+.offer-info {
+    border-color: #48b0f7;
+}
+.offer-info .shape {
+	border-color: transparent #48b0f7 transparent transparent;
+}
+.offer-warning {
+    border-color: #faa64b;
+}
+.offer-warning .shape {
+	border-color: transparent #faa64b transparent transparent;
+}
+.shape-text {
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold; 
+	position: relative;     
+	right: -47px;
+    top: 0px;
+	white-space: nowrap;
+	-ms-transform: rotate(30deg); 
+	-o-transform: rotate(360deg); 
+	-webkit-transform: rotate(30deg);
+	transform: rotate(30deg);
+}	
+.offer-content {
+	padding: 20px;
+}
+/* 带标签的卡片 */
+.pull-float-none {
+    float: none !important;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+/* 上两个可弄成通用类 */
+.ribbon {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+}
+.ribbon-top-left {
+    top: -10px;
+    left: -10px;
+}
+.ribbon::before,
+.ribbon::after {
+	position: absolute;
+	z-index: -1;
+	content: '';
+	display: block;
+	border: 5px solid;
+}
+.ribbon span {
+	position: absolute;
+	display: block;
+	width: 225px;
+	padding: 8px 0;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .075);
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	text-transform: capitalize;
+	text-align: center;
+}
+.ribbon-top-left {
+	top: -10px;
+	left: -10px;
+}
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+	border-top-color: transparent;
+	border-left-color: transparent;
+}
+.ribbon-top-left::before {
+	top: 0;
+	right: 50px;
+}
+.ribbon-top-left::after {
+	bottom: 50px;
+	left: 0;
+}
+.ribbon-top-left span {
+	right: -8px;
+    top: 30px;
+    transform: rotate(-45deg);
+}
+.ribbon-top-right {
+	top: -10px;
+	right: -10px;
+}
+.ribbon-top-right::before,
+.ribbon-top-right::after {
+	border-top-color: transparent;
+	border-right-color: transparent;
+}
+.ribbon-top-right::before {
+	top: 0;
+	left: 36px
+}
+.ribbon-top-right::after {
+	bottom: 36px;
+	right: 0;
+}
+.ribbon-top-right span {
+	left: -8px;
+	top: 30px;
+	transform: rotate(45deg);
+}
+/* 时光轴 */
+ul.lyear-timeline {
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+ul.lyear-timeline > li {
+    margin-top: 20px;
+    padding-left: 5rem;
+}
+ul.lyear-timeline:before {
+    content: ' ';
+    border: 2px dotted #edeff5;
+    margin: 20px 20px 0 22px;
+    display: inline-block;
+    position: absolute;
+    left: -5px;
+    width: 2px;
+    height: 100%;
+    z-index: 0;
+}
+ul.lyear-timeline > li i.mdi {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    left: 1px;
+    background-color: #f3f6f7;
+    font-size: 20px;
+    line-height: 35px;
+    font-size: 15px;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>可用的一些布局 - 其他篇</h4></div>
+        <div class="card-body">
+          
+          <p>布局来源于网络，大家看需要使用，O(∩_∩)O。<span class="text-danger">目前这些布局是基于bootstrap 3.3.7。</span></p>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>带标签的区域</h4></div>
+        <div class="card-body">
+          
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="offer offer-default">
+                <div class="shape">
+                  <div class="shape-text text-default"> top </div>
+                </div>
+                <div class="offer-content">
+                  <h3 class="lead"> Default </h3>
+                  <p class="m-b-0"> 第十八回 大王庄薛仁贵落魄 怜勇士柳金花赠衣 </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="offer offer-success">
+                <div class="shape">
+                  <div class="shape-text"> top </div>
+                </div>
+                <div class="offer-content">
+                  <h3 class="lead text-success"> Success </h3>
+                  <p class="m-b-0"> 第十九回 富家女逃难托乳母 贫穷汉有幸配淑女 </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="offer offer-primary">
+                <div class="shape"> <div class="shape-text"> top </div> </div>
+                <div class="offer-content">
+                  <h3 class="lead text-primary"> Primary </h3>
+                  <p class="m-b-0"> 第二十回 射鸿雁薛礼逢故旧 赠盘缠周青同投军 </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="offer offer-info">
+                <div class="shape">
+                  <div class="shape-text"> top </div>
+                </div>
+                <div class="offer-content">
+                  <h3 class="lead text-info"> Info </h3>
+                  <p class="m-b-0"> 第二十一回 樊家庄三寇被获 薛仁贵二次投军 </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="offer offer-warning">
+                <div class="shape">
+                  <div class="shape-text"> top </div>
+                </div>
+                <div class="offer-content">
+                  <h3 class="lead text-warning"> Warning </h3>
+                  <p class="m-b-0"> 第二十二回 樊绣花愿招豪侠婿 薛仁贵怒打出山虎 </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+              <div class="offer offer-radius offer-danger">
+                <div class="shape">
+                  <div class="shape-text"> top </div>
+                </div>
+                <div class="offer-content">
+                  <h3 class="lead text-danger"> Danger </h3>
+                  <p class="m-b-0"> 第二十三回 金钱山老将荐贤 赠令箭三次投军 </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--带标签的卡片-->
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+      <div class="card text-center overflow-hidden position-relative">
+        <div class="card-status bg-danger"></div>
+        <div class="ribbon ribbon-top-left text-danger"><span class="bg-success">最新</span></div>
+        <div class="card-header text-center"><h4 class="show pull-float-none">《说唐后传》</h4></div>
+        <div class="card-body">
+          <h1 class="m-b-5">¥0.25<small class="text-muted"> / 千字</small></h1>
+          <p class="mb-5">第三十六回 番将力擒张志龙 周青怒锁先锋将</p>
+          <button type="button" class="btn btn-success">阅读详细</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+      <div class="card text-center overflow-hidden position-relative">
+        <div class="card-status bg-danger"></div>
+        <div class="ribbon ribbon-top-left text-danger"><span class="bg-success">最新</span></div>
+        <div class="card-header text-center"><h4 class="show pull-float-none">《说唐后传》</h4></div>
+        <div class="card-body">
+          <h1 class="m-b-5">¥0.25<small class="text-muted"> / 千字</small></h1>
+          <p class="mb-5">第三十五回 尉迟恭犒赏查贤士 薛仁贵月夜叹功劳</p>
+          <button type="button" class="btn btn-success">阅读详细</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4">
+      <div class="card text-center overflow-hidden position-relative">
+        <div class="card-status bg-danger"></div>
+        <div class="ribbon ribbon-top-left text-danger"><span class="bg-danger">最热</span></div>
+        <div class="card-header text-center"><h4 class="show pull-float-none">《说唐后传》</h4></div>
+        <div class="card-body">
+          <h1 class="m-b-5">¥0.25<small class="text-muted"> / 千字</small></h1>
+          <p class="mb-5">第一回 秦元帅兴兵定北 唐贞观御驾亲征</p>
+          <button type="button" class="btn btn-danger">阅读详细</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--时光轴-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>时光轴（v4已有时光轴样式，所以v4示例中没有这个）</h4></div>
+        <div class="card-body">
+          
+          <ul class="lyear-timeline m-b-0">
+            <li>
+              <i class="mdi mdi-check bg-primary text-white"></i>
+              <a target="_blank" href="#!" class="m-b-5 text-default"><strong>第四十三回</strong></a>
+              <a href="#!" class="pull-right text-muted">2019.06.28</a>
+              <p class="m-t-5 text-muted">银銮殿张环露奸脸 白玉关<span class="text-primary">薛礼</span>得龙驹</p>
+            </li>
+            <li>
+              <i class="mdi mdi-message-text-outline bg-warning text-white"></i>
+              <a target="_blank" href="#!" class="m-b-5 text-default"><strong>第四十四回</strong></a>
+              <a href="#!" class="pull-right text-muted">2019.06.25</a>
+              <p class="m-t-5 text-muted">长安城活擒反贼 说帅印威重贤臣</p>
+            </li>
+            <li>
+              <i class="mdi mdi-alert-outline bg-danger text-white"></i>
+              <a target="_blank" href="#!" class="m-b-5 text-default"><strong>第四十五回</strong></a>
+              <a href="#!" class="pull-right text-muted">2019.06.20</a>
+              <p class="m-t-5">卖弓箭<span class="text-info">仁贵</span>巧计 逞才能二周归唐</p>
+            </li>
+            <li>
+              <i class="mdi mdi-check bg-success text-white"></i>
+              <a target="_blank" href="#!" class="m-b-5 text-default"><strong>第四十六回</strong></a>
+              <a href="#!" class="pull-right text-muted">2019.06.15</a>
+              <p class="m-t-5">猩猩胆飞砧伤唐将 红幔幔中戟失摩天</p>
+            </li>
+            <li>
+              <i class="mdi mdi-check bg-success text-white"></i>
+              <a target="_blank" href="#!" class="m-b-5 text-default"><strong>第四十七回</strong></a>
+              <a href="#!" class="pull-right text-muted">2019.06.10</a>
+              <p class="m-t-5">宝石基采金进贡 扶余国借兵围城</p>
+            </li>
+            <li>
+              <i class="mdi mdi-message-text-outline bg-info text-white"></i>
+              <a target="_blank" href="#!" class="m-b-5 text-default"><strong>第四十八回</strong></a>
+              <a href="#!" class="pull-right text-muted">2019.06.01</a>
+              <p class=" m-t-5"><span class="text-primary">程咬金</span>诱惑盖苏文 <a href="#!" class="text-info"> 摩天岭讨救薛仁贵</a></p>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+</body>
+</html>

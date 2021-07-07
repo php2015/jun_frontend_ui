@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>评分插件 - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">评分插件 jQuery Raty</div></div>
+        <div class="card-body">
+          
+          <p>插件也可使用图片，这里只字体图标字体做示例。</p>
+          <div class="form-group">
+            <div class="js-raty" data-score="3" data-number="10"></div>
+          </div>
+          
+          <p>也可以自定义图标</p>
+          <div class="form-group">
+            <div class="js-raty" data-score="5" data-number="10" data-star-on="mdi mdi-emoticon-happy fs-20 text-success" data-star-off="mdi mdi-emoticon-happy fs-20 text-gray"></div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/raty/jquery.raty.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    jQuery.fn.raty.defaults.hints = ["超烂", "差", "一般", "好", "很好"],
+    jQuery(".js-raty").each(function() {
+        var a = jQuery(this);
+        a.raty({
+            starType: "i",
+            targetText: a.data("target-text") ? a.data("target-text") : '',
+            score: a.data("score") ? a.data("score") : 0,
+            number: a.data("number") ? a.data("number") : 5,
+            cancel: a.data("cancel") ? a.data("cancel") : !1,
+            target: a.data("target") ? a.data("target") : !1,
+            targetScore: a.data("target-score") ? a.data("target-score") : !1,
+            precision: a.data("precision") ? a.data("precision") : !1,
+            cancelOff: a.data("cancel-off") ? a.data("cancel-off") : "mdi mdi-close fs-20 text-danger",
+            cancelOn: a.data("cancel-on") ? a.data("cancel-on") : "mdi mdi-close fs-20",
+            starHalf: a.data("star-half") ? a.data("star-half") : "mdi mdi-star-half fs-20 text-warning",
+            starOff: a.data("star-off") ? a.data("star-off") : "mdi mdi-star fs-20 text-gray",
+            starOn: a.data("star-on") ? a.data("star-on") : "mdi mdi-star fs-20 text-warning",
+            click: function(score, e) {
+                console.log('ID: ' + $(this).attr('class') + "\nscore: " + score + "\nevent: " + e.type);
+            }
+        })
+    })
+});
+</script>
+</body>
+</html>

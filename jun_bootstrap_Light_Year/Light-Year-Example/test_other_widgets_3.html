@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>可用的一些布局(搜索框篇) - 光年(Light Year Admin)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="LightYear是一个基于Bootstrap v3.3.7的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style.min.css" rel="stylesheet">
+<style>
+/* 默认的搜索框 */
+.lyear-search {
+    position: relative;
+    z-index: 0;
+    display: -webkit-inline-box;
+    display: inline-flex;
+}
+.lyear-search input {
+    width: 300px;
+    padding-left: 35px;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+.lyear-search.lyear-search-right input {
+    padding-left: 12px;
+    padding-right: 35px;
+}
+.lyear-search::before {
+    content: "\f349";
+    font-family: "Material Design Icons";
+    font-size: 24px;
+    position: absolute;
+    z-index: 99;
+    top: 0px;
+    left: 0px;
+    color: rgba(77,82,89,0.4);
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    cursor: text;
+}
+.lyear-search.lyear-search-right::before {
+    left: auto;
+    right: 0px;
+}
+.lyear-search.lyear-search-rounder input {
+    border-radius: 19px
+}
+.lyear-search.lyear-search-rounder .btn:last-child {
+    border-top-right-radius: 19px;
+    border-bottom-right-radius: 19px;
+}
+.lyear-search.lyear-search-circle::before {
+    z-index: -1;
+}
+.lyear-search.lyear-search-circle input {
+    background-color: transparent;
+    -webkit-border-radius: 19px;
+    border-radius: 19px;
+    width: 38px;
+    padding-right: 0px;
+    padding-left: 38px;
+}
+.lyear-search.lyear-search-circle input:focus {
+    width: 100%;
+    padding-right: 12px;
+}
+.lyear-search.lyear-search-circle.lyear-search-right input:focus {
+    width: 300px;
+    padding-left: 12px;
+}
+.lyear-search.lyear-search-noicon::before {
+    content: '';
+}
+.lyear-search.lyear-search-noicon .btn {
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+.lyear-search.lyear-search-noicon .btn .mdi {
+    line-height: 29px;
+    font-size: 20px;
+    vertical-align: top;
+}
+.lyear-search.lyear-search-noicon.lyear-search-left input {
+    padding-left: 12px;
+}
+.lyear-search.lyear-search-noicon.lyear-search-right input {
+    padding-right: 12px;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>可用的一些布局 - 搜索框篇</h4></div>
+        <div class="card-body">
+          
+          <p>搜索框布局演示，布局来源于网络，大家看需要使用，O(∩_∩)O。<span class="text-danger">目前这些布局是基于bootstrap 3.3.7。</span></p>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4>搜索框</h4></div>
+        <div class="card-body">
+          
+          <p>图标默认左侧</p>
+          <div class="form-group">
+            <form class="lyear-search">
+              <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词...">
+            </form>
+          </div>
+          
+          <p>右侧图标</p>
+          <div class="form-group">
+            <form class="lyear-search lyear-search-right">
+              <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词...">
+            </form>
+          </div>
+          
+          <p>圆形样式</p>
+          <div class="form-group">
+            <form class="lyear-search lyear-search-right lyear-search-rounder w-200-px">
+              <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词...">
+            </form>
+          </div>
+          
+          <p>可点击按钮</p>
+          <div class="form-group">
+            <form class="lyear-search lyear-search-left">
+              <div class="input-group">
+                <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default">搜索</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <p>圆形可点击按钮</p>
+          <div class="form-group">
+            <form class="lyear-search lyear-search-left lyear-search-rounder">
+              <div class="input-group">
+                <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default">搜索</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <p>图标放按钮上</p>
+          <div class="form-group">
+            <form class="lyear-search lyear-search-left lyear-search-noicon">
+              <div class="input-group">
+                <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default"><i class="mdi mdi-magnify"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <p>可伸缩的搜索框(这里需要禁止输入框提示历史记录 <code>autocomplete="off"</code>)</p>
+          <div class="form-group">
+            <form class="lyear-search lyear-search-left lyear-search-circle">
+              <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词..." autocomplete="off">
+            </form>
+          </div>
+          <div class="form-group text-right">
+            <form class="lyear-search lyear-search-right lyear-search-circle">
+              <input type="text" name="keywords" class="form-control" placeholder="请输入搜索的关键词..." autocomplete="off">
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</body>
+</html>

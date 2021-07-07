@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>首页 - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="css/style-mini-v4.min.css" rel="stylesheet">
+<style>
+/* 长条形的数据统计布局 */
+.card-banner {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 24px;
+    padding: 15px 0px;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.035);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.035);
+}
+.card-banner .card {
+    margin-bottom: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+.card-banner [class*=col] .card:before {
+    position: absolute;
+    height: calc(100%);
+    width: 1px;
+    background: rgba(77, 82, 89, 0.05);
+    content: '';
+    right: -15px;
+}
+.card-banner:not(.bg-white) [class*=col] .card:before {
+    background: rgba(255, 255, 255, 0.175);
+}
+@media screen and (max-width: 576px) {
+    .card-banner [class*=col-] .card:before {
+        width: calc(100% - 30px)!important;
+        right: 15px!important;
+        height: 1px!important;
+    }
+    .card-banner [class*=col-]:first-child .card:before{
+        display:none!important
+    }
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="alert alert-warning">小图标的菜单修改内容比较多，所以这里将文件复制一份，修改名字来引入使用。（文件使用的版本为bootstrap v4.4.1的iframe版本）。文件名：style-mini-v4.min.css、index-mini-v4.min.js、multitabs.mini.js(v4目录)。如果这按个文件你有修改，请使用对比工具对比其中我修改的部分（切勿直接覆盖）。</div>
+  
+  <div class="row card-banner bg-primary">
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fs-22"></i></span>
+            <span class="fs-22 lh-22">102,125.00</span>
+          </div>
+          <div class="text-right">今日收入</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fs-22"></i></span>
+            <span class="fs-22 lh-22">920,000</span>
+          </div>
+          <div class="text-right">用户总数</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-arrow-down-bold fs-22"></i></span>
+            <span class="fs-22 lh-22">34,005,000</span>
+          </div>
+          <div class="text-right">下载总量</div>
+        </div>
+  	  </div>
+  	</div>
+  	<div class="col-sm-6 col-md-6 col-lg-3">
+  	  <div class="card">
+        <div class="card-body">
+          <div class="flex-box">
+            <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+            <span class="fs-22 lh-22">153 条</span>
+          </div>
+          <div class="text-right">新增留言</div>
+        </div>
+  	  </div>
+  	</div>
+  </div>
+  
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="card">
+        <header class="card-header"><div class="card-title">订单列表</div></header>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr role="row">
+                  <th>ID</th>
+                  <th>产品名称</th>
+                  <th>用户</th>
+                  <th>总价格</th>
+                  <th>状态</th>
+                  <th>时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3013</td>
+                  <td>
+                    <img width="40" src="images/gallery/1.jpg" class="img-rounded">
+                    <span>佳能 4000D 18-55 MM</span>
+                  </td>
+                  <td>马小云</td>
+                  <td>128 元</td>
+                  <td><span class="badge bg-info">等待付款</span></td>
+                  <td>2018/08/28 21:24:36</td>
+                  <td>
+                    <a href="#!" class="text-muted" data-toggle="tooltip" title="" data-original-title="编辑"><i class="mdi mdi-pencil"></i></a>
+                    <a href="#!" class="text-danger m-l-5" data-toggle="tooltip" title="" data-original-title="删除"><i class="mdi mdi-delete"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="sorting_1">3145</td>
+                  <td>
+                    <img width="40" src="images/gallery/2.jpg" class="img-rounded">
+                    <span>惠普 Pavilion 15-EC0005NT AMD</span>
+                  </td>
+                  <td>马小腾</td>
+                  <td>230 元</td>
+                  <td><span class="badge bg-gray">预订时（未付款）</span></td>
+                  <td>2018/08/28 21:24:36</td>
+                  <td>
+                    <a href="#!" class="text-muted" data-toggle="tooltip" title="" data-original-title="编辑"><i class="mdi mdi-pencil"></i></a>
+                    <a href="#!" class="text-danger m-l-5" data-toggle="tooltip" title="" data-original-title="删除"><i class="mdi mdi-delete"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="sorting_1">3158</td>
+                  <td>
+                    <img width="40" src="images/gallery/14.jpg" class="img-rounded">
+                    <span>东芝 Canvio Basic 1TB 2.5英寸</span>
+                  </td>
+                  <td>唐小磊</td>
+                  <td>200 元</td>
+                  <td><span class="badge bg-success">已送达</span></td>
+                  <td>2018/08/28 21:24:36</td>
+                  <td>
+                    <a href="#!" class="text-muted" data-toggle="tooltip" title="" data-original-title="编辑"><i class="mdi mdi-pencil"></i></a>
+                    <a href="#!" class="text-danger m-l-5" data-toggle="tooltip" title="" data-original-title="删除"><i class="mdi mdi-delete"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="sorting_1">4218</td>
+                  <td>
+                    <img width="40" src="images/gallery/11.jpg" class="img-rounded">
+                    <span>三星 55Q60RAT 55英寸</span>
+                  </td>
+                  <td>刘小东</td>
+                  <td>300 元</td>
+                  <td><span class="badge bg-warning">付款中</span></td>
+                  <td>2018/08/28 21:24:36</td>
+                  <td>
+                    <a href="#!" class="text-muted" data-toggle="tooltip" title="" data-original-title="编辑"><i class="mdi mdi-pencil"></i></a>
+                    <a href="#!" class="text-danger m-l-5" data-toggle="tooltip" title="" data-original-title="删除"><i class="mdi mdi-delete"></i></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="sorting_1">6416</td>
+                  <td>
+                    <img width="40" src="images/gallery/5.jpg" class="img-rounded">
+                    <span>超级便携无线音箱</span>
+                  </td>
+                  <td>张小阳</td>
+                  <td>550 元</td>
+                  <td><span class="badge bg-primary">已在线支付</span></td>
+                  <td>2018/08/28 21:24:36</td>
+                  <td>
+                    <a href="#!" class="text-muted" data-toggle="tooltip" title="" data-original-title="编辑"><i class="mdi mdi-pencil"></i></a>
+                    <a href="#!" class="text-danger m-l-5" data-toggle="tooltip" title="" data-original-title="删除"><i class="mdi mdi-delete"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+  </div>
+  
+  
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/popper.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/main.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>留言样式 - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+.media-list-message {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(77, 82, 89, 0.05);
+}
+.media-list-message > li {
+    border-bottom: 1px solid rgba(77, 82, 89, 0.05);
+    margin-bottom: 10px;
+}
+.media-list-message .media > a {
+    position: relative;
+    display: inline-block;
+    background-color: #f5f6f7;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.media-list-message .media .media {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.media-list-message li:last-child .media {
+    padding-bottom: 0px;
+}
+.message-form {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.media-list-message .message-form{
+    padding-bottom: 10px;
+}
+.img-avatar-30 {
+    width: 30px;
+    height: 30px;
+}
+.message-form .form-control {
+    border: none;
+    margin: 0px 5px;
+}
+.message-form .form-control:focus {
+    box-shadow: none;
+}
+.message-form .mdi {
+    font-size: 20px;
+    color: #4d5259;
+}
+.message-btn-close {
+    display: none;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">留言样式</div></div>
+        <div class="card-body">
+          
+          <p>文章内容</p>
+          
+          <ul class="list-unstyled media-list-message">
+            <li>
+              <div class="media">
+                <a href="#!"><img src="images/users/avatar-7.png" class="img-avatar img-avatar-30" alt="七娃"></a>
+                <div class="media-body">
+                  <p>
+                    <a href="#!"><strong>七娃</strong></a>
+                    <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='5'>回复</a>
+                    <time class="pull-right text-fade" datetime="2018-07-14 20:00">3 分钟前</time>
+                  </p>
+                  <p>再吵全给你们收进葫芦里面去。</p>
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="media">
+                <a href="#!"><img src="images/users/avatar-1.png" class="img-avatar img-avatar-30" alt="大娃"></a>
+                <div class="media-body">
+                  <p>
+                    <a href="#!"><strong>大娃</strong></a>
+                    <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='2'>回复</a>
+                    <time class="pull-right text-fade" datetime="2018-07-14 20:00">26 分钟前</time>
+                  </p>
+                  <p>您个瓜娃子，谁让你这么弱的，要力量没力量啊。</p>
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="media">
+                        <a href="#!"><img src="images/users/avatar-2.png" class="img-avatar img-avatar-30" alt="二娃"></a>
+                        <div class="media-body">
+                          <p>
+                            <a href="#!"><strong>二娃</strong></a>
+                            <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='7'>回复</a>
+                            <time class="pull-right text-fade" datetime="2018-07-14 20:00">刚刚</time>
+                          </p>
+                          <p>谢大哥。</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+    
+                </div>
+              </div>
+            </li>
+  
+            <li>
+              <div class="media">
+                <a href="#!"><img src="images/users/avatar-3.png" class="img-avatar img-avatar-30" alt="三娃"></a>
+                <div class="media-body">
+                  <p>
+                    <a href="#!"><strong>三娃</strong></a>
+                    <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='2'>回复</a>
+                    <time class="pull-right text-fade" datetime="2018-07-14 20:00">2 小时前</time>
+                  </p>
+                  <p>像我一样，钢筋铁骨，怕过谁。</p>
+                  
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="media">
+                        <a href="#!"><img src="images/users/avatar-4.png" class="img-avatar img-avatar-30" alt="四娃"></a>
+                        <div class="media-body">
+                          <p>
+                            <a href="#!"><strong>四娃</strong></a>
+                            <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='3'>回复</a>
+                            <time class="pull-right text-fade" datetime="2018-07-14 20:00">5 分钟前</time>
+                          </p>
+                          <p>三哥，你甭吹牛了，饶痒痒你怕不怕。</p>
+                          
+                          <ul class="list-unstyled">
+                            <li>
+                              <div class="media">
+                                <a href="#!"><img src="images/users/avatar-3.png" class="img-avatar img-avatar-30" alt="三娃"></a>
+                                <div class="media-body">
+                                  <p>
+                                    <a href="#!"><strong>三娃</strong></a>
+                                    <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='4'>回复</a>
+                                    <time class="pull-right text-fade" datetime="2018-07-14 20:00">刚刚</time>
+                                  </p>
+                                  <p>我看你的皮是痒痒了。</p>
+                                </div>
+                              </div>
+                            </li>
+                              
+                            <li>
+                              <div class="media">
+                                <a href="#!"><img src="images/users/avatar-5.png" class="img-avatar img-avatar-30" alt="五娃"></a>
+                                <div class="media-body">
+                                  <p>
+                                    <a href="#!"><strong>五娃</strong></a>
+                                    <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='6'>回复</a>
+                                    <time class="pull-right text-fade" datetime="2018-07-14 20:00">刚刚</time>
+                                  </p>
+                                  <p>哈哈。</p>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                          
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                                
+                </div>
+              </div>
+            </li>
+            
+            <li>
+              <div class="media">
+                <a href="#!"><img src="images/users/avatar-6.png" class="img-avatar img-avatar-48" alt="六娃"></a>
+                <div class="media-body">
+                  <p>
+                    <a href="#!"><strong>六娃</strong></a>
+                    <a href="#!" class="pull-right text-fade m-l-5 reply-btn" data-id='1'>回复</a>
+                    <time class="pull-right text-fade" datetime="2018-07-14 20:00">3 小时前</time>
+                  </p>
+                  <p>哎，我也一样啊，隐身能干些啥。</p>
+                </div>
+              </div>
+            </li>
+            
+          </ul>
+          <form class="message-form" id="respond-form">
+            <img src="images/users/avatar.jpg" alt="笔下光年" class="img-avatar img-avatar-30" />
+            <input class="form-control" type="text" placeholder="输入您想说的话">
+            <a class="message-btn-close m-r-10" href="#!"><i class="mdi mdi-close"></i></a>
+            <a class="message-btn-send" href="#!"><i class="mdi mdi-near-me"></i></a>
+            <input type='hidden' name='comment_arc_id' value='1' id='comment_arc_id' /> <!--当前文章ID-->
+            <input type='hidden' name='comment_parent' id='comment_parent_id' value='0' /> <!--当前回复的评论ID-->
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    // 回复评论
+    $(document).on('click', '.reply-btn', function() {
+        var parentLi    = $(this).parents('.media').first(),
+            parentID    = $(this).data('id'),
+            respond     = $('#respond-form'),
+            respondHtml = respond.prop("outerHTML");
+        
+        $("#respond-form").remove();
+        parentLi.after(respondHtml);
+        $("#comment_parent_id").val(parentID);
+        $('#respond-form').find('.form-control').focus();
+        $('.message-btn-close').show();
+    });
+    
+    $(document).on('click', '.message-btn-close', function() {
+        var respond     = $('#respond-form'),
+            respondHtml = respond.prop("outerHTML");
+    
+        respond.remove();
+        $('.media-list-message').after(respondHtml);
+        $("#comment_parent_id").val('0');
+        $('.message-btn-close').hide();
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>上传插件uploadify - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="js/jconfirm/jquery-confirm.min.css" rel="stylesheet">
+<link href="js/magnific-popup/magnific-popup.min.css" rel="stylesheet" type="text/css">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+/* 因插件多了一层div，所以增加样式，如果按钮采用图片的小伙伴请忽略 */
+.input-group-btn:last-child > div.uploadify > .btn {
+    z-index: 2;
+    margin-left: -1px;
+}
+/* 这里设定图片最大高度为110px */
+.lyear-uploads-pic figure {
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 110px;
+    min-height: 110px;
+}
+.lyear-uploads-pic figure img {
+    display: inline;
+    width: auto;
+    max-width: 100%;
+    max-height: 110px;
+}
+.lyear-uploads-pic .list-inline-item:not(:last-child) {
+    margin-right: inherit;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">上传插件 uploadify</div></div>
+        <div class="card-body">
+          
+          <p>Uploadify简单说来，是基于Jquery的一款文件上传插件。使用版本3.2.1，另：这里的uploadify插件是flash版本，因谷歌浏览器已默认禁用flash，所以如果使用的小伙伴需要特别注意下这点。</p>
+          <p>这里演示的是php的图片上传，其他类型的文件上传类似。</p>
+          <div class="form-group">
+            <label>上传图片</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="one_pic" placeholder="请输入图片URL...">
+              <span class="input-group-append">
+                <input class="uploadify-file" id="uploadify-file-1" data-name="one_pic" data-queue="uploadqueue-1" data-multi="false" type="file">
+              </span>
+            </div>
+            <div id="uploadqueue-1" class="d-none"></div>
+          </div>
+          <div class="form-group">
+            <label>上传图片2</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="two_pic" placeholder="请输入图片URL...">
+              <span class="input-group-append">
+                <input class="uploadify-file" id="uploadify-file-2" data-name="two_pic" data-queue="uploadqueue-2" data-multi="false" type="file">
+              </span>
+            </div>
+            <div id="uploadqueue-2" class="d-none"></div>
+          </div>
+          <div class="form-group">
+            <label>多图片上传</label>
+            <input class="uploadify-file" id="uploadify-file-3" data-name="three_pic" data-queue="uploadqueue-3" data-multi="true" type="file">
+            <div class="form-controls clearfix" id="three_pic">
+              <ul class="list-inline m-t-10 lyear-uploads-pic row"></ul>
+            </div>
+            <div id="uploadqueue-3" class="d-none"></div>
+          </div>
+          <div class="form-group">
+            <label>内容</label>
+            <textarea class="form-control"></textarea>
+          </div>
+          
+          <p><strong>一、属性</strong></p>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr align="center">
+                  <th>属性名称</th>
+                  <th>默认值</th>
+                  <th>说明</th>
+                </tr>
+                <tr>
+                  <td><code>auto</code></td>
+                  <td><code>true</code></td>
+                  <td>设置为 <code>true</code> 当选择文件后就直接上传了，为 <code>false</code> 需要点击上传按钮才上传 。</td>
+                </tr>
+                <tr>
+                  <td><code>buttonClass</code></td>
+                  <td><code>"</code></td>
+                  <td>按钮样式</td>
+                </tr>
+                <tr>
+                  <td><code>buttonCursor</code></td>
+                  <td><code>'hand'</code></td>
+                  <td>鼠标指针悬停在按钮上的样子</td>
+                </tr>
+                <tr>
+                  <td><code>buttonImage</code></td>
+                  <td><code>null</code></td>
+                  <td>浏览按钮的图片的路径 。</td>
+                </tr>
+                <tr>
+                  <td><code>buttonText</code></td>
+                  <td><code>'SELECT FILES'</code></td>
+                  <td>浏览按钮的文本。</td>
+                </tr>
+                <tr>
+                  <td><code>checkExisting</code></td>
+                  <td><code>false</code></td>
+                  <td>文件上传重复性检查程序，检查即将上传的文件在服务器端是否已存在，存在返回1，不存在返回0</td>
+                </tr>
+                <tr>
+                  <td><code>debug</code></td>
+                  <td><code>false</code></td>
+                  <td>如果设置为true则表示启用SWFUpload的调试模式</td>
+                </tr>
+                <tr>
+                  <td><code>fileObjName</code></td>
+                  <td><code>'Filedata'</code></td>
+                  <td>文件上传对象的名称，如果命名为'the_files'，PHP程序可以用$_FILES['the_files']来处理上传的文件对象。</td>
+                </tr>
+                <tr>
+                  <td><code>fileSizeLimit</code></td>
+                  <td><code>0</code></td>
+                  <td>
+              	  <p>上传文件的大小限制 ，如果为整数型则表示以KB为单位的大小，如果是字符串，则可以使用(B, KB, MB, or GB)为单位，比如'2MB'；</p>
+              	  <p>如果设置为0则表示无限制</p>
+              	</td>
+                </tr>
+                <tr>
+                  <td><code>fileTypeDesc</code></td>
+                  <td><code>'All Files'</code></td>
+                  <td>这个属性值必须设置fileTypeExts属性后才有效，用来设置选择文件对话框中的提示文本，如设置fileTypeDesc为"请选择rar doc pdf文件"</td>
+                </tr>
+                <tr>
+                  <td><code>fileTypeExts</code></td>
+                  <td><code>'*.*'</code></td>
+                  <td>设置可以选择的文件的类型，格式如：'*.doc;*.pdf;*.rar' 。</td>
+                </tr>
+                <tr>
+                  <td><code>formData</code></td>
+                  <td>&nbsp;</td>
+                  <td>JSON格式上传每个文件的同时提交到服务器的额外数据，可在'onUploadStart'事件中使用'settings'方法动态设置。</td>
+                </tr>
+                <tr>
+                  <td><code>height</code></td>
+                  <td><code>30</code></td>
+                  <td>设置浏览按钮的高度 ，默认值</td>
+                </tr>
+                <tr>
+                  <td><code>itemTemplate</code></td>
+                  <td><code>false</code></td>
+                  <td>用于设置上传队列的HTML模版，可以使用以下标签：<br>instanceID – Uploadify实例的ID<br>fileID – 列队中此文件的ID,或者理解为此任务的ID<br>fileName – 文件的名称<br>fileSize – 当前上传文件的大小<br>插入模版标签时使用格式如：${fileName}</td>
+                </tr>
+                <tr>
+                  <td><code>method</code></td>
+                  <td><code>Post</code></td>
+                  <td>提交方式Post或Get</td>
+                </tr>
+                <tr>
+                  <td><code>multi</code></td>
+                  <td><code>true</code></td>
+                  <td>设置为true时可以上传多个文件。</td>
+                </tr>
+                <tr>
+                  <td><code>overrideEvents</code></td>
+                  <td>&nbsp;</td>
+                  <td>设置哪些事件可以被重写，JSON格式，如：'overrideEvents' : ['onUploadProgress']</td>
+                </tr>
+                <tr>
+                  <td><code>preventCaching</code></td>
+                  <td><code>true</code></td>
+                  <td>如果为true，则每次上传文件时自动加上一串随机字符串参数，防止URL缓存影响上传结果</td>
+                </tr>
+                <tr>
+                  <td><code>progressData</code></td>
+                  <td><code>'percentage'</code></td>
+                  <td>设置上传进度显示方式，percentage显示上传百分比，speed显示上传速度</td>
+                </tr>
+                <tr>
+                  <td><code>queueID</code></td>
+                  <td><code>false</code></td>
+                  <td>设置上传队列容器DOM元素的ID，如果为false则自动生成一个队列容器。</td>
+                </tr>
+                <tr>
+                  <td><code>queueSizeLimit</code></td>
+                  <td><code>999</code></td>
+                  <td>队列最多显示的任务数量，如果选择的文件数量超出此限制，将会出发onSelectError事件。<br>注意此项并非最大文件上传数量，如果要限制最大上传文件数量，应设置uploadLimit。</td>
+                </tr>
+                <tr>
+                  <td><code>removeCompleted</code></td>
+                  <td><code>true</code></td>
+                  <td>是否自动将已完成任务从队列中删除，如果设置为false则会一直保留此任务显示。</td>
+                </tr>
+                <tr>
+                  <td><code>removeTimeout</code></td>
+                  <td><code>3</code></td>
+                  <td>如果设置了任务完成后自动从队列中移除，则可以规定从完成到被移除的时间间隔。</td>
+                </tr>
+                <tr>
+                  <td><code>requeueErrors</code></td>
+                  <td><code>false</code></td>
+                  <td>如果设置为true，则单个任务上传失败后将返回错误，并重新加入任务队列上传。</td>
+                </tr>
+                <tr>
+                  <td><code>successTimeout</code></td>
+                  <td><code>30</code></td>
+                  <td>文件上传成功后服务端应返回成功标志，此项设置返回结果的超时时间</td>
+                </tr>
+                <tr>
+                  <td><code>swf</code></td>
+                  <td><code>'uploadify.swf'</code></td>
+                  <td>uploadify.swf 文件的相对路径。</td>
+                </tr>
+                <tr>
+                  <td><code>uploader</code></td>
+                  <td><code>uploadify.php</code></td>
+                  <td>后台处理程序的相对路径。</td>
+                </tr>
+                <tr>
+                  <td><code>uploadLimit</code></td>
+                  <td><code>999</code></td>
+                  <td>最大上传文件数量，如果达到或超出此限制将会触发onUploadError事件。</td>
+                </tr>
+                <tr>
+                  <td><code>width</code></td>
+                  <td><code>120</code></td>
+                  <td>设置文件浏览按钮的宽度。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p><strong>二、事件</strong></p>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr align="center">
+                  <th>事件名称</th>
+                  <th>说明</th>
+                </tr>
+                <tr>
+                  <td><code>onCancel(file)</code></td>
+                  <td>
+                    <p>当点击文件队列中文件的关闭按钮或点击取消上传时触发，<code>file</code> 参数为被取消上传的文件对象</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>onClearQueue(queueItemCount)</code></td>
+                  <td>当调用函数 <code>cancel</code> 方法时触发，<code>queueItemCount</code> 参数为被取消上传的文件数量。</td>
+                </tr>
+                <tr>
+                  <td><code>onDestroy()</code></td>
+                  <td>当 <code>destory</code> 方法被调用时触发</td>
+                </tr>
+                <tr>
+                  <td><code>onDialogClose(queueData)</code></td>
+                  <td>
+                    <p>当文件浏览框关闭时触发，如果将此事件被重写，则当向队列添加文件上传出错时不会弹出错误消息提示。</p>
+                    <p><code>queueData</code> 对象包含如下属性：</p>
+                    <ul>
+                      <li><code>filesSelected</code> 文件选择对话框中共选择了多少个文件</li>
+                      <li><code>filesQueued</code> 已经向队列中添加了多少个文件</li>
+                      <li><code>filesReplaced</code> 已经向队列中替换了多少个文件</li>
+                      <li><code>filesCancelled</code> 取消了多少个文件 <code>filesErrored</code> 出错了多少个文件</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>onDialogOpen()</code></td>
+                  <td>当文件选择对话框弹出时立即出发，但可能在文件选择对话框被关闭之前并不能全部执行。</td>
+                </tr>
+                <tr>
+                  <td><code>onDisable()</code></td>
+                  <td>当 <code>disable</code> 方法禁用 <code>Uploadify</code> 上传按钮时被调用时触发。</td>
+                </tr>
+                <tr>
+                  <td><code>onEnable()</code></td>
+                  <td>当 <code>disable</code> 方法启用 <code>Uploadify</code> 上传按钮时被调用时触发。</td>
+                </tr>
+                <tr>
+                  <td><code>onFallback()</code></td>
+                  <td>当 <code>Uploadify</code> 初始化过程中检测到当前浏览器不支持flash时触发。</td>
+                </tr>
+                <tr>
+                  <td><code>onInit()</code></td>
+                  <td>首次初始化 <code>Uploadify</code> 结束时触发。</td>
+                </tr>
+                <tr>
+                  <td><code>onQueueComplete(queueData)</code></td>
+                  <td>
+                    <p>文件上传队列处理完毕后触发。</p>
+                    <p><code>queueData</code> 对象包含如下属性：</p>
+                    <ul>
+                      <li><code>uploadsSuccessful</code> – 上传成功的文件数量</li>
+                      <li><code>uploadsErrored</code> – 上传失败的文件数量</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>onSelect(file)</code></td>
+                  <td>
+                    <p>选择文件后向队列中添加每个上传任务时都会触发。</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>onSelectError(file, errorCode, errorMsg)</code></td>
+                  <td>
+                    <p>选择文件后向队列中添加每个上传任务时如果失败都会触发。</p>
+                    <p><code>file</code> – 文件对象</p>
+                    <p><code>errorCode</code> – 错误代码如下：</p>
+                    <ul>
+                      <li><code>QUEUE_LIMIT_EXCEEDED</code> – 任务数量超出队列限制；</li>
+                      <li><code>FILE_EXCEEDS_SIZE_LIMIT</code> – 文件大小超出限制；</li>
+                      <li><code>ZERO_BYTE_FILE</code> – 文件大小为0</li>
+                      <li><code>INVALID_FILETYPE</code> – 文件类型不符合要求</li>
+                    </ul>
+                    <p><code>errorMsg</code> – 错误提示，可通过 <code>'this.queueData.errorMsg'</code> 定制</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>onSWFReady()</code></td>
+                  <td><code>Flash</code> 文件载入成功后触发。</td>
+                </tr>
+                <tr>
+                  <td><code>onUploadComplete(file)</code></td>
+                  <td>每个文件上传完毕后无论成功与否都会触发。</td>
+                </tr>
+                <tr>
+                  <td><code>onUploadError(file, errorCode, errorMsg, errorString)</code></td>
+                  <td>文件上传出错时触发，参数由服务端程序返回。</td>
+                </tr>
+                <tr>
+                  <td><code>onUploadProgress(file, bytesUploaded, bytesTotal, totalBytesUploaded, totalBytesTotal)</code></td>
+                  <td>
+                    <p>处理上传队列的过程中会多次触发此事件，每当任务状态有更新时都会触发。</p>
+                    <ul>
+                      <li><code>file</code> – 文件对象</li>
+                      <li><code>bytesUploaded</code> – 已上传的字节数</li>
+                      <li><code>bytesTotal</code> – 文件总字节数</li>
+                      <li><code>totalBytesUploaded</code> – 当前任务队列中全部文件已上传的总字节数</li>
+                      <li><code>totalBytesTotal</code> – 当前任务队列中全部文件的总字节数</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>onUploadStart(file)</code></td>
+                  <td>当文件即将开始上传时立即触发</td>
+                </tr>
+                <tr>
+                  <td><code>onUploadSuccess(file, data, response)</code></td>
+                  <td>
+                    <p>当文件上传成功时触发</p>
+                    <ul>
+                      <li><code>file</code> – 文件对象</li>
+                      <li><code>data</code> – 服务端输出返回的信息</li>
+                      <li><code>response</code> – 有输出时为 <code>true</code>,如果无响应为 <code>false</code>，如果返回的是 <code>false</code>，当超过 <code>successTimeout</code>设置的时间后假定为 <code>true</code></li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p class="mt-3"><strong>三、方法</strong></p>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr align="center">
+                  <th>方法名称</th>
+                  <th>说明</th>
+                  <th>应用举例</th>
+                </tr>
+                <tr>
+                  <td><code>cancel(fileID, suppressEvent)</code></td>
+                  <td>
+                    <p>取消队列中的任务，不管此任务是否已经开始上传</p>
+                    <ul>
+                      <li><code>fileID</code> – 要取消的文件 <code>ID</code>，如果为空则取消队列中第一个任务，如果为 <code>'*'</code> 则取消所有任务</li>
+                      <li><code>suppressEvent</code> – 是否阻止触发 <code>onUploadCancel</code> 事件，当清空队列时非常实用。</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('cancel')"&gt;取消第一个&lt;/a&gt;</code></p>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('cancel', '*')"&gt;清空队列&lt;/a&gt;</code></p>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('upload', '*')"&gt;开始上传所有任务&lt;/a&gt;</code></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>destroy()</code></td>
+                  <td>销毁 <code>Uploadify</code> 实例并将文件上传按钮恢复到原始状态</td>
+                  <td><code>&lt;a href="javascript:$('#file_upload').uploadify('destroy')"&gt;销毁Uploadify实例&lt;/a&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><code>disable(setDisabled)</code></td>
+                  <td>
+                    <p>禁用或启用文件浏览按钮</p>
+                    <p><code>setDisabled</code> – 设置为 <code>true</code> 表示禁用，<code>false</code> 为启用</p>
+                  </td>
+                  <td>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('disable', true)"&gt;禁用按钮&lt;/a&gt;</code></p>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('disable', false)"&gt;启用按钮&lt;/a&gt;</code></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>settings(name, value, resetObjects)</code></td>
+                  <td>
+                    <p>获取或设置 <code>Uploadify</code> 实例参数</p>
+                    <ul>
+                      <li><code>name</code> – 属性名称，如果只提供属性名称则表示获取其值</li>
+                      <li><code>value</code> – 属性值</li>
+                      <li><code>resetObjects</code> – 设置为 <code>true</code> 时，更新 <code>postData</code> 对象将清空现有的值。否则，新的值将被添加到其末尾。</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <p><code>$('#file_upload').uploadify('settings','buttonText','BROWSE');</code></p>
+                    <p><code>$('#file_upload').uploadify('settings','buttonText'));</code></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>stop()</code></td>
+                  <td>停止当前正在上传的任务</td>
+                  <td>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('upload', '*')"&gt;开始上传&lt;/a&gt;</code></p>
+                    <p><code>&lt;a href="javascript:$('#file_upload').uploadify('stop')"&gt;停止上传&lt;/a&gt;</code></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>upload(fileID)</code></td>
+                  <td>立即上传指定的文件，如果 <code>fileID</code> 为 <code>'*'</code> 表示上传所有文件，要指定上传多个文件，则将每个文件的 <code>fileID</code> 作为一个参数</td>
+                  <td><code>&lt;a href="javascript:$('#file_upload').uploadify('upload','*')"&gt;开始上传&lt;/a&gt;</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<!--消息提示插件-->
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap-notify.min.js"></script>
+<!--对话框插件-->
+<script type="text/javascript" src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--图片查看插件-->
+<script type="text/javascript" src="js/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!--上传插件-->
+<script type="text/javascript" src="js/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/lyear-loading.js"></script>
+<script type="text/javascript">
+// 删除图片
+function delpic(idstr){
+    $.confirm({
+        title: '消息提示',
+        content: '您是否确定要删除该图片',
+        buttons: {
+            confirm: {
+                text: '确认',
+                action: function(){
+                    $("#li_"+idstr).remove();
+                }
+            },
+            cancel: {
+                text: '关闭'
+            }
+        }
+    });
+}
+$(document).ready(function() {
+    $(".uploadify-file").each(function() {
+        var $this = $(this);
+        var $loading;
+        $this.uploadify({
+            //"buttonImage" : "js/uploadify/shangchuan.png", // 按钮也可直接使用图片，插件文件夹中的按钮高38px，v4的按钮高度为36px，这里用的话要注意下
+            "buttonClass" : "btn btn-default",
+            "buttonText" : "上 传",
+            "fileTypeDesc" : "Image Files",
+            "fileTypeExts" : "*.gif; *.jpg; *.png; *.jpeg",
+            "multi" : $this.data('multi') ? true : false,
+            "width" : "70",
+            "height" : "36",
+            "queueID" : $this.data('queue'),
+            "swf" : "js/uploadify/uploadify.swf?"+Math.random(),
+            "uploader" : "uploadify.php",
+            "formData" : {key:123456,key2:'vvvv'},
+            "fileObjName" : 'file',
+            "onUploadSuccess" : function(file, data, response){
+                if (data) {
+        			data = eval('(' + data + ')');
+                    if (data['status'] == 200) {
+                        if ($this.data('multi')) {
+                            // 多图上传
+                            var htmlstr = '<li id="li_'+data['filename']+'" class="list-inline-item col-sm-4 col-md-3 col-lg-2 col-6">' +
+                                '  <figure>' +
+                                '    <img src="'+data['url']+'" alt="'+data['filename']+'" />' +
+                                '    <figcaption>' +
+                                '      <a class="btn btn-round btn-square btn-primary btn-show" href="'+data['url']+'" title="查看"><i class="mdi mdi-eye"></i></a>' +
+                                '      <a class="btn btn-round btn-square btn-danger" href="#!" title="删除"   onclick="javascript:delpic(\''+data['filename']+'\');"><i class="mdi mdi-delete"></i></a>' +
+                                '    </figcaption>' +
+                                '  </figure>' +
+                                '  <input type="hidden" name="morepic_pic['+data['filename']+']" value="'+data['url']+'"/>' +
+                                '</li>';
+        			        $('#'+$this.data('name')).find('.lyear-uploads-pic').append(htmlstr);
+                            // 接入图片查看插件
+                            $('#'+$this.data('name')).magnificPopup({
+                                delegate: 'a.btn-show',
+                                type: 'image',
+                                gallery: {
+                                    enabled: true
+                                }
+                            });
+                        } else {
+                            // 单图上传
+                            $('input[name="'+ $this.data('name') +'"]').attr("value", data['url']);
+                        }
+                    } else {
+                        jQuery.notify({
+                            icon: '',
+                            message: data['msg']
+                        },
+                        {
+                            element: 'body',
+                            type: 'danger',
+                            allow_dismiss: true,
+                            newest_on_top: true,
+                            showProgressbar: false,
+                            placement: {
+                                from: 'top',
+                                align: 'center'
+                            },
+                            offset: 20,
+                            spacing: 10,
+                            z_index: 10800,
+                            delay: 100,
+                            animate: {
+                                enter: 'animated shake',
+                                exit: 'animated fadeOutDown'
+                            }
+                        });
+                    }
+        		} else {
+                    jQuery.notify({
+                        icon: '',
+                        message: '服务器错误，请稍后再试~'
+                    },
+                    {
+                        element: 'body',
+                        type: 'danger',
+                        allow_dismiss: true,
+                        newest_on_top: true,
+                        showProgressbar: false,
+                        placement: {
+                            from: 'top',
+                            align: 'center'
+                        },
+                        offset: 20,
+                        spacing: 10,
+                        z_index: 10800,
+                        delay: 100,
+                        animate: {
+                            enter: 'animated shake',
+                            exit: 'animated fadeOutDown'
+                        }
+                    });
+        		}
+            },
+            "onQueueComplete" : function(file){
+                this.queueData.queueBytesUploaded = 0;
+                $loading.destroy();
+            },
+            "onUploadStart" : function(file){
+                $loading = $('body').lyearloading({
+                    opacity: 0.2,
+                    spinnerSize: 'nm'
+                });
+            },
+        });
+    });
+});
+</script>
+</body>
+</html>

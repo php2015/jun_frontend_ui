@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>bootstrap-lyear-select - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+.lyear-select {
+    position: relative;
+}
+.lyear-select .form-control {
+    background-color: #fff!important;
+    cursor: pointer;
+}
+.lyear-select .dropdown-menu {
+    min-width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.lyear-select .dropdown-menu a {
+    cursor: pointer;
+}
+.lyear-select .dropdown-menu li.selected a,
+.lyear-select .dropdown-menu li.selected:hover a {
+    background-color: #33cabb;
+    color: #fff;
+}
+.lyear-select .form-control {
+    padding-right: 30px;
+}
+.lyear-select i.mdi {
+    font-size: 20px;
+    position: absolute;
+    top: 3px;
+    right: 5px;
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">select插件 bootstrap-lyear-select</div></div>
+        <div class="card-body">
+          
+          <p>该插件是基于bootstrap的一个简单的select下拉框插件，只支持单个选项(不支持多选项和分组)、搜素。使用时，记得引入页面style内的样式。</p>
+          <p>之所以做这个插件，只是为了配合后面的联动插件一起使用，当然你也可以不用管，直接用原生的。</p>
+          <h6>简单使用</h6>
+          <div class="form-group">
+            <select name="example-1" class="exampleSelect">
+              <option value=""></option>
+              <option value="1">最新的</option>
+              <option value="2">未审核</option>
+              <option value="3">未通过</option>
+              <option value="4">正在审核</option>
+              <option value="5">已审核</option>
+              <option value="6">已通过</option>
+            </select>
+          </div>
+          <h6>默认有禁用值和选中值</h6>
+          <div class="form-group">
+            <select name="example-2" class="exampleSelect">
+              <option value=""></option>
+              <option value="1" disabled>最新的</option>
+              <option value="2">未审核</option>
+              <option value="3">未通过</option>
+              <option value="4" selected>正在审核</option>
+              <option value="5">已审核</option>
+              <option value="6">已通过</option>
+            </select>
+          </div>
+          <h6>可搜索的</h6>
+          <div class="form-group">
+            <select name="example-3" class="exampleSelect" data-search="true">
+              <option value=""></option>
+              <option value="1">最新的</option>
+              <option value="2">未审核</option>
+              <option value="3">未通过</option>
+              <option value="4">正在审核</option>
+              <option value="5">已审核</option>
+              <option value="6">已通过</option>
+            </select>
+          </div>
+          <h6>设置宽度</h6>
+          <div class="form-group">
+            <p>200px宽度</p>
+            <select name="example-4" class="exampleSelect" data-width="200px">
+              <option value=""></option>
+              <option value="1">最新的</option>
+              <option value="2">未审核</option>
+              <option value="3">未通过</option>
+              <option value="4">正在审核</option>
+              <option value="5">已审核</option>
+              <option value="6">已通过</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <p>50%宽度</p>
+            <select name="example-5" class="exampleSelect" data-width="50%">
+              <option value=""></option>
+              <option value="1">最新的</option>
+              <option value="2">未审核</option>
+              <option value="3">未通过</option>
+              <option value="4">正在审核</option>
+              <option value="5">已审核</option>
+              <option value="6">已通过</option>
+            </select>
+          </div>
+          <h6>布局宽度</h6>
+          <div class="row">
+            <div class="col-3">
+              <div class="form-group">
+                <select class="form-control exampleSelect" name="example-6">
+                  <option>及时雨宋江</option>
+                  <option>玉麒麟卢俊义</option>
+                  <option>智多星吴用</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-9">
+              <div class="form-group">
+                <select class="form-control exampleSelect" name="example-7">
+                  <option>入云龙公孙胜</option>
+                  <option>大刀关胜</option>
+                  <option>豹子头林冲</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                <select class="form-control exampleSelect" name="example-8">
+                  <option>霹雳火秦明</option>
+                  <option>双鞭呼延灼</option>
+                  <option>小李广花荣</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-8">
+              <div class="form-group">
+                <select class="form-control exampleSelect" name="example-9">
+                  <option>小旋风柴进</option>
+                  <option>扑天雕李应</option>
+                  <option>美髯公朱仝</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="form-group">
+                <select class="form-control exampleSelect" name="example-10">
+                  <option>花和尚鲁智深</option>
+                  <option>行者武松</option>
+                  <option>双枪将董平</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group">
+                <select class="form-control exampleSelect" name="example-11">
+                  <option>没羽箭张清</option>
+                  <option>青面兽杨志</option>
+                  <option>急先锋索超</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <pre>$('.simpleSelect').each(function() {
+    var $this = $(this);
+    $this.lyearSelect({
+        width: $this.data('width') ? $this.data('width') : '',                          // 宽度width，示例：75px、50%
+        placeholder: $this.data('placeholder') ? $this.data('placeholder') : '请选择',   // 空值项提示语，默认：请选择
+        search: $this.data('search') ? $this.data('search') : false,                    // 是否允许搜索
+    });
+});</pre>
+          <div class="form-group">
+            <button class="btn btn-default get-btn">获取值</button>
+            <pre class="selected-box m-t-10"></pre>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/popper.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-lyear-select.min.js"></script>
+<script type="text/javascript">
+$('.exampleSelect').each(function() {
+    var $this = $(this);
+    $this.lyearSelect({
+        width: $this.data('width') ? $this.data('width') : '', // width示例：75px、50%
+        placeholder: $this.data('placeholder') ? $this.data('placeholder') : '请选择',
+        search: $this.data('search') ? $this.data('search') : false,
+    });
+});
+$('.get-btn').click(function() {
+    $('.exampleSelect').each(function() {
+        $('.selected-box').append('当前选中值：' + $(this).val() + '，select[name="' + $(this).attr('name') + '"]显示：' + $(this).find(':selected').text() + '\n');
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>树状插件treeview - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="js/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">树状插件bootstrap treeview</div></div>
+        <div class="card-body">
+          
+          <p>插件使用bootstrap-treeview 1.2，github地址：<a href="https://github.com/jonmiles/bootstrap-treeview" target="_blank">https://github.com/jonmiles/bootstrap-treeview</a></p>
+          <div class="row">
+            <div class="col-sm-4">
+              <h6>默认</h6>
+              <div id="treeview-1" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>折叠的</h6>
+              <div id="treeview-2" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>展开的</h6>
+              <div id="treeview-3" class=""></div>
+            </div>
+          </div>
+          
+          <div class="row m-t-10">
+            <div class="col-sm-4">
+              <h6>蓝色主题</h6>
+              <div id="treeview-4" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>自定义图标</h6>
+              <div id="treeview-5" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>标记为徽章</h6>
+              <div id="treeview-6" class=""></div>
+            </div>
+          </div>
+          
+          <div class="row m-t-10">
+            <div class="col-sm-4">
+              <h6>无边框的</h6>
+              <div id="treeview-7" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>颜色鲜艳的</h6>
+              <div id="treeview-8" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>节点覆盖</h6>
+              <div id="treeview-9" class=""></div>
+            </div>
+          </div>
+          
+          <div class="row m-t-10">
+            <div class="col-sm-4">
+              <h6>链接已启用</h6>
+              <div id="treeview-10" class=""></div>
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+          </div>
+          
+          <div class="row m-t-10">
+            <hr>
+            <div class="col-sm-12"><h5>可搜索树</h5></div>
+            <div class="col-sm-4">
+              <h6>输入框</h6>
+              <div class="form-group">
+                <label for="input-search" class="sr-only">搜索树:</label>
+                <input type="input" class="form-control" id="input-search" placeholder="输入要搜索的关键词..." value="">
+              </div>
+              <div class="form-controls mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-ignore-case" value="false">
+                  <label class="custom-control-label" for="chk-ignore-case">忽略大小写</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-exact-match" value="false">
+                  <label class="custom-control-label" for="chk-exact-match">完全匹配</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-reveal-results" value="false">
+                  <label class="custom-control-label" for="chk-reveal-results">显示结果</label>
+                </div>
+              </div>
+              <button type="button" class="btn btn-success" id="btn-search">搜索</button>
+              <button type="button" class="btn btn-default" id="btn-clear-search">清除</button>
+            </div>
+            <div class="col-sm-4">
+              <h6>树</h6>
+              <div id="treeview-searchable" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>结果</h6>
+              <div id="search-output"></div>
+            </div>
+          </div>
+          
+          <div class="row m-t-10">
+            <hr>
+            <div class="col-sm-12"><h5>可选择树</h5></div>
+            <div class="col-sm-4">
+              <h6>输入框</h6>
+              <div class="form-group">
+                <label for="input-select-node" class="sr-only">搜索树:</label>
+                <input type="input" class="form-control" id="input-select-node" placeholder="输入要搜索的关键词..." value="一级分类 1">
+              </div>
+              <div class="form-controls mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-select-multi" value="false">
+                  <label class="custom-control-label" for="chk-select-multi">多选</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-select-silent" value="false">
+                  <label class="custom-control-label" for="chk-select-silent">沉默（无事件）</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-success select-node" id="btn-select-node">选择节点</button>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-danger select-node" id="btn-unselect-node">取消选择节点</button>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary select-node" id="btn-toggle-selected">切换节点</button>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <h6>树</h6>
+              <div id="treeview-selectable" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>事件</h6>
+              <div id="selectable-output" style="height: 300px; overflow-y: auto;"></div>
+            </div>
+          </div>
+          
+          <div class="row m-t-10">
+            <hr>
+            <div class="col-sm-12"><h5>可展开树</h5></div>
+            <div class="col-sm-4">
+              <h6>输入框</h6>
+              <div class="form-group">
+                <label for="input-expand-node" class="sr-only">搜索树:</label>
+                <input type="input" class="form-control" id="input-expand-node" placeholder="输入要搜索的关键词..." value="一级分类 1">
+              </div>
+              <div class="form-controls mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-expand-silent" value="false">
+                  <label class="custom-control-label" for="chk-expand-silent">静默（无事件）</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success expand-node" id="btn-expand-node">展开节点</button>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-control" id="select-expand-node-levels">
+                    <option>1</option>
+                    <option>2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-danger expand-node" id="btn-collapse-node">折叠节点</button>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary expand-node" id="btn-toggle-expanded">切换节点</button>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success" id="btn-expand-all">全部展开</button>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-control" id="select-expand-all-levels">
+                    <option>1</option>
+                    <option>2</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-danger" id="btn-collapse-all">全部折叠</button>
+            </div>
+            <div class="col-sm-4">
+              <h6>树</h6>
+              <div id="treeview-expandible" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>事件</h6>
+              <div id="expandible-output" style="height: 300px; overflow-y: auto;"></div>
+            </div>
+          </div>
+          <div class="row m-t-10">
+            <hr>
+            <div class="col-sm-12"><h5>可检查树</h5></div>
+            <div class="col-sm-4">
+              <h6>输入框</h6>
+              <div class="form-group">
+                <label for="input-check-node" class="sr-only">搜索树:</label>
+                <input type="input" class="form-control" id="input-check-node" placeholder="输入要搜索的关键词..." value="一级分类 1">
+              </div>
+              <div class="form-controls mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-check-silent" value="false">
+                  <label class="custom-control-label" for="chk-check-silent">静默（无事件）</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success check-node" id="btn-check-node">检查节点</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-danger check-node" id="btn-uncheck-node">取消选中节点</button>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary check-node" id="btn-toggle-checked">切换节点</button>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success" id="btn-check-all">全部检查</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-danger" id="btn-uncheck-all">全部取消选中</button>
+            </div>
+            <div class="col-sm-4">
+              <h6>树</h6>
+              <div id="treeview-checkable" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>事件</h6>
+              <div id="checkable-output" style="height: 300px; overflow-y: auto;"></div>
+            </div>
+          </div>
+          <div class="row m-t-10">
+            <hr>
+            <div class="col-sm-12"><h5>禁用树</h5></div>
+            <div class="col-sm-4">
+              <h6>输入框</h6>
+              <div class="form-group">
+                <label for="input-disable-node" class="sr-only">搜索树:</label>
+                <input type="input" class="form-control" id="input-disable-node" placeholder="输入要搜索的关键词..." value="一级分类 1">
+              </div>
+              <div class="form-controls mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chk-disable-silent" value="false">
+                  <label class="custom-control-label" for="chk-disable-silent">静默（无事件）</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success disable-node" id="btn-disable-node">禁用节点</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-danger disable-node" id="btn-enable-node">启用节点</button>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary disable-node" id="btn-toggle-disabled">切换节点</button>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success" id="btn-disable-all">全部禁用</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-danger" id="btn-enable-all">全部启用</button>
+            </div>
+            <div class="col-sm-4">
+              <h6>树</h6>
+              <div id="treeview-disabled" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6>事件</h6>
+              <div id="disabled-output" style="height: 300px; overflow-y: auto;"></div>
+            </div>
+          </div>
+          <div class="row m-t-10">
+            <hr>
+            <div class="col-sm-12"><h5>数据</h5></div>
+            <div class="col-sm-4">
+              <h6>JSON 数据</h6>
+              <div id="treeview-12" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6></h6>
+              <div id="treeview-13" class=""></div>
+            </div>
+            <div class="col-sm-4">
+              <h6></h6>
+              <div id="treeview-14"></div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    var defaultData = [
+      {
+        text: '一级分类 1',
+        href: '#parent1',
+        tags: ['4'],
+        nodes: [
+          {
+            text: '二级分类 1',
+            href: '#child1',
+            tags: ['2'],
+            nodes: [
+              {
+                text: '三级分类 1',
+                href: '#grandchild1',
+                tags: ['0']
+              },
+              {
+                text: '三级分类 2',
+                href: '#grandchild2',
+                tags: ['0']
+              }
+            ]
+          },
+          {
+            text: '二级分类 2',
+            href: '#child2',
+            tags: ['0']
+          }
+        ]
+      },
+      {
+        text: '一级分类 2',
+        href: '#parent2',
+        tags: ['0']
+      },
+      {
+        text: '一级分类 3',
+        href: '#parent3',
+         tags: ['0']
+      },
+      {
+        text: '一级分类 4',
+        href: '#parent4',
+        tags: ['0']
+      },
+      {
+        text: '一级分类 5',
+        href: '#parent5'  ,
+        tags: ['0']
+      }
+    ];
+    
+    var alternateData = [
+      {
+        text: '一级分类 1',
+        tags: ['2'],
+        nodes: [
+          {
+            text: '二级分类 1',
+            tags: ['3'],
+            nodes: [
+              {
+                text: '三级分类 1',
+                tags: ['6']
+              },
+              {
+                text: '三级分类 2',
+                tags: ['3']
+              }
+            ]
+          },
+          {
+            text: '二级分类 2',
+            tags: ['3']
+          }
+        ]
+      },
+      {
+        text: '一级分类 2',
+        tags: ['7']
+      },
+      {
+        text: '一级分类 3',
+        icon: 'mdi mdi-phone',
+        href: '#demo',
+        tags: ['11']
+      },
+      {
+        text: '一级分类 4',
+        icon: 'mdi mdi-cloud-download',
+        href: '/demo.html',
+        tags: ['19'],
+        selected: true
+      },
+      {
+        text: '一级分类 5',
+        icon: 'mdi mdi-certificate',
+        color: '#FFF',
+        backColor: '#f96868',
+        href: 'http://www.tesco.com',
+        tags: ['available','0']
+      }
+    ];
+    
+    var json = '[' +
+      '{' +
+        '"text": "一级分类 1",' +
+        '"nodes": [' +
+          '{' +
+            '"text": "二级分类 1",' +
+            '"nodes": [' +
+              '{' +
+                '"text": "三级分类 1"' +
+              '},' +
+              '{' +
+                '"text": "三级分类 2"' +
+              '}' +
+            ']' +
+          '},' +
+          '{' +
+            '"text": "二级分类 2"' +
+          '}' +
+        ']' +
+      '},' +
+      '{' +
+        '"text": "一级分类 2"' +
+      '},' +
+      '{' +
+        '"text": "一级分类 3"' +
+      '},' +
+      '{' +
+        '"text": "一级分类 4"' +
+      '},' +
+      '{' +
+        '"text": "一级分类 5"' +
+      '}' +
+    ']';
+
+
+    $('#treeview-1').treeview({
+        data: defaultData
+    });
+    
+    $('#treeview-2').treeview({
+        levels: 1,
+        data: defaultData
+    });
+    
+    $('#treeview-3').treeview({
+        levels: 99,
+        data: defaultData
+    });
+    
+    $('#treeview-4').treeview({
+        color: "#48b0f7",
+        data: defaultData
+    });
+
+    $('#treeview-5').treeview({
+        color: "#48b0f7",
+        expandIcon: 'mdi mdi-chevron-right',
+        collapseIcon: 'mdi mdi-chevron-down',
+        nodeIcon: 'mdi mdi-bookmark',
+        data: defaultData
+    });
+    
+    $('#treeview-6').treeview({
+        color: "#48b0f7",
+        expandIcon: "mdi mdi-square",
+        collapseIcon: "mdi mdi-square-outline",
+        nodeIcon: "mdi mdi-account",
+        showTags: true,
+        data: defaultData
+    });
+    
+    $('#treeview-7').treeview({
+        color: "#48b0f7",
+        showBorder: false,
+        data: defaultData
+    });
+    
+    $('#treeview-8').treeview({
+        expandIcon: "mdi mdi-square",
+        collapseIcon: "mdi mdi-square-outline",
+        nodeIcon: "mdi mdi-account",
+        color: "#4d5259",
+        backColor: "#faa64b",
+        onhoverColor: "#fbb264",
+        borderColor: "#faa64b",
+        showBorder: false,
+        showTags: true,
+        highlightSelected: true,
+        selectedColor: "#fff",
+        selectedBackColor: "#fbb264",
+        data: defaultData
+    });
+
+    $('#treeview-9').treeview({
+        expandIcon: "mdi mdi-square",
+        collapseIcon: "mdi mdi-square-outline",
+        nodeIcon: "mdi mdi-account",
+        color: "#4d5259",
+        backColor: "#33cabb",
+        onhoverColor: "#52d3c7",
+        borderColor: "#33cabb",
+        showBorder: false,
+        showTags: true,
+        highlightSelected: true,
+        selectedColor: "#fff",
+        selectedBackColor: "#52d3c7",
+        data: alternateData
+    });
+    
+    $('#treeview-10').treeview({
+        color: "#48b0f7",
+        enableLinks: true,
+        data: defaultData
+    });
+
+    var $searchableTree = $('#treeview-searchable').treeview({
+        data: defaultData,
+    });
+    
+    var search = function(e) {
+        var pattern = $('#input-search').val();
+        var options = {
+            ignoreCase: $('#chk-ignore-case').is(':checked'),
+            exactMatch: $('#chk-exact-match').is(':checked'),
+            revealResults: $('#chk-reveal-results').is(':checked')
+        };
+        var results = $searchableTree.treeview('search', [ pattern, options ]);
+      
+        var output = '<p>' + results.length + ' matches found</p>';
+        $.each(results, function (index, result) {
+            output += '<p>- ' + result.text + '</p>';
+        });
+        $('#search-output').html(output);
+    }
+
+    $('#btn-search').on('click', search);
+    $('#input-search').on('keyup', search);
+    
+    $('#btn-clear-search').on('click', function (e) {
+        $searchableTree.treeview('clearSearch');
+        $('#input-search').val('');
+        $('#search-output').html('');
+    });
+
+
+    var initSelectableTree = function() {
+        return $('#treeview-selectable').treeview({
+            data: defaultData,
+            multiSelect: $('#chk-select-multi').is(':checked'),
+            onNodeSelected: function(event, node) {
+              $('#selectable-output').prepend('<p>' + node.text + ' was selected</p>');
+            },
+            onNodeUnselected: function (event, node) {
+              $('#selectable-output').prepend('<p>' + node.text + ' was unselected</p>');
+            }
+        });
+    };
+    var $selectableTree = initSelectableTree();
+
+    var findSelectableNodes = function() {
+        return $selectableTree.treeview('search', [ $('#input-select-node').val(), { ignoreCase: false, exactMatch: false } ]);
+    };
+    var selectableNodes = findSelectableNodes();
+    
+    $('#chk-select-multi:checkbox').on('change', function () {
+        console.log('multi-select change');
+        $selectableTree = initSelectableTree();
+        selectableNodes = findSelectableNodes();          
+    });
+    
+    // Select/unselect/toggle nodes
+    $('#input-select-node').on('keyup', function (e) {
+        selectableNodes = findSelectableNodes();
+        $('.select-node').prop('disabled', !(selectableNodes.length >= 1));
+    });
+    
+    $('#btn-select-node.select-node').on('click', function (e) {
+        $selectableTree.treeview('selectNode', [ selectableNodes, { silent: $('#chk-select-silent').is(':checked') }]);
+    });
+    
+    $('#btn-unselect-node.select-node').on('click', function (e) {
+        $selectableTree.treeview('unselectNode', [ selectableNodes, { silent: $('#chk-select-silent').is(':checked') }]);
+    });
+    
+    $('#btn-toggle-selected.select-node').on('click', function (e) {
+        $selectableTree.treeview('toggleNodeSelected', [ selectableNodes, { silent: $('#chk-select-silent').is(':checked') }]);
+    });
+
+
+
+    var $expandibleTree = $('#treeview-expandible').treeview({
+        data: defaultData,
+        onNodeCollapsed: function(event, node) {
+            $('#expandible-output').prepend('<p>' + node.text + ' was collapsed</p>');
+        },
+        onNodeExpanded: function (event, node) {
+            $('#expandible-output').prepend('<p>' + node.text + ' was expanded</p>');
+        }
+    });
+
+    var findExpandibleNodess = function() {
+        return $expandibleTree.treeview('search', [ $('#input-expand-node').val(), { ignoreCase: false, exactMatch: false } ]);
+    };
+    var expandibleNodes = findExpandibleNodess();
+    
+    // Expand/collapse/toggle nodes
+    $('#input-expand-node').on('keyup', function (e) {
+        expandibleNodes = findExpandibleNodess();
+        $('.expand-node').prop('disabled', !(expandibleNodes.length >= 1));
+    });
+    
+    $('#btn-expand-node.expand-node').on('click', function (e) {
+        var levels = $('#select-expand-node-levels').val();
+        $expandibleTree.treeview('expandNode', [ expandibleNodes, { levels: levels, silent: $('#chk-expand-silent').is(':checked') }]);
+    });
+    
+    $('#btn-collapse-node.expand-node').on('click', function (e) {
+        $expandibleTree.treeview('collapseNode', [ expandibleNodes, { silent: $('#chk-expand-silent').is(':checked') }]);
+    });
+    
+    $('#btn-toggle-expanded.expand-node').on('click', function (e) {
+        $expandibleTree.treeview('toggleNodeExpanded', [ expandibleNodes, { silent: $('#chk-expand-silent').is(':checked') }]);
+    });
+    
+    // Expand/collapse all
+    $('#btn-expand-all').on('click', function (e) {
+        var levels = $('#select-expand-all-levels').val();
+        $expandibleTree.treeview('expandAll', { levels: levels, silent: $('#chk-expand-silent').is(':checked') });
+    });
+    
+    $('#btn-collapse-all').on('click', function (e) {
+        $expandibleTree.treeview('collapseAll', { silent: $('#chk-expand-silent').is(':checked') });
+    });
+
+
+
+    var $checkableTree = $('#treeview-checkable').treeview({
+        data: defaultData,
+        showIcon: false,
+        showCheckbox: true,
+        onNodeChecked: function(event, node) {
+            $('#checkable-output').prepend('<p>' + node.text + ' was checked</p>');
+        },
+        onNodeUnchecked: function (event, node) {
+            $('#checkable-output').prepend('<p>' + node.text + ' was unchecked</p>');
+        }
+    });
+
+    var findCheckableNodess = function() {
+        return $checkableTree.treeview('search', [ $('#input-check-node').val(), { ignoreCase: false, exactMatch: false } ]);
+    };
+    var checkableNodes = findCheckableNodess();
+    
+    // Check/uncheck/toggle nodes
+    $('#input-check-node').on('keyup', function (e) {
+        checkableNodes = findCheckableNodess();
+        $('.check-node').prop('disabled', !(checkableNodes.length >= 1));
+    });
+    
+    $('#btn-check-node.check-node').on('click', function (e) {
+        $checkableTree.treeview('checkNode', [ checkableNodes, { silent: $('#chk-check-silent').is(':checked') }]);
+    });
+    
+    $('#btn-uncheck-node.check-node').on('click', function (e) {
+        $checkableTree.treeview('uncheckNode', [ checkableNodes, { silent: $('#chk-check-silent').is(':checked') }]);
+    });
+    
+    $('#btn-toggle-checked.check-node').on('click', function (e) {
+        $checkableTree.treeview('toggleNodeChecked', [ checkableNodes, { silent: $('#chk-check-silent').is(':checked') }]);
+    });
+    
+    // Check/uncheck all
+    $('#btn-check-all').on('click', function (e) {
+        $checkableTree.treeview('checkAll', { silent: $('#chk-check-silent').is(':checked') });
+    });
+    
+    $('#btn-uncheck-all').on('click', function (e) {
+        $checkableTree.treeview('uncheckAll', { silent: $('#chk-check-silent').is(':checked') });
+    });
+
+
+
+    var $disabledTree = $('#treeview-disabled').treeview({
+        data: defaultData,
+        onNodeDisabled: function(event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was disabled</p>');
+        },
+        onNodeEnabled: function (event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was enabled</p>');
+        },
+        onNodeCollapsed: function(event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was collapsed</p>');
+        },
+        onNodeUnchecked: function (event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was unchecked</p>');
+        },
+        onNodeUnselected: function (event, node) {
+            $('#disabled-output').prepend('<p>' + node.text + ' was unselected</p>');
+        }
+    });
+    
+    var findDisabledNodes = function() {
+        return $disabledTree.treeview('search', [ $('#input-disable-node').val(), { ignoreCase: false, exactMatch: false } ]);
+    };
+    var disabledNodes = findDisabledNodes();
+
+    // Expand/collapse/toggle nodes
+    $('#input-disable-node').on('keyup', function (e) {
+        disabledNodes = findDisabledNodes();
+        $('.disable-node').prop('disabled', !(disabledNodes.length >= 1));
+    });
+    
+    $('#btn-disable-node.disable-node').on('click', function (e) {
+        $disabledTree.treeview('disableNode', [ disabledNodes, { silent: $('#chk-disable-silent').is(':checked') }]);
+    });
+    
+    $('#btn-enable-node.disable-node').on('click', function (e) {
+        $disabledTree.treeview('enableNode', [ disabledNodes, { silent: $('#chk-disable-silent').is(':checked') }]);
+    });
+    
+    $('#btn-toggle-disabled.disable-node').on('click', function (e) {
+        $disabledTree.treeview('toggleNodeDisabled', [ disabledNodes, { silent: $('#chk-disable-silent').is(':checked') }]);
+    });
+    
+    // Expand/collapse all
+    $('#btn-disable-all').on('click', function (e) {
+        $disabledTree.treeview('disableAll', { silent: $('#chk-disable-silent').is(':checked') });
+    });
+    
+    $('#btn-enable-all').on('click', function (e) {
+        $disabledTree.treeview('enableAll', { silent: $('#chk-disable-silent').is(':checked') });
+    });
+
+    var $tree = $('#treeview-12').treeview({
+        data: json
+    });
+});
+</script>
+</body>
+</html>

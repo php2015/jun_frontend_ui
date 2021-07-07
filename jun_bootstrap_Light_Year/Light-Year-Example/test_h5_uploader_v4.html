@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>图片上传 - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/animate.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">图片上传</div></div>
+        <div class="card-body">
+          <p>这里采用FormData实现上传效果，示例为单张图片上传。</p>
+          <form action="#!" method="post" name="edit-form" class="edit-form">
+            <div class="form-group file-group">
+              <label for="web_site_logo">LOGO图片</label>
+              <div class="input-group">
+                <input type="text" class="form-control file-value" name="web_site_logo" value="" placeholder="LOGO图片地址" />
+                <input type="file" accaccept=".png,.jpg,.jpeg,.bmp,.gif" class="d-none" />
+                <div class="input-group-append">
+                  <button class="btn btn-default file-browser" type="button">上传图片</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/popper.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/lyear-loading.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/main.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(document).on('click', '.file-browser', function() {
+        var $browser = $(this);
+        var file = $browser.closest('.file-group').find('[type="file"]');
+        file.on( 'click', function(e) {
+            e.stopPropagation();
+        });
+        file.trigger('click');
+    });
+    
+    $(document).on('change', '.file-group [type="file"]', function() {
+        var $this    = $(this);
+        var $input   = $(this)[0];
+        var $len     = $input.files.length;
+        var formFile = new FormData();
+        
+        if ($len == 0) {
+            return false;
+        } else {
+            var fileAccaccept = $this.attr('accaccept');
+            var fileType      = $input.files[0].type;
+            var type          = (fileType.substr(fileType.lastIndexOf("/") + 1)).toLowerCase();
+            
+            if (!type || fileAccaccept.indexOf(type) == -1) {
+                jQuery.notify({
+                    icon: '',
+                    message: '您上传图片的类型不符合(.jpg|.jpeg|.gif|.png|.bmp)'
+                },
+                {
+                    element: 'body',
+                    type: 'danger',
+                    allow_dismiss: true,
+                    newest_on_top: true,
+                    showProgressbar: false,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    },
+                    offset: 20,
+                    spacing: 10,
+                    z_index: 10800,
+                    delay: 1000,
+                    animate: {
+                        enter: 'animated shake',
+                        exit: 'animated fadeOutDown'
+                    }
+                });
+                return false;
+            }
+            formFile.append("file", $input.files[0]);
+        }
+        
+        var data = formFile;
+        var l = $('body').lyearloading({
+            opacity: 0.2,
+            spinnerSize: 'nm'
+        });
+        
+        $.ajax({
+            url: 'upload.php',
+            data: data,
+            type: "POST",
+            dataType: "json",
+            //上传文件无需缓存
+            cache: false,
+            //用于对data参数进行序列化处理 这里必须false
+             processData: false,
+            //必须
+            contentType: false, 
+            success: function (res) {
+                l.destroy();
+                if (res.status === 1) {
+                    $this.closest('.file-group').find('.file-value').val(res.url);
+                } else {
+                    jQuery.notify({
+                        icon: '',
+                        message: res.info
+                    },
+                    {
+                        element: 'body',
+                        type: 'danger',
+                        allow_dismiss: true,
+                        newest_on_top: true,
+                        showProgressbar: false,
+                        placement: {
+                            from: 'top',
+                            align: 'center'
+                        },
+                        offset: 20,
+                        spacing: 10,
+                        z_index: 10800,
+                        delay: 3000,
+                        animate: {
+                            enter: 'animated shake',
+                            exit: 'animated fadeOutDown'
+                        }
+                    });
+                }
+            },
+        });
+    });
+});
+</script>
+</body>
+</html>

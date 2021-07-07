@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>侧边栏区域 - 光年(Light Year Admin V4)后台管理系统模板</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<meta name="keywords" content="LightYear,LightYearAdmin,光年,后台模板,后台管理系统,光年HTML模板">
+<meta name="description" content="Light Year Admin V4是一个基于Bootstrap v4.4.1的后台管理系统的HTML模板。">
+<meta name="author" content="yinqi">
+<link href="http://lyear.itshubao.com/iframe/v4/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/materialdesignicons.min.css" rel="stylesheet">
+<link href="http://lyear.itshubao.com/iframe/v4/css/style.min.css" rel="stylesheet">
+<style>
+.lyear-right-box {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    background-color: #fff;
+    width: 300px;
+    max-width: calc( 100% - 50px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -300px;
+    z-index: 999;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    will-change: transform;
+}
+.lyear-right-box.lyear-right-box-sm {
+	width: 220px;
+	right: -220px
+}
+.lyear-right-box.lyear-right-box-lg {
+	width: 420px;
+	right: -420px
+}
+.lyear-right-box.lyear-right-box-xl {
+	width: 640px;
+	right: -640px
+}
+.lyear-right-box.lyear-right-box-xxl {
+	width: 860px;
+	right: -860px
+}
+.lyear-right-box.lyear-right-box-open {
+	right: 0;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.08);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.08);
+}
+.lyear-right-box-header {
+    position: relative;
+	padding: 0 20px;
+	min-height: 68px !important;
+	border-bottom: 1px solid #ebebeb
+}
+.lyear-right-box-header .lyear-right-box-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+	margin-left: 16px;
+	font-size: 16px;
+    cursor: pointer;
+}
+.lyear-right-box-title {
+	letter-spacing: .5px;
+    line-height: 68px;
+}
+.lyear-right-box-body {
+    height: -moz-calc(100% - 127px);
+    height: -webkit-calc(100% - 127px);
+    height: calc(100% - 127px);
+    position: relative;
+}
+/*遮罩层*/
+.lyear-right-box-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 998;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.p-20 {
+    padding: 20px;
+}
+.lyear-right-box-footer {
+	padding: 10px 20px;
+	border-top: 1px solid #ebebeb
+}
+</style>
+</head>
+  
+<body>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><div class="card-title">侧边栏区域</div></div>
+        <div class="card-body">
+          
+          <p><code>lyear-right-box-sm</code>、<code>lyear-right-box-lg</code>、<code>lyear-right-box-xl </code>、<code>lyear-right-box-xxl </code> 四个宽度。</p>
+          <button type="button" class="btn btn-default" data-toggle="lyear-right-box" data-target="#my-box">打开右侧区域</button>
+          
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<div class="lyear-right-box lyear-right-box-xl" id="my-box">
+  <header class="lyear-right-box-header">
+    <div class="lyear-right-box-title">标题</div>
+    <span class="lyear-right-box-close"><i class="mdi mdi-close"></i></span>
+  </header>
+
+  <div class="lyear-right-box-body p-20">
+    <form action="#!" method="post" class="row">
+      <div class="form-group col-md-12">
+        <label for="type">栏目</label>
+        <div class="form-controls">
+          <select name="type" class="form-control" id="type">
+            <option value="1">小说</option>
+            <option value="2">古籍</option>
+            <option value="3">专辑</option>
+            <option value="4">自传</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="title">标题</label>
+        <input type="text" class="form-control" id="title" name="title" value="" placeholder="请输入标题">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="seo_keywords">关键词</label>
+        <input type="text" class="form-control" id="seo_keywords" name="seo_keywords" value="" placeholder="关键词">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="seo_description">描述</label>
+        <textarea class="form-control" id="seo_description" name="seo_description" rows="5" value="" placeholder="描述"></textarea>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="sort">排序</label>
+        <input type="text" class="form-control" id="sort" name="sort" value="0">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="status">状态</label>
+        <div class="form-controls">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" name="status" id="status1" value="0">
+            <label class="custom-control-label" for="status1">禁用</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" name="status" id="status2" value="1">
+            <label class="custom-control-label" for="status2">启用</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <footer class="lyear-right-box-footer">
+    <button type="submit" class="btn btn-primary" id="add-form" data-target="#my-box">添 加</button>
+  </footer>
+  
+</div>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://lyear.itshubao.com/iframe/v4/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    new PerfectScrollbar('.lyear-right-box-body', {
+		swipeEasing: false,
+		suppressScrollX: true
+	});
+    
+    $(document).on('click', '[data-toggle="lyear-right-box"]', function(e) {
+        e.preventDefault();
+        var target = $(this).data('target');
+
+        if (target == false) {
+            closeBox($(target).closest('.lyear-right-box'));
+        } else {
+            if ( $(target).hasClass('lyear-right-box-open') ) {
+                closeBox($(target).closest('.lyear-right-box'));
+            } else {
+                $(target).addClass('lyear-right-box-open').after('<div class="lyear-right-box-backdrop" data-target="'+ target +'"></div>');;
+            }
+        }
+    });
+    
+    $(document).on('click', '.lyear-right-box-backdrop', function(){
+        var target = $(this).data('target');
+      
+        closeBox($(target).closest('.lyear-right-box'));
+    });
+  
+    $(document).on('click', '.lyear-right-box-close', function(){
+        var boxObj = $(this).closest('.lyear-right-box');
+        
+        closeBox(boxObj);
+    });
+    
+    /**
+     * 关闭方法
+     * @param object e box对象
+     */
+    var closeBox = function(e) {
+        $(e).removeClass('lyear-right-box-open');
+        $('.lyear-right-box-backdrop').remove();
+    }
+    
+    $(document).on('click', '#add-form', function() {
+        // ajax后端交互，成功后关闭box
+        alert('添加成功');
+        var target = $(this).data('target');
+        closeBox($(target).closest('.lyear-right-box'));
+    });
+});
+</script>
+</body>
+</html>
