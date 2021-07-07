@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="false">
+
+	<diskStore path="java.io.tmpdir/mybatis/ssm" />
+
+	<!-- DefaultCache setting. -->
+	<defaultCache 
+		maxEntriesLocalHeap="10000" 
+		eternal="false"
+		timeToIdleSeconds="300" 
+		timeToLiveSeconds="600" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="100000" 
+		memoryStoreEvictionPolicy="LFU"/>
+		
+	<!-- security entity-->
+	<cache name="com.ssm.entity.User" 
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true" 
+		maxEntriesLocalDisk="10000" />	
+	<cache 
+		name="com.ssm.entity.UserRole"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />		
+	<cache 
+		name="com.ssm.entity.RolePermission"
+		maxEntriesLocalHeap="10000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="1000000" />
+	<cache 
+		name="com.ssm.entity.Role"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />
+	<cache 
+		name="com.ssm.entity.Permission"
+		maxEntriesLocalHeap="10000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="100000" />
+	<cache 
+		name="com.ssm.entity.OrganizationRole"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />
+	<cache 
+		name="com.ssm.entity.Organization"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />	
+	<cache 
+		name="com.ssm.entity.Module"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />
+	<cache 
+		name="com.ssm.entity.DataControl"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />	
+	<cache 
+		name="com.ssm.entity.RolePermissionDataControl"
+		maxEntriesLocalHeap="1000" 
+		eternal="false" 
+		overflowToDisk="true"
+		maxEntriesLocalDisk="10000" />																	
+</ehcache>

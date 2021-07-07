@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - ComboBox</title>
+
+    <link href="../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var c = $("#cc1").combobox({
+                method: "get",
+                url: "/api/ComboBoxDataSource",
+                keyHandler: $.extend({}, $.fn.combobox.defaults.keyHandler, {
+                    query: function (q, e) {
+                        var t = $(this),
+                            opts = t.combobox("options");
+                        opts.queryParams = opts.queryParams ? $.extend(opts.queryParams, { q: q }) : { q: q };
+                        t.combobox('reload');
+                    }
+                }),
+                onLoadSuccess: function () {
+                    var t = $(this),
+                        opts = t.combobox("options");
+                    if (opts.queryParams && opts.queryParams.q) {
+                        t.combobox("setText", opts.queryParams.q);
+                    } else {
+                        t.combobox("clear");
+                    }
+                }
+            });
+            c.combobox("textbox").focus(function () {
+                var panel = c.combobox("panel");
+                if (!panel.is(":visible")) {
+                    c.combobox("showPanel");
+                }
+            }).blur(function () {
+                var list = c.combobox("getData");
+                if (!list || !list.length) {
+                    c.combobox("setText", "").combobox("setValue", "");
+                    return;
+                }
+                var value = c.combobox("getValue"),
+                    text = c.combobox("getText"),
+                    i = 0;
+                $.each(list, function () {
+                    if (this.value == value || this.text == text) {
+                        i++
+                    }
+                });
+                if (!i) {
+                    c.combobox("setText", "").combobox("setValue", "");
+                }
+            });
+
+        });
+    </script>
+</head>
+<body style="padding: 20px;">
+    <input id="cc1" class="easyui-combobox" />
+</body>
+</html>

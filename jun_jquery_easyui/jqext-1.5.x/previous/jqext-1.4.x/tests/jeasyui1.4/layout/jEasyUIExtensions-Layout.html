@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - Layout</title>
+
+    <link href="../../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.window.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.dialog.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.layout.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var t = $("#cc");
+
+            $("#btn01").click(function () {
+                var panels = t.layout("panels");
+                $.easyui.showOption(panels);
+            });
+
+            $("#btn02").click(function () {
+                var panels = t.layout("panels", true);
+                $.easyui.showOption(panels);
+            });
+
+            $("#btn03").click(function () {
+                var panels = t.layout("panels", false);
+                $.easyui.showOption(panels);
+            });
+
+
+            $("#btn11").click(function () { t.layout("collapseAll"); });
+
+
+            $("#btn21").click(function () { t.layout("expandAll"); });
+
+
+            $("#btn31").click(function () { t.layout("toggle", "north"); });
+            $("#btn32").click(function () { t.layout("toggle", "west"); });
+            $("#btn33").click(function () { t.layout("toggle", "center"); });
+            $("#btn34").click(function () { t.layout("toggle", "east"); });
+            $("#btn35").click(function () { t.layout("toggle", "south"); });
+
+
+            $("#btn41").click(function () { t.layout("toggleAll"); });
+            $("#btn42").click(function () { t.layout("toggleAll", "collapse"); });
+            $("#btn43").click(function () { t.layout("toggleAll", "expand"); });
+            $("#btn44").click(function () { t.layout("toggleAll", "toggle"); });
+
+        });
+    </script>
+</head>
+<body id="cc" class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <a id="btn01" class="easyui-linkbutton">panels</a>
+        <a id="btn02" class="easyui-linkbutton">panels-containsCenter-true</a>
+        <a id="btn03" class="easyui-linkbutton">panels-containsCenter-false</a>
+        <hr />
+        <a id="btn11" class="easyui-linkbutton">collapseAll</a>
+        <hr />
+        <a id="btn21" class="easyui-linkbutton">expandAll</a>
+        <hr />
+        <a id="btn31" class="easyui-linkbutton">toggle-north</a>
+        <a id="btn32" class="easyui-linkbutton">toggle-west</a>
+        <a id="btn33" class="easyui-linkbutton">toggle-center</a>
+        <a id="btn34" class="easyui-linkbutton">toggle-east</a>
+        <a id="btn35" class="easyui-linkbutton">toggle-south</a>
+        <hr />
+        <a id="btn41" class="easyui-linkbutton">toggleAll</a>
+        <a id="btn42" class="easyui-linkbutton">toggleAll-collapse</a>
+        <a id="btn43" class="easyui-linkbutton">toggleAll-expand</a>
+        <a id="btn44" class="easyui-linkbutton">toggleAll-toggle</a>
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+</body>
+</html>
+

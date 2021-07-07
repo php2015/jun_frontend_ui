@@ -1,0 +1,3 @@
+<div [@flyIn]="'active'" (window:resize)="setHeight($event)" [ngStyle]="style">
+  <md-editor (save)="save($event)"></md-editor>
+</div>

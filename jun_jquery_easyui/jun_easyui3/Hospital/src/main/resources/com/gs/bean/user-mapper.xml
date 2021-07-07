@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.UserDAO">
+
+    <resultMap id="userResultMap" type="user">
+        <id property="id" column="id" />
+        <result property="createdTime" column="created_time" />
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="userResultMap">
+        <![CDATA[
+        select * from t_user where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="user" resultMap="userResultMap">
+        <![CDATA[
+        select * from t_user where phone=#{phone} and pwd = #{pwd}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="userResultMap">
+        <![CDATA[
+        select * from t_user
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="userResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_user limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="userResultMap">
+        <![CDATA[
+        select * from t_user where 1 = 1
+        ]]>
+        <if test="user.name != null and user.name !=''">
+            and name like concat('%', #{user.name}, '%')
+        </if>
+        <if test="user.phone != null and user.phone !=''">
+            and phone like concat('%', #{user.phone}, '%')
+        </if>
+        order by created_time desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_user where 1 = 1
+        ]]>
+        <if test="user.name != null and user.name !=''">
+            and name like concat('%', #{user.name}, '%')
+        </if>
+        <if test="user.phone != null and user.phone !=''">
+            and phone like concat('%', #{user.phone}, '%')
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="user">
+        <![CDATA[
+        insert into t_user(name, pwd, phone, created_time) values(#{name}, #{pwd}, #{phone}, #{createdTime})
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="user">
+        <![CDATA[
+        update t_user set name = #{name}, phone = #{phone} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updatePassword" keyProperty="id" parameterType="user">
+        <![CDATA[
+        update t_user set pwd = #{pwd} where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

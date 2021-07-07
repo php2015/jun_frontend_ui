@@ -1,0 +1,7 @@
+package com.chensi.service;
+
+import com.chensi.model.Demo;
+
+public interface IDemoService extends ICommonService<Demo>{
+
+}

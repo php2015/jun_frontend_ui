@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - Tabs</title>
+
+    <link href="../../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.messager.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.window.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.dialog.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.tabs.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var t = $("#tt"),
+                i = 0;
+
+            $("#btn01").click(function () {
+                t.tabs("add", { title: "new added tab" + ++i, content: "new added tab " + i });
+            });
+
+            $("#btn02").click(function () {
+                t.tabs("add", {
+                    title: "new added tab" + ++i, closable: true, href: "jEasyUIExtensions-Tabs-SubPage.html", iniframe: true
+                });
+            });
+
+            $("#btn03").click(function () {
+                t.tabs("add", {
+                    title: "new added tab" + ++i, closable: true, href: "jEasyUIExtensions-Tabs-SubPage.html", iniframe: false
+                });
+            });
+
+            $("#btn04").click(function () {
+                t.tabs("add", {
+                    title: "new added tab" + ++i, closable: true, refreshable: false, href: "jEasyUIExtensions-Tabs-SubPage.html", iniframe: true
+                });
+            });
+
+
+            $("#btn11").click(function () {
+                t.tabs("insert", {
+                    options: { title: "new inserted tab" + ++i, content: "new added tab " + i },
+                    which: 0, point: "before"
+                });
+            });
+
+            $("#btn12").click(function () {
+                t.tabs("insert", {
+                    options: {
+                        title: "new inserted tab" + ++i, closable: true, href: "jEasyUIExtensions-Tabs-SubPage.html", iniframe: true
+                    },
+                    which: "Tab2", point: "before"
+                });
+            });
+
+            $("#btn13").click(function () {
+                t.tabs("insert", {
+                    options: {
+                        title: "new inserted tab" + ++i, closable: true, href: "jEasyUIExtensions-Tabs-SubPage.html", iniframe: false
+                    },
+                    which: "Tab3", point: "after"
+                });
+            });
+
+            $("#btn14").click(function () {
+                t.tabs("insert", {
+                    options: {
+                        title: "new inserted tab" + ++i, closable: true, refreshable: false, href: "jEasyUIExtensions-Tabs-SubPage.html", iniframe: true
+                    },
+                    which: t.tabs("getTab", 1), point: "before"
+                });
+            });
+
+
+            $("#btn21").click(function () { t.tabs("openTab", "Tab2"); });
+
+            $("#btn22").click(function () { t.tabs("newTab", "Tab1"); });
+
+            $("#btn23").click(function () { t.tabs("repeat", "Tab2"); });
+
+            $("#btn24").click(function () { t.tabs("refresh", "Tab2"); });
+
+            $("#btn25").click(function () { t.tabs("showOption", "Tab2"); });
+
+
+            $("#btn31").click(function () { $.easyui.showOption(t.tabs("isSelected", 1)); });
+
+            $("#btn32").click(function () { $.easyui.showOption(t.tabs("isClosable", 1)); });
+
+            $("#btn33").click(function () { $.easyui.showOption(t.tabs("getTabOption", 1)); });
+
+            $("#btn34").click(function () { $.easyui.showOption(t.tabs("getSelectedOption")); });
+
+            $("#btn35").click(function () { $.easyui.showOption(t.tabs("getSelectedIndex")); });
+
+            $("#btn36").click(function () { $.easyui.showOption(t.tabs("getSelectedTitle")); });
+
+
+            $("#btn41").click(function () { alert(t.tabs("leftTabs", 2).map(function (val) { return val.panel("options").title; }).join(",")); });
+
+            $("#btn42").click(function () { alert(t.tabs("rightTabs", 2).map(function (val) { return val.panel("options").title; }).join(",")); });
+
+            $("#btn43").click(function () { alert(t.tabs("otherTabs", 2).map(function (val) { return val.panel("options").title; }).join(",")); });
+
+
+            $("#btn51").click(function () { alert(t.tabs("closableTabs").map(function (val) { return val.panel("options").title; }).join(",")); });
+
+            $("#btn52").click(function () { alert(t.tabs("leftClosableTabs", 2).map(function (val) { return val.panel("options").title; }).join(",")); });
+
+            $("#btn53").click(function () { alert(t.tabs("rightClosableTabs", 2).map(function (val) { return val.panel("options").title; }).join(",")); });
+
+            $("#btn54").click(function () { alert(t.tabs("otherClosableTabs", 2).map(function (val) { return val.panel("options").title; }).join(",")); });
+
+
+            $("#btn61").click(function () { t.tabs("closeLeft", 2); });
+
+            $("#btn62").click(function () { t.tabs("closeRight", 2); });
+
+            $("#btn63").click(function () { t.tabs("closeOther", 2); });
+
+            $("#btn64").click(function () { t.tabs("closeAll"); });
+
+
+            $("#btn71").click(function () { t.tabs("closeClosable", 2); });
+
+            $("#btn72").click(function () { t.tabs("closeLeftClosable", 2); });
+
+            $("#btn73").click(function () { t.tabs("closeRightClosable", 2); });
+
+            $("#btn74").click(function () { t.tabs("closeOtherClosable", 2); });
+
+            $("#btn75").click(function () { t.tabs("closeAllClosable"); });
+
+
+            $("#btn81").click(function () { t.tabs("move", { source: 1, target: "Tab3", point: "after" }); });
+
+            $("#btn82").click(function () { t.tabs("move", { source: "Tab2", target: 3, point: "before" }); });
+
+            $("#btn83").click(function () { t.tabs("move", { source: t.tabs("getTab", 1), target: t.tabs("getTab", 4)[0], point: "after" }); });
+
+            $("#btn84").click(function () { t.tabs("move", { source: t.tabs("getTab", 1)[0], target: t.tabs("getTab", 3), point: "before" }); });
+
+
+            $("#btn91").click(function () { t.tabs("loading"); });
+
+            $("#btn92").click(function () { t.tabs("loaded"); });
+
+            $("#btn93").click(function () { t.tabs("setTitle", { which: 1, title: "asdfasdf" }); });
+
+            $("#btn94").click(function () { $(this).closeCurrentTab(); });
+
+            $("#btn95").click(function () { $(this).refreshCurrentTab(); });
+
+        });
+    </script>
+</head>
+<body id="cc" class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true">
+        <div id="tt" class="easyui-tabs" data-options="
+             tabPosition: 'top', headerWidth: 100, tabHeight: 30,
+             fit: true, border: false, lineheight: 2, dnd: true, showOption: true,
+             enableOpenTabMenu: true, enableNewTabMenu: false
+             ">
+            <div data-options="title: 'Tab1', closable: true, refreshable: true, repeatable: true" style="padding: 15px;">
+                Tab1 Content
+                <div>
+                    <hr />
+                    <a id="btn01" class="easyui-linkbutton">add-1</a>
+                    <a id="btn02" class="easyui-linkbutton">add-2</a>
+                    <a id="btn03" class="easyui-linkbutton">add-3</a>
+                    <a id="btn04" class="easyui-linkbutton">add-4</a>
+                    <hr />
+                    <a id="btn11" class="easyui-linkbutton">insert-1</a>
+                    <a id="btn12" class="easyui-linkbutton">insert-2</a>
+                    <a id="btn13" class="easyui-linkbutton">insert-3</a>
+                    <a id="btn14" class="easyui-linkbutton">insert-4</a>
+                    <hr />
+                    <a id="btn21" class="easyui-linkbutton">openTab</a>
+                    <a id="btn22" class="easyui-linkbutton">newTab</a>
+                    <a id="btn23" class="easyui-linkbutton">repeat</a>
+                    <a id="btn24" class="easyui-linkbutton">refresh</a>
+                    <a id="btn25" class="easyui-linkbutton">showOption</a>
+                    <hr />
+                    <a id="btn31" class="easyui-linkbutton">isSelected</a>
+                    <a id="btn32" class="easyui-linkbutton">isClosable</a>
+                    <a id="btn33" class="easyui-linkbutton">getTabOption</a>
+                    <a id="btn34" class="easyui-linkbutton">getSelectedOption</a>
+                    <a id="btn35" class="easyui-linkbutton">getSelectedIndex</a>
+                    <a id="btn36" class="easyui-linkbutton">getSelectedTitle</a>
+                    <hr />
+                    <a id="btn41" class="easyui-linkbutton">leftTabs</a>
+                    <a id="btn42" class="easyui-linkbutton">rightTabs</a>
+                    <a id="btn43" class="easyui-linkbutton">otherTabs</a>
+                    <hr />
+                    <a id="btn51" class="easyui-linkbutton">closableTabs</a>
+                    <a id="btn52" class="easyui-linkbutton">leftClosableTabs</a>
+                    <a id="btn53" class="easyui-linkbutton">rightClosableTabs</a>
+                    <a id="btn54" class="easyui-linkbutton">otherClosableTabs</a>
+                    <hr />
+                    <a id="btn61" class="easyui-linkbutton">closeLeft</a>
+                    <a id="btn62" class="easyui-linkbutton">closeRight</a>
+                    <a id="btn63" class="easyui-linkbutton">closeOther</a>
+                    <a id="btn64" class="easyui-linkbutton">closeAll</a>
+                    <hr />
+                    <a id="btn71" class="easyui-linkbutton">closeClosable</a>
+                    <a id="btn72" class="easyui-linkbutton">closeLeftClosable</a>
+                    <a id="btn73" class="easyui-linkbutton">closeRightClosable</a>
+                    <a id="btn74" class="easyui-linkbutton">closeOtherClosable</a>
+                    <a id="btn75" class="easyui-linkbutton">closeAllClosable</a>
+                    <hr />
+                    <a id="btn81" class="easyui-linkbutton">move-1</a>
+                    <a id="btn82" class="easyui-linkbutton">move-2</a>
+                    <a id="btn83" class="easyui-linkbutton">move-3</a>
+                    <a id="btn84" class="easyui-linkbutton">move-4</a>
+                    <hr />
+                    <a id="btn91" class="easyui-linkbutton">loading</a>
+                    <a id="btn92" class="easyui-linkbutton">loaded</a>
+                    <a id="btn93" class="easyui-linkbutton">setTitle</a>
+                    <a id="btn94" class="easyui-linkbutton">closeCurrentTab</a>
+                    <a id="btn95" class="easyui-linkbutton">refreshCurrentTab</a>
+                </div>
+
+            </div>
+            <div data-options="title: 'Tab2', closable: true, refreshable: true, repeatable: true, iniframe: true, href: '../jEasyUIExtensions-Menu-SubPage.html'"></div>
+            <div data-options="title: 'Tab3', closable: true, refreshable: true, repeatable: true">Tab3</div>
+            <div data-options="title: 'Tab4', closable: true, refreshable: true, repeatable: true, iniframe: true, href: 'jEasyUIExtensions-Tabs-SubPage.html'"></div>
+            <div data-options="title: 'Tab5', closable: true, refreshable: true, repeatable: true">Tab5</div>
+            <div data-options="title: 'Tab6', closable: true, refreshable: true, repeatable: true, border: false">
+                <div id="ddt">
+                    <a class="easyui-linkbutton" data-options="plain: true">testbtn1</a>
+                    <a class="easyui-linkbutton" data-options="plain: true">testbtn2</a>
+                    <a class="easyui-linkbutton" data-options="plain: true">testbtn3</a>
+                    <a class="easyui-linkbutton" data-options="plain: true">testbtn4</a>
+                </div>
+                <table id="dd" class="easyui-datagrid" data-options="fit: true, border: false, rownumbers: true, pagination: true, toolbar: '#ddt'">
+                    <thead>
+                        <tr>
+                            <th data-options="field: 'ID', halign: 'center', width: 80">ID</th>
+                            <th data-options="field: 'Code', halign: 'center', width: 120">Code</th>
+                            <th data-options="field: 'Name', halign: 'center', width: 140">Name</th>
+                            <th data-options="field: 'Age', halign: 'center', width: 80">Age</th>
+                            <th data-options="field: 'Sex', halign: 'center', width: 80">Sex</th>
+                            <th data-options="field: 'Birthday', width: 160">Birthday</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+</body>
+</html>
+

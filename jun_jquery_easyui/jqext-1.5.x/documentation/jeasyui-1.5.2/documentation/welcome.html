@@ -1,0 +1,90 @@
+
+<h1>Documentation</h1>
+<p>Each component of easyui has properties, methods and events. Users can extend them easily.</p>
+
+<h4>Properties</h4>
+<p>The properties is defined in jQuery.fn.{plugin}.defaults. For example, the dialog's properties is defined in jQuery.fn.dialog.defaults.</p>
+
+<h4>Events</h4>
+<p>The events(callback functions) is defined in jQuery.fn.{plugin}.defaults also.</p>
+
+<h4>Methods</h4>
+<p>
+The calling method syntax: $('selector').plugin('method', parameter);
+</p>
+<p>Where:<p>
+<ul>
+	<li><span style="font-style:italic">selector</span> is the jquery object selector.</li>
+	<li><span style="font-style:italic">plugin</span> is the plugin name.</li>
+	<li><span style="font-style:italic">method</span> is the existing method corresponding to the plugin.</li>
+	<li><span style="font-style:italic">parameter</span> is the parameter object, can be a object, string, ...</li>
+</ul>
+<p>
+The methods is defined in jQuery.fn.{plugin}.methods. 
+Each method has two parameters: jq and param. 
+The first parameter 'jq' is required, which refers to that jQuery object. 
+The second parameter 'param' refers to the really parameter that pass through the method. 
+For example, to extend a method named 'mymove' for the dialog component, the code looks like this:
+</p>
+<textarea name="code-welcome" class="js">
+$.extend($.fn.dialog.methods, {
+    mymove: function(jq, newposition){
+        return jq.each(function(){
+            $(this).dialog('move', newposition);
+        });
+    }
+});
+</textarea>
+<p>Now you can call 'mymove' method to move the dialog to specified position:</p>
+<textarea name="code-welcome" class="js">
+$('#dd').dialog('mymove', {
+    left: 200,
+    top: 100
+});
+</textarea>
+
+<h3>Getting Started with jQuery EasyUI</h3>
+<p>
+Download the library and include EasyUI CSS and JavaScript files on your page.
+</p>
+<textarea name="code-welcome" class="html">
+<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+</textarea>
+<p>
+Once you've included the EasyUI necessary files, you can define an EasyUI component from markup or using JavaScript.
+For example, to define a panel with collapsible functionality, you can write the HTML code like this:
+</p>
+<textarea name="code-welcome" class="html">
+<div id="p" class="easyui-panel" style="width:500px;height:200px;padding:10px;"
+		title="My Panel" iconCls="icon-save" collapsible="true">
+	The panel content
+</div>
+</textarea>
+<p>
+When creating a component from markup, the 'data-options' attribute can be used to support HTML5 compliant attribute names since version 1.3.
+So you can rewrite the code above as:
+</p>
+<textarea name="code-welcome" class="html">
+<div id="p" class="easyui-panel" style="width:500px;height:200px;padding:10px;"
+		title="My Panel" data-options="iconCls:'icon-save',collapsible:true">
+	The panel content
+</div>
+</textarea>
+<p>
+The code below shows how to create a combobox that bind 'onSelect' event.
+</p>
+<textarea name="code-welcome" class="html">
+<input class="easyui-combobox" name="language"
+		data-options="
+			url:'combobox_data.json',
+			valueField:'id',
+			textField:'text',
+			panelHeight:'auto',
+			onSelect:function(record){
+				alert(record.text)
+			}">
+</textarea>
+

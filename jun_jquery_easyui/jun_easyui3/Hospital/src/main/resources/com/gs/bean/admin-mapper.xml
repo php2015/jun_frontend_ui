@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.AdminDAO">
+
+    <resultMap id="adminResultMap" type="admin">
+        <id property="id" column="id" />
+        <result property="createdTime" column="created_time" />
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="adminResultMap">
+        <![CDATA[
+        select * from t_admin where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="admin" resultMap="adminResultMap">
+        <![CDATA[
+        select * from t_admin where email=#{email} and pwd = #{pwd}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="adminResultMap">
+        <![CDATA[
+        select * from t_admin where 1 = 1
+        ]]>
+        order by created_time desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_admin where 1 = 1
+        ]]>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="admin">
+        <![CDATA[
+        insert into t_admin(email, pwd, name, phone) values(#{email}, #{pwd}, #{name}, #{phone})
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="admin">
+        <![CDATA[
+        update t_admin set name = #{name}, phone = #{phone} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updatePassword" keyProperty="id" parameterType="admin">
+        <![CDATA[
+        update t_admin set pwd = #{pwd} where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

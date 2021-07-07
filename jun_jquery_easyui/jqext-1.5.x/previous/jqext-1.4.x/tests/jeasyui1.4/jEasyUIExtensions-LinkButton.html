@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - LinkButton</title>
+
+    <link href="../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+
+    <script src="../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn1").click(function () {
+                $("#lb1").linkbutton("setIconCls", "icon-ok");
+            });
+
+            $("#btn2").click(function () {
+                $("#lb1").linkbutton("setText", "icon-ok");
+            });
+
+            $("#btn3").click(function () {
+                $("#lb1").linkbutton("setIconAlign", "top");
+            });
+
+            $("#btn4").click(function () {
+                $("#lb1").linkbutton("setStyle", { color: "red" });
+            });
+
+            $("#btn5").click(function () {
+                $("#lb1").linkbutton("setPlain", false);
+            });
+
+            $("#btn6").click(function () {
+                $("#lb1").linkbutton("setSize", "small");
+            });
+
+            $("#btn7").click(function () {
+                $("#lb1").linkbutton("setTooltip", "icon-ok");
+            });
+        });
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <input id="btn1" type="button" value="setIconCls" />
+        <input id="btn2" type="button" value="setText" />
+        <input id="btn3" type="button" value="setIconAlign" />
+        <input id="btn4" type="button" value="setStyle" />
+        <input id="btn5" type="button" value="setPlain" />
+        <input id="btn6" type="button" value="setSize" />
+        <input id="btn7" type="button" value="setTooltip" />
+        <hr />
+
+        <a id="lb1" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-edit', text: 'ClickMe', size: 'large'"></a>
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+</body>
+</html>

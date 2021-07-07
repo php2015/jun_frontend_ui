@@ -1,0 +1,4513 @@
+body{
+	overflow-x: hidden;
+	background-color: #fbfbfb;
+}
+
+*{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+
+input,img{
+	border: none;
+}
+/*头部*/
+#headerBox{
+	position: relative;
+	top:0;
+	width: 1200px;
+	height: 102px;
+	margin: 0 auto;
+	padding: 0;
+}
+/*logo开始*/
+#headerBox .logo a{
+	position: absolute;
+	display: block;
+	top: 28px;
+	left: 2px;
+	width: 163px;
+	height: 47px;
+	background:url(../image/headernav_0917.png) 0px -41px no-repeat;
+}
+/* flash */
+#headerBox .flashPic-box{
+	position: absolute;
+	padding: 20px ;
+	left: 170px;
+	top:8px
+}
+#headerBox .flashPic-box:hover{
+	box-shadow: 0px 0px 5px #1E90FF;
+}
+.flashPic{
+	margin: 0 auto;
+	padding: 0;
+	width: 89px;
+	height: 38px;
+	background-image: url(../image/herder-bander.png);
+}
+/* 搜索 */
+#headerBox .search{
+	position: relative;	
+	margin: 0 auto 0 auto;
+	top: 24px;
+	width: 357px;
+	height: 40px;
+	background: url(../image/headernav_0917.png)  no-repeat;
+}
+#headerBox .search .search-text{
+	position: relative;
+	padding-left: 3px;
+	left: 3px;
+	top: 3px;
+	height: 34px;
+	width: 286px;
+	color: #c4c4c4;
+}
+/* 按钮 */
+#headerBox .search .btn{
+	position: absolute;
+	top: 3px;
+	right: 4px;
+	height: 35px;
+	width: 60px;
+	border: none;
+	cursor: pointer;
+	background: transparent;
+}
+/* 下方的文字 */
+#headerBox .search-under{
+	position: relative;
+	top: 22px;
+	width: 357px;
+	height: 23px;
+	margin: 0 auto;
+}
+#headerBox .search-under li {
+	float: left;
+	height: 18px;
+	padding-top: 4px;
+	margin-right: 8px;
+}
+.search-under li a{
+	display: inline-block;
+	line-height: 18px;
+	font-size: 12px;
+	font-weight: 500;
+	font-family: 宋体, "Arial Narrow";
+	color: rgb(102, 102, 102);
+}
+.search-under li a:hover{
+	text-decoration: underline;
+}
+#headerBox  .link1{
+	margin-left: 15px;
+}
+#headerBox  .link{
+	color: #999;
+}
+
+/* 用户区域 */
+#headerBox .user-box{
+	position: absolute;
+	height: auto;
+	width: 330px;
+	right: 0px;
+	top: 50px;
+}
+#headerBox .user-box li{
+	position: relative;
+	display: inline-block;
+	float: right;
+	margin-left: 14px;
+	font-size: 14px;
+	cursor: pointer;
+}
+#headerBox .user-box li .list{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background-image: url(../image/sbits/list.png);
+	background-repeat: no-repeat;
+}
+#headerBox .user-box li a{
+	font-size: 12px;
+	color: #333;
+}
+/*鼠标放入显示内容*/
+#headerBox .user-box li.wokanguo:hover{
+	padding-bottom: 10px;
+}
+#headerBox .user-box li.wokanguo:hover .hidden-m{
+	display: block;
+}
+
+#headerBox .user-box li .list1{
+	background-position: 0 0;
+}
+
+#headerBox .user-box li .list2{
+	background-position: -240px 0;
+}
+
+#headerBox .user-box li .list3{
+	background-position: -88px 0;
+}
+
+#headerBox .user-box li .list4{
+	background-position: -240px 0;
+}
+
+ #headerBox .user-box li .list5{
+	background-position: -174px 0;
+}
+#headerBox .user-box li .denglu:hover,.zhuce:hover{
+	text-decoration: underline;
+	color: #1E90FF;
+}
+
+/* 隐藏的盒子*/
+#headerBox .user-box li .hidden-r{
+	z-index: 1;
+	position: absolute;
+	display: none;
+	top: 25px;
+	right: 2px;
+	width: 229px;
+	height: 322px;	
+	padding: 0 0 0 8px;
+	background-color: #FFFFFF;
+	border: 1px solid #cecece;
+}
+#headerBox .xaizaixunlei{
+	height: 30px;
+}
+#headerBox .xaizaixunlei:hover .user-box li .hidden-r {
+	display: block!important;
+}
+#headerBox .user-box li .hidden-r .arrow-r{
+	position: absolute;
+	right: 25px; 
+	top: -10px;
+	width: 15px;
+	height: 10px;
+	background: url(../image/headernav_0917.png) -280px -53px no-repeat;
+}
+#headerBox .user-box li .hidden-r dl{
+	border-bottom: 1px solid #E6E6E6;
+	width: 227px;
+	height: 40px;
+	padding: 8px 0 8px 10px;
+	overflow: hidden;
+}
+#headerBox .user-box li .hidden-r dl dt{
+	color: #249FF1;
+}
+#headerBox .user-box li .hidden-r dl.download{
+	padding: 8px 0 8px 10px;
+	height: 95px;
+	width: 227px;
+	border-bottom: none;
+}
+#headerBox .user-box li .hidden-r dl.download dd a{
+	color: #249FF1;
+}
+#headerBox .user-box li .hidden-r dl dd{
+	float: left;
+	line-height: 20px;
+	margin-right: 8px;
+}
+#headerBox .user-box li .hidden-r dl dd a{
+	color: #999999;
+}
+#headerBox .user-box li .hidden-r dl dd a:hover{
+	text-decoration: underline;
+}
+#headerBox .user-box li .last-r{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 237px;
+	height: 30px;
+	background-color: #efefef;
+}
+#headerBox .user-box li .last-r a{
+	float: right;
+	margin-right: 5px;
+	line-height: 30px;
+}
+#headerBox .user-box li .last-r a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+
+/* 中间隐藏区域*/
+#headerBox .hidden-m{
+	z-index: 1;
+	display: none;
+	position: absolute;
+	border: 1px solid #cecece;
+	left: -90px;
+	top:25px;
+	min-height: 129px;
+	width: 237px;
+	padding: 0px;
+	background-color: #FFFFFF;
+}
+/*箭头*/
+#headerBox .hidden-m .arrow-c{
+	position: absolute;
+	right: 100px; 
+	top: -10px;
+	width: 15px;
+	height: 10px;
+	background: url(../image/headernav_0917.png) -280px -53px no-repeat;
+}
+#headerBox .hidden-m .hidden-m-top{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 31px;
+	width: 237px;
+	background-color: #EFEFEF;
+	border-bottom: 1px solid #EFEFEF;
+}
+#headerBox .hidden-m .hidden-m-top .updata{
+	display: inline-block;
+	float: left;
+	font-size: 14px;
+	height: 31px;
+	width: 118px;
+	line-height: 31px;
+	color: #333333;
+	text-align: center;
+}
+#headerBox .hidden-m .hidden-m-top .record{
+	display: inline-block;
+	float: left;
+	font-size: 14px;
+	height: 31px;
+	width: 118px;
+	line-height: 31px;
+	color: #333333;
+	text-align: center;
+}
+
+#headerBox .hidden-m .hidden-m-top div span{
+	height: 29px;
+	border-bottom:2px solid #EFEFEF;
+}
+
+#headerBox .hidden-m .hidden-m-top div span:hover{
+	color: #249FF1;
+	border-bottom:2px solid #249FF1;
+}
+
+#headerBox .hidden-m .hidden-m-top .record div span:hover{
+	padding-bottom: 214px;
+}
+
+/* 中间的中间部分 */
+#headerBox .hidden-m .updata-m-center-box{
+	position: absolute;
+	display: none;
+	top: 32px;
+	height: 62px;
+	width: 237px;
+	min-height: 65px;
+	background-color: #FFFFFF;
+}
+/* 切换到观看记录 */
+#headerBox .hidden-m .record-m-center-box{
+	display: none;
+	position: absolute;
+	width: 207px;
+	height: 214px;
+	left: -1px;
+	top: 31px;
+	padding: 0 15px 15px 15px;
+	border: 1px solid #CECECE;
+	border-top: 0;
+	background-color: #ffffff;
+}
+
+#headerBox .hidden-m .record-m-center-box p{
+	position: absolute;
+	top: 57px;
+	left: 78px;
+	color: #999999;
+}
+
+#headerBox .hidden-m .record-m-center-box dl{
+	line-height: 20px;
+    position: absolute;
+    top: 110px;
+	color: #999999;
+}
+#headerBox .hidden-m .record-m-center-box dd a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+
+/*中间盒子底部的部分 */
+#headerBox .hidden-m .hidden-m-bottom-box .last-c{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 237px;
+	height: 30px;
+	background-color: #efefef;
+}
+
+#headerBox .hidden-m .last-c a{
+	float: right;
+	margin-right: 5px;
+	line-height: 30px;
+}
+
+#headerBox .hidden-m .last-c a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+
+
+/* 导航条*/
+#nav{
+	width: 100%;
+	height: 36px;
+	background-color: #249ff1;
+}
+#nav .nav-box{
+	margin: 0 auto;
+	padding: 0;
+	width: 1200px;
+	height: 36px;
+}
+#nav .nav-box ul.nav-box-left li{
+	float: left;
+	line-height: 36px;
+}
+#nav .nav-box ul.nav-box-left li a{
+	display: block;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 14px;
+	padding:0 16px;
+	background: url(../image/headernav_0917.png) -355px -40px no-repeat;
+}
+#nav .nav-box ul.nav-box-left li a.nav-first-a{
+	background:#249ff1;
+	font-weight: bold;
+}
+
+#nav .nav-box ul.nav-box-left li:hover{
+	background: #4fc4fb;
+}
+#nav .nav-box ul.nav-box-left li a:hover{
+	background: #4fc4fb;
+	padding-right: 17px;
+	margin-right: -1px;
+}
+#nav .nav-box ul.nav-box-left li .nav-first-a:hover{
+	background-color:#249ff1;
+}
+#nav .nav-box ul.nav-box-left li span.playing-new{
+	position: absolute;
+	margin: -36px 0 0 48px;
+	width: 25px;
+	height: 11px;
+	background: url(../image/headernav_0917.png) -291px -72px no-repeat;
+}
+/* 右边开始 */
+#nav .nav-box ul.nav-box-right li{
+	float: right;
+	line-height: 36px;
+}
+#nav .nav-box ul.nav-box-right li a{
+	display: block;
+	cursor: pointer;
+	color: #C7F4FF;
+	font-size: 12px;
+	padding: 0 6px;
+}
+#nav .nav-box ul.nav-box-right li a:hover{
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+/* 轮播区域 */
+#focus-background{
+	width: 100%;
+	height: 450px;
+	background: url(../image/lunbo/1.jpg) no-repeat center #704f84;
+}
+#focus-background .focus-box{
+	position: relative;
+	width: 1200px;
+	height: 450px;
+	margin: 0 auto;
+}
+/* 轮换版 */
+#focus-background .focus-box .smal-box .smal-pic{
+	position: absolute;
+	top: 398px;
+	left: 0px;
+	height: 50px;
+}
+#focus-background .focus-box .smal-box .smal-pic li{
+	width: 66px;
+	float: left;
+	height: 43px;
+	margin-left: 10px;
+	border: 1px solid #4e4e4e;
+}
+#focus-background .focus-box .smal-box .smal-pic li:hover{
+	border: 2px solid #ffcc00;
+	margin-right: -2px;
+	margin-top: -1px;
+}
+#focus-background .focus-box .smal-box .smal-pic .smal-pic-hover{
+	border: 2px solid #ffcc00;
+	margin-right: -2px;
+	margin-top: -1px;
+}
+#focus-background .focus-box .smal-box .smal-pic li a{
+	display: block;
+	position: relative;
+}
+/* 保证兼容性 */
+#focus-background .focus-box .smal-box .smal-pic li a img{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+/* 按钮 */
+#focus-background .focus-box .ico{
+	position: absolute;
+	left: 0px;
+	top: 345px;
+	display: block;
+	width: 42px;
+	height: 42px;
+	background: url(../image/sbits/png24.png) no-repeat;
+}
+/* 标题 */
+#focus-background .focus-title{
+	position: absolute;
+	top: 359px;
+	left: 59px;
+	height: 27px;
+	width: 888px;
+}
+#focus-background .focus-title:after{
+	content: "";
+	clear: both;
+	display: block;
+}
+#focus-background .focus-title a{
+	display: none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	font-size: 20px;
+	font-family: "microsoft yahei";
+	font-weight: 400;
+	color: #FFFFFF;
+}
+
+/* 右侧的推荐 */
+#focus-background .focus-r-box{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 240px;
+	height: 448px;
+	background-color: #323232;
+	border: 1px solid #323232;
+}
+.focus-r-box .title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 240px;
+	height: 31px;
+	line-height: 31px;
+	background-color: #292929;
+}
+.focus-r-box .title a:first-child{
+	margin-left: 4px;
+}
+.focus-r-box .title a{
+	font-size: 14px;
+	padding: 0 4px;
+	float: left;
+	color: #999999;
+	cursor: pointer;
+}
+.focus-r-box .title a:hover{
+	color: #249FF1;
+	border-bottom: 2px solid #249FF1;
+}
+/* 里面的box */
+.focus-r-box .focus-content-box {
+	position: absolute;
+	top: 27px;
+	left: 10px;
+	width: 220px;
+	height: 407px;
+}
+.focus-r-box .focus-content-box ul{
+	position: absolute;
+	display: none;
+}
+.focus-r-box .focus-content-box li{
+	position: relative;
+	widows: 220px;
+	height: 20px;
+	margin-top: 12px;
+	line-height: 20px;
+	color: 767676;
+}
+.focus-r-box .focus-content-box li em{
+	position: absolute;
+	display: inline-block;
+	text-align: center;
+	color: #767676;
+	top: 0px;
+	left: 0px;
+	width: 18px;
+	height: 18px;
+	font-size: 12px;
+	line-height: 18px;
+	border: 1px solid #4f4f4f;
+	font-style: normal;
+	font-family: "宋体","arial narrow";
+}
+.focus-r-box .focus-content-box li em.top-number1{
+	border: 0;
+	color: #FBFBFB;
+	background-color: #249FF1;
+}
+
+.focus-r-box .focus-content-box li.show-top{
+	height: 100px;
+}
+/* 第一个p */
+.focus-r-box .focus-content-box li.show-top p{
+	position: absolute;
+	top: 79px;
+	width: 220px;
+	float: left;
+	background: #000000;
+	opacity: .7;
+	filter: alpha(opacity=70);
+} 
+.focus-r-box .focus-content-box li.show-top p a{
+	font-size: 14px;
+	margin-left: 5px;
+}
+.focus-r-box .focus-content-box li p{
+	cursor: default;
+	font-size: 10px;
+	color: #767676;
+}
+.focus-r-box .focus-content-box li p a{
+	line-height: 20px;
+	font-family: tahoma;
+	margin-left: 30px;
+	color: #ffffff;
+	font-size: 12px;
+}
+.focus-r-box .focus-content-box li p a:hover{
+	text-decoration: underline;
+}
+.focus-r-box .focus-content-box li p .num{
+	margin-right: 2px;
+	float: right;
+	color:#FF6600;
+}
+.focus-r-box .focus-content-box li p strong{
+	float: right;
+	font-family: tahoma;
+	font-size: 11px;
+}
+
+/* 热播区域 */
+.hot-box{
+	width: 1200px;
+	height: 508px;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+}
+
+/* 左边盒子 */
+.hot-box .hot-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 460px;
+	margin-top: 25px;
+}
+.hot-box .hot-left .hot-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.hot-box .hot-left .hot-left-title h2.title-h2{
+	float: left;
+	width: 105px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png) 0 0px no-repeat;
+	overflow: hidden;
+}
+.hot-box .hot-left .hot-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.hot-box .hot-left .hot-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+/* 左边的内容 */
+.hot-box .hot-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 426px;
+	overflow: hidden;
+}
+.hot-box .hot-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+	height: 426px;
+	width: 951px;
+}
+.hot-box .hot-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.hot-box .hot-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 125px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.hot-box .hot-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.hot-box .hot-left ul li a img{
+	width: 155px;
+	height: 100px;
+}
+.hot-box .hot-left ul li a.pic_title{
+	display: inline-block;
+	float: left;
+	width: 155px;
+	height: 14px;
+	font-size: 14px;
+}
+.hot-box .hot-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.hot-box .hot-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 93px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+.hot-box .hot-left ul li span.maskbottom{
+	float: left;
+	font-size: 14px;
+	color: #999999;
+}
+
+/* 热区的右边 */
+.hot-box .hot-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 450px;
+	margin-top: 22px;
+}
+.hot-box .hot-right .hot-right-title{
+	width: 240px;
+	height: 20px;
+	color: #DED8DE;
+	cursor: default;
+}
+.hot-box .hot-right .hot-right-title a.a-r-tab{
+	font-size: 16px;
+	margin-right: 4px;
+	line-height: 16px;
+	color: #545454;
+}
+.hot-box .hot-right .hot-right-title a.a-r-small{
+	display: block;
+	float: right;
+	padding-top: 4px;
+	color: #999999;
+	font-size: 12px;
+}
+.hot-box .hot-right .hot-right-title a.a-r-small:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.hot-right ul{
+	display: none;
+	margin-left: -10px;
+	width: 250px;
+	height: 406px;
+}
+.hot-right ul li{
+	padding-top: 21px;
+	padding-left: 10px;
+	width: 115px;
+	height: 124px;
+	float: left;
+	overflow: hidden;
+}
+.hot-right ul li a:first-child{
+	cursor: pointer;
+	width: 115px;
+	height: 79px;
+	display: block;	
+	border-bottom: 2px solid #ffffff;
+}
+.hot-right ul li a:first-child:hover{
+	border-bottom: 2px solid #249FF1;
+}
+.hot-right ul li a.r-title{
+	font-size: 14px;
+	color: #333333;
+}
+.hot-right ul li a.r-title:hover{
+	color: #249FF1;
+}
+.hot-right ul li span{
+	display: block;
+	color: #999999;
+	font-size: 12px;
+	
+}
+
+/* 娱乐区域 */
+.amusement-box{
+	margin: 0 auto;
+	width: 1200px;
+	height: 527px;
+	border-bottom: 1px solid #eee;
+}
+.amusement-box .amusement-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 480px;
+	margin-top: 25px;
+	padding-right: 5px;
+}
+.amusement-box .amusement-left .amusement-left-title{
+	height: 43px;
+	width: 930px;
+}
+.amusement-box .amusement-left .amusement-left-title h2{
+	float: left;
+	width: 105px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png) 0 -25px no-repeat;
+	overflow: hidden;
+}
+.amusement-box .amusement-left .amusement-left-title a{
+	cursor: pointer;
+	display: block;
+	float: right;
+	padding-top: 8px;
+	color: #999999;
+	font-size: 12px;
+}
+.amusement-box .amusement-left .amusement-left-title a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+
+/* 左边的第一个区域 */
+.amusement-box .amusement-left .amusement-left-first{
+	float: left;
+	width: 335px;
+}
+.amusement-box .amusement-left .amusement-left-first a.title-poc{
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+.amusement-box .amusement-left .amusement-left-first a.title-poc span{
+	display: block;
+    position: absolute;
+    top: 189px;
+    left: 0px;
+    width: 325px;
+    height: 34px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    text-align: right;
+    line-height: 48px;
+    padding-right: 10px;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt{
+	height: 42px;
+	padding: 15px 0;
+	border-bottom: 1px dashed #E6E6E6;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt h3{
+	width: 324px;
+	height: 18px;
+	display: block;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt strong{
+	float: left;
+	color: red;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt a.first-txt{
+	color: #249FF1;
+	font-size: 18px;
+	font-family: "Microsoft Yahei";
+	font-weight: 300;
+	margin: 0px;
+	padding: 0;
+	cursor: pointer;
+	float: left;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt a.first-txt:hover{
+	text-decoration: underline;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt p{
+	position: relative;
+	width: 335px;
+	height: 25px;
+	line-height: 15px;
+	display: block;
+	font-size: 12px;
+	color: #999999;
+	text-align: left;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt p span{
+	position: absolute;
+	margin: 0;
+	padding-right: 5px;
+	top: 10px;
+	left: 0px;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt p a{
+	display: inline-block;
+	margin-top: 4px;
+	margin-right: 15px;
+	color: #000000;
+	float: left;
+}
+.amusement-box .amusement-left .amusement-left-first .toutiao-txt p a:hover{
+	color: #249FF1;
+}
+.amusement-box .amusement-left .amusement-left-two{
+	float: right;
+	width: 536px;
+	height: 416px;
+}
+.amusement-box .amusement-left .amusement-left-two ul{
+	margin-left: -35px;
+	margin-top: -17px;
+	height: 426px;
+}
+.amusement-box .amusement-left .amusement-left-two ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.amusement-box .amusement-left .amusement-left-two ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 125px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.amusement-box .amusement-left .amusement-left-two ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.amusement-box .amusement-left .amusement-left-two ul li a img{
+	width: 155px;
+	height: 100px;
+}
+.amusement-box .amusement-left .amusement-left-two ul li a.pic_title{
+	display: inline-block;
+	float: left;
+	width: 155px;
+	height: 14px;
+	font-size: 14px;
+}
+.amusement-box .amusement-left .amusement-left-two ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.amusement-box .amusement-left .amusement-left-two ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 93px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+.amusement-box .amusement-left .amusement-left-two ul li span.maskbottom{
+	float: left;
+	font-size: 14px;
+	color: #999999;
+}
+
+/* 娱乐右边的区域 */
+.amusement-box .amusement-rigt{
+	position: relative;
+	float: right;
+	margin-top: 25px;
+	width: 240px;
+	height: 455px;
+}
+.amusement-box .amusement-rigt .amusement-right-title{
+	float: left;
+	width: 240px;
+	height: 24px;
+	background: url(../image/sbits/title_0910.png) 0 -50px no-repeat;
+	overflow: hidden;
+}
+
+.amusement-box .amusement-rigt .amusement-right-title a{
+	cursor: pointer;
+	float: right;
+	display: block;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.amusement-box .amusement-rigt .amusement-right-title a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul{
+	margin-left: -10px;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul:after{
+	display: block;
+	content: "";
+	clear: both;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul li{
+	position: relative;
+	float: left;
+	margin-top: 19px;
+	margin-left: 10px;
+	width: 115px;
+	height: 90px;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul li a{
+	cursor: pointer;
+	width: 115px;
+    height: 65px;
+    display: block;
+	border-bottom: 2px solid #ffffff;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul li a:first-child:hover{
+	border-bottom: 2px solid #1E90FF;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul li em{
+	position: absolute;
+	font-style: normal;
+	width: 22px;
+	height: 22px;
+	left: 0px;
+	top: 0px;
+	color: #FFFFFF;
+	text-align: center;
+	background-color: #249FF1;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul li a.title{
+	cursor: pointer;
+	margin-top: 9px;
+	height: 14px;
+	font-size: 14px;
+	color: #333333;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ul li a.title:hover{
+	color: #249FF1;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ol{
+	margin-top: 16px;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ol li{
+	margin-top: 6px;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ol em{
+	display: inline-block;
+	font-style: normal;
+	width: 22px;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #000000;
+	background-color: #F8F8F8;
+	text-align: center;
+	border: 1px solid #E1E1E1;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ol a{
+	cursor: pointer;
+	font-size: 12px;
+	color: #333333;
+}
+.amusement-box .amusement-rigt .amusement-rigt-content ol a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 西游记广告区域 */
+.banner-first-box{
+	height: 111px;
+	width: 1200px;
+	margin: 0 auto;
+}
+.banner-first-box a{
+	cursor: pointer;
+}
+.banner-first-box a img{
+	display: block;
+	float: right;
+}
+
+/* 电视区域 */
+.television-box{
+	width: 1200px;
+	height: 508px;
+	margin: 0 auto;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+/* 左边盒子 */
+.television-box .television-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 483px;
+}
+.television-box .television-left .television-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.television-box .television-left .television-left-title h2.title-h2{
+	float: left;
+	width: 105px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png) 0 -76px no-repeat;
+	overflow: hidden;
+}
+.television-box .television-left .television-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.television-box .television-left .television-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+/* 左边的内容 */
+.television-box .television-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 483px;
+	overflow: hidden;
+}
+.television-box .television-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+	height: 426px;
+	width: 951px;
+}
+.television-box .television-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.television-box .television-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.television-box .television-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.television-box .television-left ul li a img{
+	width: 155px;
+	height: 100px;
+}
+.television-box .television-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 93px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.television-box .television-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.television-box .television-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.television-box .television-left ul li p.maskbottom{
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 电视的右边 */
+.television-box .television-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 504px;
+}
+.television-box .television-right .television-title{
+	height: 17px ;
+	width: 240px ;
+}
+.television-box .television-right .television-title h2{
+	font-size: 18px;
+	color: #333333;
+	height: 18px;
+	font-weight: 300;
+}
+.television-box .television-right .television-title h2 a{
+	cursor: pointer;
+    float: right;
+    display: block;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.television-box .television-right .television-title h2 a:hover{
+	color: #249FF1;
+}
+.television-box .television-right .television-right-first{
+	height: 90px;
+	width: 240px;
+	margin-top: 13px;
+}
+.television-box .television-right .television-right-first ul{
+	margin-top: 20px;
+}
+.television-box .television-right .television-right-first ul li{
+	height: 90px;
+	width: 115px;
+	float: left;
+}
+.television-box .television-right .television-right-first ul li a:first-child{
+	display: block;
+	height: 65px;
+	width: 115px;
+	border-bottom: 2px solid #FFFFFF;
+}
+.television-box .television-right .television-right-first ul li a:first-child:hover{
+	border-bottom: 2px solid #249FF1;
+}
+.television-box .television-right .television-right-first ul li a.title{
+	margin-top: 5px;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	color: #333333;
+	font-size: 14px;
+}
+.television-box .television-right .television-right-first ul li a.title:hover{
+	color: #249FF1;
+}
+/* 右边第二个的新闻推送 */
+.television-right-tow{
+	width: 240px;
+	height: 55px;
+	background: #f3f3f3;
+	margin-top: 11px;
+	margin-bottom: 27px;
+}
+.television-right-tow ul{
+	overflow:hidden;
+	width: 240px;
+	height: 55px;
+	
+}
+.television-right-tow ul li{
+	display: inline-block;
+	float: left;
+	line-height: 25px;
+	padding-left: 10px;
+}
+.television-right-tow ul li a{
+	color: #333333;
+	font-size: 12px;
+}
+.television-right-tow ul li a:hover{
+	text-decoration: underline;
+	color: #249FF1;
+}
+.television-right-three{
+	height: 284px;
+	width: 240px;
+}
+.television-right-three div.title{
+	height: 25px;
+}
+.television-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.television-right-three div.title a{ 
+    float: right;
+    display: block;
+	margin-top: 5px;
+    width: 66px;
+    height: 18px;
+	font-size: 13px;
+    text-indent: 22px;
+    font-family: "Tahoma";
+    color: #999;
+    background: url(../image/sprite_0718.png) -292px -41px no-repeat;
+}
+.television-right-three div.title a:hover{
+	color: #249FF1;
+}
+.television-right-three ul.content-title {
+	margin-top: 18px ;
+	height: 30px;
+	width: 240px;
+	background: url(../image/sprite_0718.png) 0 -41px no-repeat;
+}
+.television-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.television-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.television-right-three div.content{
+	display: none;
+	height: 210px;
+}
+.television-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.television-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.television-right-three div.content ol em{
+	display: block;
+	float: left;
+	display: inline-block;
+    font-style: normal;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #000000;
+    background-color: #F8F8F8;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+}
+.television-right-three div.content ol em.bg-color{
+	background-color: #249FF1;
+	color: #FFFFFF;
+}
+.television-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.television-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.television-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.television-right-three div.content .content-bottom{
+	padding-top: 11px;
+	margin-left: -13px;
+}
+.television-right-three div.content .content-bottom a{
+	padding-top: 12px;
+	padding-left: 13px;
+	color: #333333;
+	font-size: 12px;
+	float: left;
+	line-height: 12px;
+}
+.television-right-three div.content .content-bottom .last-a{
+	color: #999999;
+}
+.television-right-three div.content .content-bottom .last-a:hover{
+	text-decoration: underline;
+}
+/* 猜您喜欢的部分 */
+#guess-like{
+	margin: 0 auto;
+	height: 318px;
+	width: 1200px;
+	border-bottom: 1px solid #EEEEEE;
+}
+#guess-like .guess-left{
+	float: left;
+	height: 318px;
+}
+#guess-like .guess-left:after{
+	display: block;
+	content: "";
+	width: 916px;
+	overflow: hidden;
+}
+#guess-like .guess-left .title{
+	margin-top: 38px;
+	width: 914px;
+	height: 25px;
+	margin-bottom: 18px;
+}
+#guess-like .guess-left .title h2{
+	float: left;
+    width: 106px;
+    height: 24px;
+    background: url(../image/sbits/title_0910.png) 0 -101px no-repeat;
+    overflow: hidden;
+}
+#guess-like .guess-left .title a{
+	display: inline-block;
+	text-align: center;
+	width: 52px;
+	height: 22px;
+	float: right;
+	color: #323232;
+	font-size: 12px;
+	line-height: 22px;
+	border: 1px solid #999999; 
+}	
+#guess-like .guess-left .title a:hover{
+	color: #FFFFFF;
+	background-color: #249FF1;
+	border: 1px solid #EEEEEE;
+}
+#guess-like .guess-left .ul-box{
+	position: relative;
+	width: 917px;
+	height: 212px;
+	overflow: hidden;
+}
+#guess-like .guess-left .ul-box ul{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2862px;
+	height: 212px;
+	margin-left: -38px;
+	overflow: hidden;
+}
+#guess-like .guess-left ul li{
+	float: left;
+	width: 120px;
+	height: 212px;
+	padding-left: 39px;
+}
+#guess-like .guess-left ul li a{
+	color: #333333;
+	font-size: 14px;
+}
+#guess-like .guess-left ul li p{
+	color: #999999;
+	font-size: 12px;
+}
+#guess-like .guess-right{
+	width: 240px;
+	height:235px;
+	float: right;
+	margin-top: 38px;
+}
+#guess-like .guess-right h5.title{
+	font-size: 18px;
+	color: #333333;
+	font-weight: 300;
+}
+#guess-like .guess-right ul.right-content{
+	margin-top: 19px;
+	width: 240px;
+	height: 181px;
+}
+#guess-like .guess-right ul.right-content li{
+	cursor: pointer;
+	float: left;   
+	width: 72px;
+    height: 56px;
+	padding-top: 8px;
+    margin-right: 8px;
+}
+#guess-like .guess-right ul.right-content li a{
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	line-height: 53px;
+	width: 69px;
+	height: 53px;
+	color: #249FF1;
+	font-size: 16px;
+	background: url(../image/sprite_0718.png) -152px -72px no-repeat;
+}
+#guess-like .guess-right ul.right-content li a:hover{
+	color: #FFFFFF;
+	background-color: #249FF1;
+	background: url(../image/sprite_0718.png) -79px -72px no-repeat;
+}
+
+/* 电影推荐部分 */
+.movie-box{
+	width: 1200px;
+	height: 724px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+/* 左边盒子 */
+.movie-box .movie-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 483px;
+}
+.movie-box .movie-left .movie-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.movie-box .movie-left .movie-left-title h2.title-h2{
+	float: left;
+	width: 105px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -126px no-repeat;
+	overflow: hidden;
+}
+.movie-box .movie-left .movie-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.movie-box .movie-left .movie-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+/* 左边的内容 */
+.movie-box .movie-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 687px;
+	overflow: hidden;
+}
+.movie-box .movie-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.movie-box .movie-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.movie-box .movie-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 212px;
+	width: 120px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.movie-box .movie-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.movie-box .movie-left ul li a img{
+	width: 120px;
+	height: 168px;
+}
+.movie-box .movie-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.movie-box .movie-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.movie-box .movie-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.movie-box .movie-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 电影的右边 */
+.movie-box .movie-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 504px;
+}
+.movie-box .movie-right .movie-title{
+	height: 17px ;
+	width: 240px ;
+}
+.movie-box .movie-right .movie-title h2{
+	font-size: 18px;
+	color: #333333;
+	height: 18px;
+	font-weight: 300;
+}
+.movie-box .movie-right .movie-title h2 a{
+	cursor: pointer;
+    float: right;
+    display: block;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.movie-box .movie-right .movie-title h2 a:hover{
+	color: #249FF1;
+}
+.movie-box .movie-right .movie-right-first{
+	height: 90px;
+	width: 240px;
+	margin-top: 13px;
+}
+.movie-box .movie-right .movie-right-first ul{
+	margin-top: 20px;
+}
+.movie-box .movie-right .movie-right-first ul li{
+	height: 90px;
+	width: 115px;
+	float: left;
+}
+.movie-box .movie-right .movie-right-first ul li a:first-child{
+	display: block;
+	height: 65px;
+	width: 115px;
+	border-bottom: 2px solid #FFFFFF;
+}
+.movie-box .movie-right .movie-right-first ul li a:first-child:hover{
+	border-bottom: 2px solid #249FF1;
+}
+.movie-box .movie-right .movie-right-first ul li a.title{
+	margin-top: 5px;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	color: #333333;
+	font-size: 14px;
+}
+.movie-box .movie-right .movie-right-first ul li a.title:hover{
+	color: #249FF1;
+}
+/* 右边第二个的新闻推送 */
+.movie-right-tow{
+	width: 240px;
+	height: 55px;
+	background: #f3f3f3;
+	margin-top: 11px;
+	margin-bottom: 27px;
+}
+.movie-right-tow ul{
+	overflow:hidden;
+	width: 240px;
+	height: 55px;
+	
+}
+.movie-right-tow ul li{
+	display: inline-block;
+	float: left;
+	line-height: 25px;
+	padding-left: 10px;
+}
+.movie-right-tow ul li a{
+	color: #333333;
+	font-size: 12px;
+}
+.movie-right-tow ul li a:hover{
+	text-decoration: underline;
+	color: #249FF1;
+}
+.movie-right-three{
+	height: 284px;
+	width: 240px;
+}
+.movie-right-three div.title{
+	height: 25px;
+}
+.movie-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.movie-right-three div.title a{ 
+    float: right;
+    display: block;
+	margin-top: 5px;
+    width: 66px;
+    height: 18px;
+	font-size: 13px;
+    text-indent: 22px;
+    font-family: "Tahoma";
+    color: #999;
+    background: url(../image/sprite_0718.png) -292px -41px no-repeat;
+}
+.movie-right-three div.title a:hover{
+	color: #249FF1;
+}
+.movie-right-three ul.content-title {
+	margin-top: 18px ;
+	height: 30px;
+	width: 240px;
+	background: url(../image/sprite_0718.png) 0 -41px no-repeat;
+}
+.movie-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.movie-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.movie-right-three div.content{
+	display: none;
+	height: 210px;
+}
+.movie-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.movie-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.movie-right-three div.content ol em{
+	display: block;
+    float: left;
+    display: inline-block;
+    font-style: normal;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #000000;
+    background-color: #F8F8F8;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+}
+.movie-right-three div.content ol em.bg-color{
+	color: #FFFFFF;
+	background-color: #249FF1;
+}
+.movie-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.movie-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.movie-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.movie-right-three div.content .content-bottom{
+	padding-top: 11px;
+	margin-left: -13px;
+}
+.movie-right-three div.content .content-bottom a{
+	padding-top: 12px;
+	padding-left: 13px;
+	color: #333333;
+	font-size: 12px;
+	float: left;
+	line-height: 12px;
+}
+.movie-right-three div.content .content-bottom .last-a{
+	color: #999999;
+}
+.movie-right-three div.content .content-bottom .last-a:hover{
+	text-decoration: underline;
+}
+
+
+/* vip尊享 */
+.vip-enjoy-box{
+	width: 1200px;
+	height: 286px;
+	margin: 0 auto;
+	padding-top: 27px;
+	border-bottom: 1px solid #eee;
+}
+
+/* 左边盒子 */
+.vip-enjoy-box .vip-enjoy-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 249px;
+}
+.vip-enjoy-box .vip-enjoy-left .vip-enjoy-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.vip-enjoy-box .vip-enjoy-left .vip-enjoy-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -328px no-repeat;
+	overflow: hidden;
+}
+.vip-enjoy-box .vip-enjoy-left .vip-enjoy-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.vip-enjoy-box .vip-enjoy-left .vip-enjoy-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+/* 左边的内容 */
+.vip-enjoy-box .vip-enjoy-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 229px;
+	overflow: hidden;
+}
+.vip-enjoy-box .vip-enjoy-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.vip-enjoy-box .vip-enjoy-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.vip-enjoy-box .vip-enjoy-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 212px;
+	width: 120px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.vip-enjoy-box .vip-enjoy-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.vip-enjoy-box .vip-enjoy-left ul li a img{
+	width: 120px;
+	height: 168px;
+}
+.vip-enjoy-box .vip-enjoy-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.vip-enjoy-box .vip-enjoy-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.vip-enjoy-box .vip-enjoy-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.vip-enjoy-box .vip-enjoy-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* VIP的右边 */
+.vip-enjoy-box .vip-enjoy-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 284px;
+}
+.vip-enjoy-right-three{
+	height: 284px;
+	width: 240px;
+}
+.vip-enjoy-right-three div.title{
+	height: 25px;
+}
+.vip-enjoy-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.vip-enjoy-right-three div.title a{ 
+    float: right;
+    display: block;
+	margin-top: 5px;
+    width: 66px;
+    height: 18px;
+	font-size: 13px;
+    text-indent: 22px;
+    font-family: "Tahoma";
+    color: #999;
+    background: url(../image/sprite_0718.png) -292px -41px no-repeat;
+}
+.vip-enjoy-right-three div.title a:hover{
+	color: #249FF1;
+}
+.vip-enjoy-right-three ul.content-title {
+	margin-top: 18px ;
+	height: 30px;
+	width: 240px;
+	background: url(../image/sprite_0718.png) 0 -41px no-repeat;
+}
+.vip-enjoy-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.vip-enjoy-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.vip-enjoy-right-three div.content{
+	display: none;
+	height: 210px;
+}
+.vip-enjoy-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.vip-enjoy-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.vip-enjoy-right-three div.content ol em{
+	  display: block;
+	float: left;
+	display: inline-block;
+	font-style: normal;
+	width: 22px;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #000000;
+	background-color: #F8F8F8;
+	text-align: center;
+	border: 1px solid #E1E1E1;
+}
+.vip-enjoy-right-three div.content ol em.bg-color {
+    color: #FFFFFF;
+    background-color: #249FF1;
+}
+.vip-enjoy-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.vip-enjoy-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.vip-enjoy-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.vip-enjoy-right-three div.content .content-bottom{
+	padding-top: 11px;
+	margin-left: -13px;
+}
+.vip-enjoy-right-three div.content .content-bottom a{
+	padding-top: 12px;
+	padding-left: 13px;
+	color: #333333;
+	font-size: 12px;
+	float: left;
+	line-height: 12px;
+}
+.vip-enjoy-right-three div.content .content-bottom .last-a{
+	color: #999999;
+}
+.vip-enjoy-right-three div.content .content-bottom .last-a:hover{
+	text-decoration: underline;
+}
+
+/* 综艺部分开始 */
+.variety-box{
+	width: 1200px;
+	height: 508px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+/* 左边盒子 */
+.variety-box .variety-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 483px;
+}
+.variety-box .variety-left .variety-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.variety-box .variety-left .variety-left-title h2.title-h2{
+	float: left;
+	width: 105px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png) 0 -150px no-repeat;
+	overflow: hidden;
+}
+.variety-box .variety-left .variety-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.variety-box .variety-left .variety-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+/* 左边的内容 */
+.variety-box .variety-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 483px;
+	overflow: hidden;
+}
+.variety-box .variety-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+	height: 426px;
+	width: 951px;
+}
+.variety-box .variety-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.variety-box .variety-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.variety-box .variety-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.variety-box .variety-left ul li a img{
+	width: 155px;
+	height: 100px;
+}
+.variety-box .variety-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 93px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.variety-box .variety-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.variety-box .variety-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.variety-box .variety-left ul li p.maskbottom{
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 电视的右边 */
+.variety-box .variety-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 504px;
+}
+.variety-box .variety-right .variety-title{
+	height: 17px ;
+	width: 240px ;
+}
+.variety-box .variety-right .variety-title h2{
+	font-size: 18px;
+	color: #333333;
+	height: 18px;
+	font-weight: 300;
+}
+.variety-box .variety-right .variety-title h2 a{
+	cursor: pointer;
+    float: right;
+    display: block;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.variety-box .variety-right .variety-title h2 a:hover{
+	color: #249FF1;
+}
+.variety-box .variety-right .variety-right-first{
+	height: 90px;
+	width: 240px;
+	margin-top: 13px;
+}
+.variety-box .variety-right .variety-right-first ul{
+	margin-top: 20px;
+}
+.variety-box .variety-right .variety-right-first ul li{
+	height: 90px;
+	width: 115px;
+	float: left;
+}
+.variety-box .variety-right .variety-right-first ul li a:first-child{
+	display: block;
+	height: 65px;
+	width: 115px;
+	border-bottom: 2px solid #FFFFFF;
+}
+.variety-box .variety-right .variety-right-first ul li a:first-child:hover{
+	border-bottom: 2px solid #249FF1;
+}
+.variety-box .variety-right .variety-right-first ul li a.title{
+	margin-top: 5px;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	color: #333333;
+	font-size: 14px;
+}
+.variety-box .variety-right .variety-right-first ul li a.title:hover{
+	color: #249FF1;
+}
+/* 右边第二个的新闻推送 */
+.variety-right-tow{
+	width: 240px;
+	height: 55px;
+	background: #f3f3f3;
+	margin-top: 11px;
+	margin-bottom: 27px;
+}
+.variety-right-tow ul{
+	overflow:hidden;
+	width: 240px;
+	height: 55px;
+	
+}
+.variety-right-tow ul li{
+	display: inline-block;
+	float: left;
+	line-height: 25px;
+	padding-left: 10px;
+}
+.variety-right-tow ul li a{
+	color: #333333;
+	font-size: 12px;
+}
+.variety-right-tow ul li a:hover{
+	text-decoration: underline;
+	color: #249FF1;
+}
+.variety-right-three{
+	height: 284px;
+	width: 240px;
+}
+.variety-right-three div.title{
+	height: 25px;
+}
+.variety-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.variety-right-three div.title a{ 
+    float: right;
+    display: block;
+	margin-top: 5px;
+    width: 66px;
+    height: 18px;
+	font-size: 13px;
+    text-indent: 22px;
+    font-family: "Tahoma";
+    color: #999;
+    background: url(../image/sprite_0718.png) -292px -41px no-repeat;
+}
+.variety-right-three div.title a:hover{
+	color: #249FF1;
+}
+.variety-right-three ul.content-title {
+	margin-top: 18px ;
+	height: 30px;
+	width: 240px;
+	background: url(../image/sprite_0718.png) 0 -41px no-repeat;
+}
+.variety-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.variety-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.variety-right-three div.content{
+	display: none;
+	height: 210px;
+}
+.variety-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.variety-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.variety-right-three div.content ol em{
+	display: block;
+	float: left;
+	display: inline-block;
+    font-style: normal;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #000000;
+    background-color: #F8F8F8;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+}
+.variety-right-three div.content ol em.bg-color{
+	background-color: #249FF1;
+	color: #FFFFFF;
+}
+.variety-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.variety-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.variety-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.variety-right-three div.content .content-bottom{
+	padding-top: 11px;
+	margin-left: -13px;
+}
+.variety-right-three div.content .content-bottom a{
+	padding-top: 12px;
+	padding-left: 13px;
+	color: #333333;
+	font-size: 12px;
+	float: left;
+	line-height: 12px;
+}
+.variety-right-three div.content .content-bottom .last-a{
+	color: #999999;
+}
+.variety-right-three div.content .content-bottom .last-a:hover{
+	text-decoration: underline;
+}
+
+
+/* 动漫开始 */
+.manga-box{
+	position: relative;
+	width: 1200px;
+	height: 349px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+/* 左边盒子 */
+.manga-box .manga-left{
+	float: left;
+	position: relative;
+	left: 0px;
+}
+.manga-box .manga-left .manga-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.manga-box .manga-left .manga-left-title h2.title-h2{
+	float: left;
+	width: 105px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png) 0 -175px no-repeat;
+	overflow: hidden;
+}
+.manga-box .manga-left .manga-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.manga-box .manga-left .manga-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+/* 左边的内容 */
+.manga-box .manga-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 322px;
+	overflow: hidden;
+}
+.manga-box .manga-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+	height: 322px;
+	width: 951px;
+}
+.manga-box .manga-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.manga-box .manga-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.manga-box .manga-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.manga-box .manga-left ul li a img{
+	width: 155px;
+	height: 100px;
+}
+.manga-box .manga-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 93px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.manga-box .manga-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.manga-box .manga-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.manga-box .manga-left ul li p.maskbottom{
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 动漫的右边 */
+.manga-box .manga-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: auto;
+}
+.manga-right-three div.title{
+	height: 25px;
+}
+.manga-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.manga-right-three div.title a{ 
+    float: right;
+    display: block;
+	margin-top: 5px;
+    width: 66px;
+    height: 18px;
+	font-size: 13px;
+    text-indent: 22px;
+    font-family: "Tahoma";
+    color: #999;
+    background: url(../image/sprite_0718.png) -292px -41px no-repeat;
+}
+.manga-right-three div.title a:hover{
+	color: #249FF1;
+}
+.manga-right-three ul.content-title {
+	margin-top: 18px ;
+	height: 30px;
+	width: 240px;
+	background: url(../image/sprite_0718.png) 0 -41px no-repeat;
+}
+.manga-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.manga-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.manga-right-three div.content{
+	position: relative;
+	display: none;
+	height: 276px;
+	width: 240px;
+}
+.manga-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.manga-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.manga-right-three div.content ol em{
+	display: block;
+	float: left;
+	display: inline-block;
+    font-style: normal;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #000000;
+    background-color: #F8F8F8;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+}
+.manga-right-three div.content ol em.bg-color{
+	background-color: #249FF1;
+	color: #FFFFFF;
+}
+.manga-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.manga-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.manga-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+
+/* 动漫图片 */
+.manga-right-three div.content .simglist{
+	display: block;
+	position: absolute;
+	top: 180px;
+	width: 240px;
+	height: auto;
+}
+.manga-right-three div.content .simglist:after{
+	content: "";
+	display: block;
+	overflow: hidden;
+}
+.manga-right-three div.content .simglist li{
+	float: left;
+	width: 55px;
+	height: 73px;
+	padding-right: 5px;
+}
+.manga-right-three div.content .simglist li:last-child{
+	float: left;
+	width: 55px;
+	height: 73px;
+	padding-right: 0px;
+}
+.manga-right-three div.content .simglist li a{
+	font-size: 12px;
+	color: #333333;
+}
+/* 底部数据 */
+.manga-right-three div.content .content-bottom{
+	position: absolute;
+	top: 255px;
+	width: 240px;
+	height: 48px;
+	margin-left: -13px;
+	overflow: hidden;
+}
+.manga-right-three div.content .content-bottom:after{
+	content: "";
+	display: block;
+}
+.manga-right-three div.content .content-bottom a{
+	display: block;
+	float: left;
+	padding-top: 12px;
+	padding-left: 13px;
+	color: #333333;
+	font-size: 12px;
+	line-height: 12px;
+}
+.manga-right-three div.content .content-bottom .last-a{
+	color: #999999;
+}
+.manga-right-three div.content .content-bottom .last-a:hover{
+	text-decoration: underline;
+}
+
+/* 动漫结束 */
+
+/* 动漫下面的广告 */
+.donman-banner{
+	width: 1200px;
+	margin: 37px auto 0;
+	padding: 0;
+	height: 125px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #eeeeee;
+}
+.donman-banner:after{
+	content: "";
+	display: block;
+	overflow: hidden;
+}
+.donman-banner ul{
+	width: 1237px;
+	height: 125px;
+	overflow: hidden;
+	margin-left: -37px;
+}
+.donman-banner ul li{
+	position: relative;
+	float: left;
+	height: 125px;
+	width: 155px;
+	padding-left: 37px;
+} 
+.donman-banner ul li span{
+	position: absolute;
+	display: block;
+	bottom: 1px;
+	left: 37px;
+	color: #323232;
+	font-weight: 300;
+	line-height: 14px;
+}
+
+
+/* 游戏推荐 */
+.game-box{
+	width: 1200px;
+	height: 195px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 29px;
+	border-bottom: 1px solid #eee;
+}
+.game-box:after{
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+/* 左边盒子 */
+.game-box .game-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 195px;
+}
+.game-box .game-left .game-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.game-box .game-left .game-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -352px no-repeat;
+	overflow: hidden;
+}
+.game-box .game-left .game-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.game-box .game-left .game-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+.game-box .game-left .game-left-title a.more-a{
+	cursor: pointer;
+    display: block;
+    float: right;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.game-box .game-left .game-left-title a.more-a:hover{
+	color: #249FF1;
+	text-decoration:underline;
+}
+/* 左边的内容 */
+.game-box .game-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 161px;
+	overflow: hidden;
+}
+.game-box .game-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.game-box .game-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.game-box .game-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.game-box .game-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.game-box .game-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.game-box .game-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.game-box .game-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.game-box .game-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 游戏的右边 */
+.game-box .game-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 195px;
+}
+.game-right-three div.title{
+	height: 25px;
+}
+.game-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.game-right-three div.title a:hover{
+	color: #249FF1;
+}
+.game-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.game-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.game-right-three div.content{
+	display: none;
+	height: 195px;
+}
+.game-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.game-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.game-right-three div.content ol em{
+	  display: block;
+	float: left;
+	display: inline-block;
+	font-style: normal;
+	width: 22px;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #000000;
+	background-color: #F8F8F8;
+	text-align: center;
+	border: 1px solid #E1E1E1;
+}
+.game-right-three div.content ol em.bg-color {
+    color: #FFFFFF;
+    background-color: #249FF1;
+}
+.game-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.game-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.game-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 游戏结束 */
+
+
+/* 音乐开始 */
+.music-box{
+	width: 1200px;
+	height: 195px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 29px;
+	border-bottom: 1px solid #eee;
+}
+.music-box:after{
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+/* 左边盒子 */
+.music-box .music-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 195px;
+}
+.music-box .music-left .music-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.music-box .music-left .music-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -201px no-repeat;
+	overflow: hidden;
+}
+.music-box .music-left .music-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.music-box .music-left .music-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+.music-box .music-left .music-left-title a.more-a{
+	cursor: pointer;
+    display: block;
+    float: right;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.music-box .music-left .music-left-title a.more-a:hover{
+	color: #249FF1;
+	text-decoration:underline;
+}
+/* 左边的内容 */
+.music-box .music-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 161px;
+	overflow: hidden;
+}
+.music-box .music-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.music-box .music-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.music-box .music-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.music-box .music-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.music-box .music-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.music-box .music-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.music-box .music-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.music-box .music-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 音乐的右边 */
+.music-box .music-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 195px;
+}
+.music-right-three div.title{
+	height: 25px;
+}
+.music-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.music-right-three div.title a:hover{
+	color: #249FF1;
+}
+.music-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.music-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.music-right-three div.content{
+	display: none;
+	height: 195px;
+}
+.music-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.music-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.music-right-three div.content ol em{
+	  display: block;
+	float: left;
+	display: inline-block;
+	font-style: normal;
+	width: 22px;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #000000;
+	background-color: #F8F8F8;
+	text-align: center;
+	border: 1px solid #E1E1E1;
+}
+.music-right-three div.content ol em.bg-color {
+    color: #FFFFFF;
+    background-color: #249FF1;
+}
+.music-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.music-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.music-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 音乐结束 */
+
+
+/* 纪录片开始*/
+.document-box{
+	width: 1200px;
+	height: 195px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 29px;
+	border-bottom: 1px solid #eee;
+}
+.document-box:after{
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+/* 左边盒子 */
+.document-box .document-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 195px;
+}
+.document-box .document-left .document-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.document-box .document-left .document-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -225px no-repeat;
+	overflow: hidden;
+}
+.document-box .document-left .document-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.document-box .document-left .document-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+.document-box .document-left .document-left-title a.more-a{
+	cursor: pointer;
+    display: block;
+    float: right;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.document-box .document-left .document-left-title a.more-a:hover{
+	color: #249FF1;
+	text-decoration:underline;
+}
+/* 左边的内容 */
+.document-box .document-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 161px;
+	overflow: hidden;
+}
+.document-box .document-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.document-box .document-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.document-box .document-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.document-box .document-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.document-box .document-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.document-box .document-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.document-box .document-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.document-box .document-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 右边 */
+.document-box .document-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 195px;
+}
+.document-right-three div.title{
+	height: 25px;
+}
+.document-right-three div.title h3{
+	float: left;
+	color: #333333;
+	font-weight: 300;
+}
+.document-right-three div.title a:hover{
+	color: #249FF1;
+}
+.document-right-three ul.content-title li{
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+    width: 79px;
+    text-align: center;
+    line-height: 28px;
+    color: #333333;
+    font-size: 12px;
+    border-left: 1px solid #E1E1E1;
+}
+.document-right-three ul.content-title li:hover{
+	font-weight: 700;
+	background-color: #FFFFFF;
+	border-top: 2px solid #249FF1;
+	line-height: 24px;
+	padding-bottom: 4px;
+}
+/* 中间的排行榜 */
+.document-right-three div.content{
+	display: none;
+	height: 195px;
+}
+.document-right-three div.content ol.ol-left{
+	width: 120px;
+	float: left;
+}
+.document-right-three div.content ol.ol-right{
+	width: 120px;
+	float: right;
+}
+.document-right-three div.content ol em{
+	  display: block;
+	float: left;
+	display: inline-block;
+	font-style: normal;
+	width: 22px;
+	height: 22px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #000000;
+	background-color: #F8F8F8;
+	text-align: center;
+	border: 1px solid #E1E1E1;
+}
+.document-right-three div.content ol em.bg-color {
+    color: #FFFFFF;
+    background-color: #249FF1;
+}
+.document-right-three div.content ol li{
+	padding-top: 10px;
+	float: left;
+	color: #333333;
+	font-size: 12px;
+	overflow: hidden;
+}
+.document-right-three div.content ol li a{
+	margin-left: 22px;
+	display: block;
+	padding-left: 8px;
+	width: 92px;
+	height: 18px;
+	font-size: 12px;
+	color: #333333;
+}
+.document-right-three div.content ol li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 纪录片结束 */
+
+
+/* 公开课开始 */
+.public-box{
+	width: 1200px;
+	height: 195px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 29px;
+	border-bottom: 1px solid #eee;
+}
+.public-box:after{
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+/* 左边盒子 */
+.public-box .public-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 195px;
+}
+.public-box .public-left .public-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.public-box .public-left .public-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -250px no-repeat;
+	overflow: hidden;
+}
+.public-box .public-left .public-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.public-box .public-left .public-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+.public-box .public-left .public-left-title a.more-a{
+	cursor: pointer;
+    display: block;
+    float: right;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.public-box .public-left .public-left-title a.more-a:hover{
+	color: #249FF1;
+	text-decoration:underline;
+}
+/* 左边的内容 */
+.public-box .public-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 161px;
+	overflow: hidden;
+}
+.public-box .public-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.public-box .public-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.public-box .public-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.public-box .public-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.public-box .public-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.public-box .public-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.public-box .public-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.public-box .public-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 右边 */
+.public-box .public-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 195px;
+
+}
+.public-box .public-right h3.title{
+	font-size: 17px;
+	color: #323232;
+	font-weight: 300;
+}
+.public-box .public-right ul.content-tow{
+	margin-top: 20px;
+	width: 240px;
+	height: 73px;
+}
+.public-box .public-right ul.content-tow li{
+	position: relative;
+	float: left;
+	height: 73px;
+	width: 55px;
+	margin-left: 5px;
+}
+.public-box .public-right ul.content-tow li:first-child{
+	margin-left: 0px;
+}
+.public-box .public-right ul.content-tow li span{
+	position: absolute;
+	top: 56px;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 48px;
+	height: 12px;
+	color: #333333;
+	font-size: 12px;
+	cursor: pointer;
+}
+.public-box .public-right ul.content-tow li span:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.public-box .public-right .under-a{
+	width: 240px;
+	height: 17px;
+}
+.public-box .public-right .under-a a{
+	margin-left: 7px;
+	display: inline-block;
+	color: #333333;
+	font-size: 12px;
+}
+.public-box .public-right .under-a a:first-child{
+	margin-left: 0px;
+}
+.public-box .public-right .under-a a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.public-box .public-right ul.txtlist{
+	margin-top: 19px;
+}
+.public-box .public-right ul.txtlist li{
+	height: 17px;
+	width: 230px;
+}
+.public-box .public-right ul.txtlist li span{
+	font-size: 12px;
+	padding-right: 3px;
+	float: left;
+	color: #999999;
+}
+.public-box .public-right ul.txtlist li a{
+	float: left;
+	color: #333333;
+	font-size: 12px;
+}
+.public-box .public-right ul.txtlist li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 公开课结束 */
+
+/* 靓TV开始 */
+.beautiful-box{
+	width: 1200px;
+	height: 195px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 29px;
+	border-bottom: 1px solid #eee;
+}
+.beautiful-box:after{
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+/* 左边盒子 */
+.beautiful-box .beautiful-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	height: 195px;
+}
+.beautiful-box .beautiful-left .beautiful-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.beautiful-box .beautiful-left .beautiful-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 26px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png) 0 -275px no-repeat;
+	overflow: hidden;
+}
+.beautiful-box .beautiful-left .beautiful-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.beautiful-box .beautiful-left .beautiful-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+.beautiful-box .beautiful-left .beautiful-left-title a.more-a{
+	cursor: pointer;
+    display: block;
+    float: right;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.beautiful-box .beautiful-left .beautiful-left-title a.more-a:hover{
+	color: #249FF1;
+	text-decoration:underline;
+}
+/* 左边的内容 */
+.beautiful-box .beautiful-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 161px;
+	overflow: hidden;
+}
+.beautiful-box .beautiful-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.beautiful-box .beautiful-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.beautiful-box .beautiful-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.beautiful-box .beautiful-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.beautiful-box .beautiful-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.beautiful-box .beautiful-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.beautiful-box .beautiful-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.beautiful-box .beautiful-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 右边 */
+.beautiful-box .beautiful-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+	height: 195px;
+}
+.beautiful-box .beautiful-right .title{
+	color: #DED8DE;
+	width: 160px;
+	height: 15px;
+}
+.beautiful-box .beautiful-right .title a{
+	margin: 0 7px 0 2px;
+	color: #545454;
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+}
+.beautiful-box .beautiful-right .content-tow{
+	margin-top: 22px;
+	width: 235px;
+	height: 144px;
+}
+.beautiful-box .beautiful-right .content-tow ul{
+	display: none;
+	width: 235px;
+	height: 76px;
+}
+.beautiful-box .beautiful-right .content-tow ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.beautiful-box .beautiful-right .content-tow ul li{
+	margin-left: 5px;
+	position: relative;
+	float: left;
+	height: 55px;
+	width: 55px;
+	cursor: pointer;
+}
+.beautiful-box .beautiful-right .content-tow ul li:first-child{
+	margin-left: 0px;
+}
+.beautiful-box .beautiful-right .content-tow ul li span{
+	font-size: 8px;
+	color: #333;
+}
+.beautiful-box .beautiful-right .content-tow div.txtlist{
+	margin-top: 19px;
+}
+.beautiful-box .beautiful-right .content-tow div.txtlist li{
+	margin-left: 0px;
+	height: 17px;
+	width: auto;
+}
+.beautiful-box .beautiful-right .content-tow div.txtlist li span{
+	font-size: 12px;
+	padding-right: 3px;
+	float: left;
+	color: #999999;
+}
+.beautiful-box .beautiful-right .content-tow div.txtlist li a{
+	float: left;
+	color: #333333;
+	font-size: 12px;
+}
+.beautiful-box .beautiful-right .content-tow div.txtlist li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 靓TV结束 */
+
+/* 合作专区开始 */
+.together-box{
+	width: 1200px;
+	height: 166px;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 15px;
+}
+.together-box:after{
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+/* 左边盒子 */
+.together-box .together-left{
+	float: left;
+	position: relative;
+	left: 0px;
+	width: 930px;
+	/* height: 195px; */
+}
+.together-box .together-left .together-left-title{
+	position: absolute;
+	width: 915px;
+	top: 0px;
+	left: 0px;
+	height: 25px;
+}
+.together-box .together-left .together-left-title h2.title-h2{
+	float: left;
+	width: 139px;
+	height: 24px;
+	margin-right: 71px;
+	background: url(../image/sbits/title_0910.png)  0 -302px no-repeat;
+	overflow: hidden;
+}
+.together-box .together-left .together-left-title .tab-box {
+	cursor: default;
+	color: #DED8DE;
+}
+.together-box .together-left .together-left-title .tab-box a{
+	color: #545454;
+	font-size: 16px;
+	margin: 0 9px 0 2px;
+}
+.focus-background{
+	border-bottom: 2px  solid #0099FF;
+}
+.together-box .together-left .together-left-title a.more-a{
+	cursor: pointer;
+    display: block;
+    float: right;
+    padding-top: 8px;
+    color: #999999;
+    font-size: 12px;
+}
+.together-box .together-left .together-left-title a.more-a:hover{
+	color: #249FF1;
+	text-decoration:underline;
+}
+/* 左边的内容 */
+.together-box .together-left .left-content{
+	position: absolute;
+	top: 21px;
+	left: 0px;
+	width: 917px;
+	height: 150px;
+	overflow: hidden;
+}
+.together-box .together-left .left-content ul{
+	display: none;
+	margin-left: -35px;
+}
+.together-box .together-left .left-content ul:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.together-box .together-left .left-content ul li{
+	position: relative;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	height: 144px;
+	width: 155px;
+	padding-top: 17px;
+	padding-left: 35px;
+}
+.together-box .together-left .left-content ul li:hover a:first-child span{
+	border-bottom: 2px solid #249FF1;
+}
+.together-box .together-left ul li a span.masktxt{
+	position: absolute;
+    left: 35px;
+    top: 161px;
+    display: block;
+    width: 152px;
+    height: 24px;
+	font-size: 12px;
+    line-height: 28px;
+    padding-right: 3px;
+    color: #fff;
+    text-align: right;
+    background: url(../image/sbits/png24.png) 0 -50px repeat-x;
+}
+
+.together-box .together-left ul li a.pic_title{
+	position: relative;
+	display: inline-block;
+	width: 155px;
+	height: 16px;
+	padding: 0;
+	margin-top: 11px;
+	line-height: 14px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.together-box .together-left ul li a.pic_title:hover{
+	color: #249FF1;
+}
+.together-box .together-left ul li p.maskbottom{
+	width: 127px;
+	height: 18px;
+	overflow: hidden;
+	line-height: 12px;
+	font-size: 12px;
+	padding-top: 5px;
+	color: #999999;
+}
+
+
+/* 右边 */
+.together-box .together-right{
+	position: relative;
+	float: right;
+	right: 0px;
+	width: 240px;
+}
+	
+.together-box .together-right h3.title{
+	font-size: 18px;
+	font-weight: 400;
+	color: #333333;
+}
+.together-box .together-right ul{
+	width: 234px;
+	height:116px;
+
+}
+.together-box .together-right ul li{
+	color: #DED8DE;
+	padding-top: 8px;
+	height: 21px;
+	width: 234px;
+	overflow: hidden;
+}
+.together-box .together-right ul li a{
+	color: #333333;
+	font-size: 12px;
+	font-weight: 400;
+}
+.together-box .together-right ul li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 合作专区结束 */
+
+/* 底部频道开始 */
+.channel-box{
+	width: 1200px;
+	height: 74px;
+	margin:  0 auto;
+}
+.channel-box .left-box{
+	float: left;
+	padding-top:14px;
+	height: 40px;
+	width: 947px;
+	margin-left: -23px;
+	border-top: 1px dashed #E6E6E6;
+}
+.channel-box .left-box ul{
+	width: 958px;
+	height: 40px;
+}
+.channel-box .left-box ul li{
+	float: left;
+	height: 21px;
+	width: 73px;
+	border-right: 1px solid #E5DEDE;
+	margin-left: 23px;
+	color: #cccccc;
+}
+.channel-box .left-box ul li.boder-none{
+	border-right: 0px ;
+	width: 50px;
+}
+.channel-box .left-box ul li a{
+	font-size: 12px;
+	color: #333333;
+	width: 48px;
+	display: inline-block;
+	margin-right: 23px;
+}
+.channel-box .left-box ul li a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.channel-box .right-box{
+	float: right;
+	padding-top: 17px;
+	width: 240px;
+	height: 22px;
+	color: #666666;
+	font-size: 12px;
+	margin: 0;
+	border-top: 1px dashed #E6E6E6;
+}
+.channel-box .right-box span{
+	line-height: 22px;
+	float: left;
+}
+.channel-box .right-box a{
+	display: inline-block;
+	float: left;
+	width: 62px;
+	height: 22px;
+	margin-left: 5px;
+}
+.channel-box .right-box a.first{
+	background: url(../image/sprite_0718.png) -289px -72px no-repeat;
+}
+.channel-box .right-box a.tow{
+	background: url(../image/sprite_0718.png) -352px -72px no-repeat;
+}
+/* 底部频道结束 */
+/* 底部搜索 */
+.bottom-search{
+	position: relative;
+	width: 100%;
+	height: 196px;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #e9e9e9;
+	border-top: 1px solid #e9e9e9;
+}
+.bottom-search .search-top{
+	position: relative;
+    margin: 0 auto 0 auto;
+	padding-left: 163px;
+    top: 24px;
+    width: 693px;
+    height: 40px;
+    
+}
+.bottom-search .search-top .search form{
+	overflow: hidden;
+	width: 357px;
+	background: url(../image/headernav_0917.png) no-repeat;
+	height: 40px;
+}
+.bottom-search .search-top .search .search-text {
+    position: relative;
+    left: 3px;
+    top: 3px;
+	padding-left: 5px;
+    height: 34px;
+    width: 286px;
+    color: #c4c4c4;
+}
+.bottom-search .search-top .search .btn{
+	position: absolute;
+    top: 3px;
+    left: 457px;
+    height: 35px;
+    width: 60px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+.bottom-search .search-top-tuijian{
+	position: absolute;
+	float: left;
+	top: 13px;
+	left: 516px;
+	width: 257px;
+	height: 16px;
+}
+.bottom-search .search-top-tuijian a{
+	display: inline-block;
+	margin-left: 12px;
+	font-size: 12px;
+	float: left;
+	font-weight: 300;
+	line-height: 16px;
+	color: #999999;
+}
+.bottom-search .search-top-tuijian a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.bottom-search .search-bottom{
+	margin: 56px auto ;
+	width:1090px;
+	height: 80px;
+}
+.bottom-search .search-bottom ul:after{
+	margin-left: -30px;
+	width: 1090px;
+	height: 80px;
+	display: block;
+	content: "";
+	overflow: hidden;
+}
+.bottom-search .search-bottom ul li{
+	border-right: 1px solid #EBEBEB;
+	margin-left: 30px;
+	float: left;
+	width: 240px;
+	height: 66px;
+}
+.bottom-search .search-bottom ul li:last-child{
+	border-right: 0;
+}
+.bottom-search .search-bottom ul li dl dt{
+	font-size: 14px;
+	color: #333333;
+	font-weight: 700;
+	line-height: 25px;
+}
+.bottom-search .search-bottom ul li dl dd a{
+	display: inline-block;
+	color: #333333;
+	font-size: 12px;
+	float: left;
+	padding-right: 13px;
+}
+.bottom-search .search-bottom ul li dl dd a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+/* 底部搜索结束 */
+/* 底部的广告 */
+.bottom-banner{
+	width: 1200px;
+	height: 90px;
+	padding-top: 31px;
+	padding-bottom: 31px;
+	margin: 0 auto;
+}
+.bottom-banner .left{
+	float: left;
+    position: relative;
+    height: 88px;
+    width: 948px;
+    border: 1px solid #E5E5E5;
+    background: #FFFFFF;
+}
+
+.bottom-banner .left ul{
+	
+}
+.bottom-banner .left ul li{
+	float: left;
+    position: relative;
+    width: 230px;
+    height: 88px;
+}
+.bottom-banner .left ul li a{
+	position: absolute;
+    display: block;
+    top: 0;
+    left: 3px;
+    width: 90px;
+    height: 88px;
+    overflow: hidden;
+}
+.bottom-banner .left ul li  p.sal{
+	position: absolute;
+    left: 95px;
+    top: 28px;
+    color: #666;
+    font-family: "Microsoft Yahei";
+    font-weight: 400;
+    font-size: 12px;
+}
+.bottom-banner .left ul li  p.sal span{
+	position: absolute;
+    display: inline-block;
+    left: 30px;
+    color: #666;
+    font-family: "Microsoft Yahei";
+    font-weight: 400;
+    font-size: 12px;
+    top: 0px;
+    width: 40px;
+}
+
+.bottom-banner .left ul li  p.price-pic{
+	display: block;
+    position: absolute;
+    left: 95px;
+    top: 45px;
+    width: 5px;
+    height: 23px;
+    background: url(../image/sbits/price_pic.gif) no-repeat;
+}
+.bottom-banner .left ul li  a.price{
+	display: block;
+    position: absolute;
+    left: 95px;
+    top: 45px;
+    width: 82px;
+    height: 18px;
+	font-size: 12px;
+    background: #FF4400;
+    text-align: center;
+    line-height: 18px;
+    color: #fff;
+    font-family: "Microsoft Yahei";
+    font-weight: 700;
+}
+
+.bottom-banner .left  .ad_tab{
+	position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 10px;
+	
+}
+.bottom-banner .left  .ad_tab a{
+	cursor: pointer;
+	display: block;
+	width: 9px;
+	height: 9px;
+	margin-top: 10px;
+	overflow: hidden;
+	background: url(../image/sbits/orange.gif) 0 0 no-repeat
+}
+.bottom-banner .left  .ad_tab a{
+	
+}
+.bottom-banner .left  .ad_tab .one{
+	background: url(../image/sbits/orange.gif) 0 -9px no-repeat
+}
+
+.bottom-banner .left .tao1{
+	position: absolute;
+	display: none;
+	cursor: pointer;
+	width: 110px;
+	height: 17px;
+	right: 0px;
+	bottom: 0px;
+	background: url(../image/sbits/tao1.png) no-repeat;
+}
+.bottom-banner .left .tao{
+	position: absolute;
+	cursor: pointer;
+    right: 0px;
+    bottom: 0px;
+    width: 26px;
+    height: 17px;
+	background: url(../image/sbits/tao.png) no-repeat;
+}
+.bottom-banner .left .tao2{
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 7px;
+    height: 7px;
+    background: url(../image/sbits/tao2.gif) no-repeat;
+}
+
+.bottom-banner .pop{
+	float: left;
+    width: 30px;
+    height: 90px;
+    background: url(../image/sbits/tg.jpg) no-repeat;
+}
+.bottom-banner .right{
+	position: relative;
+	cursor: pointer;
+    float: right;
+    width: 210px;
+    height: 90px;
+}
+.bottom-banner .right .first{
+	float: left;
+    display: block;
+    width: 210px;
+    height: 57px;
+    background: #0048BE;
+    border-bottom: 1px solid #FBFBFB;
+    color: #FFFFFF;
+    font-family: "微软雅黑";
+    font-size: 24px;
+    line-height: 57px;
+    text-align: center;
+	transition:all .1s ease-in 0s;
+}
+
+.bottom-banner .right .tow{
+	float: left;
+    display: block;
+    width: 103px;
+    height: 32px;
+    background: #00839A;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #fff;
+    line-height: 32px;
+    text-align: center;
+    border-right: 1px solid #fff;
+	transition:all .1s ease-in 0s;
+}
+.bottom-banner .right .three{
+	float: left;
+    display: block;
+    width: 106px;
+    height: 32px;
+    background: #00839A;
+    color: #fff;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    line-height: 32px;
+    text-align: center;
+	transition:all .1s ease-in 0s;
+	}
+.bottom-banner .right .first:hover{
+	opacity: .9;
+}
+.bottom-banner .right .tow:hover{
+	opacity: .9;
+}
+.bottom-banner .right .three:hover{
+	opacity: .9;
+}
+/* 底部的广告 */
+.footer{
+	text-align: center;
+	margin: 0 auto;
+	height: 78px;
+	width: 900px;
+	padding-bottom: 11px;
+}
+.footer ul.first{
+	position: relative;
+	height: 16px;
+	width: 620px;
+	margin: 0 auto;
+}
+.footer ul.first a{
+	display: inline-block;
+	float: left;
+	border-right: 1px solid #DDDDDD;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+	color: #333333;
+}
+.footer ul.first a:last-child{
+	border: 0px;
+}
+.footer ul.first a:hover{
+	color: #249FF1;
+	text-decoration: underline;
+}
+.footer ul.tow{
+	text-align: center;
+}
+.footer ul.tow a{
+	display: inline-block;
+	font-size: 12px;
+	color: #999999;
+}
+.footer ul.tow a:hover{
+	text-decoration: underline;
+}
+.footer ul.three{
+	text-align: center;
+}
+.footer ul.three a{
+	display: inline-block;
+	font-size: 12px;
+	color: #999999;
+}
+.footer ul.three a:hover{
+	text-decoration: underline;
+}
+.footer p{
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+	color: #999999;
+}
+.footer p strong{
+	text-decoration: underline;
+	color: #333333;
+	font-weight: 300;
+}
+/*返回顶部*/
+.remove-up{
+	width: 38px;
+    height: 38px;
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+	cursor: pointer;
+	background: url(../image/sprite_0718.png) -116px -147px no-repeat;
+}
+.remove-up:hover{
+	background: url(../image/sprite_0718.png) -156px -147px no-repeat;
+}
+/* 底部的数据 */
+.last{
+	margin: 0 auto;
+	height: 47px;
+	width: 128px;
+	background: url(../image/chenxun.png) no-repeat;
+}

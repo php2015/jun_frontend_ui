@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas Demo</title>
+
+</head>
+<body>
+<canvas id="canvasId" style="border: 1px solid;" width="300" height="300"></canvas>
+<button id="resetId">reset</button>
+
+<script type="text/javascript">
+
+var points={};
+var x=-1;
+var y = -1;
+
+var SCALE = 3;//范围值
+
+var canvas;
+var ctx;
+
+function resetBtn(){
+	var points={};
+	var x=-1;
+	var y = -1;
+	ctx.clearRect(0, 0, 300, 300);//清除区域
+}
+
+function loadDemo(){
+	document.getElementById("resetId").onclick = resetBtn;
+	
+	canvas = document.getElementById("canvasId");
+	ctx = canvas.getContext("2d");
+	ctx.globalAlpha = 0.2;//全局透明
+	ctx.globalCompositeOperation = "lighter";
+	
+	var user = navigator.userAgent;
+	console.log(user);
+	
+	if(user.indexOf("Windows")!=-1){
+		canvas.onmousemove = function(e){
+			
+			
+			x = e.clientX - e.target.offsetLeft;
+			y = e.clientY - e.target.offsetTop;
+			
+			addToPoint(x,y);
+		};
+	}else if(user.indexOf("Android")!=-1){
+	
+		canvas.ontouchmove = function(e){
+			
+			e.preventDefault();	
+			x = e.touches[0].clientX - e.target.offsetLeft;
+			y = e.touches[0].clientY - e.target.offsetTop;
+			
+			addToPoint(x,y);
+		}
+	}
+	
+	auto();
+};
+
+function auto(){
+	if(x!=-1){
+		addToPoint(x,y);
+	}
+	setTimeout(auto,100);
+}
+
+function addToPoint(x,y){
+	
+	x = Math.floor(x/SCALE);
+	y = Math.floor(y/SCALE);
+	
+	/* for(var i = 1;i<10;i++){
+	i = Math.floor(i/SCALE);
+	console.log("i: "+i);
+	} */
+	
+	if(!points[[x,y]]){
+		points[[x,y]] = 1;//point.key = 1
+	}else if(points[[x,y]] == 10){
+		return ;
+	}else{
+		points[[x,y]]++;
+	}
+	
+	
+	drawPoint(x*SCALE,y*SCALE,points[[x,y]]);
+	
+};
+
+function drawPoint(x,y,num){
+	var color = getColor(num);
+	var r = Math.sqrt(num)*6;
+	
+	ctx.beginPath();
+	ctx.arc(x,y,r,0,Math.PI*2,true);//x,y 原点      r半径  0,Pi*2 起始弧度   true/false   顺时针，逆时针
+	ctx.closePath();
+	ctx.fillStyle = color;
+	ctx.fill();
+	
+};
+
+function getColor(num){
+	 var colors = ["#072933", "#2E4045", "#8C593B", "#B2814E", "#FAC268", "#FAD237"];
+     return colors[Math.floor(num/2)];
+};
+
+
+window.addEventListener("load",loadDemo,true);
+</script>
+</body>
+</html>

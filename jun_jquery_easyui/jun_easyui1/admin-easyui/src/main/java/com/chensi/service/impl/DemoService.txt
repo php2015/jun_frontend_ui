@@ -1,0 +1,48 @@
+package com.chensi.service.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
+
+import com.chensi.dao.IDemoMapper;
+import com.chensi.model.Demo;
+import com.chensi.service.IDemoService;
+
+@Service
+public class DemoService extends CommonService<Demo> implements IDemoService {
+
+	@Autowired
+	private IDemoMapper demoMapper;
+
+	protected void init() {
+		super.mapper = this.demoMapper;
+	}
+
+	@Override
+	@Cacheable(value = "demo", key = "#id")
+	public Demo get(Serializable id) {
+		return super.get(id);
+	}
+
+	@Override
+	@Caching(evict = { @CacheEvict(value = "demo", key = "#entity.id"), @CacheEvict(value = "demo", key = "'demoList'") })
+	public void update(Demo entity) {
+		super.update(entity);
+	}
+
+	/**
+	 * Spring默认使用被@Cacheable注解的方法的签名来作为key，当然你可以重写key，自定义key可以使用SpEL表达式。
+	 * 注意：自定义key要加上单引号''
+	 */
+	@Override
+	@Cacheable(value = "demo", key = "'demoList'")
+	public List<Demo> list() {
+		return super.list();
+	}
+
+}

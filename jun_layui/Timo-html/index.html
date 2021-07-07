@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TIMO后台模板</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" th:href="./images/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./css/plugins/font-awesome-4.7.0/css/font-awesome.min.css"  media="all">
+    <link rel="stylesheet" href="./lib/layui-v2.3.0/css/layui.css"  media="all">
+    <link rel="stylesheet" href="./css/main.css"  media="all">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 导航栏 -->
+    <div class="layui-header">
+        <a href="#" class="layui-logo">
+            <span class="layui-logo-mini">TIMO</span>
+            <span class="layui-logo-lg">TIMO 后台</span>
+        </a>
+        <a class="side-toggle layui-layout-left" href="#">
+            <i class="layui-icon layui-icon-shrink-right"></i>
+            <i class="layui-icon layui-icon-spread-left"></i>
+        </a>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item timo-search">
+              <input class="timo-search-input" type="search" placeholder="搜索">
+              <button class="timo-search-button"><i class="fa fa-search"></i></button>
+            </li>
+            <li class="layui-nav-item">
+                <a href="#">
+                    <i class="fa fa-bell-o fa-lg"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a class="timo-screen-full" href="#">
+                    <i class="fa layui-icon layui-icon-screen-full"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item timo-nav-user">
+                <a class="timo-header-nickname">小懒虫<span class="layui-nav-more"></span></a>
+                <div class="layui-nav-child layui-anim layui-anim-upbit">
+                    <div class="timo-nav-child-box">
+                        <div><a class="open-popup" data-title="个人信息" data-size="680,464" data-url="404.html"><!--
+              --><i class="fa fa-user-o"></i>个人信息</a></div>
+                        <div><a class="open-popup" data-title="修改密码" data-size="456,295" data-url="404.html"><!--
+              --><i class="fa fa-lock" style="font-size:17px;width:12px;"></i>修改密码</a></div>
+                        <div><a href="#"><i class="fa fa-power-off"></i>退出登录</a></div>
+                    </div>
+                </div>
+            </li>
+		</ul>
+    </div>
+
+    <!-- 侧边栏 -->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <div class="layui-side-user">
+                <img class="layui-side-user-avatar" src="./images/user-picture.jpg" alt="头像">
+                <div>
+                    <p class="layui-side-user-name">小懒虫</p>
+                    <p class="layui-side-user-designation">在线</p>
+                </div>
+            </div>
+            <!-- 导航区域 -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="layui-nav-side">
+                <li class="layui-nav-item layui-this">
+                    <a href="javascript:;" lay-url="home.html" lay-icon="true"><i class="layui-icon layui-icon-home"></i><span class="layui-nav-title">主页</span></a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" lay-url="#"><i class="fa fa-cog"></i><span class="layui-nav-title">系统管理</span><span class="layui-nav-more"></span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" lay-url="user-index.html"><span class="layui-nav-title">用户管理</span></a></dd>
+                        <dd><a href="javascript:;" lay-url="role-index.html"><span class="layui-nav-title">角色管理</span></a></dd>
+                        <dd><a href="javascript:;" lay-url="404.html?1"><span class="layui-nav-title">菜单管理</span></a></dd>
+                        <dd><a href="javascript:;" lay-url="404.html?2"><span class="layui-nav-title">部门管理</span></a></dd>
+                        <dd><a href="javascript:;" lay-url="404.html?3"><span class="layui-nav-title">字典管理</span></a></dd>
+                        <dd><a href="javascript:;" lay-url="404.html?4"><span class="layui-nav-title">行为日志</span></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" lay-url="#"><i class="fa fa-gavel"></i><span class="layui-nav-title">开发中心</span><span class="layui-nav-more"></span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" lay-url="build-index.html"><span class="layui-nav-title">表单构建</span></a></dd>
+                    </dl>
+                </li>
+            <span class="layui-nav-bar"></span></ul>
+        </div>
+    </div>
+    <!-- 主体区域 -->
+    <div class="layui-body layui-tab layui-tab-brief" lay-allowclose="true" lay-filter="iframe-tabs">
+        <!-- 标签栏 -->
+        <ul class="layui-tab-title"><li lay-id="home.html" class="layui-this"><i class="layui-icon layui-icon-home"></i><span class="layui-nav-title">主页</span><i class="layui-icon layui-unselect layui-tab-close">ဆ</i></li></ul>
+        <!-- 内容区域 -->
+        <div class="layui-tab-content"><div class="layui-tab-item layui-show"><iframe src="home.html" frameborder="0" class="layui-layout-iframe"></iframe></div></div>
+    </div>
+</div>
+<script src="./lib/layui-v2.3.0/layui.js" charset="utf-8"></script>
+<script src="./js/main.js" charset="utf-8"></script>
+</body></html>

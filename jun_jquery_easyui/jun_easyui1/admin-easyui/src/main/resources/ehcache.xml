@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="ehcache">
+
+	<diskStore path="java.io.tmpdir" />
+	<!-- maxEntriesLocalHeap 是用来限制当前缓存在堆内存上所能保存的最大元素数量的 -->
+	<!-- timeToIdleSeconds 对象空闲时间，指对象在多长时间没有被访问就会失效。只对eternal为false的有效。默认值0，表示一直可以访问。以秒为单位 -->
+	<!-- timeToLiveSeconds 对象存活时间，指对象从创建到失效所需要的时间，不管有没有访问。只对eternal为false的有效。默认值0，表示一直可以访问。以秒为单位 -->
+	<!-- eternal=true ，那么TTI和TTL这两个配置将被覆盖，对象会永恒存在cache中，永远不会过期。 -->
+	<!-- overflowToDisk属性用来配置当缓存存储的数据达到maxInMemory限制时是否overflow到磁盘上。如果这个属 性为true，那么要求缓存的数据必须是可序列化的，如果不是可序列化的，ehcache将在日志中打印这个错误 -->
+	<defaultCache maxElementsInMemory="10000" diskPersistent="true" maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="300"
+		timeToLiveSeconds="300" overflowToDisk="false">
+	</defaultCache>
+
+
+	<!-- 维保人员缓存:value=wbUser -->
+	<!-- <cache name="wbUser" maxEntriesLocalHeap="10000" eternal="false" -->
+	<!-- timeToIdleSeconds="300" timeToLiveSeconds="300" overflowToDisk="false"> -->
+	<!-- </cache> -->
+
+</ehcache>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="always" name="referrer" />
+
+    <title>jquery jdirk test page - requirejs</title>
+
+    <script type="text/javascript" data-main='../../js/main' src="../../js/requirejs/require.js"></script>
+
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+        require(["jquery/jquery-1.12.4"], function ($) {
+            $(function () {
+                alert("123");
+            });
+        });
+    </script>
+
+</body>
+</html>

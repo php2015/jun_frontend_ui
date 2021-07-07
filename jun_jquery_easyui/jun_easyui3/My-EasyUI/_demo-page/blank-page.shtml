@@ -1,0 +1,7 @@
+<!-- #include file="inc_header.html" -->
+<body class="easyui-layout">
+<div region="center" style="padding:20px;" border="false">
+这是一个空白页
+
+</div>
+<!-- #include file="inc_footer.html" -->

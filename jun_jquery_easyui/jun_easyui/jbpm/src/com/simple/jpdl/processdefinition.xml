@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition xmlns="urn:jbpm.org:jpdl-3.1" name="mule-jbpm">
+   <start-state name="start">
+     <task>
+        <controller>
+          <variable name="color" />
+          <variable name="size" />
+        </controller>
+      </task>
+      <transition name="to_state" to="first">
+         <action name="action" class="com.simple.action.MessageActionHandler">
+            <serviceName>UploadService</serviceName>
+            <method>upload</method>
+         </action>
+      </transition>
+   </start-state>
+   <state name="first">
+      <transition name="to_end" to="end">
+         <action name="action" class="com.simple.action.MessageActionHandler">
+            <serviceName>About to finish!</serviceName>
+         </action>
+      </transition>
+   </state>
+   <end-state name="end"></end-state>
+</process-definition>

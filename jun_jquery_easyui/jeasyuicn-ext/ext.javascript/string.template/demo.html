@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ext.string.template - Easyui中文社区</title>
+	<link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/2.3.1/css/bootstrap.min.css" type="text/css"></link>
+	<link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/2.3.1/css/bootstrap-responsive.min.css" type="text/css"></link>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script type="text/javascript" src="http://lib.sinaapp.com/js/bootstrap/2.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="ext.string.template.js"></script>
+	<script>
+		$(function(){
+			var $simpTpl =$("#simpTpl");
+			var $objTpl =$("#objTpl");
+			var $arrTpl =$("#arrTpl");
+			
+			$simpTpl.click(function(){
+				var tpl = $("#textareaTpl").val();
+				var data = $("#textareaData").val();
+				if(tpl && data)
+					$("#textareares").val(tpl.template(eval("("+data+")")));
+			});
+			
+			
+			$objTpl.click(function(){
+				var tpl = $("#objtextareaTpl").val();
+				var data = $("#objtextareaData").val();
+				if(tpl && data)
+					$("#objtextareares").val(tpl.template(eval("("+data+")")));
+			});
+			
+			$arrTpl.click(function(){
+				var tpl = $("#arrtextareaTpl").val();
+				var data = $("#arrtextareaData").val();
+				if(tpl && data)
+					$("#arrtextareares").val(tpl.template(eval("("+data+")")));
+			});
+		});
+	</script>
+</head>
+<body style="padding:20px;">
+	<h1>字符串模板解析</h1>
+	<hr/>
+	<h3>对象模式</h3>
+	<div>模板：<textarea rows="3" id="textareaTpl">你好{{name}},欢迎进入{{site}}。</textarea></div>
+	<div>数据：<textarea rows="3" id="textareaData">{"name":"夏悸","site":"中文社区"}</textarea></div>
+	<p><button class="btn btn-large btn-primary" type="button" id="simpTpl">解析模板</button></p>
+	<div>结果：<textarea rows="3" id="textareares" readonly="readonly"></textarea></div>
+	<hr/>
+	<h3>二级对象模式</h3>
+	<div>模板：<textarea rows="3" id="objtextareaTpl">你好{{user.name}},欢迎进入{{user.site}}。</textarea></div>
+	<div>数据：<textarea rows="3" id="objtextareaData">{"user":{"name":"夏悸","site":"中文社区"}}</textarea></div>
+	<p><button class="btn btn-large btn-primary" type="button" id="objTpl">解析模板</button></p>
+	<div>结果：<textarea rows="3" id="objtextareares" readonly="readonly"></textarea></div>
+	<hr/>
+	<h3>数组模式</h3>
+	<div>模板：<textarea rows="3" id="arrtextareaTpl">你好{{0}},欢迎进入{{1}}。</textarea></div>
+	<div>数据：<textarea rows="3" id="arrtextareaData">["夏悸","中文社区"]</textarea></div>
+	<p><button class="btn btn-large btn-primary" type="button" id="arrTpl">解析模板</button></p>
+	<div>结果：<textarea rows="3" id="arrtextareares" readonly="readonly"></textarea></div>
+</body>
+</html>

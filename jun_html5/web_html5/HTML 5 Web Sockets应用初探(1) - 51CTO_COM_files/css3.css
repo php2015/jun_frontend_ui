@@ -1,0 +1,63 @@
+.artHd {
+	LINE-HEIGHT: 30px; HEIGHT: 35px; COLOR: #325b0a; BORDER-TOP: #ccc 1px dashed
+}
+.artHd P {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.artHd_l SPAN {
+	FLOAT: left
+}
+.artHd_l .item1 {
+	WIDTH: 62px; COLOR: #004276
+}
+.artHd_l .item2 {
+	MARGIN: 8px 0px 0px; DISPLAY: inline
+}
+.xx0 {
+	WIDTH: 70px; DISPLAY: block; BACKGROUND: url(../img/xx.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden
+}
+.xx1 {
+	WIDTH: 70px; DISPLAY: block; BACKGROUND: url(../img/xx.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden
+}
+.xx2 {
+	WIDTH: 70px; DISPLAY: block; BACKGROUND: url(../img/xx.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden
+}
+.xx3 {
+	WIDTH: 70px; DISPLAY: block; BACKGROUND: url(../img/xx.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden
+}
+.xx4 {
+	WIDTH: 70px; DISPLAY: block; BACKGROUND: url(../img/xx.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden
+}
+.xx5 {
+	WIDTH: 70px; DISPLAY: block; BACKGROUND: url(../img/xx.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden
+}
+.xx1 {
+	BACKGROUND-POSITION: 0px -14px
+}
+.xx2 {
+	BACKGROUND-POSITION: 0px -29px
+}
+.xx3 {
+	BACKGROUND-POSITION: 0px -43px
+}
+.xx4 {
+	BACKGROUND-POSITION: 0px -58px
+}
+.xx5 {
+	BACKGROUND-POSITION: 0px -72px
+}
+.artHd .artHd_l {
+	FLOAT: left
+}
+.artHd .artHd_l IMG {
+	MARGIN-RIGHT: 2px
+}
+.artHd .artHd_r {
+	FLOAT: right
+}
+.artHd A:link {
+	COLOR: #004276; TEXT-DECORATION: underline
+}
+.artHd A:visited {
+	COLOR: #004276; TEXT-DECORATION: underline
+}

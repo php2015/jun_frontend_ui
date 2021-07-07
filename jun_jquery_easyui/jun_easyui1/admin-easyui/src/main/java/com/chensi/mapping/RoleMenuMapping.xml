@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chensi.dao.RoleMenuMapper">
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="entity.id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
+		insert into t_role_menu
+		(
+		roleId,
+		menuId
+		)
+		values
+		(
+		#{entity.roleId},
+		#{entity.menuId}
+		)
+	</insert>
+
+	<delete id="removeByEntity">
+		delete from t_role_menu
+		<where>
+			<if test="entity.roleId != null ">
+				and roleId=#{entity.roleId}
+			</if>
+			<if test="entity.menuId != null ">
+				and menuId=#{entity.menuId}
+			</if>
+		</where>
+	</delete>
+
+	<insert id="savePermission">
+		insert into t_role_menu (roleId, menuId)
+		values
+		<foreach collection="menuIds" item="item" separator=",">
+			(${roleId},#{item})
+		</foreach>
+	</insert>
+
+</mapper>

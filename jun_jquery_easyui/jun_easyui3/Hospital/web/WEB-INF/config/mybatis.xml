@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+        <!--
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        -->
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.gs.bean.Admin" alias="admin"/>
+        <typeAlias type="com.gs.bean.User" alias="user" />
+        <typeAlias type="com.gs.bean.Hospital" alias="hospital" />
+        <typeAlias type="com.gs.bean.Department" alias="dept" />
+        <typeAlias type="com.gs.bean.Doctor" alias="doctor" />
+        <typeAlias type="com.gs.bean.ArticleType" alias="articleType" />
+        <typeAlias type="com.gs.bean.Article" alias="article" />
+        <typeAlias type="com.gs.bean.News" alias="news" />
+        <typeAlias type="com.gs.bean.Message" alias="msg" />
+    </typeAliases>
+
+    <mappers></mappers>
+
+</configuration>

@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*all*/
+body {margin:0; padding:0; font-size:14px; font-family:Arial,"微软雅黑";}
+form,ul,li,p,h1,h2,h3,h4,h5,h6,ol,dl,dt,dd,table,tr,td{margin:0; padding:0;}
+img {border:0; vertical-align:absbottom;}
+ul,li {list-style-type:none;}
+ol li{list-style-type: decimal;}
+a{text-decoration:none; color:#666}
+a:hover{color:#bf1c03;}
+input, select, textarea { font-size:12px; font-family:Arial; vertical-align:absmiddle;}
+
+.wapper{width:1000px; margin:0 auto}
+.clear {height:0px; font-size:0px; line-height:0px; overflow:hidden; clear:both;}

@@ -1,0 +1,28 @@
+<include file="Public:common" />
+<div class="easyui-layout" fit="true">
+    <div region="north" style="height: 70px;border-bottom: none;">
+        <form id="bt_user_search_from">
+            <table style="height: 100%;">
+                <tr>
+                    <td><select class="easyui-combobox" data-options="panelHeight:'auto',editable:false,onChange:function(o,n){
+                                if(o == '姓名'){$('#bt_user_input_name').attr('name','Q_uname_like')}else{
+                                $('#bt_user_input_name').attr('name','Q_account_like')
+                                }
+                                }"><option>账号</option><option>姓名</option></select></td>
+                    <td><input  type="text" name="Q_account_like" id="bt_user_input_name"></td>
+                    <td>邮箱</td>
+                    <td><input  type="text" name="Q_mail_like"></td>
+                    <td rowspan="2"><a href="javascript:void(0)" class="easyui-linkbutton" id="bt_user_search_btn">查询</a> <a href="javascript:$('#bt_user_search_from').form('clear');" class="easyui-linkbutton">清空</a> </td>
+                </tr>
+                <tr>
+                    <td>创建时间</td>
+                    <td><input  class="easyui-my97" type="text" name="Q_createTime_EGT" maxDate="#F{ $dp.$D('bt_user_input_createTime_ed')||'2020-10-01'}" id="bt_user_input_createTime_st"></td>
+                    <td align="center">-</td>
+                    <td><input class="easyui-my97" type="text" name="Q_createTime_LT" minDate="#F{ $dp.$D('bt_user_input_createTime_st')}" id="bt_user_input_createTime_ed"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div region="center"><table id="bt_user_grid"></table></div>
+</div>
+<html:script pack="BT.user" src="/modual/user.js"/>

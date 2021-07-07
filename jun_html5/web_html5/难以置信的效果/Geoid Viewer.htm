@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://geomatica.como.polimi.it/elab/geoid/geoidViewer.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title id="title">Geoid Viewer</title>
+		
+		
+		<meta name="Description" content="Contenuti: Geoid viewer (space-wise approach - Polimi)">
+		<meta name="keywords" content="geodesy GOCE geoid webgl three.js opengl viewer"> 
+		<meta name="robots" content="all"> 
+		<meta name="owner" content="andrea.gatti a mail.polimi.it"> 
+		<meta name="author" content="Andrea Gatti">
+		
+		<script type="text/javascript" src="./Geoid Viewer_files/html5slider.js"></script> <!-- Firefox doesn't support sliders yet. This is a temporary fix -->				
+		<script type="text/javascript" src="./Geoid Viewer_files/Three.js"></script>
+		<script type="text/javascript" src="./Geoid Viewer_files/Stats.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="./Geoid Viewer_files/geoidViewer.css" media="screen">
+
+		<link rel="icon" href="http://geomatica.como.polimi.it/elab/geoid/favicon.ico" type="image/vnd.microsoft.icon">
+		
+		<!-- Credits & Inspirations:
+				
+			For the fantastic three.js -> http://mrdoob.com/ 
+			A moon in webGL -> http://whiteflashwhitehit.com
+			Crazy Bump SW -> http://www.crazybump.com/
+			Preferred browser -> http://www.webkit.org/
+			
+		-->
+	</head>
+
+	<body onload="init()">
+		<div id="container" style="display: block; "><div style="cursor: pointer; width: 80px; opacity: 0.9; position: absolute; top: 0px; z-index: 100; " id="stats"><div style="background-color: rgb(8, 8, 24); padding-top: 2px; padding-right: 0px; padding-bottom: 3px; padding-left: 0px; "><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 255); margin-top: 0px; margin-right: 0px; margin-bottom: 1px; margin-left: 3px; "><span style="font-weight:bold">60 FPS</span> (0-60)</div><canvas width="74" height="30" style="display: block; margin-left: 3px; "></canvas></div><div style="background-color: rgb(8, 24, 8); padding-top: 2px; padding-right: 0px; padding-bottom: 3px; padding-left: 0px; display: none; "><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 0); margin-top: 0px; margin-right: 0px; margin-bottom: 1px; margin-left: 3px; "><span style="font-weight:bold">17 MS</span> (1-2201)</div><canvas width="74" height="30" style="display: block; margin-left: 3px; "></canvas></div><div style="background-color: rgb(24, 8, 13); padding-top: 2px; padding-right: 0px; padding-bottom: 3px; padding-left: 0px; display: none; "><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(255, 0, 128); margin-top: 0px; margin-right: 0px; margin-bottom: 1px; margin-left: 3px; "><span style="font-weight:bold">MEM</span></div><canvas width="74" height="30" style="display: block; margin-left: 3px; "></canvas></div></div><canvas width="1080" height="635" style="position: relative; " id="renderer"></canvas></div>
+        <div id="info">
+        	<p>
+        		<b><a href="http://en.wikipedia.org/wiki/Geoid" target="_blank">Geoid</a> webGL</b> - <a href="http://geomatica.como.polimi.it/" target="_blank">geomatica.como.polimi.it</a><br>
+           		Use <a href="http://www.khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" target="_blank">webGL browser ready</a> : <a href="http://www.google.com/chrome/" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.com/firefox/" target="_blank">Fifefox 4+</a>, <a href="http://nightly.webkit.org/" target="_blank">Safari 5+</a> &amp; MacOSX 10.6+<br>
+            	Made with <a href="http://github.com/mrdoob/three.js" target="_blank">three.js</a> and <a href="http://www.crazybump.com/" target="_blank">CrazyBumps</a> by <a href="mailto:andrea.gatti@mail.polimi.it?subject=WebGL_Geoid">Andrea Gatti</a>
+            </p>
+        </div>
+        <div id="vt" style="display: none; ">displacement mapping needs vertex textures (GPU with Shader Model 3.0)<br>
+			on Windows use <span class="code">Chrome --use-gl=desktop</span> <br>
+			or Firefox 4 (about:config =&gt; webgl.prefer-native-gl=true)<br>
+			please star this <a href="http://code.google.com/p/chromium/issues/detail?id=52497">Chrome issue</a> to get ANGLE support
+		</div>
+        <div id="logo">
+        	<a href="http://www.polimi.it/" target="_blank"><img id="logoimg" src="./Geoid Viewer_files/logoPoliMi.png" alt="Politecnico di Milano"></a>
+        </div>
+        <div id="colorbar">
+        	<img id="colorbarimg" src="./Geoid Viewer_files/smallcbar.png" alt="Colorbar 80 -100 [m]">
+        	<p>[m]</p>
+        </div>
+
+		<!-- SCRIPTS -->
+
+		<script type="text/javascript" src="./Geoid Viewer_files/RequestAnimationFrame.js"></script>
+
+		<script type="text/javascript">
+
+			
+			var camera, scene, renderer, container, stats;
+        	var light, ambientLight, directionalLight, geoid;
+
+			var mesh, lightMesh, geometry, uniforms;
+			
+			var mouseX = 0, mouseY = 0;
+			
+			var marginLeft = 260;	// margin of the canvas (space for the controls)
+
+			var windowHalfX = (window.innerWidth-marginLeft) / 2;
+			var windowHalfY = (window.innerHeight) / 2;
+			
+			var radius = 6371;				// Earth radius
+			// var moonScale = 0.23;		// Scale of the moon
+			var tilt = 0.35;				// rotation wrt the z axis
+			var rotationSpeed = 0.02;		
+			var rotationOn = true;			// toggle
+			
+			// geoid magnifiers
+			var scale = 50;					
+			var heightMultiplier = 4;
+
+			// sphere resolution vertex per degree
+			var vpd = 0.5;
+			var old_vpd = 0.5;
+			
+			var old_timer = new Date().getTime();
+			var updateGeometry = 2;
+			
+			// Sphere color	
+			var diffL = 170;
+			var specL = 255;
+			var ambL = 20;
+			var shin = 30;
+			
+			// light positions
+			var lPosX = 1;
+			var lPosY = 0;
+			var lPosZ = 2;
+			
+			var normScale = 1;
+						
+			var planetTexture   	= THREE.ImageUtils.loadTexture( "asset/map/geoid_COLOR.png" );
+			var normalTexture   	= THREE.ImageUtils.loadTexture( "asset/map/geoid_NRM.png" );
+			var specularTexture   	= THREE.ImageUtils.loadTexture( "asset/map/geoid_SPEC.jpg" );
+			//var occlusionTexture  = THREE.ImageUtils.loadTexture( "asset/map/geoid_OCC.png" );
+			var displacementTexture = THREE.ImageUtils.loadTexture( "asset/map/geoid_DISP.png" );
+
+			var materialNormalMap
+
+			//var moonTexture = THREE.ImageUtils.loadTexture( "asset/map/moon_COLOR.png" );			
+			
+			function init() {
+				
+				container = document.getElementById( 'container' );
+
+                // --- Stats
+
+                stats = new Stats();
+                			stats.domElement.style.position = 'absolute';
+                            stats.domElement.style.top = '0px';
+                            stats.domElement.id = 'stats';
+                            stats.domElement.style.zIndex = 100;
+                            container.appendChild( stats.domElement );
+
+                // --- Camera
+
+				//camera = new THREE.Camera( 30, windowHalfX / windowHalfY, 1, 10000 );
+				//	        camera.position.z = radius*1.5;
+                //            camera.updateMatrix();
+
+        camera = new THREE.FlyCamera({
+		
+			fov: 25, 
+			aspect: windowHalfX / windowHalfY,
+			movementSpeed: 4*radius,
+			domElement: container,
+			rollSpeed: 0,
+			autoForward: false,
+			dragToLook: false,
+			near: 50,
+			far: 1e7
+
+        });
+
+        camera.position.z = radius * 7;
+        
+				scene = new THREE.Scene();
+                
+                // --- Lights
+
+				ambientLight = new THREE.AmbientLight( 0xffffff );
+							scene.addLight( ambientLight );
+
+				directionalLight = new THREE.DirectionalLight( 0xffffff );
+							directionalLight.position.x = lPosX;
+							directionalLight.position.y = lPosY;
+							directionalLight.position.z = lPosZ;
+							directionalLight.position.normalize();
+							scene.addLight( directionalLight );
+
+				//pointLight = new THREE.PointLight( 0xffffff );
+				//			pointLight.position.x = 0;
+				//			pointLight.position.y = 0;
+				//			pointLight.position.z = 0;
+				//			scene.addLight( pointLight );
+
+                // --- Light representation
+				//sphere = new THREE.Sphere( radius*0.1, 16, 8 );
+				//			lightMesh = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xaaaaff } ) );
+				//			lightMesh.scale.x = lightMesh.scale.y = lightMesh.scale.z = 0.05;
+				//			lightMesh.position = pointLight.position;
+				//			lightMesh.overdraw = true;
+				//			lightMesh.updateMatrix();
+				//			scene.addObject( lightMesh );
+								
+				// --- Shader
+				
+				var shader = THREE.ShaderUtils.lib[ "normal" ];
+				uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+				
+							uniforms[ "enableAO" ].value = true;
+							uniforms[ "enableDiffuse" ].value = false;
+
+							uniforms[ "tNormal" ].texture = normalTexture;
+							uniforms[ "uNormalScale" ].value = normScale;
+
+							uniforms[ "tDiffuse" ].texture = planetTexture;
+							uniforms[ "tSpecular" ].texture = specularTexture;
+							//uniforms[ "tOcclusion" ].texture = occlusionTexture;
+							uniforms[ "tDisplacement" ].texture = displacementTexture;
+
+							uniforms[ "enableAO" ].value = false;
+							uniforms[ "enableDiffuse" ].value = true;
+							uniforms[ "enableSpecular" ].value = true;
+							//uniforms[ "enableOcclusion" ].value = true;
+							//uniforms[ "enableDisplacement" ].value = true;
+
+							uniforms[ "uDirLightPos" ].value = directionalLight.position;
+							uniforms[ "uDirLightColor" ].value = directionalLight.color;
+
+							uniforms[ "uDisplacementBias" ].value = -0.43 * scale * heightMultiplier;
+							uniforms[ "uDisplacementScale" ].value = 10 * scale * heightMultiplier;
+							
+							//uniforms[ "uPointLightPos" ].value = pointLight.position;
+							//uniforms[ "uPointLightColor" ].value = pointLight.color;
+
+							uniforms[ "uAmbientLightColor" ].value = ambientLight.color;
+
+							// --- geoid lights (material)
+							
+							uniforms[ "uDiffuseColor" ].value.setHex( 0x010101 *  diffL);
+							uniforms[ "uSpecularColor" ].value.setHex( 0x010101 * specL );
+							uniforms[ "uAmbientColor" ].value.setHex( 0x010101 * ambL );
+
+							uniforms[ "uShininess" ].value = shin;
+
+
+				var parameters = { fragmentShader: shader.fragmentShader, vertexShader: shader.vertexShader, uniforms: uniforms };
+				materialNormalMap = new THREE.MeshShaderMaterial( parameters );
+
+				// --- Planet
+				
+		        //geometry = new THREE.Sphere( radius, 540, 270 );
+				geometry = new THREE.Sphere( radius, Math.floor(360*vpd), Math.floor(180*vpd));
+							geometry.computeTangents();		
+					
+				meshPlanet = new THREE.Mesh( geometry, materialNormalMap );
+							meshPlanet.rotation.y = 1.3;
+							meshPlanet.rotation.z = tilt;
+					        scene.addObject( meshPlanet );
+
+				// --- Moon
+
+		        //var materialMoon = new THREE.MeshPhongMaterial( { color: 0xffffff, map: moonTexture } );
+				//	        meshMoon = new THREE.Mesh( geometry, materialMoon );
+				//			meshMoon.position.set( radius * 5, 0, 0 );
+				//			meshMoon.scale.set( moonScale, moonScale, moonScale );
+        		//			scene.addObject( meshMoon );
+
+				// --- Stars
+		
+							var i, r = radius,
+				starsGeometry = [ new THREE.Geometry(), new THREE.Geometry() ];
+ 
+							for ( i = 0; i < 250; ++i ) {
+								vector1 = new THREE.Vector3( Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1 );
+								vector1.multiplyScalar( r );
+
+								starsGeometry[ 0 ].vertices.push( new THREE.Vertex( vector1 ) );
+							}
+
+							for ( i = 0; i < 1500; ++i ) {
+								vector1 = new THREE.Vector3( Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1 );
+								vector1.multiplyScalar( r);
+
+								starsGeometry[ 1 ].vertices.push( new THREE.Vertex( vector1 ) );
+							}
+
+							var stars;
+							var starsMaterials = [ new THREE.ParticleBasicMaterial( { color: 0x555555, size: 2, sizeAttenuation: false } ),
+								   new THREE.ParticleBasicMaterial( { color: 0x555555, size: 1, sizeAttenuation: false } ),
+								   new THREE.ParticleBasicMaterial( { color: 0x333333, size: 2, sizeAttenuation: false } ),
+								   new THREE.ParticleBasicMaterial( { color: 0x3a3a3a, size: 1, sizeAttenuation: false } ),
+								   new THREE.ParticleBasicMaterial( { color: 0x1a1a1a, size: 2, sizeAttenuation: false } ),
+								   new THREE.ParticleBasicMaterial( { color: 0x1a1a1a, size: 1, sizeAttenuation: false } )
+								];
+		
+							for ( i = 10; i < 30; i ++) {
+		
+								stars = new THREE.ParticleSystem( starsGeometry[ i % 2 ], starsMaterials[ i % 6 ] );
+								stars.rotation.x = Math.random() * 6;
+								stars.rotation.y = Math.random() * 6;
+								stars.rotation.z = Math.random() * 6;
+			
+								s = i * 10;
+								stars.scale.set( s, s, s );
+			
+								stars.matrixAutoUpdate = false;
+								stars.updateMatrix();
+			
+								scene.addObject( stars );
+							}
+
+
+
+				// init renderer
+				try {
+					renderer = new THREE.WebGLRenderer();
+					renderer.setSize( windowHalfX*2, windowHalfY*2 );
+					renderer.domElement.style.position = "relative";
+					renderer.domElement.id = "renderer";
+					container.appendChild( renderer.domElement );
+					document.getElementById( "vt" ).style.display = renderer.supportsVertexTextures() ? "none" : "block";
+				} catch (e) {
+				}								
+
+
+				container.onmousedown = handleMouseDown;
+				document.onmouseup = handleMouseUp;
+				container.onmouseup = handleMouseUp;
+				container.ondblclick = handleDblClick;
+				document.onmousemove = handleMouseMove;
+				if (container.addEventListener)
+					container.addEventListener('DOMMouseScroll', wheel, false); //mozilla
+					container.onmousewheel = wheel; //IE/Opera
+
+                container.style.display = 'block';
+                
+                animate();			
+			}
+
+
+			function animate() {
+
+				render();
+				stats.update();
+				requestAnimationFrame( animate );
+
+			}
+
+			function render() {
+
+				var timer = new Date().getTime();
+		
+				if (rotationOn) {
+			        meshPlanet.rotation.y += rotationSpeed/10; 
+				}
+
+				camera.position.x += ( mouseX - camera.position.x ) * .05;
+				camera.position.y += ( - mouseY - camera.position.y ) * .05;
+				camera.updateMatrix();
+
+				//lightMesh.position.x = 700*Math.cos( timer );
+				//lightMesh.position.z = 700*Math.sin( timer );
+				//lightMesh.updateMatrix();
+
+				// update heights
+				heightMultiplier = parseFloat(document.getElementById("heightMultiplier").value);
+				uniforms[ "uDisplacementScale" ].value = 10 * scale * heightMultiplier;
+
+				// update colors
+				diffL = parseFloat(document.getElementById("diffuseLight").value);
+				uniforms[ "uDiffuseColor" ].value.setHex( 0x010101 *  diffL);				
+				specL = parseFloat(document.getElementById("specularLight").value);
+				uniforms[ "uSpecularColor" ].value.setHex( 0x010101 * specL );				
+				ambL = parseFloat(document.getElementById("ambientLight").value);
+				uniforms[ "uAmbientColor" ].value.setHex( 0x010101 * ambL );
+				shin = parseFloat(document.getElementById("shininess").value);
+				uniforms[ "uShininess" ].value = shin;
+
+				normScale = parseFloat(document.getElementById("normScale").value);
+				uniforms[ "uNormalScale" ].value = normScale;
+
+
+				lPosX = parseFloat(document.getElementById("posX").value);
+				directionalLight.position.x = lPosX;
+				lPosY = parseFloat(document.getElementById("posY").value);
+				directionalLight.position.y = lPosY;
+				lPosZ = parseFloat(document.getElementById("posZ").value);
+				directionalLight.position.z = lPosZ;
+
+				// update resolution
+				vpd = parseFloat(document.getElementById("vpd").value);
+				if (old_vpd != vpd) {
+					old_timer = timer;	
+					old_vpd = vpd;
+					updateGeometry = 0;		
+				}
+				if (timer-old_timer > 1000) {
+					updateGeometry = updateGeometry +1;
+				}	
+				if (updateGeometry == 1) {
+					meshPlanet.visible = false;
+					scene.removeObject( meshPlanet );
+					geometry = null;
+					geometry = new THREE.Sphere( radius, Math.floor(360*vpd), Math.floor(180*vpd));
+					geometry.computeTangents();
+					renderer.render( scene, camera );
+			        
+					meshPlanet = null;
+					meshPlanet = new THREE.Mesh( geometry, materialNormalMap );
+					meshPlanet.geometry = geometry;
+					meshPlanet.rotation.y = 1.3;
+					meshPlanet.rotation.z = tilt;
+			        scene.addObject( meshPlanet );			
+				}
+
+				renderer.render( scene, camera );
+			}
+
+			function log(text) {
+
+				var e = document.getElementById("log");
+				e.innerHTML = text + "<br/>" + e.innerHTML;
+
+			}
+			
+			
+			var mouseDown = false;
+		  	var lastMouseX = null;
+		 	var lastMouseY = null;
+
+		  	function handleMouseDown(event) {
+				mouseDown = true;
+				lastMouseX = event.clientX;
+				lastMouseY = event.clientY;
+		  	}
+  	
+		  	function handleMouseUp(event) {
+				mouseDown = false;
+		  	}
+		
+			function handleDblClick(event) {
+				if (rotationOn) {
+					rotationOn = false;
+				} else {
+					rotationOn = true;
+				}
+			}
+
+			function handleMouseMove(event) {
+				if (!mouseDown) {
+				  return;
+				}
+				var newX = event.clientX;
+				var newY = event.clientY;
+
+				var deltaX = newX - lastMouseX
+
+
+				var deltaY = newY - lastMouseY;
+
+				meshPlanet.rotation.y += deltaX / 400;
+				meshPlanet.rotation.x += deltaY / 400;
+
+				lastMouseX = newX
+				lastMouseY = newY;
+			}
+
+			// Respond to wheel
+			function onwheel(delta) {
+		        camera.position.z += 1000*delta;
+		        if (camera.position.z < radius*1.5) camera.position.z = radius*1.5;
+		        
+			}
+
+			// Event handler for mouse wheel event.
+			function wheel(event){
+				var delta = 0;
+				if (!event) // For IE.
+						event = window.event;
+				if (event.wheelDelta) { // IE/Opera.
+						delta = event.wheelDelta/120;
+						// In Opera 9, delta differs in sign as compared to IE.
+						if (window.opera)
+								delta = -delta;
+				} else if (event.detail) { // Mozilla case.
+						// In Mozilla, sign of delta is different than in IE.
+						// Also, delta is multiple of 3.
+						delta = -event.detail/3;
+				}
+				// If delta is nonzero, handle it.
+				// Basically, delta is now positive if wheel was scrolled up,
+				// and negative, if wheel was scrolled down.
+				if (delta)
+						onwheel(delta);
+				// Prevent default actions caused by mouse wheel.
+				// That might be ugly, but we handle scrolls somehow
+				// anyway, so don't bother here..
+				if (event.preventDefault)
+						event.preventDefault();
+				event.returnValue = false;
+			}
+		
+	</script>
+       
+	<script type="text/javascript">
+		// update slider text
+		function updateValue(labelID, newValue) {
+			var num = parseFloat(newValue);
+			if (isNaN(num))
+			newValue = 0;
+			document.getElementById(labelID).innerHTML = num.toFixed(1);
+		}
+
+		// respond to changes in drawMode
+		function drawMode_Changed(newValue) {
+			var lightingControlVisibility = "collapse";
+			if (newValue == DrawMode.triangles)
+				lightingControlVisibility = "visible";
+
+			document.getElementById("lightingDiv").style.visibility = lightingControlVisibility;
+		}
+	</script>
+        
+<!-- Position Controls -->
+	<div class="outer">
+		<div class="border">
+        
+		<!-- Geometry controls -->
+			<div class="inner">
+				<h3>Geometry:</h3>
+					<div class="fullslider">
+						<div class="label"><label for="heightMultiplier">Height: <span class="spanVal" id="heightMultiplierValue">4.0</span> </label> </div>
+						<div class="slider"><input class="slider" id="heightMultiplier" type="range" min="0.0" max="12.0" value="4.0" step="0.1" onchange="updateValue(&#39;heightMultiplierValue&#39;, this.value)"> </div>
+					</div>
+					<div class="fullslider">
+						<div class="label"><label for="vpd">Resolution: <span class="spanVal" id="vpdValue">0.5</span></label></div>
+						<div class="slider"><input class="slider" id="vpd" type="range" min="0.1" max="2.0" value="0.5" step="0.1" onchange="updateValue(&#39;vpdValue&#39;, this.value)"></div>
+					</div>
+			</div>
+		</div>
+
+		<div class="border">
+			<!-- Lights controls -->
+			<div class="inner">
+				<h3>Light:</h3>
+					<div class="fullslider">
+						<div class="label"><label for="posX">Position X: <span class="spanVal" id="posXValue">1.0</span></label></div>
+						<input class="slider" id="posX" type="range" min="-4.0" max="4" value="1" step="0.1" onchange="updateValue(&#39;posXValue&#39;, this.value)">
+					</div>
+					<div class="fullslider">
+						<div class="label"><label for="posY">Position Y: <span class="spanVal" id="posYValue">0.0</span></label></div>
+						<input class="slider" id="posY" type="range" min="-4.0" max="4" value="0" step="0.1" onchange="updateValue(&#39;posYValue&#39;, this.value)">
+					</div>
+					<div class="fullslider">
+						<div class="label"><label for="posZ">Position Z: <span class="spanVal" id="posZValue">2.0</span></label></div>
+						<input class="slider" id="posZ" type="range" min="-4.0" max="4" value="2" step="0.1" onchange="updateValue(&#39;posZValue&#39;, this.value)">
+					</div>
+			</div>
+		</div>
+	
+		<div class="border">
+			<!-- Material controls -->
+			<div class="inner">
+				<h3>Material:</h3>
+					<div class="fullslider">
+						<div class="label"><label for="diffuseLight">Diffuse: <span class="spanVal" id="diffuseLightValue">170.0</span></label></div>
+						<input class="slider" id="diffuseLight" type="range" min="0.0" max="255" value="170" step="1" onchange="updateValue(&#39;diffuseLightValue&#39;, this.value)">
+					</div>
+					<div class="fullslider">
+						<div class="label"><label for="specularLight">Specular: <span class="spanVal" id="specularLightValue">255.0</span></label></div>
+						<input class="slider" id="specularLight" type="range" min="0.0" max="255" value="255" step="1" onchange="updateValue(&#39;specularLightValue&#39;, this.value)">
+					</div>
+					<div class="fullslider">
+						<div class="label"><label for="ambientLight">Ambient: <span class="spanVal" id="ambientLightValue">20.0</span></label></div>
+						<input class="slider" id="ambientLight" type="range" min="0.0" max="255" value="20" step="1" onchange="updateValue(&#39;ambientLightValue&#39;, this.value)">
+					</div>
+					<div class="fullslider">
+						<div class="label"><label for="shininess">Shiness: <span class="spanVal" id="shininessValue">30.0</span></label></div>
+						<input class="slider" id="shininess" type="range" min="0.0" max="255" value="30" step="1" onchange="updateValue(&#39;shininessValue&#39;, this.value)">
+					</div>
+					<p> </p>
+					<div class="fullslider">
+						<div class="label"><label for="normScale">Normal Scale: <span class="spanVal" id="normScaleValue">1.0</span></label></div>
+						<input class="slider" id="normScale" type="range" min="0.0" max="4" value="1" step="0.1" onchange="updateValue(&#39;normScaleValue&#39;, this.value)">
+					</div>
+			</div>
+		</div>
+
+	</div>
+
+	
+</body></html>

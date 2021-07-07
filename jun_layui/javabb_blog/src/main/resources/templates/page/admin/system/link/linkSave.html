@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('配置保存','')"></head>
+<body class="childrenBody">
+<form class="layui-form configAdd">
+	<div class="layui-form-item">
+		<label class="layui-form-label">链接名字</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input linkName" lay-verify="required" placeholder=链接名字 />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">链接地址</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input linkUrl" lay-verify="required" placeholder=链接地址 />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">联系QQ</label>
+		<div class="layui-input-block">
+			 <input type="text" class="layui-input contactQq" lay-verify="required" placeholder=联系QQ />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">联系Email</label>
+		<div class="layui-input-block">
+			 <input type="text" class="layui-input contactEmail" lay-verify="required" placeholder=联系Email />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">链接本站地址</label>
+		<div class="layui-input-block">
+			 <input type="text" class="layui-input linkSite" lay-verify="required" placeholder=链接本站地址 />
+		</div>
+	</div>
+</form>
+<div th:include="common/includeAdmin::footer"></div>
+</body>
+</html>

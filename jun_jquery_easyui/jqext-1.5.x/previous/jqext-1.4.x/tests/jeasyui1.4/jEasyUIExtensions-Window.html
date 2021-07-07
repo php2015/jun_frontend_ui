@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - Window</title>
+
+    <link href="../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    
+    <script src="../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script src="../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../jeasyui-extensions/jeasyui.extensions.window.js"></script>
+    <script src="../../jeasyui-extensions/jeasyui.extensions.dialog.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+        });
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <div style="width: 600px; height: 400px; border: 1px solid black;">
+            <div id="p1" class="easyui-window" data-options="
+             inline: true, inlocale: true, width: 300, height: 200
+             "></div>
+        </div>
+
+        <div id="p2" class="easyui-window" data-options="
+             title: 'test window', width: 600, height: 400, modal: true,
+             iniframe: true, href: 'jEasyUIExtensions-Menu-SubPage.html',
+             headerContextMenu: [
+                { iconCls: 'icon-ok', text: '按钮1', handler: function (e, item, menu, win) { $.easyui.showOption(win); } }
+             ],
+             minWidth: 300, maxWidth: 800, minHeight: 300, maxHeight: 600
+             ">
+        </div>
+        <!-- minWidth: 300, maxWidth: 800, minHeight: 300, maxHeight: 600 -->
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+</body>
+</html>

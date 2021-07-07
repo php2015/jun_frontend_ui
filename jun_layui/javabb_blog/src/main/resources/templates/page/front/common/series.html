@@ -1,0 +1,114 @@
+<!-- 专题header begin  -->
+<div th:fragment="seriesMain">
+	<div class="series-header"
+		style="min-height: 150px; position: relative; top: -10px; background: url(/images/series/sz-header-bk.png) no-repeat; background-size: cover; z-index: 0">
+		<div class="layui-container main" style="color: #fff;">
+			<div class="layui-col-md8" style="padding: 18px 10px;">
+
+				<img alt="" src="/images/series/run-button-illustration.svg"
+					style="float: left; width: 150px; padding-right: 20px; padding-top: 20px;">
+				<div style="margin-top: 20px;">
+					<h2 style="font: normal 700 24px&amp;#39;微软雅黑&amp;#39;;">Hello
+						World</h2>
+					<span class="layui-hide-xs" style="font-weight: 600;">
+						一切复杂的构成都从一个简单的应用开始，从了解知识体系结构开始吧。 </span> <span class="layui-elip"
+						style="font-weight: 600; display: block;">参与到<i
+						style="color: #FF5722;"> 专题 </i>中来吧
+					</span>
+				</div>
+			</div>
+			<img class="layui-hide-xs" alt=""
+				src="/images/series/Network Header Image.svg"
+				style="height: 140px; margin-top: 10px;">
+		</div>
+	</div>
+	<!-- 专题header end  -->
+	<div class="layui-container main layui-clear fly-extend-tabs">
+
+		<ul class="layui-row layui-col-space30">
+			<li class="layui-col-sm12 layui-col-md4"
+				th:each="series:${seriesList}">
+				<div class="fly-extend-list layui-card">
+					<div class="fly-extend-list-header">
+						<h2 class="fly-extend-title ">
+							<a th:href="'/series/'+${series.id}"
+								th:text="${series.seriesName}">专题标题 </a>
+							<div class="layui-badge layui-bg-green layui-hide-xs"
+								th:text="${series.count}">999</div>
+						</h2>
+						<!--<div class="fly-extend-list-info">
+								<a href="/u/10673712/" target="_blank" class="fly-extend-list-user"> <cite class="layui-hide-xs">IT心境</cite> <img src="//cdn.layui.com/avatar/10673712.jpg?t=1535675067400" alt="IT心境"> </a>
+							</div>-->
+					</div>
+					<a th:href="'/series/'+${series.id}" target="_blank">
+						<p class="fly-extend-list-desc" th:text="${series.seriesDesc}">专题描述。</p>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div th:fragment="seriesDetail" class="layui-container">
+	<div class="layui-row layui-col-space15">
+
+		<div class="layui-col-md3">
+			<div class="fly-panel site-tree animated fadeInUp">
+				<ul class="layui-tree">
+					<li>
+						<h2>文章专题系列</h2>
+					</li>
+
+					<li class="site-tree-noicon" th:each="series:${seriesList}"><a
+						th:href="'/series/'+${series.id}"><cite
+							th:text="${series.seriesName}">专题名称</cite> <span
+							class="layui-badge layui-bg-gray" th:text="${series.count}">999</span>
+					</a></li>
+
+				</ul>
+
+			</div>
+		</div>
+		<!-- 主题部分  -->
+		<div class="layui-col-md9 content detail animated fadeInUp" style="margin-top: 10px;">
+			<div class="fly-panel detail-box" style="min-height:585px;">
+				<ul class="layui-timeline" >
+					<li class="layui-timeline-item"><i
+						class="layui-icon layui-timeline-axis"></i>
+						<div class="layui-timeline-content layui-text">
+							<h3 class="layui-timeline-title"
+								th:text="${currentSeries.seriesName}">专题系列知识汇集</h3>
+							<div th:each="blog:${blogList}">
+								<blockquote class="layui-elem-quote">
+									<a th:href="'/blog/'+${blog.id}" th:text="${blog.title}">专题系列博客名称
+									</a>
+								</blockquote>
+								<p style="margin: 5px 10px;" th:text="${blog.blogDesc}">专题系列描述</p>
+							</div>
+
+						</div></li>
+
+					<li class="layui-timeline-item"><i
+						class="layui-icon layui-timeline-axis"></i>
+						<div class="layui-timeline-content layui-text">
+							<div class="layui-timeline-title">专题结束</div>
+						</div></li>
+				</ul>
+
+			</div>
+
+			<!-- <div class="fly-panel detail-box animated fadeInUp" id="flyReply">
+			<fieldset class="layui-elem-field layui-field-title"
+				style="text-align: center;">
+				<legend>回复区</legend>
+			</fieldset>
+			<p>这里是回复区域</p>
+		</div> -->
+		</div>
+
+
+	</div>
+
+</div>
+
+
+

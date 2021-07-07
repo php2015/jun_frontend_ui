@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+     <properties url="file:///D:/workspace/myeclipse10/study/test/gen/mybatis_gen/genParam.properties"/>
+   
+	<classPathEntry location="${gen.classPathEntry}" />
+
+	<context id="DB2Tables"  targetRuntime="MyBatis3" >
+		<commentGenerator>
+			 <property name="suppressAllComments" value="${gen.context.comment.suppressAllComments}" />
+			 <property name="suppressDate" value="${gen.context.comment.suppressDate}" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${gen.context.jdbc.driverClass}"
+			connectionURL="${gen.context.jdbc.connectionURL}" userId="${gen.context.jdbc.userId}"
+			password="${gen.context.jdbc.password}" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="${gen.context.javaType.forceBigDecimals}" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="${gen.context.javaModel.targetPackage}" 
+			targetProject="${gen.context.javaModel.targetProject}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${gen.context.sqlMap.targetPackage}" 
+			targetProject="${gen.context.sqlMap.targetProject}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="${gen.context.javaClient.type}" 
+			targetPackage="${gen.context.javaClient.targetPackage}" targetProject="${gen.context.javaClient.targetProject}">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		 
+		
+<!--Tables-->
+      <table tableName="user"  domainObjectName="User" enableCountByExample="${gen.context.table.enabledExample}" enableDeleteByExample="${gen.context.table.enabledExample}" enableSelectByExample="${gen.context.table.enabledExample}" enableUpdateByExample="${gen.context.table.enabledExample}"></table>	 
+	</context>
+</generatorConfiguration>

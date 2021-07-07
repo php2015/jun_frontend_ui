@@ -1,0 +1,49 @@
+server:
+    context-path: / 
+    session-timeout: 1800
+    tomcat:
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 80
+    uri-encoding: utf-8
+security:
+  basic:
+    enabled: false
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles: 
+    active: dev
+  http:
+    multipart:
+      max-file-size: 30Mb
+      max-request-size: 30Mb
+  devtools:
+    restart:
+      enabled: true
+#Mybatis
+mybatis: 
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: cn.javabb.**.entity
+#通用Mapper  
+mapper:
+  mappers:
+    - cn.javabb.common.base.BaseMapper
+  not-empty: false
+  identity: MYSQL
+  before: true
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: "true"
+  params: count=countSql
+  

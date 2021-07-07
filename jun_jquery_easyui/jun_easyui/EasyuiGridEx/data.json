@@ -1,0 +1,40 @@
+{  // 数据 即使服务器返回来的数据
+				data: {
+					data: [{
+						username: '西丽餐厅',
+						address: '东莞东城',
+						head: 'images/img05.jpg'
+					}, {
+						username: '美心西饼',
+						address: '北京',
+						head: 'images/img04.jpg'
+					}, {
+						username: '太兴餐厅',
+						address: '上海民之路',
+						head: 'images/img03.jpg'
+					}, {
+						username: '炫多滋',
+						address: '东莞红灯区',
+						head: 'images/img06.jpg'
+					}, {
+						username: '太兴餐厅',
+						address: '上海民之路',
+						head: 'images/img03.jpg'
+					}, {
+						username: '炫多滋',
+						address: '东莞红灯区',
+						head: 'images/img06.jpg'
+					}, {
+						username: '太兴餐厅',
+						address: '上海民之路',
+						head: 'images/img03.jpg'
+					}, {
+						username: '炫多滋',
+						address: '东莞红灯区',
+						head: 'images/img06.jpg'
+					}],
+					currentPage: 1,
+					showCount: 10,
+					totalResult: 115
+				}
+			}

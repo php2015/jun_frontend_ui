@@ -1,0 +1,831 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0048)http://developer.51cto.com/art/201008/217874.htm -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>HTML 5 Web Sockets应用初探(1) - 51CTO.COM</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content=ie=7 http-equiv=x-ua-compatible>
+<META name=description 
+content="HTML 5之中一个很酷的新特性就是WebSockets，WebSockets是在一个(TCP)接口进行双向通信的技术，PUSH技术类型，文章将详细的介绍在客户端上创建WebSocket服务器。">
+<META name=keywords content="WebSockets,HTML 5"><LINK rel=stylesheet 
+type=text/css 
+href="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/grid.css"><LINK 
+rel=stylesheet type=text/css 
+href="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/art_master_top.css"><LINK 
+rel=stylesheet type=text/css 
+href="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/css3.css">
+<SCRIPT language=javaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/base_art.js"></SCRIPT>
+
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/index_1_down.js"></SCRIPT>
+
+<STYLE type=text/css>.bds_tools A {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 9.00.8112.16441"></HEAD>
+<BODY><!-- 导航 开始-->
+<DIV id=home_top>
+<DIV class=top_nav>
+<DIV style="WIDTH: 420px" class=left>
+<DIV class=logo_51cto title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></DIV><A 
+href="http://www.51cto.com/">首页</A><IMG style="PADDING-TOP: 2px" align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/top_bg_xian.gif" 
+width=16 height=25><A onmouseover=show(1,this); onmouseout=popupClose(); 
+href="http://www.51cto.com/col/35/" target=_blank>技术频道<IMG 
+style="PADDING-LEFT: 4px" align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/nav_ico1.gif"></A><IMG 
+align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/top_bg_xian.gif" 
+width=16 height=25><A onmouseover=show(2,this); onmouseout=popupClose(); 
+href="http://www.51cto.com/" target=_blank>51CTO旗下网站<IMG 
+style="PADDING-LEFT: 4px" align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/nav_ico1.gif"></A><IMG 
+align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/top_bg_xian.gif" 
+width=16 height=25><A href="http://www.51cto.com/about/map.htm" 
+target=_blank>地图</A> </DIV>
+<DIV class=right>
+<DIV class=more><IMG align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/top_shequ.gif" 
+width=27 height=16>社区：<A href="http://bbs.51cto.com/" target=_blank>论坛</A><A 
+href="http://blog.51cto.com/" target=_blank>博客</A><A 
+href="http://down.51cto.com/" target=_blank>下载</A><A 
+href="http://book.51cto.com/" target=_blank>读书</A><A onmouseover=show(3,this) 
+onmouseout=popupClose() href="javascript:viod(0);">更多<IMG 
+style="PADDING-LEFT: 4px" align=absMiddle 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/nav_ico1.gif"></A> 
+</DIV><SPAN id=login_status>
+<DIV id=login_status class=login></DIV></SPAN></DIV></DIV></DIV>
+<DIV id=s1 class=subMenu1 onmouseover=popupNoClose(); onmouseout=popupClose();>
+<UL>
+  <LI><A href="http://network.51cto.com/" target=_blank>网络</A> 
+  <LI><A href="http://netsecurity.51cto.com/" target=_blank>安全</A> 
+  <LI><A href="http://developer.51cto.com/" target=_blank>开发</A> 
+  <LI><A href="http://database.51cto.com/" target=_blank>数据库</A> 
+  <LI><A href="http://server.51cto.com/" target=_blank>服务器</A> 
+  <LI><A href="http://os.51cto.com/" target=_blank>系统</A> 
+  <LI><A href="http://virtual.51cto.com/" target=_blank>虚拟化</A> 
+  <LI><A href="http://cloud.51cto.com/" target=_blank>云计算</A> 
+  <LI><A href="http://developer.51cto.com/embed/" target=_blank>嵌入式</A> 
+  <LI><A href="http://mobile.51cto.com/" target=_blank>移动开发</A> </LI></UL></DIV>
+<DIV id=s2 class=subMenu2 onmouseover=popupNoClose() onmouseout=popupClose()>
+<UL>
+  <LI><A title=中国领先的IT技术网站 href="http://www.51cto.com/" 
+  target=_blank>51CTO.COM</A> 
+  <LI><A title=中国首个专门服务于CIO的专业网站 href="http://www.cioage.com/" 
+  target=_blank>CIOage.com</A> 
+  <LI><A title=领先的中文存储网络媒体 href="http://www.watchstor.com/" 
+  target=_blank>WatchStor.com</A> 
+  <LI><A title=中国首家专注于数字医疗及医疗信息化的专业网站 href="http://www.hc3i.cn/" 
+  target=_blank>HC3i.cn</A> 
+  <LI><A title=移动互联网生活门户 href="http://www.linkphone.cn/" 
+  target=_blank>灵客风LinkPhone</A> </LI></UL></DIV>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/head_art_more1.js"></SCRIPT>
+<!-- 登陆信息 --><!-- 导航 结束-->
+<DIV class="g_39 mb10">
+<DIV id=tonglanad class=fl></DIV>
+<DIV id=list4 class=fr>
+<UL>
+  <LI id=wordlinkad1>
+  <LI id=wordlinkad2>
+  <LI id=wordlinkad3>
+  <LI id=wordlinkad4></LI></UL></DIV><BR class=dle></DIV>
+<DIV class="g_39 menu">
+<DIV class=subNav_logo><IMG 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/kaifa_logo.gif"></DIV>
+<DIV class=subNav_l><A href="http://developer.51cto.com/">首页</A> | <A 
+href="http://developer.51cto.com/java/">Java</A> | <A 
+href="http://developer.51cto.com/net/">.NET</A> | <A 
+href="http://developer.51cto.com/web/">Web</A> | <A 
+href="http://developer.51cto.com/col/1315/">XML</A> | <A 
+href="http://developer.51cto.com/col/585/">语言工具</A> | <A 
+href="http://developer.51cto.com/col/1312/">测试</A> | <A 
+href="http://developer.51cto.com/col/1314/" target=_blank>游戏</A> | <A 
+href="http://developer.51cto.com/col/583/" target=_blank>移动</A> | <A 
+href="http://developer.51cto.com/col/1308/">架构</A> | <A 
+href="http://developer.51cto.com/col/586/">项目管理</A> | <A 
+href="http://publish.51cto.com/list/460/">全部文章</A></DIV>
+<DIV class="search fr">
+<DL>
+  <FORM 
+  style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px" 
+  method=post name=searchform action=http://www.51cto.com/php/search.php 
+  target=_blank>
+  <DT class=fl><INPUT onblur="doempty(this, '请输入关键字');" 
+  class="searchInput f14 input" onfocus="doempty(this, '请输入关键字');" name=keyword 
+  value=请输入关键字> </DT>
+  <DD class=fl><INPUT 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/search.gif" 
+  type=image></FORM></DD></DL></DIV><BR class=dle></DIV>
+<DIV class="g_39 b3-s-4273B3 rel"><!--width : 26*25 - 15 = 635px-->
+<DIV class="g_26 fl m_l">
+<DIV class="brief bgF8F8F8">
+<P class="crumb ">您所在的位置：<A href="http://developer.51cto.com/">开发</A> &gt; <A 
+href="http://developer.51cto.com/col/1311/">Web</A> &gt; <A 
+href="http://developer.51cto.com/col/1450/">DIV+CSS</A> &gt; <B>HTML 5 Web 
+Sockets应用初探(1)</B> </P>
+<H1>HTML 5 Web Sockets应用初探(1)</H1>
+<DIV class=msg>
+<DIV>2010-08-10 09:08 彬Go 彬Go的博客 <SPAN class=f12-a><A 
+href="http://developer.51cto.com/art/201008/217874.htm#commment" 
+target=_self>我要评论(<SPAN id=pinglun_1>0</SPAN>)</A></SPAN> 字号：<SPAN 
+class=f14-b><A href="javascript:setfont(12);" target=_self>T</A></SPAN> | <SPAN 
+class=f16-b><A href="javascript:setfont(16);" target=_self>T</A></SPAN></DIV>
+<DIV class=fav><A title=一键收藏，随时查看，分享好友！ href="javascript:favorBox('open');" 
+target=_self><IMG border=0 alt=一键收藏，随时查看，分享好友！ 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/Fav.gif"></A></DIV></DIV>
+<DIV class=brieftext>
+<P class="f14 green">HTML 
+5之中一个很酷的新特性就是WebSockets，WebSockets是在一个(TCP)接口进行双向通信的技术，PUSH技术类型，文章将详细的介绍在客户端上创建WebSocket服务器。</P>
+<P class=ad>AD：
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/keywords_ad_new.js"></SCRIPT>
+ </P></DIV></DIV>
+<DIV style="DISPLAY: none" id=indexlist class="tag bgF8F8F8">
+<UL id=indexliststr></UL><BR class=dle></DIV>
+<DIV class="content bgF8F8F8 f14">
+<DIV id=content>
+<P>
+<P><A href="http://developer.51cto.com/art/200907/133407.htm" 
+target=_blank><SPAN style="COLOR: #0000ff">HTML 5</SPAN></A>之中一个很酷的新特性就是Web 
+Sockets，在本文之前51CTO在《<A href="http://developer.51cto.com/art/201003/189261.htm" 
+target=_blank><SPAN style="COLOR: #0000ff">HTML 5 Web 
+Socket：下一次Web通信革命揭幕</SPAN></A>》一文中已经详细的为大家介绍过HTML 5 Web 
+Sockets为Web通信带来的改变，而本文将介绍通过PHP环境的服务器端运行Web Socket，创建客户端并通过Web 
+Sockets协议发送和接收服务器端信息。</P>
+<P><STRONG>什么是Web Sockets？</STRONG></P>
+<P>Web Sockets是在一个(TCP)接口进行双向通信的技术，PUSH技术类型。同时Web 
+Sockets仍将基于W3C标准，目前为止，Chrome和Safari的最新版本浏览器已经支持Web Sockets了。</P>
+<P><STRONG>Web Sockets将会替代什么？</STRONG></P>
+<P>Web Sockets可以替代Long 
+Polling(PHP服务端推送技术)，这是一个有趣的概念。客户端发送一个请求到服务器，现在，服务器端并不会响应还没准备好的数据，它会保持连接的打开状态直到最新的数据准备就绪发送，之后客户端收到数据，然后发送另一个请求。</P>
+<P>这有它的好处：减少任一连接的延迟，当一个连接已经打开时就不需要创建另一个新的连接。但是Long-Polling并不是什么花俏技术，他仍有可能发生请求暂停，因此会需要建立新的连接。</P>
+<P>一些Ajax应用使用上述技术-这经常是归因于低资源利用。试想一下，如果服务器在早晨会自启动并发送数据到那些希望接收而不用提前建立一些连接端口的客户端，这是一件多棒的事情啊！欢迎来到PUSH技术的世界！</P>
+<P><STRONG>第一步：搞定Web Socket服务器</STRONG></P>
+<P>文章会把更多的精力放在客户端的创建而不是服务器端的执行等操作。作者使用的是基于Windows 7的XAMPP来实现本地运行PHP。</P>
+<P><STRONG>启动Apache服务器</STRONG></P>
+<P style="TEXT-ALIGN: center"><A 
+href="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/0957090.jpg" 
+target=_blank><IMG style="WIDTH: 371px; HEIGHT: 316px" 
+onload="javascript:if(this.width>498)this.width=498;" class=fit-image 
+onmousewheel="javascript:return big(this)" border=0 alt=启动Apache服务器 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/0957090.jpg" 
+width=451 height=383></A></P>
+<P><STRONG>第二步：修改URLs和端口　</STRONG>　</P>
+<P>根据你之前的安装修改服务器，下面是setup.class.php中的例子：</P><PRE><OL class=dp-xml><LI class=alt><SPAN><SPAN>public&nbsp;function&nbsp;__construct($</SPAN><SPAN class=attribute>host</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>'localhost'</SPAN><SPAN>,$</SPAN><SPAN class=attribute>port</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>8000</SPAN><SPAN>,$</SPAN><SPAN class=attribute>max</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>100</SPAN><SPAN>)&nbsp;&nbsp; &nbsp;</SPAN></SPAN><LI><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp;&nbsp;$this-</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>createSocket($host,$port);&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;</SPAN></LI></OL></PRE>
+<P>浏览文件并在适当情况下进行更改。</P>
+<P><STRONG>第三步：开始创建客户端　</STRONG>　</P>
+<P>下面来创建基本模板，这是我的client.php文件：</P><PRE><OL class=dp-xml><LI class=alt><SPAN><SPAN>&nbsp;&lt;!DOCTYPE&nbsp;html</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN></SPAN><LI><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>html</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>head</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>script</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>src</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"</SPAN><SPAN class=tag>&gt;</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>script</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>title</SPAN><SPAN class=tag>&gt;</SPAN>Web Sockets<SPAN>&nbsp;Client</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>title</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>head</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>body</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>div</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>id</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"wrapper"</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>div</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>id</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"container"</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>h1</SPAN><SPAN class=tag>&gt;</SPAN>Web Sockets<SPAN>&nbsp;Client</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>h1</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>div</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>id</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"chatLog"</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>div</SPAN><SPAN class=tag>&gt;</SPAN><SPAN class=comments>&lt;!--&nbsp;#chatLog&nbsp;--&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>p</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>id</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"examples"</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>e.g.&nbsp;try&nbsp;'hi',&nbsp;'name',&nbsp;'age',&nbsp;'today'</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>p</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>input</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>id</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"text"</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>type</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"text"</SPAN><SPAN>&nbsp;</SPAN><SPAN class=tag>/&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;</SPAN><SPAN class=tag-name>button</SPAN><SPAN>&nbsp;</SPAN><SPAN class=attribute>id</SPAN><SPAN>=</SPAN><SPAN class=attribute-value>"disconnect"</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>Disconnect</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>button</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>div</SPAN><SPAN class=tag>&gt;</SPAN><SPAN class=comments>&lt;!--&nbsp;#container&nbsp;--&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>div</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI class=alt><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>body</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&nbsp;&nbsp; &nbsp;</SPAN><LI><SPAN class=tag>&lt;/</SPAN><SPAN class=tag-name>html</SPAN><SPAN class=tag>&gt;</SPAN><SPAN>&#8203;&nbsp;&nbsp;</SPAN></LI></OL></PRE>
+<P>我们已经创建里基本模板：一个chat log容器，一个input输入框和一个断开连接的按钮。</P>
+<P></P>
+<P class=blank10></P>
+<DIV class=page><EM id=cur>1 </EM><A 
+href="http://developer.51cto.com/art/201008/217874_1.htm" 
+target=_self><SPAN>2</SPAN></A> <A 
+href="http://developer.51cto.com/art/201008/217874_2.htm" 
+target=_self><SPAN>3</SPAN></A> <A 
+href="http://developer.51cto.com/art/201008/217874_3.htm" 
+target=_self><SPAN>4</SPAN></A> <A class=next 
+href="http://developer.51cto.com/art/201008/217874_1.htm" 
+target=_self><SPAN>下一页<EM>&gt;&gt;</EM></SPAN></A></DIV>
+<DIV class=docu><STRONG class=f12>内容导航</STRONG>
+<DIV class=f12>
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD width="50%">&nbsp;第 1 页：<A 
+      href="http://developer.51cto.com/art/201008/217874.htm" target=_self><FONT 
+      color=red>WebSockets将会替代什么？</FONT></A></TD>
+    <TD width="50%">&nbsp;第 2 页：<A 
+      href="http://developer.51cto.com/art/201008/217874_1.htm" 
+      target=_self>WebSocket事件</A></TD></TR>
+  <TR>
+    <TD width="50%">&nbsp;第 3 页：<A 
+      href="http://developer.51cto.com/art/201008/217874_2.htm" 
+      target=_self>目前的成果</A></TD>
+    <TD width="50%">&nbsp;第 4 页：<A 
+      href="http://developer.51cto.com/art/201008/217874_3.htm" 
+      target=_self>运行WebSocket服务器</A></TD></TR></TBODY></TABLE></DIV><BR 
+class=dle></DIV>
+<DIV class="biaoqing fixfloat">
+<UL>
+  <LI><A href="javascript:getcountscom(217874,1)" target=_self><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/bq1.jpg"></A> 
+  <DIV><A href="javascript:getcountscom(217874,1)" 
+  target=_self>给力</A></DIV><SPAN id=217874_1>(0票)</SPAN> </LI>
+  <LI><A href="javascript:getcountscom(217874,2)" target=_self><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/bq2.jpg"></A> 
+  <DIV><A href="javascript:getcountscom(217874,2)" 
+  target=_self>动心</A></DIV><SPAN id=217874_2>(0票)</SPAN> </LI>
+  <LI><A href="javascript:getcountscom(217874,3)" target=_self><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/bq3.jpg"></A> 
+  <DIV><A href="javascript:getcountscom(217874,3)" 
+  target=_self>废话</A></DIV><SPAN id=217874_3>(0票)</SPAN> </LI>
+  <LI><A href="javascript:getcountscom(217874,4)" target=_self><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/bq4.jpg"></A> 
+  <DIV><A href="javascript:getcountscom(217874,4)" 
+  target=_self>专业</A></DIV><SPAN id=217874_4>(0票)</SPAN> </LI>
+  <LI><A href="javascript:getcountscom(217874,5)" target=_self><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/bq5.jpg"></A> 
+  <DIV><A href="javascript:getcountscom(217874,5)" 
+  target=_self>标题党</A></DIV><SPAN id=217874_5>(0票)</SPAN> </LI>
+  <LI><A href="javascript:getcountscom(217874,6)" target=_self><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/bq6.jpg"></A> 
+  <DIV><A href="javascript:getcountscom(217874,6)" 
+  target=_self>路过</A></DIV><SPAN id=217874_6>(0票)</SPAN> </LI></UL></DIV>
+<SCRIPT language=javascript> 
+getcountscom(217874,11);
+getcountscom(217874,12);
+getcountscom(217874,13);
+getcountscom(217874,14);
+getcountscom(217874,15);
+getcountscom(217874,16);  
+</SCRIPT>
+
+<P class=blank10></P>
+<DIV class=f12><SPAN class=fl>原文：<A class=blue 
+href="http://developer.51cto.com/art/201008/217874.htm"><B>HTML 5 Web 
+Sockets应用初探(1)</B></A></SPAN> <SPAN class=fr><A 
+href="http://developer.51cto.com/">返回开发首页</A></SPAN> </DIV>
+<P class=blank1></P></DIV>
+<DIV class=tips>
+<DIV style="FLOAT: left"><SPAN style="MARGIN-TOP: 4px; FLOAT: left">分享到：</SPAN> <!-- Baidu Button BEGIN -->
+<DIV style="FLOAT: left; MARGIN-RIGHT: 5px" id=bdshare 
+class="bdshare_t bds_tools get-codes-bdshare"><A class=bds_qzone></A><A 
+class=bds_tsina></A><A class=bds_tqq></A><A class=bds_renren></A><A 
+class=bds_t163></A><SPAN class=bds_more></SPAN><A class=shareCount></A></DIV><!--<div class="fl"> 
+    </div>
+-->
+<SCRIPT id=bdshare_js type=text/javascript 
+data="type=tools&amp;uid=585532"></SCRIPT>
+
+<SCRIPT id=bdshell_js type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>
+	var bds_config = {'snsKey':{'tsina':'2378297317'}};
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</SCRIPT>
+<!-- Baidu Button END --></DIV>
+<DIV class="fr blue"><A 
+href="javascript:AddFavorite(document.location.href,document.title);" 
+target=_self>收藏</A>|<A href="javascript:window.print();" target=_self>打印</A>|<A 
+id=msnqqcopy title=分享本资源给好友 target=_self>复制</A></DIV></DIV></DIV><!--内容 end-->
+<DIV class=bor>
+<DIV class="titbg pl15">关于<A class=underline 
+href="http://www.51cto.com/php/search.php?keyword=WebSockets" 
+target=_blank>WebSockets</A>&nbsp;&nbsp;<A class=underline 
+href="http://www.51cto.com/php/search.php?keyword=HTML%205" target=_blank>HTML 
+5</A>的更多文章</DIV>
+<DIV class=reltag>
+<UL class="fl list02">
+  <LI><A title="10个超炫的、激发灵感的HTML 5游戏" 
+  href="http://developer.51cto.com/art/201203/322800.htm">10个超炫的、激发灵感的HTML 
+  5游戏</A>
+  <LI><A title="百度发布HTML 5地图API 新增手势操作和移动定位功能" 
+  href="http://developer.51cto.com/art/201203/322526.htm">百度发布HTML 5地图API 
+  新增手势操作和移动</A>
+  <LI><A title="HTML 5中的文件处理之File Writer API" 
+  href="http://developer.51cto.com/art/201203/322171.htm">HTML 5中的文件处理之File 
+  Writer API</A>
+  <LI><A title="如何在ASP.NET网站中使用HTML 5拖放功能" 
+  href="http://developer.51cto.com/art/201203/322148.htm">如何在ASP.NET网站中使用HTML 
+  5拖放功能</A>
+  <LI><A title="基于引擎开发HTML 5游戏实战" 
+  href="http://developer.51cto.com/art/201203/321878.htm">基于引擎开发HTML 5游戏实战</A> 
+  </LI></UL>
+<DIV class=fr>
+<DIV class="h5 f12"><A title="HTML 5的SEO探索" 
+href="http://developer.51cto.com/art/201112/310608.htm"><B>HTML 
+5的SEO探索</B></A></DIV><A title="HTML 5的SEO探索" 
+href="http://developer.51cto.com/art/201112/310608.htm"><IMG border=0 
+alt="HTML 5的SEO探索" 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/141954136.jpg" 
+width=100 height=80></A> 
+<P class=c666>如果在过去的几个月里你比较关注WEB的发展的话，你一定会经常看<A class=blue title="HTML 5的SEO探索" 
+href="http://developer.51cto.com/art/201112/310608.htm">[详细]</A></P></DIV></DIV><!--reltag end--></DIV>
+<P class=blank10></P>
+<DIV class=bor>
+<DIV class="f14 comm">
+<H3 class=fl>网友评论<EM>TOP5</EM></H3><SPAN class=fr><A 
+href="http://www.51cto.com/php/feedbackt.php?id=217874">查看所有评论（<SPAN 
+id=pinglun_2></SPAN>）</A></SPAN> </DIV>
+<P class=blank1></P>
+<DIV class=blank1></DIV>
+<UL class=commlist>
+  <SCRIPT 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/artcomment1105.htm"></SCRIPT>
+</UL>
+<DIV class="txt bgF8F8F8"><A name=commment></A>
+<DL>
+  <DT class="fl tlt">提交评论 
+  <DD>
+  <SCRIPT 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/authart.htm"></SCRIPT>
+  <BR></DD></DL>
+<SCRIPT language=javascript type=text/javascript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/nomal_k.htm"></SCRIPT>
+</DIV></DIV><!--box end-->
+<P class=blank10></P>
+<DIV class="relart fl bor">
+<DIV class=titbg>
+<H3 class="fl t1">栏目热门</H3><A class=tmore 
+href="http://developer.51cto.com/click/1450">更多&gt;&gt;</A></DIV>
+<UL>
+  <LI><A title=响应式Web设计 
+  href="http://developer.51cto.com/art/201202/314665.htm">响应式Web设计</A> 
+  <LI><A title="一句代码实现HTML 5淘宝语音搜索" 
+  href="http://developer.51cto.com/art/201202/316142.htm">一句代码实现HTML 5淘宝语音搜索</A> 
+
+  <LI><A title="使用HTML 5和CSS3制作登录页面完整步骤" 
+  href="http://developer.51cto.com/art/201202/315314.htm">使用HTML 
+  5和CSS3制作登录页面完整步骤</A> 
+  <LI><A title="HTML 5开发：地理位置定位指南" 
+  href="http://developer.51cto.com/art/201202/317283.htm">HTML 5开发：地理位置定位指南</A> 
+  <LI><A title=30个你应该知道的实用CSS代码片断 
+  href="http://developer.51cto.com/art/201202/315612.htm">30个你应该知道的实用CSS代码片断</A> 
+  </LI></UL></DIV>
+<DIV class="cathot fr bor">
+<DIV class=titbg>
+<H3 class="fl t1">同期最新</H3><A class=tmore 
+href="http://developer.51cto.com/col/1450">更多&gt;&gt;</A></DIV>
+<UL>
+  <LI><A title="现在如何在你的站点上使用HTML 5" 
+  href="http://developer.51cto.com/art/201007/214246.htm">现在如何在你的站点上使用HTML 5</A> 
+
+  <LI><A title="HTML 5视频标签全属性详解" 
+  href="http://developer.51cto.com/art/201006/207458.htm">HTML 5视频标签全属性详解</A> 
+  <LI><A title="深入浏览器核心 高效CSS的秘诀" 
+  href="http://developer.51cto.com/art/201006/207317.htm">深入浏览器核心 高效CSS的秘诀</A> 
+  <LI><A title="为网站提速 探秘HTML 5链接预取功能" 
+  href="http://developer.51cto.com/art/201006/204551.htm">为网站提速 探秘HTML 
+  5链接预取功能</A> 
+  <LI><A title="回顾时光 细看HTML发展史" 
+  href="http://developer.51cto.com/art/201005/202052.htm">回顾时光 细看HTML发展史</A> 
+  </LI></UL></DIV>
+<P class=blank10></P>
+<DIV class=bor>
+<DIV class=titbg>
+<H3 class="fl t1"><A href="http://developer.51cto.com/">开发</A></H3><SPAN 
+class=pl10>频道导航</SPAN></DIV>
+<UL class=xtlist>
+  <LI><SPAN class=tit>Java</SPAN> 
+  <DIV><A href="http://developer.51cto.com/java/">Java开发</A>|<A 
+  href="http://developer.51cto.com/col/1005/">Java基础</A>|<A 
+  href="http://developer.51cto.com/col/1014/">Java EE开发</A>|<A 
+  href="http://developer.51cto.com/col/1004/">Java框架</A>|<A 
+  href="http://developer.51cto.com/col/1007/">设计模式</A></DIV></LI>
+  <LI><SPAN class=tit>WEB开发</SPAN> 
+  <DIV><A href="http://developer.51cto.com/col/1441/">PHP开发</A>|<A 
+  href="http://developer.51cto.com/col/1455/">Python</A>|<A 
+  href="http://developer.51cto.com/col/1552/">Ruby</A>|<A 
+  href="http://developer.51cto.com/col/1552/">JSP</A>|<A 
+  href="http://developer.51cto.com/art/200907/133407.htm">HTML 5</A>|<A 
+  href="http://developer.51cto.com/col/1450/">DIV+CSS</A></DIV></LI>
+  <LI class=last><SPAN class=tit>综合</SPAN> 
+  <DIV><A href="http://developer.51cto.com/net/">.NET开发</A>|<A 
+  href="http://developer.51cto.com/embed/">嵌入式开发</A>|<A 
+  href="http://developer.51cto.com/col/586/">项目管理</A>|<A 
+  href="http://developer.51cto.com/col/1308/">架构设计</A></DIV></LI></UL></DIV>
+<P class=blank10></P>
+<DIV class=leftbotcon>
+<DIV class="bor jdlist">
+<DIV class=titbg>
+<H3 class=t2>热点推荐</H3></DIV>
+<UL>
+  <LI><A 
+  onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" 
+  href="http://mobile.51cto.com/mobile-182392.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/153546162.jpg"></A> 
+
+  <DIV class=name><A 
+  onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" 
+  href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</A></DIV></LI>
+  <LI><A 
+  onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" 
+  href="http://developer.51cto.com/art/201106/266369.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/133620622.jpg"></A> 
+
+  <DIV class=name><A 
+  onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" 
+  href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</A></DIV></LI>
+  <LI><A href="http://developer.51cto.com/art/200907/133407.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/134217922.jpg"></A> 
+
+  <DIV class=name><A 
+  href="http://developer.51cto.com/art/200907/133407.htm">HTML5 
+  下一代Web开发标准详解</A></DIV></LI>
+  <LI><A href="http://developer.51cto.com/art/201104/257581.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/123123954.jpg"></A> 
+
+  <DIV class=name><A 
+  href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</A></DIV></LI>
+  <LI><A href="http://os.51cto.com/art/200706/49181.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/195816929.jpg"></A> 
+
+  <DIV class=name><A 
+  href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</A></DIV></LI></UL></DIV>
+<P class=blank10></P>
+<DIV class="bor hotTag"><STRONG>热门标签：</STRONG> <A 
+onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-2]);" 
+href="http://os.51cto.com/windows/">windows频道</A><A 
+onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" 
+href="http://mobile.51cto.com/">移动开发</A><A 
+onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" 
+href="http://cloud.51cto.com/">云计算</A><A 
+onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" 
+href="http://mobile.51cto.com/mobile/objc/">objective-c</A><A 
+onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" 
+href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</A><A 
+onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" 
+href="http://developer.51cto.com/art/200907/133407.htm">html5</A> </DIV></DIV>
+<DIV class=leftbotbox></DIV></DIV><!--left end-->
+<DIV class="g_13 fr">
+<DIV class="focus fixfloat">
+<DIV class=hot>
+<UL>
+  <LI class=tit><EM>原创</EM> <A 
+  href="http://developer.51cto.com/art/201205/336926.htm">JVM平台开发语言 一直在流行</A> 
+  <LI class=con>
+  <DL>
+    <DT><A href="http://developer.51cto.com/art/201205/336926.htm"><IMG border=0 
+    src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/105439836.png"></A> 
+    </DT>
+    <DD>关于JVM平台开发语言一直是Java开发者茶余饭后的一个热门话题，它作为一种机制用以…… </DD></DL></LI></UL>
+<OL class=hotlist>
+  <LI><A href="http://new.51cto.com/exp/salon/51cto-salon-21.php">沙龙报名 
+  打造ASP.NET开发平台</A>
+  <LI><A 
+  href="http://developer.51cto.com/exp/jvm/index.html">专题：JVM编程语言，你的选择？</A></LI></OL></DIV>
+<P>
+<SCRIPT language=JavaScript type=text/javascript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/ad.js"></SCRIPT>
+</P></DIV>
+<DIV class=rank>
+<DIV class=tlt>
+<H3>文章排行</H3><A id=top_3 onmouseover=change_top10(3);>本月</A><A id=top_2 
+onmouseover=change_top10(2);>本周</A><A id=top_1 class=myon 
+onmouseover=change_top10(1);>24小时</A> </DIV>
+<DIV style="DISPLAY: block" id=top10_1 class=list>
+<UL>
+  <LI><A title=给明年依然年轻的我们:道别150万年薪,开始盒饭生活 
+  href="http://developer.51cto.com/art/201205/337301.htm" 
+  target=_blank>给明年依然年轻的我们:道别150万年薪,开始盒饭生活</A> </LI>
+  <LI><A title="Eclipse插件大全 挑选最牛的TOP30" 
+  href="http://developer.51cto.com/art/201007/214478.htm" 
+  target=_blank>Eclipse插件大全 挑选最牛的TOP30</A> </LI>
+  <LI><A title=IT界那些性感的让人尖叫的程序员 
+  href="http://developer.51cto.com/art/201106/266369.htm" 
+  target=_blank>IT界那些性感的让人尖叫的程序员</A> </LI>
+  <LI><A title=从网易首页变化看互联网15年变化 
+  href="http://developer.51cto.com/art/201205/337921.htm" 
+  target=_blank>从网易首页变化看互联网15年变化</A> </LI>
+  <LI><A title=“菜鸟”程序员和“大神”程序员差距在哪里 
+  href="http://developer.51cto.com/art/201205/335102.htm" 
+  target=_blank>“菜鸟”程序员和“大神”程序员差距在哪里</A> </LI>
+  <LI><A title=Java数组声明、创建、初始化 
+  href="http://developer.51cto.com/art/200906/128274.htm" 
+  target=_blank>Java数组声明、创建、初始化</A> </LI>
+  <LI><A title=2012年5月编程语言排行榜：从爱立信走出来的Erlang 
+  href="http://developer.51cto.com/art/201205/334986.htm" 
+  target=_blank>2012年5月编程语言排行榜：从爱立信走出来的Erlang</A> </LI>
+  <LI><A title=.NET开发人员的瓶颈和职业发展 
+  href="http://developer.51cto.com/art/201205/336711.htm" 
+  target=_blank>.NET开发人员的瓶颈和职业发展</A> </LI>
+  <LI><A title="HTML 5实现的图片拖拽分组效果" 
+  href="http://developer.51cto.com/art/201205/336826.htm" target=_blank>HTML 
+  5实现的图片拖拽分组效果</A> </LI>
+  <LI><A title=郗晓勇：如何减小与“大牛”的差距 
+  href="http://developer.51cto.com/art/201205/336961.htm" 
+  target=_blank>郗晓勇：如何减小与“大牛”的差距</A> </LI></UL></DIV>
+<DIV style="DISPLAY: none" id=top10_2 class=list>
+<UL>
+  <LI><A title=给明年依然年轻的我们:道别150万年薪,开始盒饭生活 
+  href="http://developer.51cto.com/art/201205/337301.htm" 
+  target=_blank>给明年依然年轻的我们:道别150万年薪,开始盒饭生活</A> </LI>
+  <LI><A title="JVM平台开发语言 一直在流行" 
+  href="http://developer.51cto.com/art/201205/336926.htm" 
+  target=_blank>JVM平台开发语言 一直在流行</A> </LI>
+  <LI><A title=测试转开发，一个女孩子短短的工作心得 
+  href="http://developer.51cto.com/art/201205/336670.htm" 
+  target=_blank>测试转开发，一个女孩子短短的工作心得</A> </LI>
+  <LI><A title="HTML 5实现的图片拖拽分组效果" 
+  href="http://developer.51cto.com/art/201205/336826.htm" target=_blank>HTML 
+  5实现的图片拖拽分组效果</A> </LI>
+  <LI><A title=跨平台领域的淘金潮:为什么跨平台开发工具会改变现状 
+  href="http://developer.51cto.com/art/201205/336766.htm" 
+  target=_blank>跨平台领域的淘金潮:为什么跨平台开发工具会改变现状</A> </LI>
+  <LI><A title=Java已死？九百万程序员说不 
+  href="http://developer.51cto.com/art/201205/337276.htm" 
+  target=_blank>Java已死？九百万程序员说不</A> </LI>
+  <LI><A title=郗晓勇：如何减小与“大牛”的差距 
+  href="http://developer.51cto.com/art/201205/336961.htm" 
+  target=_blank>郗晓勇：如何减小与“大牛”的差距</A> </LI>
+  <LI><A title=Hibernate中的merge使用详情解说 
+  href="http://developer.51cto.com/art/201205/336726.htm" 
+  target=_blank>Hibernate中的merge使用详情解说</A> </LI>
+  <LI><A title=这才是真正的“匈牙利命名法” 
+  href="http://developer.51cto.com/art/201205/336758.htm" 
+  target=_blank>这才是真正的“匈牙利命名法”</A> </LI>
+  <LI><A title="C++ 多线程编程总结" 
+  href="http://developer.51cto.com/art/201205/337020.htm" target=_blank>C++ 
+  多线程编程总结</A> </LI></UL></DIV>
+<DIV style="DISPLAY: none" id=top10_3 class=list>
+<UL>
+  <LI><A title=“菜鸟”程序员和“大神”程序员差距在哪里 
+  href="http://developer.51cto.com/art/201205/335102.htm" 
+  target=_blank>“菜鸟”程序员和“大神”程序员差距在哪里</A> </LI>
+  <LI><A title=2012年5月编程语言排行榜：从爱立信走出来的Erlang 
+  href="http://developer.51cto.com/art/201205/334986.htm" 
+  target=_blank>2012年5月编程语言排行榜：从爱立信走出来的Erlang</A> </LI>
+  <LI><A title=淘宝下单高并发解决方案 
+  href="http://developer.51cto.com/art/201204/331561.htm" 
+  target=_blank>淘宝下单高并发解决方案</A> </LI>
+  <LI><A title=宅男程序员给老婆的计算机课程之10：做，就对了！ 
+  href="http://developer.51cto.com/art/201204/332048.htm" 
+  target=_blank>宅男程序员给老婆的计算机课程之10：做，就对了！</A> </LI>
+  <LI><A title=给明年依然年轻的我们:道别150万年薪,开始盒饭生活 
+  href="http://developer.51cto.com/art/201205/337301.htm" 
+  target=_blank>给明年依然年轻的我们:道别150万年薪,开始盒饭生活</A> </LI>
+  <LI><A title="PKzip创始人Phil Katz短暂而饱受折磨的一生" 
+  href="http://developer.51cto.com/art/201205/334350.htm" 
+  target=_blank>PKzip创始人Phil Katz短暂而饱受折磨的一生</A> </LI>
+  <LI><A title=开发者拒绝写技术博客的常见理由 
+  href="http://developer.51cto.com/art/201205/333433.htm" 
+  target=_blank>开发者拒绝写技术博客的常见理由</A> </LI>
+  <LI><A title=宅男程序员给老婆的计算机课程之11:域模型 
+  href="http://developer.51cto.com/art/201205/333568.htm" 
+  target=_blank>宅男程序员给老婆的计算机课程之11:域模型</A> </LI>
+  <LI><A title=Java简单的网络爬虫实现 
+  href="http://developer.51cto.com/art/201205/335128.htm" 
+  target=_blank>Java简单的网络爬虫实现</A> </LI>
+  <LI><A title=Java代码编写的30条建议 
+  href="http://developer.51cto.com/art/201204/332681.htm" 
+  target=_blank>Java代码编写的30条建议</A> </LI></UL></DIV></DIV>
+<P class=blank1></P>
+<DIV class=bor>
+<DIV class=titbg>
+<H3 class="fl t1">热点专题</H3><A class=tmore 
+href="http://developer.51cto.com/speclist/1450">更多&gt;&gt;</A></DIV>
+<UL class=plist01>
+  <LI><A title="HTML 5 VS Flash 谁是海贼王" 
+  href="http://developer.51cto.com/art/201110/297119.htm"><IMG 
+  alt="HTML 5 VS Flash 谁是海贼王" 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/142106842.jpg" 
+  width=100 height=80></A> 
+  <H5><A title="HTML 5 VS Flash 谁是海贼王" 
+  href="http://developer.51cto.com/art/201110/297119.htm">HTML 5 VS Flash 
+  谁是</A></H5>
+  <DIV class=c666>HTML5仿佛一夜间受到大多业内巨头的青睐，有点像《海</DIV></LI>
+  <LI><A title=揭秘Google与Facebook开发之道 
+  href="http://developer.51cto.com/art/201109/291572.htm"><IMG 
+  alt=揭秘Google与Facebook开发之道 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/152825619.jpg" 
+  width=100 height=80></A> 
+  <H5><A title=揭秘Google与Facebook开发之道 
+  href="http://developer.51cto.com/art/201109/291572.htm">揭秘Google与Facebook</A></H5>
+  <DIV class=c666>当年，雅虎的信息中枢曾经是互联网用户的第一入口，Go</DIV></LI>
+  <LI><A title=百度世界2011大会资料分享 
+  href="http://developer.51cto.com/art/201109/290664.htm"><IMG 
+  alt=百度世界2011大会资料分享 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/101956666.jpg" 
+  width=100 height=80></A> 
+  <H5><A title=百度世界2011大会资料分享 
+  href="http://developer.51cto.com/art/201109/290664.htm">百度世界2011大会资料</A></H5>
+  <DIV class=c666>“百度世界”是由百度公司举办的一年一度针对用户、客</DIV></LI></UL></DIV>
+<P class=blank10></P>
+<DIV class=tagCloud>
+<DIV class=tlt>
+<H3>热点标签</H3></DIV>
+<DIV class=taglist><A title=编程语言排行榜 
+href="http://developer.51cto.com/art/200911/165281.htm">编程语言排行榜</A> <A 
+title=敏捷开发 href="http://developer.51cto.com/art/200803/68222.htm">敏捷开发</A> <A 
+title=Eclipse href="http://developer.51cto.com/art/201006/207407.htm">Eclipse 
+3.6</A> <A title=PHP设计模式 
+href="http://developer.51cto.com/art/201004/195765.htm">PHP设计模式</A> <A 
+title=NetBeans7 href="http://developer.51cto.com/art/201105/259431.htm">NetBeans 
+7</A> <A title=Java7 
+href="http://developer.51cto.com/art/201001/175830.htm">Java7</A> <A 
+title=Scala编程语言 
+href="http://developer.51cto.com/art/200906/127830.htm">Scala编程语言</A> <A 
+title=Python编程世界 
+href="http://developer.51cto.com/art/201011/234347.htm">Python编程世界</A> <A 
+title=Ruby href="http://developer.51cto.com/art/201007/215101.htm" Rails开发 
+On>Ruby On Rails开发</A> <A class=imp title=LINQ 
+href="http://developer.51cto.com/art/200911/165090.htm">LINQ</A> <A 
+title=ASP.NET视频教程 
+href="http://developer.51cto.com/art/200904/120314.htm">ASP.NET视频教程</A> <A 
+title="Visual Studio" 
+href="http://developer.51cto.com/art/201004/194262.htm">Visual Studio</A> <A 
+title=智能手机 href="http://p.linkphone.cn/">智能手机</A> <A title=软件下载 
+href="http://download.linkphone.cn/">软件下载</A></DIV></DIV>
+<DIV class=rss>
+<UL>
+  <LI class="lin f12-c"><A 
+  href="http://news.51cto.com/col/1323/"><STRONG>点击这里查看样刊</STRONG></A> 
+  <LI>
+  <DL>
+    <DT></DT>
+    <DD><A href="http://home.51cto.com/index.php?s=/Subscribe"><IMG 
+    src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/dingy.gif"></A> 
+    </DD></DL></LI></UL></DIV>
+<DIV class=bor>
+<DIV class=titbg>
+<H3 class=t1>全站热点</H3></DIV>
+<DIV class="webhot fixfloat">
+<UL>
+  <LI><A title=Java路线图：甲骨文的两年计划 
+  href="http://developer.51cto.com/art/201202/314276.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/101803336.jpg"></A> 
+
+  <DIV><A title=Java路线图：甲骨文的两年计划 
+  href="http://developer.51cto.com/art/201202/314276.htm">Java路线图：甲骨文的两年计划</A></DIV></LI>
+  <LI><A title=《开发月刊》2012年01月刊发布 
+  href="http://developer.51cto.com/art/201201/312884.htm"><IMG 
+  src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/104357771.jpg"></A> 
+
+  <DIV><A title=《开发月刊》2012年01月刊发布 
+  href="http://developer.51cto.com/art/201201/312884.htm">《开发月刊》2012年01月刊发布</A></DIV></LI></UL></DIV>
+<P class=blank1></P>
+<UL class=list03>
+  <LI><A title=网络扫描技术揭秘：原理、实践与扫描器的实现 
+  href="http://book.51cto.com/art/201202/316318.htm">网络扫描技术揭秘：原理、实践与扫描</A> 
+  <LI><A title=网站运营直通车--7天精通SEO 
+  href="http://book.51cto.com/art/201202/316234.htm">网站运营直通车--7天精通SEO</A> 
+  <LI><A title=MongoDB管理与开发精要 
+  href="http://book.51cto.com/art/201202/316163.htm">MongoDB管理与开发精要</A> 
+  <LI><A title=互联网之达芬奇密码 
+  href="http://book.51cto.com/art/201202/316137.htm">互联网之达芬奇密码</A> 
+  <LI><A title=.NET应用架构设计：原则、模式与实践 
+  href="http://book.51cto.com/art/201202/316104.htm">.NET应用架构设计：原则、模式与实践</A> 
+  </LI></UL></DIV>
+<P class=blank10></P>
+<DIV class=bor>
+<DIV class=titbg>
+<H3 class=t1>读书</H3></DIV>
+<DIV class=catbook><A title=Windows用户态程序高效排错 
+href="http://book.51cto.com/art/200711/59629.htm"><IMG border=0 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/171406365.gif" 
+width=66 height=98></A> 
+<H5><A 
+href="http://book.51cto.com/art/200711/59629.htm">Windows用户态程序高效排错</A></H5>
+<DIV 
+class="c666 text">本书是一本介绍Windows系统上的用户态程序排错方法和技巧的书。本书分为4个章节，先介绍最重要的、通用的思考方法，以便制定排错</DIV></DIV>
+<UL class=list03>
+  <LI><A title=网络管理员备考训练——计算机与网络基础知识 
+  href="http://book.51cto.com/art/200704/45252.htm">网络管理员备考训练——计算机与网络基础知识</A> 
+  <LI><A title=系统分析师考试辅导（2007版） 
+  href="http://book.51cto.com/art/200704/45279.htm">系统分析师考试辅导（2007版）</A> 
+  <LI><A title=跨越网络工程师必备训练 
+  href="http://book.51cto.com/art/200704/45309.htm">跨越网络工程师必备训练</A> 
+  <LI><A title=数据库系统工程师考试全程指导 
+  href="http://book.51cto.com/art/200704/45319.htm">数据库系统工程师考试全程指导</A> 
+</LI></UL></DIV>
+<P class=blank10></P>
+<DIV class=bor>
+<DIV class=titbg>
+<H3 class="t1 fl">博文推荐</H3><A class=tmore 
+href="http://blog.51cto.com/">更多&gt;&gt;</A></DIV>
+<UL class=list03>
+  <LI><A title=Altiris---解放网络管理人员 
+  href="http://allanfan.blog.51cto.com/520839/222901/" 
+  target=_blank>Altiris---解放网络管理人员</A>
+  <LI><A title="一次oracle autorace排错" 
+  href="http://jxwpx.blog.51cto.com/15242/222900/" target=_blank>一次oracle 
+  autorace排错</A>
+  <LI><A title=美国电信行业协会的OM4光缆布线标准为下一代数据中心技术指明方向 
+  href="http://cteam.blog.51cto.com/358485/222846/" 
+  target=_blank>美国电信行业协会的OM4光缆布线标准</A>
+  <LI><A title="HOWTO：如何配置 Windows Server 2008 允许被 Ping " 
+  href="http://goxia.blog.51cto.com/999072/222837/" target=_blank>HOWTO：如何配置 
+  Windows Server 200</A> </LI></UL></DIV>
+<P class=blank10></P>
+<DIV class=tj>
+<DIV class=tlt>
+<H3>最新热帖</H3><A class=more 
+href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</A></DIV>
+<UL>
+  <LI><A title=大量的H3C方案Visio图标1 href="http://bbs.51cto.com/thread-471418-1.html" 
+  target=_blank>大量的H3C方案Visio图标1</A>
+  <LI><A title=大量的H3C方案Visio图标1 href="http://bbs.51cto.com/thread-471418-1.html" 
+  target=_blank>大量的H3C方案Visio图标1</A>
+  <LI><A title=大量的H3C方案Visio图标1 href="http://bbs.51cto.com/thread-471418-1.html" 
+  target=_blank>大量的H3C方案Visio图标1</A>
+  <LI><A title="BE IT规划资料" href="http://bbs.51cto.com/thread-426679-1.html" 
+  target=_blank>BE IT规划资料</A>
+  <LI><A title=联想集团内部管理系统（非常好的实用文档） 
+  href="http://bbs.51cto.com/thread-422145-1.html" 
+  target=_blank>联想集团内部管理系统（非常好的实用</A> </LI></UL></DIV>
+<DIV class=picAD><IFRAME 
+style="PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #dbdbdb; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 300px; PADDING-RIGHT: 0px; HEIGHT: 250px; OVERFLOW: hidden; PADDING-TOP: 0px" 
+class=bann src="about:blank" frameBorder=0 scrolling=no></IFRAME></DIV></DIV>
+<P class=blank1></P><!--leftbotcon end--></DIV>
+<DIV class=subweb>
+<H4>51CTO旗下网站</H4>
+<DIV><A href="http://www.51cto.com/" target=_blank>领先的IT技术网站 51CTO</A> <A 
+href="http://www.watchstor.com/" target=_blank>领先的中文存储媒体 WatchStor</A> <A 
+href="http://www.cioage.com/" target=_blank>中国首个CIO网站 CIOage</A> <A 
+href="http://www.hc3i.cn/" target=_blank>中国首家数字医疗网站 HC3i</A> <A 
+href="http://www.linkphone.cn/" target=_blank>移动互联网生活门户 灵客风LinkPhone</A> 
+</DIV></DIV>
+<DIV id=ft>
+<DIV id=foot align=center>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/copy_right.js"></SCRIPT>
+</DIV></DIV>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/count.js"></SCRIPT>
+<!-- START GA.js -->
+<SCRIPT type=text/javascript>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20883758-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'baidu', 'word']);
+  _gaq.push(['_addOrganic', 'google', 'q']);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', '3721', 'name']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'vnet', 'kw']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</SCRIPT>
+<!-- END GA.js --><!-- baidu.js -->
+<SCRIPT type=text/javascript>
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff77ea1ecd95cb2a1bc65cbcb3aaba7d4' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+<!--end baidu.js --><!-- 新监测代码 --><!-- 新监测代码 -->
+<DIV style="DISPLAY: none" id=MyMoveAd><SPAN id=wordlink_1>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/wordlink1.js"></SCRIPT>
+</SPAN><SPAN id=wordlink_2>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/wordlink2.js"></SCRIPT>
+</SPAN><SPAN id=wordlink_3>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/wordlink3.js"></SCRIPT>
+</SPAN><SPAN id=wordlink_4>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/wordlink4.js"></SCRIPT>
+</SPAN><SPAN id=pinglun>
+<SCRIPT language=JavaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/getArtCount.htm"></SCRIPT>
+</SPAN><SPAN id=tonglan>
+<SCRIPT language=JavaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/ad(1).js"></SCRIPT>
+</SPAN><SPAN id=wordlink>
+<SCRIPT language=JavaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/ad(2).js"></SCRIPT>
+</SPAN>
+<SCRIPT 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/ad(2).js"></SCRIPT>
+<SPAN id=bookss>
+<SCRIPT language=JavaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/getBookData.htm"></SCRIPT>
+</SPAN></DIV>
+<SCRIPT language=javascript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/favorite.js"></SCRIPT>
+
+<SCRIPT language=javaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/dialog_utf8.js"></SCRIPT>
+
+<SCRIPT language=javaScript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/mail.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/favorbox.js"></SCRIPT>
+
+<SCRIPT language=javascript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/clipboard.js"></SCRIPT>
+
+<SCRIPT language=javaScript> 
+	var thistid=217874; 
+	
+	//收藏按钮
+	var favor_url = 'http://developer.51cto.com/art/201008/217874.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = 'HTML 5 Web Sockets应用初探(1)';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://developer.51cto.com/art/201008/217874.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://developer.51cto.com/art/201008/217874.htm][u]HTML 5 Web Sockets应用初探(1)[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</SCRIPT>
+
+<SCRIPT charset=utf-8 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/index.htm"></SCRIPT>
+
+<SCRIPT language=javascript 
+src="HTML%205%20Web%20Sockets应用初探(1)%20-%2051CTO_COM_files/count.htm"></SCRIPT>
+
+<SCRIPT language=javascript>
+document.getElementById('books').innerHTML = document.getElementById("bookss").innerHTML; 
+</SCRIPT>
+</BODY></HTML>

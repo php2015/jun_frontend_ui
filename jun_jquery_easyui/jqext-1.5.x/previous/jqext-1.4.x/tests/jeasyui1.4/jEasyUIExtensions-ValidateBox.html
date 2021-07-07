@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - ValidateBox</title>
+
+    <link href="../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+
+    <script src="../../jeasyui-extensions/jeasyui.extensions.validatebox.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            
+            var box = $("#validatebox1");
+
+            $("#btn1").click(function () {
+                box.validatebox("setPrompt", "请输入...");
+            });
+
+            $("#btn2").click(function () {
+                box.validatebox("setValue", "abc");
+            });
+
+            $("#btn3").click(function () {
+                var a = box.validatebox("getValue");
+                $.messager.alert("the value is:", a);
+            });
+
+            $("#btn4").click(function () {
+                box.validatebox("clear");
+            });
+
+            $("#btn5").click(function () {
+                box.validatebox("reset");
+            });
+
+            $("#btn6").click(function () {
+                box.validatebox("resize", 300);
+            });
+
+            $("#btn7").click(function () {
+                box.validatebox("enable");
+            });
+
+            $("#btn8").click(function () {
+                box.validatebox("disable");
+            });
+
+            $("#btn9").click(function () {
+                box.validatebox("readonly", true);
+            });
+
+            $("#btn10").click(function () {
+                box.validatebox("readonly", false);
+            });
+
+        });
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <label for="validatebox1">请输入：</label>
+        <input id="validatebox1" class="easyui-validatebox" maxlength="4" />
+        <hr />
+        <input id="btn1" type="button" value="setPrompt" />
+        <input id="btn2" type="button" value="setValue" />
+        <input id="btn3" type="button" value="getValue" />
+        <input id="btn4" type="button" value="clear" />
+        <input id="btn5" type="button" value="reset" />
+        <input id="btn6" type="button" value="resize" />
+        <input id="btn7" type="button" value="enable" />
+        <input id="btn8" type="button" value="disable" />
+        <input id="btn9" type="button" value="readonly-true" />
+        <input id="btn10" type="button" value="readonly-false" />
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/cache 
+     http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+
+	<context:component-scan base-package="com.study.it.dao"/>
+	<context:component-scan base-package="com.study.it.service"/>
+	
+
+    <!--dataSource配置代替了hibernate.cfg.xml -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 基本信息 -->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/t27student"></property>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+        <!-- 其他配置 -->
+        <!--初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+        <property name="initialPoolSize" value="3"></property>
+        <!--连接池中保留的最小连接数。Default: 3 -->
+        <property name="minPoolSize" value="3"></property>
+        <!--连接池中保留的最大连接数。Default: 15 -->
+        <property name="maxPoolSize" value="15"></property>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="acquireIncrement" value="3"></property>
+        <!-- 控制数据源内加载的PreparedStatements数量。如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0 -->
+        <property name="maxStatements" value="8"></property>
+        <!-- maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
+        <property name="maxStatementsPerConnection" value="5"></property>
+        <!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+        <property name="maxIdleTime" value="1800"></property>
+    </bean>
+
+    <!--如果用hibernate
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+				
+				二级缓存总开关
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>  
+				开启查询缓存 
+				<prop key="hibernate.cache.use_query_cache">true</prop>  
+				设置二级缓存插件EHCache的Provider类  
+				<prop key="hibernate.cache.provider_class">  
+					 org.hibernate.cache.EhCacheProvider
+				</prop> 
+				<prop name="hibernate.cache.region.factory_class">  
+					 org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</prop>
+				
+			</props>
+        </property>
+        hibernate注解时候使用这句
+       <property name="packagesToScan" value="com.study.it.entity"/>
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath:com/study/it/entity</value>
+            </list>
+        </property>
+    </bean> -->
+
+    <!--如果用Mybatis的话-->
+    <bean id="sessionFactory"
+        class="org.mybatis.spring.SqlSessionFactoryBean"
+         p:dataSource-ref="dataSource"
+         p:configLocation="classpath:mybatis-cfg.xml"
+         p:mapperLocations="classpath:mapper/*Mapper.xml"
+    />
+    <!--  到接口所在位置自动进行扫描，自动创建实现类,并且自动注册到spring容器当中去，名字不详-->
+     <bean id="mybatisScanner"
+         class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+         p:sqlSessionFactoryBeanName="sessionFactory"
+         p:basePackage="com.study.it.dao"/>
+
+    <!-- 相当于HibernateUtil -->
+    <!--	<bean id="sessionFactory"
+            class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+            p:configLocation="classpath:hibernate.cfg.xml">
+        </bean>-->
+
+<!--     Hibernate事务管理器
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory" /> -->
+     
+      <!--MyBatis事务管理器 -->
+     <bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />     
+          
+    <!--启动用注解的方式操作事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--&lt;!&ndash; 相当于是我们的TranAop &ndash;&gt;
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true" />
+            <tx:method name="select*" read-only="true" />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="edit*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="*" propagation="NEVER" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut
+            expression="execution(public * com.study.it.service.impl.*Impl.*(..))"
+            id="pointcut-tx" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut-tx" />
+    </aop:config>-->
+  
+    
+    
+<!-- 	<bean id="companyservice"  -->
+<!-- 				class="com.study.it.service.impl.CompanyServiceImpl" -->
+<!-- 				autowire="byType" -->
+<!-- 			>	 -->
+<!-- 	</bean> -->
+	
+	
+</beans>
+     

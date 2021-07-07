@@ -1,0 +1,72 @@
+﻿
+/*jeasyui.extensions.js*/
+.loading-locale { position: relative; }
+.loading-container { position: absolute; width: 100%; height: 100%; left: 0; top: 0; }
+.loading-mask { display: block; }
+.loading-message { display: block; left: 50%; font-size: 12px; }
+
+/*jeasyui.extensions.messager.js*/
+.messager-button .messager-buttons-button { margin-left: 10px; width: auto; }
+
+/*添加下一行css代码，修复页面中 input 与 easyui-textbox 组件同行时位置偏移的问题*/
+input { vertical-align: middle; }
+
+/*jeasyui.extensions.linkbutton.js*/
+
+/*jeasyui.extensions.validatebox.js*/
+.validatebox-prompt { font-size: 12px; color: #aaa; }
+.validatebox-focused { -moz-box-shadow: 0 0 3px 0 #95B8E7; -webkit-box-shadow: 0 0 3px 0 #95B8E7; box-shadow: 0 0 3px 0 #95B8E7; }
+
+/*jeasyui.extensions.panel.js*/
+.panel-container { position: relative; }
+.panel-iframe { margin: 0; padding: 0; width: 100%; height: 100%; border-width: 0; overflow: auto; }
+.panel-body-withframe { overflow: hidden; }
+
+/*jeasyui.extensions.window.js*/
+.window-header { user-select: none; }
+.window-body-hidden { background-color: #95b8e7; filter: alpha(opacity=60); opacity: 0.6; }
+.window-body-hidden-proxy { visibility: hidden; }
+.window-proxy { background-color: #0e2d5f; filter: alpha(opacity=60); opacity: 0.6; }
+
+/*jeasyui.extensions.dialog.js*/
+.dialog-options-body { padding: 10px; width: 100%; }
+.dialog-options-row { }
+.dialog-options-cell { text-align: right; width: 100px; }
+.dialog-options-cell-content { text-align: left; }
+
+/*jeasyui.extensions.tabs.js*/
+.tabs-dnd-panels { position: relative; }
+.tabs-dnd-shade { position: absolute; left: 0; top: 0; z-index: 1000000; width: 100%; height: 100%; filter: alpha(opacity=0); opacity: 0; }
+.tabs li.tabs-dnd-left { border-left: 2px solid red; }
+.tabs li.tabs-dnd-right { border-right: 2px solid red; }
+.tabs li.tabs-dnd-top { border-top: 2px solid red; }
+.tabs li.tabs-dnd-bottom { border-bottom: 2px solid red; }
+
+
+/*jeasyui.extensions.datagrid.js*/
+.datagrid-cell-hightlight { font-weight: bold; background-color: Yellow; }
+
+.datagrid-body .datagrid-row-dnd-top { border-top: 2px dotted red; }
+.datagrid-body .datagrid-row-dnd-bottom { border-bottom: 2px dotted red; }
+
+.datagrid-header .datagrid-header-dnd-left, .datagrid-body .datagrid-header-dnd-left { border-left: 2px dotted red; }
+.datagrid-header .datagrid-header-dnd-right, .datagrid-body .datagrid-header-dnd-right { border-right: 2px dotted red; }
+
+.datagrid-row-hidden { display: none; }
+.datagrid-pagination-visiblerows { float: left; margin: 0 6px 0 10px; padding: 0; height: 30px; line-height: 30px; font-size: 12px; }
+
+.datagrid .datagrid-filters-dialog-layout-north { height: 30px; line-height: 30px; padding-left: 20px; }
+.datagrid .datagrid-filters-dialog-layout-center { overflow: auto; padding: 10px; border-top-width: 1px; }
+.datagrid .datagrid-filters-dialog-layout-center ul { margin: 0; padding: 0 0 0 30px; list-style-type: decimal; line-height: 18px; }
+
+.datagrid-header-cell-arrow { float: right; cursor: pointer; position: static; margin: 0; visibility: hidden; border-left: 0 dotted; }
+.datagrid-header-cell-arrow-show { visibility: visible; border-left-width: 1px; }
+
+.datagrid-rowediting-panel { position: absolute; display: block; border: 1px solid #ddd; padding: 5px 5px; }
+.datagrid-body-rowediting { position: relative; }
+
+
+
+
+
+

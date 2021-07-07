@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE codgen-config PUBLIC "-//Apache Software Foundation//DTD Tengen Configuration 1.0//EN" "com/bcs/codgen/resources/codgen-config_1_0.dtd">
+<codgen-config>
+	<project name="codgen-sample2" label="示例应用2" outputEncoding="UTF-8" >
+		<dbProvider class="com.bcs.codgen.service.impl.MysqlProvider">
+			<jdbcConfig>
+				<driver>com.mysql.jdbc.Driver</driver>
+				<url>jdbc:mysql://localhost:3306/sample?useUnicode=true&amp;characterEncoding=UTF-8</url>
+				<user>root</user>
+				<password>123</password>
+			</jdbcConfig>
+			<columnHandler class="com.bcs.codgen.service.impl.DataTypeConverterForJava"/>
+			<columnHandler class="columnHandler.CamelColumnHandler"/>
+			<!-- 不使用系统默认的空格分隔符（要使用则去掉下面这行配置，当然可以设置其他分隔符来覆盖默认的空格分隔符） -->
+			<splitorForLabelFromComment></splitorForLabelFromComment>
+		</dbProvider>
+		<!-- 自定义的构建配置处理器，可以在配置信息初始化、获取数据模型前后、获取输出模型前后时进行定制处理 -->
+		<buildConfigHandler class="buildConfigHandler.SampleBuildConfigHandler" />
+			
+		<dataModel name="templateDirectory">template/SAMPLE</dataModel>
+		<dataModel name="outputDirectory">/data/TengenCode/${copyright.author}/${projectName}</dataModel>
+		<dataModel name="NamespaceProject">com.bcs.simple2</dataModel>
+		<dataModel name="NamespaceDomain" >${NamespaceProject}.domain.${groupName}</dataModel>
+		<dataModel name="NamespaceParam" >${NamespaceProject}.param.${groupName}</dataModel>
+		<dataModel name="NamespaceDao">${NamespaceProject}.dao.${groupName}</dataModel>
+		<dataModel name="NamespaceService">${NamespaceProject}.service.${groupName}</dataModel>
+		<dataModel name="NamespaceServiceImpl">${NamespaceProject}.service.${groupName}</dataModel>
+		<dataModel name="appCode">sample2</dataModel>
+		<output name="domain" type="file">
+			${appCode}-domain/src/main/java/${NamespaceDomain?replace(".","/")}/${moduleName?cap_first}.java
+		</output>
+		<output name="param" type="file">
+			${appCode}-domain/src/main/java/${NamespaceParam?replace(".","/")}/${moduleName?cap_first}Param.java
+		</output>
+		<output name="daoxml" type="file">
+			${appCode}-service/src/main/resources/mybatis/${groupName}/${moduleName?cap_first}DAO.xml
+		</output>
+		<output name="domainEx" type="file">
+			${appCode}-domain/src/main/java/${NamespaceDomain?replace(".","/")}/${moduleName?cap_first}Ex.java
+		</output>
+		<output name="paramEx" type="file">
+			${appCode}-domain/src/main/java/${NamespaceParam?replace(".","/")}/${moduleName?cap_first}ParamEx.java
+		</output>
+		<output name="daoxmlEx" type="file">
+			${appCode}-service/src/main/resources/mybatis/${groupName}/${moduleName?cap_first}ExDAO.xml
+		</output>
+		<output name="dao" type="file">
+			${appCode}-service/src/main/java/${NamespaceDao?replace(".","/")}/I${moduleName?cap_first}DAO.java
+		</output>
+		<output name="service" type="file">
+			${appCode}-service/src/main/java/${NamespaceService?replace(".","/")}/I${moduleName?cap_first}Service.java
+		</output>
+		<output name="serviceImpl" type="file">
+			${appCode}-service/src/main/java/${NamespaceServiceImpl?replace(".","/")}/${moduleName?cap_first}ServiceImpl.java
+		</output>
+	</project>
+	
+	<project name="oa-mail" label="OA-邮件系统" outputEncoding="UTF-8" extends="codgen-sample2">
+		<dataModel name="NamespaceProject">com.bcs.simple2.oa.mail</dataModel>
+		<dataModel name="appCode">oa-mail</dataModel>
+	</project>
+	
+	<project name="oa-workflow" label="OA-工作流" outputEncoding="UTF-8" extends="codgen-sample2">
+		<dataModel name="NamespaceProject">com.bcs.simple2.oa.workflow</dataModel>
+		<dataModel name="appCode">oa-workflow</dataModel>
+	</project>
+
+	<project name="oa-schedule" label="OA-日程" outputEncoding="UTF-8" extends="codgen-sample2">
+		<dataModel name="NamespaceProject">com.bcs.simple2.oa.schedule</dataModel>
+		<dataModel name="appCode">oa-schedule</dataModel>
+	</project>
+	<project name="oa-notice" label="OA-通知公告" outputEncoding="UTF-8" extends="codgen-sample2">
+		<dataModel name="NamespaceProject">com.bcs.simple2.oa.notice</dataModel>
+		<dataModel name="appCode">oa-notice</dataModel>
+	</project>
+</codgen-config>

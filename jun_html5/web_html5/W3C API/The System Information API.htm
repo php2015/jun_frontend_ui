@@ -1,0 +1,1816 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0054)http://www.w3.org/TR/2010/WD-system-info-api-20100202/ -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The System Information API</title>
+    
+    
+    
+    
+  <style type="text/css">
+/*****************************************************************
+ * ReSpec CSS
+ * Robin Berjon <robin at berjon dot com>
+ * v0.05 - 2009-07-31
+ *****************************************************************/
+
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  medium solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  medium dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+code {
+    color:  #ff4500;
+}
+
+
+/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType {
+    color:  #005a9c;
+}
+.idlAttrName {
+    color:  #ff4500;
+}
+.idlAttrName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.attributes dd, .methods dd, .constants dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+
+/* --- TOC --- */
+.toc a {
+    text-decoration:    none;
+}
+
+a .secno {
+    color:  #000;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+/* --- EXAMPLES --- */
+pre.example {
+    border-top: 1px solid #ff4500;
+    border-bottom: 1px solid #ff4500;
+    padding:    1em;
+    margin-top: 1em;
+}
+
+pre.example::before {
+    content:    "Example";
+    display:    block;
+    width:      150px;
+    background: #ff4500;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+/* --- EDITORIAL NOTES --- */
+.issue {
+    padding:    1em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue::before {
+    content:    "Issue";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+.note {
+    padding:    1em;
+    border: 2px solid #cff6d9;
+    background: #e2fff0;
+}
+
+.note::before {
+    content:    "Note";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #cff6d9;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+/* --- SYNTAX HIGHLIGHTING --- */
+pre.sh_sourceCode {
+  background-color: white;
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+}
+
+pre.sh_sourceCode .sh_keyword { color: #005a9c; font-weight: bold; }           /* language keywords */
+pre.sh_sourceCode .sh_type { color: #666; }                            /* basic types */
+pre.sh_sourceCode .sh_usertype { color: teal; }                             /* user defined types */
+pre.sh_sourceCode .sh_string { color: red; font-family: monospace; }        /* strings and chars */
+pre.sh_sourceCode .sh_regexp { color: orange; font-family: monospace; }     /* regular expressions */
+pre.sh_sourceCode .sh_specialchar { color: 	#ffc0cb; font-family: monospace; }  /* e.g., \n, \t, \\ */
+pre.sh_sourceCode .sh_comment { color: #A52A2A; font-style: italic; }         /* comments */
+pre.sh_sourceCode .sh_number { color: purple; }                             /* literal numbers */
+pre.sh_sourceCode .sh_preproc { color: #00008B; font-weight: bold; }       /* e.g., #include, import */
+pre.sh_sourceCode .sh_symbol { color: blue; }                            /* e.g., <, >, + */
+pre.sh_sourceCode .sh_function { color: black; font-weight: bold; }         /* function calls and declarations */
+pre.sh_sourceCode .sh_cbracket { color: red; }                              /* block brackets (e.g., {, }) */
+pre.sh_sourceCode .sh_todo { font-weight: bold; background-color: #00FFFF; }   /* TODO and FIXME */
+
+/* Predefined variables and functions (for instance glsl) */
+pre.sh_sourceCode .sh_predef_var { color: #00008B; }
+pre.sh_sourceCode .sh_predef_func { color: #00008B; font-weight: bold; }
+
+/* for OOP */
+pre.sh_sourceCode .sh_classname { color: teal; }
+
+/* line numbers (not yet implemented) */
+pre.sh_sourceCode .sh_linenum { display: none; }
+
+/* Internet related */
+pre.sh_sourceCode .sh_url { color: blue; text-decoration: underline; font-family: monospace; }
+
+/* for ChangeLog and Log files */
+pre.sh_sourceCode .sh_date { color: blue; font-weight: bold; }
+pre.sh_sourceCode .sh_time, pre.sh_sourceCode .sh_file { color: #00008B; font-weight: bold; }
+pre.sh_sourceCode .sh_ip, pre.sh_sourceCode .sh_name { color: #006400; }
+
+/* for Prolog, Perl... */
+pre.sh_sourceCode .sh_variable { color: #006400; }
+
+/* for LaTeX */
+pre.sh_sourceCode .sh_italics { color: #006400; font-style: italic; }
+pre.sh_sourceCode .sh_bold { color: #006400; font-weight: bold; }
+pre.sh_sourceCode .sh_underline { color: #006400; text-decoration: underline; }
+pre.sh_sourceCode .sh_fixed { color: green; font-family: monospace; }
+pre.sh_sourceCode .sh_argument { color: #006400; }
+pre.sh_sourceCode .sh_optionalargument { color: purple; }
+pre.sh_sourceCode .sh_math { color: orange; }
+pre.sh_sourceCode .sh_bibtex { color: blue; }
+
+/* for diffs */
+pre.sh_sourceCode .sh_oldfile { color: orange; }
+pre.sh_sourceCode .sh_newfile { color: #006400; }
+pre.sh_sourceCode .sh_difflines { color: blue; }
+
+/* for css */
+pre.sh_sourceCode .sh_selector { color: purple; }
+pre.sh_sourceCode .sh_property { color: blue; }
+pre.sh_sourceCode .sh_value { color: #006400; font-style: italic; }
+
+/* other */
+pre.sh_sourceCode .sh_section { color: black; font-weight: bold; }
+pre.sh_sourceCode .sh_paren { color: red; }
+pre.sh_sourceCode .sh_attribute { color: #006400; }
+
+</style><link href="./The System Information API_files/W3C-WD" rel="stylesheet" type="text/css" charset="utf-8"></head><body style="display: inherit; "><div class="head"><p><a href="http://www.w3.org/"><img width="72" height="48" src="./The System Information API_files/w3c_home" alt="W3C"></a></p><h1>The System Information API</h1><h2 id="w3c-working-draft-02-february-2010"><acronym title="World Wide Web Consortium">W3C</acronym> Working Draft 02 February 2010</h2><dl><dt>This Version:</dt><dd><a href="./The System Information API_files/The System Information API.htm">http://www.w3.org/TR/2010/WD-system-info-api-20100202/</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/system-info-api/">http://www.w3.org/TR/system-info-api/</a></dd><dt>Latest Editor's Draft:</dt><dd><a href="http://dev.w3.org/2009/dap/system-info/">http://dev.w3.org/2009/dap/system-info/</a></dd><dt>Editors:</dt><dd>Dzung Tran, <a href="http://intel.com/">Intel</a></dd><dd>Max Froumentin, <a href="http://www.opera.com/">Opera Software ASA</a></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium"><acronym title="World Wide Web Consortium">W3C</acronym></acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology"><acronym title="Massachusetts Institute of Technology">MIT</acronym></acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. <acronym title="World Wide Web Consortium">W3C</acronym> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr></div>
+    <div id="abstract" class="introductory section"><h2 id="abstract-1">Abstract</h2>
+      <p>This specification defines an API to provide Web applications
+      with access to various properties of the system which they are
+      running on. Specifically, properties pertaining to the device
+      hardware are addressed. Examples include battery status,
+      current network bandwidth. Additionally, some of those
+      properties offer access to the environment around the device,
+      such as ambient brightness or atmospheric pressure.</p>
+    </div><div id="sotd" class="introductory section"><h2 id="status-of-this-document">Status of This Document</h2><p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <acronym title="World Wide Web Consortium">W3C</acronym> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><acronym title="World Wide Web Consortium">W3C</acronym> technical reports index</a> at http://www.w3.org/TR/.</em></p>
+      <p>This document represents the early consensus of the group on
+      the scope and features of the proposed System Information
+      API. Issues and editors notes in the document highlight some of
+      the points on which the group is still working and would
+      particularly like to get feedback.</p>
+    <p>This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs and Policy Working Group</a> as a First Public Working Draft. This document is intended to become a <acronym title="World Wide Web Consortium">W3C</acronym> Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>). All feedback is welcome.</p><p>Publication as a Working Draft does not imply endorsement by the <acronym title="World Wide Web Consortium">W3C</acronym> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>. <acronym title="World Wide Web Consortium">W3C</acronym> maintains a <a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>.</p></div><div id="toc" class="section"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ul class="toc"><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#introduction"><span class="secno">1. </span>Introduction</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#conformance"><span class="secno">2. </span>Conformance</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#security-and-privacy-considerations"><span class="secno">3. </span>Security and Privacy Considerations</a></li><li><ul class="toc"><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#privacy-considerations-for-implementors"><span class="secno">3.1 </span>Privacy considerations for implementors</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#privacy-considerations-for-recipients-of-system-information"><span class="secno">3.2 </span>Privacy considerations for recipients of system information</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#additional-implementation-considerations"><span class="secno">3.3 </span>Additional implementation considerations</a></li></ul></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#api-description---properties"><span class="secno">4. </span>API Description &amp; Properties</a></li><li><ul class="toc"><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#system-properties"><span class="secno">4.1 </span>System Properties</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#the-systeminfo-interface"><span class="secno">4.2 </span>The <span class="idlType formerLink idlType"><code>SystemInfo</code></span> interface</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#the-systemdevice-interface"><span class="secno">4.3 </span>The <span class="idlType formerLink idlType"><code>SystemDevice</code></span> interface</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#power"><span class="secno">4.4 </span>Power</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#cpu"><span class="secno">4.5 </span>CPU</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#thermal"><span class="secno">4.6 </span>Thermal</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#network"><span class="secno">4.7 </span>Network</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#sensors"><span class="secno">4.8 </span>Sensors</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#audio-and-video-codecs"><span class="secno">4.9 </span>Audio and Video Codecs</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#storage"><span class="secno">4.10 </span>Storage</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#output-devices"><span class="secno">4.11 </span>Output Devices</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#input-devices"><span class="secno">4.12 </span>Input Devices</a></li></ul></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#extensibility"><span class="secno">5. </span>Extensibility</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#requirements---use-cases"><span class="secno">A. </span>Requirements &amp; Use cases</a></li><li><ul class="toc"><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#requirements"><span class="secno">A.1 </span>Requirements</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#use-cases"><span class="secno">A.2 </span>Use Cases</a></li></ul></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#acknowledgements"><span class="secno">B. </span>Acknowledgements</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#references"><span class="secno">C. </span>References</a></li><li><ul class="toc"><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#normative-references"><span class="secno">C.1 </span>Normative references</a></li><li><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#informative-references"><span class="secno">C.2 </span>Informative references</a></li></ul></li></ul></div>
+
+    
+
+    <div class="introduction section" id="introduction">
+      <h2 id="x1.-introduction"><span class="secno">1. </span>Introduction</h2>
+      <p>In order for web applications to gain access to information
+      only available to an operating system's native applications,
+      they must be able to access various data present on the device,
+      either related to the hardware state (e.g. CPU load), software
+      data (e.g. pictures stored) or environment information
+      (e.g. ambient brightness). The APIs defined by the <em>Device
+      APIs and Policy Working Group</em> address this
+      issue. Specifically, the API defined in this specification
+      provides access to hardware devices, either internal (CPU,
+      Thermometers) or ambient (light, noise or temperature).</p>
+
+    </div>
+
+    <div id="conformance" class="section"><h2 id="x2.-conformance"><span class="secno">2. </span>Conformance</h2><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+<p>The key words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="required">required</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="recommended">recommended</em>, <em class="rfc2119" title="may">may</em>, and <em class="rfc2119" title="optional">optional</em> in this specification are to be interpreted as described in [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-RFC2119">RFC2119</a>].</p>
+</div>
+
+    <div class="privacy section" id="security-and-privacy-considerations">
+      <h2 id="x3.-security-and-privacy-considerations"><span class="secno">3. </span>Security and Privacy Considerations</h2>
+      <p>A Web application using this API has access to device
+      specific data which may contain information that the user
+      considers private. For instance a user may object to a Web
+      application transmitting the device's CPU load to an untrusted
+      server, or letting another application modify the device's
+      screen brightness without the user's consent. Therefore, a
+      conforming implementation of this specification <em class="rfc2119" title="must">must</em> provide a
+      mechanism that protects the user's privacy and this mechanism
+      <em class="rfc2119" title="should">should</em> ensure that no information exposed by this API is
+      retrievable or modifiable without the user's express
+      permission</p>
+
+      <div id="privacy-considerations-for-implementors" class="section">
+        <h3 id="x3.1-privacy-considerations-for-implementors"><span class="secno">3.1 </span>Privacy considerations for implementors</h3> <p>User
+        Agents <em class="rfc2119" title="must not">must not</em> retrieve or update system information to Web
+        sites without the express permission of the user. User Agents
+        <em class="rfc2119" title="must">must</em> acquire permission through a user interface, unless they
+        have prearranged trust relationships with users, as described
+        below. The user interface <em class="rfc2119" title="must">must</em> include the URI of the document
+        origin, as defined in [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-HTML5">HTML5</a>]. Those permissions that are
+        acquired through the user interface and that are preserved
+        beyond the current browsing session (i.e. beyond the time when
+        the browsing context, as defined in [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-HTML5">HTML5</a>], is navigated to
+        another URL) <em class="rfc2119" title="must">must</em> be revocable and User Agents <em class="rfc2119" title="must">must</em> respect
+        revoked permissions.</p>
+
+        <p>Obtaining the user's express permission to access one API
+        method does not imply the user has granted permission for the
+        same Web site to access other methods provided by this API, or
+        to access the same method with a different set of arguments,
+        as part of the same permission context. If a user has
+        expressed permission for an implementation to, e.g. access the
+        device's battery level, the implementation <em class="rfc2119" title="must">must</em> seek the
+        user's express permission if and when any additional function
+        is called on this API.</p>
+
+        <p>Some User Agents will have prearranged trust relationships
+        that do not require such user interfaces. For example, while a
+        Web browser will present a user interface when a Web site
+        performs a system information request, a widget runtime may
+        have a prearranged, delegated security relationship with the
+        user and, as such, a suitable alternative security and privacy
+        mechanism with which to authorize access to system
+        information.</p>
+      </div>
+      <div class="informative section" id="privacy-considerations-for-recipients-of-system-information">
+        <h3 id="x3.2-privacy-considerations-for-recipients-of-system-information"><span class="secno">3.2 </span>Privacy considerations for recipients of system information</h3><p><em>This section is non-normative.</em></p>
+        
+        <p>Recipients should only request system information when
+        necessary. Recipients should only use the system information
+        for the task for which it was provided to them. Recipients
+        should dispose of system information once that task is
+        completed, unless expressly permitted to retain it by the
+        user. Recipients should also take measures to protect this
+        information against unauthorized access. If system
+        information is stored, users <em class="rfc2119" title="should">should</em> be allowed to update and
+        delete this information.</p>
+        
+        <p>The recipient of system information should not retransmit
+        the system information without the user’s express
+        permission. Care should be taken when retransmitting and use
+        of encryption is encouraged.</p>
+        
+        <p>Recipients should clearly and conspicuously disclose the
+        fact that they are collecting system data, the purpose for
+        the collection, how long the data is retained, how the data
+        is secured, how the data is shared if it is shared, how
+        users can access, update and delete the data, and any other
+        choices that users have with respect to the data. This
+        disclosure should include an explanation of any exceptions to
+        the guidelines listed above.</p>
+      </div>
+      <div class="informative section" id="additional-implementation-considerations">
+        <h3 id="x3.3-additional-implementation-considerations"><span class="secno">3.3 </span>Additional implementation considerations</h3><p><em>This section is non-normative.</em></p>
+
+        <p>Further to the requirements listed in the previous section,
+        implementors of this API are also advised to consider the
+        following aspects that can negatively affect the privacy of
+        their users: in certain cases, users can inadvertently grant
+        permission to the User Agent to disclose their system
+        information to Web sites. In other cases, the content hosted
+        at a certain URL changes in such a way that the previously
+        granted permissions no longer apply as far as the user is
+        concerned. Or the users might simply change their mind.</p>
+
+        <p>Predicting or preventing these situations is inherently
+        difficult. Mitigation and in-depth defensive measures are an
+        implementation responsibility and not prescribed by this
+        specification. However, in designing these measures,
+        implementers are advised to enable user awareness of system
+        information sharing, and to provide easy access to interfaces
+        that enable revocation of permissions.</p>
+      </div>
+    </div>
+
+    <div id="api-description---properties" class="section">
+      <h2 id="x4.-api-description---properties"><span class="secno">4. </span>API Description &amp; Properties</h2>
+
+      <div id="system-properties" class="section">
+        <h3 id="x4.1-system-properties"><span class="secno">4.1 </span>System Properties</h3>
+
+        <p>A <dfn id="dfn-property">property</dfn> is defined as a set of related device
+        characteristics. For instance, the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Power" class="idlType"><code>Power</code></a> property
+        contains all the characteristics that relate to the device's
+        electrical power supply. Properties are accessible using the
+        functions defined by the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemInfo" class="idlType"><code>SystemInfo</code></a> interface below. A
+        property is characterized by the following elements:</p>
+
+        <ul>
+          <li>A name</li>
+          <li>A URI, which is the concatenation of the string <code>http://www.w3.org/2009/dap/SysInfo/</code> with the name of the property</li>
+          <li>An interface, whose name is the same as the property's name, and which contains its attributes</li>
+        </ul>
+
+        <p>The name of a property (or its URI, interchangeably) is
+        used in the functions of the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemInfo" class="idlType"><code>SystemInfo</code></a> interface to
+        identify the property accessed. When a success callback
+        resulting from calling one of those functions is invoked, the
+        API <em class="rfc2119" title="must">must</em> pass an instance of the property's interface.</p>
+
+        <p>Some of the properties below are defined as
+        <dfn id="dfn-enumerable">enumerable</dfn>, meaning that more than one instance of
+        the property's value type exist on the system. For instance, a
+        multi-processor system would report as many instances of
+        <a>Cpu</a> as the number of processors. When requesting the
+        value of an enumerable property, the <a>id</a> attribute of
+        the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a> interface is used to differentiate between
+        multiple instances.</p>
+
+        <p>The non-normative figure below illustrates the contents and
+        relationship of all the properties defined in the following
+        sections.</p>
+
+        <p><a href="./The System Information API_files/properties.png"><img src="./The System Information API_files/properties.png" alt="graphical representation of the property structure" width="1000"></a></p>
+
+
+      </div>
+
+      <div id="the-systeminfo-interface" class="section">
+        <h3 id="x4.2-the-systeminfo-interface"><span class="secno">4.2 </span>The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemInfo" class="idlType"><code>SystemInfo</code></a> interface</h3>
+        
+        <p>This interface contains the functions that enable access to
+        the properties defined in the following sections. Objects
+        implementing the Navigator interface (e.g. the
+        <code>window.navigator</code> object) must also implement the
+        NavigatorSystem interface [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-NAVIGATOR">NAVIGATOR</a>]. An instance of
+        NavigatorSystem would then be obtained by using
+        binding-specific casting methods on an instance of
+        <code>Navigator</code>.</p>
+
+
+        <pre class="idl"><span class="idlInterface" id="idl-def-NavigatorSystem">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">NavigatorSystem</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemInfo" class="idlType"><code>SystemInfo</code></a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-NavigatorSystem-system">system</a></span>;</span>
+};</span>
+</pre><div class="section"><h4 id="attributes">Attributes</h4><dl class="attributes"><dt id="widl-NavigatorSystem-system"><code>system</code> of type <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemInfo" class="idlType"><code>SystemInfo</code></a></span>, readonly</dt><dd>The root node from which the system information functionality can be accessed.<div><em>No exceptions.</em></div></dd></dl></div>
+
+        <pre class="idl"><span class="idlInterface" id="idl-def-SystemInfo">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">SystemInfo</span> {
+<span class="idlMethod">    <span class="idlMethType"><a>PendingOp</a></span> <span class="idlMethName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-SystemInfo-get">get</a></span> (<span class="idlParam"><span class="idlParamType"><a>DOMString</a></span> <span class="idlParamName">propertyId</span></span>, <span class="idlParam"><span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SuccessCB" class="idlType"><code>SuccessCB</code></a></span> <span class="idlParamName">successCallback</span></span>, <span class="idlParam">optional <span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a>?</span> <span class="idlParamName">errorCallback</span></span>, <span class="idlParam">optional <span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a></span> <span class="idlParamName">options</span></span>);</span>
+<span class="idlMethod">    <span class="idlMethType"><a>PendingOp</a></span> <span class="idlMethName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-SystemInfo-watch">watch</a></span> (<span class="idlParam"><span class="idlParamType"><a>DOMString</a></span> <span class="idlParamName">propertyId</span></span>, <span class="idlParam"><span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SuccessCB" class="idlType"><code>SuccessCB</code></a></span> <span class="idlParamName">successCallback</span></span>, <span class="idlParam">optional <span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a>?</span> <span class="idlParamName">errorCallback</span></span>, <span class="idlParam">optional <span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a></span> <span class="idlParamName">options</span></span>);</span>
+<span class="idlMethod">    <span class="idlMethType"><a>PendingOp</a></span> <span class="idlMethName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-SystemInfo-set">set</a></span> (<span class="idlParam"><span class="idlParamType"><a>DOMString</a></span> <span class="idlParamName">propertyId</span></span>, <span class="idlParam">optional <span class="idlParamType"><a>Object</a></span> <span class="idlParamName">value</span></span>, <span class="idlParam">optional <span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SuccessCB" class="idlType"><code>SuccessCB</code></a></span> <span class="idlParamName">successCallback</span></span>, <span class="idlParam">optional <span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a>?</span> <span class="idlParamName">errorCallback</span></span>);</span>
+};</span>
+</pre><div class="section"><h4 id="methods">Methods</h4><dl class="methods"><dt id="widl-SystemInfo-get"><code>get</code></dt><dd>
+            This function retrieves the current state of a given
+            system property. When called, the function <em class="rfc2119" title="must">must</em>
+            immediately return and asynchronously acquire the current
+            state of the requested property. If it is successful the
+            success callback <em class="rfc2119" title="must">must</em> be invoked and return an object
+            containing the information provided by the property. If an
+            error occurs, and an <a>errorCallback</a> function was
+            passed to the function invocation, it is called and is
+            passed an <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Error" class="idlType"><code>Error</code></a> object indicating the cause of
+            error.
+            
+            
+          <table class="parameters"><tbody><tr><th>Parameter</th><th>Type</th><th>Nullable</th><th>Optional</th><th>Description</th></tr><tr><td class="prmName">propertyId</td><td class="prmType"><code><a>DOMString</a></code></td><td class="prmNullFalse">✘</td><td class="prmOptFalse">✘</td><td class="prmDesc">The URI or name of the property to
+              retrieve. The URI of a property is the concatenation of
+              the string</td></tr><tr><td class="prmName">successCallback</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SuccessCB" class="idlType"><code>SuccessCB</code></a></code></td><td class="prmNullFalse">✘</td><td class="prmOptFalse">✘</td><td class="prmDesc">function called when the properties have been successfully retrieved</td></tr><tr><td class="prmName">errorCallback</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a></code></td><td class="prmNullTrue">✔</td><td class="prmOptTrue">✔</td><td class="prmDesc">function called when an error occurred while retrieving the properties</td></tr><tr><td class="prmName">options</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a></code></td><td class="prmNullFalse">✘</td><td class="prmOptTrue">✔</td><td class="prmDesc">An object containing the various options for fetching the properties requested</td></tr></tbody></table><div><em>No exceptions.</em></div><div><em>Return type: </em><code><a>PendingOp</a></code></div></dd><dt id="widl-SystemInfo-watch"><code>watch</code></dt><dd>The <a>watch</a> function allows tracking the change
+          of one or several system properties.  When called, it 
+          immediately returns and then asynchronously starts a watch process
+          defined as the following set of steps:
+          <ol>
+            <li>Acquire the system's current values for the property
+            requested. If successful invoke the associated
+            <a>successCallback</a>, passing the resulting property value
+            an object of the type indicated by the property's <em>value
+            type</em> in the definitions below. If the attempt fails,
+            and the method was invoked with a non-null
+            <a>errorCallback</a> argument, this method invokes the
+            <a>errorCallback</a>, passing an <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a> object which
+            reflects the cause of the error.</li>
+
+            <li>Register to receive system events that indicate that the status of the requested properties may have changed</li>
+            <li>When a system event is successfully received invoke the
+            associated <a>successCallback</a>, passing an object
+            containing the property values.  If an error occurs and the
+            method was invoked with a non-null <a>errorCallback</a>
+            argument, this method <em class="rfc2119" title="must">must</em> invoke the <a>errorCallback</a>
+            with an <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a> object as an argument.</li>
+            <li>Repeat the previous step until the <a>cancel</a> method
+            of the <a>PendingOp</a> object returned by this <a>watch</a>
+            function is invoked.</li>
+          </ol>
+          
+          <table class="parameters"><tbody><tr><th>Parameter</th><th>Type</th><th>Nullable</th><th>Optional</th><th>Description</th></tr><tr><td class="prmName">propertyId</td><td class="prmType"><code><a>DOMString</a></code></td><td class="prmNullFalse">✘</td><td class="prmOptFalse">✘</td><td class="prmDesc">Property URI or name identifying the property to track.</td></tr><tr><td class="prmName">successCallback</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SuccessCB" class="idlType"><code>SuccessCB</code></a></code></td><td class="prmNullFalse">✘</td><td class="prmOptFalse">✘</td><td class="prmDesc">function called when the properties have been successfully retrieved</td></tr><tr><td class="prmName">errorCallback</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a></code></td><td class="prmNullTrue">✔</td><td class="prmOptTrue">✔</td><td class="prmDesc">function called when an error occurred while retrieving the properties</td></tr><tr><td class="prmName">options</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a></code></td><td class="prmNullFalse">✘</td><td class="prmOptTrue">✔</td><td class="prmDesc">An object containing the various options for fetching the properties requested</td></tr></tbody></table><div><em>No exceptions.</em></div><div><em>Return type: </em><code><a>PendingOp</a></code></div></dd><dt id="widl-SystemInfo-set"><code>set</code></dt><dd>
+            The <a>set</a> function modifies the current value of of a
+            system property. When called, the function immediately
+            returns and asynchronously attempts to set the requested
+            state of the value identified by the <a>propertyId</a>
+            attribute. If it is successful the success callback is
+            invoked and is passed an object containing the requested
+            information. The type of that object is indicated in the
+            property definitions below. If an error occurs, or if the
+            system does not allow the value to be modified, then the
+            <a>errorCallback</a> function is invoked and is passed an
+            <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Error" class="idlType"><code>Error</code></a> object indicating the cause of error.
+            
+            <p>Not all property attributes can be modified. Each
+            property interface definitions indicates, through the
+            <code>readonly</code> keyword whether an attribute is
+            allowed to be modified.</p>
+
+            
+          <table class="parameters"><tbody><tr><th>Parameter</th><th>Type</th><th>Nullable</th><th>Optional</th><th>Description</th></tr><tr><td class="prmName">propertyId</td><td class="prmType"><code><a>DOMString</a></code></td><td class="prmNullFalse">✘</td><td class="prmOptFalse">✘</td><td class="prmDesc">The URI or name of the property to retrieve.</td></tr><tr><td class="prmName">value</td><td class="prmType"><code><a>Object</a></code></td><td class="prmNullFalse">✘</td><td class="prmOptTrue">✔</td><td class="prmDesc">An object containing the values to modify, as well as the <a>id</a> to designate which instance to modify</td></tr><tr><td class="prmName">successCallback</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SuccessCB" class="idlType"><code>SuccessCB</code></a></code></td><td class="prmNullFalse">✘</td><td class="prmOptTrue">✔</td><td class="prmDesc">function called when the property have been successfully modified</td></tr><tr><td class="prmName">errorCallback</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-ErrorCB" class="idlType"><code>ErrorCB</code></a></code></td><td class="prmNullTrue">✔</td><td class="prmOptTrue">✔</td><td class="prmDesc">function called when an error occurred while modifying the property</td></tr></tbody></table><div><em>No exceptions.</em></div><div><em>Return type: </em><code><a>PendingOp</a></code></div></dd></dl></div>
+
+        <p>All functions return a <a>PendingOp</a> object, defined in [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-CORE-DEVICE">CORE-DEVICE</a>], which has a <a>cancel</a> function allowing the asynchronous operation to be interrupted.</p>
+
+        <div class="section">
+          <h4 id="callback-interfaces">Callback interfaces</h4>
+          <pre class="idl"><span class="idlInterface" id="idl-def-SuccessCB">[<span class="extAttr">Callback=FunctionOnly, NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">SuccessCB</span> {
+<span class="idlMethod">    <span class="idlMethType"><a>void</a></span> <span class="idlMethName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-SuccessCB-onSuccess">onSuccess</a></span> (<span class="idlParam">optional <span class="idlParamType"><a>Object</a></span> <span class="idlParamName">obj</span></span>);</span>
+};</span>
+</pre><div class="section"><h5 id="methods-1">Methods</h5><dl class="methods"><dt id="widl-SuccessCB-onSuccess"><code>onSuccess</code></dt><dd>
+              			
+            <table class="parameters"><tbody><tr><th>Parameter</th><th>Type</th><th>Nullable</th><th>Optional</th><th>Description</th></tr><tr><td class="prmName">obj</td><td class="prmType"><code><a>Object</a></code></td><td class="prmNullFalse">✘</td><td class="prmOptTrue">✔</td><td class="prmDesc">The return object of a successful asynchronous operation.</td></tr></tbody></table><div><em>No exceptions.</em></div><div><em>Return type: </em><code><a>void</a></code></div></dd></dl></div>
+          
+          <pre class="idl"><span class="idlInterface" id="idl-def-ErrorCB">[<span class="extAttr">Callback=FunctionOnly, NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">ErrorCB</span> {
+<span class="idlMethod">    <span class="idlMethType"><a>void</a></span> <span class="idlMethName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-ErrorCB-onError">onError</a></span> (<span class="idlParam"><span class="idlParamType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Error" class="idlType"><code>Error</code></a></span> <span class="idlParamName">error</span></span>);</span>
+};</span>
+</pre><div class="section"><h5 id="methods-2">Methods</h5><dl class="methods"><dt id="widl-ErrorCB-onError"><code>onError</code></dt><dd>
+              
+            <table class="parameters"><tbody><tr><th>Parameter</th><th>Type</th><th>Nullable</th><th>Optional</th><th>Description</th></tr><tr><td class="prmName">error</td><td class="prmType"><code><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Error" class="idlType"><code>Error</code></a></code></td><td class="prmNullFalse">✘</td><td class="prmOptFalse">✘</td><td class="prmDesc">The error object of an unsuccessful asynchronous operation.</td></tr></tbody></table><div><em>No exceptions.</em></div><div><em>Return type: </em><code><a>void</a></code></div></dd></dl></div>
+        </div>
+        <div class="section">
+          <h4 id="the-error-interface">The Error interface</h4>
+          <pre class="idl"><span class="idlInterface" id="idl-def-Error">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Error</span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Error-PERMISSION_DENIED">PERMISSION_DENIED</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Error-INFORMATION_UNAVAILABLE">INFORMATION_UNAVAILABLE</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Error-INVALID_VALUE">INVALID_VALUE</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Error-READ_ONLY">READ_ONLY</a></span> = <span class="idlConstValue">3</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Error-TIMEOUT">TIMEOUT</a></span> = <span class="idlConstValue">4</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Error-code">code</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-1">Attributes</h5><dl class="attributes"><dt id="widl-Error-code"><code>code</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>The <a>code</a> attribute <em class="rfc2119" title="should">should</em> contain one of the
+            error values defined in this specification. An implementation <em class="rfc2119" title="may">may</em>
+            define additional error codes, but those <em class="rfc2119" title="must not">must not</em> use the numeric
+            values defined here.<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants">Constants</h5><dl class="constants"><dt id="widl-Error-PERMISSION_DENIED"><code>PERMISSION_DENIED</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The application context does not have permission to
+            access this property</dd><dt id="widl-Error-INFORMATION_UNAVAILABLE"><code>INFORMATION_UNAVAILABLE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The property accessed is unavailable on this device (e.g. the battery level on a device that only has an external power source).</dd><dt id="widl-Error-INVALID_VALUE"><code>INVALID_VALUE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>One or more of the values in the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a>
+            object passed was invalid. For example, if the
+            <a>highThreshold</a> attribute is set to a value
+            greater than 1.0 for the CpuLoad property.</dd><dt id="widl-Error-READ_ONLY"><code>READ_ONLY</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The property that has been passed to the
+            <a>set</a> function that has triggered this callback
+            cannot be modified.</dd><dt id="widl-Error-TIMEOUT"><code>TIMEOUT</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The length of time specified by the <a>timeout</a>
+            option has elapsed before the implementation could
+            successfully retrieve the requested property.</dd></dl></div>
+        </div>
+
+        <div class="section">
+          <h4 id="the-options-interface">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Options" class="idlType"><code>Options</code></a> interface</h4>
+          <pre class="idl"><span class="idlInterface" id="idl-def-Options">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Options</span> {
+<span class="idlAttribute">    attribute <span class="idlAttrType"><a>unsigned long</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Options-timeout">timeout</a></span>;</span>
+<span class="idlAttribute">    attribute <span class="idlAttrType"><a>double</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Options-highThreshold">highThreshold</a></span>;</span>
+<span class="idlAttribute">    attribute <span class="idlAttrType"><a>double</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Options-lowThreshold">lowThreshold</a></span>;</span>
+<span class="idlAttribute">    attribute <span class="idlAttrType"><a>DOMString</a></span>     <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Options-id">id</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-2">Attributes</h5><dl class="attributes"><dt id="widl-Options-timeout"><code>timeout</code> of type <span class="idlAttrType"><a>unsigned long</a></span></dt><dd>The number of milliseconds beyond which the operation
+            must be interrupted and the <a>cancel</a> method of
+            the <a>PendingOp</a> object must be called.<div><em>No exceptions.</em></div></dd><dt id="widl-Options-highThreshold"><code>highThreshold</code> of type <span class="idlAttrType"><a>double</a></span></dt><dd>This attribute has no effect on the <a>get</a>
+            method. On the <a>watch</a> method, it indicates that
+            the successCallback is only be triggered if the property
+            is a number and its value is greater than or equal this
+            number.<div><em>No exceptions.</em></div></dd><dt id="widl-Options-lowThreshold"><code>lowThreshold</code> of type <span class="idlAttrType"><a>double</a></span></dt><dd>This attribute has no effect on the <a>get</a>
+            method. On the <a>watch</a> method, it indicates that the
+            successCallback is only be triggered if the property is a
+            number and its value is lower than or equal this
+            number. If both <a>highThreshold</a> and
+            <a>lowThreshold</a> parameters are specified, the success
+            callback is triggered if and only if the property value is
+            either lower than the value of <a>lowThreshold</a> or
+            higher than the value of <a>hiThreshold</a>.<div><em>No exceptions.</em></div></dd><dt id="widl-Options-id"><code>id</code> of type <span class="idlAttrType"><a>DOMString</a></span></dt><dd>In order to differentiate between instances, this
+            attribute is used to indicate the request's target
+            instance. The list of available identifiers would normally
+            be retrieved first through querying the relevant property
+            (e.g. the <a>sources</a> attribute of <a>CpuState</a>). If
+            a property requested does not support multiple instances
+            and an <a>id</a> parameter is passed, then it <em class="rfc2119" title="must">must</em> be
+            ignored. If a property does support multiple instances and
+            an <a>id</a> parameter is passed that does not correspond
+            to any existing instance, then the error callback <em class="rfc2119" title="must">must</em> be
+            called with a <a>code</a> set to
+            <a>INVALID_VALUE</a>.<div><em>No exceptions.</em></div></dd></dl></div>
+        </div>
+      </div>
+
+      <!--******************Device ************************************************-->
+      <div id="the-systemdevice-interface" class="section">
+        <h3 id="x4.3-the-systemdevice-interface"><span class="secno">4.3 </span>The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a> interface</h3>
+          <p>This interface gathers attributes shared by all properties describing system devices (i.e. all the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a> properties). Examples: single battery units, CPU, or network connections.</p>
+          <pre class="idl"><span class="idlInterface" id="idl-def-SystemDevice">[<span class="extAttr">NoInterfaceObject, PrototypeRoot</span>]
+interface <span class="idlInterfaceID">SystemDevice</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a>?</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-SystemDevice-info">info</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-SystemDevice-id">id</a></span>;</span>
+};</span>
+</pre><div class="section"><h4 id="attributes-3">Attributes</h4><dl class="attributes"><dt id="widl-SystemDevice-info"><code>info</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly, nullable</dt><dd>A free-form string describing this device, e.g. the name of its manufacturer.<div><em>No exceptions.</em></div></dd><dt id="widl-SystemDevice-id"><code>id</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>A free-form string identifying this device. The value of this element <em class="rfc2119" title="must">must</em> be unique within the list reported in the object enumerating this device, e.g. the Power object.<div><em>No exceptions.</em></div></dd></dl></div>
+      </div>
+
+          
+      <!--****************** Power ************************************************-->
+      <div id="power" class="section">
+        <h3 id="x4.4-power"><span class="secno">4.4 </span>Power</h3>
+
+        <p>The properties below expose the device's power information, either internal (battery) or external.</p>
+
+        <div class="section">
+          <h4 id="ecmascript-example">ECMAScript Example</h4>
+          <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Alert the user when the power level is below 20%</span>
+
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">watch</span><span class="sh_symbol">(</span><span class="sh_string">"Power"</span><span class="sh_symbol">,</span>success<span class="sh_symbol">,</span><span class="sh_keyword">null</span><span class="sh_symbol">,</span><span class="sh_cbracket">{</span>lowThreshold<span class="sh_symbol">:</span><span class="sh_number">0.2</span><span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">(</span>power<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_function">alert</span><span class="sh_symbol">(</span><span class="sh_string">"Low battery level: "</span><span class="sh_symbol">+</span>power<span class="sh_symbol">.</span>level<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">;</span></pre>
+        </div>
+
+        <div class="section">
+          <h4 id="the-power-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Power" class="idlType"><code>Power</code></a> Property</h4>
+          <p>This property reflects the general state of the system's power sources</p>
+
+          <p class="issue">Find the corresponding DCO properties everywhere</p>
+
+          
+          <pre class="idl"><span class="idlInterface" id="idl-def-Power">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Power</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a>?</span>         <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Power-level">level</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a>?</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Power-timeRemaining">timeRemaining</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Power-isExternal">isExternal</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Power-isCharging">isCharging</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-4">Attributes</h5><dl class="attributes"><dt id="widl-Power-level"><code>level</code> of type <span class="idlAttrType"><a>float</a></span>, readonly, nullable</dt><dd>
+              Specifies how much the internal power source remains,
+              scaled from 0 to 1. A value of 0 means that the battery
+              level is lowest before the system enters shutdown mode,
+              and 1 indicates that the system's charge is maximal. Any
+              threshold parameter used in a <a>watch</a> function to
+              monitor this property applies to this attribute.
+            <div><em>No exceptions.</em></div></dd><dt id="widl-Power-timeRemaining"><code>timeRemaining</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly, nullable</dt><dd>
+              Represents the estimated time remaining in seconds
+              before the system enters shutdown mode.  If
+              <a>isExternal</a> is <code>true</code>, this
+              value <em class="rfc2119" title="must">must</em> be <code>null</code>, meaning that there is
+              essentially infinite time remaining.
+            <div><em>No exceptions.</em></div></dd><dt id="widl-Power-isExternal"><code>isExternal</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd>
+              If <code>true</code> the device is currently powered by an
+              external source. If <code>false</code> the device is
+              currently powered by an internal source.
+            <div><em>No exceptions.</em></div></dd><dt id="widl-Power-isCharging"><code>isCharging</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd>
+              Indicates whether the internal power source is currently
+              charging.  If <a>isExternal</a> is <code>false</code>,
+              this value <em class="rfc2119" title="must">must</em> be <code>false</code>, meaning that the
+              battery is currently powering the system, and is
+              therefore depleting.
+            <div><em>No exceptions.</em></div></dd></dl></div>
+        </div>
+      </div>
+      <!--******************** /Power **********************************-->
+
+      <!--******************* CPU *******************************************-->
+
+      <div id="cpu" class="section">
+        <h3 id="x4.5-cpu"><span class="secno">4.5 </span>CPU</h3>
+        <p>This section defines interfaces that expose the system's
+        CPU information, including type, specifications, current
+        system load information.</p>
+
+        <div class="section">
+          <h4 id="ecmascript-example-1">ECMAScript Example</h4>
+          <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">//Monitor and display the CPU load</span>
+
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">watch</span><span class="sh_symbol">(</span><span class="sh_string">"Processing"</span><span class="sh_symbol">,</span>success<span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">(</span>cpu<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">var</span> s<span class="sh_symbol">=</span><span class="sh_string">"CPU load: "</span><span class="sh_symbol">+</span>cpu<span class="sh_symbol">.</span>load<span class="sh_symbol">;</span>
+  document<span class="sh_symbol">.</span><span class="sh_function">getElementById</span><span class="sh_symbol">(</span><span class="sh_string">"cpuIndicator"</span><span class="sh_symbol">).</span>innerHTML<span class="sh_symbol">=</span><span class="sh_string">"CPU load: "</span><span class="sh_symbol">+(</span>cpu<span class="sh_symbol">.</span>load<span class="sh_symbol">*</span><span class="sh_number">100</span><span class="sh_symbol">)+</span><span class="sh_string">"%"</span><span class="sh_symbol">.</span>
+<span class="sh_cbracket">}</span></pre>
+        </div>
+        
+        <div class="section">
+          <h4 id="the-cpu-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-CPU" class="idlType"><code>CPU</code></a> Property</h4>
+          <p>This property reflects the state of the CPUs available to this system.</p>
+
+          <pre class="idl"><span class="idlInterface" id="idl-def-CPU">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">CPU</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-CPU-load">load</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-5">Attributes</h5><dl class="attributes"><dt id="widl-CPU-load"><code>load</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>
+              This attribute indicates the current CPU load, as a
+              number between 0.0 and 1.0, representing the minimum and
+              maximum values allowed on this system.  Any
+              threshold parameter used in a <a>watch</a> function to
+              monitor this property applies to this attribute.
+            <div><em>No exceptions.</em></div></dd></dl></div>
+        </div>
+      </div>
+      <!--******************** /CPU **********************************-->
+
+      <!--******************* Thermal ****************************-->
+      <div id="thermal" class="section">
+        <h3 id="x4.6-thermal"><span class="secno">4.6 </span>Thermal</h3>
+        <p>The properties described in this section expose the
+        system's temperature, as reported to the various internal
+        thermometers.</p>
+        
+        <div class="section">
+          <h4 id="ecmascript-example-2">ECMAScript Example</h4>
+          <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Check the thermal state and display a warning if it is above a certain level</span>
+
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"Thermal"</span><span class="sh_symbol">,</span>success<span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">(</span>thermal<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>thermal<span class="sh_symbol">.</span>state <span class="sh_symbol">&gt;</span> <span class="sh_number">0.9</span><span class="sh_symbol">)</span>
+    document<span class="sh_symbol">.</span><span class="sh_function">getElementById</span><span class="sh_symbol">(</span><span class="sh_string">"tempIndicator"</span><span class="sh_symbol">).</span>style<span class="sh_symbol">.</span>background<span class="sh_symbol">-</span>color <span class="sh_symbol">=</span> <span class="sh_string">"red"</span><span class="sh_symbol">;</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">;</span></pre>
+        </div>
+        
+        <div class="section">
+          <h4 id="the-thermal-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Thermal" class="idlType"><code>Thermal</code></a> property</h4>
+          
+          <p>This property provides information on the global temperature state of the system</p>
+
+          <pre class="idl"><span class="idlInterface" id="idl-def-Thermal">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Thermal</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Thermal-state">state</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-6">Attributes</h5><dl class="attributes"><dt id="widl-Thermal-state"><code>state</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>
+              This attribute indicates the current thermal status, as a
+              number between 0 and 1 representing the minimum and
+              maximum operating values allowed by this system. On
+              devices that have multiple thermometers, this
+              implementation-defined value should reflect the global
+              temperature of the system.
+            <div><em>No exceptions.</em></div></dd></dl></div>
+        </div>
+      </div>
+      <!--******************* /Thermal ****************************-->
+
+      <!--******************** Network **********************************-->
+
+      <div id="network" class="section">
+        <h3 id="x4.7-network"><span class="secno">4.7 </span>Network</h3>
+        <p>This interface can be used by applications to determine the
+        state of the network interface used by the system.</p>
+
+        <div class="section">
+          <h4 id="ecmascript-example-3">ECMAScript Example</h4>
+          <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Find if the current connection is WiFi, and if so monitor its signal strength</span>
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"Network"</span><span class="sh_symbol">,</span>success<span class="sh_symbol">,</span><span class="sh_keyword">null</span><span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">(</span>connection<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>connection<span class="sh_symbol">.</span>type<span class="sh_symbol">===</span>connection<span class="sh_symbol">.</span>TYPE_IEEE802_11<span class="sh_symbol">)</span>
+    navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">watch</span><span class="sh_symbol">(</span><span class="sh_string">"WifiConnection"</span><span class="sh_symbol">,</span>wifiWatchCB<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">wifiWatchCB</span><span class="sh_symbol">(</span>connection<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  document<span class="sh_symbol">.</span><span class="sh_function">getElementById</span><span class="sh_symbol">(</span>indicator<span class="sh_symbol">,</span> <span class="sh_string">"Wireless "</span><span class="sh_symbol">+</span>connection<span class="sh_symbol">.</span>essid<span class="sh_symbol">+</span><span class="sh_string">" at "</span><span class="sh_symbol">+(</span>connection<span class="sh_symbol">.</span>signalStrength<span class="sh_symbol">*</span><span class="sh_number">100</span><span class="sh_symbol">)+</span><span class="sh_string">"%"</span><span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre>
+        </div>
+
+        <div class="section">
+          <h4 id="the-network-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Network" class="idlType"><code>Network</code></a> Property</h4>
+
+          <p>This property provides information on the system's connection to the network</p>
+
+          <pre class="idl"><span class="idlInterface" id="idl-def-Network">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Network</span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_UNKNOWN">TYPE_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_ETHERNET">TYPE_ETHERNET</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_IEEE_">TYPE_IEEE802_11</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_GSM">TYPE_GSM</a></span> = <span class="idlConstValue">3</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_GPRS">TYPE_GPRS</a></span> = <span class="idlConstValue">4</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_EDGE">TYPE_EDGE</a></span> = <span class="idlConstValue">5</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_CDMA">TYPE_CDMA</a></span> = <span class="idlConstValue">6</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_WiMAX">TYPE_WiMAX</a></span> = <span class="idlConstValue">7</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_iDEN">TYPE_iDEN</a></span> = <span class="idlConstValue">8</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_TETRA">TYPE_TETRA</a></span> = <span class="idlConstValue">9</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_UMTS">TYPE_UMTS</a></span> = <span class="idlConstValue">10</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_BLUETOOTH">TYPE_BLUETOOTH</a></span> = <span class="idlConstValue">11</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_IRDA">TYPE_IRDA</a></span> = <span class="idlConstValue">12</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-TYPE_USB">TYPE_USB</a></span> = <span class="idlConstValue">13</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-type">type</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-currentDownloadBandwidth">currentDownloadBandwidth</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-currentUploadBandwidth">currentUploadBandwidth</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-maxDownloadBandwidth">maxDownloadBandwidth</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-maxUploadBandwidth">maxUploadBandwidth</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a>?</span>         <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-currentSignalStrength">currentSignalStrength</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span>      <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-macAddress">macAddress</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span>      <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-ipAddress">ipAddress</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a>?</span>     <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-ESSID">ESSID</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a>?</span>     <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-apn">apn</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a>?</span>     <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-operatorName">operatorName</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a>?</span>       <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Network-roaming">roaming</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-7">Attributes</h5><dl class="attributes"><dt id="widl-Network-type"><code>type</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>This attribute indicates the network technology in use on a network.<div><em>No exceptions.</em></div></dd><dt id="widl-Network-currentDownloadBandwidth"><code>currentDownloadBandwidth</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>
+              The current real-time download bandwidth, in Kbits/s.
+            <div><em>No exceptions.</em></div></dd><dt id="widl-Network-currentUploadBandwidth"><code>currentUploadBandwidth</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>
+              The current real-time upload bandwidth, in Kbits/s.
+            <div><em>No exceptions.</em></div></dd><dt id="widl-Network-maxDownloadBandwidth"><code>maxDownloadBandwidth</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>This property represents the maximum download bandwidth offered by this network connection, measured in Kbits/s.<div><em>No exceptions.</em></div></dd><dt id="widl-Network-maxUploadBandwidth"><code>maxUploadBandwidth</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>This property represents the maximum upload bandwidth offered by this network connection, measured in Kbits/s.<div><em>No exceptions.</em></div></dd><dt id="widl-Network-currentSignalStrength"><code>currentSignalStrength</code> of type <span class="idlAttrType"><a>float</a></span>, readonly, nullable</dt><dd>This connection's signal strength, as a normalized value between 0 (no signal detected) and 1 (the level is at its maximum value). . This value <em class="rfc2119" title="must">must</em> be <code>null</code> if this connection is wired.<div><em>No exceptions.</em></div></dd><dt id="widl-Network-macAddress"><code>macAddress</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>The <abbr title="Media Access Control"><abbr title="Media Access Control">MAC</abbr></abbr>
+            address of this connection. The format of this string <em class="rfc2119" title="must">must</em>
+            be the standard notation for <abbr title="Media Access Control">MAC</abbr> addresses: six groups of
+            two hexadecimal digits, separated by colons (:),
+            e.g. 01:23:45:67:89:ab [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-IEEE802-3">IEEE802-3</a>]<div><em>No exceptions.</em></div></dd><dt id="widl-Network-ipAddress"><code>ipAddress</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>
+              The IP Address assigned to the device by the network bearer. An implementation 
+              <em class="rfc2119" title="must">must</em> support both IPv4 and IPv6.        
+            <div><em>No exceptions.</em></div></dd><dt id="widl-Network-ESSID"><code>ESSID</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly, nullable</dt><dd>The Extended Service Set Identifier (ESSID) if the
+            <a>type</a> attribute is TYPE_IEE802.11, <code>null</code>
+            otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-Network-apn"><code>apn</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly, nullable</dt><dd>The Access Point Name associated to a network bearer, if applicable. <code>null</code> otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-Network-operatorName"><code>operatorName</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly, nullable</dt><dd>The name of the cellular connection's operator if applicable, <code>null</code> otherwise<div><em>No exceptions.</em></div></dd><dt id="widl-Network-roaming"><code>roaming</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly, nullable</dt><dd>Whether the connection is set up while the device is roaming, if applicable. <code>null</code> otherwise<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-1">Constants</h5><dl class="constants"><dt id="widl-Network-TYPE_UNKNOWN"><code>TYPE_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The API is unable to determine the network technology.</dd><dt id="widl-Network-TYPE_ETHERNET"><code>TYPE_ETHERNET</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>Indicates that the network technology is IEEE802.3, otherwise known as ethernet.</dd><dt id="widl-Network-TYPE_IEEE_"><code>TYPE_IEEE802_11</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>Indicates that the network technology is IEEE802.11.</dd><dt id="widl-Network-TYPE_GSM"><code>TYPE_GSM</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>Global System for Mobile communications.</dd><dt id="widl-Network-TYPE_GPRS"><code>TYPE_GPRS</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>General Packet Radio Service.</dd><dt id="widl-Network-TYPE_EDGE"><code>TYPE_EDGE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>Enhanced Data Rates for GSM Evolution.</dd><dt id="widl-Network-TYPE_CDMA"><code>TYPE_CDMA</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>Code Division Multiple Access.</dd><dt id="widl-Network-TYPE_WiMAX"><code>TYPE_WiMAX</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              Worldwide Interoperability for Microwave Access.
+            </dd><dt id="widl-Network-TYPE_iDEN"><code>TYPE_iDEN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              Integrated Digital Enhanced Connection.
+            </dd><dt id="widl-Network-TYPE_TETRA"><code>TYPE_TETRA</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              Terrestrial Trunked Radio.
+              <p>The associated <a>Connection</a> object is a <a>CellularConnection</a> object.</p>
+            </dd><dt id="widl-Network-TYPE_UMTS"><code>TYPE_UMTS</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              Universal Mobile Telecommunications System. Otherwise known as 3G.
+              <p>The associated <a>Connection</a> object is a <a>CellularConnection</a> object.</p>
+            </dd><dt id="widl-Network-TYPE_BLUETOOTH"><code>TYPE_BLUETOOTH</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              BlueTooth
+            </dd><dt id="widl-Network-TYPE_IRDA"><code>TYPE_IRDA</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              Infrared
+            </dd><dt id="widl-Network-TYPE_USB"><code>TYPE_USB</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>
+              USB
+            </dd></dl></div>
+
+        <p class="issue">Should we gather all of GSM, GPRS, EDGE, CDMA, TETRA, UMTS under a singe "CELL" type? They could be differentiated by maxBandwidth, if needed.</p>
+        </div>
+      </div>
+      <!--******************** /Network **********************************-->
+
+
+        
+      <!-- ********* Sensors ************************************************************** -->
+      <div id="sensors" class="section">
+        <h3 id="x4.8-sensors"><span class="secno">4.8 </span>Sensors</h3>
+        <p>The properties defined below expose the values of external sensors, reflecting the device's environment such as temperature, ambient brightness or ambient sound.</p>
+        <div class="section">
+          <h4 id="ecmascript-example-4">ECMAScript Example</h4>
+          <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Automatically adjust the screen brightness if the ambient brightness is above a certain level</span>
+
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">watch</span><span class="sh_symbol">(</span><span class="sh_string">"AmbientLight"</span><span class="sh_symbol">,</span>success<span class="sh_symbol">,</span> <span class="sh_cbracket">{</span>maxThreshold<span class="sh_symbol">:</span> <span class="sh_number">0.9</span><span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span>
+  navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"OutputDevices"</span><span class="sh_symbol">,</span> 
+                       <span class="sh_keyword">function</span><span class="sh_symbol">(</span>devices<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+                         <span class="sh_keyword">for</span><span class="sh_symbol">(</span><span class="sh_keyword">var</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">&lt;</span>devices<span class="sh_symbol">.</span>displays<span class="sh_symbol">.</span>length<span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+                           navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">set</span><span class="sh_symbol">(</span><span class="sh_string">"Display"</span><span class="sh_symbol">,</span><span class="sh_cbracket">{</span>id<span class="sh_symbol">:</span> devices<span class="sh_symbol">.</span>displays<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span>id<span class="sh_symbol">,</span> brightness<span class="sh_symbol">:</span> <span class="sh_number">0.9</span><span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+                       <span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre>
+        </div>
+
+        <!-- ==== Ambient Light ==== -->
+        <div class="section">
+          <h4 id="ambient-light">Ambient Light</h4>
+          <div class="section">
+            <h5 id="the-ambientlight-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AmbientLight" class="idlType"><code>AmbientLight</code></a> Property</h5>
+
+            <p>This property provides information about the global level of ambient light around the device.</p>
+
+            <pre class="idl"><span class="idlInterface" id="idl-def-AmbientLight">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AmbientLight</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AmbientLight-intensity">intensity</a></span>;</span>
+};</span>
+</pre><div class="section"><h6 id="attributes-8">Attributes</h6><dl class="attributes"><dt id="widl-AmbientLight-intensity"><code>intensity</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>A normalized value representing the overall ambient light around the device. The way this value is determined should be an implementation-defined combination of the values reported by each ambient light sensor available.<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+        </div>
+
+        <!-- ==== Ambient Noise ==== -->
+
+        <div class="section">
+          <h4 id="ambient-noise">Ambient Noise</h4>
+          <div class="section">
+            <h5 id="the-ambientnoise-property">The <code>AmbientNoise</code> property</h5>
+
+            <p>This property provides information about the global level of ambient noise around the device.</p>
+
+            <pre class="idl"><span class="idlInterface" id="idl-def-AmbientNoise">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AmbientNoise</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AmbientNoise-value">value</a></span>;</span>
+};</span>
+</pre><div class="section"><h6 id="attributes-9">Attributes</h6><dl class="attributes"><dt id="widl-AmbientNoise-value"><code>value</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>The ambient noise around the device, in decibels (dB), computed from the data provided by each sensor.  <div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+        </div>
+
+        <!-- ==== Ambient Temperature ==== -->
+
+        <div class="section">
+          <h4 id="ambient-temperature">Ambient Temperature</h4>
+          <div class="section">
+            <h5 id="the-ambienttemperature-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AmbientTemperature" class="idlType"><code>AmbientTemperature</code></a> Property</h5>
+
+            <p>This property provides information about the temperature around the device.</p>
+
+            <pre class="idl"><span class="idlInterface" id="idl-def-AmbientTemperature">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AmbientTemperature</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AmbientTemperature-value">value</a></span>;</span>
+};</span>
+</pre><div class="section"><h6 id="attributes-10">Attributes</h6><dl class="attributes"><dt id="widl-AmbientTemperature-value"><code>value</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>This current temperature around the device, in degrees Celsius (°C)<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+        </div>
+
+        <!-- ==== Atmospheric Pressure ==== -->
+
+        <div class="section">
+          <h4 id="ambient-atmospheric-pressure">Ambient Atmospheric Pressure</h4>
+          <div class="section">
+            <h5 id="the-ambientatmosphericpressure-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AmbientAtmosphericPressure" class="idlType"><code>AmbientAtmosphericPressure</code></a> Property</h5>
+
+            <p>This property provides information about the atmospheric pressure around the device.</p>
+
+            <pre class="idl"><span class="idlInterface" id="idl-def-AmbientAtmosphericPressure">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AmbientAtmosphericPressure</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AmbientAtmosphericPressure-pressure">pressure</a></span>;</span>
+};</span>
+</pre><div class="section"><h6 id="attributes-11">Attributes</h6><dl class="attributes"><dt id="widl-AmbientAtmosphericPressure-pressure"><code>pressure</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>The estimated atmospheric pressure around this device, in kiloPascal (kPa)<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+
+        </div>
+
+        <!-- ==== Proximity ==== -->
+
+        <div class="section">
+          <h4 id="proximity">Proximity</h4>
+          <div class="section">
+            <h5 id="the-proximity-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Proximity" class="idlType"><code>Proximity</code></a> Property</h5>
+            <p>This property provides information about the distance of objects around the device.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-Proximity">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Proximity</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Proximity-distance">distance</a></span>;</span>
+};</span>
+</pre><div class="section"><h6 id="attributes-12">Attributes</h6><dl class="attributes"><dt id="widl-Proximity-distance"><code>distance</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>The distance from the device to the nearest object, as determined by this device's proximity sensors, in meters (m)<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+        </div>
+      </div>
+      <!-- ********* /Sensors ************************************************************** -->
+
+
+      <!-- ********* Codecs ************************************************************** -->
+      <div id="audio-and-video-codecs" class="section">
+        <h3 id="x4.9-audio-and-video-codecs"><span class="secno">4.9 </span>Audio and Video Codecs</h3>
+        <p>The properties below expose the device's audio and video codec capabilities.</p>
+
+        <div class="section">
+          <h4 id="ecmascript-example-5">ECMAScript Example</h4>
+          <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Find if this device supports MIDI</span>
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"AVCodecs"</span><span class="sh_symbol">,</span>success<span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">(</span>codecs<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">for</span> <span class="sh_symbol">(</span><span class="sh_keyword">var</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span>i<span class="sh_symbol">&lt;</span>codecs<span class="sh_symbol">.</span>length<span class="sh_symbol">;</span>i<span class="sh_symbol">++)</span>
+    <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>codecs<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span>compFormat <span class="sh_symbol">===</span> <span class="sh_string">"MP3"</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+      <span class="sh_comment">// ... use MP3 for encoding ...</span>
+      <span class="sh_keyword">break</span><span class="sh_symbol">;</span>
+    <span class="sh_cbracket">}</span>
+<span class="sh_cbracket">}</span></pre>
+        </div>
+        <div class="section">
+          <h4 id="the-avcodecs-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AVCodecs" class="idlType"><code>AVCodecs</code></a> property</h4>
+
+          <p>This property exposes information about the audio/video codecs available to this system</p>
+
+          <pre class="idl"><span class="idlInterface" id="idl-def-AVCodecs">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AVCodecs</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AudioCodec" class="idlType"><code>AudioCodec</code></a>[]</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AVCodecs-audioCodecs">audioCodecs</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-VideoCodec" class="idlType"><code>VideoCodec</code></a>[]</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AVCodecs-videoCodecs">videoCodecs</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-13">Attributes</h5><dl class="attributes"><dt id="widl-AVCodecs-audioCodecs"><code>audioCodecs</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AudioCodec" class="idlType"><code>AudioCodec</code></a></span>, readonly</dt><dd>Audio codecs on this device<div><em>No exceptions.</em></div></dd><dt id="widl-AVCodecs-videoCodecs"><code>videoCodecs</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-VideoCodec" class="idlType"><code>VideoCodec</code></a></span>, readonly</dt><dd>Audio codecs on this device<div><em>No exceptions.</em></div></dd></dl></div>
+        </div>
+        <div class="section">
+          <h4 id="the-audiocodec-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AudioCodec" class="idlType"><code>AudioCodec</code></a> Property</h4>
+
+          <p>This property exposes information on a single audio codec available to this system. Is it <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+
+          <pre class="idl"><span class="idlInterface" id="idl-def-AudioCodec">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AudioCodec</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioCodec-compFormat">compFormat</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>   <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioCodec-encode">encode</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>   <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioCodec-decode">decode</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-14">Attributes</h5><dl class="attributes"><dt id="widl-AudioCodec-compFormat"><code>compFormat</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>Free-form information on the compression
+            format. Examples : "G.711", "MP3", "MIDI"<div><em>No exceptions.</em></div></dd><dt id="widl-AudioCodec-encode"><code>encode</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> if this device supports audio
+            encoding, <code>false</code> otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-AudioCodec-decode"><code>decode</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> if this device supports audio
+            decoding, <code>false</code> otherwise.<div><em>No exceptions.</em></div></dd></dl></div>
+        </div>
+          <div class="section">            
+            <h4 id="the-videocodec-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-VideoCodec" class="idlType"><code>VideoCodec</code></a> Property</h4>                
+            <pre class="idl"><span class="idlInterface" id="idl-def-VideoCodec">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">VideoCodec</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType">sequence&lt;<a>DOMString</a>&gt;</span>    <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoCodec-compFormats">compFormats</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType">sequence&lt;<a>DOMString</a>&gt;</span>    <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoCodec-containerFormats">containerFormats</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>                <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoCodec-hwAccel">hwAccel</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType">sequence&lt;<a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-VideoProfile" class="idlType"><code>VideoProfile</code></a>&gt;</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoCodec-profiles">profiles</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType">sequence&lt;<a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-FrameType" class="idlType"><code>FrameType</code></a>&gt;</span>    <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoCodec-frametypes">frametypes</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType">sequence&lt;<a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-RateControl" class="idlType"><code>RateControl</code></a>&gt;</span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoCodec-ratetypes">ratetypes</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-15">Attributes</h5><dl class="attributes"><dt id="widl-VideoCodec-compFormats"><code>compFormats</code> of type <span class="idlAttrType">sequence&lt;<a>DOMString</a>&gt;</span>, readonly</dt><dd>Supported compression format names. Example : "AVI", "ogg"<div><em>No exceptions.</em></div></dd><dt id="widl-VideoCodec-containerFormats"><code>containerFormats</code> of type <span class="idlAttrType">sequence&lt;<a>DOMString</a>&gt;</span>, readonly</dt><dd>Supported container format names. Example : "AVI", "ogg"<div><em>No exceptions.</em></div></dd><dt id="widl-VideoCodec-hwAccel"><code>hwAccel</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> if the codec includes hardware acceleration support, <code>false</code> otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-VideoCodec-profiles"><code>profiles</code> of type <span class="idlAttrType">sequence&lt;<a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-VideoProfile" class="idlType"><code>VideoProfile</code></a>&gt;</span>, readonly</dt><dd>The list of profiles available for this codec.<div><em>No exceptions.</em></div></dd><dt id="widl-VideoCodec-frametypes"><code>frametypes</code> of type <span class="idlAttrType">sequence&lt;<a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-FrameType" class="idlType"><code>FrameType</code></a>&gt;</span>, readonly</dt><dd>The list of frame types supported by the codec<div><em>No exceptions.</em></div></dd><dt id="widl-VideoCodec-ratetypes"><code>ratetypes</code> of type <span class="idlAttrType">sequence&lt;<a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-RateControl" class="idlType"><code>RateControl</code></a>&gt;</span>, readonly</dt><dd>The list of rate control options supported by the codec<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+
+          <div class="section">
+            <h4 id="the-videoprofile-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-VideoProfile" class="idlType"><code>VideoProfile</code></a> Property</h4>
+
+            <pre class="idl"><span class="idlInterface" id="idl-def-VideoProfile">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">VideoProfile</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-VideoProfile-name">name</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-16">Attributes</h5><dl class="attributes"><dt id="widl-VideoProfile-name"><code>name</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>Profile name. Examples : "Simple","Main", "High", "Advanced"<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+
+          <div class="section">
+            <h4 id="the-frametype-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-FrameType" class="idlType"><code>FrameType</code></a> Property</h4>
+            <pre class="idl"><span class="idlInterface" id="idl-def-FrameType">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">FrameType</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-FrameType-name">name</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-17">Attributes</h5><dl class="attributes"><dt id="widl-FrameType-name"><code>name</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>Frame type name. Examples : "PROGRESSIVE","INTERLACED"<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+
+          <div class="section">
+            <h4 id="the-ratecontrol-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-RateControl" class="idlType"><code>RateControl</code></a> Property</h4>
+            <pre class="idl"><span class="idlInterface" id="idl-def-RateControl">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">RateControl</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>DOMString</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-RateControl-name">name</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-18">Attributes</h5><dl class="attributes"><dt id="widl-RateControl-name"><code>name</code> of type <span class="idlAttrType"><a>DOMString</a></span>, readonly</dt><dd>Rate control type name. Examples : "CBR","VBR"<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+        </div>
+        <!-- ********* /Codecs ************************************************************** -->
+
+        <!-- ********* Storage ************************************************************** -->
+        <div id="storage" class="section">
+          <h3 id="x4.10-storage"><span class="secno">4.10 </span>Storage</h3>
+          <p>This set of properties expose a device's storage units and their properties, like type (hard Disk, memory card, etc.) and capacity</p>
+
+          <div class="section">
+            <h4 id="ecmascript-example-6">ECMAScript Example</h4>
+            <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Check each storage and warn if almost full </span>
+            
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"Storage"</span><span class="sh_symbol">,</span> success<span class="sh_symbol">);</span>
+            
+<span class="sh_keyword">function</span> <span class="sh_function">success</span><span class="sh_symbol">(</span>units<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">for</span> <span class="sh_symbol">(</span><span class="sh_keyword">var</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span>i<span class="sh_symbol">&lt;</span>units<span class="sh_symbol">.</span>length<span class="sh_symbol">;</span>i<span class="sh_symbol">++)</span>
+    <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>units<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span><span class="sh_normal">capacity </span><span class="sh_symbol">/</span> units<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span>availableCapacity <span class="sh_symbol">&gt;</span> <span class="sh_number">0.95</span><span class="sh_symbol">)</span>
+      <span class="sh_function">alert</span><span class="sh_symbol">(</span><span class="sh_string">"Storage unit '"</span><span class="sh_symbol">+</span>units<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span>info<span class="sh_symbol">+</span><span class="sh_string">"' almost full. You may want to free some space."</span><span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre>
+          </div>
+
+          <div class="section">
+            <h4 id="the-storage-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Storage" class="idlType"><code>Storage</code></a> Property</h4>
+            <p>This property exposes the data storage devices connected to this system.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-Storage">interface <span class="idlInterfaceID">Storage</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-StorageUnit" class="idlType"><code>StorageUnit</code></a>[]</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Storage-units">units</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-19">Attributes</h5><dl class="attributes"><dt id="widl-Storage-units"><code>units</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-StorageUnit" class="idlType"><code>StorageUnit</code></a></span>, readonly</dt><dd>The array of storage units connected to this device<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+
+          <div class="section">
+            <h4 id="the-storageunit-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-StorageUnit" class="idlType"><code>StorageUnit</code></a> Property</h4>
+            <p>This property exposes a single storage device connected to this system. It is <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-StorageUnit">interface <span class="idlInterfaceID">StorageUnit</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-TYPE_UNKNOWN">TYPE_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-TYPE_HARDDISK">TYPE_HARDDISK</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-TYPE_FLOPPYDISK">TYPE_FLOPPYDISK</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-TYPE_OPTICAL">TYPE_OPTICAL</a></span> = <span class="idlConstValue">3</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-TYPE_RAM">TYPE_RAM</a></span> = <span class="idlConstValue">4</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-type">type</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-isReadWrite">isReadWrite</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-capacity">capacity</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-availableCapacity">availableCapacity</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-StorageUnit-isRemoveable">isRemoveable</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-20">Attributes</h5><dl class="attributes"><dt id="widl-StorageUnit-type"><code>type</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>The type of pointing device. The value is one of the constants defined for this type.<div><em>No exceptions.</em></div></dd><dt id="widl-StorageUnit-isReadWrite"><code>isReadWrite</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> when this device supports software modification, <code>else</code> otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-StorageUnit-capacity"><code>capacity</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>The amount of data that this device can hold, in bytes. A <a>watch</a> operation operating on an object of type <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-StorageUnit" class="idlType"><code>StorageUnit</code></a> must invoke the success callback only when this attribute has changed<div><em>No exceptions.</em></div></dd><dt id="widl-StorageUnit-availableCapacity"><code>availableCapacity</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>The amount of available data that this device can hold, in bytes<div><em>No exceptions.</em></div></dd><dt id="widl-StorageUnit-isRemoveable"><code>isRemoveable</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> if this unit can be removed from the system (e.g. a memory card unplugged, or a disk ejected), <code>false</code> otherwise<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-2">Constants</h5><dl class="constants"><dt id="widl-StorageUnit-TYPE_UNKNOWN"><code>TYPE_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when the type of this device is unknown to this API.</dd><dt id="widl-StorageUnit-TYPE_HARDDISK"><code>TYPE_HARDDISK</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When type has this value, then this device is a hard disk</dd><dt id="widl-StorageUnit-TYPE_FLOPPYDISK"><code>TYPE_FLOPPYDISK</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When type has this value, then this device is a floppy disk</dd><dt id="widl-StorageUnit-TYPE_OPTICAL"><code>TYPE_OPTICAL</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When type has this value, then this device uses optical storage technology (CD, DVD, Holographic)</dd><dt id="widl-StorageUnit-TYPE_RAM"><code>TYPE_RAM</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When type has this value, then this device uses solid-state RAM technology (chip, memory card)</dd></dl></div>
+          </div>
+        </div>
+        <!-- ********* /Storage ************************************************************** -->
+
+        <!--******************** Output **********************************-->
+        <div id="output-devices" class="section">
+          <h3 id="x4.11-output-devices"><span class="secno">4.11 </span>Output Devices</h3>
+          <p>This section gathers system properties related to this device's output devices: screens, sound systems, etc.</p>
+
+          <p class="issue">Do we need information about active devices, e.g. in order to be able to see which screen is currently being in use, or to control which set of speakers should be activated? If so how do we specify it? Through an "active" flag on each device (hard to watch), or through a pointer (e.g. currentDisplay in OutputDevices) which would mean only one device is active at a time, which might not always be correct in cases like several active keyboards</p>
+          
+          <div class="section">
+            <h4 id="ecmascript-example-7">ECMAScript Example</h4>
+            <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Set the brightness of all the displays to their maximum value</span>
+
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"OutputDevices"</span><span class="sh_symbol">,</span> 
+                     <span class="sh_keyword">function</span><span class="sh_symbol">(</span>devices<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+                       <span class="sh_keyword">for</span><span class="sh_symbol">(</span><span class="sh_keyword">var</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">&lt;</span>devices<span class="sh_symbol">.</span>displays<span class="sh_symbol">.</span>length<span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+                         navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">set</span><span class="sh_symbol">(</span><span class="sh_string">"Display"</span><span class="sh_symbol">,</span><span class="sh_cbracket">{</span>id<span class="sh_symbol">:</span> devices<span class="sh_symbol">.</span>displays<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span>id<span class="sh_symbol">,</span> brightness<span class="sh_symbol">:</span> <span class="sh_number">1</span><span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+                     <span class="sh_cbracket">}</span><span class="sh_symbol">);</span></pre>
+          </div>
+
+
+          <div class="section">
+            <h4 id="the-outputdevices-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-OutputDevices" class="idlType"><code>OutputDevices</code></a> Property</h4>
+              
+            <p>This property provides information on the output devices (displays, audio) available on this system</p>
+              
+            <pre class="idl"><span class="idlInterface" id="idl-def-OutputDevices">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">OutputDevices</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Display" class="idlType"><code>Display</code></a>[]</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-OutputDevices-displays">displays</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>Audio</a>[]</span>   <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-OutputDevices-audioDevices">audioDevices</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-21">Attributes</h5><dl class="attributes"><dt id="widl-OutputDevices-displays"><code>displays</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Display" class="idlType"><code>Display</code></a></span>, readonly</dt><dd>An array of all the display devices connected to this system<div><em>No exceptions.</em></div></dd><dt id="widl-OutputDevices-audioDevices"><code>audioDevices</code> of type array of <span class="idlAttrType"><a>Audio</a></span>, readonly</dt><dd>An array of all the output audio devices connected to this system<div><em>No exceptions.</em></div></dd></dl></div>
+              
+          </div>
+            
+          <div class="section">
+            <h4 id="the-display-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Display" class="idlType"><code>Display</code></a> property</h4>
+              
+            <p>This property exposes information on a single display device available to the system. Is it <a>enumerable.</a></p>
+            
+            <p>The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Display" class="idlType"><code>Display</code></a> interface defined below inherits from the <a>Screen</a> interface as defined in [<a class="bibref" rel="biblioentry" href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#bib-CSSOM-VIEW">CSSOM-VIEW</a>]</p>
+            
+            <pre class="idl"><span class="idlInterface" id="idl-def-Display">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">Display</span> : <span class="idlSuperclass"><a>Screen</a></span>, <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-ORIENTATION_UNKNOWN">ORIENTATION_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-ORIENTATION_LANDSCAPE">ORIENTATION_LANDSCAPE</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-ORIENTATION_PORTRAIT">ORIENTATION_PORTRAIT</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-ORIENTATION_INVERTED_LANDSCAPE">ORIENTATION_INVERTED_LANDSCAPE</a></span> = <span class="idlConstValue">3</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-ORIENTATION_INVERTED_PORTRAIT">ORIENTATION_INVERTED_PORTRAIT</a></span> = <span class="idlConstValue">4</span>;</span>
+<span class="idlAttribute">             attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-orientation">orientation</a></span>;</span>
+<span class="idlAttribute">             attribute <span class="idlAttrType"><a>float</a></span>          <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-brightness">brightness</a></span>;</span>
+<span class="idlAttribute">             attribute <span class="idlAttrType"><a>float</a></span>          <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-contrast">contrast</a></span>;</span>
+<span class="idlAttribute">             attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-blanked">blanked</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-dotsPerInchW">dotsPerInchW</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-dotsPerInchH">dotsPerInchH</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span>          <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-physicalWidth">physicalWidth</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a></span>          <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Display-physicalHeight">physicalHeight</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-22">Attributes</h5><dl class="attributes"><dt id="widl-Display-orientation"><code>orientation</code> of type <span class="idlAttrType"><a>unsigned short</a></span></dt><dd>The display orientation from the constants listed in this object.<div><em>No exceptions.</em></div></dd><dt id="widl-Display-brightness"><code>brightness</code> of type <span class="idlAttrType"><a>float</a></span></dt><dd>The current brightness, from 0 to 1<div><em>No exceptions.</em></div></dd><dt id="widl-Display-contrast"><code>contrast</code> of type <span class="idlAttrType"><a>float</a></span></dt><dd>The current contrast, from 0 to 1<div><em>No exceptions.</em></div></dd><dt id="widl-Display-blanked"><code>blanked</code> of type <span class="idlAttrType"><a>boolean</a></span></dt><dd><code>true</code> if this display is currently blanked, <code>false</code> otherwise<div><em>No exceptions.</em></div></dd><dt id="widl-Display-dotsPerInchW"><code>dotsPerInchW</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>Resolution of this device, along its width, in dots per inch.<div><em>No exceptions.</em></div></dd><dt id="widl-Display-dotsPerInchH"><code>dotsPerInchH</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>Resolution of this device, along its height, in dots per inch.<div><em>No exceptions.</em></div></dd><dt id="widl-Display-physicalWidth"><code>physicalWidth</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>The display's physical width in centimeters<div><em>No exceptions.</em></div></dd><dt id="widl-Display-physicalHeight"><code>physicalHeight</code> of type <span class="idlAttrType"><a>float</a></span>, readonly</dt><dd>The display's physical height in centimeters<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-3">Constants</h5><dl class="constants"><dt id="widl-Display-ORIENTATION_UNKNOWN"><code>ORIENTATION_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The device is not able to determine its orientation.</dd><dt id="widl-Display-ORIENTATION_LANDSCAPE"><code>ORIENTATION_LANDSCAPE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The display orientation is landscape.</dd><dt id="widl-Display-ORIENTATION_PORTRAIT"><code>ORIENTATION_PORTRAIT</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The display orientation is portrait.</dd><dt id="widl-Display-ORIENTATION_INVERTED_LANDSCAPE"><code>ORIENTATION_INVERTED_LANDSCAPE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The display orientation is inverted landscape.</dd><dt id="widl-Display-ORIENTATION_INVERTED_PORTRAIT"><code>ORIENTATION_INVERTED_PORTRAIT</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>The display orientation is inverted portrait.</dd></dl></div>
+
+            <p class="issue">Are we being short-sighted in only listing
+            four orientations? Would it make sense to have it be an angle, except
+            that in most cases it would only change in 90°
+            increments?</p>
+              
+            
+          </div>
+
+        <!-- ********* /display ************************************************************* -->
+        
+        <!-- ********* Sound ************************************************************** -->
+        <div class="section">
+          <h4 id="the-audiodevice-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-AudioDevice" class="idlType"><code>AudioDevice</code></a> Property</h4>
+          
+          <p>This property exposes information on a single audio
+          output device available to this system. It is
+          <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+          
+          <pre class="idl"><span class="idlInterface" id="idl-def-AudioDevice">[<span class="extAttr">NoInterfaceObject</span>]
+interface <span class="idlInterfaceID">AudioDevice</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioDevice-TYPE_UNKNOWN">TYPE_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioDevice-TYPE_SPEAKER">TYPE_SPEAKER</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioDevice-TYPE_HEADPHONES">TYPE_HEADPHONES</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioDevice-type">type</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioDevice-freqRangeLow">freqRangeLow</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-AudioDevice-freqRangeHigh">freqRangeHigh</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-23">Attributes</h5><dl class="attributes"><dt id="widl-AudioDevice-type"><code>type</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>The type of audio output device. The value is one of the constants defined for this type.<div><em>No exceptions.</em></div></dd><dt id="widl-AudioDevice-freqRangeLow"><code>freqRangeLow</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>Frequency range, low value, in Hz<div><em>No exceptions.</em></div></dd><dt id="widl-AudioDevice-freqRangeHigh"><code>freqRangeHigh</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>Frequency range, high value, in Hz<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-4">Constants</h5><dl class="constants"><dt id="widl-AudioDevice-TYPE_UNKNOWN"><code>TYPE_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when the type of this device is unknown</dd><dt id="widl-AudioDevice-TYPE_SPEAKER"><code>TYPE_SPEAKER</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when this device is a loud speaker</dd><dt id="widl-AudioDevice-TYPE_HEADPHONES"><code>TYPE_HEADPHONES</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when this device is a set of headphones</dd></dl></div>
+          
+        </div>
+      </div>
+      <!-- ********* /Output *************************************************************** -->
+
+        <!-- ********* Input ***************************************************************** -->
+        <div id="input-devices" class="section">
+          <h3 id="x4.12-input-devices"><span class="secno">4.12 </span>Input Devices</h3>
+
+          <p>The properties defines below expose the input devices connected to the system (e.g. mouse, keyboard, camera).</p>
+          
+          <p class="issue">Should we have a notion of active or selected device, e.g. which camera is currently used, or which display is the one currently drawn on. We could use current* like with Power, but that restricts to one active device at a time. Alternatively, there could be an active flag in each device. But that would make watch() messy, since we would have to extend the definition of watched events to sub-sub-field modifications</p>
+
+
+          <div class="section">
+            <h4 id="ecmascript-example-8">ECMAScript Example</h4>
+            <pre class="sh_javascript example sh_sourceCode"><span class="sh_comment">// Check if the device supports multitouch</span>
+
+navigator<span class="sh_symbol">.</span>system<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span><span class="sh_string">"InputDevices"</span><span class="sh_symbol">,</span> 
+                     <span class="sh_keyword">function</span><span class="sh_symbol">(</span>devices<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+                       <span class="sh_keyword">for</span><span class="sh_symbol">(</span><span class="sh_keyword">var</span> i<span class="sh_symbol">=</span><span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">&lt;</span>devices<span class="sh_symbol">.</span>pointingDevices<span class="sh_symbol">.</span>length<span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+                         <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>devices<span class="sh_symbol">.</span>pointingDevices<span class="sh_symbol">[</span>i<span class="sh_symbol">].</span>supportsMultiTouch<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+                           applicationParams<span class="sh_symbol">.</span>hazMultiTouch <span class="sh_symbol">=</span> <span class="sh_keyword">true</span><span class="sh_symbol">;</span>
+                           <span class="sh_keyword">break</span><span class="sh_symbol">;</span>
+                         <span class="sh_cbracket">}</span>
+                     <span class="sh_cbracket">}</span><span class="sh_symbol">);</span></pre>
+          </div>
+
+
+          <div class="section">
+            <h4 id="the-inputdevices-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-InputDevices" class="idlType"><code>InputDevices</code></a> Property</h4>
+            
+            <pre class="idl"><span class="idlInterface" id="idl-def-InputDevices">interface <span class="idlInterfaceID">InputDevices</span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-PointingDevice" class="idlType"><code>PointingDevice</code></a>[]</span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-InputDevices-pointingDevices">pointingDevices</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Keyboard" class="idlType"><code>Keyboard</code></a>[]</span>       <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-InputDevices-keyboards">keyboards</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Camera" class="idlType"><code>Camera</code></a>[]</span>         <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-InputDevices-cameras">cameras</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Microphone" class="idlType"><code>Microphone</code></a>[]</span>     <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-InputDevices-microphones">microphones</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-24">Attributes</h5><dl class="attributes"><dt id="widl-InputDevices-pointingDevices"><code>pointingDevices</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-PointingDevice" class="idlType"><code>PointingDevice</code></a></span>, readonly</dt><dd>The list of physical pointing devices attached (e.g. mouse, tablet, touchscreens)<div><em>No exceptions.</em></div></dd><dt id="widl-InputDevices-keyboards"><code>keyboards</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Keyboard" class="idlType"><code>Keyboard</code></a></span>, readonly</dt><dd>The list of keyboards attached<div><em>No exceptions.</em></div></dd><dt id="widl-InputDevices-cameras"><code>cameras</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Camera" class="idlType"><code>Camera</code></a></span>, readonly</dt><dd>The list of cameras attached<div><em>No exceptions.</em></div></dd><dt id="widl-InputDevices-microphones"><code>microphones</code> of type array of <span class="idlAttrType"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Microphone" class="idlType"><code>Microphone</code></a></span>, readonly</dt><dd>The list of microphones attached<div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+          
+          <div class="section">
+            <h4 id="the-pointingdevice-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-PointingDevice" class="idlType"><code>PointingDevice</code></a> Property</h4>
+            <p>This property exposes the pointing devices (mouse, touch screen, gesture sensor). It is <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-PointingDevice">interface <span class="idlInterfaceID">PointingDevice</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-TYPE_UNKNOWN">TYPE_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-TYPE_MOUSE">TYPE_MOUSE</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-TYPE_TOUCHSCREEN">TYPE_TOUCHSCREEN</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-TYPE_LIGHTPEN">TYPE_LIGHTPEN</a></span> = <span class="idlConstValue">3</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-TYPE_GESTURE">TYPE_GESTURE</a></span> = <span class="idlConstValue">4</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-TYPE_TABLET">TYPE_TABLET</a></span> = <span class="idlConstValue">5</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-type">type</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-PointingDevice-supportsMultiTouch">supportsMultiTouch</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-25">Attributes</h5><dl class="attributes"><dt id="widl-PointingDevice-type"><code>type</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>The type of pointing device. The value is one of the constants defined for this type.<div><em>No exceptions.</em></div></dd><dt id="widl-PointingDevice-supportsMultiTouch"><code>supportsMultiTouch</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> when this device supports the multi-touch method of interaction, <code>else</code> otherwise.<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-5">Constants</h5><dl class="constants"><dt id="widl-PointingDevice-TYPE_UNKNOWN"><code>TYPE_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then the type of this pointing device is unknown.</dd><dt id="widl-PointingDevice-TYPE_MOUSE"><code>TYPE_MOUSE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a mouse</dd><dt id="widl-PointingDevice-TYPE_TOUCHSCREEN"><code>TYPE_TOUCHSCREEN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a touch screen</dd><dt id="widl-PointingDevice-TYPE_LIGHTPEN"><code>TYPE_LIGHTPEN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a light pen</dd><dt id="widl-PointingDevice-TYPE_GESTURE"><code>TYPE_GESTURE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a gesture device</dd><dt id="widl-PointingDevice-TYPE_TABLET"><code>TYPE_TABLET</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a graphics tablet</dd></dl></div>
+          </div>
+          <div class="section">
+            <h4 id="the-keyboard-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Keyboard" class="idlType"><code>Keyboard</code></a> Property</h4>
+            <p>This property exposes the keyboards and keypads connected to this system. It is <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-Keyboard">interface <span class="idlInterfaceID">Keyboard</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Keyboard-TYPE_UNKNOWN">TYPE_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Keyboard-TYPE_KEYBOARD">TYPE_KEYBOARD</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Keyboard-TYPE_KEYPAD">TYPE_KEYPAD</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Keyboard-type">type</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Keyboard-isHardware">isHardware</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-26">Attributes</h5><dl class="attributes"><dt id="widl-Keyboard-type"><code>type</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>The type of pointing device. The value is one of the constants defined for this type.<div><em>No exceptions.</em></div></dd><dt id="widl-Keyboard-isHardware"><code>isHardware</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> when this device is a physical keyboard, <code>else</code> if it is a software keyboard.<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-6">Constants</h5><dl class="constants"><dt id="widl-Keyboard-TYPE_UNKNOWN"><code>TYPE_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is of a type unknown to this API.</dd><dt id="widl-Keyboard-TYPE_KEYBOARD"><code>TYPE_KEYBOARD</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a full keyboard</dd><dt id="widl-Keyboard-TYPE_KEYPAD"><code>TYPE_KEYPAD</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd>When the <a>type</a> attribute has this value, then this device is a keypad</dd></dl></div>
+          </div>
+
+          <div class="section">
+            <h4 id="the-camera-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Camera" class="idlType"><code>Camera</code></a> Property</h4>
+            <p>This property exposes the cameras connected to this system. It is <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-Camera">interface <span class="idlInterfaceID">Camera</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>       <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Camera-supportsVideo">supportsVideo</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>boolean</a></span>       <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Camera-hasFlash">hasFlash</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Camera-sensorPixels">sensorPixels</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>float</a>?</span>        <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Camera-maxZoomFactor">maxZoomFactor</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-27">Attributes</h5><dl class="attributes"><dt id="widl-Camera-supportsVideo"><code>supportsVideo</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> when this device supports recording video, <code>else</code> otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-Camera-hasFlash"><code>hasFlash</code> of type <span class="idlAttrType"><a>boolean</a></span>, readonly</dt><dd><code>true</code> when this device supports has a flash, <code>else</code> otherwise.<div><em>No exceptions.</em></div></dd><dt id="widl-Camera-sensorPixels"><code>sensorPixels</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>The number of image sensor elements (pixels) of this camera<div><em>No exceptions.</em></div></dd><dt id="widl-Camera-maxZoomFactor"><code>maxZoomFactor</code> of type <span class="idlAttrType"><a>float</a></span>, readonly, nullable</dt><dd>The maximum zoom factor of this camera. This value <em class="rfc2119" title="must">must</em> be <code>null</code> if the camera does not have a zoom (whether physical or digital)
+              <p class="issue">Use focal length instead? And shutter speed/aperture/ISO/sensor type?</p><div><em>No exceptions.</em></div></dd></dl></div>
+          </div>
+
+          <div class="section">
+            <h4 id="the-microphone-property">The <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-Microphone" class="idlType"><code>Microphone</code></a> Property</h4>
+            <p>This property exposes the microphones connected to this system. It is <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#dfn-enumerable" class="internalDFN">enumerable</a>.</p>
+            <pre class="idl"><span class="idlInterface" id="idl-def-Microphone">interface <span class="idlInterfaceID">Microphone</span> : <span class="idlSuperclass"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemDevice" class="idlType"><code>SystemDevice</code></a></span> {
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Microphone-TYPE_UNKNOWN">TYPE_UNKNOWN</a></span> = <span class="idlConstValue">0</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Microphone-TYPE_MICROPHONE">TYPE_MICROPHONE</a></span> = <span class="idlConstValue">1</span>;</span>
+<span class="idlConst">    const <span class="idlConstType"><a>unsigned short</a></span> <span class="idlConstName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Microphone-TYPE_LINEIN">TYPE_LINEIN</a></span> = <span class="idlConstValue">2</span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned short</a></span> <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Microphone-type">type</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Microphone-freqRangeLow">freqRangeLow</a></span>;</span>
+<span class="idlAttribute">    readonly attribute <span class="idlAttrType"><a>unsigned long</a></span>  <span class="idlAttrName"><a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#widl-Microphone-freqRangeHigh">freqRangeHigh</a></span>;</span>
+};</span>
+</pre><div class="section"><h5 id="attributes-28">Attributes</h5><dl class="attributes"><dt id="widl-Microphone-type"><code>type</code> of type <span class="idlAttrType"><a>unsigned short</a></span>, readonly</dt><dd>The type of audio input device. The value is one of
+              the constants defined for this type.<div><em>No exceptions.</em></div></dd><dt id="widl-Microphone-freqRangeLow"><code>freqRangeLow</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>Frequency range, low value, in Hz<div><em>No exceptions.</em></div></dd><dt id="widl-Microphone-freqRangeHigh"><code>freqRangeHigh</code> of type <span class="idlAttrType"><a>unsigned long</a></span>, readonly</dt><dd>Frequency range, high value, in Hz<div><em>No exceptions.</em></div></dd></dl></div><div class="section"><h5 id="constants-7">Constants</h5><dl class="constants"><dt id="widl-Microphone-TYPE_UNKNOWN"><code>TYPE_UNKNOWN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when the type of this device is unknown to this API.</dd><dt id="widl-Microphone-TYPE_MICROPHONE"><code>TYPE_MICROPHONE</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when this device is a microphone</dd><dt id="widl-Microphone-TYPE_LINEIN"><code>TYPE_LINEIN</code> of type <span class="idlConstType"><a>unsigned short</a></span></dt><dd><code>type</code> is set to this value when this device is a line-in connector</dd></dl></div>
+          </div>
+        </div>
+
+      </div>
+
+
+    <!--************************************* Extensibility *******************************************-->
+    <div id="extensibility" class="section">
+      <h2 id="x5.-extensibility"><span class="secno">5. </span>Extensibility</h2>
+      
+      <p>This specification allows vendor-specific properties to be made
+      available to the <a href="http://www.w3.org/TR/2010/WD-system-info-api-20100202/#idl-def-SystemInfo" class="idlType"><code>SystemInfo</code></a> interface. The URI of those
+      properties <em class="rfc2119" title="must not">must not</em> start with the string
+      <code>http://www.w3.org/2009/dap/SysInfo/</code>.</p>
+      
+      <p>Implementers should be aware of other standard device APIs when
+      planning extensions, in order to avoid overlapping with existing
+      work, in particular that of the <acronym title="World Wide Web Consortium">W3C</acronym> <a href="http://www.w3.org/2009/dap">Device API and Policy</a>
+      Working Group.</p>
+      
+      <p class="issue">extensibility of enumerated constants, e.g. connection types</p>
+    </div>
+    <!--************************************* Requirements & Use cases *******************************************-->
+    <div class="informative appendix section" id="requirements---use-cases">
+      <h2 id="a.-requirements---use-cases"><span class="secno">A. </span>Requirements &amp; Use cases</h2><p><em>This section is non-normative.</em></p>
+
+      <p class="issue">make a separate document?</p>
+
+      <div id="requirements" class="section">
+        <h3 id="a.1-requirements"><span class="secno">A.1 </span>Requirements</h3>
+
+        <div class="section">
+          <h4 id="power-1">Power</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to retrieve one-shot power source information. </li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to retrieve one-shot power remaining information. </li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a power source change events. </li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a power level change events. </li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide power level change events based on thresholds. </li>
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="cpu-1">CPU</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to retrieve information about
+            the number of concurrent threads that can run on the CPU.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to retrieve information about
+            the CPU utilization.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to retrieve information about
+            the current CPU frequency.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to retrieve information about
+            the maximum CPU frequency.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to retrieve information about
+            the CPU brand.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide a methods to retrieve additional information about
+            the CPU.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="display">Display</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide information about the dots-per-inch (DPI) of the display.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to retrieve one-shot screen blank information.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide screen blank events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide one-shot display orientation information.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide display orientation change events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide one-shot display brightness information.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide display brightness change events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide information and events about external displays.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide events about display color depth.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide information and events about display device refresh rate.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="connection">Connection</h4>
+          <ul>
+            <li> A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect the technology that a network bearer uses (e.g. 802.11a, CDMA, WiMAX, etc.)</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect the quality of the connection to the network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect whether a specified service is available. This method <em class="rfc2119" title="should">should</em> be asynchronous.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a events about the availability of a specified service.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect the quality of the connection to a specified service.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect whether the device currently has a valid network connection. This method <em class="rfc2119" title="should">should</em> be synchronous.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect changes in the devices network status (e.g. radio turned on or signal no longer available).</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide information about the current network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide information about the default network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide information about the preferred network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide a method to change the current network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to detect whether a device that is using a cellular network is currently roaming.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide a method to detect geolocation based on cell tower triangulation calculations.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to detect the ID of the current network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to detect the type of encryption in use by a network bearer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to detect the operator, MMC, and MNC of a PLM Network.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide IP Address Table change events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide Route Table change events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide connected events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide disconnected events.</li>
+            
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="thermal-1">Thermal</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide the ability to list temperature
+            from multiple thermometers.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to detect the thermal
+            target of a thermometer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide a method to detect the ID of the 
+            thermometer.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a method to detect temperature.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide a method to monitor temperature 
+            changes based on thresholds.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="audio">Audio</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a list of audio codecs
+            available on the device</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a list of audio output
+            devices (speakers etc.)</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a list of audio input
+            devices (microphones, software)</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide audio architecture
+            information.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="video">Video</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide a list of codecs available
+            on the device.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide video architecture
+            information.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h4 id="ambient-light-sensor">Ambient Light Sensor</h4>
+        </div>
+        <div class="section">
+          <h4 id="storage-1">Storage</h4>
+        </div>
+        <div class="section">
+          <h4 id="input">Input</h4>
+          <ul>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide information about the presence of a touch screen.</li>
+            <li>A conforming implementation <em class="rfc2119" title="must">must</em> provide information about the existence of mouse hover events.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide information about the presence of a 
+            screen that supports multi-touch.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide information about presence of a physical
+            keyboard.</li>
+            <li>A conforming implementation <em class="rfc2119" title="should">should</em> provide information about the size of the 
+            keyboard (e.g. whether it is a thumb keyboard).</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> allow an application to detect whether an 
+            on-screen keyboard is visible.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> allow an application to monitor when an on-screen
+            keyboard appears and disappears.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide a method for applications to monitor the
+            attachment and detachment of physical pointing devices.</li>
+            <li>A conforming implementation <em class="rfc2119" title="may">may</em> provide a method for applications to monitor the
+            attachment and detachment of physical keyboard devices.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="use-cases" class="section">
+        <h3 id="a.2-use-cases"><span class="secno">A.2 </span>Use Cases</h3>
+        <p class="issue">Add examples</p>
+        <div class="section">
+          <h4 id="power-2">Power</h4>
+          <dl>
+            <dt>User Watches Video Content on Device on battery power</dt>
+            <dd>The user has opened a video playback application and the
+            application attempts to provide the optimal viewing
+            experience for the device. During the video playback, the
+            battery level has reached a low level that will prevent the
+            playback to finish. The application displays a non-intrusive
+            notification that the device needs to be plugged in to
+            ensure the video playback to finish.</dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="cpu-2">CPU</h4>
+          <dl>
+            <dt>User Watches Video Content on Device</dt>
+            <dd>The user has opened a video playback application and the
+            application attempts to provide the optimal viewing
+            experience for the device. The content provider has a
+            multithreaded decoder so the application use the Cpu API to
+            see if the CPU would be able to take advantage of concurrent
+            threads. It then checks to see if the CPU is currently busy
+            by looking at current usage and comparing current frequency
+            to maximum frequency.  If the application determines that
+            playback can proceed without hardware acceleration on the
+            system in its current state, playback proceeds. Otherwise,
+            the application either looks for hardware acceleration
+            capabilities, recommends that the user shut down other
+            applications that are using device CPU resources, or streams
+            lesser content that can be decoded with fewer CPU
+            resources. </dd>
+            
+            <dt>Service Provider pushes software on to user device</dt>
+            <dd>A service provider wants to push a software package out
+            to the customer's device.  However, they want the
+            installation to be unobtrusive. They use the CPU API to
+            register to be notified when the CPU usage falls below 10%
+            for 5 consecutive samples taken one second apart.</dd>
+            
+            <dt>user installs additional software from a repository</dt>
+            <dd>The user wants to install additional software on to her
+            device from a repository. before downloading the software,
+            the repository installation application checks to ensure
+            that system requirements are met, and it uses the cpu api to
+            check if the host device cpu is a supported architecture.
+            if the cpu architecture is not supported, the installation
+            is cancelled before the software is downloaded, thus
+            minimizing the network resources required.</dd>
+            
+            <dt>user installs additional software from a repository--case 2</dt>
+            <dd>The user wants to install additional software on to her
+            device from a repository.  the application provider supports
+            multiple platforms but each installation package only
+            supports one platform in order to minimize network resource
+            utilization. before downloading the plugin, the repository
+            installation application uses the cpu api to determine which
+            installation package to download. with the smaller
+            installation packages, the user's experience is optimized,
+            especially over slower network connections. </dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="display-1">Display</h4>
+          <dl>
+            <dt>Application detects that screen is blank</dt>
+            <dd>A web application has a lot of sprites, UI elements, and frequent server queries that 
+            consume a lot of power. The user stops actively interacting with the device and the 
+            screen blanks or the screen saver begins. The application detects this change and 
+            stops all non-essential actions that consume power.
+            </dd>
+            <dt>The user changes the orientation of the device</dt>
+            <dd>While reading content provided by a web application in landscape orientation, the 
+            user rotates the device to a portrait  orientation because the content is taller 
+            than it is wide. The application detects the change and reflows the content to better
+            fit in portrait orientation.</dd>
+            <dt>The web application is displayed on screens that vary greatly in physical size</dt>
+            <dd>Recognizing market opportunity, a developer targets her application for small hand-held
+            devices as well as television screens and very large electronic advertising canvases.
+            The developer uses DPI information in order to determine the ideal size of UI widgets
+            in order to provide the most ideal viewing experience across screens. </dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="connection-1">Connection</h4>
+          <p>The use cases for this module are critical to forming a realistic picture of what kinds of 
+          information are going to be valuable for the web application that wants delivery context
+          network information. The primary use case is: application wants to know about the network
+          connection so that it can adjust its behavior.</p>
+          <dl>
+            <dt>User accesses web content based on type and quality of network connection.</dt>
+            <dd>A video viewing web application can makes use of the API to detect the connection 
+            speed and present the user with appropriate encodings of the video that will provide 
+            a viewing experience that is less likely to be interrupted. Alternatively, the 
+            application may monitor signal strength and assist the user with re-orienting the 
+            device or changing locations so that the viewing experience can be of higher quality.
+            </dd>
+            <dt>Web applications use connection context to provide users seamless access to localized services.</dt>
+            <dd>As a user drives along in their car, a web application running on a dashboard 
+            console periodically chooses the most appropriate network connection to use. As the 
+            user pulls into a coffee shop parking lot the application changes from 3G cellular 
+            to the coffee shop's 802.11 network. This allows the app to reduce the user's 
+            connection fees and take advantage of a better connection speed. The application 
+            may present the user with several options if it cannot choose itself.</dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="thermal-2">Thermal</h4>
+          <dl>
+            <dt>Application can throttle activity based on device temperature.</dt>
+            <dd>A web application can take device temperature into account in order to throttle 
+            activity and avoid degraded performance or crashes due to heat from intense hardware 
+            use. For example, some devices include RFID radios with &gt;1 watt power amplifiers and 
+            can generate a lot of heat. Throttling performance may avoid degradation or crashes 
+            on these devices. In addition the application may present the user with a notification 
+            about device temperature and suggest an action or send a notification to an IT web 
+            service that indicates the device is "running hot".</dd>
+
+            <dt>A weather monitoring application uses temperature data from automobile temperature sensors.</dt>
+            <dd>A web application that runs on a dashboard console could send the temperature outside
+            the car, with additional location information to a weather related web service.</dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="audio-1">Audio</h4>
+          <dl>
+            <dt>Application sound themes</dt>
+            <dd>A game may detect a devices audio capabilities in order to select
+            a sound theme that takes advantage of 6 audio channels and a subwoofer.
+            Alternatively it may select a sound theme optimized for stereo headphones.</dd>
+
+            <dt>Recording</dt>
+            <dd>A outdoors recording application may take advantage of
+            multiple microphones attached to a device in order to record audio
+            from several sources and special orientations at simultaneously.</dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="video-1">Video</h4>
+          <dl>
+            <dt>Encoding video on the device : app requirements and user experience</dt>
+            <dd>An application may include features that encode video. Determining the
+            video encode capabilities of the local device allows the application to 
+            determine if the device's capabilities meet the needs of the application
+            and the desired user experience.
+            </dd>
+            <dt>Encoding video on the device : local vs cloud</dt>
+            <dd>An application may intelligently split up the work of encoding
+            video between the local device, based on its capabilities, and a web service
+            in the cloud that encodes video. This may provide for more efficient 
+            compute and network resource utilization.</dd>
+          </dl>
+        </div>
+        <div class="section">
+          <h4 id="input-1">Input</h4>
+          <dl>
+            <dt>Application adapts to touch screen device with no external pointer</dt>
+            <dd>A user who frequently visits a popular music social media site navigates to the site on 
+            her new mobile phone. One devices with physical pointing devices and larger screens,
+            the web application presents a complex UI with a lot of functionality. However, when
+            the application detects that the host browser has a smaller touch screen and no external
+            pointing device, it adapts by reducing the complexity of the UI and enlarging widgets to 
+            accommodate for finger navigation.
+            </dd>
+            <dt>Application adapts to device with no external keyboard</dt>
+            <dd>A user who frequently blogs using his laptop finds himself with a great idea but without
+            his laptop. He navigates to the blogging site resigned to type the entry using his thumbs.
+            However the application detects that the delivery context does not have an external keyboard
+            and adapts by enabling predictive text to reduce the number of keystrokes that the user
+            needs to enter.</dd>
+            <dt>Application detects the presence of mouse hover events</dt>
+            <dd>A user who regularly visits an online video editing and sharing website on his phone 
+            decides to try a larger project on his laptop computer with an HD home video. He expects
+            to see the same simplified UI, but is pleasantly surprised to find a UI that is more
+            appropriate for the laptop paradigm. However, because the UI is more complex, there
+            is a lot of functionality that he does not know how to use. Fortunately, the application
+            detect that the user is on a system with mouse in/out/hover events, and so it uses those
+            events to familiarize the user with the new functionality.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!--************************************* /Requirements ******************************************-->
+
+    <!--************************************* Acks ***************************************************-->
+    <div class="appendix section" id="acknowledgements">
+      <h2 id="b.-acknowledgements"><span class="secno">B. </span>Acknowledgements</h2>
+      <p>The SVG Working Group would like to acknowledge the people outside of the DAP Working Group who helped with the process of developing this specification. Specifically, many thanks to Clayne Robison and Andy Idsinga at <a href="http://www.intel.com/">Intel Corporation</a> for their contributions.
+      </p>
+    </div>
+  
+
+<div id="references" class="appendix section"><h2 id="c.-references"><span class="secno">C. </span>References</h2><div id="normative-references" class="section"><h3 id="c.1-normative-references"><span class="secno">C.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-CORE-DEVICE">[CORE-DEVICE]</dt><dd>Robin Berjon. <a href="http://dev.w3.org/2009/dap/device/"><cite>Core Device Interfaces.</cite></a> 02 December 2009. W3C Editor's Draft. (Work in progress.) URL: <a href="http://dev.w3.org/2009/dap/device/">http://dev.w3.org/2009/dap/device/</a> </dd><dt id="bib-CSSOM-VIEW">[CSSOM-VIEW]</dt><dd>Anne van Kesteren. <a href="http://www.w3.org/TR/2008/WD-cssom-view-20080222"><cite>CSSOM View Module.</cite></a> 22 February 2008. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/2008/WD-cssom-view-20080222">http://www.w3.org/TR/2008/WD-cssom-view-20080222</a> </dd><dt id="bib-HTML5">[HTML5]</dt><dd>Ian Hickson; David Hyatt. <a href="http://www.w3.org/TR/2009/WD-html5-20090825/"><cite>HTML 5.</cite></a> 25 August 2009. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/WD-html5-20090825/">http://www.w3.org/TR/2009/WD-html5-20090825/</a> </dd><dt id="bib-IEEE802-3">[IEEE802-3]</dt><dd>IEEE 802.3: Carrier sense multiple access with Collision Detection (CSMA/CD) Access Method and Physical Layer Specifications. December 2008.</dd><dt id="bib-NAVIGATOR">[NAVIGATOR]</dt><dd>Ian Hickson, David Hyatt. <a href="http://dev.w3.org/html5/spec/browsers.html#navigator"><cite>Navigator interface in HTML5</cite></a>, Editors draft (Work in progress). URL: <a href="http://dev.w3.org/html5/spec/browsers.html#navigator">http://dev.w3.org/html5/spec/browsers.html#navigator</a> </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> Internet RFC 2119. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> </dd></dl></div><div id="informative-references" class="section"><h3 id="c.2-informative-references"><span class="secno">C.2 </span>Informative references</h3><p>No informative references.</p></div></div></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+	<canvas id="canvasId" width="1000" height="800"></canvas>
+	
+	<script type="text/javascript">
+	var	canvas = document.getElementById("canvasId");
+	var ctx = canvas.getContext("2d");
+	
+	var img = new Image();
+	img.src = "pic.jpg";
+	
+	img.onload = function(e) {
+		for(var i = 1; i < 7; i++){
+			ctx.drawImage(img,i*20,i*20,i*50,i*50);
+		}
+	};
+	
+	
+	</script>
+
+</body>
+</html>

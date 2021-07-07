@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd ">
+
+
+	<!-- 引用spring子模块 -->
+	<import resource="spring-ehcache.xml" />
+	<import resource="spring-shiro.xml" />
+	<import resource="spring-job.xml" />
+<!-- 	<import resource="spring-dubbo-consumer.xml" /> -->
+<!-- 	<import resource="spring-activemq.xml" /> -->
+
+
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:config.properties" />
+
+
+	<!-- SpringContextHolder注入ApplicationContext，需要实现ApplicationContextAware -->
+	<bean class="com.chensi.util.SpringContextHolder"></bean>
+
+
+
+	<!-- 全局自动扫描与装配bean -->
+	<context:component-scan base-package="com.chensi.service"><!-- base-package + 如果多个，用“,”分隔 -->
+		<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+
+
+	<!-- 谷歌验证码生成框架，spring mvc的配置方式（注意在有shiro等拦截器框架的情况下需要放行） -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg>
+					<props>
+						<prop key="kaptcha.border">no</prop>
+						<prop key="kaptcha.border.color">105,179,90</prop>
+						<prop key="kaptcha.textproducer.font.color">red</prop>
+						<prop key="kaptcha.image.width">100</prop>
+						<prop key="kaptcha.image.height">40</prop>
+						<prop key="kaptcha.textproducer.font.size">30</prop>
+						<prop key="kaptcha.session.key">code</prop>
+						<prop key="kaptcha.textproducer.char.length">4</prop>
+					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+
+
+</beans>

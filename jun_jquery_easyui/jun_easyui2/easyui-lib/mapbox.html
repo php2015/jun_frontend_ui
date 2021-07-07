@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>MapBox</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="jquery-easyui-1.5.3/themes/bootstrap/easyui.css">
+        <link rel="stylesheet" href="jquery-easyui-1.5.3/themes/icon.css">
+        <script src="http://api.map.baidu.com/api?v=2.0&ak=pkgznaW1kAlBoH3N5TzwDf8x"></script>
+        <script src="jquery-easyui-1.5.3/jquery.min.js"></script>
+        <script src="jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
+        <script src="jquery-easyui-1.5.3/locale/easyui-lang-zh_CN.js"></script>
+        <script src="ext/mapBox.js"></script>
+        <script>
+        $(function() {
+            $("#mapBox").mapBox({
+                callback:function(point) {
+                    $("#pre").html(JSON.stringify(point,true,2)+"\n"+JSON.stringify(this,true,2));
+                }
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <h1>Js初始化，回调事件</h1>
+        <input id="mapBox" style="width:400px;">
+        <pre id="pre">
+        </pre>
+<pre>
+&lt;script&gt;
+$(function() {
+    $("#mapBox").mapBox({
+        callback:function(point) {
+            $("#pre").html(JSON.stringify(point,true,2)+"\n"+JSON.stringify(this,true,2));
+        }
+    });
+});
+&lt;/script&gt;
+</pre>
+    </body>
+</html>

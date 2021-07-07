@@ -1,0 +1,45 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function init() {
+		var canvas = document.getElementById("canvas");
+		
+		var context = canvas.getContext("2d");
+		
+		context.strokeStyle = "#ff0000";
+		context.strokeRect(20,20,100,100);
+		
+		context.fillStyle = "rgba(50,0,0,0.7)";
+		context.fillRect(200,200, 100,100);
+		
+		
+		context.beginPath(); //清空子路径 
+		
+		context.moveTo(100,100);
+		context.lineTo(100,300);
+		context.lineTo(300,300);
+		context.lineTo(100,100);
+		
+		context.closePath(); //闭合路径 
+		
+		//context.strokeStyle = "#00ff00";
+		//context.stroke();
+		
+		context.fillStyle = "#00ff00";
+		context.fill();
+	}
+
+</script>
+
+</head>
+<body onload="init()">
+
+<canvas id="canvas" width="800" height="600"></canvas>
+
+</body>
+</html>

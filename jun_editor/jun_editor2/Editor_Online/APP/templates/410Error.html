@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+410
+{% endblock %}
+
+{% block head_style %}
+  <style type="text/css">
+    pre {
+      background: black;
+      color: whitesmoke;
+      font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+      font-size: large;
+    }
+  </style>
+{% endblock %}
+
+
+{% block content %}
+  <pre>
+  >>>import os
+  >>>if not os.path.exists(file):
+  ...    open(file, 'w').close()
+  >>>with open(file, 'w', encoding='utf-8) as f:
+  ...    data = f.read()
+  >>>print(data)
+    <br>
+  <span style="color: red; font-size: larger;">Error!!!</span>
+  <span style="color: #0f74a8; font-size: xx-large;">410</span>
+  >>>|
+  </pre>
+{% endblock %}

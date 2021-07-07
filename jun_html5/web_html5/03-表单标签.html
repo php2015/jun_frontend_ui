@@ -1,0 +1,32 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form id="demo">
+	<input type="Number" value="10" min="0" max="20" step="2">
+	<input type="Email" placeholder="请输入邮箱地址" required="required">
+	<input type="datetime">
+	<input type="range" id="range" step="5" min="0" max="50" value="20">
+	<output onforminput="value=range.value"></output>
+	
+	<input type="search" list="list">
+	<datalist id="list">
+		<option>北京</option>
+		<option>上海</option>
+		<option>广州</option>
+	</datalist>
+	
+	
+	<input type="color">
+	
+</form>
+
+<input type="submit" form="demo">
+
+
+</body>
+</html>

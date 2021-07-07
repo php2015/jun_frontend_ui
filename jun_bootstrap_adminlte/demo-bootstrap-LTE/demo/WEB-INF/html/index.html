@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>index</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!--公用css 引用-->
+  <link rel="stylesheet" href="../../static/common/css/bootstrap.min.css">
+  <!-- select2 插件 -->
+  <link rel="stylesheet" href="../../static/common/css/select2.min.css">
+  <!-- lte模版样式 -->
+  <link rel="stylesheet" href="../../static/common/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../static/common/css/skins/skin-blue.min.css">
+  <!--自定义css 引用-->
+  <link rel="stylesheet" href="../../static/css/main.css">
+  <!-- 图标 引用-->
+  <link rel="stylesheet" href="../../static/common/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../static/common/css/font-awesome.min.css">
+  <!-- datepicker 插件 -->
+  <link rel="stylesheet" href="../../static/common/css/datepicker3.css">
+  <!--bootstrap兼容低级ie-->
+  <!--[if lt IE 9]>
+  <script src="../../static/common/js/html5shiv.min.js"></script>
+  <script src="../../static/common/js/respond.min.js"></script>
+  <![endif]-->
+  <!-- 公用js 引用-->
+  <script src="../../static/common/js/jquery.min.js"></script>
+  <script src="../../static/common/js/bootstrap.min.js"></script>
+  <script src="../../static/common/js/app.min.js"></script>
+  <!-- select2 插件 -->
+  <script src="../../static/common/js/select2.full.min.js"></script>
+  <script src="../../static/common/js/i18n-select2/zh-CN.js"></script>
+  <!-- datepicker 插件 -->
+  <script src="../../static/common/js/bootstrap-datepicker.js"></script>
+  <script src="../../static/common/js/i18n-bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+  <!-- 表格排序 -->
+  <script src="../../static/common/js/jquery.tablesorter.js"></script>  
+  <!--自定义js 引用-->
+  <script src="../../static/js/main.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper"><!--容器 start-->
+
+  <!-- 头部 -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- 小屏幕 logo -->
+      <span class="logo-mini"><b>透</b></span>
+      <!-- 正常屏幕 logo -->
+      <span class="logo-lg"><b>透笔度</b></span>
+    </a>
+
+    <!-- 头部导航 -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- 切换按钮-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- 头部导航右侧 -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="../../static/img/avatar.png" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">透笔度</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="user-header">
+                <img src="../../static/img/avatar.png" class="img-circle" alt="User Image">
+
+                <p>
+                  透笔度-超级管理员
+                  <small>上次登录自11月2016年</small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">退出</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- 左侧菜单 start-->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../../static/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>透笔度</p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="搜索...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu">
+        <!--<li class="header">导航</li>-->
+        <!-- Optionally, you can add icons to the links -->
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-user-plus"></i> <span>我的演示1</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="userManage/userManage-userList.html"><i class="fa fa-circle-o"></i>我的演示1-1</a></li>
+            <li><a href="userManage/userManage-insCheck.html"><i class="fa fa-circle-o"></i>我的演示1-2</a></li>
+            <li><a href="userManage/userManage-signatureAudit.html"><i class="fa fa-circle-o"></i>我的演示1-3</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-rmb"></i> <span>我的演示2</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i>我的演示2-1</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i>我的演示2-2</a></li>
+          </ul>
+        </li>
+        <!-- Optionally, you can add icons to the links -->
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- 左侧菜单 end-->
+
+  <!-- 核心显示区域 start-->
+  <div class="content-wrapper">
+    <!-- 核心区域 头部 -->
+    <section class="content-header">
+      <h1>
+        欢迎页面
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">欢迎页面</li>
+      </ol>
+    </section>
+
+    <!-- 核心区域 内容 start-->
+    <section class="content">
+      <div class="row">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">tablesorter插件：表格数据排序</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                  <table id="table01" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                          <th>序号</th>
+                          <th>时间</th>
+                          <th>金额</th>
+                          <th>名字</th>
+                          <th>操作</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>2016-5-14</td>
+                              <td>200</td>
+                              <td><撒/td>
+                              <td width="60">
+                                  <a href="">修改</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>2014-5-14</td>
+                              <td>100</td>
+                              <td>阿萨德</td>
+                              <td width="60">
+                                  <a href="">修改</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>2016-10-14</td>
+                              <td>10</td>
+                              <td>广告</td>
+                              <td width="60">
+                                  <a href="">修改</a>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>4</td>
+                              <td>2016-1-14</td>
+                              <td>8</td>
+                              <td>东东</td>
+                              <td width="60">
+                                  <a href="">修改</a>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table> 
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+        </div>                               
+
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">select2插件：模拟下拉框+搜索效果</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row row-marb20">
+                  <div class="col-md-2 text-right">类型</div>
+                  <div class="col-md-4">
+                       <select class="form-control select2" style="width: 100%;">
+                          <option selected="selected">请选择</option>
+                          <option>类型1</option>
+                          <option>类型2</option>
+                        </select>      
+                  </div>
+                </div>                      
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div> 
+    </section>
+        <section>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">datepicker插件：时间插件</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row row-marb20">
+                  <div class="col-md-2 text-right">注册时间</div>
+                  <div class="col-md-4">
+                     <div class="clearfix"><input type="text" class="form-control pull-right" id="datepicker1"></div>
+                  </div>            
+                </div>              
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div> 
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">邮箱自动补全提示</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row row-marb20">
+                    <label class="col-sm-2 control-label">联系邮箱</label>
+                    <div class="col-sm-10">
+                      <input type="tel" class="form-control" id="input_ed_email" placeholder="联系邮箱">
+                    </div>      
+                </div>              
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div> 
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">城市联动插件</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row row-marb20">
+                  <div class="col-md-2 text-right">注册地址</div>
+                  <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <select class="form-control" style="width: 100%;" id="province01" onchange="findCity01()">
+                             <option value="0">请选择省份</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" style="width: 100%;" id="city01">
+                            <option value="0">请选择城市</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <input class="form-control" placeholder="" type="text">  
+                        </div>
+                      </div>                   
+                  </div>               
+                </div>             
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div> 
+    </section>
+    <!-- 核心区域 内容 end-->
+  </div>
+  <!-- 核心显示区域 end-->
+
+  <!-- 尾部 start-->
+  <footer class="main-footer">
+    <!-- 尾部右侧 -->
+    <div class="pull-right hidden-xs">
+      2016-11-18
+    </div>
+    <!-- 尾部左侧 -->
+    <strong>版权所有 &copy; 2017 <a href="#">xxxxxx有限公司</a>.</strong>xxxxxxxxxxxxx
+  </footer>
+  <!-- 尾部 end-->
+
+</div><!--容器 end-->
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+
+    //表格数据排序
+    $("#table01").tablesorter();
+
+    //下拉 本地处理
+    $(".select2").select2({
+      language: 'zh-CN',
+
+    });  
+    //下拉 配置后可获取远程数据 参考
+    // $(".select2").select2({
+    //   language: 'zh-CN',
+    //   ajax : {
+    //     url      : "test-api",              // 异步请求地址
+    //     dataType : "json",                  // 数据类型
+    //     data     : function (term, page) {  // 请求参数（GET）
+    //         return { q: term };
+    //     },
+    //     results      : function (data, page) { return data; },  // 构造返回结果
+    //     escapeMarkup : function (m) { return m; }               // 字符转义处理
+    //   }
+    // });
+
+    //日历控件   
+    $('#datepicker1').datepicker({
+        language: 'zh-CN',
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy-mm-dd'
+    }).on("changeDate", function(e) {
+        
+    });
+
+    //邮箱自动不全   
+    amaJgl.TbdAutoEmail.keydownevent=function(showid){
+      if(showid=="input_ed_email"){
+        console.log(4);
+      };   
+    };
+    new amaJgl.TbdAutoEmail({
+      inputid:"input_ed_email",
+      selectsuccess:function(){
+        console.log(1);
+      },
+      regpass:function(){
+          console.log(2);
+      },
+      regerr:function(){
+          console.log(3);
+      }
+    }).init();  
+
+    //城市列表 省份
+    $("#province01").empty();
+    for(var i = 0; i < cityMaplist.ps.length; i++) {
+        $("#province01").append("<option value='" + cityMaplist.ps[i].pid + "'>" + cityMaplist.ps[i].pname + "</option>");
+    };    
+    //end
+  });
+  //城市列表  城市
+  function findCity01() {
+      var pid = $("#province01").val();
+      $("#city01").empty(); //清空城市列表
+        for(var i = 0; i < cityMaplist.ps.length; i++) {
+          if(cityMaplist.ps[i].pid == pid) {
+            for(var j = 0; j < cityMaplist.ps[i].citys.length; j++) {
+              $("#city01").append("<option value='" + cityMaplist.ps[i].citys[j].cid + "'>" + cityMaplist.ps[i].citys[j].cname + "</option>");
+            };
+          };
+      };
+  };
+  //stop
+</script>

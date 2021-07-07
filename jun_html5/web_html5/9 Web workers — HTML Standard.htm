@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-workerglobalscope-abstract-interface -->
+<html lang="en-US-x-hixie" class="split chapter"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>9 Web workers — HTML Standard</title><script>
+   var loadTimer = new Date();
+   var current_revision = "r" + "$Revision: 7105 $".substr(11);
+   current_revision = current_revision.substr(0, current_revision.length - 2);
+   var last_known_revision = current_revision;
+   function getCookie(name) {
+     var params = location.search.substr(1).split("&");
+     for (var index = 0; index < params.length; index++) {
+       if (params[index] == name)
+         return "1";
+       var data = params[index].split("=");
+       if (data[0] == name)
+         return unescape(data[1]);
+     }
+     var cookies = document.cookie.split("; ");
+     for (var index = 0; index < cookies.length; index++) {
+       var data = cookies[index].split("=");
+       if (data[0] == name)
+         return unescape(data[1]);
+     }
+     return null;
+   }
+   var currentAlert;
+   var currentAlertTimeout;
+   function showAlert(s, href) {
+     if (!currentAlert) {
+       currentAlert = document.createElement('div');
+       currentAlert.id = 'alert';
+       var x = document.createElement('button');
+       x.textContent = '\u2573';
+       x.onclick = closeAlert2;
+       currentAlert.appendChild(x);
+       currentAlert.appendChild(document.createElement('span'));
+       currentAlert.onmousemove = function () {
+         clearTimeout(currentAlertTimeout);
+         currentAlert.className = '';
+         currentAlertTimeout = setTimeout(closeAlert, 10000);
+       }
+       document.body.appendChild(currentAlert);
+     } else {
+       clearTimeout(currentAlertTimeout);
+       currentAlert.className = '';
+     }
+     currentAlert.lastChild.textContent = s + ' ';
+     if (href) {
+       var link = document.createElement('a');
+       link.href = href;
+       link.textContent = href;
+       currentAlert.lastChild.appendChild(link);
+     }
+     currentAlertTimeout = setTimeout(closeAlert, 10000);
+   }
+   function closeAlert() {
+     clearTimeout(currentAlertTimeout);
+     if (currentAlert) {
+       currentAlert.className = 'closed';
+       currentAlertTimeout = setTimeout(closeAlert2, 3000);
+     }
+   }
+   function closeAlert2() {
+     clearTimeout(currentAlertTimeout);
+     if (currentAlert) {
+       currentAlert.parentNode.removeChild(currentAlert);
+       currentAlert = null;
+     }
+   }
+   window.addEventListener('keydown', function (event) {
+     if (event.keyCode == 27) {
+       if (currentAlert)
+         closeAlert2();
+     } else {
+       closeAlert();
+     }
+   }, false);
+   window.addEventListener('scroll', function (event) {
+     closeAlert();
+   }, false);
+   function load(script) {
+     var e = document.createElement('script');
+     e.setAttribute('src', 'http://www.whatwg.org/specs/web-apps/current-work/' + script + '?' + encodeURIComponent(location) + '&' + encodeURIComponent(document.referrer));
+     document.body.appendChild(e);
+   }
+  </script><link href="http://www.whatwg.org/style/specification" rel="stylesheet"><link href="http://www.whatwg.org/images/icon" rel="icon"><style>
+   .proposal { border: blue solid; padding: 1em; }
+   .bad, .bad *:not(.XXX) { color: gray; border-color: gray; background: transparent; }
+   #updatesStatus { display: none; }
+   #updatesStatus.relevant { display: block; position: fixed; right: 1em; top: 1em; padding: 0.5em; font: bold small sans-serif; min-width: 25em; width: 30%; max-width: 40em; height: auto; border: ridge 4px gray; background: #EEEEEE; color: black; }
+   div.head .logo { width: 11em; margin-bottom: 20em; }
+   #configUI { position: absolute; z-index: 20; top: 10em; right: 0; width: 11em; padding: 0 0.5em 0 0.5em; font-size: small; background: gray; background: rgba(32,32,32,0.9); color: white; border-radius: 1em 0 0 1em; -moz-border-radius: 1em 0 0 1em; }
+   #configUI p { margin: 0.75em 0; padding: 0.3em; }
+   #configUI p label { display: block; }
+   #configUI #updateUI, #configUI .loginUI { text-align: center; }
+   #configUI input[type=button] { display: block; margin: auto; }
+   #configUI :link, #configUI :visited { color: white; }
+   #configUI :link:hover, #configUI :visited:hover { background: transparent; }
+   #reviewer { position: fixed; bottom: 0; right: 0; padding: 0.15em 0.25em 0em 0.5em; white-space: nowrap; overflow: hidden; z-index: 30; background: gray; background: rgba(32,32,32,0.9); color: white; border-radius: 1em 0 0 0; -moz-border-radius: 1em 0 0 0; max-width: 90%; }
+   #reviewer input { max-width: 50%; }
+   #reviewer * { font-size: small; }
+   #reviewer.off > :not(:first-child) { display: none; }
+   #alert { position: fixed; top: 20%; left: 20%; right: 20%; font-size: 2em; padding: 0.5em; z-index: 40; background: gray; background: rgba(32,32,32,0.9); color: white; border-radius: 1em; -moz-border-radius: 1em; -webkit-transition: opacity 1s linear; }
+   #alert.closed { opacity: 0; }
+   #alert button { position: absolute; top: -1em; right: 2em; border-radius: 1em 1em 0 0; border: none; line-height: 0.9; color: white; background: rgb(64,64,64); font-size: 0.6em; font-weight: 900; cursor: pointer; }
+   #alert :link, #alert :visited { color: white; }
+   #alert :link:hover, #alert :visited:hover { background: transparent; }
+   @media print { #configUI { display: none; } }
+   .rfc2119 { font-variant: small-caps; text-shadow: 0 0 0.5em yellow; position: static; }
+   .rfc2119::after { position: absolute; left: 0; width: 25px; text-align: center; color: yellow; text-shadow: 0.075em 0.075em 0.2em black; }
+   .rfc2119.m\ust::after { content: '\2605'; }
+   .rfc2119.s\hould::after { content: '\2606'; }
+   [hidden] { display: none; }
+  </style><style type="text/css">
+
+   .applies thead th > * { display: block; }
+   .applies thead code { display: block; }
+   .applies tbody th { whitespace: nowrap; }
+   .applies td { text-align: center; }
+   .applies .yes { background: yellow; }
+
+   .matrix, .matrix td { border: hidden; text-align: right; }
+   .matrix { margin-left: 2em; }
+
+   .dice-example { border-collapse: collapse; border-style: hidden solid solid hidden; border-width: thin; margin-left: 3em; }
+   .dice-example caption { width: 30em; font-size: smaller; font-style: italic; padding: 0.75em 0; text-align: left; }
+   .dice-example td, .dice-example th { border: solid thin; width: 1.35em; height: 1.05em; text-align: center; padding: 0; }
+
+   td.eg { border-width: thin; text-align: center; }
+
+   #table-example-1 { border: solid thin; border-collapse: collapse; margin-left: 3em; }
+   #table-example-1 * { font-family: "Essays1743", serif; line-height: 1.01em; }
+   #table-example-1 caption { padding-bottom: 0.5em; }
+   #table-example-1 thead, #table-example-1 tbody { border: none; }
+   #table-example-1 th, #table-example-1 td { border: solid thin; }
+   #table-example-1 th { font-weight: normal; }
+   #table-example-1 td { border-style: none solid; vertical-align: top; }
+   #table-example-1 th { padding: 0.5em; vertical-align: middle; text-align: center; }
+   #table-example-1 tbody tr:first-child td { padding-top: 0.5em; }
+   #table-example-1 tbody tr:last-child td { padding-bottom: 1.5em; }
+   #table-example-1 tbody td:first-child { padding-left: 2.5em; padding-right: 0; width: 9em; }
+   #table-example-1 tbody td:first-child::after { content: leader(". "); }
+   #table-example-1 tbody td { padding-left: 2em; padding-right: 2em; }
+   #table-example-1 tbody td:first-child + td { width: 10em; }
+   #table-example-1 tbody td:first-child + td ~ td { width: 2.5em; }
+   #table-example-1 tbody td:first-child + td + td + td ~ td { width: 1.25em; }
+
+   .apple-table-examples { border: none; border-collapse: separate; border-spacing: 1.5em 0em; width: 40em; margin-left: 3em; }
+   .apple-table-examples * { font-family: "Times", serif; }
+   .apple-table-examples td, .apple-table-examples th { border: none; white-space: nowrap; padding-top: 0; padding-bottom: 0; }
+   .apple-table-examples tbody th:first-child { border-left: none; width: 100%; }
+   .apple-table-examples thead th:first-child ~ th { font-size: smaller; font-weight: bolder; border-bottom: solid 2px; text-align: center; }
+   .apple-table-examples tbody th::after, .apple-table-examples tfoot th::after { content: leader(". ") }
+   .apple-table-examples tbody th, .apple-table-examples tfoot th { font: inherit; text-align: left; }
+   .apple-table-examples td { text-align: right; vertical-align: top; }
+   .apple-table-examples.e1 tbody tr:last-child td { border-bottom: solid 1px; }
+   .apple-table-examples.e1 tbody + tbody tr:last-child td { border-bottom: double 3px; }
+   .apple-table-examples.e2 th[scope=row] { padding-left: 1em; }
+   .apple-table-examples sup { line-height: 0; }
+
+   .details-example img { vertical-align: top; }
+
+   #base64-table {
+     white-space: nowrap;
+     font-size: 0.6em;
+     column-width: 6em;
+     column-count: 5;
+     column-gap: 1em;
+     -moz-column-width: 6em;
+     -moz-column-count: 5;
+     -moz-column-gap: 1em;
+     -webkit-column-width: 6em;
+     -webkit-column-count: 5;
+     -webkit-column-gap: 1em;
+   }
+   #base64-table thead { display: none; }
+   #base64-table * { border: none; }
+   #base64-table tbody td:first-child:after { content: ':'; }
+   #base64-table tbody td:last-child { text-align: right; }
+
+   #named-character-references-table {
+     white-space: nowrap;
+     font-size: 0.6em;
+     column-width: 30em;
+     column-gap: 1em;
+     -moz-column-width: 30em;
+     -moz-column-gap: 1em;
+     -webkit-column-width: 30em;
+     -webkit-column-gap: 1em;
+   }
+   #named-character-references-table > table > tbody > tr > td:first-child + td,
+   #named-character-references-table > table > tbody > tr > td:last-child { text-align: center; }
+   #named-character-references-table > table > tbody > tr > td:last-child:hover > span { position: absolute; top: auto; left: auto; margin-left: 0.5em; line-height: 1.2; font-size: 5em; border: outset; padding: 0.25em 0.5em; background: white; width: 1.25em; height: auto; text-align: center; }
+   #named-character-references-table > table > tbody > tr#entity-CounterClockwiseContourIntegral > td:first-child { font-size: 0.5em; }
+
+   .glyph.control { color: red; }
+
+   @font-face {
+     font-family: 'Essays1743';
+     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743.ttf');
+   }
+   @font-face {
+     font-family: 'Essays1743';
+     font-weight: bold;
+     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743-Bold.ttf');
+   }
+   @font-face {
+     font-family: 'Essays1743';
+     font-style: italic;
+     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743-Italic.ttf');
+   }
+   @font-face {
+     font-family: 'Essays1743';
+     font-style: italic;
+     font-weight: bold;
+     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743-BoldItalic.ttf');
+   }
+
+  </style><link href="data:text/css," rel="stylesheet" title="Normal"><link href="data:text/css,.impl%20%7B%20background:%20pink;%20%7D" rel="stylesheet alternate" title="Highlight implementation-only prose"><link href="http://www.whatwg.org/specs/web-apps/current-work/multipage/status.css" rel="stylesheet"><script>
+   var startedInit = 0;
+   function init() {
+     startedInit = 1;
+     if (location.search == '?slow-browser')
+       return;
+     var configUI = document.createElement('div');
+     configUI.id = 'configUI';
+     document.body.appendChild(configUI);
+     load('reviewer.js');
+     if (document.documentElement.className == "" || document.documentElement.className == "split index")
+       load('toc.js');
+     load('updater.js');
+     load('dfn.js');
+     load('status.js');
+     if (getCookie('profile') == '1')
+       document.getElementsByTagName('h2')[0].textContent += '; load: ' + (new Date() - loadTimer) + 'ms';
+   }
+   if (document.documentElement.className == "")
+     setTimeout(function () {
+       if (!startedInit)
+         showAlert("Too slow? Try reading the multipage copy of the spec instead:", "http://whatwg.org/html");
+     }, 6000);
+  </script>
+  <script src="./9 Web workers — HTML Standard_files/link-fixup.js"></script>
+  <link href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html" title="8.7 Drag and drop" rel="prev">
+  <link href="http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html#contents" title="Table of contents" rel="index">
+  <link href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html" title="10 Communication" rel="next">
+  </head><body onload="fixBrokenLink(); init()" class=" dfnEnabled statusEnabled"><header class="head" id="head"><p><a class="logo" href="http://www.whatwg.org/"><img alt="WHATWG" height="101" src="./9 Web workers — HTML Standard_files/logo" width="101"></a></p>
+   <hgroup><h1 class="allcaps">HTML</h1>
+    <h2 class="no-num no-toc">Living Standard — Last Updated 15 May 2012</h2>
+   </hgroup></header><nav>
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html">← 8.7 Drag and drop</a> –
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html#contents">Table of contents</a> –
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html">10 Communication →</a>
+  <ol class="toc"><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workers"><span class="secno">9 </span>Web workers</a>
+  <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#introduction-9"><span class="secno">9.1 </span>Introduction</a>
+    <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#scope-0"><span class="secno">9.1.1 </span>Scope</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#examples-4"><span class="secno">9.1.2 </span>Examples</a>
+      <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#a-background-number-crunching-worker"><span class="secno">9.1.2.1 </span>A background number-crunching worker</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker-used-for-background-i/o"><span class="secno">9.1.2.2 </span>Worker used for background I/O</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-workers-introduction"><span class="secno">9.1.2.3 </span>Shared workers introduction</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-state-using-a-shared-worker"><span class="secno">9.1.2.4 </span>Shared state using a shared worker</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#delegation"><span class="secno">9.1.2.5 </span>Delegation</a></li></ol></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#tutorials"><span class="secno">9.1.3 </span>Tutorials</a>
+      <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#creating-a-dedicated-worker"><span class="secno">9.1.3.1 </span>Creating a dedicated worker</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#communicating-with-a-dedicated-worker"><span class="secno">9.1.3.2 </span>Communicating with a dedicated worker</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-workers"><span class="secno">9.1.3.3 </span>Shared workers</a></li></ol></li></ol></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#infrastructure-0"><span class="secno">9.2 </span>Infrastructure</a>
+    <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-global-scope"><span class="secno">9.2.1 </span>The global scope</a>
+      <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-workerglobalscope-common-interface"><span class="secno">9.2.1.1 </span>The <code>WorkerGlobalScope</code> common interface</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicated-workers-and-the-dedicatedworkerglobalscope-interface"><span class="secno">9.2.1.2 </span>Dedicated workers and the <code>DedicatedWorkerGlobalScope</code> interface</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-workers-and-the-sharedworkerglobalscope-interface"><span class="secno">9.2.1.3 </span>Shared workers and the <code>SharedWorkerGlobalScope</code> interface</a></li></ol></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#origins-of-workers"><span class="secno">9.2.2 </span>Origins of workers</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-event-loop"><span class="secno">9.2.3 </span>The event loop</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-lifetime"><span class="secno">9.2.4 </span>The worker's lifetime</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#processing-model-4"><span class="secno">9.2.5 </span>Processing model</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#runtime-script-errors-0"><span class="secno">9.2.6 </span>Runtime script errors</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#creating-workers"><span class="secno">9.2.7 </span>Creating workers</a>
+      <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-abstractworker-abstract-interface"><span class="secno">9.2.7.1 </span>The <code>AbstractWorker</code> abstract interface</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicated-workers-and-the-worker-interface"><span class="secno">9.2.7.2 </span>Dedicated workers and the <code>Worker</code> interface</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-workers-and-the-sharedworker-interface"><span class="secno">9.2.7.3 </span>Shared workers and the <code>SharedWorker</code> interface</a></li></ol></li></ol></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#apis-available-to-workers"><span class="secno">9.3 </span>APIs available to workers</a>
+    <ol><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#importing-scripts-and-libraries"><span class="secno">9.3.1 </span>Importing scripts and libraries</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-workernavigator-object"><span class="secno">9.3.2 </span>The <code>WorkerNavigator</code> object</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#interface-objects-and-constructors"><span class="secno">9.3.3 </span>Interface objects and constructors</a></li><li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker-locations"><span class="secno">9.3.4 </span>Worker locations</a></li></ol></li></ol></li></ol></nav>
+
+  <div data-component="Web Workers (editor: Ian Hickson)"><!--TOPIC:Web Workers-->
+
+  <h2 id="workers"><span class="secno">9 </span>Web workers</h2>
+
+
+
+
+  <h3 id="introduction-9"><span class="secno">9.1 </span>Introduction</h3><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#introduction-9">#introduction-9</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2011-09-08</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=introduction-9">Edit this information...</a></p></div>
+
+  <h4 id="scope-0"><span class="secno">9.1.1 </span>Scope</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#scope-0">#scope-0</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=scope-0">Edit this information...</a></p></div>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>This specification defines an API for running scripts in the
+  background independently of any user interface scripts.</p>
+
+  <p>This allows for long-running scripts that are not interrupted by
+  scripts that respond to clicks or other user interactions, and
+  allows long tasks to be executed without yielding to keep the page
+  responsive.</p>
+
+  <p>Workers (as these background scripts are called herein) are
+  relatively heavy-weight, and are not intended to be used in large
+  numbers. For example, it would be inappropriate to launch one worker
+  for each pixel of a four megapixel image. The examples below show
+  some appropriate uses of workers.</p>
+
+  <p>Generally, workers are expected to be long-lived, have a high
+  start-up performance cost, and a high per-instance memory cost.</p>
+
+
+  <h4 id="examples-4"><span class="secno">9.1.2 </span>Examples</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#examples-4">#examples-4</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=examples-4">Edit this information...</a></p></div>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>There are a variety of uses that workers can be put to. The
+  following subsections show various examples of this use.</p>
+
+  <h5 id="a-background-number-crunching-worker"><span class="secno">9.1.2.1 </span>A background number-crunching worker</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#a-background-number-crunching-worker">#a-background-number-crunching-worker</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=a-background-number-crunching-worker">Edit this information...</a></p></div>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>The simplest use of workers is for performing a computationally
+  expensive task without interrupting the user interface.</p>
+
+  <p>In this example, the main document spawns a worker to
+  (naïvely) compute prime numbers, and progressively displays the
+  most recently found prime number.</p>
+
+  <p>The main page is as follows:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Worker example: One-core computation&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;p&gt;The highest prime number discovered so far is: &lt;output id="result"&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+   var worker = new Worker('worker.js');
+   worker.onmessage = function (event) {
+     document.getElementById('result').textContent = event.data;
+   };
+  &lt;/script&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+  <p>The <code title="dom-Worker"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker">Worker()</a></code> constructor call
+  creates a worker and returns a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object
+  representing that worker, which is used to communicate with the
+  worker. That object's <code title="handler-Worker-onmessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-worker-onmessage">onmessage</a></code> event handler allows the code to receive messages from the worker.</p>
+
+  <p>The worker itself is as follows:</p>
+
+  <pre>var n = 1;
+search: while (true) {
+  n += 1;
+  for (var i = 2; i &lt;= Math.sqrt(n); i += 1)
+    if (n % i == 0)
+     continue search;
+  // found a prime!
+  postMessage(n);
+}</pre>
+
+  <p>The bulk of this code is simply an unoptimized search for a prime
+  number. The <code title="dom-DedicatedWorkerGlobalScope-postMessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-dedicatedworkerglobalscope-postmessage">postMessage()</a></code>
+  method is used to send a message back to the page when a prime is
+  found.</p>
+
+  <p><a href="http://www.whatwg.org/demos/workers/primes/page.html">View this example online</a>.</p>
+
+
+
+
+  <h5 id="worker-used-for-background-i/o"><span class="secno">9.1.2.2 </span>Worker used for background I/O</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker-used-for-background-i/o">#worker-used-for-background-i/o</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=worker-used-for-background-i%2Fo">Edit this information...</a></p></div>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>In this example, the main document uses two workers, one for
+  fetching stock updates for at regular intervals, and one for
+  fetching performing search queries that the user requests.</p>
+
+  <p>The main page is as follows:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Worker example: Stock ticker&lt;/title&gt;
+  &lt;script&gt;
+   // TICKER
+   var symbol = 'GOOG'; // default symbol to watch
+   var ticker = new Worker('ticker.js');
+
+   // SEARCHER
+   var searcher = new Worker('searcher.js');
+   function search(query) {
+     searcher.postMessage(query);
+   }
+
+   // SYMBOL SELECTION UI
+   function select(newSymbol) {
+     symbol = newSymbol;
+     ticker.postMessage(symbol);
+   }
+  &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body onload="search('')"&gt;
+  &lt;p&gt;&lt;output id="symbol"&gt;&lt;/output&gt; &lt;output id="value"&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+   ticker.onmessage = function (event) {
+     var data = event.data.split(' ');
+     document.getElementById('symbol').textContent = data[0];
+     document.getElementById('value').textContent = data[1];
+   };
+   ticker.postMessage(symbol);
+  &lt;/script&gt;
+  &lt;p&gt;&lt;label&gt;Search: &lt;input type="text" autofocus oninput="search(this.value)"&gt;&lt;/label&gt;&lt;/p&gt;
+  &lt;ul id="results"&gt;&lt;/ul&gt;
+  &lt;script&gt;
+   searcher.onmessage = function (event) {
+     var data = event.data.split(' ');
+     var results = document.getElementById('results');
+     while (results.hasChildNodes()) // clear previous results
+       results.removeChild(results.firstChild);
+     for (var i = 0; i &lt; data.length; i += 1) {
+       // add a list item with a button for each result
+       var li = document.createElement('li');
+       var button = document.createElement('button');
+       button.value = data[i];
+       button.type = 'button';
+       button.onclick = function () { select(this.value); };
+       button.textContent = data[i];
+       li.appendChild(button);
+       results.appendChild(li);
+     }
+   };
+  &lt;/script&gt;
+  &lt;p&gt;(The data in this example is not real. Try searching for "Google" or "Apple".)&lt;/p&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+  <p>The two workers use a common library for performing the actual
+  network calls. This library is as follows:</p>
+
+  <pre>function get(url) {
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.send();
+    return xhr.responseText;
+  } catch (e) {
+    return ''; // turn all errors into empty results
+  }
+}</pre>
+
+  <p>The stock updater worker is as follows:</p>
+
+  <pre>importScripts('io.js');
+var timer;
+var symbol;
+function update() {
+  postMessage(symbol + ' ' + get('stock.cgi?' + symbol));
+  timer = setTimeout(update, 10000);
+}
+onmessage = function (event) {
+  if (timer)
+    clearTimeout(timer);
+  symbol = event.data;
+  update();
+};</pre>
+
+  <p>The search query worker is as follows:</p>
+
+  <pre>importScripts('io.js');
+onmessage = function (event) {
+  postMessage(get('search.cgi?' + event.data));
+};</pre>
+
+  <p><a href="http://www.whatwg.org/demos/workers/stocks/page.html">View this example online</a>.</p>
+
+
+  <h5 id="shared-workers-introduction"><span class="secno">9.1.2.3 </span>Shared workers introduction</h5>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>This section introduces shared workers using a Hello World
+  example. Shared workers use slightly different APIs, since each
+  worker can have multiple connections.</p>
+
+  <p>This first example shows how you connect to a worker and how a
+  worker can send a message back to the page when it connects to
+  it. Received messages are displayed in a log.</p>
+
+  <p>Here is the HTML page:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;title&gt;Shared workers: demo 1&lt;/title&gt;
+&lt;pre id="log"&gt;Log:&lt;/pre&gt;
+&lt;script&gt;
+  var worker = new SharedWorker('test.js');
+  var log = document.getElementById('log');
+  worker.port.onmessage = function(e) { // note: not worker.onmessage!
+    log.textContent += '\n' + e.data;
+  }
+&lt;/script&gt;
+</pre>
+
+  <p>Here is the JavaScript worker:</p>
+
+  <pre>onconnect = function(e) {
+  var port = e.ports[0];
+  port.postMessage('Hello World!');
+}
+</pre>
+
+  <p><a href="http://www.whatwg.org/demos/workers/shared/001/test.html">View this example online</a>.</p>
+
+  <hr><p>This second example extends the first one by changing two things:
+  first, messages are received using <code title="">addEventListener()</code> instead of an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-idl-attributes" title="event
+  handler IDL attributes">event handler IDL attribute</a>, and
+  second, a message is sent <em>to</em> the worker, causing the worker
+  to send another message in return. Received messages are again
+  displayed in a log.</p>
+
+  <p>Here is the HTML page:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;title&gt;Shared workers: demo 2&lt;/title&gt;
+&lt;pre id="log"&gt;Log:&lt;/pre&gt;
+&lt;script&gt;
+  var worker = new SharedWorker('test.js');
+  var log = document.getElementById('log');
+  worker.port.addEventListener('message', function(e) {
+    log.textContent += '\n' + e.data;
+  }, false);
+  worker.port.start(); // note: need this when using addEventListener
+  worker.port.postMessage('ping');
+&lt;/script&gt;
+</pre>
+
+  <p>Here is the JavaScript worker:</p>
+
+  <pre>onconnect = function(e) {
+  var port = e.ports[0];
+  port.postMessage('Hello World!');
+  port.onmessage = function(e) {
+    port.postMessage('pong'); // not e.ports[0].postMessage!
+    // e.target.postMessage('pong'); would work also
+  }
+}
+</pre>
+
+  <p><a href="http://www.whatwg.org/demos/workers/shared/002/test.html">View this example online</a>.</p>
+
+  <hr><p>Finally, the example is extended to show how two pages can
+  connect to the same worker; in this case, the second page is merely
+  in an <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-iframe-element.html#the-iframe-element">iframe</a></code> on the first page, but the same principle
+  would apply to an entirely separate page in a separate
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>.</p>
+
+  <p>Here is the outer HTML page:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;title&gt;Shared workers: demo 3&lt;/title&gt;
+&lt;pre id="log"&gt;Log:&lt;/pre&gt;
+&lt;script&gt;
+  var worker = new SharedWorker('test.js');
+  var log = document.getElementById('log');
+  worker.port.addEventListener('message', function(e) {
+    log.textContent += '\n' + e.data;
+  }, false);
+  worker.port.start();
+  worker.port.postMessage('ping');
+&lt;/script&gt;
+&lt;iframe src="inner.html"&gt;&lt;/iframe&gt;
+</pre>
+
+  <p>Here is the inner HTML page:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;title&gt;Shared workers: demo 3 inner frame&lt;/title&gt;
+&lt;pre id=log&gt;Inner log:&lt;/pre&gt;
+&lt;script&gt;
+  var worker = new SharedWorker('test.js');
+  var log = document.getElementById('log');
+  worker.port.onmessage = function(e) {
+   log.textContent += '\n' + e.data;
+  }
+&lt;/script&gt;
+</pre>
+
+  <p>Here is the JavaScript worker:</p>
+
+  <pre>var count = 0;
+onconnect = function(e) {
+  count += 1;
+  var port = e.ports[0];
+  port.postMessage('Hello World! You are connection #' + count);
+  port.onmessage = function(e) {
+    port.postMessage('pong');
+  }
+}
+</pre>
+
+  <p><a href="http://www.whatwg.org/demos/workers/shared/003/test.html">View this example online</a>.</p>
+
+
+  <h5 id="shared-state-using-a-shared-worker"><span class="secno">9.1.2.4 </span>Shared state using a shared worker</h5>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>In this example, multiple windows (viewers) can be opened that
+  are all viewing the same map. All the windows share the same map
+  information, with a single worker coordinating all the viewers. Each
+  viewer can move around independently, but if they set any data on
+  the map, all the viewers are updated.</p>
+
+  <p>The main page isn't interesting, it merely provides a way to open
+  the viewers:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Workers example: Multiviewer&lt;/title&gt;
+  &lt;script&gt;
+   function openViewer() {
+     window.open('viewer.html');
+   }
+  &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;p&gt;&lt;button type=button onclick="openViewer()"&gt;Open a new
+  viewer&lt;/button&gt;&lt;/p&gt;
+  &lt;p&gt;Each viewer opens in a new window. You can have as many viewers
+  as you like, they all view the same data.&lt;/p&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+  <p>The viewer is more involved:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Workers example: Multiviewer viewer&lt;/title&gt;
+  &lt;script&gt;
+   var worker = new SharedWorker('worker.js', 'core');
+
+   // CONFIGURATION
+   function configure(event) {
+     if (event.data.substr(0, 4) != 'cfg ') return;
+     var name = event.data.substr(4).split(' ', 1);
+     // update display to mention our name is name
+     document.getElementsByTagName('h1')[0].textContent += ' ' + name;
+     // no longer need this listener
+     worker.port.removeEventListener('message', configure, false);
+   }
+   worker.port.addEventListener('message', configure, false);
+
+   // MAP
+   function paintMap(event) {
+     if (event.data.substr(0, 4) != 'map ') return;
+     var data = event.data.substr(4).split(',');
+     // display tiles data[0] .. data[8]
+     var canvas = document.getElementById('map');
+     var context = canvas.getContext('2d');
+     for (var y = 0; y &lt; 3; y += 1) {
+       for (var x = 0; x &lt; 3; x += 1) {
+         var tile = data[y * 3 + x];
+         if (tile == '0')
+           context.fillStyle = 'green';
+         else 
+           context.fillStyle = 'maroon';
+         fillRect(x * 50, y * 50, 50, 50);
+       }
+     }
+   }
+   worker.port.addEventListener('message', paintMap, false);
+
+   // PUBLIC CHAT
+   function updatePublicChat(event) {
+     if (event.data.substr(0, 4) != 'txt ') return;
+     var name = event.data.substr(4).split(' ', 1);
+     var message = event.data.substr(4 + length(name) + 1);
+     // display "&lt;name&gt; message" in public chat
+     var dialog = document.getElementById('public');
+     var dt = document.createElement('dt');
+     dt.textContent = name;
+     dialog.appendChild(dt);
+     var dd = document.createElement('dd');
+     dd.textContent = message;
+     dialog.appendChild(dd);
+   }
+   worker.port.addEventListener('message', updatePublicChat, false);
+
+   // PRIVATE CHAT
+   function startPrivateChat(event) {
+     if (event.data.substr(0, 4) != 'msg ') return;
+     var name = event.data.substr(4).split(' ', 1);
+     var port = event.ports[0];
+     // display a private chat UI
+     var ul = document.getElementById('private');
+     var li = document.createElement('li');
+     var h3 = document.createElement('h3');
+     h3.textContent = 'Private chat with ' + name;
+     li.appendChild(h3);
+     var dialog = document.createElement('dialog');
+     var addMessage = function(name, message) {
+       var dt = document.createElement('dt');
+       dt.textContent = name;
+       dialog.appendChild(dt);
+       var dd = document.createElement('dd');
+       dd.textContent = message;
+       dialog.appendChild(dd);
+     };
+     port.onmessage = function (event) {
+       addMessage(name, event.data);
+     };
+     li.appendChild(dialog);
+     var form = document.createElement('form');
+     var p = document.createElement('p');
+     var input = document.createElement('input');
+     input.size = 50;
+     p.appendChild(input);
+     p.appendChild(document.createTextNode(' '));
+     var button = document.createElement('button');
+     button.textContent = 'Post';
+     p.appendChild(button);
+     form.onsubmit = function () {
+       port.postMessage(input.value);
+       addMessage('me', input.value);
+       input.value = '';
+       return false;
+     };
+     form.appendChild(p);
+     li.appendChild(form);
+   }
+   worker.port.addEventListener('message', startPrivateChat, false);
+
+   worker.port.start();
+  &lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;h1&gt;Viewer&lt;/h1&gt;
+  &lt;h2&gt;Map&lt;/h2&gt;
+  &lt;p&gt;&lt;canvas id="map" height=150 width=150&gt;&lt;/canvas&gt;&lt;/p&gt;
+  &lt;p&gt;
+   &lt;button type=button onclick="worker.port.postMessage('mov left')"&gt;Left&lt;/button&gt;
+   &lt;button type=button onclick="worker.port.postMessage('mov up')"&gt;Up&lt;/button&gt;
+   &lt;button type=button onclick="worker.port.postMessage('mov down')"&gt;Down&lt;/button&gt;
+   &lt;button type=button onclick="worker.port.postMessage('mov right')"&gt;Right&lt;/button&gt;
+   &lt;button type=button onclick="worker.port.postMessage('set 0')"&gt;Set 0&lt;/button&gt;
+   &lt;button type=button onclick="worker.port.postMessage('set 1')"&gt;Set 1&lt;/button&gt;
+  &lt;/p&gt;
+  &lt;h2&gt;Public Chat&lt;/h2&gt;
+  &lt;dialog id="public"&gt;&lt;/dialog&gt;
+  &lt;form onsubmit="worker.port.postMessage('txt ' + message.value); message.value = ''; return false;"&gt;
+   &lt;p&gt;
+    &lt;input type="text" name="message" size="50"&gt;
+    &lt;button&gt;Post&lt;/button&gt;
+   &lt;/p&gt;
+  &lt;/form&gt;
+  &lt;h2&gt;Private Chat&lt;/h2&gt;
+  &lt;ul id="private"&gt;&lt;/ul&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+  <p>There are several key things worth noting about the way the
+  viewer is written.</p>
+
+  <p><strong>Multiple listeners</strong>. Instead of a single message
+  processing function, the code here attaches multiple event
+  listeners, each one performing a quick check to see if it is
+  relevant for the message. In this example it doesn't make much
+  difference, but if multiple authors wanted to collaborate using a
+  single port to communicate with a worker, it would allow for
+  independent code instead of changes having to all be made to a
+  single event handling function.</p>
+
+  <p>Registering event listeners in this way also allows you to
+  unregister specific listeners when you are done with them, as is
+  done with the <code title="">configure()</code> method in this
+  example.</p>
+
+  <p>Finally, the worker:</p>
+
+  <pre>var nextName = 0;
+function getNextName() {
+  // this could use more friendly names
+  // but for now just return a number
+  return nextName++;
+}
+
+var map = [
+ [0, 0, 0, 0, 0, 0, 0],
+ [1, 1, 0, 1, 0, 1, 1],
+ [0, 1, 0, 1, 0, 0, 0],
+ [0, 1, 0, 1, 0, 1, 1],
+ [0, 0, 0, 1, 0, 0, 0],
+ [1, 0, 0, 1, 1, 1, 1],
+ [1, 1, 0, 1, 1, 0, 1],
+];
+
+function wrapX(x) {
+  if (x &lt; 0) return wrapX(x + map[0].length);
+  if (x &gt;= map[0].length) return wrapX(x - map[0].length);
+  return x;
+}
+
+function wrapY(y) {
+  if (y &lt; 0) return wrapY(y + map.length);
+  if (y &gt;= map[0].length) return wrapY(y - map.length);
+  return y;
+}
+
+function sendMapData(callback) {
+  var data = '';
+  for (var y = viewer.y-1; y &lt;= viewer.y+1; y += 1) {
+    for (var x = viewer.x-1; x &lt;= viewer.x+1; x += 1) {
+      if (data != '')
+        data += ',';
+      data += map[y][x];
+    }
+  }
+  callback('map ' + data);
+}
+
+var viewers = {};
+onconnect = function (event) {
+  event.ports[0]._name = getNextName();
+  event.ports[0]._data = { port: event.port, x: 0, y: 0, };
+  viewers[event.ports[0]._name] = event.port._data;
+  event.ports[0].postMessage('cfg ' + name);
+  event.ports[0].onmessage = getMessage;
+  sendMapData(event.ports[0].postMessage);
+};
+
+function getMessage(event) {
+  switch (event.data.substr(0, 4)) {
+    case 'mov ':
+      var direction = event.data.substr(4);
+      var dx = 0;
+      var dy = 0;
+      switch (direction) {
+        case 'up': dy = -1; break;
+        case 'down': dy = 1; break;
+        case 'left': dx = -1; break;
+        case 'right': dx = 1; break;
+      }
+      event.target._data.x = wrapX(event.target._data.x + dx);
+      event.target._data.y = wrapY(event.target._data.y + dy);
+      sendMapData(event.target.postMessage);
+      break;
+    case 'set ':
+      var value = event.data.substr(4);
+      map[event.target._data.y][event.target._data.x] = value;
+      for (var viewer in viewers)
+        sendMapData(viewers[viewer].port.postMessage);
+      break;
+    case 'txt ':
+      var name = event.target._name;
+      var message = event.data.substr(4);
+      for (var viewer in viewers)
+        viewers[viewer].port.postMessage('txt ' + name + ' ' + message);
+      break;
+    case 'msg ':
+      var party1 = event._data;
+      var party2 = viewers[event.data.substr(4).split(' ', 1)];
+      if (party2) {
+        var channel = new MessageChannel();
+        party1.port.postMessage('msg ' + party2.name, [channel.port1]);
+        party2.port.postMessage('msg ' + party1.name, [channel.port2]);
+      }
+      break;
+  }
+}</pre>
+
+  <p><strong>Connecting to multiple pages</strong>. The script uses
+  the <code title="handler-SharedWorkerGlobalScope-onconnect"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-sharedworkerglobalscope-onconnect">onconnect</a></code>
+  event listener to listen for multiple connections.</p>
+
+  <p><strong>Direct channels</strong>. When the worker receives a
+  "msg" message from one viewer naming another viewer, it sets up a
+  direct connection between the two, so that the two viewers can
+  communicate directly without the worker having to proxy all the
+  messages.</p>
+
+  <p><a href="http://www.whatwg.org/demos/workers/multiviewer/page.html">View this example online</a>.</p>
+
+
+  <h5 id="delegation"><span class="secno">9.1.2.5 </span>Delegation</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#delegation">#delegation</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=delegation">Edit this information...</a></p></div>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>With multicore CPUs becoming prevalent, one way to obtain better
+  performance is to split computationally expensive tasks amongst
+  multiple workers. In this example, a computationally expensive task
+  that is to be performed for every number from 1 to 10,000,000 is
+  farmed out to ten subworkers.</p>
+
+  <p>The main page is as follows, it just reports the result:</p>
+
+  <pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Worker example: Multicore computation&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;p&gt;Result: &lt;output id="result"&gt;&lt;/output&gt;&lt;/p&gt;
+  &lt;script&gt;
+   var worker = new Worker('worker.js');
+   worker.onmessage = function (event) {
+     document.getElementById('result').textContent = event.data;
+   };
+  &lt;/script&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+  <p>The worker itself is as follows:</p>
+
+  <pre>// settings
+var num_workers = 10;
+var items_per_worker = 1000000;
+
+// start the workers
+var result = 0;
+var pending_workers = num_workers;
+for (var i = 0; i &lt; num_workers; i += 1) {
+  var worker = new Worker('core.js');
+  worker.postMessage(i * items_per_worker);
+  worker.postMessage((i+1) * items_per_worker);
+  worker.onmessage = storeResult;
+}
+
+// handle the results
+function storeResult(event) {
+  result += 1*event.data;
+  pending_workers -= 1;
+  if (pending_workers &lt;= 0)
+    postMessage(result); // finished!
+}</pre>
+
+  <p>It consists of a loop to start the subworkers, and then a handler
+  that waits for all the subworkers to respond.</p>
+
+  <p>The subworkers are implemented as follows:</p>
+
+  <pre>var start;
+onmessage = getStart;
+function getStart(event) {
+  start = 1*event.data;
+  onmessage = getEnd;
+}
+
+var end;
+function getEnd(event) {
+  end = 1*event.data;
+  onmessage = null;
+  work();
+}
+
+function work() {
+  var result = 0;
+  for (var i = start; i &lt; end; i += 1) {
+    // perform some complex calculation here
+    result += 1;
+  }
+  postMessage(result);
+  close();
+}</pre>
+
+  <p>They receive two numbers in two events, perform the computation
+  for the range of numbers thus specified, and then report the result
+  back to the parent.</p>
+
+  <p><a href="http://www.whatwg.org/demos/workers/multicore/page.html">View this example online</a>.</p>
+
+<!--(this uses startConversation, which is currently commented out)
+
+  <h5>Providing libraries</h5>
+
+  <!- -END dev-html- -><p><i>This section is non-normative.</i></p><!- -START dev-html- ->
+
+  <p>Suppose that a cryptography library is made available that
+  provides three tasks:</p>
+
+  <dl>
+
+   <dt>Generate a public/private key pair</dt>
+
+   <dd>Takes a port, on which it will send two messages, first the
+   public key and then the private key.</dd>
+
+   <dt>Given a plaintext and a public key, return the corresponding cyphertext</dt>
+
+   <dd>Takes a port, to which any number of messages can be sent, the
+   first giving the public key, and the remainder giving the
+   plaintext, each of which is encrypted and then sent on that same
+   channel as the cyphertext. The user can close the port when it is
+   done encrypting content.</dd>
+
+   <dt>Given a cyphertext and a private key, return the corresponding plaintext</dt>
+
+   <dd>Takes a port, to which any number of messages can be sent, the
+   first giving the private key, and the remainder giving the
+   cyphertext, each of which is decrypted and then sent on that same
+   channel as the plaintext. The user can close the port when it is
+   done decrypting content.</dd>
+
+  </dl>
+
+  <p>The library itself is as follows:</p>
+
+  <pre>function handleMessage(e) {
+  if (e.data == "genkeys")
+    genkeys(e.ports[0]);
+  else if (e.data == "encrypt")
+    encrypt(e.ports[0]);
+  else if (e.data == "decrypt")
+    decrypt(e.ports[0]);
+}
+
+function genkeys(p) {
+  var keys = _generateKeyPair();
+  p.postMessage(keys[0]);
+  p.postMessage(keys[1]);
+}
+
+function encrypt(p) {
+  var key, state = 0;
+  p.onmessage = function (e) {
+    if (state == 0) {
+      key = e.data;
+      state = 1;
+    } else {
+      p.postMessage(_encrypt(key, e.data));
+    }
+  };
+}
+
+function decrypt(p) {
+  var key, state = 0;
+  p.onmessage = function (e) {
+    if (state == 0) {
+      key = e.data;
+      state = 1;
+    } else {
+      p.postMessage(_decrypt(key, e.data));
+    }
+  };
+}
+
+// support being used as a shared worker as well as a dedicated worker
+if ('onmessage' in this) // dedicated worker
+  onmessage = handleMessage;
+else // shared worker
+  onconnect = function (e) { e.port.onmessage = handleMessage; }
+
+
+// the "crypto" functions:
+
+function _generateKeyPair() {
+  return [Math.random(), Math.random()];
+}
+
+function _encrypt(k, s) {
+  return 'encrypted-' + k + ' ' + s;
+}
+
+function _decrypt(k, s) {
+  return s.substr(s.indexOf(' ')+1);
+}</pre>
+
+  <p>Note that the crypto functions here are just stubs and don't do
+  real cryptography.</p>
+
+  <p>This library could be used as follows:</p>
+
+  <pre>&lt;!DOCTYPE HTML>
+&lt;html>
+ &lt;head>
+  &lt;title>Worker example: Crypto library&lt;/title>
+  &lt;script>
+   var cryptoLib = new Worker('libcrypto-v1.js'); // or could use 'libcrypto-v2.js'
+   function getKeys() {
+     var state = 0;
+     cryptoLib.startConversation("genkeys").onmessage = function (e) {
+       if (state == 0)
+         document.getElementById('public').value = e.data;
+       else if (state == 1)
+         document.getElementById('private').value = e.data;
+       state += 1;
+     };
+   }
+   function enc() {
+     var port = cryptoLib.startConversation("encrypt");
+     port.postMessage(document.getElementById('public').value);
+     port.postMessage(document.getElementById('input').value);
+     port.onmessage = function (e) {
+       document.getElementById('input').value = e.data;
+       port.close();
+     };
+   }
+   function dec() {
+     var port = cryptoLib.startConversation("decrypt");
+     port.postMessage(document.getElementById('private').value);
+     port.postMessage(document.getElementById('input').value);
+     port.onmessage = function (e) {
+       document.getElementById('input').value = e.data;
+       port.close();
+     };
+   }
+  &lt;/script>
+  &lt;style>
+   textarea { display: block; }
+  &lt;/style>
+ &lt;/head>
+ &lt;body onload="getKeys()">
+  &lt;fieldset>
+   &lt;legend>Keys&lt;/legend>
+   &lt;p>&lt;label>Public Key: &lt;textarea id="public">&lt;/textarea>&lt;/label>&lt;/p>
+   &lt;p>&lt;label>Private Key: &lt;textarea id="private">&lt;/textarea>&lt;/label>&lt;/p>
+  &lt;/fieldset>
+  &lt;p>&lt;label>Input: &lt;textarea id="input">&lt;/textarea>&lt;/label>&lt;/p>
+  &lt;p>&lt;button onclick="enc()">Encrypt&lt;/button> &lt;button onclick="dec()">Decrypt&lt;/button>&lt;/p>
+ &lt;/body>
+&lt;/html></pre>
+
+  <p>A later version of the API, though, might want to offload all the
+  crypto work onto subworkers. This could be done as follows:</p>
+
+  <pre>function handleMessage(e) {
+  if (e.data == "genkeys")
+    genkeys(e.ports[0]);
+  else if (e.data == "encrypt")
+    encrypt(e.ports[0]);
+  else if (e.data == "decrypt")
+    decrypt(e.ports[0]);
+}
+
+function genkeys(p) {
+  var generator = new Worker('libcrypto-v2-generator.js');
+  generator.postMessage('', [p]);
+}
+
+function encrypt(p) {
+  p.onmessage = function (e) {
+    var key = e.data;
+    var encryptor = new Worker('libcrypto-v2-encryptor.js');
+    encryptor.postMessage(key, [p]);
+  };
+}
+
+function encrypt(p) {
+  p.onmessage = function (e) {
+    var key = e.data;
+    var decryptor = new Worker('libcrypto-v2-decryptor.js');
+    decryptor.postMessage(key, [p]);
+  };
+}
+
+// support being used as a shared worker as well as a dedicated worker
+if ('onmessage' in this) // dedicated worker
+  onmessage = handleMessage;
+else // shared worker
+  onconnect = function (e) { e.ports[0].onmessage = handleMessage };
+</pre>
+
+  <p>The little subworkers would then be as follows.</p>
+
+  <p>For generating key pairs:</p>
+
+  <pre>onmessage = function (e) {
+  var k = _generateKeyPair();
+  e.ports[0].postMessage(k[0]);
+  e.ports[0].postMessage(k[1]);
+  close();
+}
+
+function _generateKeyPair() {
+  return [Math.random(), Math.random()];
+}</pre>
+
+  <p>For encrypting:</p>
+
+  <pre>onmessage = function (e) {
+  var key = e.data;
+  e.ports[0].onmessage = function (e) {
+    var s = e.data;
+    postMessage(_encrypt(key, s));
+  }
+}
+
+function _encrypt(k, s) {
+  return 'encrypted-' + k + ' ' + s;
+}</pre>
+
+  <p>For decrypting:</p>
+
+  <pre>onmessage = function (e) {
+  var key = e.data;
+  e.ports[0].onmessage = function (e) {
+    var s = e.data;
+    postMessage(_decrypt(key, s));
+  }
+}
+
+function _decrypt(k, s) {
+  return s.substr(s.indexOf(' ')+1);
+}</pre>
+
+  <p>Notice how the users of the API don't have to even know that this
+  is happening &mdash; the API hasn't changed; the library can
+  delegate to subworkers without changing its API, even though it is
+  accepting data using message channels.</p>
+
+  <p><a href="http://www.whatwg.org/demos/workers/crypto/page.html">View this example online</a>.</p>
+
+(end startConversation block) (beware nested comments)-->
+
+
+  <h4 id="tutorials"><span class="secno">9.1.3 </span>Tutorials</h4>
+
+  <h5 id="creating-a-dedicated-worker"><span class="secno">9.1.3.1 </span>Creating a dedicated worker</h5>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>Creating a worker requires a URL to a JavaScript file. The <code title="dom-Worker"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker">Worker()</a></code> constructor is invoked with the
+  URL to that file as its only argument; a worker is then created and
+  returned:</p>
+
+  <pre>var worker = new Worker('helper.js');</pre>
+
+
+  <h5 id="communicating-with-a-dedicated-worker"><span class="secno">9.1.3.2 </span>Communicating with a dedicated worker</h5>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>Dedicated workers use <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> objects behind the
+  scenes, and thus support all the same features, such as sending
+  structured data, transferring binary data, and transferring other
+  ports.</p>
+
+  <p>To receive messages from a dedicated worker, use the <code title="handler-worker-onmessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-worker-onmessage">onmessage</a></code> <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-idl-attributes" title="event
+  handler IDL attributes">event handler IDL attribute</a> on the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object:</p>
+
+  <pre>worker.onmessage = function (event) { ... };</pre>
+
+  <p>You can also use the <code title="dom-EventTarget-addEventListener">addEventListener()</code> method.</p>
+
+  <p class="note">The implicit <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> used by
+  dedicated workers has its <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#port-message-queue">port message queue</a> implicitly
+  enabled when it is created, so there is no equivanet to the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> interface's <code title="dom-MessagePort-start"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#dom-messageport-start">start()</a></code> method on the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> interface.</p>
+
+  <p>To <em>send</em> data to a worker, use the <code title="dom-Worker-postMessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker-postmessage">postMessage()</a></code> method.
+  Structured data can be sent over this communication channel. To send
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#arraybuffer">ArrayBuffer</a></code> objects efficiently (by transferring them
+  rather than cloning them), list them in an array in the second
+  argument.</p>
+
+  <pre>worker.postMessage({
+  operation: 'find-edges',
+  input: buffer, // an ArrayBuffer object
+  threshold: 0.6,
+}, [buffer]);</pre>
+
+  <p>To receive a message inside the worker, the <code title="handler-DedicatedWorkerGlobalScope-onmessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-dedicatedworkerglobalscope-onmessage">onmessage</a></code>
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-idl-attributes" title="event handler IDL attributes">event handler IDL
+  attribute</a> is used.</p>
+
+  <pre>onmessage = function (event) { ... };</pre>
+
+  <p>You can again also use the <code title="dom-EventTarget-addEventListener">addEventListener()</code>
+  method.</p>
+
+  <p>In either case, the data is provided in the event object's <code title="dom-MessageEvent-data"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#dom-messageevent-data">data</a></code> attribute.</p>
+
+  <p>To send messages back, you again use <code title="dom-DedicatedWorkerGlobalScope-postMessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-dedicatedworkerglobalscope-postmessage">postMessage()</a></code>.
+  It supports the structured data in the same manner.</p>
+
+  <pre>postMessage(event.data.input, [event.data.input]); // transfer the buffer back</pre>
+
+
+  <h5 id="shared-workers"><span class="secno">9.1.3.3 </span>Shared workers</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-workers">#shared-workers</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=shared-workers">Edit this information...</a></p></div>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>Shared workers are identified in one of two ways: either by the
+  URL of the script used to create it, or by explicit name. When
+  created by name, the URL used by the first page to create the worker
+  with that name is the URL of the script that will be used for that
+  worker. This allows multiple applications on a domain to all use a
+  single shared worker to provide a common service, without the
+  applications having to keep track of a common URL for the script
+  used to provide the service.</p>
+
+  <p class="note">In either case, shared workers are scoped by
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a>. Two different sites using the same names will
+  not collide.</p>
+
+  <p>Creating shared workers is done using the <code title="dom-SharedWorker"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworker">SharedWorker()</a></code> constructor. This
+  constructor takes the URL to the script to use for its first
+  argument, and the name of the worker, if any, as the second
+  argument.</p>
+
+  <pre>var worker = new SharedWorker('service.js');</pre>
+
+  <p>Communicating with shared workers is done with explicit
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> objects. The object returned by the <code title="dom-SharedWorker"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworker">SharedWorker()</a></code> constructor holds a
+  reference to the port on its <code title="dom-SharedWorker-port"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworker-port">port</a></code> attribute.</p>
+
+  <pre>worker.port.onmessage = function (event) { ... };
+worker.port.postMessage('some message');
+worker.port.postMessage({ foo: 'structured', bar: ['data', 'also', 'possible']});</pre>
+
+  <p>Inside the shared worker, new clients of the worker are announced
+  using the <code title="event-connect">connect</code> event. The port
+  for the new client is given by the event object's <code title="dom-messageevent-ports"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#dom-messageevent-ports">ports</a></code> array as its first (and
+  only) value.</p>
+
+  <pre>onconnect = function (event) {
+  var newPort = event.ports[0];
+  // set up a listener
+  newPort.onmessage = function (event) { ... };
+  // send a message back to the port
+  newPort.postMessage('ready!'); // can also send structured data, of course
+};</pre>
+
+
+
+
+  <h3 id="infrastructure-0"><span class="secno">9.2 </span>Infrastructure</h3><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#infrastructure-0">#infrastructure-0</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=infrastructure-0">Edit this information...</a></p></div>
+
+  <p>There are two kinds of workers; dedicated workers, and shared
+  workers. Dedicated workers, once created, and are linked to their
+  creator; but message ports can be used to communicate from a
+  dedicated worker to multiple other browsing contexts or
+  workers. Shared workers, on the other hand, are named, and once
+  created any script running in the same <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> can
+  obtain a reference to that worker and communicate with it.</p>
+
+
+
+  <h4 id="the-global-scope"><span class="secno">9.2.1 </span>The global scope</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-global-scope">#the-global-scope</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=the-global-scope">Edit this information...</a></p></div>
+
+  <p>The global scope is the "inside" of a worker.</p>
+
+  <h5 id="the-workerglobalscope-common-interface"><span class="secno">9.2.1.1 </span>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> common interface</h5>
+
+  <pre class="idl">interface <dfn id="workerglobalscope">WorkerGlobalScope</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#eventtarget">EventTarget</a> {
+  readonly attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a> <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-self" title="dom-WorkerGlobalScope-self">self</a>;
+  readonly attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerlocation">WorkerLocation</a> <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-location" title="dom-WorkerGlobalScope-location">location</a>;
+
+  void <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-close" title="dom-WorkerGlobalScope-close">close</a>();
+<!-- v2-onclose  [TreatNonCallableAsNull] attribute <span>Function</span>? <span title="handler-WorkerGlobalScope-onclose">onclose</span>;
+-->  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-workerglobalscope-onerror" title="handler-WorkerGlobalScope-onerror">onerror</a>;
+  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-workerglobalscope-onoffline" title="handler-WorkerGlobalScope-onoffline">onoffline</a>;
+  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-workerglobalscope-ononline" title="handler-WorkerGlobalScope-ononline">ononline</a>;
+};
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a>;</pre>
+
+  <p>The <dfn id="dom-workerglobalscope-self" title="dom-WorkerGlobalScope-self"><code>self</code></dfn> attribute
+  must return the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object itself.</p>
+
+  <p>The <dfn id="dom-workerglobalscope-location" title="dom-WorkerGlobalScope-location"><code>location</code></dfn>
+  attribute must return the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerlocation">WorkerLocation</a></code> object created
+  for the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object when the worker was
+  created. It represents the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> of the script
+  that was used to initialize the worker, after any redirects.</p>
+
+  <hr><p>When a script invokes the <dfn id="dom-workerglobalscope-close" title="dom-WorkerGlobalScope-close"><code>close()</code></dfn>
+  method on a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object, the user agent
+  must run the following steps (atomically):</p>
+
+  <ol><li><p>Discard any <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-task" title="concept-task">tasks</a> that
+   have been added to the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task
+   queue">task queues</a>.</p>
+
+<!-- v2-onclose
+   <li><p><span>Queue a task</span> to <span>fire a simple
+   event</span> named <code title="event-close">close</code> at the
+   <code>WorkerGlobalScope</code> object.</p></li>
+-->
+
+   </li><li><p>Set the worker's <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object's
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag to
+   true. (This prevents any further tasks from being queued.)</p></li>
+
+  </ol><p>The following are the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers">event handlers</a> (and their
+  corresponding <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type" title="event handler event type">event handler
+  event types</a>) that must be supported, as IDL attributes, by
+  objects implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code>
+  interface:</p>
+
+  <table><thead><tr><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers" title="event handlers">Event handler</a> </th><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type">Event handler event type</a>
+   </th></tr></thead><tbody><!-- v2-onclose    <tr><td><dfn title="handler-WorkerGlobalScope-onclose"><code>onclose</code></dfn> <td> <code title="event-close">close</code> --><tr><td><dfn id="handler-workerglobalscope-onerror" title="handler-WorkerGlobalScope-onerror"><code>onerror</code></dfn> </td><td> <code title="event-error">error</code>
+    </td></tr><tr><td><dfn id="handler-workerglobalscope-onoffline" title="handler-WorkerGlobalScope-onoffline"><code>onoffline</code></dfn> </td><td> <code title="event-offline"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#event-offline">offline</a></code> <!-- new -->
+    </td></tr><tr><td><dfn id="handler-workerglobalscope-ononline" title="handler-WorkerGlobalScope-ononline"><code>ononline</code></dfn> </td><td> <code title="event-online"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#event-online">online</a></code> <!-- new -->
+  </td></tr></tbody></table><h5 id="dedicated-workers-and-the-dedicatedworkerglobalscope-interface"><span class="secno">9.2.1.2 </span>Dedicated workers and the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> interface</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicated-workers-and-the-dedicatedworkerglobalscope-interface">#dedicated-workers-and-the-dedicatedworkerglobalscope-interface</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=dedicated-workers-and-the-dedicatedworkerglobalscope-interface">Edit this information...</a></p></div>
+
+  <pre class="idl">interface <dfn id="dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a> {
+  void <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-dedicatedworkerglobalscope-postmessage" title="dom-DedicatedWorkerGlobalScope-postMessage">postMessage</a>(any message, optional sequence&lt;<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-dom-interfaces.html#transferable">Transferable</a>&gt; transfer);<!--
+  <span>MessagePort</span> <span title="dom-DedicatedWorkerGlobalScope-startConversation">startConversation</span>(any message);-->
+  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-dedicatedworkerglobalscope-onmessage" title="handler-DedicatedWorkerGlobalScope-onmessage">onmessage</a>;
+};</pre>
+
+  <p>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> interface must not
+  exist if the interface's <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#relevant-namespace-object">relevant namespace object</a> is
+  not a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> object. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/references.html#refsWEBIDL">[WEBIDL]</a></p>
+
+  <p><code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> objects act as if they
+  had an implicit <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> associated with them. This
+  port is part of a channel that is set up when the worker is created,
+  but it is not exposed. This object must never be garbage collected
+  before the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> object.</p>
+
+  <p>All messages received by that port must immediately be retargeted
+  at the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> object.</p>
+
+  <p>The <dfn id="dom-dedicatedworkerglobalscope-postmessage" title="dom-DedicatedWorkerGlobalScope-postMessage"><code>postMessage()</code></dfn><!--
+  and <dfn
+  title="dom-DedicatedWorkerGlobalScope-startConversation"><code>startConversation()</code></dfn>-->
+  method<!--s (startConversation)--> on
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> objects must act as if, when
+  invoked, it<!--/they (startConversation)--> immediately invoked the
+  method of the same name on the port, with the same arguments, and
+  returned the same return value.</p>
+
+  <p>The following are the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers">event handlers</a> (and their
+  corresponding <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type" title="event handler event type">event handler
+  event types</a>) that must be supported, as IDL attributes, by
+  objects implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code>
+  interface:</p>
+
+  <table><thead><tr><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers" title="event handlers">Event handler</a> </th><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type">Event handler event type</a>
+   </th></tr></thead><tbody><tr><td><dfn id="handler-dedicatedworkerglobalscope-onmessage" title="handler-DedicatedWorkerGlobalScope-onmessage"><code>onmessage</code></dfn> </td><td> <code title="event-message"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#event-message">message</a></code>
+  </td></tr></tbody></table><p>For the purposes of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#application-cache">application cache</a> networking
+  model, a dedicated worker is an extension of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#cache-host">cache
+  host</a> from which it was created.</p>
+
+
+
+  <h5 id="shared-workers-and-the-sharedworkerglobalscope-interface"><span class="secno">9.2.1.3 </span>Shared workers and the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> interface</h5>
+
+  <pre class="idl">interface <dfn id="sharedworkerglobalscope">SharedWorkerGlobalScope</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a> {
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworkerglobalscope-name" title="dom-SharedWorkerGlobalScope-name">name</a>;
+  readonly attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#applicationcache">ApplicationCache</a> <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#dom-sharedworkerglobalscope-applicationcache" title="dom-SharedWorkerGlobalScope-applicationCache">applicationCache</a>;
+  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-sharedworkerglobalscope-onconnect" title="handler-SharedWorkerGlobalScope-onconnect">onconnect</a>;
+};</pre>
+
+  <p>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> interface must not
+  exist if the interface's <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#relevant-namespace-object">relevant namespace object</a> is
+  not a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/references.html#refsWEBIDL">[WEBIDL]</a></p>
+
+  <p>Shared workers receive message ports through <code title="event-WorkerGlobalScope-connect">connect</code> events on
+  their global object for each connection.</p>
+
+  <p>The <dfn id="dom-sharedworkerglobalscope-name" title="dom-SharedWorkerGlobalScope-name"><code>name</code></dfn>
+  attribute must return the value it was assigned when the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object was created by the
+  "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">run a worker</a>" algorithm. Its value represents the name
+  that can be used to obtain a reference to the worker using the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworker">SharedWorker</a></code> constructor.</p>
+
+  <p>The following are the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers">event handlers</a> (and their
+  corresponding <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type" title="event handler event type">event handler
+  event types</a>) that must be supported, as IDL attributes, by
+  objects implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code>
+  interface:</p>
+
+  <table><thead><tr><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers" title="event handlers">Event handler</a> </th><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type">Event handler event type</a>
+   </th></tr></thead><tbody><tr><td><dfn id="handler-sharedworkerglobalscope-onconnect" title="handler-SharedWorkerGlobalScope-onconnect"><code>onconnect</code></dfn> </td><td> <code title="event-connect">connect</code>
+  </td></tr></tbody></table><p>For the purposes of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#application-cache">application cache</a> networking
+  model, a shared worker is its own <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#cache-host">cache host</a>. The
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">run a worker</a> algorithm takes care of associating the
+  worker with an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#application-cache">application cache</a>.</p>
+
+  <p class="note">The <code title="dom-SharedWorkerGlobalScope-applicationCache"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#dom-sharedworkerglobalscope-applicationcache">applicationCache</a></code>
+  attribute returns the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#applicationcache">ApplicationCache</a></code> object for the
+  worker.</p><!-- normative conf criteria is in the appcache section
+  -->
+
+
+  <h4 id="origins-of-workers"><span class="secno">9.2.2 </span>Origins of workers</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#origins-of-workers">#origins-of-workers</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=origins-of-workers">Edit this information...</a></p></div>
+
+  <p>Both the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#effective-script-origin">effective script
+  origin</a> of scripts running in workers are the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> given in that
+  the worker's <code title="dom-WorkerGlobalScope-location"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-location">location</a></code> attribute
+  represents.</p>
+
+
+
+  <h4 id="the-event-loop"><span class="secno">9.2.3 </span>The event loop</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-event-loop">#the-event-loop</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=the-event-loop">Edit this information...</a></p></div>
+
+  <p>Each <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object has an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event
+  loop</a> distinct from those defined for <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#unit-of-related-similar-origin-browsing-contexts" title="unit of
+  related similar-origin browsing contexts">units of related
+  similar-origin browsing contexts</a>. This <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event
+  loop</a> has no associated <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#browsing-context">browsing context</a>, and its
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task queue">task queues</a> only have events,
+  callbacks, and networking activity as <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-task" title="concept-task">tasks</a>. The processing model of these
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop" title="event loop">event loops</a> is defined below in the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">run a worker</a> algorithm.</p>
+
+  <p>Each <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object also has a <dfn id="dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</dfn> flag, which must
+  initially be false, but which can get set to true by the algorithms
+  in the processing model section below.</p>
+
+  <p>Once the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is set to
+  true, the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task queue">task
+  queues</a> must discard any further <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-task" title="concept-task">tasks</a> that would be added to them (tasks
+  already on the queue are unaffected except where otherwise
+  specified). Effectively, once the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is true,
+  timers stop firing, notifications for all pending asynchronous
+  operations are dropped, etc.</p>
+
+
+
+  <h4 id="the-worker&#39;s-lifetime"><span class="secno">9.2.4 </span>The worker's lifetime</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-lifetime">#the-worker's-lifetime</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=the-worker's-lifetime">Edit this information...</a></p></div>
+
+  <p>Workers communicate with other workers and with <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#browsing-context" title="browsing context">browsing contexts</a> through <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#channel-messaging" title="channel messaging">message channels</a> and their
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> objects.</p>
+
+  <p>Each <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> <var title="">worker global
+  scope</var> has a list of <dfn id="the-worker&#39;s-ports">the worker's ports</dfn>, which
+  consists of all the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> objects that are
+  entangled with another port and that have one (but only one) port
+  owned by <var title="">worker global scope</var>. This list includes
+  <!--all the <code>MessagePort</code> objects that are in events
+  pending in the <span>event loop</span>, as well as (commented out
+  because in practice it makes no difference either way as far as I
+  can tell, and it would be hard to strictly implement since these
+  ports might not yet be across the thread boundary)--> the implicit
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> in the case of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope" title="DedicatedWorkerGlobalScope">dedicated workers</a>.</p>
+
+  <p>Each <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> also has a list of <dfn id="the-worker&#39;s-workers">the
+  worker's workers</dfn>. Initially this list is empty; it is
+  populated when the worker creates or obtains further workers.</p>
+
+  <p>Finally, each <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> also has a list of
+  <dfn id="the-worker&#39;s-documents">the worker's <code>Document</code>s</dfn>. Initially this list
+  is empty; it is populated when the worker is created.</p>
+
+  <p>Whenever a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> <var title="">d</var> is <dfn id="add-a-document-to-the-worker&#39;s-documents" title="add a document to the worker&#39;s documents">added to the
+  worker's <code>Document</code>s</dfn>, the user agent must, for each
+  worker <var title="">q</var> in the list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-workers">the worker's
+  workers</a> whose list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-documents">the worker's
+  <code>Document</code>s</a> does not contain <var title="">d</var>, <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#add-a-document-to-the-worker's-documents" title="add a document to the worker&#39;s
+  documents">add <var title="">d</var> to <var title="">q</var>'s
+  <code>WorkerGlobalScope</code> owner's list of <span>the worker's
+  <code>Document</code>s</span></a>.</p> <!-- suggestions welcome
+  on making this sentence into understandable English -->
+
+  <p>Whenever a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> object is <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#discard-a-document" title="discard a
+  Document">discarded</a>, it must be removed from the list of
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-documents">the worker's <code>Document</code>s</a> of each worker
+  whose list contains that <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code>.</p>
+
+  <p>Given a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global object</a> <var title="">o</var>
+  when creating or obtaining a worker, the <dfn id="list-of-relevant-document-objects-to-add">list of relevant
+  <code>Document</code> objects to add</dfn> depends on the type of
+  <var title="">o</var>. If <var title="">o</var> is a
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object (i.e. if we are creating a
+  nested worker), then the relevant <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code>s are the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code>s that are in <var title="">o</var>'s own list
+  of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-documents">the worker's <code>Document</code>s</a>. Otherwise, <var title="">o</var> is a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#window">Window</a></code> object, and the relevant
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> is just the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> that is the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#active-document">active document</a> of the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#window">Window</a></code> object <var title="">o</var>.</p>
+
+  <hr><p>A worker is said to be a <dfn id="permissible-worker">permissible worker</dfn> if its
+  list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-documents">the worker's <code>Document</code>s</a> is not
+  empty.</p>
+
+  <p>A worker is said to be a <dfn id="protected-worker">protected worker</dfn> if it is a
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#permissible-worker">permissible worker</a> and either it has outstanding
+  timers, database transactions, or network connections, or its list
+  of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-ports">the worker's ports</a> is not empty, or its
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> is actually a
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object (i.e. the worker is a
+  shared worker).</p>
+
+  <p>A worker is said to be an <dfn id="active-needed-worker">active needed worker</dfn> if any
+  of the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> objects in <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-documents">the worker's
+  <code>Document</code>s</a> are <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#fully-active">fully active</a>.</p>
+
+  <p>A worker is said to be a <dfn id="suspendable-worker">suspendable worker</dfn> if it is
+  not an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#active-needed-worker">active needed worker</a> but it is a
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#permissible-worker">permissible worker</a>.</p>
+
+
+  <h4 id="processing-model-4"><span class="secno">9.2.5 </span>Processing model</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#processing-model-4">#processing-model-4</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=processing-model-4">Edit this information...</a></p></div>
+
+  <p>When a user agent is to <dfn id="run-a-worker">run a worker</dfn> for a script with
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#url">URL</a> <var title="">url</var>, a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#browsing-context">browsing
+  context</a> <var title="">owner browsing context</var>, a
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> <var title="">owner document</var>, an
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> <var title="">owner origin</var>, and with
+  global scope <var title="">worker global scope</var>, it must run
+  the following steps:</p>
+
+  <ol><li>
+
+    <p>Create a separate parallel execution environment (i.e. a
+    separate thread or process or equivalent construct), and run the
+    rest of these steps asynchronously in that context.</p>
+
+   </li>
+
+   <li><p>If <var title="">worker global scope</var> is actually a
+   <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object (i.e. the worker is a
+   shared worker), and there are any <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#relevant-application-cache" title="relevant application
+   cache">relevant application caches</a> that are identified by a
+   manifest URL with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#same-origin">same origin</a> as <var title="">url</var> and that have <var title="">url</var> as one of
+   their entries, <em>not</em> excluding entries marked as <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#concept-appcache-foreign" title="concept-appcache-foreign">foreign</a>, then associate the
+   <var title="">worker global scope</var> with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#concept-appcache-selection" title="concept-appcache-selection">most appropriate application
+   cache</a> of those that match.</p></li>
+
+   <li>
+
+    <p>Attempt to <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/fetching-resources.html#fetch">fetch</a> the resource identified by <var title="">url</var>, from the <var title="">owner origin</var>,
+    with the <i>synchronous flag</i> set and the <i>force same-origin
+    flag</i> set.</p> <!-- not http-origin privacy sensitive (looking
+    forward to CORS) -->
+
+    <p>If the attempt fails, then for each <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> or
+    <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworker">SharedWorker</a></code> object associated with <var title="">worker global scope</var>, <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#queue-a-task">queue a task</a> to
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#fire-a-simple-event">fire a simple event</a> named <code title="event-error">error</code> at that object. Abort these
+    steps.</p>
+
+    <p>If the attempt succeeds, then let <var title="">source</var> be
+    the script resource <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#decoded-as-utf-8,-with-error-handling">decoded as UTF-8, with error
+    handling</a>.
+    </p>
+
+    <p>Let <var title="">language</var> be JavaScript.</p>
+
+    <p class="note">As with <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element">script</a></code> elements, the MIME
+    type of the script is ignored. Unlike with <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element">script</a></code>
+    elements, there is no way to override the type. It's always
+    assumed to be JavaScript.</p>
+
+   </li>
+
+   <li>
+
+    <p>A new <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> is now
+    created, as follows.</p>
+
+    <p>Create a new <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script-execution-environment">script execution environment</a>
+    set up as appropriate for the scripting language <var title="">language</var>.</p>
+
+    <p>Parse/compile/initialize <var title="">source</var> using that
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script-execution-environment">script execution environment</a>, as appropriate for <var title="">language</var>, and thus obtain a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#list-of-code-entry-points">list of code
+    entry-points</a>; set the <i><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#initial-code-entry-point">initial code entry-point</a></i> to
+    the entry-point for any executable code to be immediately run.</p>
+
+    <p>Set the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global object</a> to <var title="">worker global scope</var>.</p>
+
+    <p>Set the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-browsing-context">script's browsing context</a> to <var title="">owner browsing context</var>.</p>
+
+    <p>Set the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-document">script's document</a> to <var title="">owner
+    document</var>.</p>
+
+    <p>Set the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-url-character-encoding">script's URL character encoding</a> to
+    UTF-8. (This is just used for encoding non-ASCII characters in the
+    query component of URLs.)</p>
+
+    <p>Set the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-base-url">script's base URL</a> to <var title="">url</var>.</p>
+
+   </li>
+
+   <li>
+
+    <p><strong>Closing orphan workers</strong>: Start monitoring the
+    worker such that no sooner than it stops being either a
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#protected-worker">protected worker</a> or a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#suspendable-worker">suspendable
+    worker</a>, and no later than it stops being a
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#permissible-worker">permissible worker</a>, <var title="">worker global
+    scope</var>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is set
+    to true<!-- v2-onclose and <span title="queue a task">a task is
+    queued</span> to <span>fire a simple event</span> named <code
+    title="event-close">close</code> at <var title="">worker global
+    scope</var>-->.</p>
+
+   </li>
+
+   <li>
+
+    <p><strong>Suspending workers</strong>: Start monitoring the
+    worker, such that whenever <var title="">worker global
+    scope</var>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is false
+    and the worker is a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#suspendable-worker">suspendable worker</a>, the user
+    agent suspends execution of script in that worker until such time
+    as either the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag switches
+    to true or the worker stops being a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#suspendable-worker">suspendable
+    worker</a>.</p>
+
+   </li>
+
+   <li>
+
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#jump-to-a-code-entry-point" title="jump to a code entry-point">Jump</a> to the
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a>'s <i><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#initial-code-entry-point">initial code
+    entry-point</a></i>, and let that run until it either returns, fails
+    to catch an exception, or gets prematurely aborted by the
+    "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#kill-a-worker">kill a worker</a>" or "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#terminate-a-worker">terminate a worker</a>"
+    algorithms defined below.</p>
+
+<!-- v2-onclose
+    <p class="note">If the script gets aborted by the "<span>kill a
+    worker</span>" algorithm, then that same algorithm will cause
+    there to only be a single <span title="concept-task">task</span>
+    in the <span>event loop</span> at the next step, namely the task
+    for the <code title="message-close">close</code> event. The
+    "<span>terminate a worker</span>" algorithm removes all the
+    events.</p>
+-->
+
+   </li>
+
+   <li><p>If <var title="">worker global scope</var> is actually a
+   <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> object (i.e. the worker is
+   a dedicated worker), then enable the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#port-message-queue">port message
+   queue</a> of the worker's implicit port.</p></li>
+
+   <li>
+
+    <p><i title="">Event loop</i>: Wait until either there is a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-task" title="concept-task">task</a> in one of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event
+    loop</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task queue">task queues</a> or <var title="">worker global scope</var>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is set
+    to true.</p>
+
+   </li>
+
+   <li>
+
+    <p>Run the oldest task on one of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>'s
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task queue">task queues</a>, if any. The user
+    agent may pick any <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue">task queue</a>.</p>
+
+    <p class="note">The handling of events or the execution of
+    callbacks might get prematurely aborted by the "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#kill-a-worker">kill a
+    worker</a>" or "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#terminate-a-worker">terminate a worker</a>" algorithms
+    defined below.</p>
+
+   </li>
+
+   <li>
+
+    <p>If the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#storage-mutex">storage mutex</a> is now owned by the worker's
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>, release it so that it is once again
+    free.</p>
+
+   </li>
+
+   <li>
+
+    <p>Remove the task just run in the earlier step, if any, from its
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue">task queue</a>.</p>
+
+   </li>
+
+   <li>
+
+    <p>If there are any more events in the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>'s
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task queue">task queues</a> or if <var title="">worker global scope</var>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is set
+    to false, then jump back to the step above labeled <i><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event
+    loop</a></i>.</p>
+
+   </li>
+
+   <li>
+
+    <p>Empty the <var title="">worker global scope</var>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#list-of-active-timers">list
+    of active timers</a> and its <span>list of active
+    intervals</span>.</p>
+
+   </li>
+
+   <li>
+
+    <p>Disentangle all the ports in the list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-ports">the worker's
+    ports</a>.</p>
+
+   </li>
+
+<!-- v2-onclose
+   <li>
+
+    <p>For each <code>Worker</code> or <code>SharedWorker</code>
+    object associated with <var title="">worker global scope</var>,
+    <span>queue a task</span> to <span>fire a simple event</span>
+    named <code title="event-close">close</code> at that object.</p>
+
+   </li>
+-->
+  </ol><hr><p>When a user agent is to <dfn id="kill-a-worker">kill a worker</dfn> it must
+  run the following steps in parallel with the worker's main loop (the
+  "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">run a worker</a>" processing model defined above):</p>
+
+  <ol><!-- v2-onclose
+   <li><p>If the worker's <code>WorkerGlobalScope</code> object's
+   <span title="dom-WorkerGlobalScope-closing">closing</span> flag is
+   false, <span>queue a task</span> to <span>fire a simple
+   event</span> named <code title="event-close">close</code> at the
+   worker's <code>WorkerGlobalScope</code> object.</p></li>
+--><li><p>Set the worker's <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object's <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag to
+   true.</p></li>
+
+<!-- v2-onclose
+   <li><p>Wait a user-agent-defined amount of time. If the "<span>run
+   a worker</span>" processing model defined above immediately starts
+   running event listeners registered for the <code
+   title="event-close">close</code> event, this time should not be
+   zero &mdash; the idea is that the <code
+   title="event-close">close</code> event can be used to clean up
+   when shutting down unexpectedly.</p></li>
+-->
+
+   <li><p>If there are any <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-task" title="concept-task">tasks</a>
+   queued in the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task
+   queue">task queues</a><!-- v2-onclose other than the <code
+   title="event-close">close</code> event that this algorithm just
+   added-->, discard them without processing them.</p></li>
+
+<!-- v2-onclose
+   <li><p>If the <code title="event-close">close</code> event that
+   this algorithm just queued hasn't yet been dispatched, then abort
+   the script currently running in the worker.</p></li>
+-->
+
+   <li><p>Wait a user-agent-defined amount of time.</p></li>
+
+   <li><p>Abort the script currently running in the worker<!--
+   v2-onclose (if any script is running, then it will be a handler for
+   the <code title="event-close">close</code> event)-->.</p></li>
+
+  </ol><p>User agents may invoke the "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#kill-a-worker">kill a worker</a>"
+  processing model on a worker at any time, e.g. in response to user
+  requests, in response to CPU quota management, or when a worker
+  stops being an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#active-needed-worker">active needed worker</a> if the worker
+  continues executing even after its <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag was
+  set to true.</p>
+
+  <hr><p>When a user agent is to <dfn id="terminate-a-worker">terminate a worker</dfn> it must run
+  the following steps in parallel with the worker's main loop (the
+  "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">run a worker</a>" processing model defined above):</p>
+
+  <ol><li><p>Set the worker's <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object's
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag to
+   true.</p></li>
+
+   <li><p>If there are any <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-task" title="concept-task">tasks</a>
+   queued in the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-loop">event loop</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-queue" title="task
+   queue">task queues</a>, discard them without processing
+   them.</p></li>
+
+   <li><p>Abort the script currently running in the worker.</p></li>
+
+   <li><p>If the worker's <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object is
+   actually a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code> object (i.e. the
+   worker is a dedicated worker), then empty the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#port-message-queue">port message
+   queue</a> of the port that the worker's implicit port is
+   entangled with.</p></li>
+
+  </ol><hr><p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-source">task source</a> for the tasks mentioned above is the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-manipulation-task-source">DOM manipulation task source</a>.</p>
+
+
+  <h4 id="runtime-script-errors-0"><span class="secno">9.2.6 </span>Runtime script errors</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#runtime-script-errors-0">#runtime-script-errors-0</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2011-12-10</a> <a>lpeng564@gmail.com</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=runtime-script-errors-0">Edit this information...</a></p></div>
+
+  <p>Whenever an uncaught runtime script error occurs in one of the
+  worker's scripts, if the error did not occur while handling a
+  previous script error, the user agent must <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#report-the-error">report the
+  error</a> at the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#url">URL</a> of the resource that contained
+  the script, with the position (line number and column number) where
+  the error occurred, in the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> of the scripts
+  running in the worker, using the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code>
+  object's <code title="handler-WorkerGlobalScope-onerror"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-workerglobalscope-onerror">onerror</a></code> attribute.
+  </p>
+
+  <p>For shared workers, if the error is still <i title="concept-error-nothandled"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-error-nothandled">not handled</a></i> afterwards, or if
+  the error occurred while handling a previous script error, the error
+  may be reported to the user.
+  </p>
+
+  <p>For dedicated workers, if the error is still <i title="concept-error-nothandled"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-error-nothandled">not handled</a></i> afterwards, or if
+  the error occurred while handling a previous script error, the user
+  agent must <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#queue-a-task">queue a task</a> to fire an event that uses the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#errorevent">ErrorEvent</a></code> interface, with the name <code title="event-error">error</code>, that doesn't bubble and is
+  cancelable, with its <code title="dom-ErrorEvent-message"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-errorevent-message">message</a></code>, <code title="dom-ErrorEvent-filename"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-errorevent-filename">filename</a></code>, and <code title="dom-ErrorEvent-lineno"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-errorevent-lineno">lineno</a></code> attributes initialized
+  appropriately, at the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object associated with the
+  worker. If the event is not canceled, the user agent must act as if
+  the uncaught runtime script error had occurred in the global scope
+  that the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object is in, thus repeating the entire
+  runtime script error reporting process one level up.</p>
+
+  <p>If the implicit port connecting the worker to its
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object has been disentangled (i.e. if the parent
+  worker has been terminated), then the user agent must act as if the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object had no <code title="event-error">error</code> event handler and as if that
+  worker's <code title="handler-WorkerGlobalScope-onerror"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-workerglobalscope-onerror">onerror</a></code> attribute
+  was null, but must otherwise act as described above.</p>
+
+  <p class="note">Thus, error reports proagate up to the chain of
+  dedicated workers up to the original <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code>, even if
+  some of the workers along this chain have been terminated and
+  garbage collected.</p>
+
+  <p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-source">task source</a> for the task mentioned above is the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-manipulation-task-source">DOM manipulation task source</a>.</p>
+
+  <hr><pre class="idl">[Constructor(DOMString type, optional <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#erroreventinit">ErrorEventInit</a> eventInitDict)]
+interface <dfn id="errorevent">ErrorEvent</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#event">Event</a> {
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-errorevent-message" title="dom-ErrorEvent-message">message</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-errorevent-filename" title="dom-ErrorEvent-filename">filename</a>;
+  readonly attribute unsigned long <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-errorevent-lineno" title="dom-ErrorEvent-lineno">lineno</a>;
+};
+
+dictionary <dfn id="erroreventinit">ErrorEventInit</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#eventinit">EventInit</a> {
+  DOMString message;
+  DOMString filename;
+  unsigned long lineno;
+};</pre>
+
+  <p>The <dfn id="dom-errorevent-message" title="dom-ErrorEvent-message"><code>message</code></dfn> attribute
+  must return the value it was initialized to. When the object is
+  created, this attribute must be initialized to the empty string. It
+  represents the error message.</p>
+
+  <p>The <dfn id="dom-errorevent-filename" title="dom-ErrorEvent-filename"><code>filename</code></dfn>
+  attribute must return the value it was initialized to. When the
+  object is created, this attribute must be initialized to the empty
+  string. It represents the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> of the script in
+  which the error originally occurred.</p>
+
+  <p>The <dfn id="dom-errorevent-lineno" title="dom-ErrorEvent-lineno"><code>lineno</code></dfn>
+  attribute must return the value it was initialized to. When the
+  object is created, this attribute must be initialized to zero. It
+  represents the line number where the error occurred in the
+  script.</p>
+
+
+
+  <h4 id="creating-workers"><span class="secno">9.2.7 </span>Creating workers</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#creating-workers">#creating-workers</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=creating-workers">Edit this information...</a></p></div>
+
+  <h5 id="the-abstractworker-abstract-interface"><span class="secno">9.2.7.1 </span>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#abstractworker">AbstractWorker</a></code> abstract interface</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-abstractworker-abstract-interface">#the-abstractworker-abstract-interface</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=the-abstractworker-abstract-interface">Edit this information...</a></p></div>
+
+  <pre class="idl">[NoInterfaceObject]
+interface <dfn id="abstractworker">AbstractWorker</dfn> {
+  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-abstractworker-onerror" title="handler-AbstractWorker-onerror">onerror</a>;
+<!-- v2-onclose  [TreatNonCallableAsNull] attribute <span>Function</span>? <span title="handler-AbstractWorker-onclose">onclose</span>; -->
+};</pre>
+
+  <p>The following are the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers">event handlers</a> (and their
+  corresponding <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type" title="event handler event type">event handler
+  event types</a>) that must be supported, as IDL attributes, by
+  objects implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#abstractworker">AbstractWorker</a></code> interface:</p>
+
+  <table><thead><tr><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers" title="event handlers">Event handler</a> </th><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type">Event handler event type</a>
+   </th></tr></thead><tbody><tr><td><dfn id="handler-abstractworker-onerror" title="handler-AbstractWorker-onerror"><code>onerror</code></dfn> </td><td> <code title="event-error">error</code>
+<!-- v2-onclose    <tr><td><dfn title="handler-AbstractWorker-onclose"><code>onclose</code></dfn> <td> <code title="event-close">close</code> -->
+  </td></tr></tbody></table><h5 id="dedicated-workers-and-the-worker-interface"><span class="secno">9.2.7.2 </span>Dedicated workers and the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> interface</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicated-workers-and-the-worker-interface">#dedicated-workers-and-the-worker-interface</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=dedicated-workers-and-the-worker-interface">Edit this information...</a></p></div>
+
+  <pre class="idl">[<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker" title="dom-Worker">Constructor</a>(DOMString scriptURL)]
+interface <dfn id="worker">Worker</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#eventtarget">EventTarget</a> {
+  void <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker-terminate" title="dom-Worker-terminate">terminate</a>();
+
+  void <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker-postmessage" title="dom-Worker-postMessage">postMessage</a>(any message, optional sequence&lt;<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-dom-interfaces.html#transferable">Transferable</a>&gt; transfer);<!--
+  <span>MessagePort</span> <span title="dom-Worker-startConversation">startConversation</span>(any message);-->
+  [TreatNonCallableAsNull] attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#function">Function</a>? <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#handler-worker-onmessage" title="handler-Worker-onmessage">onmessage</a>;
+};
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#abstractworker">AbstractWorker</a>;</pre>
+
+  <p>The <dfn id="dom-worker-terminate" title="dom-Worker-terminate"><code>terminate()</code></dfn> method,
+  when invoked, must cause the "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#terminate-a-worker">terminate a worker</a>"
+  algorithm to be run on the worker with with the object is
+  associated.</p>
+
+  <p><code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> objects act as if they had an implicit
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> associated with them. This port is part of
+  a channel that is set up when the worker is created, but it is not
+  exposed. This object must never be garbage collected before the
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object.</p>
+
+  <p>All messages received by that port must immediately be retargeted
+  at the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object.</p>
+
+  <p>The <dfn id="dom-worker-postmessage" title="dom-Worker-postMessage"><code>postMessage()</code></dfn><!--
+  and <dfn
+  title="dom-Worker-startConversation"><code>startConversation()</code></dfn>-->
+  method<!--s (startConversation)--> on <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> objects
+  must act as if, when invoked, it<!--/they (startConversation)-->
+  immediately invoked the method of the same name on the port, with
+  the same arguments, and returned the same return value.</p>
+
+  <div class="example">
+
+   <p>The <code title="dom-Worker-postMessage"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker-postmessage">postMessage()</a></code>
+   method's first argument can be structured data:</p>
+
+   <pre>worker.postMessage({opcode: 'activate', device: 1938, parameters: [23, 102]});</pre>
+
+  </div>
+
+  <p>The following are the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers">event handlers</a> (and their
+  corresponding <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type" title="event handler event type">event handler
+  event types</a>) that must be supported, as IDL attributes, by
+  objects implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> interface:</p>
+
+  <table><thead><tr><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers" title="event handlers">Event handler</a> </th><th><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type">Event handler event type</a>
+   </th></tr></thead><tbody><tr><td><dfn id="handler-worker-onmessage" title="handler-Worker-onmessage"><code>onmessage</code></dfn> </td><td> <code title="event-message"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#event-message">message</a></code>
+  </td></tr></tbody></table><hr><p>When the <dfn id="dom-worker" title="dom-Worker"><code>Worker(<var title="">scriptURL</var>)</code></dfn> constructor is invoked, the
+  user agent must run the following steps:</p>
+
+  <ol><li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#resolve-a-url" title="resolve a url">Resolve</a> the <var title="">scriptURL</var> argument relative to the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#entry-script">entry
+   script</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-base-url" title="script&#39;s base URL">base URL</a>,
+   when the method is invoked.</p></li>
+
+   <li><p>If this fails, throw a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#syntaxerror">SyntaxError</a></code>
+   exception.</p></li>
+
+   <li>
+
+    <p>If the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> of the resulting <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute
+    URL</a> is not the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#same-origin" title="same origin">same</a> as the
+    origin of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#entry-script">entry script</a>, then throw a
+    <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#securityerror">SecurityError</a></code> exception.</p>
+
+    <p class="note">Thus, scripts must be external files with the same
+    scheme as the original page: you can't load a script from a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#data-protocol" title="data protocol"><code title="">data:</code> URL</a> or
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#javascript-protocol" title="javascript protocol"><code title="">javascript:</code> URL</a>, and an <code>https:</code>
+    page couldn't start workers using scripts with <code>http:</code>
+    URLs.</p>
+
+   </li>
+
+   <li><p>Create a new <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code>
+   object. Let <var title="">worker global scope</var> be this new
+   object.</p></li>
+
+   <li><p>Create a new <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker">Worker</a></code> object, associated with
+   <var title="">worker global scope</var>. Let <var title="">worker</var> be this new object.</p></li>
+
+   <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
+   owned by the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global
+   object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that
+   invoked the constructor. Let this be the <var title="">outside
+   port</var>.</p></li>
+
+   <li><p>Associate the <var title="">outside port</var> with <var title="">worker</var>.</p></li>
+
+   <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
+   owned by <var title="">worker global scope</var>. Let <var title="">inside port</var> be this new object.</p></li>
+
+   <li><p>Associate <var title="">inside port</var> with <var title="">worker global scope</var>.</p></li>
+
+   <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#entangle">Entangle</a> <var title="">outside port</var> and
+   <var title="">inside port</var>.</p></li>
+
+   <li><p>Return <var title="">worker</var>, and run the following
+   steps asynchronously.</p></li>
+
+<!-- (this is done by the "run a worker" algorithm)
+   <li><p>Enable <var title="">inside port</var>'s <span>port message
+   queue</span>.</p></li>
+-->
+
+   <li><p>Enable <var title="">outside port</var>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#port-message-queue">port message
+   queue</a>.</p></li>
+
+   <li>
+
+    <p>Let <var title="">docs</var> be the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#list-of-relevant-document-objects-to-add">list of relevant
+    <code>Document</code> objects to add</a> given the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that invoked the
+    constructor.</p>
+
+   </li>
+
+   <li>
+
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#add-a-document-to-the-worker's-documents" title="add a document to the worker&#39;s documents">Add to
+    <var title="">worker global scope</var>'s list of <span>the
+    worker's <code>Document</code>s</span></a> the
+    <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> objects in <var title="">docs</var>.</p>
+
+   </li>
+
+   <li>
+
+    <p>If the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global object</a>
+    of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that invoked the
+    constructor is a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object (i.e. we
+    are creating a nested worker), add <var title="">worker global
+    scope</var> to the list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-workers">the worker's workers</a> of the
+    <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object that is the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that invoked the
+    constructor.</p>
+
+   </li>
+
+   <li>
+
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">Run a worker</a> for the resulting <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute
+    URL</a>, with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-browsing-context">script's browsing context</a> of the
+    script that invoked the method as the <var title="">owner browsing
+    context</var>, with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-document">script's document</a> of the
+    script that invoked the method as the <var title="">owner
+    document</var>, with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#entry-script">entry
+    script</a> as the <var title="">owner origin</var>, and with
+    <var title="">worker global scope</var> as the global scope.</p>
+
+   </li>
+
+  </ol><p>This constructor must be visible when the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global
+  object</a> is either a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#window">Window</a></code> object or an object
+  implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a></code> interface.</p>
+
+
+  <h5 id="shared-workers-and-the-sharedworker-interface"><span class="secno">9.2.7.3 </span>Shared workers and the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworker">SharedWorker</a></code> interface</h5><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#shared-workers-and-the-sharedworker-interface">#shared-workers-and-the-sharedworker-interface</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=shared-workers-and-the-sharedworker-interface">Edit this information...</a></p></div>
+
+  <pre class="idl">[<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworker" title="dom-SharedWorker">Constructor</a>(DOMString scriptURL, optional DOMString name)]
+interface <dfn id="sharedworker">SharedWorker</dfn> : <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#eventtarget">EventTarget</a> {
+  readonly attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a> <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworker-port" title="dom-SharedWorker-port">port</a>;
+};
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworker">SharedWorker</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#abstractworker">AbstractWorker</a>;</pre>
+
+  <p>The <dfn id="dom-sharedworker-port" title="dom-SharedWorker-port"><code>port</code></dfn>
+  attribute must return the value it was assigned by the object's
+  constructor. It represents the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#messageport">MessagePort</a></code> for
+  communicating with the shared worker.</p>
+
+  <p>When the <dfn id="dom-sharedworker" title="dom-SharedWorker"><code>SharedWorker(<var title="">scriptURL</var>, <var title="">name</var>)</code></dfn>
+  constructor is invoked, the user agent must run the following
+  steps:</p>
+
+  <ol><li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#resolve-a-url" title="resolve a url">Resolve</a> the <var title="">scriptURL</var> argument.</p></li>
+
+   <li><p>If this fails, throw a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#syntaxerror">SyntaxError</a></code>
+   exception.</p></li>
+
+   <li><p>Otherwise, let <var title="">scriptURL</var> be the
+   resulting <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a>.</p></li>
+
+   <li><p>Let <var title="">name</var> be the value of the second
+   argument, or the empty string if the second argument was
+   omitted.</p></li>
+
+   <li>
+
+    <p>If the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> of <var title="">scriptURL</var> is
+    not the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#same-origin" title="same origin">same</a> as the origin of the
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#entry-script">entry script</a>, then throw a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#securityerror">SecurityError</a></code>
+    exception.</p>
+
+    <p class="note">Thus, scripts must be external files with the same
+    scheme as the original page: you can't load a script from a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#data-protocol" title="data protocol"><code title="">data:</code> URL</a> or
+    <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#javascript-protocol" title="javascript protocol"><code title="">javascript:</code> URL</a>, and an <code>https:</code>
+    page couldn't start workers using scripts with <code>http:</code>
+    URLs.</p>
+
+   </li>
+
+   <li>
+
+    <p>Let <var title="">docs</var> be the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#list-of-relevant-document-objects-to-add">list of relevant
+    <code>Document</code> objects to add</a> given the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that invoked the
+    constructor.</p>
+
+   </li>
+
+   <li>
+
+    <p>Execute the following substeps atomically:</p>
+
+    <ol><li><p>Create a new <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworker">SharedWorker</a></code> object, which will
+     shortly be associated with a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code>
+     object. Let this <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworker">SharedWorker</a></code> object be <var title="">worker</var>.</p></li>
+
+     <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
+     owned by the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global
+     object</a> of the script that invoked the method. Let this be
+     the <var title="">outside port</var>.</p></li>
+
+     <li><p>Assign <var title="">outside port</var> to the <code title="dom-SharedWorker-port"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworker-port">port</a></code> attribute of <var title="">worker</var>.</p></li>
+
+     <li><p>Let <var title="">worker global scope</var> be
+     null.</p></li>
+
+     <li>
+
+      <p>If <var title="">name</var> is not the empty string and there
+      exists a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object whose <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a> flag is
+      false, whose <code title="dom-WorkerGlobalScope-name">name</code> attribute is
+      exactly equal to <var title="">name</var>, and whose <code title="dom-WorkerGlobalScope-location"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-location">location</a></code> attribute
+      represents an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#same-origin">same
+      origin</a> as <var title="">scriptURL</var>, then let <var title="">worker global scope</var> be that
+      <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object.</p>
+
+      <p>Otherwise, if <var title="">name</var> is the empty string
+      and there exists a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code> object
+      whose <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-closing" title="dom-WorkerGlobalScope-closing">closing</a>
+      flag is false, whose <code title="dom-WorkerGlobalScope-name">name</code> attribute is the
+      empty string, and whose <code title="dom-WorkerGlobalScope-location"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-location">location</a></code> attribute
+      represents an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> that is exactly equal to
+      <var title="">scriptURL</var>, then let <var title="">worker
+      global scope</var> be that <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code>
+      object.</p>
+
+     </li>
+
+     <li>
+
+      <p>If <var title="">worker global scope</var> is not null, but
+      the user agent has been configured to disallow communication
+      between the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that
+      invoked the constructor and the worker represented by the <var title="">worker global scope</var>, then set <var title="">worker global scope</var> to null.</p>
+
+      <p class="note">For example, a user agent could have a
+      development mode that isolates a particular <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#top-level-browsing-context">top-level
+      browsing context</a> from all other pages, and scripts in
+      that development mode could be blocked from connecting to shared
+      workers running in the normal browser mode.</p>
+
+     </li>
+
+     <li>
+
+      <p>If <var title="">worker global scope</var> is not null, then
+      run these steps:</p>
+
+      <ol><li><p>If <var title="">worker global scope</var>'s <code title="dom-WorkerGlobalScope-location"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-location">location</a></code>
+       attribute represents an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> that is not
+       exactly equal to <var title="">scriptURL</var>, then throw a
+       <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#urlmismatcherror">URLMismatchError</a></code> exception and abort all these
+       steps.</p></li>
+
+       <li><p>Associate <var title="">worker</var> with <var title="">worker global scope</var>.</p></li>
+
+       <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#create-a-new-messageport-object">Create a new <code>MessagePort</code>
+       object</a> owned by <var title="">worker global
+       scope</var>. Let this be the <var title="">inside
+       port</var>.</p></li>
+
+       <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#entangle">Entangle</a> <var title="">outside port</var>
+       and <var title="">inside port</var>.</p></li>
+
+       <li><p>Return <var title="">worker</var> and perform the next
+       step asynchronously.</p></li>
+
+       <li><p>Create an event that uses the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#messageevent">MessageEvent</a></code>
+       interface, with the name <code title="event-connect">connect</code>, which does not bubble, is
+       not cancelable, has no default action, has a <code title="dom-MessageEvent-data"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#dom-messageevent-data">data</a></code> attribute whose value
+       is initialized to the empty string and has a <code title="dom-MessageEvent-ports"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#dom-messageevent-ports">ports</a></code> attribute whose
+       value is initialized to a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#dfn-read-only-array" title="dfn-read-only-array">read only</a> array containing
+       only the newly created port, and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#queue-a-task">queue a task</a> to
+       dispatch the event at <var title="">worker global
+       scope</var>.</p></li>
+
+       <li>
+
+        <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#add-a-document-to-the-worker's-documents" title="add a document to the worker&#39;s documents">Add to
+        <var title="">worker global scope</var>'s list of <span>the
+        worker's <code>Document</code>s</span></a> the
+        <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> objects in <var title="">docs</var>.</p>
+
+       </li>
+
+       <li>
+
+        <p>If the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global
+        object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a>
+        that invoked the constructor is a
+        <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object, add <var title="">worker global scope</var> to the list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-workers">the
+        worker's workers</a> of the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code>
+        object that is the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global
+        object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a>
+        that invoked the constructor.</p>
+
+       </li>
+
+       <li><p>Abort all these steps.</p></li>
+
+      </ol></li>
+
+     <li><p>Create a new <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code>
+     object. Let <var title="">worker global scope</var> be this new
+     object.</p></li>
+
+     <li><p>Associate <var title="">worker</var> with <var title="">worker global scope</var>.</p></li>
+
+     <li><p>Set the <code title="dom-SharedWorkerGlobalScope-name"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-sharedworkerglobalscope-name">name</a></code> attribute of
+     <var title="">worker global scope</var> to <var title="">name</var>.</p></li>
+
+     <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
+     owned by <var title="">worker global scope</var>. Let <var title="">inside port</var> be this new object.</p></li>
+
+     <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/web-messaging.html#entangle">Entangle</a> <var title="">outside port</var> and
+     <var title="">inside port</var>.</p></li>
+
+    </ol></li>
+
+   <li><p>Return <var title="">worker</var> and perform the remaining
+   steps asynchronously.</p></li>
+
+   <li><p>Create an event that uses the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#messageevent">MessageEvent</a></code>
+   interface, with the name <code title="event-connect">connect</code>, which does not bubble, is not
+   cancelable, has no default action, has a <code title="dom-MessageEvent-data"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#dom-messageevent-data">data</a></code> attribute whose value is
+   initialized to the empty string and has a <code title="dom-MessageEvent-ports"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#dom-messageevent-ports">ports</a></code> attribute whose value
+   is initialized to a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#dfn-read-only-array" title="dfn-read-only-array">read
+   only</a> array containing only the newly created port, and
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#queue-a-task">queue a task</a> to dispatch the event at <var title="">worker global scope</var>.</p></li>
+
+   <li>
+
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#add-a-document-to-the-worker's-documents" title="add a document to the worker&#39;s documents">Add to
+    <var title="">worker global scope</var>'s list of <span>the
+    worker's <code>Document</code>s</span></a> the
+    <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code> objects in <var title="">docs</var>.</p>
+
+   </li>
+
+   <li>
+
+    <p>If the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global object</a>
+    of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that invoked the
+    constructor is a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object, add <var title="">worker global scope</var> to the list of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#the-worker's-workers">the
+    worker's workers</a> of the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code>
+    object that is the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object" title="script&#39;s global object">global
+    object</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a>
+    that invoked the constructor.</p>
+
+   </li>
+
+   <li>
+
+    <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">Run a worker</a> for <var title="">scriptURL</var>,
+    with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-browsing-context">script's browsing context</a> of the script that
+    invoked the method as the <var title="">owner browsing
+    context</var>, with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-document">script's document</a> of the
+    script that invoked the method as the <var title="">owner
+    document</var>, with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a> of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#entry-script">entry
+    script</a> as the <var title="">owner origin</var>, and with
+    <var title="">worker global scope</var> as the global scope.</p>
+
+   </li>
+
+  </ol><p>This constructor must be visible when the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global
+  object</a> is either a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#window">Window</a></code> object or an object
+  implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a></code> interface.</p>
+
+  <p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#task-source">task source</a> for the tasks mentioned above is the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#dom-manipulation-task-source">DOM manipulation task source</a>.</p>
+
+
+
+  <h3 id="apis-available-to-workers"><span class="secno">9.3 </span>APIs available to workers</h3><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#apis-available-to-workers">#apis-available-to-workers</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=apis-available-to-workers">Edit this information...</a></p></div>
+
+  <pre class="idl">[NoInterfaceObject]
+interface <dfn id="workerutils">WorkerUtils</dfn> {
+  void <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-importscripts" title="dom-WorkerGlobalScope-importScripts">importScripts</a>(DOMString... urls);
+  readonly attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a> <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-worker-navigator" title="dom-worker-navigator">navigator</a>;
+};
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#windowtimers">WindowTimers</a>;
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#windowbase64">WindowBase64</a>;</pre>
+
+
+  <p>The DOM APIs (<code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#node">Node</a></code> objects, <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#document">Document</a></code>
+  objects, etc) are not available to workers in this version of this
+  specification.</p>
+
+
+  <h4 id="importing-scripts-and-libraries"><span class="secno">9.3.1 </span>Importing scripts and libraries</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#importing-scripts-and-libraries">#importing-scripts-and-libraries</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=importing-scripts-and-libraries">Edit this information...</a></p></div>
+
+  <p>When a script invokes the <dfn id="dom-workerglobalscope-importscripts" title="dom-WorkerGlobalScope-importScripts"><code>importScripts(<var title="">urls</var>)</code></dfn> method on a
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object, the user agent must run the
+  following steps:</p>
+
+  <ol><li><p>If there are no arguments, return without doing
+   anything. Abort these steps.</p></li>
+
+   <li><p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#resolve-a-url" title="resolve a url">Resolve</a> each
+   argument.</p></li>
+
+   <li><p>If any fail, throw a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#syntaxerror">SyntaxError</a></code>
+   exception.</p></li>
+
+<!--
+   <li><p>If any of the resulting <span title="absolute URL">absolute
+   URLs</span> have an <span>origin</span> that is not the <span
+   title="same origin">same</span> as the origin of the script that
+   invoked the method, then throw a <code>SecurityError</code>
+   exception.</p></li>
+-->
+
+   <li>
+
+    <p>Attempt to <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/fetching-resources.html#fetch">fetch</a> each resource identified by the
+    resulting <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url" title="absolute URL">absolute URLs</a>, from
+    the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#entry-script">entry script</a>'s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a>, with the
+    <i>synchronous flag</i> set.</p> <!-- not http-origin privacy
+    sensitive -->
+
+   </li>
+
+   <li>
+
+    <p>For each argument in turn, in the order given, starting with
+    the first one, run these substeps:</p>
+
+    <ol><li>
+
+      <p>Wait for the fetching attempt for the corresponding resource
+      to complete.</p>
+
+      <p>If the fetching attempt failed, throw a
+      <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#networkerror">NetworkError</a></code> exception and abort all these
+      steps.</p>
+
+      <p>If the attempt succeeds, then let <var title="">source</var> be
+      the script resource <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#decoded-as-utf-8,-with-error-handling">decoded as UTF-8, with error
+      handling</a>.
+      </p>
+
+      <p>Let <var title="">language</var> be JavaScript.</p>
+
+      <p class="note">As with the worker's script, the script here is
+      always assumed to be JavaScript, regardless of the MIME
+      type.</p>
+
+     </li>
+
+     <li>
+
+      <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#create-a-script">Create a script</a>, using <var title="">source</var> as the script source, the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#url">URL</a>
+      from which <var title="">source</var> was obtained, and <var title="">language</var> as the scripting language, using the
+      same global object, browsing context, URL character encoding,
+      base URL, and script group as the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> that was created by the
+      worker's <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#run-a-worker">run a worker</a> algorithm.</p>
+
+      <p>Let the newly created <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#concept-script" title="concept-script">script</a> run until it either
+      returns, fails to parse, fails to catch an exception, or gets
+      prematurely aborted by the "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#kill-a-worker">kill a worker</a>" or
+      "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#terminate-a-worker">terminate a worker</a>" algorithms defined above.</p>
+
+      <p>If it failed to parse, then throw an ECMAScript
+      <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#syntaxerror">SyntaxError</a></code> exception and abort all these
+      steps. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/references.html#refsECMA262">[ECMA262]</a></p>
+
+      <p>If an exception was thrown or if the script was prematurely
+      aborted, then abort all these steps, letting the exception or
+      aborting continue to be processed by the script that called the
+      <code title="dom-WorkerGlobalScope-importScripts"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerglobalscope-importscripts">importScripts()</a></code>
+      method.</p>
+
+      <p>If the "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#kill-a-worker">kill a worker</a>" or "<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#terminate-a-worker">terminate a
+      worker</a>" algorithms abort the script then abort all these
+      steps.</p>
+
+     </li>
+
+    </ol></li>
+
+  </ol><h4 id="the-workernavigator-object"><span class="secno">9.3.2 </span>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a></code> object</h4>
+
+  <p>The <dfn id="dom-worker-navigator" title="dom-worker-navigator"><code>navigator</code></dfn> attribute
+  of the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a></code> interface must return an instance of
+  the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a></code> interface, which represents the
+  identity and state of the user agent (the client):</p>
+
+  <pre class="idl">interface <dfn id="workernavigator">WorkerNavigator</dfn> {};
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#navigatorid">NavigatorID</a>;
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a> implements <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#navigatoronline">NavigatorOnLine</a>;</pre>
+
+  <p>Objects implementing the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a></code> interface
+  also implement the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#navigatorid">NavigatorID</a></code> and
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#navigatoronline">NavigatorOnLine</a></code> interfaces.
+  </p>
+
+  <p>This <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workernavigator">WorkerNavigator</a></code> interface must not exist if the
+  interface's <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#relevant-namespace-object">relevant namespace object</a> is a
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#window">Window</a></code> object. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/references.html#refsWEBIDL">[WEBIDL]</a></p>
+
+
+
+
+  <h4 id="interface-objects-and-constructors"><span class="secno">9.3.3 </span>Interface objects and constructors</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#interface-objects-and-constructors">#interface-objects-and-constructors</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=interface-objects-and-constructors">Edit this information...</a></p></div>
+
+  <p>There must be no interface objects and constructors available in
+  the global scope of scripts whose <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global
+  object</a> is a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> object except for
+  the following:</p>
+
+  <ul><li><p><code>XMLHttpRequest</code> and all interface objects and
+   constructors defined by the XMLHttpRequest specifications, except
+   that the <span>document response entity body</span> must always be
+   null. The <span><code>XMLHttpRequest</code> base URL</span> is the
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-base-url">script's base URL</a>; the
+   <span><code>XMLHttpRequest</code> origin</span> is the script's
+   <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/origin-0.html#origin">origin</a>. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/references.html#refsXHR">[XHR]</a></p></li>
+
+   <li><p>The interface objects and constructors defined by this
+   specification.</p></li>
+
+   <li><p>Constructors defined by specifications that explicitly say
+   that they should be visible when the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global
+   object</a> is a <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dedicatedworkerglobalscope">DedicatedWorkerGlobalScope</a></code>, a
+   <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#sharedworkerglobalscope">SharedWorkerGlobalScope</a></code>, or an object implementing the
+   <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a></code> interface; the interfaces of any objects
+   with such constructors; and the interfaces of any objects made
+   accessible through APIs exposed by those constructors or made
+   accessible through interfaces to be implemented by any objects that
+   are themselves accessible to scripts whose <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#script's-global-object">script's global
+   object</a> implements the <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerutils">WorkerUtils</a></code>
+   interface.</p></li>
+
+  </ul><p class="note">These requirements do not override the requirements
+  defined by the Web IDL specification, in particular concerning the
+  visibility of interfaces annotated with the <code title="">[NoInterfaceObject]</code> extended attribute.</p>
+
+
+  <h4 id="worker-locations"><span class="secno">9.3.4 </span>Worker locations</h4><div class="status LC"><p><strong>Ready for first implementations</strong></p><p class="idref"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#worker-locations">#worker-locations</a></p><div class="implementations"><p class="IE NONE" title="Latest Internet Explorer beta: does not support this feature">Latest Internet Explorer beta: unknown</p><p class="Firefox NONE" title="Latest Firefox trunk nightly build: does not support this feature">Latest Firefox trunk nightly build: unknown</p><p class="Safari NONE" title="Latest WebKit or Chromium trunk build: does not support this feature">Latest WebKit or Chromium trunk build: unknown</p><p class="Opera NONE" title="Latest Opera beta or preview build: does not support this feature">Latest Opera beta or preview build: unknown</p><p class="Shims NONE" title="JavaScript libraries, plugins, etc: does not support this feature">JavaScript libraries, plugins, etc: unknown</p></div><p class="last-edit"><a>2009-10-23</a> <a>Hixie</a></p><p class="edit-link"><a href="http://www.whatwg.org/specs/web-apps/current-work/edit-section.html?section=worker-locations">Edit this information...</a></p></div>
+
+  <pre class="idl">interface <dfn id="workerlocation">WorkerLocation</dfn> {
+  // <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#url-decomposition-idl-attributes">URL decomposition IDL attributes</a>
+  stringifier readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-href" title="dom-WorkerLocation-href">href</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-protocol" title="dom-WorkerLocation-protocol">protocol</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-host" title="dom-WorkerLocation-host">host</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-hostname" title="dom-WorkerLocation-hostname">hostname</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-port" title="dom-WorkerLocation-port">port</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-pathname" title="dom-WorkerLocation-pathname">pathname</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-search" title="dom-WorkerLocation-search">search</a>;
+  readonly attribute DOMString <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-hash" title="dom-WorkerLocation-hash">hash</a>;
+};</pre>
+
+  <p>A <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerlocation">WorkerLocation</a></code> object represents an <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute
+  URL</a> set at its creation.</p>
+
+  <p>The <dfn id="dom-workerlocation-href" title="dom-WorkerLocation-href"><code>href</code></dfn>
+  attribute must return the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute URL</a> that the object
+  represents.</p>
+
+  <p>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerlocation">WorkerLocation</a></code> interface also has the complement
+  of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#url-decomposition-idl-attributes">URL decomposition IDL attributes</a>, <dfn id="dom-workerlocation-protocol" title="dom-WorkerLocation-protocol"><code>protocol</code></dfn>,
+  <dfn id="dom-workerlocation-host" title="dom-WorkerLocation-host"><code>host</code></dfn>, <dfn id="dom-workerlocation-port" title="dom-WorkerLocation-port"><code>port</code></dfn>, <dfn id="dom-workerlocation-hostname" title="dom-WorkerLocation-hostname"><code>hostname</code></dfn>,
+  <dfn id="dom-workerlocation-pathname" title="dom-WorkerLocation-pathname"><code>pathname</code></dfn>,
+  <dfn id="dom-workerlocation-search" title="dom-WorkerLocation-search"><code>search</code></dfn>,
+  and <dfn id="dom-workerlocation-hash" title="dom-WorkerLocation-hash"><code>hash</code></dfn>.
+  These must follow the rules given for <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#url-decomposition-idl-attributes">URL decomposition IDL
+  attributes</a>, with the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#concept-uda-input" title="concept-uda-input">input</a> being the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#absolute-url">absolute
+  URL</a> that the object represents (same as the <code title="dom-WorkerLocation-href"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#dom-workerlocation-href">href</a></code> attribute), and the
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/urls.html#concept-uda-setter" title="concept-uda-setter">common setter action</a> being a
+  no-op, since the attributes are defined to be readonly.
+  </p>
+
+  <p>The <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html#workerlocation">WorkerLocation</a></code> interface must not exist if the
+  interface's <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#relevant-namespace-object">relevant namespace object</a> is a
+  <code><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#window">Window</a></code> object. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/references.html#refsWEBIDL">[WEBIDL]</a></p>
+
+
+
+
+
+
+  </div><!--data-component-->
+
+
+
+<!--POSTMSG-->
+
+  <script src="./9 Web workers — HTML Standard_files/fragment-links.js"></script><div id="configUI"><p id="updatesUI"><label><input type="checkbox" id="updatesEnabled"> Watch for updates</label></p><p class="loginUI"><a href="http://www.whatwg.org/specs/web-apps/current-work/status-documentation.html">Specification annotation system</a>: <input type="button" value="Login..."> <span title=""></span></p><p class="subUI"><input type="button" value="Edit Subscriptions..."></p></div><p id="updatesStatus"></p><script src="./9 Web workers — HTML Standard_files/reviewer.js"></script><script src="./9 Web workers — HTML Standard_files/updater.js"></script><script src="./9 Web workers — HTML Standard_files/dfn.js"></script><script src="./9 Web workers — HTML Standard_files/status.js"></script><div id="reviewer" class="on"><input value="➡" id="reviewShowHide" type="button" onclick="toggleReviewMode()"> <span id="reviewSection">Click the location of the error to select it, then type your message here:</span> <input size="60" id="reviewCommentText" onkeydown="if (event.keyCode == 13) { submitReviewComment(this, this.nextSibling.nextSibling) }"> <input value="Submit Review Comment" type="button" onclick="submitReviewComment(this.previousSibling.previousSibling, this)"> <input value="Help" type="button" onclick="showReviewHelp()"></div><div class="status current" hidden=""></div></body></html>

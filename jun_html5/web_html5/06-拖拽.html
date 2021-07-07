@@ -1,0 +1,81 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	div{
+		border-width: 1px;
+		border-color: red;
+		border-style: solid;
+	}
+	
+	#dragDiv{
+		width: 100px;
+		height: 100px;
+	}
+	#resultDiv{
+		width: 300px;
+		height: 300px;
+	}
+
+</style>
+
+<script type="text/javascript" src="Scripts/jquery-1.5.1.js"></script>
+<script type="text/javascript">
+
+	function init() {
+		
+		document.ondragover = function (e) {
+			e.preventDefault();
+		}
+		
+		document.ondrop = function (e) {
+			e.preventDefault();
+		}
+		
+		
+		var dragDiv = document.getElementById("dragDiv");
+		var resultDiv = document.getElementById("resultDiv");
+		
+		//addEventListener("dragstart\dragend\drop", function(ex){});
+		dragDiv.addEventListener("dragstart",  function(ex){
+			
+			var data = ex.dataTransfer;
+			
+			data.setData("text/plain", this.id);
+			
+		});
+		
+		resultDiv.addEventListener("dragend",  function(e){
+			
+			e.preventDefault();
+		});
+		
+		resultDiv.addEventListener("drop",  function(ex){
+			
+			var data = ex.dataTransfer;
+			
+			var id = data.getData("text/plain");
+			
+			$("#resultDiv").append($("#" + id));
+		});
+		
+	}
+</script>
+
+
+</head>
+<body onload="init()">
+
+<div id="dragDiv" draggable="true">
+	被拖拽的元素
+</div>
+<div id="resultDiv">
+	目标元素
+</div>
+
+
+</body>
+</html>

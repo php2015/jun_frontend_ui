@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.ArticleDAO">
+
+    <resultMap id="articleResultMap" type="article">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="author" column="author"/>
+        <result property="content" column="content" />
+        <result property="abstracts" column="abstracts" />
+        <result property="pubTime" column="pub_time" />
+        <association property="articleType" javaType="com.gs.bean.ArticleType">
+            <id property="id" column="at_id"/>
+            <id property="name" column="at_name"/>
+        </association>
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="articleResultMap">
+        <![CDATA[
+        select * from t_article where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="article" resultMap="articleResultMap">
+        <![CDATA[
+        select * from t_article
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="articleResultMap">
+        <![CDATA[
+        select t.*, tat.id as at_id, tat.name as at_name from t_article t, t_article_type tat where 1 = 1 and t.type_id = tat.id
+        ]]>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="queryByPagerTypeAndCriteria" resultType="list" resultMap="articleResultMap">
+        <![CDATA[
+        select t.* from t_article t where 1 = 1
+        ]]>
+        <if test="type != null and type !=''">
+            and type_id = (select id from t_article_type where name = #{type})
+        </if>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_article where 1 = 1
+        ]]>
+    </select>
+
+    <select id="countByTypeCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_article where 1 = 1
+        ]]>
+        <if test="type != null and type != ''">
+            and type_id = (select id from t_article_type where name = #{type})
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="article">
+        <![CDATA[
+        insert into t_article(title, type_id, author, content, abstracts, pub_time) values(#{title}, #{articleType.id}, #{author}, #{content}, #{abstracts}, #{pubTime})
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="article">
+        <![CDATA[
+        update t_article set title = #{title}, type_id=#{articleType.id}, author = #{author}, content = #{content}, abstracts=#{abstracts} where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

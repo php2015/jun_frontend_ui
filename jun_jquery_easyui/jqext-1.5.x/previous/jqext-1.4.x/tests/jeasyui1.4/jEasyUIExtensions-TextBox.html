@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - TextBox</title>
+
+    <link href="../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+
+    <script src="../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../jeasyui-extensions/jeasyui.extensions.validatebox.js"></script>
+    <script src="../../jeasyui-extensions/jeasyui.extensions.textbox.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn1").click(function () {
+                $("#t2").textbox("setIconCls", "icon-clear");
+            });
+
+            $("#btn2").click(function () {
+                $("#t2").textbox("appendIcon", { iconCls: "icon-no", handler: function (e) { alert(e.data); } });
+            });
+
+            $("#btn3").click(function () {
+                $("#t2").textbox("insertIcon", { iconCls: "icon-cancel", index: 2, handler: function (e) { alert(e.data); } });
+            });
+
+            $("#btn4").click(function () {
+                $("#t2").textbox("removeIcon", 0);
+            });
+
+            $("#btn5").click(function () {
+                $("#t2").textbox("enableIcon", 0);
+            });
+
+            $("#btn6").click(function () {
+                $("#t2").textbox("disableIcon", 0);
+            });
+
+            $("#btn7").click(function () {
+                $("#t2").textbox("setIcon", { iconCls: "icon-clear", handler: function () { alert(1); }, index: 0 });
+            });
+
+            $("#btn8").click(function () {
+                $("#t2").textbox("setRequired", true);
+            });
+
+            $("#btn9").click(function () {
+                $("#t2").textbox("setPrompt", "input...");
+            });
+
+            $("#btn10").click(function () {
+                $("#t2").textbox("setButtonText", "i'm a button");
+            });
+
+            $("#btn11").click(function () {
+                $("#t2").textbox("setButtonIcon", "icon-search");
+            });
+
+
+            $("#t4btn1").click(function () {
+                $("#t4").textbox("setIconCls", "icon-remove");
+            });
+
+        });
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <input id="t1" class="easyui-textbox" type="text" style="width: 280px;" data-options="
+               iconCls: 'icon-edit',
+               icons: [ { iconCls: 'icon-search' }, { iconCls: 'icon-ok' } ],
+               buttonText: 'clickme',
+               //disabled: true,
+               required: true,
+               buttonIcon: 'icon-add', buttonAlign: 'right'
+               " />
+        <hr />
+        <input id="btn1" type="button" value="setIconCls" />
+        <input id="btn2" type="button" value="appendIcon" />
+        <input id="btn3" type="button" value="insertIcon" />
+        <input id="btn4" type="button" value="removeIcon" />
+        <input id="btn5" type="button" value="enableIcon" />
+        <input id="btn6" type="button" value="disableIcon" />
+        <br /><br />
+        <input id="btn7" type="button" value="setIcon" />
+        <input id="btn8" type="button" value="setRequired" />
+        <input id="btn9" type="button" value="setPrompt" />
+        <input id="btn10" type="button" value="setButtonText" />
+        <input id="btn11" type="button" value="setButtonIcon" />
+
+        <br /><br />
+        <hr />
+        <br /><br />
+
+        <input id="t2" class="easyui-textbox" type="text" style="width: 280px;" data-options="
+               iconCls: 'icon-edit', prompt: '请输入...',
+               icons: [
+                    { iconCls: 'icon-search', handler: function() { alert('search'); } }
+               ]
+               " />
+        <hr />
+        <br /><br />
+        <hr />
+
+        <input id="t3" class="easyui-textbox" type="text" style="width: 280px;" data-options="
+               iconCls: 'icon-edit', iconAlign: 'left', prompt: '请输入...',
+               icons: [
+                    { iconCls: 'icon-search' },
+                    { iconCls: 'icon-ok' }
+               ],
+               buttonText: '提交', buttonIcon: 'icon-edit', buttonAlign: 'right'
+               " />
+
+        <br /><br />
+        <hr /><hr />
+        <br /><br />
+
+        <input id="t4" class="easyui-textbox" type="text" maxlength="4" style="width: 280px;" data-options="
+               
+               " />
+        <hr />
+        <a id="t4btn1" class="easyui-linkbutton" href="javascript: void(0);">setIconCls</a>
+
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+</body>
+</html>

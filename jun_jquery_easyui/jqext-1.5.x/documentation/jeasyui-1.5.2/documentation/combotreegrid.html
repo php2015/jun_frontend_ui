@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="html5,jquery,ui,widgets,ajax,ria,web framekwork,web development,easy,easyui,datagrid,treegrid,tree">
+		<meta name="description" content="jQuery EasyUI is a complete framework for HTML5 web page. It provides easy to use components for building modern, interactive, javascript applications that work on pc and mobile devices.">
+		<title>combotreegrid - Documentation - jQuery EasyUI</title>
+        <link rel="stylesheet" href="/css/kube.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../prettify/prettify.css">
+		<script type="text/javascript" src="../../prettify/prettify.js"></script>
+		<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+								$('textarea[name="code-combotreegrid"]').each(function(){
+					var data = $(this).val();
+					data = data.replace(/(\r\n|\r|\n)/g, '\n');
+					if (data.indexOf('\t') == 0){
+						data = data.replace(/^\t/, '');
+						data = data.replace(/\n\t/g, '\n');
+					}
+					data = data.replace(/\t/g, '    ');
+					var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
+					pre.text(data);
+					$(this).remove();
+				});
+				prettyPrint();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="header" class="group wrap header">
+			<div class="content">
+	<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+		<span>EasyUI</span>
+	</div>
+	<div id="elogo" class="navbar navbar-left">
+		<ul>
+			<li>
+				<a href="/index.php"><img src="/images/logo2.png" alt="jQuery EasyUI"/></a>
+			</li>
+		</ul>
+	</div>
+	<div id="navbar-1" class="navbar navbar-right">
+		<ul>
+			<li><a href="/index.php">Home</a></li>
+			<li><a href="/demo/main/index.php">Demo</a></li>
+			<li><a href="/tutorial/index.php">Tutorial</a></li>
+			<li><a href="/documentation/index.php">Documentation</a></li>
+			<li><a href="/download/index.php">Download</a></li>
+			<li><a href="/extension/index.php">Extension</a></li>
+			<li><a href="/contact.php">Contact</a></li>
+			<li><a href="/forum/index.php">Forum</a></li>
+		</ul>
+	</div>
+	<div style="clear:both"></div>
+</div>
+<script type="text/javascript">
+	function setNav(){
+		var demosubmenu = $('#demo-submenu');
+		if (demosubmenu.length){
+			if ($(window).width() < 450){
+				demosubmenu.find('a:last').hide();
+			} else {
+				demosubmenu.find('a:last').show();
+			}
+		}
+		if ($(window).width() < 767){
+			$('.navigation-toggle').each(function(){
+				$(this).show();
+				var target = $(this).attr('data-target');
+				$(target).hide();
+				setDemoNav();
+			});
+		} else {
+			$('.navigation-toggle').each(function(){
+				$(this).hide();
+				var target = $(this).attr('data-target');
+				$(target).show();
+			});
+		}
+	}
+	function setDemoNav(){
+		$('.navigation-toggle').each(function(){
+			var target = $(this).attr('data-target');
+			if (target == '#navbar-demo'){
+				if ($(target).is(':visible')){
+					$(this).css('margin-bottom', 0);
+				} else {
+					$(this).css('margin-bottom', '2.3em');
+				}
+			}
+		});
+	}
+	$(function(){
+		setNav();
+		$(window).bind('resize', function(){
+			setNav();
+		});
+		$('.navigation-toggle').bind('click', function(){
+			var target = $(this).attr('data-target');
+			$(target).toggle();
+			setDemoNav();
+		});
+	})
+</script>		</div>
+		<div id="mainwrap">
+			<div id="content" class="content">
+			
+<div style="padding:10px"><h3>ComboTreeGrid</h3><p>Extend from $.fn.combo.defaults and $.fn.treegrid.defaults. Override defaults with $.fn.combotreegrid.defaults.</p><p>The combotreegrid combines the selection control with drop-down treegrid.It enables the user to find and select a value quickly from the treegrid.The combotreegrid supports a treegrid with tree-state checkboxes for convenient multiple selection.</p><img src="images/combotreegrid.png"/><h4>Dependencies</h4><ul>	<li>combo</li>	<li>treegrid</li></ul><h4>Usage Example</h4><h5>Create ComboTreeGrid</h5><p>1. Create a combotreegrid from markup.</p><textarea name="code-combotreegrid" class="html">	<input class="easyui-combotreegrid" data-options="			width:'100%',			panelWidth:500,			label:'Select Item:',			labelPosition:'top',			url:'treegrid_data1.json',			idField:'id',			treeField:'name',			columns:[[				{field:'name',title:'Name',width:200},				{field:'size',title:'Size',width:100},				{field:'date',title:'Date',width:100}			]]"></textarea><p>2. The combotreegrid can be created from existing &lt;select&gt; or &lt;input&gt; element using javascript.</p><textarea name="code-combotreegrid" class="js"><input id="cc" name="name">$(function(){	$('#cc').combogrid({		value:'006',		width:'100%',		panelWidth:500,		label:'Select Item:',		labelPosition:'top',		url:'treegrid_data1.json',		idField:'id',		treeField:'name',		columns:[[			{field:'name',title:'Name',width:200},			{field:'size',title:'Size',width:100},			{field:'date',title:'Date',width:100}		]]	});});</textarea><h4>Properties</h4><p>The properties extend from combo and treegrid, below is the added or overridden properties for combotreegrid.</p><table class="doc-table"><tr><th><strong>Name</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th><th><strong>Default</strong></th></tr><tr><td>idField</td><td>string</td><td>The id field name.</td><td>null</td></tr><tr><td>treeField</td><td>string</td><td>The tree node field to be displayed in textbox.</td><td>null</td></tr><tr><td>textField</td><td>string</td><td>The underlying data field name to bind to this ComboTreeGrid.Available since version 1.5.2.</td><td>null</td></tr><tr><td>limitToGrid</td><td>boolean</td><td>Limit the inputed values to the listed grid rows.</td><td>false</td></tr></table><h4>Events</h4><p>The events extend from combo and treegrid.</p><h4>Methods</h4><p>The methods extend from combo, below is the added or overridden methods for combotreegrid.</p><table class="doc-table"><tr><th><strong>Name</strong></th><th><strong>Parameter</strong></th><th><strong>Description</strong></th></tr><tr><td>options</td><td>none</td><td>Return the options object.</td></tr><tr><td>grid</td><td>none</td><td>Return the treegrid object.The example below shows how to get the selected row:<pre>var g = $('#cc').combotreegrid('grid');	// get treegrid objectvar r = g.treegrid('getSelected');	// get the selected rowalert(r.name);</pre></td></tr><tr><td>setValue</td><td>value</td><td>Set the component value.<p>Code example:</p><pre>$('#cc').combotreegrid('setValue', '002');$('#cc').combotreegrid('setValue', {id:'003',name:'name003'});</pre></td></tr><tr><td>setValues</td><td>values</td><td>Set the component value array.<p>Code example:</p><pre>$('#cc').combotreegrid('setValues', ['001','007']);$('#cc').combotreegrid('setValues', ['001','007',{id:'008',name:'name008'}]);</pre></td></tr><tr><td>clear</td><td>none</td><td>Clear the component value.</td></tr></table></div>﻿			</div>
+		</div>
+		<div id="footer" class="content text-centered">
+			<div>Copyright © 2010-2017 www.jeasyui.com</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+.c1 {
+	background: linear-gradient(rgb(76, 174, 76) 0px, rgb(68, 157, 68) 100%); border-color: rgb(60, 139, 60); color: rgb(255, 255, 255);
+}
+.c1:hover {
+	background: linear-gradient(rgb(76, 174, 76) 0px, rgb(68, 157, 68) 100%); border-color: rgb(60, 139, 60); color: rgb(255, 255, 255);
+}
+a.c1:hover {
+	background: rgb(68, 157, 68); filter:;
+}
+.c2 {
+	background: linear-gradient(rgb(116, 116, 116) 0px, rgb(103, 103, 103) 100%); border-color: rgb(95, 95, 95); color: rgb(255, 255, 255);
+}
+.c2:hover {
+	background: linear-gradient(rgb(116, 116, 116) 0px, rgb(103, 103, 103) 100%); border-color: rgb(95, 95, 95); color: rgb(255, 255, 255);
+}
+a.c2:hover {
+	background: rgb(103, 103, 103); filter:;
+}
+.c3 {
+	background: linear-gradient(rgb(255, 179, 179) 0px, rgb(255, 153, 153) 100%); border-color: rgb(255, 128, 128); color: rgb(51, 51, 51);
+}
+.c3:hover {
+	background: linear-gradient(rgb(255, 179, 179) 0px, rgb(255, 153, 153) 100%); border-color: rgb(255, 128, 128); color: rgb(51, 51, 51);
+}
+a.c3:hover {
+	background: rgb(255, 153, 153); filter:;
+}
+.c4 {
+	background: linear-gradient(rgb(184, 238, 207) 0px, rgb(164, 233, 193) 100%); border-color: rgb(82, 214, 137); color: rgb(51, 51, 51);
+}
+.c4:hover {
+	background: linear-gradient(rgb(184, 238, 207) 0px, rgb(164, 233, 193) 100%); border-color: rgb(82, 214, 137); color: rgb(51, 51, 51);
+}
+a.c4:hover {
+	background: rgb(164, 233, 193); filter:;
+}
+.c5 {
+	background: linear-gradient(rgb(216, 79, 75) 0px, rgb(201, 48, 44) 100%); border-color: rgb(181, 43, 39); color: rgb(255, 255, 255);
+}
+.c5:hover {
+	background: linear-gradient(rgb(216, 79, 75) 0px, rgb(201, 48, 44) 100%); border-color: rgb(181, 43, 39); color: rgb(255, 255, 255);
+}
+a.c5:hover {
+	background: rgb(201, 48, 44); filter:;
+}
+.c6 {
+	background: linear-gradient(rgb(41, 132, 164) 0px, rgb(36, 116, 143) 100%); border-color: rgb(31, 99, 123); color: rgb(255, 255, 255);
+}
+.c6:hover {
+	background: linear-gradient(rgb(41, 132, 164) 0px, rgb(36, 116, 143) 100%); border-color: rgb(31, 99, 123); color: rgb(255, 255, 255);
+}
+a.c6:hover {
+	background: rgb(36, 116, 143); filter:;
+}
+.c7 {
+	background: linear-gradient(rgb(255, 171, 46) 0px, rgb(255, 153, 0) 100%); border-color: rgb(230, 137, 0); color: rgb(51, 51, 51);
+}
+.c7:hover {
+	background: linear-gradient(rgb(255, 171, 46) 0px, rgb(255, 153, 0) 100%); border-color: rgb(230, 137, 0); color: rgb(51, 51, 51);
+}
+a.c7:hover {
+	background: rgb(255, 153, 0); filter:;
+}
+.c8 {
+	background: linear-gradient(rgb(105, 140, 186) 0px, rgb(87, 126, 178) 100%); border-color: rgb(75, 114, 164); color: rgb(255, 255, 255);
+}
+.c8:hover {
+	background: linear-gradient(rgb(105, 140, 186) 0px, rgb(87, 126, 178) 100%); border-color: rgb(75, 114, 164); color: rgb(255, 255, 255);
+}
+a.c8:hover {
+	background: rgb(87, 126, 178); filter:;
+}

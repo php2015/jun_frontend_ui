@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeasy.demo.blog.dao.BlogDAO">
+    <resultMap id="BaseResultMap" type="com.jeasy.demo.blog.model.Blog">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="is_del" property="isDel" jdbcType="TINYINT"/>
+        <result column="create_at" property="createAt" jdbcType="BIGINT"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="update_at" property="updateAt" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="update_name" property="updateName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="select_column_list">SELECT id,title,content,is_del,create_at,create_by,create_name,update_at,update_by,update_name</sql>
+    <sql id="order_by_sql">ORDER BY id DESC</sql>
+    <sql id="insert_into_sql">INSERT INTO `blog` (title,content,is_del,create_at,create_by,create_name,update_at,update_by,update_name)</sql>
+    <sql id="delete_from_sql">DELETE FROM `blog`</sql>
+    <sql id="update_table_sql">UPDATE `blog`</sql>
+    <sql id="select_count_sql">SELECT COUNT(1) FROM `blog`</sql>
+    <sql id="from_sql">FROM `blog`</sql>
+    <sql id="insert_table_sql">INSERT INTO `blog`</sql>
+    <sql id="limit_1_sql">LIMIT 1</sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.jeasy.demo.blog.model.Blog">
+        <include refid="insert_into_sql"/>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            #{title,jdbcType=VARCHAR},
+            #{content,jdbcType=VARCHAR},
+            #{isDel,jdbcType=TINYINT},
+            #{createAt,jdbcType=BIGINT},
+            #{createBy,jdbcType=BIGINT},
+            #{createName,jdbcType=VARCHAR},
+            #{updateAt,jdbcType=BIGINT},
+            #{updateBy,jdbcType=BIGINT},
+            #{updateName,jdbcType=VARCHAR},
+        </trim>
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        <include refid="insert_into_sql"/>
+        <trim prefix="VALUES" suffixOverrides=",">
+            <if test="list != null">
+                <foreach collection="list" item="item" index="index" separator=",">
+                    <trim prefix="(" suffix=")" suffixOverrides=",">
+                        #{item.title,jdbcType=VARCHAR},
+                        #{item.content,jdbcType=VARCHAR},
+                        #{item.isDel,jdbcType=TINYINT},
+                        #{item.createAt,jdbcType=BIGINT},
+                        #{item.createBy,jdbcType=BIGINT},
+                        #{item.createName,jdbcType=VARCHAR},
+                        #{item.updateAt,jdbcType=BIGINT},
+                        #{item.updateBy,jdbcType=BIGINT},
+                        #{item.updateName,jdbcType=VARCHAR},
+                    </trim>
+                </foreach>
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.jeasy.demo.blog.model.Blog">
+        <include refid="insert_table_sql"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="isDel != null">is_del,</if>
+            <if test="createAt != null">create_at,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="updateAt != null">update_at,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateName != null">update_name,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title,jdbcType=VARCHAR},</if>
+            <if test="content != null">#{content,jdbcType=VARCHAR},</if>
+            <if test="isDel != null">#{isDel,jdbcType=TINYINT},</if>
+            <if test="createAt != null">#{createAt,jdbcType=BIGINT},</if>
+            <if test="createBy != null">#{createBy,jdbcType=BIGINT},</if>
+            <if test="createName != null">#{createName,jdbcType=VARCHAR},</if>
+            <if test="updateAt != null">#{updateAt,jdbcType=BIGINT},</if>
+            <if test="updateBy != null">#{updateBy,jdbcType=BIGINT},</if>
+            <if test="updateName != null">#{updateName,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        <include refid="select_column_list"/>
+        <include refid="from_sql"/>
+        <where>
+            id = #{id,jdbcType=BIGINT}
+        </where>
+    </select>
+
+    <select id="selectBatchByPrimaryKey" resultMap="BaseResultMap" parameterType="java.util.List">
+        <include refid="select_column_list"/>
+        <include refid="from_sql"/>
+        <where>
+            <if test="list != null">
+                <foreach collection="list" index="index" item="id" open=" id IN (" separator="," close=")">
+                #{id,jdbcType=BIGINT}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <include refid="select_column_list"/>
+        <include refid="from_sql"/>
+        <where>
+            <if test="id != null">
+                AND id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="title != null">
+                AND title = #{title,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null">
+                AND content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="isDel != null">
+                AND is_del = #{isDel,jdbcType=TINYINT}
+            </if>
+            <if test="createAt != null">
+                AND create_at = #{createAt,jdbcType=BIGINT}
+            </if>
+            <if test="createBy != null">
+                AND create_by = #{createBy,jdbcType=BIGINT}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName,jdbcType=VARCHAR}
+            </if>
+            <if test="updateAt != null">
+                AND update_at = #{updateAt,jdbcType=BIGINT}
+            </if>
+            <if test="updateBy != null">
+                AND update_by = #{updateBy,jdbcType=BIGINT}
+            </if>
+            <if test="updateName != null">
+                AND update_name = #{updateName,jdbcType=VARCHAR}
+            </if>
+            <if test="ids != null">
+                <foreach collection="ids" index="index" item="id" open=" AND id IN (" separator="," close=")">
+                #{id,jdbcType=BIGINT}
+                </foreach>
+            </if>
+        </where>
+        <include refid="order_by_sql"/>
+        <if test="offset != null and size != null">LIMIT #{offset}, #{size}</if>
+    </select>
+
+    <select id="countByParams" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        <include refid="select_count_sql"/>
+        <where>
+            <if test="id != null">
+                AND id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="title != null">
+                AND title = #{title,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null">
+                AND content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="isDel != null">
+                AND is_del = #{isDel,jdbcType=TINYINT}
+            </if>
+            <if test="createAt != null">
+                AND create_at = #{createAt,jdbcType=BIGINT}
+            </if>
+            <if test="createBy != null">
+                AND create_by = #{createBy,jdbcType=BIGINT}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName,jdbcType=VARCHAR}
+            </if>
+            <if test="updateAt != null">
+                AND update_at = #{updateAt,jdbcType=BIGINT}
+            </if>
+            <if test="updateBy != null">
+                AND update_by = #{updateBy,jdbcType=BIGINT}
+            </if>
+            <if test="updateName != null">
+                AND update_name = #{updateName,jdbcType=VARCHAR}
+            </if>
+            <if test="ids != null">
+                <foreach collection="ids" index="index" item="id" open=" AND id IN (" separator="," close=")">
+                #{id,jdbcType=BIGINT}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectFirstByParams" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        <include refid="select_column_list"/>
+        <include refid="from_sql"/>
+        <where>
+            <if test="id != null">
+                AND id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="title != null">
+                AND title = #{title,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null">
+                AND content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="isDel != null">
+                AND is_del = #{isDel,jdbcType=TINYINT}
+            </if>
+            <if test="createAt != null">
+                AND create_at = #{createAt,jdbcType=BIGINT}
+            </if>
+            <if test="createBy != null">
+                AND create_by = #{createBy,jdbcType=BIGINT}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName,jdbcType=VARCHAR}
+            </if>
+            <if test="updateAt != null">
+                AND update_at = #{updateAt,jdbcType=BIGINT}
+            </if>
+            <if test="updateBy != null">
+                AND update_by = #{updateBy,jdbcType=BIGINT}
+            </if>
+            <if test="updateName != null">
+                AND update_name = #{updateName,jdbcType=VARCHAR}
+            </if>
+            <if test="ids != null">
+                <foreach collection="ids" index="index" item="id" open=" AND id IN (" separator="," close=")">
+                #{id,jdbcType=BIGINT}
+                </foreach>
+            </if>
+        </where>
+        <include refid="order_by_sql"/>
+        <include refid="limit_1_sql"/>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.jeasy.demo.blog.model.Blog">
+        <include refid="update_table_sql"/>
+        <set>
+            <if test="title != null">title = #{title,jdbcType=VARCHAR},</if>
+            <if test="content != null">content = #{content,jdbcType=VARCHAR},</if>
+            <if test="isDel != null">is_del = #{isDel,jdbcType=TINYINT},</if>
+            <if test="createAt != null">create_at = #{createAt,jdbcType=BIGINT},</if>
+            <if test="createBy != null">create_by = #{createBy,jdbcType=BIGINT},</if>
+            <if test="createName != null">create_name = #{createName,jdbcType=VARCHAR},</if>
+            <if test="updateAt != null">update_at = #{updateAt,jdbcType=BIGINT},</if>
+            <if test="updateBy != null">update_by = #{updateBy,jdbcType=BIGINT},</if>
+            <if test="updateName != null">update_name = #{updateName,jdbcType=VARCHAR},</if>
+        </set>
+        <where>
+            id = #{id,jdbcType=BIGINT}
+        </where>
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.jeasy.demo.blog.model.Blog">
+        <include refid="update_table_sql"/>
+        <set>
+            title = #{title,jdbcType=VARCHAR},
+            content = #{content,jdbcType=VARCHAR},
+            is_del = #{isDel,jdbcType=TINYINT},
+            create_at = #{createAt,jdbcType=BIGINT},
+            create_by = #{createBy,jdbcType=BIGINT},
+            create_name = #{createName,jdbcType=VARCHAR},
+            update_at = #{updateAt,jdbcType=BIGINT},
+            update_by = #{updateBy,jdbcType=BIGINT},
+            update_name = #{updateName,jdbcType=VARCHAR},
+        </set>
+        <where>
+            id = #{id,jdbcType=BIGINT}
+        </where>
+    </update>
+
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <include refid="delete_from_sql"/>
+        <where>
+            id = #{id,jdbcType=BIGINT}
+        </where>
+    </update>
+
+    <update id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        <include refid="delete_from_sql"/>
+        <where>
+        <if test="list != null">
+            <foreach collection="list" index="index" item="id" open=" id IN (" separator="," close=")">
+            #{id,jdbcType=BIGINT}
+            </foreach>
+        </if>
+        </where>
+    </update>
+
+    <update id="deleteByParams" parameterType="java.util.HashMap">
+        <include refid="delete_from_sql"/>
+        <where>
+        <if test="id != null">
+            AND id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="title != null">
+            AND title = #{title,jdbcType=VARCHAR}
+        </if>
+        <if test="content != null">
+            AND content = #{content,jdbcType=VARCHAR}
+        </if>
+        <if test="isDel != null">
+            AND is_del = #{isDel,jdbcType=TINYINT}
+        </if>
+        <if test="createAt != null">
+            AND create_at = #{createAt,jdbcType=BIGINT}
+        </if>
+        <if test="createBy != null">
+            AND create_by = #{createBy,jdbcType=BIGINT}
+        </if>
+        <if test="createName != null">
+            AND create_name = #{createName,jdbcType=VARCHAR}
+        </if>
+        <if test="updateAt != null">
+            AND update_at = #{updateAt,jdbcType=BIGINT}
+        </if>
+        <if test="updateBy != null">
+            AND update_by = #{updateBy,jdbcType=BIGINT}
+        </if>
+        <if test="updateName != null">
+            AND update_name = #{updateName,jdbcType=VARCHAR}
+        </if>
+        </where>
+    </update>
+</mapper>

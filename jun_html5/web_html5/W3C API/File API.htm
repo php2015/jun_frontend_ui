@@ -1,0 +1,2777 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0029)http://www.w3.org/TR/FileAPI/ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=UTF-8" http-equiv="Content-Type"><TITLE>File 
+API</TITLE>
+<META name="revision" content="$Id: Overview.html,v 1.3 2011/10/19 16:31:52 plehegar Exp $"><LINK 
+rel="stylesheet" type="text/css" href="File%20API_files/FileAPI.css">
+<SCRIPT type="application/ecmascript" src="File%20API_files/section-links.js"></SCRIPT>
+
+<SCRIPT type="application/ecmascript" src="File%20API_files/dfn.js"></SCRIPT>
+<!--[if IE]>
+<STYLE type="text/css">
+      .ignore {
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+        filter: alpha(opacity=50);
+      }
+    </STYLE>
+<![endif]--><LINK rel="stylesheet" type="text/css" href="File%20API_files/W3C-WD.css">
+<META name="GENERATOR" content="MSHTML 9.00.8112.16441"></HEAD>
+<BODY>
+<DIV class="head">
+<DIV><A href="http://www.w3.org/"><IMG alt="W3C" src="File%20API_files/w3c_home.png" 
+width="72" height="48"></A></DIV>
+<H1>File API</H1>
+<H2>W3C Working Draft <EM>20 October 2011</EM></H2>
+<DL>
+  <DT>This Version:</DT>
+  <DD><A 
+  href="http://www.w3.org/TR/2011/WD-FileAPI-20111020/">http://www.w3.org/TR/2011/WD-FileAPI-20111020/</A></DD>
+  <DT>Latest Published Version:</DT>
+  <DD><A 
+  href="http://www.w3.org/TR/FileAPI/">http://www.w3.org/TR/FileAPI/</A></DD>
+  <DT>Latest Editor’s Draft:</DT>
+  <DD><A 
+  href="http://dev.w3.org/2006/webapi/FileAPI/">http://dev.w3.org/2006/webapi/FileAPI/</A></DD>
+  <DT>Previous Version(s):</DT>
+  <DD><A 
+  href="http://www.w3.org/TR/2010/WD-FileAPI-20101026/">http://www.w3.org/TR/2010/WD-FileAPI-20101026/</A></DD>
+  <DT>Editors:</DT>
+  <DD><A href="http://arunranga.com/">Arun Ranganathan</A>, Mozilla Corporation 
+  &lt;arun@mozilla.com&gt;</DD>
+  <DD><A href="http://sicking.cc/">Jonas Sicking</A>, Mozilla Corporation 
+  &lt;jonas@sicking.cc&gt;</DD></DL>
+<P class="copyright"><A href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</A> 
+© 2011 <A href="http://www.w3.org/"><ABBR 
+title="World Wide Web Consortium">W3C</ABBR></A><SUP>®</SUP> (<A href="http://www.csail.mit.edu/"><ABBR 
+title="Massachusetts Institute of Technology">MIT</ABBR></A>, <A href="http://www.ercim.org/"><ABBR 
+title="European Research Consortium for Informatics and Mathematics">ERCIM</ABBR></A>, 
+<A href="http://www.keio.ac.jp/">Keio</A>), All Rights Reserved. W3C <A href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</A>, 
+<A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</A> 
+and <A href="http://www.w3.org/Consortium/Legal/copyright-documents">document 
+use</A> rules apply.</P></DIV>
+<HR>
+
+<DIV class="section">
+<H2>Abstract</H2>
+<P>      This specification provides an <ACRONYM title="Application Programming Interface">API</ACRONYM> 
+     for representing file objects in web applications, as well as 
+programmatically selecting them and accessing their data.  This includes:    
+</P>
+<UL>
+  <LI>A <A class="dfnref" 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filelist">FileList</A> interface, 
+  which represents an array of individually selected files from the underlying 
+  system.		The user interface for selection can be invoked via <CODE>&lt;input 
+  type="file"&gt;</CODE>, i.e. when the		<CODE>input</CODE> element is in the 
+  <CODE>File Upload</CODE> state [<A 
+  href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] .</LI>
+  <LI>A <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> 
+  interface, which represents immutable raw binary data, and allows access to 
+  ranges of bytes within the	    <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+  object as a separate <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A>.</LI>
+  <LI>A <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-file">File</A> 
+  interface, which includes readonly informational attributes about a file	      
+    such as its name and the date of the last modification (on disk) of the 
+  file.</LI>
+  <LI>A <A class="dfnref" 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader">FileReader</A> interface, 
+  which provides methods to read a            <A href="http://www.w3.org/TR/FileAPI/#dfn-file">File</A> 
+  or a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A>, and an event 
+  model to obtain the results of these reads.</LI>
+  <LI>A <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#url">URI 
+  scheme</A> for use with binary data such as files, so that they can be 
+  referenced within web applications.</LI></UL>
+<P>Additionally, this specification defines objects to be used within threaded 
+web applications for the synchronous reading of files.</P>
+<P>The section on Requirements and Use Cases [<A href="http://www.w3.org/TR/FileAPI/#requirements">REQ</A>] 
+covers the motivation behind this specification.</P>
+<P>      This API is designed to be used in conjunction with other APIs and 
+elements on the web platform,      notably: <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#XHR2">XMLHttpRequest</A> 
+(e.g.  with an overloaded <CODE>send()</CODE>      method for File or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+objects), <CODE>postMessage</CODE>, <CODE>DataTransfer</CODE> (part      of the 
+<EM>drag and drop API</EM> defined in [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>,]) 
+and      <A href="http://www.w3.org/TR/FileAPI/#Workers">Web Workers</A>. 
+Additionally, it should be possible to programmatically obtain a list of files 
+from the      <CODE>input</CODE> element when it is      in the <CODE>File 
+Upload state</CODE>[<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>].      
+These kinds of behaviors are defined in the appropriate affiliated 
+specifications.    </P></DIV>
+<DIV class="section">
+<H2>Status of this Document</H2>
+<P><EM>        This section describes the status of this document at the time of 
+       its publication.  Other documents may supersede this document. A list     
+   of current W3C publications and the latest revision of this technical        
+report can be found in the <A href="http://www.w3.org/TR/">W3C technical         
+ reports index</A> at http://www.w3.org/TR/.      </EM></P>
+<P>        This document is the 20 October 2011 <B>Working Draft</B> of the      
+  <CITE>File API</CITE> specification.            Please send comments about 
+this document to      <A 
+href="mailto:public-webapps@w3.org">public-webapps@w3.org</A>      (<A href="http://lists.w3.org/Archives/Public/public-webapps/">archived</A>). 
+   </P>
+<P>        Previous discussion of this specification has taken place on two 
+other        mailing lists: <A 
+href="mailto:public-webapps@w3.org">public-webapps@w3.org</A>        (<A href="http://lists.w3.org/Archives/Public/public-webapps/">archive</A>) 
+       and <A href="mailto:public-webapi@w3.org">public-webapi@w3.org</A>        
+(<A href="http://lists.w3.org/Archives/Public/public-webapi/">archive</A>). 
+Ongoing        discussion will be on the <A 
+href="mailto:public-webapps@w3.org">public-webapps@w3.org</A>        mailing 
+list.      </P>
+<P>      This document is produced by the <A href="http://www.w3.org/2008/webapps">Web 
+<ACRONYM 
+title="Application Programming Interface">Applications</ACRONYM><ACRONYM title="Working Group">WG</ACRONYM></A> 
+in the <ACRONYM title="World Wide Web Consortium">W3C</ACRONYM><A href="http://www.w3.org/Interaction/">Interaction 
+Domain</A>.    </P>
+<P>      Web content and browser developers are encouraged to review this draft. 
+Please send comments to      <A 
+href="mailto:public-webapps@w3.org">public-webapps@w3.org</A>, the <ACRONYM 
+title="World Wide Web Consortium">W3C</ACRONYM>'s      public email list for 
+issues related to Web <ACRONYM 
+title="Application Programming Interface">API</ACRONYM>s.      <A href="http://lists.w3.org/Archives/Public/public-webapps/">Archives</A> 
+of the      list are available.    </P>
+<P>        This document is produced by the <A href="http://www.w3.org/2008/webapps/">Web 
+Applications Working Group</A>,	part of the <A href="http://www.w3.org/2006/rwc/Activity">Rich 
+Web Clients Activity</A>        in the W3C <A href="http://www.w3.org/Interaction/">Interaction 
+Domain</A>.        Changes made to this document can be found in the        <A 
+href="http://dev.w3.org/cvsweb/2006/webapi/FileAPI/Overview-FA.xml">W3C public 
+CVS server</A>.    </P>
+<P>          Publication as a Working Draft does not imply endorsement by the    
+      W3C Membership.  This is a draft document and may be updated, replaced     
+     or obsoleted by other documents at any time. It is inappropriate to cite    
+      this document as other than work in progress.        </P>
+<P>      This document was produced by a group operating under the      <A href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 
+February        2004 W3C Patent Policy</A>. W3C maintains a      <A href="http://www.w3.org/2004/01/pp-impl/42538/status">public 
+list of        any patent disclosures</A> made in connection with the 
+deliverables of      the group; that page also includes instructions for 
+disclosing a patent.      An individual who has actual knowledge of a patent 
+which the individual      believes contains      <A href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential 
+       Claim(s)</A> must disclose the information in accordance with      <A 
+href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 
+       6 of the W3C Patent Policy</A>.    </P></DIV>
+<DIV id="toc">
+<H2>Table of Contents</H2>
+<DIV class="toc">
+<UL>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#introduction">1. 
+  Introduction</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#conformance">2. 
+Conformance</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#dependencies">3. 
+  Dependencies</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#terminology">4. Terminology and 
+  Algorithms</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#filelist-section">5. The FileList 
+  Interface</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#attributes-filelist">5.1. 
+    Attributes</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#filelist-methods-params">5.2. 
+    Methods and Parameters</A></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#blob">6. The Blob Interface</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#attributes-blob">6.1. 
+    Attributes</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#methodsandparams-blob">6.2. 
+    Methods and Parameters</A>
+    <UL>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#normalization-of-params">6.2.1. 
+      Parameters to slice</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#slide-method-algo">6.2.2. The 
+      slice method</A></LI></UL></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#file">7. The File Interface</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#file-attrs">7.1. 
+    Attributes</A></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#FileReader-interface">8. The 
+  FileReader Interface</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#blobreader-task-source">8.1. The 
+    FileReader Task Source</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#filereaderConstrctr">8.2. 
+    Constructors</A></LI>
+    <LI><A 
+    href="http://www.w3.org/TR/FileAPI/#event-handler-attributes-section">8.3. 
+    Event Handler Attributes</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#blobreader-state">8.4. FileReader 
+    States</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#reading-a-file">8.5. Reading a 
+    File or Blob</A>
+    <UL>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#MultipleReads">8.5.1. Multiple 
+      Reads</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#filedata-attr">8.5.2. The 
+      result attribute</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#readAsBinaryString">8.5.3. The 
+      readAsBinaryString(blob) method</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#readAsDataURL">8.5.4. The 
+      readAsDataURL(blob) method</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#readAsDataText">8.5.5. The 
+      readAsText(blob, encoding) method</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#readAsArrayBuffer">8.5.6. The 
+      readAsArrayBuffer(blob) method</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#abort">8.5.7. The abort() 
+      method</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#blobAndFileParams">8.5.8. Blob 
+      Parameters</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#enctype">8.5.9. Determining 
+      Encoding</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#events">8.5.10. Events</A>
+      <UL>
+        <LI><A href="http://www.w3.org/TR/FileAPI/#event-summary">8.5.10.1. 
+        Event Summary</A></LI>
+        <LI><A href="http://www.w3.org/TR/FileAPI/#eventInvariants">8.5.10.2. 
+        Summary of Event Invariants</A></LI></UL></LI></UL></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#readingOnThreads">9. Reading on 
+  Threads</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#FileReaderSync">9.1. The 
+    FileReaderSync Interface</A>
+    <UL>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#filereadersyncConstrctr">9.1.1. 
+      Constructors</A></LI>
+      <LI><A 
+      href="http://www.w3.org/TR/FileAPI/#readAsBinaryStringSyncSection">9.1.2. 
+      The readAsBinaryString method</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#readAsTextSync">9.1.3. The 
+      readAsText method</A></LI>
+      <LI><A 
+      href="http://www.w3.org/TR/FileAPI/#readAsDataURLSync-section">9.1.4. The 
+      readAsDataURL method</A></LI>
+      <LI><A 
+      href="http://www.w3.org/TR/FileAPI/#readAsArrayBufferSyncSection">9.1.5. 
+      The readAsArrayBuffer method</A></LI></UL></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#ErrorAndException">10. Errors and 
+  Exceptions</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#dfn-error-codes">10.1. Throwing 
+    an Exception or Returning an Error</A></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#url">11. A URI for Blob and File 
+  reference</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#use-cases-scheme">11.1. 
+    Requirements for a New Scheme</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#alternative-schemas">11.2. 
+    Discussion of Existing Schemes</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#ABNFForBlob">11.3. Definition of 
+    blob URI Scheme</A>
+    <UL>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#OpaqueStringDiscussion">11.3.1. 
+      The Opaque String</A></LI></UL></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#fragmentDiscussion">11.4. 
+    Discussion of Fragment Identifier</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#originOfBlob">11.5. Origin of 
+    Blob URIs</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#lifeTime">11.6. Lifetime of Blob 
+    URIs</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#processingModel">11.7. 
+    Dereferencing Model for Blob URIs</A>
+    <UL>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#ProtocolName">11.7.1. Blob 
+      Protocol Version</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#TwoHundredOK">11.7.2. 200 
+      OK</A></LI>
+      <LI><A 
+      href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">11.7.3. 
+      500 Error Condition</A></LI>
+      <LI><A href="http://www.w3.org/TR/FileAPI/#ProtocolExamples">11.7.4. 
+      Request and Response Headers</A>
+      <UL>
+        <LI><A 
+        href="http://www.w3.org/TR/FileAPI/#processing-media-types">11.7.4.1. 
+        Processing Media Types</A></LI></UL></LI></UL></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#creating-revoking">11.8. Creating 
+    and Revoking a Blob URI</A></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#security-discussion">12. Security 
+  Considerations</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#requirements">13. Requirements and 
+  Use Cases</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#AppendixA">14. Appendix A</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#ABNFUUID">14.1. An ABNF for 
+    UUID</A></LI></UL></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#acknowledgements-section">15. 
+  Acknowledgements</A></LI>
+  <LI><A href="http://www.w3.org/TR/FileAPI/#references">16. References</A>
+  <UL>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#normative-references">16.1. 
+    Normative references</A></LI>
+    <LI><A href="http://www.w3.org/TR/FileAPI/#informative-references">16.2. 
+    Informative References</A></LI></UL></LI></UL></DIV></DIV>
+<DIV id="sections">
+<DIV id="introduction" class="section">
+<H2>1. Introduction</H2>
+<P class="norm">This section is informative.</P>
+<P>      Web applications should have the ability to manipulate as wide      as 
+possible a range of user input, including files that a user may wish to upload   
+    to a remote server or manipulate inside a rich web application. This 
+specification       defines the basic representations for files, lists of files, 
+errors raised by access to files,      and programmatic ways to read files.  
+Additionally, this specification also defines an interface that represents      
+"raw data" which can be asynchronously processed on the main thread of 
+conforming user agents.  The interfaces and API defined in this      
+specification can be used with other interfaces and APIs exposed to the web 
+platform.          </P>
+<P>      The <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> interface 
+represents file data typically obtained from the underlying file system, and the 
+<A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> interface 
+     ("Binary Large Object" -- a name originally introduced to web APIs in <A 
+href="http://www.w3.org/TR/FileAPI/#Blob-REF">Google Gears</A>) represents 
+immutable raw data.  <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or      <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> reads should 
+happen asynchronously on the main thread, with an optional synchronous API used  
+    within threaded web applications.  An asynchronous API for reading files 
+prevents blocking and UI "freezing" on a user      agent's main thread.  This 
+specification defines an asynchronous API based on an <EM>event model</EM> to 
+read and access a <CODE>File</CODE> or <CODE>Blob</CODE>'s      data.  A <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A>  
+  object provides asynchronous read methods to    access that file's data 
+through event handler attributes and the firing of events.  The use of events 
+and event handlers allows separate code blocks the ability    to monitor the 
+<EM>progress of the read</EM> (which is particularly useful for remote drives or 
+mounted drives, where file access performance may vary from local drives)    and 
+error conditions that may arise during reading of a file.  An example will be 
+illustrative.</P>
+<DIV class="example">
+<DIV class="exampleHeader">Example</DIV>
+<P>In the example below, different code blocks handle progress, error, and 
+success conditions.</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">ECMAScript</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="es-code">
+function startRead() {  
+  <SPAN class="comment">// obtain input element through DOM</SPAN> 
+  
+  var file = document.getElementById('file').files[0];
+  if(file){
+    getAsText(file);
+  }
+}
+
+function getAsText(readFile) {
+        
+  var reader = new FileReader();
+  
+  <SPAN class="comment">// Read file into memory as UTF-16</SPAN>      
+  reader.readAsText(readFile, "UTF-16");
+  
+  <SPAN class="comment">// Handle progress, success, and errors</SPAN>
+  reader.onprogress = updateProgress;
+  reader.onload = loaded;
+  reader.onerror = errorHandler;
+}
+
+function updateProgress(evt) {
+  if (evt.lengthComputable) {
+    <SPAN class="comment">// evt.loaded and evt.total are ProgressEvent properties</SPAN>
+    var loaded = (evt.loaded / evt.total);
+    if (loaded &lt; 1) {
+      <SPAN class="comment">// Increase the prog bar length</SPAN>
+      <SPAN class="comment">// style.width = (loaded * 200) + "px";</SPAN>
+    }
+  }
+}
+
+function loaded(evt) {  
+  <SPAN class="comment">// Obtain the read file data</SPAN>    
+  var fileString = evt.target.result;
+  <SPAN class="comment">// Handle UTF-16 file dump</SPAN>
+  if(utils.regexp.isChinese(fileString)) {
+    <SPAN class="comment">//Chinese Characters + Name validation</SPAN>
+  }
+  else {
+    <SPAN class="comment">// run other charset test</SPAN>
+  }
+  <SPAN class="comment">// xhr.send(fileString)</SPAN>     
+}
+
+function errorHandler(evt) {
+  if(evt.target.error.name == "NOT_READABLE_ERR") {
+    <SPAN class="comment">// The file could not be read</SPAN>
+  }
+}
+</CODE></PRE></DIV></DIV>
+</DIV></DIV>
+<DIV id="conformance" class="section">
+<H2>2. Conformance</H2>
+<P>          Everything in this specification is normative except for          
+examples and sections marked as being informative.        </P>
+<P>          The keywords “<SPAN class="rfc2119">MUST</SPAN>”,          “<SPAN 
+class="rfc2119">MUST NOT</SPAN>”,          “<SPAN 
+class="rfc2119">REQUIRED</SPAN>”,          “<SPAN class="rfc2119">SHALL</SPAN>”, 
+         “<SPAN class="rfc2119">SHALL NOT</SPAN>”,          “<SPAN class="rfc2119">RECOMMENDED</SPAN>”, 
+         “<SPAN class="rfc2119">MAY</SPAN>” and          “<SPAN 
+class="rfc2119">OPTIONAL</SPAN>” in this document are to be          interpreted 
+as described in          <CITE><A href="http://www.ietf.org/rfc/rfc2119">Key 
+words for use in RFCs to              Indicate Requirement Levels</A></CITE><A 
+href="http://www.w3.org/TR/FileAPI/#RFC2119">[RFC2119]</A>.        </P>
+<P>          The following conformance classes are defined by this 
+specification:        </P>
+<DL>
+  <DT><DFN id="dfn-conforming-implementation">conforming user agent</DFN></DT>
+  <DD>
+  <P>              A user agent is considered to be a              <A class="dfnref" 
+  href="http://www.w3.org/TR/FileAPI/#dfn-conforming-implementation">conforming 
+  user agent</A>              if it satisfies all of the <SPAN 
+  class="rfc2119">MUST</SPAN>-,              <SPAN 
+  class="rfc2119">REQUIRED</SPAN>- and <SPAN class="rfc2119">SHALL</SPAN>-level  
+              criteria in this specification that apply to implementations.  
+  This specification uses both the terms "conforming user agent" and "user 
+  agent" to refer to this product class.            </P>
+  <P>User agents MAY implement algorithms in this specifications in any way 
+  desired, so long as the end result is indistinguishable from the result that 
+  would be obtained	    from the specification's algorithms.</P></DD></DL>
+<P>User agents that use ECMAScript to implement the APIs defined in this 
+specification MUST implement them in a manner consistent with the	ECMAScript 
+Bindings defined in the Web IDL specification [<A href="http://www.w3.org/TR/FileAPI/#WebIDL">WEBIDL</A>] 
+as this specification uses that specification and terminology. </P></DIV>
+<DIV id="dependencies" class="section">
+<H3>3. Dependencies</H3>
+<P>This specification relies on underlying specifications.</P>
+<DL>
+  <DT>DOM</DT>
+  <DD>
+  <P>A <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-conforming-implementation">conforming 
+  user agent</A> MUST support at least the subset of the functionality defined 
+  in DOM Core that this specification relies upon; in particular,      it must 
+  support <CODE>EventTarget</CODE>. [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+  </P></DD>
+  <DT>Progress Events</DT>
+  <DD>
+  <P>A <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-conforming-implementation">conforming 
+  user agent</A> MUST support the Progress Events specification. Data access on 
+  read operations is enabled via Progress Events.[<A href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>] 
+  </P></DD>
+  <DT>HTML</DT>
+  <DD>
+  <P>A <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-conforming-implementation">conforming 
+  user agent</A> MUST support at least the subset of the functionality defined 
+  in HTML that this specification relies upon;      in particular, it must 
+  support <A href="http://www.w3.org/TR/FileAPI/#event-loops">event loops</A> 
+  and <A href="http://www.w3.org/TR/FileAPI/#event-handler-attributes">event 
+  handler attributes</A>. [<A 
+  href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>]</P></DD>
+  <DT>Web IDL</DT>
+  <DD>
+  <P>A <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-conforming-implementation">conforming 
+  user agent</A> must also be a conforming implementation of the IDL fragments 
+  in this specification,      as described in the Web IDL specification. [<A 
+  href="http://www.w3.org/TR/FileAPI/#WebIDL">WebIDL</A>] </P></DD>
+  <DT>Typed Arrays</DT>
+  <DD>
+  <P>A <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-conforming-implementation">conforming 
+  user agent</A> must support the Typed Arrays specification [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>].</P></DD></DL>
+<P>Parts of this specification rely on the Web Workers specification; for those 
+parts of this specification, the Web Workers specification is a normative 
+dependency.      [<A 
+href="http://www.w3.org/TR/FileAPI/#Workers">Workers</A>]</P></DIV>
+<DIV id="terminology" class="section">
+<H2>4. Terminology and Algorithms</H2>
+<P>The terms and algorithms <DFN id="fragment">&lt;fragment&gt;</DFN>, <DFN id="scheme">&lt;scheme&gt;</DFN>, 
+<DFN id="document">document</DFN>,        <DFN id="unloading-document-cleanup-steps">unloading 
+document cleanup steps</DFN>, <DFN id="event-handler-attributes">event handler 
+attributes</DFN>,        <DFN id="event-handler-event-type">event handler event 
+type</DFN>,        <DFN id="origin">origin</DFN>, <DFN id="same-origin">same 
+origin</DFN>, <DFN id="event-loops">event loops</DFN>,        <DFN 
+id="dfn-task">task</DFN>, <DFN id="task-source">task source</DFN>, <DFN id="df-URL">URL</DFN>, 
+and        <DFN id="queue-a-task">queue a task</DFN> are defined by the HTML 
+specification [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>]. </P>
+<P>When this specification says to <DFN id="terminate-an-algorithm">terminate an 
+algorithm</DFN> the user agent must terminate the algorithm after finishing the 
+step it is on.  Asynchronous <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+methods</A> defined in this specification may return before the algorithm in 
+question is terminated, and can be terminated by an <A href="http://www.w3.org/TR/FileAPI/#dfn-abort"><CODE>abort()</CODE></A> 
+call.</P>
+<P>The term <DFN id="throw-an-exception">throw</DFN> in this specification, as 
+it pertains to exceptions, is used as defined in the DOMCore specification [<A 
+href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>].</P>
+<P>The algorithms and steps in this specification use the following mathematical 
+operations:</P>
+<UL>
+  <LI>
+  <P>max(a,b) returns the maximum of a and b, and is always performed on 
+  integers as they are defined in WebIDL [<A href="http://www.w3.org/TR/FileAPI/#WebIDL">WebIDL</A>]; 
+  in the case of max(6,4) the result is 6.       This operation is also defined 
+  in ECMAScript [<A 
+  href="http://www.w3.org/TR/FileAPI/#ECMA-262">ECMA-262</A>].</P></LI>
+  <LI>
+  <P>min(a,b) returns the minimum of a and b, and is always performed on 
+  integers as they are defined in WebIDL [<A href="http://www.w3.org/TR/FileAPI/#WebIDL">WebIDL</A>]; 
+  in the case of min(6,4) the result is 4.       This operation is also defined 
+  in ECMAScript [<A 
+  href="http://www.w3.org/TR/FileAPI/#ECMA-262">ECMA-262</A>].</P></LI>
+  <LI>
+  <P>Mathematical comparisons such as &lt; (less than), &gt; (greater than), 
+  &gt;= (greater than or equal to), &lt;= (less than or equal to) are as in 
+  ECMAScript       [<A 
+  href="http://www.w3.org/TR/FileAPI/#ECMA-262">ECMA-262</A>].</P></LI></UL></DIV>
+<DIV id="filelist-section" class="section">
+<H2>5. The FileList Interface</H2>
+<P>          This interface is a <STRONG>collection</STRONG> [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+of <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+objects.       </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">IDL</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="idl-code">
+    interface <DFN id="dfn-filelist">FileList</DFN> {
+      getter <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-file">File</A>? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-item">item</A>(unsigned long <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-index">index</A>);
+      readonly attribute unsigned long <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-length">length</A>;
+    };
+    </CODE></PRE></DIV></DIV>
+<DIV class="example">
+<DIV class="exampleHeader">Example</DIV>
+<P>      Sample usage typically involves DOM access to the <CODE>&lt;input 
+type="file"&gt;</CODE> element within a form, and then accessing selected files. 
+     </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">ECMAScript</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="es-code">
+    <SPAN class="comment">// uploadData is a form element</SPAN>
+    <SPAN class="comment">// fileChooser is input element of type 'file'</SPAN>
+    var file = document.forms['uploadData']['fileChooser'].files[0];
+    
+    <SPAN class="comment">// alternative syntax can be</SPAN>
+    <SPAN class="comment">// var file = document.forms['uploadData']['fileChooser'].files.item(0);</SPAN>
+    
+    if(file)
+    {
+      <SPAN class="comment">// Perform file ops</SPAN>
+    }  
+    </CODE></PRE></DIV></DIV></DIV>
+<DIV id="attributes-filelist" class="section">
+<H3>5.1. Attributes</H3>
+<DL>
+  <DT id="dfn-length"><CODE>length</CODE></DT>
+  <DD>
+  <P>MUST return the number of files in the <A href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A> 
+  collection.  If there are no files in the collection, this attribute MUST 
+  return 0.</P></DD></DL></DIV>
+<DIV id="filelist-methods-params" class="section">
+<H3>5.2. Methods and Parameters</H3>
+<DL>
+  <DT id="dfn-item"><CODE>item(index)</CODE></DT>
+  <DD>
+  <P>MUST return the <EM>indexth</EM> <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  object in      the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A>.  
+  If there is no <EM>indexth</EM> <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  object in the      <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A>, 
+  then this method must return <CODE>null</CODE>.</P>
+  <P><DFN id="dfn-index" title="index"><CODE>index</CODE></DFN> MUST be treated 
+  by user agents as value for the position of a <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+       object in the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A> 
+  collection, with 0 representing the first file in the collection.  
+  <STRONG>Supported property indices</STRONG> [<A href="http://www.w3.org/TR/FileAPI/#WebIDL">WebIDL</A>] 
+  are the numbers in the range zero to one less than the number of <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  objects represented by the collection [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>]. 
+    If there are no such <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> objects, 
+  then there are no supported property indices [<A href="http://www.w3.org/TR/FileAPI/#WebIDL">WebIDL</A>]. 
+  </P></DD></DL></DIV>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>    The <CODE>HTMLInputElement</CODE> 
+interface [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] has a readonly 
+attribute of type <CODE>FileList</CODE>, which is what is    being accessed in 
+the above example.  Other interfaces with a readonly attribute of type 
+<CODE>FileList</CODE> include the <CODE>DataTransfer</CODE>    interface [<A 
+href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>].    </DIV></DIV>
+<DIV id="blob" class="section">
+<H2>6. The Blob Interface</H2>
+<P>      This interface represents <EM>immutable</EM> raw data.  It provides a 
+method to <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> data 
+objects between ranges of bytes into further chunks of raw data.  It also 
+provides an attribute representing the size of the chunk of data.      The <A 
+class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> interface 
+inherits from this interface.    </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">IDL</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="idl-code">
+    interface <DFN id="dfn-Blob">Blob</DFN> {
+      
+      readonly attribute unsigned long long <A class="dfnref" title="size" href="http://www.w3.org/TR/FileAPI/#dfn-size">size</A>;
+      readonly attribute DOMString <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-type">type</A>;
+      
+      <SPAN class="comment">//slice Blob into byte-ranged chunks</SPAN>
+      
+      Blob <A title="slice" href="http://www.w3.org/TR/FileAPI/#dfn-slice">slice</A>(optional long long <A class="dfnref" title="start" href="http://www.w3.org/TR/FileAPI/#dfn-start">start</A>,
+                 optional long long <A class="dfnref" title="length" href="http://www.w3.org/TR/FileAPI/#dfn-end">end</A>,
+                 optional DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-contentTypeBlob">contentType</A>); 
+    
+    };
+    </CODE></PRE></DIV></DIV>
+<DIV id="attributes-blob" class="section">
+<H3>6.1. Attributes</H3>
+<DL>
+  <DT id="dfn-size"><CODE>size</CODE></DT>
+  <DD>
+  <P>Returns the size of the <CODE>Blob</CODE> object in bytes.  On getting, 
+  conforming user agents MUST return the total    number of bytes that can be 
+  read by a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+  or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-FileReaderSync"><CODE>FileReaderSync</CODE></A> 
+  object, or 0 if the    Blob has no bytes to be read.</P></DD>
+  <DT id="dfn-type"><CODE>type</CODE></DT>
+  <DD>
+  <P>The ASCII-encoded string in lower case representing the media type of the 
+  <CODE>Blob</CODE>, expressed as an RFC2046 MIME type [<A href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>]. 
+     On getting, conforming user agents SHOULD return the MIME type of the 
+  <CODE>Blob</CODE>,    if it is known. If conforming user agents cannot 
+  determine the media type of the <CODE>Blob</CODE>, they MUST return the empty 
+  string.    A string is a valid MIME type if it matches the 
+  <CODE>media-type</CODE>    token defined in section 3.7 "Media Types" of RFC 
+  2616 [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>]. </P></DD></DL>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>Use of the <CODE>type</CODE> attribute informs the <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+determination</A> and <A href="http://www.w3.org/TR/FileAPI/#processing-media-types">parsing 
+the Content-Type header</A> when dereferencing <A href="http://www.w3.org/TR/FileAPI/#ABNFForBlob">blob: 
+URIs</A>.</P></DIV></DIV>
+<DIV id="methodsandparams-blob" class="section">
+<H3>6.2. Methods and Parameters</H3>
+<DIV id="normalization-of-params" class="section">
+<H4>6.2.1. Parameters to slice</H4>
+<P>When this specification says to <DFN id="normalize-params">normalize 
+parameters</DFN> for the <CODE>slice</CODE> call, the following steps MUST be 
+followed for  the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-start"><CODE>start</CODE></A>, <A href="http://www.w3.org/TR/FileAPI/#dfn-end"><CODE>end</CODE></A>, 
+and <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-contentTypeBlob"><CODE>contentType</CODE></A> 
+parameters, which are defined below.</P>
+<P>The optional <DFN id="dfn-start"><CODE>start</CODE></DFN> parameter is a 
+value for the start point of a <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> 
+call, and    MUST be treated as a byte-order position, with the zeroth position 
+representing the first byte.    The following requirements are normative for 
+this parameter, and user agents MUST process <A href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> 
+with    <CODE>start</CODE> <EM>normalized</EM> according to the following:</P>
+<OL>
+  <LI>
+  <P>If the optional <CODE>start</CODE> parameter is not used as a parameter 
+  when making this call, let relativeStart be 0.</P></LI>
+  <LI>
+  <P>If <CODE>start</CODE> is negative, let relativeStart be <EM>max((<A href="http://www.w3.org/TR/FileAPI/#dfn-size"><CODE>size</CODE></A> 
+  + <CODE>start</CODE>), 0))</EM>.</P></LI>
+  <LI>
+  <P>Else, let relativeStart be <EM>min(start, size)</EM>.</P></LI>
+  <LI>
+  <P>This defines the normalization of the <CODE>start</CODE> parameter.  When 
+  processing the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> 
+  call,    user agents must normalize <CODE>start</CODE> to 
+  relativeStart.</P></LI></OL>
+<P>The optional <DFN id="dfn-end"><CODE>end</CODE></DFN> parameter is a value 
+for the end point of a    <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> 
+call.  The following requirements    are normative for this parameter, and user 
+agents MUST process <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> with 
+<CODE>end</CODE> normalized according to the following:</P>
+<OL>
+  <LI>
+  <P>If the optional <CODE>end</CODE> parameter is not used as a parameter when 
+  making this call, let relativeEnd be <A href="http://www.w3.org/TR/FileAPI/#dfn-size"><CODE>size</CODE></A>.</P></LI>
+  <LI>
+  <P>If <CODE>end</CODE> is negative, let relativeEnd be <EM>max((size + end), 
+  0)</EM> </P></LI>
+  <LI>
+  <P>Else, let relativeEnd be <EM>min(end, size)</EM></P></LI>
+  <LI>
+  <P>This defines the normalization of the <CODE>end</CODE> parameter.  When 
+  processing the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> 
+  call,    user agents must normalize <CODE>end</CODE> to 
+relativeEnd.</P></LI></OL>
+<P>The optional <DFN id="dfn-contentTypeBlob"><CODE>contentType</CODE></DFN> 
+parameter is used to set a value identical to one that is set with the    
+HTTP/1.1 Content-Type header [<A 
+href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>] on    the <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+returned by the <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> call.  The 
+following requirements are normative for this    parameter, and user agents MUST 
+process the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> with 
+<CODE>contentType</CODE> normalized according to the following:   </P>
+<OL>
+  <LI>
+  <P>If the <CODE>contentType</CODE> parameter is not provided, let 
+  relativeContentType be set to the empty string .</P></LI>
+  <LI>
+  <P>If the <CODE>contentType</CODE> parameter is undefined, let 
+  relativeContentType be set to the empty string.</P></LI>
+  <LI>
+  <P>Else let relativeContentType be set to <CODE>contentType</CODE>.</P></LI>
+  <LI>
+  <P>This defines the normalization of the <CODE>contentType</CODE> parameter.  
+  When processing the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> 
+  call,    user agents must normalize <CODE>contentType</CODE> to 
+  relativeContentType.</P></LI></OL></DIV>
+<DIV id="slide-method-algo" class="section">
+<H4>6.2.2. The slice method</H4>
+<P>The <DFN id="dfn-slice"><CODE>slice</CODE></DFN> method returns a new <A 
+class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> object with 
+bytes ranging from the optional <A href="http://www.w3.org/TR/FileAPI/#dfn-start"><CODE>start</CODE></A>
+	parameter upto but not including the optional <A href="http://www.w3.org/TR/FileAPI/#dfn-end"><CODE>end</CODE></A> 
+parameter, and with a	<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> 
+attribute that is the value of the optional <A href="http://www.w3.org/TR/FileAPI/#dfn-contentTypeBlob"><CODE>contentType</CODE></A> 
+parameter.  It MUST act as follows :</P>
+<OL>
+  <LI>
+  <P>Let O be the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> object on 
+  which the <CODE>slice</CODE> method is being called.</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#normalize-params">Normalize the 
+  parameters</A> <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-start"><CODE>start</CODE></A>, <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-end"><CODE>end</CODE></A>, and <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-contentTypeBlob"><CODE>contentType</CODE></A> 
+  to <CODE>relativeStart</CODE>, <CODE>relativeEnd</CODE>, and 
+  <CODE>relativeContentType</CODE> respectively.</P></LI>
+  <LI>
+  <P>Let span be <EM>max((relativeEnd - relativeStart), 0)</EM>.</P></LI>
+  <LI>
+  <P>Return a new <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> object A 
+  with the following characteristics:</P>
+  <OL type="a">
+    <LI>
+    <P>A consists of span consecutive bytes from O, beginning with the byte at 
+    byte-order position relativeStart.</P></LI>
+    <LI>
+    <P>A.<A href="http://www.w3.org/TR/FileAPI/#dfn-size"><CODE>size</CODE></A> 
+    = span.</P></LI>
+    <LI>
+    <P>A.<A href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> 
+    = relativeContentType.</P></LI></OL></LI></OL>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P><EM>This note is informative.</EM>  The <CODE>slice</CODE> method previously 
+had different semantics, which differed from both 
+<CODE>Array.prototype.slice</CODE> and <CODE>String.prototype.slice</CODE> [<A 
+href="http://www.w3.org/TR/FileAPI/#ECMA-262">ECMA-262</A>].  This difference    
+was an oversight which has been corrected in this edition of the specification.  
+Some user agents implemented the previous semantics, notably Firefox 4, Chrome 
+10, and Opera 11.    These user agents have agreed to vendor-prefix their 
+<CODE>slice</CODE> implementations in subsequent releases.  A <CODE>Blob</CODE> 
+<CODE>slice</CODE> operation occurs    synchronously.</P></DIV>
+<DIV class="example">
+<DIV class="exampleHeader">Example</DIV>
+<P>    The examples below illustrate the different types of <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> calls 
+possible. Since the    <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> interface 
+inherits from the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> interface, 
+examples are based on the use of the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+interface.    </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">ECMAScript</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="es-code">
+    <SPAN class="comment">// obtain input element through DOM</SPAN>
+    
+    var file = document.getElementById('file').files[0];
+    if(file)
+    {
+      <SPAN class="comment">// create an identical copy of file</SPAN>
+      <SPAN class="comment">// the two calls below are equivalent</SPAN>
+      
+      var fileClone = file.slice(); 
+      var fileClone2 = file.slice(0, file.size);
+      
+      <SPAN class="comment">// slice file into 1/2 chunk starting at middle of file</SPAN>
+      <SPAN class="comment">// Note the use of negative number</SPAN>
+      
+      var fileChunkFromEnd = file.slice(-(Math.round(file.size/2)));
+      
+      <SPAN class="comment">// slice file into 1/2 chunk starting at beginning of file</SPAN>
+      
+      var fileChunkFromStart = file.slice(0, Math.round(file.size/2));
+      
+      <SPAN class="comment">// slice file from beginning till 150 bytes before end</SPAN>
+      
+      var fileNoMetadata = file.slice(0, -150, "application/experimental");      
+    }
+    </CODE></PRE></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV id="file" class="section">
+<H2>7. The File Interface</H2>
+<P>	    This interface describes a single file in a <A class="dfnrefs" href="http://www.w3.org/TR/FileAPI/#dfn-filelist">FileList</A> 
+and exposes its name.	    It inherits from <A class="dfnrefs" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A>.
+	  </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">IDL</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="idl-code">
+	  interface <DFN id="dfn-file">File</DFN> : <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> {
+
+	      readonly attribute DOMString <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-name">name</A>;
+	      readonly attribute Date <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-lastModifiedDate">lastModifiedDate</A>;
+	};
+	  </CODE></PRE></DIV></DIV>
+<DIV id="file-attrs" class="section">
+<H3>7.1. Attributes</H3>
+<DL>
+  <DT id="dfn-name"><CODE>name</CODE></DT>
+  <DD>
+  <P>The name of the file; on getting, this MUST return the name of the file as 
+  a string. There are numerous file name variations on different systems;	    
+  this is merely the name of the file, without path information.  On getting, if 
+  user agents cannot make this information available, they MUST return the empty 
+  string.</P></DD>
+  <DT id="dfn-lastModifiedDate"><CODE>lastModifiedDate</CODE></DT>
+  <DD>
+  <P>The last modified date of the file.  On getting, if user agents can make 
+  this information available, this MUST return a new <CODE>Date</CODE>[<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] 
+  object	initialized to the last modified date of the file; otherwise, this MUST 
+  return null.	</P></DD></DL></DIV>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>The <CODE>File</CODE> interface is available on objects that expose an 
+attribute of type <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A>; 
+these objects are defined in	  HTML [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>]. 
+ The <CODE>File</CODE> interface, which inherits from <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>, 
+is immutable, and thus represents file data that can be	  read into memory at 
+the time a <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+operation</A> is initiated.  User agents MUST process reads on files that no 
+longer exist at the time of read as	  <A href="http://www.w3.org/TR/FileAPI/#file-error-read">errors</A>, 
+throwing a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-NotFoundError"><CODE>NotFoundError</CODE></A> 
+exception if using a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-FileReaderSync"><CODE>FileReaderSync</CODE></A> 
+on a Web Worker [<A href="http://www.w3.org/TR/FileAPI/#Workers">Workers</A>] or 
+firing an <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-error-event"><CODE>error</CODE></A> 
+event with the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A>	  
+attribute returning a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-NotFoundError"><CODE>NotFoundError</CODE></A> 
+<A 
+href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A>.</P></DIV></DIV>
+<DIV id="FileReader-interface" class="section">
+<H2>8. The FileReader Interface</H2>
+<P>	    This interface provides methods to read <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+objects or <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> objects into 
+memory, and to access the data from those	    <A href="http://www.w3.org/TR/FileAPI/#dfn-file">Files</A> 
+or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blobs</A> using progress 
+events and	    <A 
+href="http://www.w3.org/TR/FileAPI/#event-handler-attributes">event handler 
+attributes</A>; it inherits from <CODE>EventTarget</CODE> [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>].
+	    It is desirable to read data from file systems asynchronously in the main 
+thread of user agents.  This interface provides such an asynchronous API, and is 
+specified to be used	    with the global object (<CODE>Window</CODE> [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>]).
+	  </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">IDL</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="idl-code">
+
+	[Constructor]
+	interface <DFN id="dfn-filereader">FileReader</DFN>: EventTarget {
+
+	  <SPAN class="comment">// async read methods</SPAN>
+	  void <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer">readAsArrayBuffer</A>(<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>);
+	  void <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync">readAsBinaryString</A>(<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>);
+	  void <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsText">readAsText</A>(<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>, optional DOMString <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-encoding">encoding</A>);
+	  void <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsDataURL">readAsDataURL</A>(<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>);
+
+	  void <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-abort">abort</A>();
+
+	  <SPAN class="comment">// states</SPAN>
+	  const unsigned short <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-empty">EMPTY</A> = 0;
+	  const unsigned short <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-loading">LOADING</A> = 1;
+	  const unsigned short <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-done">DONE</A> = 2;
+
+
+	  readonly attribute unsigned short <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readyState">readyState</A>;
+
+	  <SPAN class="comment">// File or Blob data</SPAN>
+	  readonly attribute any <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-result">result</A>;
+
+	  readonly attribute <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-domerror">DOMError</A> <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-error">error</A>;
+
+	  <SPAN class="comment">// event handler attributes</SPAN>
+	  attribute [TreatNonCallableAsNull] Function? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-onloadstart">onloadstart</A>;
+	  attribute [TreatNonCallableAsNull] Function? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-onprogress">onprogress</A>;
+	  attribute [TreatNonCallableAsNull] Function? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-onload">onload</A>;
+	  attribute [TreatNonCallableAsNull] Function? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-onabort">onabort</A>;
+	  attribute [TreatNonCallableAsNull] Function? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-onerror">onerror</A>;
+	  attribute [TreatNonCallableAsNull] Function? <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-onloadend">onloadend</A>;
+
+	};
+	  </CODE></PRE></DIV></DIV>
+<DIV id="blobreader-task-source" class="section">
+<H3>8.1. The FileReader Task Source</H3>
+<P>The <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+interface enables asynchronous reads on individual <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+objects by	<A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">firing 
+progress events</A> as the read occurs to event handler methods on the 
+<CODE>FileReader</CODE>, which is an <CODE>EventTarget</CODE> [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>].
+	Unless stated otherwise, the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#task-source">task 
+source</A> that is used in this specification is the	<A href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A>. 
+ This task source is used for events that are asynchronously fired, and for
+	event <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#queue-a-task">tasks 
+that are queued</A> for firing, and for the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+methods</A>, which <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+tasks</A>	to update the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE>.</A></P></DIV>
+<DIV id="filereaderConstrctr" class="section">
+<H3>8.2. Constructors</H3>
+<P>When the <CODE>FileReader()</CODE> constructor is invoked, the user agent 
+MUST return a new <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+object. </P>
+<P>In environments where the global object is represented by a 
+<CODE>Window</CODE> or a <CODE>WorkerGlobalScope</CODE> object, the 
+<CODE>FileReader</CODE> constructor	MUST be available.</P></DIV>
+<DIV id="event-handler-attributes-section" class="section">
+<H3>8.3. Event Handler Attributes</H3>
+<P>	The following are the <A href="http://www.w3.org/TR/FileAPI/#event-handler-attributes">event
+	   handler attributes</A> (and their corresponding <A title="event handler event type" 
+href="http://www.w3.org/TR/FileAPI/#event-handler-event-type">event	   handler 
+event types</A>) that user agents MUST support on	   <CODE><A href="http://www.w3.org/TR/FileAPI/#dfn-filereader">FileReader</A></CODE> 
+as	   DOM attributes:  	</P>
+<TABLE>
+  <THEAD>
+  <TR>
+    <TH><A title="event handler        attributes" href="http://www.w3.org/TR/FileAPI/#event-handler-attributes">event 
+      handler attribute</A></TH>
+    <TH><A href="http://www.w3.org/TR/FileAPI/#event-handler-event-type">event 
+      handler event type</A></TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD><DFN id="dfn-onloadstart"><CODE>onloadstart</CODE></DFN></TD>
+    <TD><CODE><A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event">loadstart</A></CODE></TD></TR>
+  <TR>
+    <TD><DFN id="dfn-onprogress"><CODE>onprogress</CODE></DFN></TD>
+    <TD><CODE><A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-progress-event">progress</A></CODE></TD></TR>
+  <TR>
+    <TD><DFN id="dfn-onabort"><CODE>onabort</CODE></DFN></TD>
+    <TD><CODE title="abort-event"><A href="http://www.w3.org/TR/FileAPI/#dfn-abort-event">abort</A></CODE></TD></TR>
+  <TR>
+    <TD><DFN id="dfn-onerror"><CODE>onerror</CODE></DFN></TD>
+    <TD><CODE><A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-error-event">error</A></CODE></TD></TR>
+  <TR>
+    <TD><DFN id="dfn-onload"><CODE>onload</CODE></DFN></TD>
+    <TD><CODE><A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-load-event">load</A></CODE></TD></TR>
+  <TR>
+    <TD><DFN id="dfn-onloadend"><CODE>onloadend</CODE></DFN></TD>
+    <TD><CODE><A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event">loadend</A></CODE></TD></TR></TBODY></TABLE></DIV>
+<DIV id="blobreader-state" class="section">
+<H3>8.4. FileReader States</H3>
+<P>The <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+object can be in one of 3 states.  The	<DFN 
+id="dfn-readyState"><CODE>readyState</CODE></DFN> attribute, on getting,	MUST 
+return the current state, which MUST be one of the following values:</P>
+<DL>
+  <DT><DFN id="dfn-empty"><CODE>EMPTY</CODE> (numeric value 0)</DFN></DT>
+  <DD>
+  <P>The <CODE>FileReader</CODE> object has been constructed, and there are no 
+  pending reads.  None of the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+  methods</A> have been called.  This is the	 default state of a newly minted 
+  <CODE>FileReader</CODE> object, until one of the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+  methods</A> have been called on it.</P></DD>
+  <DT><DFN id="dfn-loading"><CODE>LOADING</CODE> (numeric value 1)</DFN></DT>
+  <DD>
+  <P>A <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> is 
+  being read.  One of the <A 
+  href="http://www.w3.org/TR/FileAPI/#read-methods">read methods</A> is being 
+  processed,	 and no error has occurred during the read.</P></DD>
+  <DT><DFN id="dfn-done"><CODE>DONE</CODE> (numeric value 2)</DFN></DT>
+  <DD>
+  <P>The entire <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has been 
+  read into memory,	 OR a <A href="http://www.w3.org/TR/FileAPI/#file-error-read">file 
+  error occurred during read</A>, OR the read was	 aborted using <A href="http://www.w3.org/TR/FileAPI/#dfn-abort"><CODE>abort()</CODE></A>.
+  	 The <A class="dfnref" 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A>
+  	is no longer reading a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>.  If 
+  <CODE>readyState</CODE> is set to <CODE>DONE</CODE> it means	at least one of 
+  the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read methods</A> have 
+  been called on this <CODE>FileReader</CODE>.</P></DD></DL></DIV>
+<DIV id="reading-a-file" class="section">
+<H3>8.5. Reading a File or Blob</H3>
+<DIV id="MultipleReads" class="section">
+<H4>8.5.1. Multiple Reads</H4>
+<P>	 The <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+interface makes available four asynchronous <DFN id="read-methods">read 
+methods</DFN> --	<A 
+href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer</CODE></A>, 
+<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString</CODE></A>,
+	 <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText</CODE></A>, 
+and <A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-readAsDataURL"><CODE>readAsDataURL</CODE></A>, 
+which	 <EM>read files into memory</EM>.  If multiple concurrent read methods are 
+called on the same <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+object, user agents	 MUST throw an <CODE>InvalidStateError</CODE> [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+on any of the read methods that occur when	 <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+= <A href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A>.
+	</P></DIV>
+<DIV id="filedata-attr" class="section">
+<H4>8.5.2. The <CODE>result</CODE> attribute</H4>
+<P>On getting, the <DFN id="dfn-result"><CODE>result</CODE></DFN> attribute 
+returns a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>'s data as a 
+<CODE>DOMString</CODE>, or as	an <CODE>ArrayBuffer</CODE> [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>], 
+or <CODE>null</CODE>, depending on the <A class="#dfnref" href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+method</A>	that has been called on the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A>, 
+and any errors that may have occurred.	It can also return <EM>partial Blob 
+data</EM>.	<DFN id="partial-blob-data">Partial Blob data</DFN> is the part of 
+the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>	that has 
+been read into memory <EM>currently</EM>;	when processing the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+methods</A><A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString</CODE></A> 
+or	<A class="dfnref" 
+href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText</CODE></A>, 
+partial Blob data is a <CODE>DOMString</CODE> that is incremented as more bytes
+	are <CODE>loaded</CODE> (a portion of the <CODE>total</CODE>) [<A href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>], 
+and	when processing <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer</CODE></A> 
+partial Blob data is an	<CODE>ArrayBuffer</CODE> [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>] 
+object consisting of the bytes <CODE>loaded</CODE> so far (a portion of the
+	<CODE>total</CODE>)[<A 
+href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>].  	The 
+list below is normative for the <CODE>result</CODE> attribute and is the 
+conformance criteria for this attribute:	</P>
+<UL>
+  <LI>
+  <P>On getting, if the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  is <CODE>EMPTY</CODE> (no read method has been called)	  then the 
+  <CODE>result</CODE> attribute MUST return <CODE>null</CODE>.</P></LI>
+  <LI>
+  <P>On getting, if an error in reading the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has	 
+   occurred (using <EM>any</EM> <A href="http://www.w3.org/TR/FileAPI/#read-methods"> 
+  read method</A>),	  then the <CODE>result</CODE> attribute MUST return 
+  <CODE>null</CODE>.</P></LI>
+  <LI>
+  <P>On getting, if the <A class="#dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsDataURL"><CODE>readAsDataURL</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A> is	  
+  used, the <CODE>result</CODE> attribute MUST return a <CODE>DOMString</CODE> 
+  that is a Data URL [<A 
+  href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>] encoding of the	  <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>'s 
+  data.</P></LI>
+  <LI>
+  <P>On getting, if the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A> is called
+  	  and no error in reading the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has 
+  occurred,	  then the <CODE>result</CODE> attribute MUST return a 
+  <CODE>DOMString</CODE> representing the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  or	  <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>'s 
+  data as a <DFN id="binary-string">binary string</DFN>, in which	  every byte 
+  is represented by an integer in the range [0..255].  On getting, <EM>while 
+  processing</EM> the	  <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A>, the 
+  <CODE>result</CODE>	  attribute SHOULD return <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial 
+  Blob data</A> in <A href="http://www.w3.org/TR/FileAPI/#binary-string">binary 
+  string</A> format	  as a <CODE>DOMString</CODE> that is incremented as more 
+  data is read.  User agents MUST return at least one such <CODE>result</CODE>, 
+  with the final <CODE>result</CODE> returned at completion of the 
+read.</P></LI>
+  <LI>
+  <P>On getting, if the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A> is called
+  	  and no error in reading the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has 
+  occurred,	  then the <CODE>result</CODE> attribute MUST return a string 
+  representing the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>'s	  data 
+  as a text string, and SHOULD decode the string into memory in the format 
+  specified	  by the <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+  determination</A>.  On getting, <EM>while processing</EM> the	  <A class="dfnref" 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A>, this 
+  attibute SHOULD return	  <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial 
+  Blob data</A> in the format specified by	  the <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+  determination</A> as a <CODE>DOMString</CODE> that is incremented as more data 
+  is read.	  User agents MUST return at least one such <CODE>result</CODE>, with 
+  the final <CODE>result</CODE> returned at completion of the read.  See the <A 
+  href="http://www.w3.org/TR/FileAPI/#encodingCaveat">caveat about</A><A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial 
+  Blob data</A> being valid within a giving encoding.	  </P></LI>
+  <LI>
+  <P>On getting, if the <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A> is called
+  	  and no error in reading the <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has 
+  occurred,	  then the <CODE>result</CODE> attribute MUST return an 
+  <CODE>ArrayBuffer</CODE> [<A 
+  href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>] object. On 
+  getting, <EM>while processing</EM> the	  <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A>, the 
+  <CODE>result</CODE>	  attribute SHOULD return <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial 
+  Blob data</A> as an <CODE>ArrayBuffer</CODE> [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>]. 
+   User agents MUST return at least one such <CODE>result</CODE>,	  with the 
+  final <CODE>result</CODE> returned at completion of the read.</P></LI></UL>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>If a read is successful, the <CODE>result</CODE> attribute MUST return a 
+non-null value only after a <A href="http://www.w3.org/TR/FileAPI/#event-summary-table">progress 
+event</A> (see also [<A 
+href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>]) has 
+fired,	since all the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+methods</A> access <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> data 
+asynchronously.  <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">Tasks are 
+queued</A> to update	the <CODE>result</CODE> attribute as <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+data is made available.</P></DIV></DIV>
+<DIV id="readAsBinaryString" class="section">
+<H4>8.5.3. The <CODE>readAsBinaryString(blob)</CODE> method</H4>
+<P>	When the <DFN 
+id="dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString(blob)</CODE></DFN> 
+method is called, the user agent MUST run the steps below (unless otherwise 
+indicated).	</P>
+<OL>
+  <LI>
+  <P>If <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A> 
+  throw an <CODE>InvalidStateError</CODE> exception [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+  and <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminate 
+  this algorithm</A>.	  </P>
+  <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString()</CODE></A> 
+  method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading of the <CODE>blob</CODE> parameter</A>, set <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to	  <A href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A> 
+  and set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> to 
+  <CODE>null</CODE>. Proceed to the error steps below.</P>
+  <OL>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error-event"><CODE>error</CODE></A>. 
+     <EM>Set the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute</EM>; on getting, the	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute MUST be a	    a <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+    object that indicates the kind of	    <A href="http://www.w3.org/TR/FileAPI/#file-error-read">file 
+    error that has occurred</A>.</P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A>. 
+    </P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+    this algorithm</A>.</P>
+    <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringAsync"><CODE>readAsBinaryString()</CODE></A> 
+    method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI></OL></LI>
+  <LI>
+  <P>If no error has occurred, set <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A>.</P></LI>
+  <LI>
+  <P>Return the <CODE>readAsBinaryString()</CODE> method, but continue 
+  processing the other steps in this algorithm.</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#make-progress-notifications">Make 
+  progress notifications</A>. </P></LI>
+  <LI>
+  <P>While processing the read, as data from <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  becomes available, user agents SHOULD <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+  tasks</A> to update the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> with 
+  <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob 
+  data</A> represented as a <A href="http://www.w3.org/TR/FileAPI/#binary-string">binary 
+  string</A> to accompany the <A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">firing</A> 
+  of <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  events until the read is complete.  On getting, the <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  attribute returns <A 
+  href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob data</A> 
+  representing the number of bytes currently <CODE>loaded</CODE> (as a fraction 
+  of the <CODE>total</CODE>) [<A href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>], 
+  as a <A href="http://www.w3.org/TR/FileAPI/#binary-string">binary string</A>; 
+  user agents MUST return at least one such <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  while processing this read method.  The last returned value is at completion 
+  of the read.</P></LI>
+  <LI>
+  <P>When the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has 
+  been read into memory fully, set <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+  this algorithm</A>.</P></LI></OL>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>Note: the <CODE>readAsBinaryString(blob)</CODE> method should be considered 
+deprecated; user agents should consider supporting the	  <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer(blob)</CODE></A> 
+method	  instead of <CODE>readAsBinaryString(blob)</CODE>.</P></DIV></DIV>
+<DIV id="readAsDataURL" class="section">
+<H4>8.5.4. The <CODE>readAsDataURL(blob)</CODE> method</H4>
+<P>When the <DFN id="dfn-readAsDataURL"><CODE>readAsDataURL(blob)</CODE></DFN> 
+method is called, the user agent MUST run the steps below (unless otherwise 
+indicated).</P>
+<OL>
+  <LI>
+  <P>If <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A> 
+  throw an <CODE>InvalidStateError</CODE> exception [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+  and <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminate 
+  this algorithm</A>.	  </P>
+  <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsDataURL"><CODE>readAsDataURL()</CODE></A> 
+  method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading of the <CODE>blob</CODE> parameter</A>, OR if a user agent's 
+  URL length limitations prevent returning	  data as a Data URL [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>], 
+  set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to	  <A href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A> 
+  and set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> to 
+  <CODE>null</CODE>. Proceed to the error steps below.</P>
+  <OL>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error-event"><CODE>error</CODE></A>. 
+     <EM>Set the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute</EM>; on getting, the	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute MUST be a	    a <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+    object that indicates the kind of	    <A href="http://www.w3.org/TR/FileAPI/#file-error-read">file 
+    error that has occurred</A>.</P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A>. 
+    </P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+    this algorithm</A>.</P>
+    <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsDataURL"><CODE>readAsDataURL()</CODE></A> 
+    method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI></OL></LI>
+  <LI>
+  <P>If no error has occurred, set <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A>.</P></LI>
+  <LI>
+  <P>Return the <CODE>readAsDataURL()</CODE> method, but continue to process the 
+  steps in this algorithm. </P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  at completion of the read.</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#queue-a-task">Queue a task</A> to 
+  update the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  attribute with the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> as a	  
+  DataURL [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>] after it 
+  has been fully read into memory; on getting, the <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  attribute returns the (complete) data of <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  as a	  Data URL [<A 
+  href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>].</P>
+  <UL>
+    <LI>Use the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>'s <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A>	  
+    attribute as part of the Data URL if it is available in keeping with the 
+    Data URL specification [<A 
+    href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>] .</LI>
+    <LI>If the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> 
+    attribute is not available on the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+    return a Data URL without a media-type.	  [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>].
+    	  
+    <DIV class="note">
+    <DIV class="noteHeader">Note</DIV>
+    <P>Data URLs that do not have media-types [<A href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>] 
+    MUST be treated as plain text by conforming user agents. [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>].</P></DIV></LI></UL></LI>
+  <LI>
+  <P>Set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to	  <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-load-event"><CODE>load</CODE></A>.</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A>.</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+  this algorithm</A>.</P></LI></OL></DIV>
+<DIV id="readAsDataText" class="section">
+<H4>8.5.5. The <CODE>readAsText(blob, encoding)</CODE> method</H4>
+<P>	When the <DFN id="dfn-readAsText"><CODE>readAsText(blob, 
+encoding)</CODE></DFN> method is called (the encoding argument is optional),	the 
+user agent MUST run the steps below (unless otherwise indicated).	</P>
+<OL>
+  <LI>
+  <P>If <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A> 
+  throw an <CODE>InvalidStateError</CODE> [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+  and terminate these steps.	  </P>
+  <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText()</CODE></A> 
+  method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading the <CODE>blob</CODE> parameter</A>, 	  set <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to	  <A href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A> 
+  and set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> to 
+  <CODE>null</CODE>. Proceed to the error steps below.</P>
+  <OL>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error-event"><CODE>error</CODE></A>. 
+     <EM>Set the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute</EM>; on getting, the	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute MUST be a	    a <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+    object that indicates the kind of	    <A href="http://www.w3.org/TR/FileAPI/#file-error-read">file 
+    error that has occurred</A>.</P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A>. 
+    </P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+    this algorithm</A>.</P>
+    <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText()</CODE></A> 
+    method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI></OL></LI>
+  <LI>
+  <P>If no error has occurred, set <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A>.</P></LI>
+  <LI>
+  <P>Return the <CODE>readAsText()</CODE> method, but continue to process the 
+  steps in this algorithm</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#make-progress-notifications">Make 
+  progress notifications</A>.</P></LI>
+  <LI>
+  <P>While processing the read, as data from the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  becomes available, user agents SHOULD <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+  tasks</A> to update the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> with 
+  <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob 
+  data</A> represented as a string in a format determined by the <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+  determination</A> until the read is complete, to accompany the <A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">firing</A> 
+  of <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  events.  On getting, the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  attribute returns <A 
+  href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob data</A> 
+  representing the number of bytes currently <CODE>loaded</CODE> (as a fraction 
+  of the <CODE>total</CODE>) [<A href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>], 
+  decoded into	  memory according to the <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+  determination</A>; user agents MUST return at least one such <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  while processing this read method.  The last returned value is at completion 
+  of the read.</P>
+  <DIV id="encodingCaveat" class="note">
+  <DIV class="noteHeader">Note</DIV>
+  <P><A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">Partial Blob 
+  data</A> MUST be returned such that where possible, the bytes read thus far 
+  should be valid code points	within the <A href="http://www.w3.org/TR/FileAPI/#dfn-encoding"><CODE>encoding</CODE></A>; 
+  in particular, when executing the <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+  determination</A> for	<A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">Partial 
+  Blob data</A>, user agents MUST NOT return the U+FFFD character for bytes that 
+  are invalid within an <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-encoding"><CODE>encoding</CODE></A>
+  	till the entire codepoint has been read.  For example:</P>
+  <P>	Suppose a file resource is to be read in UTF-8, and in hexadecimal the 
+  bytes in this file are E3 83 91 E3 83 91, which is effectively 0x30D1 0x30D1.
+  	Suppose the first 5 bytes have been read.  The <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  returned here MUST be 0x30D1 and have <CODE>result.length == 1 </CODE>,	and 
+  NOT be 0x30D1 0xFFFD with <CODE>result.length == 2 </CODE>.	Even though the 
+  trailing E3 83 is not a valid code point in UTF-8 at the fifth byte, user 
+  agents MUST NOT return a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> with 
+  such invalid code points	replaced with U+FFFD till it can be determined 
+  definitively that the codepoint is invalid.	</P></DIV></LI>
+  <LI>
+  <P>When the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has 
+  been read into memory fully, set <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+  this algorithm</A>.	  </P></LI></OL></DIV>
+<DIV id="readAsArrayBuffer" class="section">
+<H4>8.5.6. The <CODE>readAsArrayBuffer(blob)</CODE> method</H4>
+<P>	When the <DFN 
+id="dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer(blob)</CODE></DFN> method is 
+called, the user agent MUST run the steps below (unless otherwise indicated).
+	</P>
+<OL>
+  <LI>
+  <P>If <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A> 
+  throw an <CODE>InvalidStateError</CODE> exception [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+  and terminate these steps.	  </P>
+  <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer()</CODE></A> 
+  method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading the <CODE>blob</CODE> parameter</A>, set <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to	  <A href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A> 
+  and set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> to 
+  <CODE>null</CODE>. Proceed to the error steps below.</P>
+  <OL>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error-event"><CODE>error</CODE></A>. 
+     <EM>Set the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute</EM>; on getting, the	    <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+    attribute MUST be a	    a <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+    that indicates the kind of	    <A href="http://www.w3.org/TR/FileAPI/#file-error-read">file 
+    error that has occurred</A>.</P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+    progress event</A> called	    <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A>. 
+    </P></LI>
+    <LI>
+    <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+    this algorithm</A>.</P>
+    <P><STRONG>Note:</STRONG> The <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBuffer"><CODE>readAsArrayBuffer()</CODE></A> 
+    method returns due to the algorithm being <A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">terminated</A>.</P></LI></OL></LI>
+  <LI>
+  <P>If no error has occurred, set <A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A>.</P></LI>
+  <LI>
+  <P>Return the <CODE>readAsArrayBuffer()</CODE> method, but continue to process 
+  the steps in this algorithm.</P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#make-progress-notifications">Make 
+  progress notifications</A>.  	  </P></LI>
+  <LI>
+  <P>While processing the read, as data from the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  becomes available, user agents SHOULD <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+  tasks</A> to update the	  <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> with 
+  <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob 
+  data</A> as an <CODE>ArrayBuffer</CODE> [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>]
+  	  object containing the bytes read until the read is complete, to accompany 
+  the <A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">firing</A> 
+  of <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  events.  On getting,	  the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  attribute returns <A 
+  href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob data</A> 
+  representing the number of bytes currently <CODE>loaded</CODE>	  (as a 
+  fraction of the <CODE>total</CODE>) [<A href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>], 
+  as an <CODE>ArrayBuffer</CODE> [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>] 
+  object;	  user agents MUST return at least one such <CODE>ArrayBuffer</CODE> 
+  [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>] while 
+  processing this read method.  The last returned value is at completion of	  
+  the read.</P></LI>
+  <LI>
+  <P>When the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has 
+  been read into memory fully, set <A href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+  this algorithm</A>.</P></LI></OL></DIV>
+<DIV id="abort" class="section">
+<H4>8.5.7. The abort() method</H4>
+<P>	  When the <DFN id="dfn-abort"><CODE>abort()</CODE></DFN> method is called, 
+the user agent MUST run the steps below:</P>
+<OL>
+  <LI>
+  <P>If <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-empty"><CODE>EMPTY</CODE></A> or 
+  if <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A> set 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> to 
+  <CODE>null</CODE>	  and terminate this overall set of steps without doing 
+  anything else.</P></LI>
+  <LI>
+  <P>If <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  = <A href="http://www.w3.org/TR/FileAPI/#dfn-loading"><CODE>LOADING</CODE></A> 
+  set <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readyState"><CODE>readyState</CODE></A> 
+  to	  <A href="http://www.w3.org/TR/FileAPI/#dfn-done"><CODE>DONE</CODE></A> 
+  and <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  to <CODE>null</CODE>.</P></LI>
+  <LI>
+  <P>If there are any <A href="http://www.w3.org/TR/FileAPI/#dfn-task">tasks</A> 
+  from the object's <A href="http://www.w3.org/TR/FileAPI/#blobreader-task-source"><CODE>FileReader</CODE> 
+  task source</A> in one of the	  <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">task 
+  queues</A>, then remove those <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-task">tasks</A>.</P></LI>
+  <LI>
+  <P>Terminate any steps while processing a <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+  method</A>.   </P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-abort-event"><CODE>abort</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">Fire a 
+  progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A></P></LI>
+  <LI>
+  <P><A href="http://www.w3.org/TR/FileAPI/#terminate-an-algorithm">Terminate 
+  this algorithm</A>.</P></LI></OL></DIV>
+<DIV id="blobAndFileParams" class="section">
+<H4>8.5.8. Blob Parameters</H4>
+<P>Many methods in this specification take mandatory	<A class="dfnref" href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+parameters.	</P>
+<DL>
+  <DT><DFN id="dfn-fileBlob"><CODE>blob</CODE></DFN></DT>
+  <DD>
+  <P>This is a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> argument 
+  used to call all four <A 
+  href="http://www.w3.org/TR/FileAPI/#read-methods">asynchronous read 
+  methods</A>	on <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+  and all four <A 
+  href="http://www.w3.org/TR/FileAPI/#read-method-sync">synchronous read 
+  methods</A> on	<A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-FileReaderSync"><CODE>FileReaderSync</CODE></A>; 
+  it is also used to call the	<A href="http://www.w3.org/TR/FileAPI/#dfn-createObjectURL"><CODE>createObjectURL</CODE> 
+  method</A>.	This argument MUST be a reference to a single <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  in a	<A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A> or 
+  a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+  object not obtained from the file system that is in scope of the global object 
+  from which the	method call was made.</P></DD></DL></DIV>
+<DIV id="enctype" class="section">
+<H4>8.5.9. Determining Encoding</H4>
+<P>When reading <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> objects 
+using the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText()</CODE></A> 
+<A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A>, the 
+optional <DFN id="dfn-encoding"><CODE>	encoding</CODE></DFN> string parameter 
+MUST be a <EM>name</EM> or an <EM>alias</EM> of a character set	used on the 
+Internet [<A href="http://www.w3.org/TR/FileAPI/#IANACHARSET">IANACHARSET</A>], 
+or else is considered invalid.  The following <DFN 
+id="encoding-determination">encoding determination</DFN> steps MUST be 
+followed:</P>
+<OL>
+  <LI>
+  <P>Decode the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> using 
+  the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-encoding"><CODE>encoding</CODE></A> 
+  parameter, if provided and if valid, and terminate this set of steps.  If 
+  invalid, or if not provided, or if the user agent cannot determine the 
+  encoding, go to the next step.</P></LI>
+  <LI>
+  <P>Decode the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> using 
+  the Charset Parameter [<A 
+  href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>] of the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  argument's <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> attribute, 
+  if it has one.  If it does not have one, or if the one provided is not a 
+  character set used on the Internet [<A href="http://www.w3.org/TR/FileAPI/#IANACHARSET">IANACHARSET</A>], 
+  go to the next step.</P>
+  <DIV class="example">
+  <DIV class="exampleHeader">Example</DIV>
+  <P>If a given <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has a 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> 
+  attribute of <CODE>text/plain;charset=UTF-8</CODE> then decode the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  using UTF-8.</P></DIV></LI>
+  <LI>
+  <P>Let <VAR>charset</VAR> be null.</P></LI>
+  <LI>
+  <P>For each of the rows in the	     following table, starting with the first 
+  one and going down, if the	     first bytes of <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  match the bytes given in the first	     column, then let <VAR>charset</VAR> be 
+  the encoding given in the cell in	     the second column of that row. If there 
+  is no match <VAR>charset</VAR>	     remains null.</P>
+  <TABLE>
+    <THEAD>
+    <TR>
+      <TH>Bytes in Hexadecimal	       </TH>
+      <TH>Description	     </TH></TR></THEAD>
+    <TBODY><!-- UTF-32 is dead
+	      <tr>
+	       <td>00 00 FE FF
+	       <td>UTF-32BE BOM
+	      <tr>
+	       <td>FF FE 00 00
+	       <td>UTF-32LE BOM-->
+    <TR>
+      <TD>FE FF	       </TD>
+      <TD>UTF-16BE BOM	      </TD></TR>
+    <TR>
+      <TD>FF FE	       </TD>
+      <TD>UTF-16LE BOM	      </TD></TR>
+    <TR>
+      <TD>EF BB BF	       </TD>
+      <TD>UTF-8 BOM<!-- nobody uses this
+	      <tr>
+	       <td>DD 73 66 73
+	       <td>UTF-EBCDIC
+	--></TD></TR></TBODY></TABLE></LI>
+  <LI>
+  <P>If <VAR>charset</VAR> is null let <VAR>charset</VAR> be UTF-8.	   </P></LI>
+  <LI>
+  <P>Return the result of decoding the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  using	     <VAR>charset</VAR>; on getting, the <A href="http://www.w3.org/TR/FileAPI/#dfn-result"><CODE>result</CODE></A> 
+  attribute of the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A>
+  	     object returns a string in <VAR>charset</VAR> format.  The synchronous	  
+     <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-readAsTextSync"><CODE>readAsText</CODE></A> 
+  method of the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-FileReaderSync"><CODE>FileReaderSync</CODE></A> 
+  object returns a string in <VAR>charset</VAR> format.	     Replace bytes or 
+  sequences of bytes that are not	     valid according to the <VAR>charset</VAR> 
+  with a single U+FFFD character [<A href="http://www.w3.org/TR/FileAPI/#Unicode">Unicode</A>]. 
+  	     When processing <A href="http://www.w3.org/TR/FileAPI/#partial-blob-data">Partial 
+  Blob Data</A>, use the <A 
+  href="http://www.w3.org/TR/FileAPI/#encodingCaveat">encoding caveat</A>, if 
+  applicable.	  </P></LI></OL></DIV>
+<DIV id="events" class="section">
+<H4>8.5.10. Events</H4>
+<P>When this specification says to <DFN id="make-progress-notifications">make 
+progress notifications </DFN> for a <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+method</A>,	the following steps MUST be followed:</P>
+<OL>
+  <LI>
+  <P>	While the read method is processing, <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+  a task</A> to	<A 
+  href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">fire a progress 
+  event</A> called <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  at the	<A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+  object about every 50ms <EM>or</EM> for every byte read into memory, whichever 
+  is least frequent.  <EM>At least one</EM> event called <A href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  MUST fire before <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-load-event"><CODE>load</CODE></A> is 
+  fired, and at 100% completion of the read operation; if 100% of <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  can be read into memory in <EM>less than</EM> 50ms, user agents MUST <A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">fire 
+  a progress event</A> called <A href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  at completion. </P>
+  <DIV class="example">
+  <DIV class="exampleHeader">Example</DIV>
+  <P>If a given implementation uses buffers of size 65536 bytes to read files, 
+  and thus limits reading operations to that size, and a <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+  method</A> is called on a file that is 65537 bytes, then that implementation 
+  MUST fire one <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  event for the 65536 first bytes, one <A href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  event for the 65537th byte (which is at completion of read), one <A href="http://www.w3.org/TR/FileAPI/#dfn-load-event"><CODE>load</CODE></A> 
+  event and one <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A> 
+  event.</P></DIV></LI>
+  <LI>
+  <P>When the data from the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 	has 
+  been completely read into memory, <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+  a task</A> to <A 
+  href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">fire a progress 
+  event</A> called	<A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-load-event"><CODE>load</CODE></A> at 
+  the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+  object.</P></LI>
+  <LI>
+  <P>When the data from the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>	has 
+  been completely read into memory, <A href="http://www.w3.org/TR/FileAPI/#queue-a-task">queue 
+  a task</A> to <A 
+  href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">fire a progress 
+  event</A> called	<A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A> 
+  at the <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+  object.</P></LI></OL>
+<P>	  When this specification says to <DFN id="fire-a-progress-event">fire a 
+progress event</DFN> <EM>called e</EM> (for some	  <CODE>ProgressEvent</CODE> 
+<CODE>e</CODE> at a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+<CODE>reader</CODE>),	  the following are normative:</P>
+<UL>
+  <LI>
+  <P>The progress event <CODE>e</CODE> does not bubble.  <CODE>e.bubbles</CODE> 
+  MUST be false [<A 
+  href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>]</P></LI>
+  <LI>
+  <P>The progress event <CODE>e</CODE> is NOT cancelable. 
+  <CODE>e.cancelable</CODE> MUST be false [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>]</P></LI>
+  <LI>
+  <P>The term <DFN id="fire-an-event">"fire an event"</DFN> is defined in DOM 
+  Core [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>].  Progress 
+  Events are defined in Progress Events	  [<A href="http://www.w3.org/TR/FileAPI/#ProgressEvents">ProgressEvents</A>].</P></LI></UL>
+<DIV id="event-summary" class="section">
+<H5>8.5.10.1. Event Summary</H5>
+<P>The following are the events that are fired at <CODE><A href="http://www.w3.org/TR/FileAPI/#dfn-filereader">FileReader</A></CODE> 
+objects; <A href="http://www.w3.org/TR/FileAPI/#fire-a-progress-event">firing 
+events</A> is defined in	  DOM Core [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>], 
+and the table below is normative for the events in this specification.</P>
+<TABLE id="event-summary-table">
+  <THEAD>
+  <TR>
+    <TH>Event name	     </TH>
+    <TH>Interface	     </TH>
+    <TH>Fired when…	   </TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD><DFN id="dfn-loadstart-event"><CODE>loadstart</CODE></DFN></TD>
+    <TD><CODE>ProgressEvent</CODE></TD>
+    <TD>When the read starts.	    </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-progress-event"><CODE>progress</CODE></DFN></TD>
+    <TD><CODE>ProgressEvent</CODE></TD>
+    <TD>While reading (and decoding) <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>, 
+      and reporting <A 
+      href="http://www.w3.org/TR/FileAPI/#partial-blob-data">partial Blob 
+      data</A> (<CODE>progess.loaded</CODE>/<CODE>progress.total</CODE>)	    
+  </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-abort-event" 
+    title="abort-event"><CODE>abort</CODE></DFN></TD>
+    <TD><CODE>ProgressEvent</CODE></TD>
+    <TD>When the read has been aborted. For instance, by invoking the	      
+      <CODE><A href="http://www.w3.org/TR/FileAPI/#dfn-abort">abort()</A></CODE> 
+      method.	    </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-error-event"><CODE>error</CODE></DFN></TD>
+    <TD><CODE>ProgressEvent</CODE></TD>
+    <TD>When the read has failed (see <A href="http://www.w3.org/TR/FileAPI/#file-error-read">errors</A>).
+      	    </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-load-event"><CODE>load</CODE></DFN></TD>
+    <TD><CODE>ProgressEvent</CODE></TD>
+    <TD>When the read has successfully completed.	    </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-loadend-event"><CODE>loadend</CODE></DFN></TD>
+    <TD><CODE>ProgressEvent</CODE></TD>
+    <TD>When the request has completed (either in success or failure). 	  
+  </TD></TR></TBODY></TABLE></DIV>
+<DIV id="eventInvariants" class="section">
+<H5>8.5.10.2. Summary of Event Invariants</H5>
+<P>	The following are normative invariants applicable to <A href="http://www.w3.org/TR/FileAPI/#fire-an-event">event 
+firing</A> for a given asynchronous <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+method</A> in this specification:	</P>
+<OL>
+  <LI>
+  <P>Once a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A> 
+  has been fired, a corresponding <A href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A> 
+  fires at completion of the read, EXCEPT if the <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+  method</A> has been cancelled using <A href="http://www.w3.org/TR/FileAPI/#dfn-abort"><CODE>abort()</CODE></A> 
+  and a new <A href="http://www.w3.org/TR/FileAPI/#read-methods">read method</A> 
+  has been invoked.</P>
+  <DIV class="note">
+  <DIV class="noteHeader">Note</DIV>	The events <A href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A> 
+  and <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A> 
+  are not coupled in a one-to-one manner. 		</DIV></LI>
+  <LI>
+  <P>One <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  event will fire when <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has 
+  been completely read into memory.  </P></LI>
+  <LI>
+  <P>No <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  event fires before <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadstart-event"><CODE>loadstart</CODE></A>.</P></LI>
+  <LI>
+  <P>No <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-progress-event"><CODE>progress</CODE></A> 
+  event fires after <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-abort-event"><CODE>abort</CODE></A>, 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-load-event"><CODE>load</CODE></A>, 
+  and <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A> 
+  have fired.</P></LI>
+  <LI>
+  <P>No <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-abort-event"><CODE>abort</CODE></A>, 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-load-event"><CODE>load</CODE></A>, 
+  or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-error-event"><CODE>error</CODE></A> 
+  event fires after <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-loadend-event"><CODE>loadend</CODE></A>.</P></LI></OL></DIV></DIV></DIV></DIV>
+<DIV id="readingOnThreads" class="section">
+<H2>9. Reading on Threads</H2>
+<P>Web Workers allow for the use of synchronous <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> read 
+APIs,	since such reads on threads do not block the main thread.	This section 
+defines a synchronous API, which can be used within Workers [<A href="http://www.w3.org/TR/FileAPI/#Workers">Web 
+Workers</A>].  Workers can avail of both the asynchronous API (the	<CODE><A 
+href="http://www.w3.org/TR/FileAPI/#dfn-filereader">FileReader</A></CODE>
+	object) <EM>and</EM> the synchronous API (the <CODE><A href="http://www.w3.org/TR/FileAPI/#dfn-FileReaderSync">FileReaderSync</A></CODE> 
+object).</P>
+<DIV id="FileReaderSync" class="section">
+<H3>9.1. The <CODE>FileReaderSync</CODE> Interface</H3>
+<P>This interface  provides methods to <DFN id="read-method-sync">synchronously 
+read</DFN> <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+objects into memory.</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">IDL</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="idl-code">
+
+	[Constructor]
+	interface <DFN id="dfn-FileReaderSync">FileReaderSync</DFN> {
+
+	  <SPAN class="comment">// Synchronously return strings</SPAN>
+
+	  ArrayBuffer <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBufferSync">readAsArrayBuffer</A>(<A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>);
+	  DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsBinaryStringSync">readAsBinaryString</A>(<A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>); 
+	  DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsTextSync">readAsText</A>(<A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>, optional DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-encoding">encoding</A>);
+	  DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsDataURLSync">readAsDataURL</A>(<A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>);
+	};
+	</CODE></PRE></DIV></DIV>
+<DIV id="filereadersyncConstrctr" class="section">
+<H3>9.1.1. Constructors</H3>
+<P>When the <CODE>FileReaderSync()</CODE> constructor is invoked, the user agent 
+MUST return a new <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-FileReaderSync"><CODE>FileReaderSync</CODE></A> 
+object.</P>
+<P>In environments where the global object is represented by a 
+<CODE>WorkerGlobalScope</CODE> object, the <CODE>FileReaderSync</CODE> 
+constructor MUST be available.</P></DIV>
+<DIV id="readAsBinaryStringSyncSection" class="section">
+<H3>9.1.2. The <CODE>readAsBinaryString</CODE> method</H3>
+<P>When the <DFN 
+id="dfn-readAsBinaryStringSync"><CODE>readAsBinaryString(blob)</CODE></DFN> 
+method is called, the following steps MUST be followed:</P>
+<OL>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading the <CODE>blob</CODE> parameter</A>, throw the <A href="http://www.w3.org/TR/FileAPI/#dfn-error-codes">appropriate 
+  	exception</A>. Terminate these overall steps.</P></LI>
+  <LI>
+  <P>If no error has occurred, read <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  into memory.  Return the data contents of	<A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  as a <A href="http://www.w3.org/TR/FileAPI/#binary-string">binary 
+  string</A>.</P></LI></OL>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>Note: the <CODE>readAsBinaryString(blob)</CODE> method should be considered 
+deprecated; user agents should consider supporting the	  <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsArrayBufferSync"><CODE>readAsArrayBuffer(blob)</CODE></A> 
+method	  instead of <CODE>readAsBinaryString(blob)</CODE></P></DIV></DIV>
+<DIV id="readAsTextSync" class="section">
+<H3>9.1.3. The <CODE>readAsText</CODE> method</H3>
+<P>When the <DFN id="dfn-readAsTextSync"><CODE>readAsText(blob, 
+encoding)</CODE></DFN> method is called (the	<A href="http://www.w3.org/TR/FileAPI/#dfn-encoding"><CODE>encoding</CODE></A> 
+argument is optional), the following steps MUST be followed:</P>
+<OL>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading of the <CODE>blob</CODE> parameter</A>, throw the <A href="http://www.w3.org/TR/FileAPI/#dfn-error-codes">appropriate 
+  		exception</A>. Terminate these overall steps.</P></LI>
+  <LI>
+  <P>If no error has occurred, read <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  into memory.  Return the data contents of <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>
+  	using the <A 
+  href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+  determination</A> algorithm.</P></LI></OL></DIV>
+<DIV id="readAsDataURLSync-section" class="section">
+<H3>9.1.4. The <CODE>readAsDataURL</CODE> method</H3>
+<P>	  When the <DFN 
+id="dfn-readAsDataURLSync"><CODE>readAsDataURL(blob)</CODE></DFN> method is 
+called, the following steps MUST be followed:</P>
+<OL>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading of the <CODE>blob</CODE> parameter</A>, throw the <A href="http://www.w3.org/TR/FileAPI/#dfn-error-codes">appropriate 
+   exception</A>. Terminate these overall steps.</P></LI>
+  <LI>
+  <P>If no error has occurred, read <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  into memory. Return the data contents of <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>
+  	as a Data URL [<A 
+  href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>]</P>
+  <UL>
+    <LI>Use the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>'s <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A>	  
+    attribute as part of the Data URL if it is available in keeping with the 
+    Data URL specification [<A 
+    href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>] .</LI>
+    <LI>If the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> 
+    attribute is not available on the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+    return a Data URL without a media-type.	  [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>].
+    	  
+    <DIV class="note">
+    <DIV class="noteHeader">Note</DIV>
+    <P>Data URLs that do not have media-types [<A href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>] 
+    MUST be treated as plain text by conforming user agents. [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>].</P></DIV></LI></UL></LI></OL></DIV>
+<DIV id="readAsArrayBufferSyncSection" class="section">
+<H3>9.1.5. The <CODE>readAsArrayBuffer</CODE> method</H3>
+<P>When the <DFN 
+id="dfn-readAsArrayBufferSync"><CODE>readAsArrayBuffer(blob)</CODE></DFN> method 
+is called, the following steps MUST be followed:</P>
+<OL>
+  <LI>
+  <P>If an <A href="http://www.w3.org/TR/FileAPI/#file-error-read">error occurs 
+  during reading the <CODE>blob</CODE> parameter</A>, throw the <A href="http://www.w3.org/TR/FileAPI/#dfn-error-codes">appropriate 
+  	exception</A>. Terminate these overall steps.</P></LI>
+  <LI>
+  <P>If no error has occurred, read <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  into memory.  Return the data contents of	<A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  as an <CODE>ArrayBuffer</CODE> [<A href="http://www.w3.org/TR/FileAPI/#TypedArrays">TypedArrays</A>] 
+  </P></LI></OL></DIV></DIV></DIV>
+<DIV id="ErrorAndException" class="section">
+<H2>10. Errors and Exceptions</H2>
+<P><DFN id="file-error-read">Error conditions</DFN> can occur when reading files 
+from the underlying filesystem.  The list below of potential error conditions is 
+<EM>informative</EM>.</P>
+<UL>
+  <LI>
+  <P>The <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+  or <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+  being accessed may not exist at the time one of the asynchronous <A href="http://www.w3.org/TR/FileAPI/#read-methods">read 
+  methods</A> or synchronous	    <A href="http://www.w3.org/TR/FileAPI/#read-method-sync">read 
+  methods</A>	    are called. This may be due to it having been moved or deleted 
+  after a reference to it was acquired (e.g. concurrent modification with 
+  another application).  See	<A href="http://www.w3.org/TR/FileAPI/#dfn-NotFoundError"><CODE>NotFoundError</CODE></A></P></LI>
+  <LI>
+  <P>A <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> may be 
+  unreadable.  This may be due to permission problems that occur after a 
+  reference to a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has been 
+  acquired	    (e.g. concurrent lock with another application). See <A href="http://www.w3.org/TR/FileAPI/#dfn-NotReadableError"><CODE>NotReadableError</CODE></A></P></LI>
+  <LI>
+  <P>User agents MAY determine that some files are unsafe for use within Web 
+  applications.  A file may change on disk since the original file selection,	   
+   thus resulting in an invalid read.  Additionally, some file and directory 
+  structures may be considered restricted	by the underlying filesystem; attempts 
+  to read from them may be considered a security violation.  See the <A href="http://www.w3.org/TR/FileAPI/#security-discussion">security 
+  considerations</A>.	See <A href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A></P></LI>
+  <LI>
+  <P>Files may be too large to return to the data structures of a Web 
+  application.  An example might be that URL length limitations imposed by user 
+  agents on Data URLs may	make obtaining large files encoded as Data URLs 
+  impossible to return [<A 
+  href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>].  See <A href="http://www.w3.org/TR/FileAPI/#dfn-EncodingError"><CODE>EncodingError</CODE></A></P></LI></UL>
+<DIV id="dfn-error-codes" class="section">
+<H3>10.1. Throwing an Exception or Returning an Error</H3>
+<P>This section is normative.  Error conditions can arise when reading a 
+file.</P>
+<P>Synchronous read methods <A href="http://www.w3.org/TR/FileAPI/#throw-an-exception">throw</A> 
+exceptions of the type in the table below if there has been an error with 
+reading or .</P>
+<P>The <DFN id="dfn-error"><CODE>error</CODE></DFN> attribute of the <A href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+object MUST return a <DFN id="dfn-domerror">DOMError</DFN> object [<A href="http://www.w3.org/TR/FileAPI/#DOMCore">DOMCore</A>] 
+of the most appropriate type from the table below if there has been an error, 
+and otherwise returns null.</P>
+<TABLE>
+  <THEAD>
+  <TR>
+    <TH>Type	     </TH>
+    <TH>Description	   </TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD><DFN id="dfn-NotFoundError" 
+      title="NotFoundError"><CODE>NotFoundError</CODE></DFN></TD>
+    <TD>If the <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+      resource could not be found at the time the read was processed, then for 
+      asynchronous read methods the <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+      attribute MUST return a "<CODE>NotFoundError</CODE>" <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+      and synchronous read methods MUST <A href="http://www.w3.org/TR/FileAPI/#throw-an-exception">throw</A> 
+      a <CODE>NotFoundError</CODE> exception.	    </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-SecurityError" 
+      title="SecurityError"><CODE>SecurityError</CODE></DFN></TD>
+    <TD>If: 
+      <UL>
+        <LI>it is determined that certain files are unsafe for access within a 
+        Web application</LI>
+        <LI>it is determined that too many read calls are being made on <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+        or <A 
+        href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+        resources </LI>
+        <LI>it is determined that the file has changed on disk since the user 
+        selected it</LI></UL>
+      <P>then for asynchronous read methods the <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+      attribute MAY return a "<CODE>SecurityError</CODE>" <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+      and synchronous read methods MAY <A href="http://www.w3.org/TR/FileAPI/#throw-an-exception">throw</A> 
+      a <CODE>SecurityError</CODE> exception.</P>
+      <P>This is a security error to be used in situations not covered by any 
+      other exception type.</P></TD></TR>
+  <TR>
+    <TD><DFN id="dfn-NotReadableError" 
+      title="NotReadableError"><CODE>NotReadableError</CODE></DFN></TD>
+    <TD>If the <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> cannot 
+      be read, typically due due to permission problems that occur after a	     
+      reference to a <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has 
+      been acquired (e.g. concurrent lock with another application) then for 
+      asynchronous read methods the  <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+      attribute MUST return a "<CODE>NotFoundError</CODE>" <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+      and synchronous read methods MUST <A href="http://www.w3.org/TR/FileAPI/#throw-an-exception">throw</A> 
+      a <CODE>NotFoundError</CODE> exception.	    </TD></TR>
+  <TR>
+    <TD><DFN id="dfn-EncodingError" 
+      title="EncodingError"><CODE>EncodingError</CODE></DFN></TD>
+    <TD>If URL length limitations for Data URLs in implementations place 
+      limits on the <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> or <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> data 
+      that can be	     represented as a Data URL [<A href="http://www.w3.org/TR/FileAPI/#DataURL">DataURL</A>] 
+      then for asynchronous read methods the  <A href="http://www.w3.org/TR/FileAPI/#dfn-error"><CODE>error</CODE></A> 
+      attribute MUST	return a "<CODE>EncodingError</CODE>" <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A>, 
+      and synchronous read methods MUST <A href="http://www.w3.org/TR/FileAPI/#throw-an-exception">throw</A> 
+      a <CODE>EncodingError</CODE> exception.  User agents MUST NOT use this for 
+      the asynchronous <A 
+      href="http://www.w3.org/TR/FileAPI/#dfn-readAsText"><CODE>readAsText()</CODE></A> 
+      call	     and MUST NOT use this for the synchronous <A href="http://www.w3.org/TR/FileAPI/#dfn-readAsTextSync"><CODE>readAsText()</CODE></A> 
+      call, since encoding is determined by the	     <A href="http://www.w3.org/TR/FileAPI/#encoding-determination">encoding 
+      determination</A> algorithm.	    </TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV id="url" class="section">
+<H2>11. A URI for Blob and File reference</H2>
+<P>This section defines a scheme for a URI used to refer to <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+objects (and <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> objects). 
+	</P>
+<DIV id="use-cases-scheme" class="section">
+<H3>11.1. Requirements for a New Scheme</H3>
+<P>This specification defines a scheme with URIs of the sort: 
+<CODE>blob:550e8400-e29b-41d4-a716-446655440000#aboutABBA</CODE>.	This section 
+provides some requirements and is an informative discussion.</P>
+<UL>
+  <LI>
+  <P>This scheme should be able to be used with web APIs such as 
+  <CODE>XMLHttpRequest</CODE> [<A 
+  href="http://www.w3.org/TR/FileAPI/#XHR2">XHR2</A>], and with elements that 
+  are designed to be used with HTTP URIs, such as the	<CODE>img</CODE> element 
+  [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>].  In general, this 
+  scheme should be designed to be used wherever URIs can be used on the web.  
+  </P>
+  <P>This scheme should have defined response codes, so that web applications 
+  can respond to scenarios where the resource is not found, or raises an error, 
+  etc.	</P></LI>
+  <LI>
+  <P>This scheme should have an <A 
+  href="http://www.w3.org/TR/FileAPI/#origin">origin</A> policy and a	<A href="http://www.w3.org/TR/FileAPI/#lifeTime">lifetime</A> 
+  stipulation, to allow safe access to binary data from web applications.  </P>
+  <P>URIs in this scheme should be used as a references to "in-memory" <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blobs</A>, 
+  and also be re-used elsewhere on the platform to refer to binary	resources 
+  (e.g. for video-conferencing	[<A href="http://www.w3.org/TR/FileAPI/#StreamAPI">Stream 
+  API</A>]).	URIs in this scheme are designed for impermanence, since they will 
+  be typically used to access "in memory" resources.</P></LI>
+  <LI>
+  <P>Developers should have the ability to revoke URIs in this scheme, so that 
+  they no longer refer to <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> objects.  
+  This includes scenarios	where file references are no longer needed by a 
+  program, but also other uses of <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+  objects.	Consider a scenario where a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+  object can be exported from a drawing program which uses the canvas element 
+  and API [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>].  A snapshot 
+  of the drawing can be created by	exporting a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A>. 
+   This scheme can be used with the &lt;img&gt; [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] 
+  element to display the snapshot;	if the user deletes the snapshot, any 
+  reference to the snapshot in memory via a URI should be invalid, and hence the 
+  need to be able to revoke such a URI.  </P></LI></UL></DIV>
+<DIV id="alternative-schemas" class="section">
+<H3>11.2. Discussion of Existing Schemes</H3>
+<P>	This section is an informative discussion of existing schemes that may have 
+been repurposed or reused for the use cases for URIs above, and justification 
+for why a new scheme	is considered preferable.  These schemes include HTTP [<A 
+href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>], file [<A href="http://www.w3.org/TR/FileAPI/#RFC1630">RFC1630</A>][<A 
+href="http://www.w3.org/TR/FileAPI/#RFC1738">RFC1738</A>], and a scheme such as
+	urn:uuid [<A href="http://www.w3.org/TR/FileAPI/#UUID">RFC4122</A>].  One broad 
+consideration in determining what scheme to use is providing something with 
+intuitive appeal to web developers.	</P>
+<UL>
+  <LI>
+  <P>HTTP could be repurposed for the use cases mentioned above; it already 
+  comes with well-defined request-response semantics that are already used by 
+  web applications.	But <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> resources 
+  are typically "in-memory"	resident (e.g. after a file has been read into 
+  memory), and are thus unlike "traditional" HTTP resources that are 
+  dereferenced via DNS.  While some user agents automatically	"proxy" the 
+  underlying file system on the local machine via an HTTP server (e.g. with URLs 
+  of the sort http://localhost), HTTP is not traditionally used with local 
+  resources.	Moreover, an important use case for these URIs are that they can be 
+  revoked with an API call.  HTTP URIs have traditionally been used for 
+  resources that may be more permanent	(and that are certainly not chiefly 
+  memory-resident, such as files that a web application can read).  Reusing the 
+  HTTP scheme might be confusing for web developers owing to well-established
+  	practice. </P></LI>
+  <LI>
+  <P>The reuse of file URIs would involve changes to file URI use today, such as 
+  adding response codes.  While they are used inconsistently in web 
+  applications,	the structure of the URIs would change, and request-response 
+  behavior would have to be superimposed on what already works in a more-or-less 
+  ad-hoc manner.  Modifying this for the use cases	cited above is imprudent, 
+  given legacy usage.  Additionally, the use cases for a Blob URI scheme call 
+  for uses beyond the file system.</P></LI>
+  <LI>
+  <P>A scheme of the sort urn:uuid could be used, though use of this scheme is 
+  unprecedented in HTML and JavaScript web applications.  The urn:uuid scheme is 
+  very generically repurposable.	URIs in the scheme urn:uuid have the 
+  disadvantage of unfamiliarity and inconsistency across the web platform.  A 
+  new scheme has the advantage of being explicit about what is being referenced.
+  	In theory, URIs make no guarantee about what sort of resource is obtained 
+  when they are dereferenced; that is left to	content labeling and media type.  
+  But in practice, the name of the scheme creates an expectation about both the 
+  resource and the protocol of the request-response transaction.	Choosing a name 
+  that clarifies the primary use case -- namely, access to memory-resident <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> resources 
+  -- is a worthwhile compromise, and favors clarity,	familiarity, and 
+  consistency across the web platform.	</P></LI></UL></DIV>
+<DIV id="ABNFForBlob" class="section">
+<H3>11.3. Definition of blob URI Scheme</H3>
+<P>This section defines a <CODE>blob:</CODE> URI scheme using a formal grammar.  
+A <CODE>blob:</CODE> URI consists of the blob: scheme and an opaque string, 
+along with an optional fragment identifier.	In this specification an <DFN id="opaqueString">opaque 
+string</DFN> is a unique string which can be heuristically generated upon demand 
+such that the probability that two are alike is small, and which is hard to 
+guess (e.g.	the Universally Unique IDentifier (UUID) as defined in [<A href="http://www.w3.org/TR/FileAPI/#UUID">RFC4122</A>] 
+is an opaque string). A <DFN id="fragmentIdentifier">fragment identifier</DFN> 
+is optional, and if used,	has a distinct interpretation depending on the media 
+type of the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> or <A href="http://www.w3.org/TR/FileAPI/#dfn-file"><CODE>File</CODE></A> 
+resource in question [<A 
+href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>].</P>
+<P>This section uses the Augmented Backus-Naur Form (ABNF), defined in [<A href="http://www.w3.org/TR/FileAPI/#ABNF">RFC5234</A>]. 
+All <A href="http://www.w3.org/TR/FileAPI/#ABNFForBlob">blob:</A> URLs MUST 
+follow this ABNF.	</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">ABNF</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="abnf-code">
+	blob = scheme ":" opaqueString [fragIdentifier]
+
+	scheme = "blob"
+
+	; scheme is always "blob"
+
+	; opaqueString tokens MUST be globally unique
+	; opaqueString could be a UUID in its canonical form
+
+	</CODE></PRE></DIV></DIV>
+<DIV id="OpaqueStringDiscussion" class="section">
+<H4>11.3.1. The Opaque String</H4>
+<P><A href="http://www.w3.org/TR/FileAPI/#opaqueString">Opaque strings</A> MUST 
+NOT include any reserved characters from [<A href="http://www.w3.org/TR/FileAPI/#RFC3986">RFC3986</A>] 
+without percent-encoding them; these characters MUST be percent-encoded.	<A 
+href="http://www.w3.org/TR/FileAPI/#opaqueString">Opaque strings</A> MUST be 
+globally unique.  Such strings SHOULD only use characters in the ranges U+002A 
+to U+002B, U+002D to U+002E, U+0030 to U+0039,	U+0041 to U+005A, U+005E to 
+U+007E [<A href="http://www.w3.org/TR/FileAPI/#Unicode">Unicode</A>], and MUST 
+be at least 36 characters long.	UUID is one potential option available to user 
+agents for use with <A href="http://www.w3.org/TR/FileAPI/#url">Blob URIs</A> as 
+<A href="http://www.w3.org/TR/FileAPI/#opaqueString">opaque strings</A>, and 
+their use is <EM>strongly encouraged</EM>.	UUIDs are defined in [<A href="http://www.w3.org/TR/FileAPI/#UUID">RFC4122</A>]. 
+ For an ABNF of UUID, see <A 
+href="http://www.w3.org/TR/FileAPI/#AppendixA">Appendix A</A>.	</P></DIV></DIV>
+<DIV id="fragmentDiscussion" class="section">
+<H3>11.4. Discussion of Fragment Identifier</H3>
+<P>	The fragment's format, resolution and processing directives depend on the 
+media type [<A href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>] of a 
+potentially retrieved representation, even though such	a retrieval is only 
+performed if the <A href="http://www.w3.org/TR/FileAPI/#url">blob: URI</A> is 
+dereferenced.  For example, in an HTML file [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] 
+the fragment identifier	could be used to refer to an anchor within the file.  If 
+the user agent does not recognize the media type of the resource, OR if a 
+fragment identifer is not	meaningful within the resource, it MUST ignore the 
+fragment identifier.  Additionally, user agents MUST honor additional fragment 
+processing directives given in	the relevant media format specifications; in 
+particular, this includes any modifications to the fragment production given in 
+HTML [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>].  The following
+	section is normative for fragment identifers in general, though it should be 
+noted that affiliated specifications may extend this definition.	</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">ABNF</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="abnf-code">
+	fragIdentifier = "#" fragment
+
+	; Fragment Identifiers depend on the media type of the Blob
+	; fragment is defined in [<A href="http://www.w3.org/TR/FileAPI/#RFC3986">RFC3986</A>]
+	; fragment processing for HTML is defined in [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>]
+
+	fragment    = *( pchar / "/" / "?" )
+
+	pchar       = unreserved / pct-encoded / sub-delims / ":" / "@"
+
+	unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+
+	pct-encoded   = "%" HEXDIG HEXDIG
+
+	sub-delims    = "!" / "$" / "&amp;" / "'" / "(" / ")"
+	                 / "*" / "+" / "," / ";" / "="
+	</CODE></PRE></DIV></DIV>
+<P>A valid Blob URI reference could look like: 
+<CODE>blob:550e8400-e29b-41d4-a716-446655440000#aboutABBA</CODE> where 
+"#aboutABBA" might be an HTML fragment identifier referring to an	element with 
+an id attribute of "aboutABBA".</P></DIV>
+<DIV id="originOfBlob" class="section">
+<H3>11.5. Origin of Blob URIs</H3>
+<P>The <A href="http://www.w3.org/TR/FileAPI/#origin">origin</A> of a <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+URI</A> MUST be the  <A href="http://www.w3.org/TR/FileAPI/#origin">origin</A> 
+of the script that called <A href="http://www.w3.org/TR/FileAPI/#dfn-createObjectURL"><CODE>URL.createObjectURL</CODE></A>.
+	<A href="http://www.w3.org/TR/FileAPI/#url">Blob URIs</A> MUST only be valid 
+within this <A href="http://www.w3.org/TR/FileAPI/#origin">origin</A>.</P></DIV>
+<DIV id="lifeTime" class="section">
+<H3>11.6. Lifetime of Blob URIs</H3>
+<P>This specification defines the following lifetime conditions on <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+URIs</A>: </P>
+<OL>
+  <LI>
+  <P>This specification adds an additional <A href="http://www.w3.org/TR/FileAPI/#unloading-document-cleanup-steps">unloading 
+  document cleanup step</A>: user agents MUST revoke any <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+  URIs</A> created with <A href="http://www.w3.org/TR/FileAPI/#dfn-createObjectURL"><CODE>URL.createObjectURL</CODE></A> 
+  from within that <A 
+  href="http://www.w3.org/TR/FileAPI/#document">document</A>.	If these <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+  URIs</A> are dereferenced, user agents must respond with <A href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500 
+  Error Condition</A>.</P></LI>
+  <LI>
+  <P>User agents MUST ensure that any <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+  URIs</A> are revoked after <A href="http://www.w3.org/TR/FileAPI/#dfn-revokeObjectURL"><CODE>URL.revokeObjectURL</CODE></A> 
+  is called with that	<A href="http://www.w3.org/TR/FileAPI/#url">Blob URI</A> 
+  as an argument. User agents MUST respond with a <A href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500 
+  Error Condition</A> if a <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+  URI</A> is	dereferenced after <A href="http://www.w3.org/TR/FileAPI/#dfn-revokeObjectURL"><CODE>URL.revokeObjectURL</CODE></A> 
+  is called on that particular <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+  URI</A>. </P></LI></OL></DIV>
+<DIV id="processingModel" class="section">
+<H3>11.7. Dereferencing Model for Blob URIs</H3>
+<P>User agents MUST only support requests with GET [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>]. 
+ If the <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+has a	<A href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> 
+attribute, or if the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> has been 
+created with a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-slice"><CODE>slice</CODE></A> call which
+	uses a <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-contentTypeBlob"><CODE>contentType</CODE></A> 
+argument, responses to dereferencing the Blob URI must include the Content-Type 
+header from HTTP [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>] with 
+the value of the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A>	attribute or 
+<A 
+href="http://www.w3.org/TR/FileAPI/#dfn-contentTypeBlob"><CODE>contentType</CODE></A> 
+argument.  Specifically, responses MUST only support a subset of responses that 
+are equivalent to the following from HTTP [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>]:</P>
+<DIV id="ProtocolName" class="section">
+<H4>11.7.1. Blob Protocol Version</H4>
+<P>The version of the blob: protocol request and response messages is indicated 
+by the <DFN id="blobprotocolversion">"blob/1.0"</DFN> string, which MUST be used 
+in request messages and in response messages, and must be used just as the HTTP 
+version in HTTP messages is used [<A 
+href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>].  See <A href="http://www.w3.org/TR/FileAPI/#ProtocolExamples">blob: 
+protocol examples</A>.</P></DIV>
+<DIV id="TwoHundredOK" class="section">
+<H4>11.7.2. 200 OK</H4>
+<P>This response [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>] MUST be 
+used if the request has succeeded, namely the <A href="http://www.w3.org/TR/FileAPI/#ABNFForBlob">blob:</A> 
+URI has been requested with a GET,	satisfies the <A href="http://www.w3.org/TR/FileAPI/#originOfBlob">origin 
+requirement</A>, and satisfies the <A href="http://www.w3.org/TR/FileAPI/#lifeTime">lifetime 
+requirement.</A>  If this response code is used,	the user agent MUST also use a 
+Content-Type header [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>] with 
+a value equal to the <CODE><A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A></CODE> object's <CODE><A 
+href="http://www.w3.org/TR/FileAPI/#dfn-type">type</A></CODE> attribute.  See <A 
+href="http://www.w3.org/TR/FileAPI/#ProtocolExamples">blob: protocol 
+examples</A>.	</P></DIV>
+<DIV id="FiveHundredInternalServerError" class="section">
+<H4>11.7.3. 500 Error Condition</H4>
+<P>	  This response [<A href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>] MUST 
+be used if:	</P>
+<UL>
+  <LI>
+  <P>Any request method other than GET is used to dereference the URL.</P></LI>
+  <LI>
+  <P>The request violates the <A href="http://www.w3.org/TR/FileAPI/#originOfBlob">origin 
+  requirement</A>.  In this case, the response SHOULD be accompanied by 
+  clarifying text alongside the 500 response, e.g. "500 Origin 
+  Violation."</P></LI>
+  <LI>
+  <P>The request does not satisfy the <A href="http://www.w3.org/TR/FileAPI/#lifeTime">lifetime 
+  requirement</A>.  In this case, the response SHOULD be accompanied by 
+  clarifying text alongside the 500 response, e.g. "500 Expired URI."</P></LI>
+  <LI>
+  <P>The underlying resource has changed, moved, been deleted or has become 
+  invalid.  In this case, the response SHOULD be accompanied by clarifying text 
+  alongside the 500 response, e.g. "500 Invalid Resource."</P></LI>
+  <LI>
+  <P>The permissions surrounding the underlying resource do not permit access.  
+  In this case, the response SHOULD be accompanied by clarifying text alongside 
+  the 500 response, e.g. "500 Access Violation."</P></LI>
+  <LI>
+  <P>A security error has occurred.  In this case, the response SHOULD be 
+  accompanied by clarifying text alongside the 500 response, e.g. "500 Security 
+  Violation."  </P></LI></UL>
+<P>This response MAY be accompanied by additional messages in the response 
+indicating why the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> resource 
+could not be served.  See <A href="http://www.w3.org/TR/FileAPI/#ProtocolExamples">blob: 
+protocol examples</A>.</P>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>The 500 Error Condition provides a response code, but not a fixed status.  
+User agents MAY leave it as simply "500 Error Condition" or supply additional 
+status information (e.g. "500 Origin Violation").  Implementers are strongly 
+encouraged to provide messages to developers along with the response 
+code.</P></DIV></DIV>
+<DIV id="ProtocolExamples" class="section">
+<H4>11.7.4. Request and Response Headers</H4>
+<P>This section provides sample exchanges between web applications and user 
+agents using the <A href="http://www.w3.org/TR/FileAPI/#processingModel">blob: 
+protocol</A>.  A request can be triggered using HTML markup of the sort 
+<CODE>&lt;img src="blob:550e8400-e29b-41d4-a716-446655440000"&gt;</CODE>, after 
+a web application calls <A href="http://www.w3.org/TR/FileAPI/#dfn-createObjectURL"><CODE>URL.createObjectURL</CODE></A> 
+on a given <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>, which 
+returns <CODE>blob:550e8400-e29b-41d4-a716-446655440000 </CODE> to dereference 
+that <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>. 
+ These examples merely illustrate the protocol; web developers are not likely to 
+interact with all the headers, but the <CODE>getAllResponseHeaders()</CODE> 
+method of <CODE>XMLHttpRequest</CODE>, if used, will show relevant response 
+headers [<A href="http://www.w3.org/TR/FileAPI/#XHR2">XHR2</A>].  </P>
+<DIV class="example">
+<DIV class="exampleHeader">Example</DIV>
+<P>Requests could look like this:</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">HEADERS</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="headers-code">
+	GET 550e8400-e29b-41d4-a716-446655440000 blob/1.0
+	</CODE></PRE></DIV></DIV>
+<P>If the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has an 
+affiliated media type [<A 
+href="http://www.w3.org/TR/FileAPI/#RFC2046">RFC2046</A>] represented by its <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> attribute, 
+then the response message should include the Content-Type header from HTTP [<A 
+href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>].  See <A href="http://www.w3.org/TR/FileAPI/#processing-media-types">processing 
+media types</A>. </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">HEADERS</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="headers-code">
+	blob/1.0 200 OK
+	Content-Type: image/jpeg
+
+	....
+	</CODE></PRE></DIV></DIV>
+<P>If there is a <A href="http://www.w3.org/TR/FileAPI/#file-error-read">file 
+error</A> or any other kind of error associated with the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A>, 
+then a user agent can respond with a <A href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500 
+Error Condition</A> as the response message.  This should also be used if any 
+method other than GET is used to make the request.</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">HEADERS</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="headers-code">
+	blob/1.0 500 Error Condition
+
+	This file cannot be read.
+	</CODE></PRE></DIV></DIV></DIV>
+<DIV id="processing-media-types" class="section">
+<H4>11.7.4.1. Processing Media Types</H4>
+<P>	If a Content-Type header [<A 
+href="http://www.w3.org/TR/FileAPI/#HTTP">HTTP</A>] is provided (e.g. if the <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> has an 
+affiliated <A 
+href="http://www.w3.org/TR/FileAPI/#dfn-type"><CODE>type</CODE></A> attribute), 
+then user agents SHOULD obtain and process that media type in a manner 
+consistent with the Media Type Sniffing specification [<A href="http://www.w3.org/TR/FileAPI/#MIMESNIFF">MIMESNIFF</A>]. 
+ 	</P></DIV></DIV></DIV>
+<DIV id="creating-revoking" class="section">
+<H2>11.8. Creating and Revoking a Blob URI</H2>
+<P><A href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> URIs</A> are 
+created and revoked using methods exposed on the <A href="http://www.w3.org/TR/FileAPI/#URL-object"><CODE>URL</CODE></A> 
+object, supported by	global objects <CODE>Window</CODE> [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] 
+and <CODE>WorkerGlobalScope</CODE> [<A href="http://www.w3.org/TR/FileAPI/#Workers">Web 
+Workers</A>].  Revocation of a <A 
+href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> URI</A>	decouples the 
+<A href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> URI</A> from the 
+resource it refers to, and if it is dereferenced after it is revoked, user 
+agents MUST return a <A href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500</A> 
+response.	This section describes a supplemental interface to the URL 
+specification [<A href="http://www.w3.org/TR/FileAPI/#URL-API">URL API</A>] and 
+presents methods for Blob URI creation and revocation.  </P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">IDL</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="idl-code">
+	partial interface <DFN id="URL-object">URL</DFN> {
+
+	    static DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-createObjectURL">createObjectURL</A>(<A href="http://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</A> <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob">blob</A>);
+	    static void <A href="http://www.w3.org/TR/FileAPI/#dfn-revokeObjectURL">revokeObjectURL</A>(DOMString <A href="http://www.w3.org/TR/FileAPI/#dfn-urlarg">url</A>);
+	};
+	</CODE></PRE></DIV></DIV>
+<DIV class="note">
+<DIV class="noteHeader">Note</DIV>
+<P>ECMAScript user agents of this specification MUST ensure that they do not 
+expose a <CODE>prototype</CODE> property on the URL interface	object unless the 
+user agent also implements the URL [<A href="http://www.w3.org/TR/FileAPI/#URL-API">URL 
+API</A>] specification. In other words, <CODE>URL.prototype</CODE> MUST	evaluate 
+to true if the user agent implements the URL [<A href="http://www.w3.org/TR/FileAPI/#URL-API">URL 
+API</A>] specification, and MUST NOT evaluate to true otherwise.</P></DIV>
+<P><CODE>// Window implements URL;</CODE></P>
+<P><CODE>// WorkerUtils implements URL;</CODE></P>
+<DL>
+  <DT id="dfn-createObjectURL">The <CODE>createObjectURL</CODE> method</DT>
+  <DD>
+  <P>Returns a unique <A 
+  href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> URI</A> each time 
+  it is called on a	<DFN id="valid">valid</DFN> <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+  argument, which is a non-null <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> in scope 
+  of the global	object's <A 
+  href="http://www.w3.org/TR/FileAPI/#URL-object"><CODE>URL</CODE></A> property 
+  from which this static method is called.</P>
+  <OL>
+    <LI>
+    <P>If this method is called with a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+    argument that is NOT <A 
+    href="http://www.w3.org/TR/FileAPI/#valid">valid</A>, then user agents MUST 
+    return <CODE>null</CODE>.</P></LI>
+    <LI>
+    <P>If this method is called with a <A href="http://www.w3.org/TR/FileAPI/#valid">valid</A> 
+    <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+    argument, user agents MUST return	a unique <A href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> 
+    URI</A> that can be used to dereference the <A href="http://www.w3.org/TR/FileAPI/#dfn-fileBlob"><CODE>blob</CODE></A> 
+    argument.</P></LI></OL>
+  <DIV class="example">
+  <DIV class="exampleHeader">Example</DIV>
+  <P>In the example below, after obaining a reference to a Blob object, the 
+  static method <CODE>URL.createObjectURL</CODE> is called on that Blob 
+  object.</P>
+  <DIV class="block">
+  <DIV class="blockTitleDiv"><SPAN class="blockTitle">ECMAScript</SPAN></DIV>
+  <DIV class="blockContent"><PRE class="code"><CODE class="es-code">
+	var file = document.getElementById('file').files[0];
+	if(file){
+	  blobURLref = window.URL.createObjectURL(file);
+	  myimg.src = blobURLref;
+	}
+	</CODE></PRE></DIV></DIV></DIV></DD>
+  <DT id="dfn-revokeObjectURL">The <CODE>revokeObjectURL</CODE> method</DT>
+  <DD>
+  <P>Revokes the <A href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> 
+  URI</A> provided in the string <A href="http://www.w3.org/TR/FileAPI/#dfn-urlarg"><CODE>url</CODE></A> 
+  argument.	</P>
+  <OL>
+    <LI>If the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-urlarg"><CODE>url</CODE></A> refers 
+    to a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+    that is both <A href="http://www.w3.org/TR/FileAPI/#valid">valid</A> and in 
+    the	  <A href="http://www.w3.org/TR/FileAPI/#same-origin">same origin</A> of 
+    the global object's <A 
+    href="http://www.w3.org/TR/FileAPI/#URL-object">URL</A> property on which 
+    this static method was called,	user agents MUST return a <A href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500</A> 
+    response code when the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-urlarg"><CODE>url</CODE></A> is 
+    dereferenced.</LI>
+    <LI>If the <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-urlarg"><CODE>url</CODE></A> refers 
+    to a <A href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> 
+    that is NOT <A href="http://www.w3.org/TR/FileAPI/#valid">valid</A> OR if 
+    the value provided for	the <A href="http://www.w3.org/TR/FileAPI/#dfn-urlarg"><CODE>url</CODE></A> 
+    argument is not a <A 
+    href="http://www.w3.org/TR/FileAPI/#url"><CODE>Blob</CODE> URI</A> OR if the 
+    <A href="http://www.w3.org/TR/FileAPI/#dfn-urlarg"><CODE>url</CODE></A> 
+    argument	refers to a <A 
+    href="http://www.w3.org/TR/FileAPI/#dfn-Blob"><CODE>Blob</CODE></A> that is 
+    NOT in the <A href="http://www.w3.org/TR/FileAPI/#same-origin">same 
+    origin</A> as the global object's <A href="http://www.w3.org/TR/FileAPI/#URL-object">URL</A> 
+    property,	this method call does nothing.  User agents MAY display a message 
+    on the error console.</LI></OL>
+  <P><DFN id="dfn-urlarg">The <CODE>url</CODE> argument</DFN> to the <A href="http://www.w3.org/TR/FileAPI/#dfn-revokeObjectURL"><CODE>revokeObjectURL</CODE></A> 
+  method is a <A href="http://www.w3.org/TR/FileAPI/#url">Blob URI</A> 
+  string.</P>
+  <DIV class="example">
+  <DIV class="exampleHeader">Example</DIV>
+  <P>In the example below, <CODE>window1</CODE> and <CODE>window2</CODE> are 
+  separate, but in the <A href="http://www.w3.org/TR/FileAPI/#same-origin">same 
+  origin</A>; <CODE>window2</CODE> could be an <CODE>iframe</CODE>	[<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>] 
+  inside <CODE>window1</CODE>.</P>
+  <DIV class="block">
+  <DIV class="blockTitleDiv"><SPAN class="blockTitle">ECMAScript</SPAN></DIV>
+  <DIV class="blockContent"><PRE class="code"><CODE class="es-code">
+	myurl = window1.URL.createObjectURL(myblob);
+	window2.URL.revokeObjectURL(myurl);
+	</CODE></PRE></DIV></DIV>
+  <P>Since <CODE>window1</CODE> and <CODE>window2</CODE> are in the <A href="http://www.w3.org/TR/FileAPI/#same-origin">same 
+  origin</A>, the	<CODE>URL.revokeObjectURL</CODE> call ensures that subsequent 
+  dereferencing of <CODE>myurl</CODE> results in a <A href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500 
+  Error Condition</A> response.</P></DIV></DD></DL></DIV></DIV>
+<DIV id="security-discussion" class="section">
+<H2>12. Security Considerations</H2>
+<P>	  This section is <EM>informative.</EM></P>
+<P>	  This specification allows web content to read files from the underlying 
+file system, as well as provides a means for files to be accessed by unique 
+identifiers,	  and as such is subject to some security considerations.  This 
+specification also assumes that the	  primary user interaction is with the 
+<CODE>&lt;input type="file"/&gt;</CODE> element of HTML forms [<A href="http://www.w3.org/TR/FileAPI/#HTML">HTML</A>], 
+and that all files that are being read by	  <A href="http://www.w3.org/TR/FileAPI/#dfn-filereader"><CODE>FileReader</CODE></A> 
+objects have first been selected by the user.  Important security considerations 
+include preventing malicious file	  selection attacks (selection looping), 
+preventing access to system-sensitive files, and guarding against modifications 
+of files on disk after a selection has taken place.	</P>
+<UL>
+  <LI>
+  <P><DFN id="selection-looping">Preventing selection looping.</DFN>  During 
+  file selection, a user may be bombarded with the file picker associated with 
+  <CODE>&lt;input	type="file"/&gt;</CODE> (in a "must choose" loop that forces 
+  selection before the file picker is dismissed) and a user agent may prevent 
+  file	access to any selections by making the  <A href="http://www.w3.org/TR/FileAPI/#dfn-filelist"><CODE>FileList</CODE></A> 
+  object returned be of size 0.</P></LI>
+  <LI>
+  <P><DFN id="sensitive-files">System-sensitive files</DFN> (e.g. files in 
+  /usr/bin, password files, and other native operating system executables) 
+  typically should not	be exposed to web content, and should not be accessed via 
+  <A href="http://www.w3.org/TR/FileAPI/#url">Blob URIs</A>.  User agents MAY 
+  throw a <A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A> 
+  exception for synchronous read methods, or return a <A href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+  for asynchronous reads.</P></LI>
+  <LI>
+  <P><DFN id="post-selection-file-mods">Post-selection file modifications</DFN> 
+  occur when a file changes on disk after it has been selected.  In such cases, 
+  user agents MAY throw a <CODE><A href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A></CODE> 
+  for synchronous read methods, or return a <A href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+  for asynchronous reads.</P></LI>
+  <LI>
+  <P><DFN id="cross-scheme-reads">Cross-scheme file reads</DFN> occur when a 
+  read attempt is made on a file resident on the file:/// scheme by a resource
+  	dereferenced by http://.  In such cases, user agents MAY throw a <CODE><A 
+  href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A></CODE> 
+  exception for synchronous read methods, or return a <A href="http://www.w3.org/TR/FileAPI/#dfn-SecurityError"><CODE>SecurityError</CODE></A> 
+  <A href="http://www.w3.org/TR/FileAPI/#dfn-domerror"><CODE>DOMError</CODE></A> 
+  for asynchronous reads. </P></LI>
+  <LI>
+  <P><DFN id="cross-origin-requests-on-blobs">Cross-origin requests on Blob 
+  URIs</DFN> occur when a <A href="http://www.w3.org/TR/FileAPI/#url">Blob 
+  URI</A> is accessed across origins.    User agents should ensure that the	<A 
+  href="http://www.w3.org/TR/FileAPI/#FiveHundredInternalServerError">500 Error 
+  Condition</A> response	is used in cross-origin request contexts.  
+	</P></LI></UL>
+<DIV class="ednote">
+<DIV class="ednoteHeader">Editorial note</DIV>
+<P>This section is provisional; more security data may supplement this in 
+subsequent drafts.</P></DIV></DIV>
+<DIV id="requirements" class="section">
+<H2>13. Requirements and Use Cases</H2>
+<P>This section covers what the requirements are for this API, as well as 
+illustrates some use cases.  This version of the API does not satisfy all use 
+cases;		   subsequent versions may elect to address these.</P>
+<UL>
+  <LI>
+  <P>Once a user has given permission, user agents should provide the ability to 
+  read and parse data directly from a local file programmatically.</P>
+  <UL>
+    <LI> Example: A lyrics viewer. User wants to read song lyrics from songs in 
+    his plist file.  User browses for plist file.  File is opened, 				 read, 
+    parsed, and presented to the user as a sortable, actionable list within a 
+    web application.  User can select songs to fetch lyrics.  User uses the 				 
+    "browse for file" dialog.</LI></UL></LI>
+  <LI>
+  <P>Data should be able to be stored locally so that it is available for later 
+  use, which is useful for offline data access for web applications.</P>
+  <UL>
+    <LI>Example: A Calendar App.  User's company has a calendar. User wants to 
+    sync local events to company calendar, marked	                        as 
+    "busy" slots (without leaking personal info).  User browses for file and 
+    selects it. The text/calendar file is parsed	                        in the 
+    browser, allowing the user to merge the files to one calendar view.	         
+                   The user wants to then save the file back to his local 
+    calendar file. (using "Save As" ?).  The user can also send the
+    				integrated calendar file back to the server calendar store 
+    asynchronously.</LI></UL></LI>
+  <LI>
+  <P>User agents should provide the ability to save a local file 
+  programmatically given an amount of data and a file name.</P>
+  <UL>
+    <LI>Example: A Spreadsheet App.  User interacts with a form, and generates 
+    some input.  The form then generates a			        CSV (Comma Separated 
+    Variables) output for the user to import into a spreadsheet, and uses 
+    "Save...".  The generated				output can also be directly integrated into a 
+    web-based spreadsheet, and				uploaded asynchronously.</LI></UL></LI>
+  <LI>
+  <P>User agents should provide a streamlined programmatic ability to send data 
+  from a file to a remote server that works more		           efficiently than 
+  form-based uploads today</P>
+  <UL>
+    <LI>Example: A Video/Photo Upload App. User is able to select large files 
+    for upload, which can then be "chunk-transfered" to the server.</LI></UL></LI>
+  <LI>
+  <P>User agents should provide an API exposed to script that exposes the 
+  features above.  The user is notified by UI anytime interaction with the file
+  			   system takes place, giving the user full ability to cancel or abort the 
+  transaction.  The user is notified of any file selections, and can cancel 
+  these.			   No invocations to these APIs occur silently without user 
+  intervention. </P></LI></UL></DIV>
+<DIV id="AppendixA" class="section">
+<H2>14. Appendix A</H2>
+<P>This section is informative and not normative.</P>
+<DIV id="ABNFUUID" class="section">
+<H3>14.1. An ABNF for UUID</H3>
+<P>The following is an informative ABNF [<A href="http://www.w3.org/TR/FileAPI/#ABNF">ABNF</A>] 
+for UUID, which is a <EM>strongly encouraged</EM> choice for the	<A href="http://www.w3.org/TR/FileAPI/#opaqueString">opaqueString</A> 
+production of <A href="http://www.w3.org/TR/FileAPI/#url">Blob URIs</A>.</P>
+<DIV class="block">
+<DIV class="blockTitleDiv"><SPAN class="blockTitle">ABNF</SPAN></DIV>
+<DIV class="blockContent"><PRE class="code"><CODE class="abnf-code">
+	UUID                   = time-low "-" time-mid "-"
+	                         time-high-and-version "-"
+	                         clock-seq-and-reserved
+	                         clock-seq-low "-" node
+	time-low               = 4hexOctet
+	time-mid               = 2hexOctet
+	time-high-and-version  = 2hexOctet
+	clock-seq-and-reserved = hexOctet
+	clock-seq-low          = hexOctet
+	node                   = 6hexOctet
+	hexOctet               = hexDigit hexDigit
+	hexDigit =
+	         "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" /
+	         "a" / "b" / "c" / "d" / "e" / "f" /
+	         "A" / "B" / "C" / "D" / "E" / "F"
+
+	</CODE></PRE></DIV></DIV></DIV></DIV>
+<DIV id="acknowledgements-section" class="section">
+<H2>15. Acknowledgements</H2>
+<P>	      This specification was originally developed by the SVG Working Group. 
+Many thanks to Mark Baker and Anne van Kesteren for their feedback.</P>
+<P>Thanks to Robin Berjon for editing the original specification.</P>
+<P>Special thanks to Olli Pettay, Nikunj Mehta, Garrett Smith, Aaron Boodman, 
+Michael Nordman, Jian Li, Dmitry Titov, Ian Hickson, Darin Fisher, Sam Weinig, 
+Adrian Bateman and Julian Reschke.</P>
+<P>Thanks to the W3C WebApps WG, and to participants on the 
+public-webapps@w3.org listserv</P></DIV>
+<DIV id="references" class="section">
+<H2>16. References</H2>
+<DIV id="normative-references" class="section">
+<H3>16.1. Normative references</H3>
+<DL class="bibliography">
+  <DT id="RFC2119">RFC2119</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc2119">Key words for use in 
+  RFCs to Indicate Requirement Levels</A></CITE>, S. Bradner. IETF.</DD>
+  <DT id="HTML">HTML</DT>
+  <DD><CITE><A href="http://dev.w3.org/html5/spec/Overview.html">HTML5: A 
+  vocabulary and associated APIs for HTML and XHTML (work in 
+  progress)</A></CITE>, I. Hickson. W3C.</DD>
+  <DT id="ProgressEvents">ProgressEvents</DT>
+  <DD><CITE><A href="http://www.w3.org/TR/progress-events/">Progress 
+  Events</A></CITE>, A. van Kesteren. W3C.</DD>
+  <DT id="DataURL">RFC2397</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc2397">The "data" URL 
+  Scheme</A></CITE>, L. Masinter. IETF.</DD>
+  <DT id="Workers">Web Workers</DT>
+  <DD><CITE><A href="http://dev.w3.org/html5/workers/">Web Workers (work in 
+  progress)</A></CITE>, I. Hickson. W3C.</DD>
+  <DT id="DOMCore">DOM Core</DT>
+  <DD><CITE><A href="http://www.w3.org/TR/domcore/">DOM Core (work in 
+  progress)</A></CITE>, A. van Kesteren, Ms2ger. W3C.</DD>
+  <DT id="Unicode">Unicode</DT>
+  <DD><CITE><A href="http://www.unicode.org/versions/Unicode5.2.0/">The Unicode 
+  Standard, Version 5.2.0.</A></CITE>, J. D. Allen, D. Anderson, et al. Unicode 
+  Consortium.</DD>
+  <DT id="HTTP">RFC2616</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc2616">Hypertext Transfer 
+  Protocol -- HTTP/1.1</A></CITE>, R. Fielding, J. Gettys, J. Mogul, H. Frystyk, 
+  L. Masinter, P. Leach, T. Berners-Lee. IETF.</DD>
+  <DT id="RFC2046">RFC2046</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc2046">Multipurpose Internet 
+  Mail Extensions (MIME) Part Two: Media Extensions</A></CITE>, N. Freed, N. 
+  Borenstein. IETF.</DD>
+  <DT id="IANACHARSET">IANA Charsets</DT>
+  <DD><CITE><A href="http://www.iana.org/assignments/character-sets">Official 
+  Names for Character Sets on the Internet</A></CITE>, K. Simonsen, W.Choi, et 
+  al. IANA.</DD>
+  <DT id="TypedArrays">Typed Arrays</DT>
+  <DD><CITE><A href="https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/TypedArray-spec.html">Typed 
+  Arrays (work in progress)</A></CITE>, V. Vukicevic, K. Russell. Khronos 
+  Group.</DD>
+  <DT id="ABNF">RFC5234</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc5234">Augmented BNF for 
+  Syntax Specifications: ABNF</A></CITE>, D. Crocker, P. Overell. IETF.</DD>
+  <DT id="URL-API">URL Specification</DT>
+  <DD><CITE><A href="https://docs.google.com/document/edit?id=1r_VTFKApVOaNIkocrg0z-t7lZgzisTuGTXkdzAk4gLU&amp;hl=en&amp;pli=1#">URL 
+  API (work in progress)</A></CITE>, A. Barth. TBD.</DD>
+  <DT id="WebIDL">WebIDL Specification</DT>
+  <DD><CITE><A href="http://www.w3.org/TR/WebIDL/">WebIDL (work in 
+  progress)</A></CITE>, C. McCormack.</DD>
+  <DT id="ECMA-262">ECMAScript</DT>
+  <DD><CITE><A href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript 
+  5th Edition</A></CITE>, A. Wirfs-Brock, P. Lakshman et al.</DD>
+  <DT id="MIMESNIFF">MIME Sniffing</DT>
+  <DD><CITE><A href="http://mimesniff.spec.whatwg.org/">MIME Sniffing (work in 
+  progress)</A></CITE>, A. Barth and I. Hickson.</DD></DL></DIV>
+<DIV id="informative-references" class="section">
+<H3>16.2. Informative References</H3>
+<DL>
+  <DT id="XHR2">XMLHttpRequest</DT>
+  <DD><CITE><A href="http://www.w3.org/TR/XMLHttpRequest2/">XMLHttpRequest Level 
+  2 (work in progress)</A></CITE>, A. van Kesteren. W3C.</DD>
+  <DT id="Blob-REF">Google Gears Blob API</DT>
+  <DD><CITE><A href="http://code.google.com/apis/gears/api_blob.html">Google 
+  Gears Blob API (deprecated)</A></CITE></DD>
+  <DT id="UUID">RFC4122</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc4122">A Universally Unique 
+  IDentifier (UUID) URN Namespace</A></CITE>, P. Leach, M. Mealling, R. Salz. 
+  IETF.</DD>
+  <DT id="RFC3986">RFC3986</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc3986">Uniform Resource 
+  Identifier (URI): Generic Syntax</A></CITE>, T. Berners-Lee, R. Fielding, L. 
+  Masinter. IETF.</DD>
+  <DT id="RFC1630">RFC1630</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc1630">Universal Resource 
+  Identifiers in WWW</A></CITE>, T. Berners-Lee. IETF.</DD>
+  <DT id="RFC1738">RFC1738</DT>
+  <DD><CITE><A href="http://tools.ietf.org/html/rfc1738">Uniform Resource 
+  Locators (URL)</A></CITE>, T. Berners-Lee, L. Masinter, M. McCahill. 
+IETF.</DD>
+  <DT id="StreamAPI">Stream API</DT>
+  <DD><CITE><A href="http://www.whatwg.org/specs/web-apps/current-work/multipage/video-conferencing-and-peer-to-peer-communication.html">The 
+  Stream API</A></CITE>, I. Hickson. 
+WHATWG.</DD></DL></DIV></DIV></DIV></BODY></HTML>

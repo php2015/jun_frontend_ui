@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		div {
+			border-color: red;
+			border-width: thin;
+			border-style: solid;
+		}	
+		
+		#result {
+			width: 500px;
+			height: 300px;
+		}
+		
+		#dragDiv {
+			width: 100px;
+			height: 50px;
+		}
+	
+	</style>
+	
+	<script type="text/javascript" src="Scripts/jquery-1.5.1.js"></script>
+
+	<script type="text/javascript">
+		function init() {
+			document.ondragover = function (e) {
+				e.preventDefault();				
+			};
+			document.ondrop = function (e) {
+				e.preventDefault();
+			}
+			
+			var dragDiv = document.getElementById("dragDiv");
+			var resultDiv = document.getElementById("result");
+			
+			dragDiv.addEventListener("dragstart", function (ex) {
+				var dt = ex.dataTransfer;
+				dt.setData("text/plain",this.id);
+			});
+			
+			resultDiv.addEventListener("dragend", function (e) {
+				e.preventDefault();	
+			});
+			
+			resultDiv.addEventListener("drop", function (ex) {
+				var dt = ex.dataTransfer;
+				var dataId = dt.getData("text/plain");
+
+				$("#result").append($("#" + dataId));
+			});
+		}
+	</script>
+	
+</head>
+<body onload="init()">
+	<div id="dragDiv" draggable="true">
+		被拖的元素
+	</div>
+	<div id="result">
+		目标元素
+	</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.it.dao.EmpDao">
+
+	 <resultMap type="Emp" id="basemap">
+		    <id column="id" property="id"/>
+		    <result column="name" property="name"/>
+		    <result column="pwd" property="pwd"/>
+		    <result column="level" property="level"/>
+	    
+		    <association property="dept" javaType="Dept">	
+			    <id column="deptid" property="id"/>
+			    <result column="deptname" property="name"/>
+		    </association>
+
+		 <collection
+				 property="emps"
+				 ofType="Emp"
+				 select ="com.study.it.dao.EmpDao.selectListByDeptId"
+				 column="id"
+		 />
+
+	 </resultMap>
+	 <delete id="delete" parameterType="int">
+		delete from classinfo where cid=#{id}
+	</delete>
+
+	<update id="update" parameterType="ClassInfo">
+		update classinfo set cname=#{o.name} where cid=#{o.id}
+	</update>
+
+	<insert id="insert" parameterType="ClassInfo" keyProperty="id" useGeneratedKeys="true">
+		insert into classinfo values(default,#{o.name})
+	</insert>
+	 
+	<sql id="fromsql">
+	    from emp  e
+	       left join dept d on e.dept_id=d.id
+	</sql>
+	<sql id="selectsql">
+	     select 
+	    	e.*,
+	    	d.id as deptid,
+	    	d.name as deptname 
+	    <include refid="fromsql"/>
+	</sql>
+	 <select id="login" resultMap="basemap">
+	 	<include refid="selectsql" /> where e.name=#{name} and e.pwd=#{pwd}
+	 </select>
+	 
+	 <select id="selectById"  resultMap="basemap">
+	   <include refid="selectsql" />
+	    where id=#{id}
+	 </select>
+	 
+
+	 <!-- 不用变 -->
+	 <sql id="cdtsql">
+	     <foreach item="c" collection="cdts" >
+               and ${c.col} ${c.opr} <if test="c.val!=null">#{c.val}</if>
+           </foreach>
+	</sql>
+	 
+	 <select id="selectAll" resultMap="basemap">
+	 	<include refid="selectsql"/>
+	 </select>
+	 
+	 <select id="selectOne" resultMap="basemap">
+       <include refid="selectsql"/> 
+       <where>
+          <include refid="cdtsql"/>
+       </where>
+    </select>
+	 
+	 <select id="selectList" resultMap="basemap">
+       <include refid="selectsql"/> 
+       <where>
+          <include refid="cdtsql"/>
+       </where>
+    </select>
+	 
+	 <select id="selectPage" resultMap="basemap">
+       <include refid="selectsql"/> 
+       <where>
+          <include refid="cdtsql"/>
+       </where>
+       order by ${orderby}
+       limit #{start},#{row} 
+    </select>
+    
+    <select id="selectCount" resultType="int">
+         SELECT 
+		   count(*)
+		<include refid="fromsql"/>
+       <where>
+           <include refid="cdtsql"/>
+       </where>
+    </select>
+</mapper>

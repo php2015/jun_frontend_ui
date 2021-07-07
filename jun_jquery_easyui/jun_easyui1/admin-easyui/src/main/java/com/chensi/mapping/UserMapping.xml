@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chensi.dao.UserMapper">
+
+	<!-- ============common sql================ -->
+	<select id="list" resultType="com.chensi.model.User">
+		select * from t_user
+		order by lastTime desc
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="listByEntity" resultType="com.chensi.model.User">
+		select t1.*,t2.name roleName
+		from t_user t1
+		join t_role t2 on t1.roleId=t2.id
+		<where>
+			<if test="entity.username != null and entity.username != '' ">
+				and t1.username like CONCAT('%',#{entity.username},'%')
+			</if>
+			<if test="entity.name != null and entity.name != '' ">
+				and t1.name like CONCAT('%',#{entity.name},'%')
+			</if>
+			<if test="entity.roleId != null ">
+				and t1.roleId=#{entity.roleId}
+			</if>
+			<if test="entity.status != null ">
+				and t1.status=#{entity.status}
+			</if>
+		</where>
+		order by lastTime desc
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="countByEntity" resultType="Integer">
+		select count(1)
+		from t_user t1
+		join t_role t2 on t1.roleId=t2.id
+		<where>
+			<if test="entity.username != null and entity.username != '' ">
+				and t1.username like CONCAT('%',#{entity.username},'%')
+			</if>
+			<if test="entity.name != null and entity.name != '' ">
+				and t1.name like CONCAT('%',#{entity.name},'%')
+			</if>
+			<if test="entity.roleId != null ">
+				and t1.roleId=#{entity.roleId}
+			</if>
+			<if test="entity.status != null ">
+				and t1.status=#{entity.status}
+			</if>
+		</where>
+	</select>
+
+	<select id="get" resultType="com.chensi.model.User">
+		select t1.*,t2.name roleName
+		from t_user t1
+		left join t_role t2 on t1.roleId=t2.id
+		where
+		t1.id=#{id}
+	</select>
+
+	<select id="getByEntity" resultType="com.chensi.model.User">
+		select *
+		from t_user
+		<where>
+			<if test="entity.username != null and entity.username != '' ">
+				and username=#{entity.username}
+			</if>
+			<if test="entity.password != null and entity.password != '' ">
+				and password=#{entity.password}
+			</if>
+			<if test="entity.roleId != null ">
+				and roleId=#{entity.roleId}
+			</if>
+			<if test="entity.status != null ">
+				and status=#{entity.status}
+			</if>
+			<if test="entity.idNe != null ">
+				and id!=#{entity.idNe}
+			</if>
+		</where>
+		limit 1
+	</select>
+
+	<update id="update">
+		update t_user
+		<set>
+			username=#{entity.username},
+			password=#{entity.password},
+			roleId=#{entity.roleId},
+			name=#{entity.name},
+			tel=#{entity.tel},
+			email=#{entity.email},
+			openid=#{entity.openid},
+			province=#{entity.province},
+			city=#{entity.city},
+			area=#{entity.area},
+			address=#{entity.address},
+			idcard=#{entity.idcard},
+			avatar=#{entity.avatar},
+			sign=#{entity.sign},
+			attach=#{entity.attach},
+			remark=#{entity.remark},
+			status=#{entity.status},
+			isSuper=#{entity.isSuper},
+			createTime=#{entity.createTime},
+			lastTime=#{entity.lastTime},
+		</set>
+		where id=#{entity.id}
+	</update>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="entity.id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
+		insert into t_user
+		(
+		username,
+		password,
+		roleId,
+		name,
+		tel,
+		email,
+		openid,
+		province,
+		city,
+		area,
+		address,
+		idcard,
+		avatar,
+		sign,
+		attach,
+		remark,
+		status,
+		isSuper,
+		createTime,
+		lastTime
+		)
+		values
+		(
+		#{entity.username},
+		#{entity.password},
+		#{entity.roleId},
+		#{entity.name},
+		#{entity.tel},
+		#{entity.email},
+		#{entity.openid},
+		#{entity.province},
+		#{entity.city},
+		#{entity.area},
+		#{entity.address},
+		#{entity.idcard},
+		#{entity.avatar},
+		#{entity.sign},
+		#{entity.attach},
+		#{entity.remark},
+		#{entity.status},
+		#{entity.isSuper},
+		#{entity.createTime},
+		#{entity.lastTime}
+		)
+	</insert>
+
+
+	<delete id="remove">
+		delete from t_user where id=#{id}
+	</delete>
+
+	<delete id="removeByEntity">
+		delete from t_user
+		<where>
+			<if test="entity.username != null and entity.username != '' ">
+				and username=#{entity.username}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="removeAll">
+		delete from t_user
+		where id in
+		<foreach collection="list" item="item" separator="," open="("
+			close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<!-- ==============my sql============== -->
+	
+ 	<!-- 定义存储过程 -->
+    <select id="getByProc"  statementType="CALLABLE" resultType="String">
+      {
+      	#{p2,mode=OUT,jdbcType=VARCHAR}=call proc_person_findById(
+            #{p1,mode=IN,jdbcType=INTEGER}
+        )
+      }
+      </select>
+</mapper>

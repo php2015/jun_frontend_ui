@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0061)http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>HTML5 WebSocket 技术介绍 - twaver - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/style.css">
+<link type="text/css" rel="stylesheet" href="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/common2.css">
+<link type="text/css" rel="stylesheet" href="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/shStyle.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/twaver/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/twaver/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/twaver/wlwmanifest.xml">
+<script type="text/javascript" async="" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/ga.js"></script><script async="" type="text/javascript" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/gpt.js"></script><script src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">
+var currentBlogApp = 'twaver';
+</script>
+<script src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/common.js" type="text/javascript"></script> 
+<script src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/json2.js" type="text/javascript"></script>
+<script type="text/javascript" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/syntaxHighlighter.js"></script>
+<script async="" type="text/javascript" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/google_ads_gpt.js"></script><script type="text/javascript" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/osd.js"></script></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/twaver/">twaver</a><br>
+		
+	</div>
+</div>
+
+</div>
+<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/twaver/">首页</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/twaver/admin/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/twaver">联系</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/twaver/rss">订阅</a><a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/twaver/rss"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/xml.gif" alt="订阅"></a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/twaver/admin/EditPosts.aspx">管理</a>
+</div>
+<div id="mytopmenu">
+	
+		
+<div class="blogStats">随笔 - 42&nbsp;
+文章 - 0&nbsp;评论 - 49&nbsp;trackbacks - 0
+</div>
+	
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			<div id="blog-calendar-block" style=""><div id="blog-calendar"><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/04/01&#39;);return false;">&lt;</a></td><td align="center">2012年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center"><a href="http://www.cnblogs.com/twaver/archive/2012/05/02.html"><u>2</u></a></td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08.html"><u>8</u></a></td><td align="center">9</td><td align="center"><a href="http://www.cnblogs.com/twaver/archive/2012/05/10.html"><u>10</u></a></td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center"><a href="http://www.cnblogs.com/twaver/archive/2012/05/21.html"><u>21</u></a></td><td class="CalTodayDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div>
+</div><br>
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/twaver/">twaver</a><br>园龄：<a href="http://home.cnblogs.com/u/twaver/" title="入园时间：2011-06-30">10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/twaver/followers/">18</a><br>关注：<a href="http://home.cnblogs.com/u/twaver/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;caa043de-eea2-e011-a53f-842b2b196315&#39;)">+加关注</a></div></div></div>
+</div>
+
+			<div id="blog-sidecolumn">
+
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+
+
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_0" href="http://www.cnblogs.com/twaver/MyPosts.html">我的随笔</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_1" href="http://www.cnblogs.com/twaver/MyComments.html">我的评论</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_2" title="我发表过评论的随笔" href="http://www.cnblogs.com/twaver/OtherPosts.html">我的参与</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_3" href="http://www.cnblogs.com/twaver/RecentComments.html">最新评论</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_4" href="http://www.cnblogs.com/twaver/tag/">我的标签</a></li>
+	
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div>
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/twaver/tag/TWaver/">TWaver</a>(10)</li><li><a href="http://www.cnblogs.com/twaver/tag/Flex/">Flex</a>(8)</li><li><a href="http://www.cnblogs.com/twaver/tag/html5/">html5</a>(3)</li><li><a href="http://www.cnblogs.com/twaver/tag/Silverlight/">Silverlight</a>(3)</li><li><a href="http://www.cnblogs.com/twaver/tag/nodejs/">nodejs</a>(2)</li><li><a href="http://www.cnblogs.com/twaver/tag/redis/">redis</a>(2)</li><li><a href="http://www.cnblogs.com/twaver/tag/RIA/">RIA</a>(2)</li><li><a href="http://www.cnblogs.com/twaver/tag/java/">java</a>(2)</li><li><a href="http://www.cnblogs.com/twaver/tag/AIR/">AIR</a>(2)</li><li><a href="http://www.cnblogs.com/twaver/tag/ajax/">ajax</a>(2)</li><li><a href="http://www.cnblogs.com/twaver/tag/">更多</a></li>
+</ul>
+</div>
+<!--done-->
+
+		<h1 class="catListTitle">随笔档案</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/twaver/archive/2012/05.html">2012年5月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/twaver/archive/2012/03.html">2012年3月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/twaver/archive/2012/02.html">2012年2月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/twaver/archive/2012/01.html">2012年1月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/twaver/archive/2011/12.html">2011年12月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/twaver/archive/2011/10.html">2011年10月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/twaver/archive/2011/09.html">2011年9月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/twaver/archive/2011/08.html">2011年8月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/twaver/archive/2011/07.html">2011年7月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/twaver/archive/2011/06.html">2011年6月 (1)</a></li>
+			
+				</ul>
+			
+	
+
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2374123">1. Re:HTML5 WebSocket 技术介绍</a></li>
+    <li class="recent_comment_body"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2372022" title="查看所回复的评论">@</a>远程轰炸<br>听说IIS8会提供支持，不过想想办法低版IIS也可以支持的吧</li>
+    <li class="recent_comment_author">--alby</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2372022">2. Re:HTML5 WebSocket 技术介绍</a></li>
+    <li class="recent_comment_body">IIS服务器什么版本支持WebSocket ？？？</li>
+    <li class="recent_comment_author">--远程轰炸</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2372010">3. Re:HTML5 WebSocket 技术介绍</a></li>
+    <li class="recent_comment_body">这个技术貌似有看头</li>
+    <li class="recent_comment_author">--0x0qwe</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2371995">4. Re:HTML5 WebSocket 技术介绍</a></li>
+    <li class="recent_comment_body">关注</li>
+    <li class="recent_comment_author">--J默</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/twaver/archive/2012/03/15/2397710.html#2358651">5. Re:如何用Swing去绘制电力系统图</a></li>
+    <li class="recent_comment_body">很不错，我去年用flex版的twaver画过类似的组件，感觉没有楼主画的好。哈哈。</li>
+    <li class="recent_comment_author">--石头茨</li>
+</ul>
+</div>
+</div>
+
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/25/2116166.html">1. 超炫的业务流程图(3074)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/08/05/2128905.html">2. .NET实现的四层拓扑结构(2488)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/08/01/2123644.html">3. 看看这变态的自动布局(2461)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/27/2118393.html">4. .NET中如何得到图片大小(1725)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/21/2112824.html">5. Flex Spark皮肤定制(1568)</a></li></ul></div>
+</div>
+
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/twaver/archive/2011/08/05/2128905.html">1. .NET实现的四层拓扑结构(7)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/27/2118393.html">2. .NET中如何得到图片大小(6)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2012/03/15/2397710.html">3. 如何用Swing去绘制电力系统图(6)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/12/24/2300081.html">4. TWaver html5 + NodeJS + express + websocket.io + redis 快速搭建项目（二）(5)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/21/2112824.html">5. Flex Spark皮肤定制(5)</a></li></ul></div>
+</div>
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/twaver/archive/2012/03/15/2397710.html">1. 如何用Swing去绘制电力系统图(5)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/08/01/2123644.html">2. 看看这变态的自动布局(5)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/06/30/2094922.html">3. 定制Flex菜单图标(4)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/27/2118393.html">4. .NET中如何得到图片大小(3)</a></li><li><a href="http://www.cnblogs.com/twaver/archive/2011/07/21/2112824.html">5. Flex Spark皮肤定制(3)</a></li></ul></div>
+</div></div></div>		
+	
+</div>
+<div id="centercontent">
+	
+	
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<h1><a id="cb_post_title_url" class="postTitle2" href="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/HTML5 WebSocket 技术介绍 - twaver - 博客园.htm">HTML5 WebSocket 技术介绍</a></h1>
+	</div>
+	<div id="cnblogs_post_body"><p>WebSocket是html5规范新引入的功能，用于解决浏览器与后台服务器双向通讯的问题，使用WebSocket技术，后台可以随时向前端推送消息，以保证前后台状态统一，在传统的无状态HTTP协议中，这是“无法做到”的。</p>
+<h2>传统服务端推（server push）技术</h2>
+<p>WebSocket提出之前，为了解决后台推送消息到前台的需求，提出了一些解决方案，这些方案使用已有的技术（如ajax，iframe，flashplayer，java applet …），通过一些变通的处理来实现。</p>
+<h3>简单轮询</h3>
+<p>最简单的是前台轮询，每隔一段时间去请求后台，以获取最新状态，这种方式最容易实现，但效果也最差，频繁盲目的调用后台，带来不必要的开销，且实时性无法保障，后台出现更新，前端需要在下一次轮询时才知道。</p>
+<h3>长轮询</h3>
+<p>为了解决这些弊端，进化出长轮询技术，轮询请求会在后台阻塞，相当于保持一个长连接，直到后台出现更新或者超时才返回，这样就可以保证更新的及时性，前端得到请求后，重新建立轮询连接，等待后台的更新通知。</p>
+<p style="text-align: center;"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/2012050809214966.jpg" alt=""></p>
+<h3>其他方案</h3>
+<p>其他解决方案无外乎保持一个长连接（如Iframe及htmlfile流），实时的从后台获取信息，或者借助第三方插件（flashPlayer, jre），使用的是flash xmlsocket或者java applet socket技术，这些方式都不够纯html，所以这里就不过多介绍了，更多传统server push 技术可参考IBM的文章：<a href="http://www.ibm.com/developerworks/cn/web/wa-lo-comet/">http://www.ibm.com/developerworks/cn/web/wa-lo-comet/</a></p>
+<h2>WebSocket介绍</h2>
+<p>webSocket是html5新引入的技术，允许后台随时向前端发送文本或者二进制消息，WebSocket是一种全新的协议，不属于http无状态协议，协议名为”ws”，这意味着一个websocket连接地址会是这样的写法：ws://twaver.com:8080/webSocketServer。ws不是http，所以传统的web服务器不一定支持，需要服务器与浏览器同时支持， WebSocket才能正常运行，目前的支持还不普遍，需要特别的web服务器和现代的浏览器。</p>
+<h3><span>浏览器对WebSocket的支持</span></h3>
+<p>Google Chrome浏览器最先支持WebSocket，随后是Safari，Firefox，此外最新版本的Opera和IE（Opera11，IE10）也支持WebSocket。<br>下面是主要浏览器的支持情况，Opera11中默认关闭了WebSocket支持，所以这里没有列出，更多信息可参考：<a href="http://en.wikipedia.org/wiki/WebSocket">http://en.wikipedia.org/wiki/WebSocket </a>与 <a href="http://caniuse.com/#search=websockets">http://caniuse.com/#search=websockets</a></p>
+<p style="text-align: center;"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/2012050809254696.png" alt=""></p>
+<h4><span style="color: #008000;">客户端WebSocket的主要方法</span></h4>
+<p>浏览器支持程度各有区别，前面wiki中关于WebSocket的“Browser support”章节有介绍，遵循w3c关于WebSocket API的相关规范，浏览器提供了WebSocket类型，在Firefox中为MozWebSocket，检测浏览器是否支持WebSocket可以使用下面的脚本代码：</p>
+<p><strong>检测浏览器是否支持WebSocket</strong></p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_504244" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">window.WebSocket = window.WebSocket || window.MozWebSocket;</code></div><div class="line number2 index1 alt1"><code class="javascript keyword">if</code> <code class="javascript plain">(!window.WebSocket){</code></div><div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">alert(</code><code class="javascript string">"WebSocket not supported by this browser"</code><code class="javascript plain">);</code></div><div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">return</code><code class="javascript plain">;</code></div><div class="line number5 index4 alt2"><code class="javascript plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>构造函数 –&nbsp;</strong><em><strong>WebSocket#constructor(url, optional protocols)</strong></em><br><span>第一个参数是请求地址，第二个参数选填，表示协议名</span><br><span>使用示例：</span></p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_621694" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">websocket = </code><code class="javascript keyword">new</code> <code class="javascript plain">WebSocket(</code><code class="javascript string">"<a href="ws://127.0.0.1:8080/alarm/alarmServer">ws://127.0.0.1:8080/alarm/alarmServer</a>"</code><code class="javascript plain">);</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>事件 – open/message/close/error</strong><br><em><strong>WebSocket#onopen, onmessage, onclose, onerror</strong></em><br><span>连接打开时，回调onopen方法，接收到后台消息时会触发到onmessage事件，后台关闭时调用onclose，出现连接异常时可在onerror中捕获</span><br><span>使用示例：</span></p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_691128" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">websocket.onmessage = </code><code class="javascript keyword">function</code><code class="javascript plain">(evt){</code></div><div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">var</code> <code class="javascript plain">data = evt.data;</code></div><div class="line number3 index2 alt2"><code class="javascript plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>方法 – send/close</strong><br><span>发送消息 –&nbsp;</span><em><strong>WebSocket#send(data)</strong></em><br><span>关闭连接 –&nbsp;</span><em><strong>WebSocket#close(optional code, optional reason)</strong></em><br><span>使用示例：</span></p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_954162" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">websocket.send(JSON.stringify({action: </code><code class="javascript string">"node.remove"</code><code class="javascript plain">, id: </code><code class="javascript string">"001"</code><code class="javascript plain">}));</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<h3>服务器对WebSocket的支持</h3>
+<p>WebSocket不同于http协议，传统的web服务器通常不支持WebSocket，比如tomcat目前就不支持（tomcat 7.0.26 支持WebSocket了），反倒是一些小众的或者更活跃的web server率先支持WebSocket，如jetty，以及基于node.js的WebSocket-Node扩展，基本上各种编程语言都有相应的服务器可以选择，下图是我列举的几种，详细情况参阅：<a href="http://en.wikipedia.org/wiki/Comparison_of_WebSocket_implementations">http://en.wikipedia.org/wiki/Comparison_of_WebSocket_implementations</a></p>
+<p style="text-align: center;"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/2012050809571386.png" alt=""></p>
+<p>服务器端编程语言各不相同，具体实现自然也不相同，即使是同一种语言，实现类和接口函数也有很大的差别，比如jetty和netty都是基于java语言，但他们的实现类几乎没有相同命名的，下面我以jetty（http://www.eclipse.org/jetty）为例，简单介绍WebSocket相关的类和方法：</p>
+<h4><span style="font-size: 16px; color: #008000;">jetty对WebSocket的实现</span></h4>
+<p><em><strong>WebSocketServlet</strong></em>基于servlet标准，增加了<em><strong>doWebSocketConnect(…)</strong></em>方法，为客户端请求创建一个后台对应的WebSocket实例</p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_507325" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">org.eclipse.jetty.websocket.WebSocketServlet</code></div><div class="line number2 index1 alt1"><code class="javascript plain">{</code></div><div class="line number3 index2 alt2"><code class="javascript plain">WebSocket doWebSocketConnect(HttpServletRequest request, String protocol)</code></div><div class="line number4 index3 alt1"><code class="javascript plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><span>后台WebSocket类，与客户端WebSocket类对应，能监听open, message, close等状态变化事件，并包含一个Connection属性，用于向客户端发送消息</span></p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_613591" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">org.eclipse.jetty.websocket.WebSocket</code></div><div class="line number2 index1 alt1"><code class="javascript plain">org.eclipse.jetty.websocket.WebSocket.OnTextMessage</code></div><div class="line number3 index2 alt2"><code class="javascript plain">{</code></div><div class="line number4 index3 alt1"><code class="javascript plain">void onOpen(Connection connect);</code></div><div class="line number5 index4 alt2"><code class="javascript plain">void onClose(int code, String message);</code></div><div class="line number6 index5 alt1"><code class="javascript plain">void onMessage(String message);</code></div><div class="line number7 index6 alt2"><code class="javascript plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><em><strong>WebSocket.Connection&nbsp;</strong></em><span>后台连接类，包含于<strong><em>WebSocket</em></strong>对象中，用于向客户端推送消息</span></p>
+<div class="cnblogs_Highlighter">
+<div><div id="highlighter_869794" class="syntaxhighlighter  javascript"><div class="toolbar"><span><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="javascript plain">org.eclipse.jetty.websocket.WebSocket.Connection</code></div><div class="line number2 index1 alt1"><code class="javascript plain">{</code></div><div class="line number3 index2 alt2"><code class="javascript plain">void sendMessage(String message);</code></div><div class="line number4 index3 alt1"><code class="javascript plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><span>本篇先做介绍，后续将介绍一个WebSocket与TWaver组件结合的实例…</span>　　</p>
+<p>　　</p>
+<p>　　</p>
+<p>　　</p>
+<p>　　</p>
+<p>　　</p>
+<p><span>&nbsp;</span></p>
+<p><strong>&nbsp;</strong></p>
+<p>　　</p>
+<p><strong>&nbsp;</strong></p></div><div id="MySignature"></div>
+<script type="text/javascript">
+var isLogined = true;
+var cb_blogId = 91848;
+var cb_entryId = 2489664;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "caa043de-eea2-e011-a53f-842b2b196315";
+var cb_entryCreatedDate = '2012/5/8 10:19:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+<div id="blog_post_info_block">
+<div id="blog_post_info"><div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(cb_entryId,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/twaver" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/icon_sina.gif" alt=""></a>
+</div>
+<div id="digg_block">
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/twaver/" target="_blank"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/u311983.png" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/twaver/">twaver</a><br>
+<a href="http://home.cnblogs.com/u/twaver/followees">关注 - 0</a><br>
+<a href="http://home.cnblogs.com/u/twaver/followers">粉丝 - 18</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+	<div class="diggit" onclick="DiggIt(cb_entryId,cb_blogId,1)"> 
+		<span class="diggnum" id="digg_count">0</span>
+	</div>
+	<div class="buryit" onclick="DiggIt(cb_entryId,cb_blogId,2)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/twaver/archive/2012/05/02/2479110.html" class="p_n_p_prefix">« </a> 博主前一篇：<a href="http://www.cnblogs.com/twaver/archive/2012/05/02/2479110.html" title="发布于2012-05-02 15:28">TWaver 3D 编辑器的使用（一）－－－－设计3D场景以及数据绑定</a><br><a href="http://www.cnblogs.com/twaver/archive/2012/05/10/2493795.html" class="p_n_p_prefix">» </a> 博主后一篇：<a href="http://www.cnblogs.com/twaver/archive/2012/05/10/2493795.html" title="发布于2012-05-10 09:54">HTML5 WebSocket 应用示例</a><br></div>
+</div>
+<script type="text/javascript">
+    initBottomGoogleAd();
+</script>
+<script type="text/javascript">
+    $(function () {       
+        fixPostBodyFormat();
+        loadBottomGoogleAd();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+        showEditorOpt();
+        loadNewsAndKb();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+        loadAdUnderGoogle();
+    });
+</script>
+	<div class="postDesc">posted on <span id="post-date">2012-05-08 10:19</span> <a href="http://www.cnblogs.com/twaver/">twaver</a> 阅读(1023) 评论(<span id="post-comment-count">4</span>)  <a href="http://www.cnblogs.com/twaver/admin/EditPosts.aspx?postid=2489664" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" onclick="AddToWz(2489664);return false;">收藏</a></div>
+</div>
+<img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/2489664.html" width="1" height="1" alt="">
+
+<div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>FeedBack:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2371995" class="layer">#1楼</a><a name="2371995" id="comment_anchor_2371995"></a>&nbsp;<span class="comment_date">2012-05-08 11:30</span>&nbsp;<a id="ctl00_CommentList_NameLink_0" rel="nofllow" href="http://home.cnblogs.com/u/65937/" target="_blank">J默</a>&nbsp;<a href="http://space.cnblogs.com/msg/send/J%e9%bb%98" title="给此人发送站内短消息" class="sendMsg2This">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+				<div align="left"><span id="comment_body_2371995" class="blog_comment_body">关注</span><br>　<a onclick="return ReplyComment(&quot;J默&quot;,2371995,&quot;LEUiItylbrmlAfSw+YgfcUBwBdQCEIP3mgAg9f0J9he+s+iiPzYyLg==&quot;)" href="javascript:void;">回复</a>　<a onclick="return QuoteComment(2371995,&quot;LEUiItylbrmlAfSw+YgfcUBwBdQCEIP3mgAg9f0J9he+s+iiPzYyLg==&quot;)" href="javascript:void;">引用</a>　<a title="查看该作者发表过的评论" href="http://www.cnblogs.com/CommentsByAuthor.aspx?author=J%e9%bb%98" target="_blank">查看</a>　&nbsp;&nbsp;
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2372010" class="layer">#2楼</a><a name="2372010" id="comment_anchor_2372010"></a>&nbsp;<span class="comment_date">2012-05-08 11:44</span>&nbsp;<a id="ctl00_CommentList_NameLink_1" rel="nofllow" href="http://home.cnblogs.com/u/159376/" target="_blank">0x0qwe</a>&nbsp;<a href="http://space.cnblogs.com/msg/send/0x0qwe" title="给此人发送站内短消息" class="sendMsg2This">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+				<div align="left"><span id="comment_body_2372010" class="blog_comment_body">这个技术貌似有看头</span><br>　<a onclick="return ReplyComment(&quot;0x0qwe&quot;,2372010,&quot;9O5JC3H5tuId1WTrQ4AJqM/Fwf+tPROmhS0O5k+c3CPjTTX7RlC1Vw==&quot;)" href="javascript:void;">回复</a>　<a onclick="return QuoteComment(2372010,&quot;9O5JC3H5tuId1WTrQ4AJqM/Fwf+tPROmhS0O5k+c3CPjTTX7RlC1Vw==&quot;)" href="javascript:void;">引用</a>　<a title="查看该作者发表过的评论" href="http://www.cnblogs.com/CommentsByAuthor.aspx?author=0x0qwe" target="_blank">查看</a>　&nbsp;&nbsp;
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2372022" class="layer">#3楼</a><a name="2372022" id="comment_anchor_2372022"></a>&nbsp;<span class="comment_date">2012-05-08 11:49</span>&nbsp;<a id="ctl00_CommentList_NameLink_2" rel="nofllow" href="http://home.cnblogs.com/u/381998/" target="_blank">远程轰炸</a>&nbsp;<a href="http://space.cnblogs.com/msg/send/%e8%bf%9c%e7%a8%8b%e8%bd%b0%e7%82%b8" title="给此人发送站内短消息" class="sendMsg2This">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+				<div align="left"><span id="comment_body_2372022" class="blog_comment_body">IIS服务器什么版本支持WebSocket ？？？</span><br>　<a onclick="return ReplyComment(&quot;远程轰炸&quot;,2372022,&quot;dsIxCe4E1wNok0GQPvSSx2v8q65iZxd0p2zs78Hb3HSobbnH/bytpw==&quot;)" href="javascript:void;">回复</a>　<a onclick="return QuoteComment(2372022,&quot;dsIxCe4E1wNok0GQPvSSx2v8q65iZxd0p2zs78Hb3HSobbnH/bytpw==&quot;)" href="javascript:void;">引用</a>　<a title="查看该作者发表过的评论" href="http://www.cnblogs.com/CommentsByAuthor.aspx?author=%e8%bf%9c%e7%a8%8b%e8%bd%b0%e7%82%b8" target="_blank">查看</a>　&nbsp;&nbsp;
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2374123" class="layer">#4楼</a><a name="2374123" id="comment_anchor_2374123"></a><span id="comment-maxId" style="display:none;">2374123</span><span id="comment-maxDate" style="display:none;">2012/5/10 16:38:48</span>&nbsp;<span class="comment_date">2012-05-10 16:38</span>&nbsp;<a id="ctl00_CommentList_NameLink_3" rel="nofllow" href="http://home.cnblogs.com/u/15312/" target="_blank">alby</a>&nbsp;<a href="http://space.cnblogs.com/msg/send/alby" title="给此人发送站内短消息" class="sendMsg2This">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+				<div align="left"><span id="comment_body_2374123" class="blog_comment_body"><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#2372022" title="查看所回复的评论">@</a>远程轰炸<br>听说IIS8会提供支持，不过想想办法低版IIS也可以支持的吧</span><br>　<a onclick="return ReplyComment(&quot;alby&quot;,2374123,&quot;r16cZPk7NcnpNXuuv4MjWh86eI8CyCU9Z5I0GEfhWX6oubLNFaf0/Q==&quot;)" href="javascript:void;">回复</a>　<a onclick="return QuoteComment(2374123,&quot;r16cZPk7NcnpNXuuv4MjWh86eI8CyCU9Z5I0GEfhWX6oubLNFaf0/Q==&quot;)" href="javascript:void;">引用</a>　<a title="查看该作者发表过的评论" href="http://www.cnblogs.com/CommentsByAuthor.aspx?author=alby" target="_blank">查看</a>　&nbsp;&nbsp;
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div></div></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.loadComments();</script>
+<div id="comment_form" class="commentform">
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/twaver/archive/2012/05/08/2489664.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" value="厚德IT">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;quote&#39;)">
+<img id="ubb_bold" class="comment_icon" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB(&#39;tbCommentBody&#39;,&#39;b&#39;)">
+<img id="ubb_url" class="comment_icon" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl(&#39;tbCommentBody&#39;)">
+<img id="ubb_indent" class="comment_icon" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent(&#39;tbCommentBody&#39;)">
+<img id="ubb_code" class="comment_icon" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/img.gif" alt="图片" title="添加图片" onclick="insertUbbImg(&#39;tbCommentBody&#39;)">
+<a href="javascript:OpenImageUploadWindow();" class="comment_uploadimg_a" title="上传图片并插入评论框">上传图片</a>
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea" rows="10"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" type="button" class="comment_btn" value="提交评论">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">注销</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<p>
+[使用Ctrl+Enter键快速提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div></div>
+
+<script type="text/javascript">
+    if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</script>
+
+<div class="ad_text_commentbox"><a href="http://q.cnblogs.com/" target="_blank">程序员问答社区，解决您的IT难题</a></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a><div id="site_editor_opt"></div></div>
+<script type="text/javascript">
+enableGoogleAd = true;
+if ($("#cnblogs_post_body").text().length < 1000) {
+    enableGoogleAd = false;
+}
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+<div id="div-gpt-ad-1320933818841-0" style="width:300px; height:250px;">
+<script type="text/javascript">
+    if (enableGoogleAd) {
+        try {
+            googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320933818841-0'); });
+        } catch (e) { }
+    }
+</script>
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0__hidden__" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; visibility: hidden; display: none; "></iframe></div>
+</div>
+<div id="blog-news-kb"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/143403/" target="_blank">gTar：让吉他白痴变音乐高手</a><br> ·  <a href="http://news.cnblogs.com/n/143420/" target="_blank">Stevie出怪招：把动态新闻搬到TV大屏幕</a><br> ·  <a href="http://news.cnblogs.com/n/143422/" target="_blank">独家：Windows 8中国版曝光</a><br> ·  <a href="http://news.cnblogs.com/n/143421/" target="_blank">用户4M宽带自测网速为2M 运营商称线路损耗</a><br> ·  <a href="http://news.cnblogs.com/n/143417/" target="_blank">Java 7 发布不到一年，份额达23%</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/140704/" target="_blank">谈谈对程序员的培养</a><br> ·  <a href="http://kb.cnblogs.com/page/143182/" target="_blank">腾讯微信技术总监周颢：一亿用户增长背后的架构秘密</a><br> ·  <a href="http://kb.cnblogs.com/page/143170/" target="_blank">程序员也要养生</a><br> ·  <a href="http://kb.cnblogs.com/page/142347/" target="_blank">十条不错的编程观点</a><br> ·  <a href="http://kb.cnblogs.com/page/143145/" target="_blank">12 个有效的提高编程技能的方法</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block">
+<div id="div-gpt-ad-1320933818841-1" style="width:468px; height:60px;">
+<script type="text/javascript">
+    if (enableGoogleAd) {
+        try {
+            googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320933818841-1'); });
+        } catch (e) { }
+    }
+</script>
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+</div>
+<div id="ad_under_google" class="c_ad_block" style=""><a href="http://www.china-pub.com/STATIC07/1204/mz_qhwk/mz_qhwk.asp" target="_blank" rel="nofollow"><img src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/china-pub-20120419.jpg" alt="" style="border:0px;"></a><br><a href="http://www.china-pub.com/sale/usedbook.aspx" target="_blank" rel="nofollow">China-Pub 低价书精选</a><br><a href="http://www.china-pub.com/static07/0901/zh_jueba_090121.asp" target="_blank" rel="nofollow">China-Pub 计算机绝版图书按需印刷服务</a></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+</div>
+
+
+
+
+
+	
+<!--done-->
+<div class="footer">
+	
+	Copyright ©2012 twaver Powered by: <a href="http://www.cnblogs.com/" class="footerlink">博客园</a> 模板提供：<a href="http://blog.hjenglish.com/" class="footerlink">沪江博客</a><br>
+</div>
+</div>
+
+
+
+<script type="text/javascript" src="./HTML5 WebSocket 技术介绍 - twaver - 博客园_files/google-analytics.js"></script>
+
+
+</body></html>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.mapper.SysLogMapper">
+  <resultMap id="BaseResultMap" type="com.dx.model.SysLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="opt_content" jdbcType="VARCHAR" property="optContent" />
+    <result column="client_ip" jdbcType="VARCHAR" property="clientIp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, login_name, role_name, opt_content, client_ip, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from syslog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from syslog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dx.model.SysLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into syslog (login_name, role_name, opt_content, 
+      client_ip, create_time)
+    values (#{loginName,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{optContent,jdbcType=VARCHAR}, 
+      #{clientIp,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dx.model.SysLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into syslog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="optContent != null">
+        opt_content,
+      </if>
+      <if test="clientIp != null">
+        client_ip,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="optContent != null">
+        #{optContent,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dx.model.SysLog">
+    update syslog
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="optContent != null">
+        opt_content = #{optContent,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        client_ip = #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dx.model.SysLog">
+    update syslog
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      opt_content = #{optContent,jdbcType=VARCHAR},
+      client_ip = #{clientIp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.dx.model.SysLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="opt_content" jdbcType="VARCHAR" property="optContent" />
+    <result column="client_ip" jdbcType="VARCHAR" property="clientIp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, login_name, role_name, opt_content, client_ip, create_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from syslog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="findDataGrid" parameterType="PageInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from syslog ORDER BY create_time DESC
+    LIMIT #{from}, #{ size}
+  </select>
+
+  <select id="findDataGridCount" parameterType="PageInfo" resultType="java.lang.Integer">
+    select count(*) count
+    from syslog
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from syslog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dx.model.SysLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into syslog (login_name, role_name, opt_content, 
+      client_ip, create_time)
+    values (#{loginName,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{optContent,jdbcType=VARCHAR}, 
+      #{clientIp,jdbcType=VARCHAR}, now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.dx.model.SysLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into syslog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="optContent != null">
+        opt_content,
+      </if>
+      <if test="clientIp != null">
+        client_ip,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="optContent != null">
+        #{optContent,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dx.model.SysLog">
+    update syslog
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="optContent != null">
+        opt_content = #{optContent,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        client_ip = #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dx.model.SysLog">
+    update syslog
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      opt_content = #{optContent,jdbcType=VARCHAR},
+      client_ip = #{clientIp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/includeFront::head"></head>
+
+<body>
+	<div th:replace="page/front/common/header::header">
+		
+	</div>
+
+	<!-- 涓婚閮ㄥ垎  -->
+	<div th:replace="${seriesPage}::${seriesPageCode}"></div>
+				
+	<div th:replace="page/front/common/footer::footer"></div>
+	
+
+
+<div th:include="common/includeFront::js"></div>
+	
+<!-- banner end -->
+<script>
+</script>	
+
+	
+</body>
+</html>

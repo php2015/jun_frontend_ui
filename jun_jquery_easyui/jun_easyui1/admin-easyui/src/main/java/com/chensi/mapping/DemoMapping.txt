@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chensi.dao.DemoMapper">
+
+	<!-- ============common sql================ -->
+	<select id="list" resultType="com.chensi.model.Demo">
+		select * from demo
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="listByEntity" resultType="com.chensi.model.Demo">
+		select *
+		from demo
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name=#{entity.name}
+			</if>
+			<if test="entity.status != null ">
+				and status=#{entity.status}
+			</if>
+		</where>
+		order by id desc
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="countByEntity" resultType="Integer">
+		select count(1)
+		from demo
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name=#{entity.name}
+			</if>
+			<if test="entity.status != null ">
+				and status=#{entity.status}
+			</if>
+		</where>
+	</select>
+
+	<select id="get" resultType="com.chensi.model.Demo">
+		select * from demo where id=#{id}
+	</select>
+
+	<select id="getByEntity" resultType="com.chensi.model.Demo">
+		select *
+		from demo
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name=#{entity.name}
+			</if>
+			<if test="entity.status != null ">
+				and status=#{entity.status}
+			</if>
+			<if test="entity.idNe != null ">
+				and id != #{entity.idNe}
+			</if>
+		</where>
+		limit 1
+	</select>
+
+	<update id="update">
+		update demo
+		<set>
+			name=#{entity.name},
+			sort=#{entity.sort},
+			status=#{entity.status}
+		</set>
+		where id=#{entity.id}
+	</update>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="entity.id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
+		insert into demo
+		(
+		name,
+		sort,
+		status
+		)
+		values
+		(
+		#{entity.name},
+		#{entity.sort},
+		#{entity.status}
+		)
+	</insert>
+
+	<!-- 批量插入格式（此处无法返回主键） -->
+	<insert id="saveAll">
+		 <selectKey keyProperty="id" order="AFTER" resultType="Integer">    
+	        SELECT    
+	        LAST_INSERT_ID()    
+	    </selectKey>   
+		insert into demo
+		(
+		name,
+		sort,
+		status
+		)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.name}, #{item.sort},#{item.status} )
+		</foreach>
+	</insert>
+
+	<delete id="remove">
+		delete from demo where id=#{id}
+	</delete>
+
+	<delete id="removeByEntity">
+		delete from demo
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name=#{entity.name}
+			</if>
+			<if test="entity.status != null ">
+				and status=#{entity.status}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="removeAll">
+		delete from demo
+		where id in
+		<foreach collection="list" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<!-- ==============my sql============== -->
+	<select id="getMaxSort" resultType="Integer">
+		select ifnull(max(sort), 0)+1 from demo
+	</select>
+
+</mapper>

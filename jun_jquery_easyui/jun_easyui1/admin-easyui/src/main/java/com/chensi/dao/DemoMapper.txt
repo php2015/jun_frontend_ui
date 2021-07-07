@@ -1,0 +1,7 @@
+package com.chensi.dao;
+
+import com.chensi.model.Demo;
+
+public interface IDemoMapper extends ICommonMapper<Demo>{
+
+}

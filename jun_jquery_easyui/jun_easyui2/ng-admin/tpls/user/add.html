@@ -1,0 +1,54 @@
+<div class="clearfix">
+    <div class="pull-left">
+        <ol class="breadcrumb">
+            <li><a route="/.index">首页</a></li>
+            <li><a route="/.user">用户列表</a></li>
+            <li class="active">添加用户</li>
+        </ol>
+    </div>
+    <div class="pull-right">
+        <a route="/.user" class="btn btn-sm btn-default">返回</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-lg-3"></div>
+    <div class="col-md-8 col-lg-6 well-lg">
+        <form action="" name="userForm" form-check="user" class="form-horizontal" novalidate>
+
+            <div class="form-group has-feedback {{info.name.color}}" >
+                <label class="control-label" for="username">用户名:</label>
+                <small class="pull-right {{info.name.msgColor}}">{{info.name.msg}}</small>
+                <input class="form-control" type="text" id="username" name="name"  ng-model="user.name" aria-describedby="usernameStatus" required ng-minlength="6" ng-maxlength="30" />
+                <span class="glyphicon form-control-feedback {{info.name.icon}}"  aria-hidden="true"></span>
+                <span id="usernameStatus" class="sr-only"></span>
+            </div>
+            <div class="form-group has-feedback {{info.pwd.color}}" >
+                <label  class="control-label" for="password">密码:</label>
+                <small class="pull-right {{info.pwd.msgColor}}">{{info.pwd.msg}}</small>
+                <input class="form-control" type="password" id="password" name="pwd" ng-model="user.pwd" aria-describedby="passwordStatus" required ng-minlength="6" ng-maxlength="30" ng-pattern="/^\w+$/" />
+                <span class="glyphicon form-control-feedback {{info.pwd.icon}}"  aria-hidden="true"></span>
+                <span id="passwordStatus" class="sr-only"></span>
+            </div>
+            <div class="form-group has-feedback {{info.rpwd.color}}" >
+                <label  class="control-label" for="password">确认密码:</label>
+                <small class="pull-right {{info.rpwd.msgColor}}">{{info.rpwd.msg}}</small>
+                <input class="form-control" type="password" id="rpassword" name="rpwd" ng-model="user.rpwd" aria-describedby="rpasswordStatus" ng-minlength="6" ng-maxlength="30" required repeatval="userForm.pwd"/>
+                <span class="glyphicon form-control-feedback {{info.rpwd.icon}}"  aria-hidden="true"></span>
+                <span id="rpasswordStatus" class="sr-only"></span>
+            </div>
+            <div class="form-group has-feedback {{info.email.color}}" >
+                <label  class="control-label" for="email">邮箱:</label>
+                <small class="pull-right {{info.email.msgColor}}">{{info.email.msg}}</small>
+                <input class="form-control" type="email" id="email" name="email" ng-model="user.email" aria-describedby="emailStatus"  required />
+                <span class="glyphicon form-control-feedback {{info.email.icon}}"  aria-hidden="true"></span>
+                <span id="emailStatus" class="sr-only"></span>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" ng-click="save();" ng-disabled="userForm.$invalid" >保存添加</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2 col-lg-3"></div>
+</div>
+
+

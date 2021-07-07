@@ -1,0 +1,153 @@
+BODY {
+	MARGIN: 0px
+}
+IMG {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+.logo_51cto {
+	MARGIN-TOP: 3px; WIDTH: 85px; BACKGROUND: url(http://images.51cto.com/images/art/images/51.gif) no-repeat 0px 0px; FLOAT: left; HEIGHT: 15px
+}
+#home_top {
+	BACKGROUND-IMAGE: url(http://down.51cto.com/images/head/top_bg.gif); MARGIN: auto; HEIGHT: 35px; FONT-SIZE: 12px
+}
+#home_top .top_nav {
+	MARGIN: auto; WIDTH: 960px; HEIGHT: 35px; FONT-SIZE: 12px
+}
+#home_top .top_nav .left {
+	TEXT-ALIGN: left; MARGIN-TOP: 6px; WIDTH: 420px; FLOAT: left; COLOR: #696969
+}
+#home_top .top_nav .left A {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; COLOR: #696969; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#home_top .top_nav .left A:hover {
+	BACKGROUND: #4a4a4a; COLOR: #ffffff; TEXT-DECORATION: none
+}
+#home_top .top_nav .left LI {
+	FLOAT: left
+}
+#home_top .top_nav .right {
+	TEXT-ALIGN: right; MARGIN-TOP: 2px; FLOAT: right; COLOR: #696969
+}
+#home_top .top_nav .right .login {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; FLOAT: right; COLOR: #696969; MARGIN-RIGHT: 6px; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .login A {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 2px; MARGIN-TOP: 5px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; COLOR: #005fab; MARGIN-LEFT: 2px; MARGIN-RIGHT: 2px; TEXT-DECORATION: underline; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .login A:hover {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; BACKGROUND: #4a4a4a; COLOR: #fff; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .login2 {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; FLOAT: right; COLOR: #696969; MARGIN-RIGHT: 6px; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .login2 A {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; COLOR: #005fab; MARGIN-LEFT: 2px; MARGIN-RIGHT: 2px; TEXT-DECORATION: underline; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .login2 A:hover {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; BACKGROUND: #4a4a4a; COLOR: #fff; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .more {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FLOAT: right; COLOR: #696969; TEXT-DECORATION: none; PADDING-TOP: 8px
+}
+#home_top .top_nav .right .more A {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; COLOR: #696969; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#home_top .top_nav .right .more A:hover {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; BACKGROUND: #4a4a4a; COLOR: #fff; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#s1 LI {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+#s2 LI {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+#s3 LI {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.subMenu1 {
+	Z-INDEX: 1000; BORDER-BOTTOM: #cecece 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #cecece 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 85px; DISPLAY: none; BORDER-TOP: #cecece 1px solid; BORDER-RIGHT: #cecece 1px solid
+}
+.subMenu2 {
+	Z-INDEX: 1000; BORDER-BOTTOM: #cecece 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #cecece 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 110px; DISPLAY: none; BORDER-TOP: #cecece 1px solid; BORDER-RIGHT: #cecece 1px solid
+}
+.subMenu3 {
+	Z-INDEX: 1000; BORDER-BOTTOM: #cecece 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #cecece 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 60px; DISPLAY: none; BORDER-TOP: #cecece 1px solid; BORDER-RIGHT: #cecece 1px solid
+}
+.subMenu4 {
+	BORDER-BOTTOM: #cecece 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #cecece 1px solid; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #ffffff; PADDING-LEFT: 4px; WIDTH: 60px; PADDING-RIGHT: 4px; DISPLAY: none; BORDER-TOP: #cecece 1px solid; BORDER-RIGHT: #cecece 1px solid; PADDING-TOP: 0px; TOP: 116px; LEFT: 883px
+}
+.subMenu1 A {
+	TEXT-ALIGN: left; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; DISPLAY: block; HEIGHT: 20px; COLOR: #000000; TEXT-DECORATION: none; PADDING-TOP: 1px
+}
+.subMenu1 A:hover {
+	BACKGROUND: #ebebeb no-repeat; COLOR: #cc0000; TEXT-DECORATION: none
+}
+.subMenu1 UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.subMenu1 LI {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #ffffff; LIST-STYLE-TYPE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 12px; PADDING-TOP: 1px
+}
+.subMenu2 A {
+	TEXT-ALIGN: left; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; DISPLAY: block; HEIGHT: 24px; COLOR: #000000; TEXT-DECORATION: none; PADDING-TOP: 1px
+}
+.subMenu2 A:hover {
+	BACKGROUND: #ebebeb no-repeat; COLOR: #cc0000; TEXT-DECORATION: none
+}
+.subMenu2 UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.subMenu2 LI {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #ffffff; LIST-STYLE-TYPE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 12px; PADDING-TOP: 1px
+}
+.subMenu3 A {
+	TEXT-ALIGN: left; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; DISPLAY: block; HEIGHT: 24px; COLOR: #000000; TEXT-DECORATION: none; PADDING-TOP: 1px
+}
+.subMenu3 A:hover {
+	BACKGROUND: #ebebeb no-repeat; COLOR: #cc0000; TEXT-DECORATION: none
+}
+.subMenu3 UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.subMenu3 LI {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #ffffff; LIST-STYLE-TYPE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 12px; PADDING-TOP: 1px
+}
+.subMenu4 A {
+	TEXT-ALIGN: left; LINE-HEIGHT: 18px; WIDTH: 53px; DISPLAY: block; HEIGHT: 17px; COLOR: #000; TEXT-DECORATION: none; PADDING-TOP: 1px
+}
+.subMenu4 A.lcnew {
+	TEXT-DECORATION: none
+}
+.subMenu4 A:hover {
+	BACKGROUND-IMAGE: url(http://images.51cto.com/images/art/images/nav_bg1.gif); BACKGROUND-REPEAT: no-repeat; COLOR: #c00; TEXT-DECORATION: none
+}
+.subMenu4 UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.subMenu4 LI {
+	LIST-STYLE-TYPE: none; PADDING-LEFT: 8px; BACKGROUND: url(http://images.51cto.com/images/art/images/dt.gif) no-repeat left 50%; FONT-SIZE: 12px; PADDING-TOP: 1px
+}
+.wrap {
+	MARGIN-BOTTOM: 10px !important
+}
+.subweb {
+	BORDER-BOTTOM: #ccc 1px solid; BORDER-LEFT: #ccc 1px solid; MARGIN: 10px auto 20px; WIDTH: 960px; CLEAR: both; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid
+}
+.subweb H4 {
+	PADDING-BOTTOM: 6px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; BACKGROUND: #f8f8f8; COLOR: #333; FONT-SIZE: 14px; FONT-WEIGHT: 700; PADDING-TOP: 7px
+}
+.subweb DIV {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 14px; PADDING-RIGHT: 0px; PADDING-TOP: 10px
+}
+.subweb A {
+	LINE-HEIGHT: 26px; PADDING-RIGHT: 20px; DISPLAY: inline-block; FONT-SIZE: 12px
+}
+.subweb A:link {
+	COLOR: #333; TEXT-DECORATION: none
+}
+.subweb A:visited {
+	COLOR: #333; TEXT-DECORATION: none
+}
+.subweb A:hover {
+	COLOR: #333; TEXT-DECORATION: underline
+}

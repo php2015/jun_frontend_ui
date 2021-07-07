@@ -1,0 +1,11 @@
+
+<div class="fly-panel fly-column" th:fragment="catalogNav">
+	<div class="layui-container">
+		<ul class="layui-container layui-clear">
+			<li th:each="catalog:${application.blogCatalogs}">
+				<a th:href="'/blog/catalog/'+${catalog.catalogId}" th:text="${catalog.catalogName}">Java</a>
+			</li>
+		</ul>
+		<!--	专栏 end	-->
+	</div>
+</div>

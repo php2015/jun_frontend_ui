@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>智能表单标签</h1>
+	<form id="demo">
+		<input type="number" min="4" max="20" step="2" value="8"/>
+		<input type="email" placeholder="这里输入邮箱" />
+		<input type="datetime" name="date" required="required"/>
+		<input type="range" min="0" max="100" step="5" value="20" name="range"/> 
+		<output onforminput="value=range.value"/>
+		
+		<hr>
+		
+		<input type="color"/>
+		<progress max="100" value="0" onclick="this.value+=5"/>
+		
+		<input type="text" list="data"/>
+		<datalist id="data">
+			<option value="北京"></option>
+			<option value="天津"></option>
+			<option value="上海"></option>
+		</datalist>
+		
+	</form>
+	
+	
+	<input type="submit" form="demo"/>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.login-container{
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login-div{
+    width: 500px;
+}
+.login-panel{
+    border: none;
+    box-shadow: 1px 1px 15px;
+}

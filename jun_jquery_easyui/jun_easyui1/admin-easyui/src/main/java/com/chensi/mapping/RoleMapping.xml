@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chensi.dao.RoleMapper">
+
+	<select id="list" resultType="com.chensi.model.Role">
+		select * from t_role
+		order by sort
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="listMyMenu" resultType="com.chensi.model.Menu">
+		select t3.* from t_role t1
+		join
+		t_role_menu t2 on t1.id=t2.roleId
+		join
+		t_menu t3 on t2.menuId=t3.id
+		<where>
+			<if test="id != null">
+				and t1.id=#{id}
+			</if>
+			<if test="type != null">
+				and t3.type=#{type}
+			</if>
+		</where>
+		order by t3.sort
+	</select>
+	
+	<select id="listMyMenuCode" resultType="String">
+		select t3.code from t_role t1
+		join
+		t_role_menu t2 on t1.id=t2.roleId
+		join
+		t_menu t3 on t2.menuId=t3.id
+		<where>
+			<if test="id != null">
+				and t1.id=#{id}
+			</if>
+		</where>
+		order by t3.sort
+	</select>
+	
+	<select id="listAllMenuCode" resultType="String">
+		select code from t_menu where code is not null 
+	</select>
+
+	<select id="listByEntity" resultType="com.chensi.model.Role">
+		select *
+		from t_role
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name like CONCAT('%',#{entity.name},'%')
+			</if>
+		</where>
+		order by sort
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="countByEntity" resultType="Integer">
+		select count(1)
+		from t_role
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name like CONCAT('%',#{entity.name},'%')
+			</if>
+		</where>
+	</select>
+
+	<select id="get" resultType="com.chensi.model.Role">
+		select * from t_role where
+		id=#{id}
+	</select>
+
+	<select id="getByEntity" resultType="com.chensi.model.Role">
+		select *
+		from t_role
+		<where>
+			<if test="entity.name != null and entity.name != '' ">
+				and name=#{entity.name}
+			</if>
+			<if test="entity.idNe != null ">
+				and id!=#{entity.idNe}
+			</if>
+		</where>
+		limit 1
+	</select>
+
+	<select id="getMaxSort" resultType="Integer">
+		select ifnull(max(sort), 0)+1
+		from t_role
+	</select>
+
+	<update id="update">
+		update t_role
+		<set>
+			name=#{entity.name},
+			sort=#{entity.sort},
+			remark=#{entity.remark},
+		</set>
+		where id=#{entity.id}
+	</update>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="entity.id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
+		insert into t_role
+		(
+		name,
+		sort,
+		remark
+		)
+		values
+		(
+		#{entity.name},
+		#{entity.sort},
+		#{entity.remark}
+		)
+	</insert>
+
+	<delete id="remove">
+		delete from t_role where id=#{id}
+	</delete>
+
+</mapper>

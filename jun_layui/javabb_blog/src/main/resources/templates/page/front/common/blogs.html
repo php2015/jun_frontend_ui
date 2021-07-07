@@ -1,0 +1,51 @@
+
+<!--	文章 begin	-->
+<div th:fragment="blogs" class="fly-panel layui-row animated fadeInUp"
+	style="margin-bottom: 0">
+	<div class="newblogs">
+		<div class="fly-panel-title fly-filter">
+			<h2 class="hometitle">
+				<i class="layui-icon" style="font-size: 21px;"></i>&nbsp;文章列表
+			</h2>
+		</div>
+		<ul class="fly-list" id="articleList">
+			<li class="animated fadeInUp" th:each="blog:${blogs}">
+				<h3 class="blogtitle">
+					<span> <a href="javascript:;" th:title="${blog.catalog.catalogName}" th:text="${blog.catalog.catalogName}"
+						class="classname">Java&nbsp;|&nbsp;CatalogName&nbsp;</a>
+					</span> <a class="titlename" th:href="'/blog/'+${blog.id}" th:text="${blog.title}">博客标题</a>
+				</h3>
+				<div class="bloginfo">
+					<span th:unless="${#strings.isEmpty(blog.blogImg)}" class="blogpic layui-hide-xs">
+						<a href="javascript:;" th:title="${blog.title}"> <img th:src="${blog.blogImg}" th:alt="${blog.title}"> </a>
+					</span>
+					<p th:text="${blog.blogDesc}">这里是内容</p>
+				</div>
+				<div class="autor">
+					<span class="lm f_l"> <i class="fa fa-user"
+						aria-hidden="true"></i> <cite th:text="${blog.userName}">admin</cite>&nbsp; 
+						<!-- <i class="fa fa-tags" aria-hidden="true"></i> 
+						<a class="layui-badge layui-bg-cyan">Java</a> 
+						<a class="layui-badge layui-bg-cyan">SpringBoot</a> -->
+
+					</span> <span class="dtime f_l" name="publishDate"
+						th:time="${#dates.format(blog.createDate,'yyyy-MM-dd hh:mm:ss')}" th:text="${#dates.format(blog.createDate,'yyyy-MM-dd hh:mm:ss')}">2018-08-03 </span> <span
+						class="viewnum f_l layui-hide-xs">浏览（<a href="javascript:;" th:text="${blog.readCount}">99999</a>）
+					</span> <!-- <span class="f_l"><i class="iconfont icon-pinglun1"
+						title="回复"></i> 0</span> --> <span class="f_r layui-hide-xs"> <a
+						th:href="'/blog/'+${blog.id}" class="more"> <span
+							class="layui-badge layui-bg-green">阅读全文&gt;&gt;</span>
+					</a>
+					</span>
+				</div>
+				<div class="line"></div>
+			</li>
+			
+
+		</ul>
+		<div>
+		
+			<ul class="pagination" th:utext="${pagination}"></ul>
+		</div>
+	</div>
+</div>

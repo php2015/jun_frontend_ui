@@ -1,0 +1,15 @@
+/***********自定义***********/
+body{ font-family: "微软雅黑";}
+.err{ font-weight: normal; color: #f65050;display: none; font-size: 12px;}
+.row-marb00{ margin-bottom: 0px;}
+.row-marb20{ margin-bottom: 20px;}
+
+
+.table-bordered thead th{ position: relative; }
+.table-bordered thead th::after{ position: absolute; opacity: 0.3;font-family: 'Glyphicons Halflings';content: "\e150";right: 8px; top: 8px; }
+
+.emaillayer{ position: fixed; background: #fff;border: 1px solid #3c8dbc; display: none;}
+.emaillayer .emaillayer_list{line-height: 25px; padding: 0 12px;}
+.emaillayer .emaillayer_list:hover{ background: #eee; }
+.emaillayer .emaillayer_list.active{ background: #eee; }
+

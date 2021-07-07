@@ -1,0 +1,66 @@
+﻿Version 1.4.2
+-------------
+*Bug
+
+ * treegrid: The column will restore its size to original size after recreating the treegrid. fixed.    1.4.2
+ * combogrid: The combogrid has different height than other combo components. fixed.                    1.4.1
+ * datagrid: The row element loses some class style value after calling 'updateRow' method. fixed.      1.4.1
+ * datagrid: The 'fitColumns' method does not work normally when the datarid width is too small. fixed  1.4.1
+ * menu: The menu should not has a correct height when removed a menu item. fixed.                      1.4
+ * menubutton: Calling 'enable' method on a disabled button can not work well. fixed.                   1.4.1
+ * form: The filebox components in the form do not work correctly after calling 'clear' method. fixed.  1.4.1
+
+
+ * Improvement
+ * draggable: Add 'delay' property that allows the user to delay the drag operation.                    1.4.2
+ * layout: Add 'unsplit' and 'split' methods.                                                           1.4.2
+ * messager: Keyboard navigation features are supported now.                                            1.4.2
+ * validatebox: Add 'onBeforeValidate' and 'onValidate' events.                                         1.4
+ * linkbutton: Add 'resize' method.                                                                     1.4
+ * combo: Extended from textbox now.                                                                    1.4
+ * combo: Add 'panelMinWidth','panelMaxWidth','panelMinHeight' and 'panelMaxHeight' properties.         1.4
+ * combobox: Add 'queryParams' property.                                                                1.4.2
+ * datebox: Add 'cloneFrom' method to create the datebox component quickly.                             1.4.1
+ * datetimebox: Add 'cloneFrom' method to create the datetimebox component quickly.                     1.4.1
+ * datetimebox: Add 'spinnerWidth' property.                                                            1.4
+ * slider: Add 'range' property.                                                                        1.4.2
+ * form: Add 'onChange' event.                                                                          1.4.2
+ * form: Add 'ajax','novalidate' and 'queryParams' properties.                                          1.4
+ 
+ * tabs: The 'add' method allows the user to insert a tab panel at a specified index.                   1.4.2
+ * tabs: The user can determine what tab panel can be selected.                                         1.4.2
+ * tabs: Add 'justified' and 'narrow' properties.                                                       1.4.2
+ * tabs: The 'update' method accepts 'type' option that allows the user to update the header,body,or both. 1.4.1
+ * panel: The 'header' property allows the user to customize the panel header.                          1.4.2
+ * panel: Add 'openAnimation','openDuration','closeAnimation' and 'closeDuration' properties to set the animation for opening or closing a panel. 1.4.1
+ * panel: Add 'footer' property that allows the user to add a footer bar to the bottom of panel.        1.4.1
+ * panel: Add 'doLayout' method to cause the panel to lay out its components.                           1.4
+ * panel: Add 'clear' method to clear the panel's content.                                              1.4
+
+ * The fluid/percentange size is supported now for all easyui components.                               1.4
+ * menu: Add 'itemHeight','inline','noline' properties.                                                 1.4.2
+ * menu: Add 'showItem', 'hideItem' and 'resize' methods.                                               1.4                                                  
+ * menu: Auto resize the height upon the window size.                                                   1.4
+ * menu: Add 'duration' property that allows the user to define duration time in milliseconds to hide menu. 1.4
+ * menubutton: Add 'hasDownArrow' property.                                                             1.4.2
+ * searchbox: Extended from textbox now.                                                                1.4
+ * tree: Add 'filter' property and 'doFilter' method.                                                   1.4.2
+ * tree: The 'getRoot' method will return the top parent node of a specified node if pass a 'nodeEl' parameter. 1.4
+ * tree: Add 'queryParams' property.                                                                    1.4
+ * datagrid: Calling 'endEdit' method will accept the editing value correctly.                          1.4.1
+ * datagrid: Add 'onBeforeSelect','onBeforeCheck','onBeforeUnselect','onBeforeUncheck' events.          1.4.1
+ * datagrid: The user is allowed to assign percent width to columns.                                    1.4
+ * propertygrid: The user can edit a row by calling 'beginEdit' method.                                 1.4.1
+
+
+
+* New Plugins
+ * datalist: The plugin to render items in a list.                                      1.4.2
+ * navpanel: The root component for the mobile page.                                    1.4.2
+ * mobile: The plugin to provide the mobile page stack management and navigation.       1.4.2
+ 
+ * textbox: A enhanced input field that allows users build their form easily.           1.4
+ * datetimespinner: A date and time spinner that allows to pick a specific day.         1.4
+ * filebox: The filebox component represents a file field of the forms.                 1.4
+
+

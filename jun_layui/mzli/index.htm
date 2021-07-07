@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8"utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>çˆ¬è™«å°å­-ä½ æƒ³è¦çš„æˆ‘éƒ½æœ‰ã€‚</title>
+    <meta name="description" content="å½±è§†çˆ¬è™«,å°è¯´çˆ¬è™«,ç½‘ç»œçˆ¬è™«,çˆ¬å–ç½‘ä¸Šèµ„æº"/>
+    <meta name="keywords" content="å½±è§†çˆ¬è™«,å°è¯´çˆ¬è™«,æŠ“å–ç½‘ä¸Šèµ„æº,æ— å¹¿å‘Š,å½±è§†,å°è¯´,ç½‘ç»œçˆ¬è™«"/>
+    
+    <link rel="shortcut icon" href="/static/image/bg.jfif" type="image/x-icon"/>
+    <link rel="stylesheet" href="layui.css" tppabs="http://mzli.club/static/lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="global.css" tppabs="http://mzli.club/static/css/global.css"/>
+    <link rel="stylesheet" href="index.css" tppabs="http://mzli.club/static/css/index.css"/>
+    <script src="jquery.min.js" tppabs="http://mzli.club/static/lib/jquery/jquery.min.js"></script>
+    <script src="simpler-sidebar.min.js" tppabs="http://mzli.club/static/lib/sidebar/simpler-sidebar.min.js"></script>
+    <script src="layui.js" tppabs="http://mzli.club/static/lib/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+
+<header>
+    <div>
+        <div class="title">
+            <a href="index.htm" tppabs="http://mzli.club/"><img src="laySearch-white.png" tppabs="http://mzli.club/static/image/laySearch-white.png"/></a>
+        </div>
+        <div class="nav">
+            <ul class="layui-nav layui-hide layui-show-sm-block">
+                <li class="layui-nav-item"><a href="news_hot.html" tppabs="http://mzli.club/news_hot.html">æ—¶äº‹</a></li>
+                <li class="layui-nav-item"><a href="javascript:if(confirm('http://nav.mzli.club/pc/index.html  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://nav.mzli.club/pc/index.html'" tppabs="http://nav.mzli.club/pc/index.html">å¯¼èˆª</a></li>
+                 <li class="layui-nav-item"><a href="javascript:;">ç½‘ç›˜èµ„æº</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="1-1.html" tppabs="http://mzli.club/pan_list/1-1.html">ç”µå½±</a></dd>
+                        <dd><a href="2-1.html" tppabs="http://mzli.club/pan_list/2-1.html">ç¾Žå‰§</a></dd>
+                        <dd><a href="3-1.html" tppabs="http://mzli.club/pan_list/3-1.html">éŸ©å‰§</a></dd>
+                        <dd><a href="4-1.html" tppabs="http://mzli.club/pan_list/4-1.html">æ—¥å‰§</a></dd>
+                        <dd><a href="5-1.html" tppabs="http://mzli.club/pan_list/5-1.html">æ³°å‰§</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="movies_hot.html" tppabs="http://mzli.club/movies_hot.html">çƒ­æ˜ </a></li>
+                <li class="layui-nav-item"><a href="javascript:if(confirm('https://support.qq.com/products/106759  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://support.qq.com/products/106759'" tppabs="https://support.qq.com/products/106759">åæ§½</a></li>
+                <li class="layui-nav-item" lay-unselect><a href="javascript:getHistory();"
+                                                           id="toggle-sidebar-more">è¶³è¿¹ </a></li>
+            </ul>
+            <div class="clear"></div>
+            <div class="mobile_nav_icon layui-hide-sm">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="mobile_nav" class="layui-hide-sm">
+                <li><a href="news_hot.html" tppabs="http://mzli.club/news_hot.html" target="_blank">æ—¶äº‹</a></li>
+                <li><a href="javascript:if(confirm('http://nav.mzli.club/index.html  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://nav.mzli.club/index.html'" tppabs="http://nav.mzli.club/index.html" target="_blank">å¯¼èˆª</a></li>
+                <li class="layui-nav-item"><a href="1-1.html" tppabs="http://mzli.club/pan_list/1-1.html" target="_blank">ç½‘ç›˜èµ„æº</a></li>
+                <li><a href="movies_hot.html" tppabs="http://mzli.club/movies_hot.html" target="_blank">çƒ­æ˜ </a></li>
+                <li class="layui-nav-item"><a href="javascript:if(confirm('https://support.qq.com/products/106759  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://support.qq.com/products/106759'" tppabs="https://support.qq.com/products/106759">åæ§½</a></li>
+                <li><a href="javascript:getHistory();" id="toggle-sidebar-more-mob">è¶³è¿¹</a></li>
+            </ul>
+        </div>
+        <div class="weixin-tip">
+            <p>
+                <img src="live_weixin.png" tppabs="http://mzli.club/static/image/live_weixin.png" alt="å¾®ä¿¡æ‰“å¼€"/>
+            </p>
+        </div>
+    </div>
+</header>
+<main>
+    <div id="searchPanel">
+        <form class="layui-form">
+            <input id="keyword" class="search-input" name="keyword" autocomplete="off" placeholder="è¾“å…¥å…³é”®è¯"/>
+            <div class="search-select">
+                <select name="type">
+                    <option value="1">åœ¨çº¿å½±è§†</option>
+                    <option value="2">ç§å­æœç´¢</option>
+                    <option value="3">åœ¨çº¿å°è¯´</option>
+                    <option value="4">ç£åŠ›é“¾æŽ¥</option>
+                </select>
+            </div>
+            <button id="searchButton" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="search"><i
+                    class="layui-icon layui-icon-search"></i> æœç´¢
+            </button>
+            <div class="clear"></div>
+        </form>
+    </div>
+    <div id="net_info" style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <i class="layui-icon layui-icon-fire" style="color: red"></i>&nbsp;
+                    
+                        <a href="javascript:startSearch('ä¸‰ä¸Šæ‚ äºš')" style="color: blue">ä¸‰ä¸Šæ‚ äºš</a>ã€
+                    
+                        <a href="javascript:startSearch('ç‰ç’ƒ')" style="color: blue">ç‰ç’ƒ</a>ã€
+                    
+                        <a href="javascript:startSearch('ABP-746-H')" style="color: blue">ABP-746-H</a>ã€
+                    
+                        <a href="javascript:startSearch('ç›—å¢“ç¬”è®°é‡å¯ä¹‹æžæµ·å¬é›·')" style="color: blue">ç›—å¢“ç¬”è®°é‡å¯ä¹‹æžæµ·å¬é›·</a>ã€
+                    
+                        <a href="javascript:startSearch('æ–—ç½—å¤§é™†')" style="color: blue">æ–—ç½—å¤§é™†</a>ã€
+                    
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md4">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <a href="javascript:if(confirm('http://mzli.club/news_hot  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ·þÎñÆ÷±¨¸æ¸ÃÎÄ¼þÎ´ÕÒµ½¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://mzli.club/news_hot'" tppabs="http://mzli.club/news_hot"><i class="layui-icon layui-icon-login-weibo" style="color: orange"></i>&nbspå¾®åšçƒ­æœæŽ’è¡Œ</a>
+                    </div>
+                    <div class="layui-card-body cardBody">
+                        <ul>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">1</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%E4%BD%95%E7%8C%B7%E5%90%9B%E5%A5%9A%E6%A2%A6%E7%91%B6%E5%A5%BD%E7%94%9C&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%E4%BD%95%E7%8C%B7%E5%90%9B%E5%A5%9A%E6%A2%A6%E7%91%B6%E5%A5%BD%E7%94%9C&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%E4%BD%95%E7%8C%B7%E5%90%9B%E5%A5%9A%E6%A2%A6%E7%91%B6%E5%A5%BD%E7%94%9C&Refer=top"
+                                                                    target="_blank">ä½•çŒ·å›å¥šæ¢¦ç‘¶å¥½ç”œ</a></span>
+                                    <span class="hot_look">3775043</span>
+                                    
+                                    
+                                    
+                                    
+                                        <span class="layui-badge layui-bg-black hot_mark">æ–°</span>
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">2</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%23%E5%96%80%E4%BB%80%E6%9C%80%E6%96%B0%E6%A0%B8%E9%85%B8%E6%A3%80%E6%B5%8B14%E4%BA%BA%E5%91%88%E9%98%B3%E6%80%A7%23&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%23%E5%96%80%E4%BB%80%E6%9C%80%E6%96%B0%E6%A0%B8%E9%85%B8%E6%A3%80%E6%B5%8B14%E4%BA%BA%E5%91%88%E9%98%B3%E6%80%A7%23&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%23%E5%96%80%E4%BB%80%E6%9C%80%E6%96%B0%E6%A0%B8%E9%85%B8%E6%A3%80%E6%B5%8B14%E4%BA%BA%E5%91%88%E9%98%B3%E6%80%A7%23&Refer=top"
+                                                                    target="_blank">å–€ä»€æœ€æ–°æ ¸é…¸æ£€æµ‹14äººå‘ˆé˜³æ€§</a></span>
+                                    <span class="hot_look">2848754</span>
+                                    
+                                    
+                                    
+                                    
+                                        <span class="layui-badge layui-bg-black hot_mark">æ–°</span>
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">3</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%23%E5%8F%8C11%E5%87%80%E7%95%8C%E5%A5%BD%E7%89%A9%E6%A6%9C%23&topic_ad=1&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%23%E5%8F%8C11%E5%87%80%E7%95%8C%E5%A5%BD%E7%89%A9%E6%A6%9C%23&topic_ad=1&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%23%E5%8F%8C11%E5%87%80%E7%95%8C%E5%A5%BD%E7%89%A9%E6%A6%9C%23&topic_ad=1&Refer=top"
+                                                                    target="_blank">åŒ11å‡€ç•Œå¥½ç‰©æ¦œ</a></span>
+                                    <span class="hot_look">2798777</span>
+                                    
+                                    
+                                    
+                                        <span class="layui-badge layui-bg-blue hot_mark">è</span>
+                                    
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">4</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%23%E9%83%91%E7%88%BD%E5%A6%88%E5%A6%88%E5%8F%91%E6%96%87%23&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%23%E9%83%91%E7%88%BD%E5%A6%88%E5%A6%88%E5%8F%91%E6%96%87%23&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%23%E9%83%91%E7%88%BD%E5%A6%88%E5%A6%88%E5%8F%91%E6%96%87%23&Refer=top"
+                                                                    target="_blank">éƒ‘çˆ½å¦ˆå¦ˆå‘æ–‡</a></span>
+                                    <span class="hot_look">2015789</span>
+                                    
+                                        <span class="layui-badge layui-bg-orange hot_mark">çƒ­</span>
+                                    
+                                    
+                                    
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">5</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%E4%BB%8E%E7%BB%93%E5%A9%9A%E5%BC%80%E5%A7%8B%E6%81%8B%E7%88%B1&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%E4%BB%8E%E7%BB%93%E5%A9%9A%E5%BC%80%E5%A7%8B%E6%81%8B%E7%88%B1&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%E4%BB%8E%E7%BB%93%E5%A9%9A%E5%BC%80%E5%A7%8B%E6%81%8B%E7%88%B1&Refer=top"
+                                                                    target="_blank">ä»Žç»“å©šå¼€å§‹æ‹çˆ±</a></span>
+                                    <span class="hot_look">1684704</span>
+                                    
+                                    
+                                    
+                                    
+                                        <span class="layui-badge layui-bg-black hot_mark">æ–°</span>
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">6</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%23%E6%B2%88%E6%A2%A6%E8%BE%B0%E6%9D%9C%E6%B5%B7%E6%B6%9B%E6%AD%A3%E5%9C%A8%E7%AD%B9%E5%A4%87%E5%A9%9A%E7%A4%BC%23&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%23%E6%B2%88%E6%A2%A6%E8%BE%B0%E6%9D%9C%E6%B5%B7%E6%B6%9B%E6%AD%A3%E5%9C%A8%E7%AD%B9%E5%A4%87%E5%A9%9A%E7%A4%BC%23&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%23%E6%B2%88%E6%A2%A6%E8%BE%B0%E6%9D%9C%E6%B5%B7%E6%B6%9B%E6%AD%A3%E5%9C%A8%E7%AD%B9%E5%A4%87%E5%A9%9A%E7%A4%BC%23&Refer=top"
+                                                                    target="_blank">æ²ˆæ¢¦è¾°æœæµ·æ¶›æ­£åœ¨ç­¹å¤‡å©šç¤¼</a></span>
+                                    <span class="hot_look">1121172</span>
+                                    
+                                        <span class="layui-badge layui-bg-orange hot_mark">çƒ­</span>
+                                    
+                                    
+                                    
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">7</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%E5%8F%B0%E5%86%9B%E5%9D%A0%E6%9C%BA%E9%A3%9E%E8%A1%8C%E5%91%98%E8%A2%AB%E4%BC%9E%E7%BB%B3%E7%BC%A0%E4%BD%8F%E4%B8%8D%E6%B2%BB%E8%BA%AB%E4%BA%A1&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%E5%8F%B0%E5%86%9B%E5%9D%A0%E6%9C%BA%E9%A3%9E%E8%A1%8C%E5%91%98%E8%A2%AB%E4%BC%9E%E7%BB%B3%E7%BC%A0%E4%BD%8F%E4%B8%8D%E6%B2%BB%E8%BA%AB%E4%BA%A1&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%E5%8F%B0%E5%86%9B%E5%9D%A0%E6%9C%BA%E9%A3%9E%E8%A1%8C%E5%91%98%E8%A2%AB%E4%BC%9E%E7%BB%B3%E7%BC%A0%E4%BD%8F%E4%B8%8D%E6%B2%BB%E8%BA%AB%E4%BA%A1&Refer=top"
+                                                                    target="_blank">å°å†›å æœºé£žè¡Œå‘˜è¢«ä¼žç»³ç¼ ä½ä¸æ²»èº«äº¡</a></span>
+                                    <span class="hot_look">1012280</span>
+                                    
+                                    
+                                    
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">8</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%23134%E5%85%83%E7%BD%91%E8%B4%AD%E6%89%8B%E6%9C%BA%E9%85%8D%E4%BB%B6%E7%89%B5%E5%87%BA1.1%E4%BA%BF%E5%85%83%E5%88%B6%E5%81%87%E6%A1%88%23&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%23134%E5%85%83%E7%BD%91%E8%B4%AD%E6%89%8B%E6%9C%BA%E9%85%8D%E4%BB%B6%E7%89%B5%E5%87%BA1.1%E4%BA%BF%E5%85%83%E5%88%B6%E5%81%87%E6%A1%88%23&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%23134%E5%85%83%E7%BD%91%E8%B4%AD%E6%89%8B%E6%9C%BA%E9%85%8D%E4%BB%B6%E7%89%B5%E5%87%BA1.1%E4%BA%BF%E5%85%83%E5%88%B6%E5%81%87%E6%A1%88%23&Refer=top"
+                                                                    target="_blank">134å…ƒç½‘è´­æ‰‹æœºé…ä»¶ç‰µå‡º1.1äº¿...</a></span>
+                                    <span class="hot_look">994631</span>
+                                    
+                                    
+                                    
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">9</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%232035%E5%B9%B4%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E7%8E%B0%E4%BB%A3%E5%8C%96%E8%BF%9C%E6%99%AF%E7%9B%AE%E6%A0%87%23&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%232035%E5%B9%B4%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E7%8E%B0%E4%BB%A3%E5%8C%96%E8%BF%9C%E6%99%AF%E7%9B%AE%E6%A0%87%23&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%232035%E5%B9%B4%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E7%8E%B0%E4%BB%A3%E5%8C%96%E8%BF%9C%E6%99%AF%E7%9B%AE%E6%A0%87%23&Refer=top"
+                                                                    target="_blank">2035å¹´åŸºæœ¬å®žçŽ°ç¤¾ä¼šä¸»ä¹‰çŽ°ä»£åŒ–...</a></span>
+                                    <span class="hot_look">992569</span>
+                                    
+                                    
+                                        <span class="layui-badge hot_mark">æ²¸</span>
+                                    
+                                    
+                                    
+
+                                </li>
+                            
+                                <li>
+                                    <span class="layui-badge-rim hot_num">10</span>
+                                    <span class="hot_title"><a href="javascript:if(confirm('https://s.weibo.com//weibo?q=%E5%B9%B8%E7%A6%8F%E4%B8%89%E9%87%8D%E5%A5%8F&Refer=top  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://s.weibo.com//weibo?q=%E5%B9%B8%E7%A6%8F%E4%B8%89%E9%87%8D%E5%A5%8F&Refer=top'" tppabs="https://s.weibo.com//weibo?q=%E5%B9%B8%E7%A6%8F%E4%B8%89%E9%87%8D%E5%A5%8F&Refer=top"
+                                                                    target="_blank">å¹¸ç¦ä¸‰é‡å¥</a></span>
+                                    <span class="hot_look">992257</span>
+                                    
+                                    
+                                    
+                                    
+
+                                </li>
+                            
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <a href="javascript:if(confirm('http://mzli.club/movies_hot  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ·þÎñÆ÷±¨¸æ¸ÃÎÄ¼þÎ´ÕÒµ½¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://mzli.club/movies_hot'" tppabs="http://mzli.club/movies_hot"><i class="layui-icon layui-icon-video" style="color: orange"></i>&nbsp;å½±è§†ç‚¹å‡»æŽ’è¡Œ</a>
+                    </div>
+                    <div class="layui-card-body cardBody">
+                        <ul>
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">1</span>
+                                <span class="hot_title"><a href="PLZraX7lSGXnNH.html" tppabs="http://mzli.club/movie_detail/tv/PLZraX7lSGXnNH.html" target="_blank">åŠæ˜¯èœœç³–åŠæ˜¯ä¼¤</a></span>
+                                <span class="hot_look">ç½—äº‘ç†™éœ¸é“æ€»è£ç‹‚æ’©ç™½é¹¿</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">2</span>
+                                <span class="hot_title"><a href="PrpqcX7lSGXsNH.html" tppabs="http://mzli.club/movie_detail/tv/PrpqcX7lSGXsNH.html" target="_blank">çž„å‡†</a></span>
+                                <span class="hot_look">é»„è½©é™ˆèµ«å¼€å¯æ­£é¢åˆšï¼</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">3</span>
+                                <span class="hot_title"><a href="Prpsb07lSW4qM3.html" tppabs="http://mzli.club/movie_detail/tv/Prpsb07lSW4qM3.html" target="_blank">å¦‚æ„èŠ³éœ</a></span>
+                                <span class="hot_look">éž å©§ç¥Žå¼ å“²ç€šå†ç»­å‰ç¼˜</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">4</span>
+                                <span class="hot_title"><a href="QrFsb07lSW4sMn.html" tppabs="http://mzli.club/movie_detail/tv/QrFsb07lSW4sMn.html" target="_blank">æˆ˜ç«ç†”ç‚‰</a></span>
+                                <span class="hot_look">é“­è®°åŽ†å²è‡´æ•¬æœ€å¯çˆ±çš„äºº</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">5</span>
+                                <span class="hot_title"><a href="RLJran7lSGXsNn.html" tppabs="http://mzli.club/movie_detail/tv/RLJran7lSGXsNn.html" target="_blank">å¹¸ç¦é‡Œçš„æ•…äº‹</a></span>
+                                <span class="hot_look">æŽæ™¨çŽ‹æ™“æ™¨æ¼”ç»ŽåŒ—äº¬é’å¹´å¥‹æ–—å²</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">6</span>
+                                <span class="hot_title"><a href="RLVtcX7lSW4rNX.html" tppabs="http://mzli.club/movie_detail/tv/RLVtcX7lSW4rNX.html" target="_blank">äº²çˆ±çš„éº»æ´‹è¡—</a></span>
+                                <span class="hot_look">å­¦éœ¸è°­æ¾éŸµçˆ±ä¸Šå°ç—žå­</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">7</span>
+                                <span class="hot_title"><a href="PrJvan7lSGXtM3.html" tppabs="http://mzli.club/movie_detail/tv/PrJvan7lSGXtM3.html" target="_blank">å‘é˜³è€Œç”Ÿ</a></span>
+                                <span class="hot_look">ç¥¸ä¸å•è¡Œï¼ç†Šé¡¿æ‚£ä¸Šæ·‹å·´ç˜¤</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">8</span>
+                                <span class="hot_title"><a href="OkXsbcKkLoO2CT.html" tppabs="http://mzli.club/movie_detail/ct/OkXsbcKkLoO2CT.html" target="_blank">å°çŒªä½©å¥‡å…¨é›†</a></span>
+                                <span class="hot_look">ä½©å¥‡é™ªä½ å¿«ä¹æˆé•¿ï¼</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">9</span>
+                                <span class="hot_title"><a href="OUPkaZ7kNY7vDj.html" tppabs="http://mzli.club/movie_detail/ct/OUPkaZ7kNY7vDj.html" target="_blank">æ–—ç½—å¤§é™†</a></span>
+                                <span class="hot_look">è¶…ç‡ƒï¼æ­¦é­‚å´›èµ·ä¹‹è·¯</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">10</span>
+                                <span class="hot_title"><a href="Zc5nbHNz7ZA4Ez.html" tppabs="http://mzli.club/movie_detail/va/Zc5nbHNz7ZA4Ez.html" target="_blank">æ¼”å‘˜è¯·å°±ä½ ç¬¬2å­£</a></span>
+                                <span class="hot_look">ã€Šè§’ã€‹é™ˆå‡¯æ­Œèµµè–‡è°ˆé€‰è§’æ ‡å‡†</span>
+                            </li>
+
+                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <a href="javascript:if(confirm('http://mzli.club/novels_hot  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ·þÎñÆ÷±¨¸æ¸ÃÎÄ¼þÎ´ÕÒµ½¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://mzli.club/novels_hot'" tppabs="http://mzli.club/novels_hot"><i class="layui-icon layui-icon-read" style="color: orange"></i>&nbsp;å°è¯´çƒ­åº¦æŽ’è¡Œ</a>
+                    </div>
+                    <div class="layui-card-body cardBody">
+                        <ul>
+                         
+                             <li>
+                                <span class="layui-badge-rim hot_num">1</span>
+                                <span class="hot_title"><a href="javascript:novel_search('æ¸¡åŠ«ä¹‹çŽ‹')">æ¸¡åŠ«ä¹‹çŽ‹</a></span>
+                                <span class="hot_look">æ— ç½ª | ä¿®çœŸ è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">2</span>
+                                <span class="hot_title"><a href="javascript:novel_search('å‰‘æ¥')">å‰‘æ¥</a></span>
+                                <span class="hot_look">çƒ½ç«æˆè¯¸ä¾¯ | ä»™ä¾  è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">3</span>
+                                <span class="hot_title"><a href="javascript:novel_search('ä¸è®©æ±Ÿå±±')">ä¸è®©æ±Ÿå±±</a></span>
+                                <span class="hot_look">çŸ¥ç™½ | æž¶ç©º è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">4</span>
+                                <span class="hot_title"><a href="javascript:novel_search('å¤§å›½ååŽ¨')">å¤§å›½ååŽ¨</a></span>
+                                <span class="hot_look">çƒŸæ–—è€å“¥ | éƒ½å¸‚ è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">5</span>
+                                <span class="hot_title"><a href="javascript:novel_search('è¾¹æœˆæ»¡è¥¿å±±')">è¾¹æœˆæ»¡è¥¿å±±</a></span>
+                                <span class="hot_look">å¥•è¾°è¾° | çŽ„å¹» è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">6</span>
+                                <span class="hot_title"><a href="javascript:novel_search('ç»ä¸–å¥½äºº')">ç»ä¸–å¥½äºº</a></span>
+                                <span class="hot_look">è¦†æ‰‹ | éƒ½å¸‚ è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">7</span>
+                                <span class="hot_title"><a href="javascript:novel_search('ä¹å·žé£Žäº‘å½•')">ä¹å·žé£Žäº‘å½•</a></span>
+                                <span class="hot_look">ç‚­é›ªå°è›Ÿé¾™ | æ­¦ä¾  è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">8</span>
+                                <span class="hot_title"><a href="javascript:novel_search('æˆ‘æ˜¯åŠå¦–')">æˆ‘æ˜¯åŠå¦–</a></span>
+                                <span class="hot_look">åŒ—ç‡Ž | ä¿®çœŸ è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">9</span>
+                                <span class="hot_title"><a href="javascript:novel_search('æˆ‘åªæœ‰ä¸¤åƒäº”ç™¾å²')">æˆ‘åªæœ‰ä¸¤åƒäº”ç™¾å²</a></span>
+                                <span class="hot_look">æ­¥è¡Œå¤©ä¸‹ | éƒ½å¸‚ è¿žè½½</span>
+                            </li>
+
+                        
+                             <li>
+                                <span class="layui-badge-rim hot_num">10</span>
+                                <span class="hot_title"><a href="javascript:novel_search('å¾¡çµæ­¦é“')">å¾¡çµæ­¦é“</a></span>
+                                <span class="hot_look">é’æ¤’ç‚’é¥­ | çŽ„å¹» è¿žè½½</span>
+                            </li>
+
+                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card search-page layui-anim layui-anim-fadein">
+        <div class="layui-card-body">
+            <div class="search-loading layui-anim">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+            <p class="search-loading-wait layui-hide layui-anim">å½“å‰ç½‘ç»œè¿žæŽ¥è¾ƒæ…¢ï¼Œè¯·è€å¿ƒç­‰å¾…...</p>
+            <div class="search-error layui-hide layui-anim">
+                <p><i class="layui-icon layui-icon-unlink"></i></p>
+                <p id="search-error-msg">å“Žå‘€!æœåŠ¡å™¨å‡ºé”™äº†...</p>
+                <p class="source"> </p>
+                <p>æˆ–è€…æ‚¨æ˜¯è¦æŸ¥ <a href="javascript:searchOther(1)">å½±è§†</a> | <a href="javascript:searchOther(3)">å°è¯´</a> | <a href="javascript:searchOther(2)">ç§å­</a> | <a href="javascript:searchOther(4)">ç£åŠ›</a></p>
+            </div>
+            <div class="search-empty layui-hide layui-anim">
+                <p><i class="layui-icon layui-icon-face-surprised"></i></p>
+                <p>å“Žå‘€! æ²¡æŸ¥åˆ°</p>
+                <p class="source"> </p>
+                <p>æˆ–è€…æ‚¨æ˜¯è¦æŸ¥ <a href="javascript:searchOther(1)">å½±è§†</a> | <a href="javascript:searchOther(3)">å°è¯´</a> | <a href="javascript:searchOther(2)">ç§å­</a> | <a href="javascript:searchOther(4)">ç£åŠ›</a></p>
+            </div>
+            <ul id="result_list" class="layui-hide layui-anim"></ul>
+        </div>
+    </div>
+</main>
+<div class="sidebar-more" id="sidebar-more">
+    <div class="layui-card-header"><i class="layui-icon layui-icon-log" style=" color: #393D49;"></i>  <span style="font-size: 12px">åŽ†å²è®°å½•</span> <i id="syncData" class="layui-icon layui-icon-cellphone" style="cursor:pointer;margin-left: 160px; color: #393D49;"></i></div>
+    <div class="layui-card-body layui-text histories" style="padding: 0">
+        <p style="text-align: center">æ‚¨è¿˜æ²¡æœ‰è¶³è¿¹!</p>
+    </div>
+</div>
+ï»¿<footer>
+    <p class="layui-text copyright" style="font-size: 13px">&copy;2019~2020 <a href="javascript:if(confirm('http://blog.mzli.club/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://blog.mzli.club/'" tppabs="http://blog.mzli.club/">LeeBlog</a> | <a href="javascript:if(confirm('https://jq.qq.com/?_wv=1027&k=5vVffYK  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://jq.qq.com/?_wv=1027&k=5vVffYK'" tppabs="https://jq.qq.com/?_wv=1027&k=5vVffYK">QQç¾¤</a>
+        | <a href="javascript:if(confirm('http://www.beian.miit.gov.cn/  \n\n¸ÃÎÄ¼þÎÞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·þÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://www.beian.miit.gov.cn/'" tppabs="http://www.beian.miit.gov.cn/" target="_blank">é—½ICPå¤‡17018180å·-2</a>
+        | <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1266894819'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1266894819%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </p>
+    <p style="font-size: 12px">å…è´£å£°æ˜Žï¼šå†…å®¹çš†å–è‡ªäºŽç½‘ç»œï¼Œæœ¬ç«™ä¸åšå­˜å‚¨</p>
+</footer>
+<script src="global.js-v=202006131023" tppabs="http://mzli.club/static/js/global.js?v=202006131023"></script>
+<script src="index.js" tppabs="http://mzli.club/static/js/index.js"?v=202006131023></script>
+<script>(function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/
+    } else {
+        bp.src = 'push-1.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s)
+})();</script>
+</body>
+</html>

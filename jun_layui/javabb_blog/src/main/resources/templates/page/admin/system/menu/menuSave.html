@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('博客添加','/plugin/formSelects-v4/formSelects-v4.css,'+
+'/js/plugin/wangEditor-3.1.1/release/wangEditor-fullscreen-plugin.css')"></head>
+<body class="childrenBody">
+<input type="hidden" id="menuId" th:value="${id}">
+<form class="layui-form layui-row layui-col-space10 style="">
+	<div class="layui-col-md9 layui-col-xs12">
+		<div class="layui-form-item magt3">
+			<label class="layui-form-label">目录标题</label>
+			<div class="layui-input-inline">
+				<input type="text" id="menuName" class="layui-input menuName" lay-verify="required" placeholder="请输入目录标题">
+			</div>
+		</div>
+		<div class="layui-form-item magt3">
+			<label class="layui-form-label">目录Code</label>
+			<div class="layui-input-inline">
+				<input type="text" id="menuCode" class="layui-input menuCode" lay-verify="title" placeholder="请输入目录Code">
+			</div>
+			<div class="layui-form-mid layui-word-aux">用于识别页面地址，不能重复，如果是后台需要</div>
+		</div>
+		<div class="layui-form-item magt3">
+			<label class="layui-form-label">目录图标</label>
+			<div class="layui-input-inline">
+				<input type="text" id="menuIco" class="layui-input menuIco" lay-verify="title" placeholder="请输入目录图标">
+			</div>
+			<div class="layui-word-aux">icon-xx格式，支持layui图标，fa图标，iconFont图标</div>
+		</div>
+		<div class="layui-form-item magt3">
+			<div class="layui-inline">
+				<label class="layui-form-label">目录类型</label>
+				<div class="layui-input-inline">
+					<select id="menuType" name="menuType" lay-verify="required">
+				        <option value="1">前台导航</option>
+				        <option value="2">前台普通页面</option>
+				        <option value="3">后台菜单</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">状态</label>
+				<div class="layui-input-block">
+					<input type="checkbox" id="state" name="state" lay-skin="switch" lay-text="正常|禁用">
+				</div>
+			 </div>
+			 <div class="layui-inline">
+				<label class="layui-form-label">排序</label>
+				<div class="layui-input-inline">
+					<input type="text" id="sort" class="layui-input sort" placeholder="排序">
+				</div>
+			 </div>
+		</div>
+		<div class="layui-form-item magt3"  style="width:60%;">
+			<label class="layui-form-label">内容摘要</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入内容摘要" class="layui-textarea" id="menuDesc" name="menuDesc"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item magt3">
+			
+		</div>
+		<div class="layui-form-item magb0">
+			<label class="layui-form-label">文章内容</label>
+			<div class="layui-input-block">
+				<div id="editor">
+			    </div>
+			    <textarea class="layui-textarea" lay-verify="content" id="content" style="display:none;"></textarea>
+			</div>
+		</div>
+		<fieldset class="layui-elem-field">
+		  <legend>SEO</legend>
+		  <div class="layui-field-box">
+			<div class="layui-form-item magt3">
+				<label class="layui-form-label">keywords</label>
+				<div class="layui-input-inline" style="width:60%;">
+					<input type="text" id="keywords" class="layui-input keywords" placeholder="请输入关键词">
+				</div>
+				<div class="layui-form-mid layui-word-aux">多个关键词，用英文","隔开</div>
+			</div>
+			
+			<div class="layui-form-item magt3"  >
+				<label class="layui-form-label">description</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入description" class="layui-textarea" id="description" name="description"></textarea>
+				</div>
+			</div>
+
+		  </div>
+		</fieldset>
+
+		<div class="layui-form-item magb3">
+			<hr class="layui-bg-gray" />
+			 <div class="layui-input-block">
+				<a class="layui-btn layui-btn-sm" lay-filter="publish" lay-submit><i class="layui-icon">&#xe609;</i>发布</a>
+				<a class="layui-btn layui-btn-primary layui-btn-sm" lay-filter="look" lay-submit>预览</a>
+			</div>
+		</div>
+	</div>
+</form>
+<div th:include="common/includeAdmin::footer"></div>
+<script type="text/javascript" src="/js/plugin/wangEditor-3.1.1/release/wangEditor.min.js"></script>
+<script type="text/javascript" src="/js/page/menu/menuSave.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chensi.dao.MenuMapper">
+
+	<select id="list" resultType="com.chensi.model.Menu">
+		select * from t_menu
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="listByEntity" resultType="com.chensi.model.Menu">
+		select *
+		from t_menu
+		<where>
+			<if test="entity.parentId != null ">
+				and parentId=#{entity.parentId}
+			</if>
+			<if test="entity.type != null ">
+				and type=#{entity.type}
+			</if>
+			<if test="entity.name != null and entity.name != '' ">
+				and name like CONCAT('%',#{entity.name},'%')
+			</if>
+			<if test="entity.code != null and entity.code != '' ">
+				and code like CONCAT('%',#{entity.code},'%')
+			</if>
+		</where>
+		<if test="page !=null ">
+			limit ${page.start},${page.size}
+		</if>
+	</select>
+
+	<select id="countByEntity" resultType="Integer">
+		select count(1)
+		from t_menu
+		<where>
+			<if test="entity.parentId != null ">
+				and parentId=#{entity.parentId}
+			</if>
+			<if test="entity.type != null ">
+				and type=#{entity.type}
+			</if>
+			<if test="entity.name != null and entity.name != '' ">
+				and name like CONCAT('%',#{entity.name},'%')
+			</if>
+			<if test="entity.code != null and entity.code != '' ">
+				and code like CONCAT('%',#{entity.code},'%')
+			</if>
+		</where>
+	</select>
+
+	<select id="get" resultType="com.chensi.model.Menu">
+		select t1.*,t2.name parentName
+		from t_menu t1 left join t_menu t2 on t1.parentId=t2.id
+		where
+		t1.id=#{id}
+	</select>
+
+	<select id="getByEntity" resultType="com.chensi.model.Menu">
+		select *
+		from t_menu
+		<where>
+			<if test="entity.code != null and entity.code != '' ">
+				and code=#{entity.code}
+			</if>
+			<if test="entity.parentId != null ">
+				and parentId=#{entity.parentId}
+			</if>
+			<if test="entity.idNe != null ">
+				and id!=#{entity.idNe}
+			</if>
+		</where>
+		limit 1
+	</select>
+	
+	<select id="getMaxSort" resultType="Integer">
+		select ifnull(max(sort), 0)+1
+		from t_menu
+	</select>
+
+	<update id="update">
+		update t_menu
+		<set>
+			parentId=#{entity.parentId},
+			name=#{entity.name},
+			type=#{entity.type},
+			code=#{entity.code},
+			sort=#{entity.sort},
+			url=#{entity.url},
+			icon=#{entity.icon},
+		</set>
+		where id=#{entity.id}
+	</update>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		<selectKey keyProperty="entity.id" order="AFTER" resultType="Integer">
+			select last_insert_id()
+		</selectKey>
+		insert into t_menu
+		(
+		parentId,
+		name,
+		type,
+		code,
+		sort,
+		url,
+		icon
+		)
+		values
+		(
+		#{entity.parentId},
+		#{entity.name},
+		#{entity.type},
+		#{entity.code},
+		#{entity.sort},
+		#{entity.url},
+		#{entity.icon}
+		)
+	</insert>
+
+	<delete id="remove">
+		delete from t_menu where id=#{id}
+	</delete>
+
+</mapper>

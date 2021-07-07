@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-definition xmlns="urn:jbpm.org:jpdl-3.1" name="example_5">
+    <start-state name="开始">
+        <event type="node-leave">
+            <action name="action1"></action>
+        </event>
+        <transition name="tr1" to="工作中"></transition>
+        <transition name="tr2" to="求学中"></transition>
+    </start-state>
+    <state name="工作中">
+        <event type="node-enter">
+            <action name="工作" class="com.person.WorkAction"></action>
+        </event>
+        <transition name="" to="终成正果"></transition>
+    </state>
+    <state name="求学中">
+        <event type="node-enter">
+            <action name="学习" class="com.person.StudyAction"></action>
+        </event>
+        <transition name="" to="终成正果"></transition>
+    </state>
+    <end-state name="终成正果">
+        <event type="node-enter">
+            <action name="圆满" class="com.person.EndAction"></action>
+        </event>
+    </end-state>
+</process-definition>

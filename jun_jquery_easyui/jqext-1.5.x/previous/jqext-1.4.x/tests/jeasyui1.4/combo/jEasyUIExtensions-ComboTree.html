@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - ComboTree</title>
+
+    <link href="../../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.validatebox.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.textbox.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.combo.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.messager.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.window.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.dialog.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.tree.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.combotree.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var t = $("#tt");
+
+        });
+    </script>
+</head>
+<body id="cc" class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <input class="easyui-combotree" data-options="
+            url: '../../../data/tree-data.json', method: 'get',
+            loading: 'mask',  multiple: true, cascadeCheck: true, onlyLeafCheck: false,
+            toggleOnClick: true, selectOnContextMenu: true, showOption: true, onlyNodeExpand: true,
+            contextMenu: [
+                {
+                    text: '测试菜单1', iconCls: 'icon-ok',
+                    handler: function (e, menuItemOpts, menuDOM, treeDOM, node) {
+                        $.easyui.showOption(node);
+                    }
+                }
+            ]
+            " />
+        <hr />
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+</body>
+</html>
+

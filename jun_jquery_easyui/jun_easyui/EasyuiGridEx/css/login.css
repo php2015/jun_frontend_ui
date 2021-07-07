@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background:#bf1c03 url(../images/login-bg.png) no-repeat top center}
+.box_a{width:396px; margin:12% auto 0 auto}
+.box_a .logo{height:125px}
+.box_a .box_a_info{color:#fff}
+.box_a .box_a_info a{text-decoration:underline; color:#fff}
+.box_a .box_a_info a:hover{opacity:0.5}
+
+.login_btn{padding:5px 0px;width:96px;height:37px;border-radius:5px;background:#d33a22;}

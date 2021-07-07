@@ -1,0 +1,50 @@
+#原生Date方法扩展
+
+###获取周数
+```javascript
+    getWeek
+```
+###格式时间
+```javascript
+    format
+```
+###判断是否是闰年
+```javascript
+    isLeapYear
+```
+###获取月天数
+```javascript
+    getDaysInMonth
+```
+###增加毫秒数时间
+```javascript
+    add
+```
+###增加秒数
+```javascript
+    addSeconds
+```
+###增加分数
+```javascript
+    addMinutes
+```
+###增加小时数
+```javascript
+    addHours
+```
+###增加天数
+```javascript
+    addDays
+```
+###增加周数
+```javascript
+    addWeeks
+```
+###增加月数
+```javascript
+    addMonths
+```
+###增加年数
+```javascript
+    addYears
+```

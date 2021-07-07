@@ -1,0 +1,17 @@
+在命令行里启动MySQL：
+mysql -u root -p  
+
+修改密码：mysqladmin -u root -p password '新密码'
+
+
+ERROR 2003 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+解决步骤：
+1.停止服务：net stop mysql 
+2.注销服务：mysqld-nt --remove 
+3.装载服务：mysqld-nt --install  
+4.启动服务：net start mysql 
+
+
+
+执行sql脚本：source F:\hello world\niuzi.sql 
+

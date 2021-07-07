@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+<title>示例页面</title>
+<!--
+标题修改：示例页面 示例管理系统面板
+路径 ../ 替换为 {$__PUBLIC__}js/easyui/  
+-->
+<link rel="shortcut icon" href="favicon.ico" />
+<link id="easyuiTheme" rel="stylesheet" type="text/css" href="../themes/default/easyui.css"/>
+<link type="text/css" rel="stylesheet" href="../themes/icon.css"/>
+<link type="text/css" rel="stylesheet" href="../images/default.css"/>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="../jquery.cookie.js"></script>
+<script type="text/javascript" src="../jquery.easyui.changeTheme.js"></script>
+<script type="text/javascript" src="../jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../jquery.easyui.boot.js"></script>
+<script type="text/javascript" src="../jquery.easyui.boot.pwdmm.js"></script>
+<script type="text/javascript" src="js/page-login/sr_md5.js"></script>
+<script type="text/javascript">
+//uiBootConfig.menuObj = {$sysmenus};
+uiBootConfig.menuObj = {"menus":[{"menuid":"19","icon":"icon icon-data","menuname":"Dashboard","fgset":"00","menus":[
+	{"menuid":"20","icon":"icon icon-1508","fgset":"00","menuname":"演示页面","url":"javascript:;","child":[
+		{"menuid":"21","icon":"icon icon-1508","fgset":"00","menuname":"空白页","url":"../_demo-page/blank-page.shtml","child":[]},
+		{"menuid":"21","icon":"icon icon-1508","fgset":"00","menuname":"列表页-默认检索","url":"../_demo-page/menu.shtml","child":[]},
+		{"menuid":"21","icon":"icon icon-1508","fgset":"00","menuname":"列表页-自定检索1","url":"../_demo-page/menu.shtml","child":[]},
+		{"menuid":"21","icon":"icon icon-1508","fgset":"00","menuname":"列表页-自定检索2","url":"../_demo-page/menu.shtml","child":[]},
+		{"menuid":"21","icon":"icon icon-1508","fgset":"00","menuname":"列表页-自定检索3","url":"../_demo-page/menu.shtml","child":[]},
+	]}
+]},{"menuid":"191","icon":"icon icon-1106","menuname":"通知管理","fgset":"00","menus":[{"menuid":"192","icon":"icon icon-nav","menuname":"文章栏目管理","fgset":"00","url":"/boardcate","child":[]},{"menuid":"196","icon":"icon icon-1107","menuname":"通知公告","fgset":"00","url":"/board","child":[]}]},{"menuid":"1","icon":"icon icon-sys","menuname":"系统管理","fgset":"00","menus":[{"menuid":"2","icon":"icon icon-sys","menuname":"基本设置","fgset":"00","url":"javascript:;","child":[{"menuid":"137","icon":"icon icon-1201","menuname":"系统参数设置","fgset":"00","url":"/sysconfig","child":[]},{"menuid":"3","icon":"icon icon-users","menuname":"用户管理","fgset":"00","url":"/sysuser","child":[]},{"menuid":"7","icon":"icon icon-role","menuname":"用户组权限管理","fgset":"00","url":"/sysugroup","child":[]},{"menuid":"275","icon":"icon icon-2205","menuname":"角色权限管理","fgset":"00","url":"/sysurank","child":[]}]}]}]};
+uiBootConfig.defPageUrl = 'home.html';	// '{$__APP__}dashboard/home'
+//root_url='{$__ROOT__}';app_url='{$__APP__}';mod_url='{$__URL__}';
+//root_url='/';app_url='/?/';mod_url='/?/mod'; //ASP
+root_url='';app_url='/app';mod_url='/app/mod'; //PHP
+</script>
+</head>
+<body class="easyui-layout" style="overflow-y:hidden" fit="true" scroll="no">
+<noscript>
+<div style="position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
+    <img src="../images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+</div>
+</noscript>
+<div id="loading-mask">
+    <div id="pageloading"><img src="../images/loading.gif" align="absmiddle" /> 正在加载中,请稍候...</div>
+</div>
+<div region="north" split="false" border="false" style="height:35px;" class="header">
+	<span class="topmenu">
+	欢迎 {$UserName}[{$UserGroup}] <a href="javascript:;" id="editpass">修改密码</a>
+	<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_ThemeMenu'" style="margin-top:-3px;">更换皮肤</a>
+	<div id="layout_north_ThemeMenu" style="display:none;">
+        <div onclick="changeThemeFun('default');">default</div>
+        <div onclick="changeThemeFun('black');">black</div>
+        <div onclick="changeThemeFun('bootstrap');">bootstrap</div>
+        <div onclick="changeThemeFun('gray');">gray</div>
+        <div onclick="changeThemeFun('metro');">metro</div>
+    </div>
+	<!--if:{empty($OauthName)}-- ><a href="{$__APP__}oauth/qq-{$UserID}" id="bindAccount">绑定QQ账号</a>
+	<!--{else}-- ><a href="javascript:;" id="unbindAccount">解绑QQ账号[{$OauthName}]</a>
+	<!--{/if}-->
+	<a href="{$__ROOT__}" target="_blank">系统首页</a>
+	<a href="javascript:;" id="loginOut">安全退出</a>
+	</span>
+	<span class="title"><img src="../images/blocks.gif" width="20" height="20" align="absmiddle" /> 示例管理系统面板</span>
+</div>
+<div region="west" split="true" title="导航菜单" style="width:200px;" id="west">
+	<div class="easyui-layout" fit="true">
+	<div region="center" border="false">
+		<div id="nav">
+		<!-- 导航内容 -->
+		</div>
+	</div>
+	<div region="south" split="false" border="false" style="height:25px;background:#fff;overflow:hidden;">
+		<div class="support">技术支持：SeekRoad Studio</div>
+	</div>
+	</div>
+</div>
+<div region="center" id="mainPanle" style="background: #eee; overflow-y:hidden">
+	<!--
+	-- 选项卡模式 --
+	<div id="tabs" class="easyui-tabs" fit="true" border="false" ></div>
+	-- 单页面模式 --
+	<div class="page-loading" id="center_loading" style="display:none"></div>
+	<iframe id="mainContent" scrolling="auto" frameborder="0" src="" style="width:100%;height:100%;"></iframe>
+	-->
+	<div id="tabs" class="easyui-tabs" fit="true" border="false" ></div>
+</div>
+<!--修改密码窗口-->
+<div id="w" class="easyui-window" title="修改密码" collapsible="false" minimizable="false" maximizable="false" icon="icon-save"
+	style="width:280px;height:220px;padding:5px;">
+	<div class="easyui-layout" fit="true">
+		<div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+			<table cellpadding=3>
+				<tr><td align="right">账　号：</td>
+					<td>{$LoginName}</td>
+				</tr>
+				<tr><td align="right">旧密码：</td>
+					<td><input class="wintxt" type="password" id="txtOldPass" /></td>
+				</tr>
+				<tr><td align="right">新密码：</td>
+					<td><input class="wintxt" type="password" id="txtNewPass" /></td>
+				</tr>
+				<tr><td align="right">确认密码：</td>
+					<td><input class="wintxt" type="password" id="txtRePass" /></td>
+				</tr>
+			</table>
+		</div>
+		<div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
+			<a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >确定</a>
+			<a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">取消</a>
+		</div>
+	</div>
+</div>
+<!--标签右键菜单(选项卡模式时需要用到)-->
+<div id="tabs_mm" class="easyui-menu" style="width:150px;">
+	<div id="refresh">刷新</div>
+	<div class="menu-sep"></div>
+	<div id="close">关闭</div>
+	<div id="closeall">全部关闭</div>
+	<div id="closeother">除此之外全部关闭</div>
+	<div class="menu-sep"></div>
+	<div id="closeright">当前页右侧全部关闭</div>
+	<div id="closeleft">当前页左侧全部关闭</div>
+</div>
+<span style="display:none;"></span>
+</body>
+</html>

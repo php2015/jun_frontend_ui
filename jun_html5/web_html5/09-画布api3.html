@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function init() {
+		
+		var canvas = document.getElementById("canvas");
+		
+		var context = canvas.getContext("2d");
+		
+		var image = new Image();
+		
+		image.src = "pic.jpg";
+		
+		image.onload = function (e) {
+			
+			for(var i = 1; i < 7; i++){
+				
+				context.drawImage(image, 50*i,50*i, 40*i,30*i);
+				
+			}
+			
+		}
+		
+	}
+</script>
+
+</head>
+<body onload="init()">
+
+<canvas id="canvas" width="800" height="600"></canvas>
+
+
+</body>
+</html>

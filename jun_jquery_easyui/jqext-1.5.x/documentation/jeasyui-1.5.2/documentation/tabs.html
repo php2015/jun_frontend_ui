@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="html5,jquery,ui,widgets,ajax,ria,web framekwork,web development,easy,easyui,datagrid,treegrid,tree">
+		<meta name="description" content="jQuery EasyUI is a complete framework for HTML5 web page. It provides easy to use components for building modern, interactive, javascript applications that work on pc and mobile devices.">
+		<title>tabs - Documentation - jQuery EasyUI</title>
+        <link rel="stylesheet" href="/css/kube.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../prettify/prettify.css">
+		<script type="text/javascript" src="../../prettify/prettify.js"></script>
+		<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+								$('textarea[name="code-tabs"]').each(function(){
+					var data = $(this).val();
+					data = data.replace(/(\r\n|\r|\n)/g, '\n');
+					if (data.indexOf('\t') == 0){
+						data = data.replace(/^\t/, '');
+						data = data.replace(/\n\t/g, '\n');
+					}
+					data = data.replace(/\t/g, '    ');
+					var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
+					pre.text(data);
+					$(this).remove();
+				});
+				prettyPrint();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="header" class="group wrap header">
+			<div class="content">
+	<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+		<span>EasyUI</span>
+	</div>
+	<div id="elogo" class="navbar navbar-left">
+		<ul>
+			<li>
+				<a href="/index.php"><img src="/images/logo2.png" alt="jQuery EasyUI"/></a>
+			</li>
+		</ul>
+	</div>
+	<div id="navbar-1" class="navbar navbar-right">
+		<ul>
+			<li><a href="/index.php">Home</a></li>
+			<li><a href="/demo/main/index.php">Demo</a></li>
+			<li><a href="/tutorial/index.php">Tutorial</a></li>
+			<li><a href="/documentation/index.php">Documentation</a></li>
+			<li><a href="/download/index.php">Download</a></li>
+			<li><a href="/extension/index.php">Extension</a></li>
+			<li><a href="/contact.php">Contact</a></li>
+			<li><a href="/forum/index.php">Forum</a></li>
+		</ul>
+	</div>
+	<div style="clear:both"></div>
+</div>
+<script type="text/javascript">
+	function setNav(){
+		var demosubmenu = $('#demo-submenu');
+		if (demosubmenu.length){
+			if ($(window).width() < 450){
+				demosubmenu.find('a:last').hide();
+			} else {
+				demosubmenu.find('a:last').show();
+			}
+		}
+		if ($(window).width() < 767){
+			$('.navigation-toggle').each(function(){
+				$(this).show();
+				var target = $(this).attr('data-target');
+				$(target).hide();
+				setDemoNav();
+			});
+		} else {
+			$('.navigation-toggle').each(function(){
+				$(this).hide();
+				var target = $(this).attr('data-target');
+				$(target).show();
+			});
+		}
+	}
+	function setDemoNav(){
+		$('.navigation-toggle').each(function(){
+			var target = $(this).attr('data-target');
+			if (target == '#navbar-demo'){
+				if ($(target).is(':visible')){
+					$(this).css('margin-bottom', 0);
+				} else {
+					$(this).css('margin-bottom', '2.3em');
+				}
+			}
+		});
+	}
+	$(function(){
+		setNav();
+		$(window).bind('resize', function(){
+			setNav();
+		});
+		$('.navigation-toggle').bind('click', function(){
+			var target = $(this).attr('data-target');
+			$(target).toggle();
+			setDemoNav();
+		});
+	})
+</script>		</div>
+		<div id="mainwrap">
+			<div id="content" class="content">
+			
+
+<div style="padding:10px">
+
+<h3>Tabs</h3>
+<p>Override defaults with $.fn.tabs.defaults.</p>
+<p>
+The tabs display a collection of panel. It shows only one tab panel at a time.
+Each tab panel has the header title and some mini button tools, including close button and other customized buttons.
+</p>
+<img src="images/tabs.png"/>
+
+<h4>Dependencies</h4>
+<ul>
+	<li>panel</li>
+	<li>linkbutton</li>
+</ul>
+
+<h4>Usage Example</h4>
+<h5>Create tabs</h5>
+<p>1. Create tabs via markup</p>
+<p>
+Create tabs from markup is even easier, we don't need to write any JavaScript code.
+Remember to add 'easyui-tabs' class to &lt;div&gt; markup.
+Each tab panel is created via sub &lt;div&gt; markup, the usage is same as panel.
+</p>
+<textarea name="code-tabs" class="html">
+<div id="tt" class="easyui-tabs" style="width:500px;height:250px;">
+	<div title="Tab1" style="padding:20px;display:none;">
+		tab1
+	</div>
+	<div title="Tab2" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+		tab2
+	</div>
+	<div title="Tab3" data-options="iconCls:'icon-reload',closable:true" style="display:none;">
+		tab3
+	</div>
+</div>
+</textarea>
+
+<p>2. Create tabs programatically</p>
+<p>Now we create tabs programatically, we catch the 'onSelect' event also.</p>
+<textarea name="code-tabs" class="js">
+$('#tt').tabs({
+	border:false,
+	onSelect:function(title){
+		alert(title+' is selected');
+	}
+});
+</textarea>
+
+<h5>Add new tab panel</h5>
+<p>
+Add a new tab panel with mini tools, the mini tools icon(8x8) is placed before the close button.
+</p>
+<textarea name="code-tabs" class="js">
+// add a new tab panel
+$('#tt').tabs('add',{
+	title:'New Tab',
+	content:'Tab Body',
+	closable:true,
+	tools:[{
+		iconCls:'icon-mini-refresh',
+		handler:function(){
+			alert('refresh');
+		}
+	}]
+});
+</textarea>
+<h5>Get the selected Tab</h5>
+<textarea name="code-tabs" class="js">
+// get the selected tab panel and its tab object
+var pp = $('#tt').tabs('getSelected');
+var tab = pp.panel('options').tab;    // the corresponding tab object	
+</textarea>
+
+<h4>Properties</h4>
+<table class="doc-table">
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+<tr>
+<td>width</td>
+
+<td>number</td>
+<td>The width of tabs container.</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>height</td>
+<td>number</td>
+<td>The height of tabs container.</td>
+<td>auto</td>
+</tr>
+
+<tr>
+<td>plain</td>
+<td>boolean</td>
+<td>True to render the tab strip without a background container image.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>fit</td>
+<td>boolean</td>
+<td>True to set the size of tabs container to fit it's parent container.</td>
+
+<td>false</td>
+</tr>
+<tr>
+<td>border</td>
+<td>boolean</td>
+<td>True to show tabs container border.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>scrollIncrement</td>
+<td>number</td>
+
+<td>The number of pixels to scroll each time a tab scroll button is pressed.</td>
+<td>100</td>
+</tr>
+<tr>
+<td>scrollDuration</td>
+<td>number</td>
+<td>The number of milliseconds that each scroll animation should last.</td>
+<td>400</td>
+</tr>
+<tr>
+<td>tools</td>
+
+<td>array,selector</td>
+<td>
+The toolbar placed on left or right side of header. Possible values:<br/>
+1. An array indicate the tools, each tool options is same as linkbutton.<br/>
+2. A selector point to the &lt;div&gt; that contains the tools.<br/>
+<br/>
+Code example:
+<p>Define tools with an array.</p>
+<pre>
+$('#tt').tabs({
+	tools:[{
+		iconCls:'icon-add',
+		handler:function(){
+			alert('add')
+		}
+	},{
+		iconCls:'icon-save',
+		handler:function(){
+			alert('save')
+		}
+	}]
+});
+</pre>
+<p>Define tools with an existing DOM container.</p>
+<pre>
+$('#tt').tabs({
+	tools:'#tab-tools'
+});
+&lt;div id="tab-tools"&gt;
+	&lt;a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add"&gt;&lt;/a&gt;
+	&lt;a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-save"&gt;&lt;/a&gt;
+&lt;/div&gt;
+</pre>
+</td>
+<td>null</td>
+</tr>
+<tr>
+<td>toolPosition</td>
+<td>string</td>
+<td>
+The toolbar position. Possible values: 'left','right'.
+Available since version 1.3.2.
+</td>
+<td>right</td>
+</tr>
+<tr>
+<td>tabPosition</td>
+<td>string</td>
+<td>
+The tab position. Possible values: 'top','bottom','left','right'.
+Available since version 1.3.2.
+</td>
+<td>top</td>
+</tr>
+<tr>
+<td>headerWidth</td>
+<td>number</td>
+<td>
+The tab header width, it is valid only when tabPosition is set to 'left' or 'right'.
+Available since version 1.3.2.
+</td>
+<td>150</td>
+</tr>
+<tr>
+<td>tabWidth</td>
+<td>number</td>
+<td>The width of tab strip. Available since version 1.3.4.</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>tabHeight</td>
+<td>number</td>
+<td>The height of tab strip. Available since version 1.3.4.</td>
+<td>27</td>
+</tr>
+<tr>
+<td>selected</td>
+<td>number</td>
+<td>The initialized selected tab index. Available since version 1.3.5.</td>
+<td>0</td>
+</tr>
+<tr>
+<td>showHeader</td>
+<td>boolean</td>
+<td>True to display tabs header. Available since version 1.3.5.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>justified</td>
+<td>boolean</td>
+<td>True to make tab strips equal widths of their parent container. Available since version 1.4.2.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>narrow</td>
+<td>boolean</td>
+<td>True to remove the space between tab strips. Available since version 1.4.2.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>pill</td>
+<td>boolean</td>
+<td>True to make tab strips look like pills. Available since version 1.4.2.</td>
+<td>false</td>
+</tr>
+
+</table>
+
+<h4>Events</h4>
+<table class="doc-table">
+
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Parameters</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+<tr>
+<td>onLoad</td>
+<td>panel</td>
+<td>Fires when an ajax tab panel finish loading remote data.</td>
+</tr>
+<tr>
+
+<td>onSelect</td>
+<td>title,index</td>
+<td>Fires when user select a tab panel.</td>
+</tr>
+<tr>
+<td>onUnselect</td>
+<td>title,index</td>
+<td>Fires when user unselect a tab panel. Available since version 1.3.5.</td>
+</tr>
+<tr>
+<td>onBeforeClose</td>
+<td>title,index</td>
+<td>
+Fires before the tab panel is closed, return false to cancel this close action.
+The example below shows how to show confirm dialog before closing tab panel.
+<pre>
+$('#tt').tabs({
+  onBeforeClose: function(title){
+	return confirm('Are you sure you want to close ' + title);
+  }
+});
+// using the async confirm dialog
+$('#tt').tabs({
+  onBeforeClose: function(title,index){
+	var target = this;
+	$.messager.confirm('Confirm','Are you sure you want to close '+title,function(r){
+		if (r){
+			var opts = $(target).tabs('options');
+			var bc = opts.onBeforeClose;
+			opts.onBeforeClose = function(){};  // allowed to close now
+			$(target).tabs('close',index);
+			opts.onBeforeClose = bc;  // restore the event function
+		}
+	});
+	return false;	// prevent from closing
+  }
+});
+</pre>
+</td>
+</tr>
+<tr>
+<td>onClose</td>
+
+<td>title,index</td>
+<td>Fires when user close a tab panel.</td>
+</tr>
+<tr>
+<td>onAdd</td>
+<td>title,index</td>
+<td>Fires when a new tab panel is added.</td>
+</tr>
+<tr>
+<td>onUpdate</td>
+<td>title,index</td>
+
+<td>Fires when a tab panel is updated.</td>
+</tr>
+<tr>
+<td>onContextMenu</td>
+<td>e, title,index</td>
+<td>Fires when a tab panel is right clicked.</td>
+</tr>
+</table>
+
+<h4>Methods</h4>
+<table class="doc-table">
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+<tr>
+<td>options</td>
+<td>none</td>
+
+<td>Return the tabs options.</td>
+</tr>
+<tr>
+<td>tabs</td>
+<td>none</td>
+<td>Return all tab panels.</td>
+</tr>
+<tr>
+<td>resize</td>
+<td>none</td>
+<td>Resize the tabs container and do layout.</td>
+
+</tr>
+<tr>
+<td>add</td>
+<td>options</td>
+<td>
+Add a new tab panel, the options parameter is a config object, see tab panel properties for more details.
+When adding a new tab panel, it will become selected. <br/>
+To add a unselected tab panel, remember to set 'selected' property to false.
+<pre>
+// add a unselected tab panel
+$('#tt').tabs('add',{
+	title: 'new tab',
+	selected: false
+	//...
+});
+// insert a tab panel to the index 2
+$('#tt').tabs('add',{
+	title: 'inserted tab',
+	index: 2
+})
+</pre>
+</td>
+</tr>
+<tr>
+<td>close</td>
+<td>which</td>
+<td>Close a tab panel, the 'which' parameter can be the title or index of tab panel to be closed.</td>
+</tr>
+
+<tr>
+<td>getTab</td>
+<td>which</td>
+<td>Get the specified tab panel, the 'which' parameter can be the title or index of tab panel.</td>
+</tr>
+<tr>
+<td>getTabIndex</td>
+<td>tab</td>
+<td>Get the specified tab panel index</td>
+</tr>
+<tr>
+<td>getSelected</td>
+<td>none</td>
+<td>
+Get the selected tab panel. The example below shows how to get the index of selected tab panel.
+<pre>
+var tab = $('#tt').tabs('getSelected');
+var index = $('#tt').tabs('getTabIndex',tab);
+alert(index);
+</pre>
+</td>
+</tr>
+<tr>
+
+<td>select</td>
+<td>which</td>
+<td>Select a tab panel, the 'which' parameter can be the title or index of tab panel.</td>
+</tr>
+<tr>
+<td>unselect</td>
+<td>which</td>
+<td>
+Select a tab panel, the 'which' parameter can be the title or index of tab panel.
+Available since version 1.3.5.
+</td>
+</tr>
+<tr>
+<td>showHeader</td>
+<td>none</td>
+<td>Show the tabs header. Available since version 1.3.5.</td>
+</tr>
+<tr>
+<td>hideHeader</td>
+<td>none</td>
+<td>Hide the tabs header. Available since version 1.3.5.</td>
+</tr>
+<tr>
+<td>showTool</td>
+<td>none</td>
+<td>Show the tabs tools. Available since version 1.4.3.</td>
+</tr>
+<tr>
+<td>hideTool</td>
+<td>none</td>
+<td>Hide the tabs tools. Available since version 1.4.3.</td>
+</tr>
+<tr>
+<td>exists</td>
+<td>which</td>
+<td>Indicate if the special panel is exists, the 'which' parameter can be the title or index of tab panel.</td>
+</tr>
+<tr>
+<td>update</td>
+<td>param</td>
+<td>
+Update the specified tab panel, the param parameter contains two properties:<br />
+tab: the tab panel to be updated.<br />
+type: the updating type, available values are: 'header','body','all'.<br/>
+options: the panel options.<br/>
+<br/>
+Code example:
+<pre>
+// update the selected panel with new title and content
+var tab = $('#tt').tabs('getSelected');  // get selected panel
+$('#tt').tabs('update', {
+	tab: tab,
+	options: {
+		title: 'New Title',
+		href: 'get_content.php'  // the new content URL
+	}
+});
+</pre>
+<pre>
+// call 'refresh' method for tab panel to update its content
+var tab = $('#tt').tabs('getSelected');  // get selected panel
+tab.panel('refresh', 'get_content.php');
+</pre>
+</td>
+</tr>
+<tr>
+<td>enableTab</td>
+<td>which</td>
+<td>
+Enable the specified tab panel, the 'which' parameter can be the title or index of tab panel.
+Available since version 1.3.
+<p>Code example:</p>
+<pre>
+$('#tt').tabs('enableTab', 1);	// enable the second tab panel
+$('#tt').tabs('enableTab', 'Tab2');	enable the tab panel that has 'Tab2' title
+</pre>
+</td>
+</tr>
+<tr>
+<td>disableTab</td>
+<td>which</td>
+<td>
+Disable the specified tab panel, the 'which' parameter can be the title or index of tab panel.
+Available since version 1.3.
+<p>Code example:</p>
+<pre>
+$('#tt').tabs('disableTab', 1);	// disable the second tab panel.
+</pre>
+</td>
+</tr>
+<tr>
+<td>scrollBy</td>
+<td>deltaX</td>
+<td>
+Scroll the tab header by the specified amount of pixels,
+negative values scroll to the right, positive values scroll to the left.
+Available since version 1.3.2.
+<p>Code example:</p>
+<pre>
+// scroll the tab header to left
+$('#tt').tabs('scroll', 10);
+</pre>
+</td>
+</tr>
+</table>
+
+<h4>Tab Panel</h4>
+<p>The tab panel properties is defined in panel component, below is some common properties.</p>
+<table class="doc-table">
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>The id attribute of tab panel.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>title</td>
+
+<td>string</td>
+<td>The tab panel title text.</td>
+<td></td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>The tab panel content.</td>
+<td></td>
+</tr>
+<tr>
+<td>href</td>
+
+<td>string</td>
+<td>A URL to load remote content to fill the tab panel.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>boolean</td>
+<td>True to cache the tab panel, valid when href property is setted.</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td>iconCls</td>
+<td>string</td>
+<td>An icon CSS class to show on tab panel title.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>width</td>
+<td>number</td>
+<td>The width of tab panel.</td>
+
+<td>auto</td>
+</tr>
+<tr>
+<td>height</td>
+<td>number</td>
+<td>The height of tab panel.</td>
+<td>auto</td>
+</tr>
+<tr>
+<td>collapsible</td>
+<td>boolean</td>
+<td>True to allow tab panel to be collapsed.
+<td>false</td>
+</tr>
+</table>
+
+<p>Some added properties.</p>
+<table class="doc-table">
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+<tr>
+
+<td>closable</td>
+<td>boolean</td>
+<td>When set to true, the tab panel will show a closable button which can be clicked to close the tab panel.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>selected</td>
+<td>boolean</td>
+<td>When set to true, the tab panel will be selected.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>boolean</td>
+<td>When set to true, the tab panel will be disabled.</td>
+<td>false</td>
+</tr>
+</table>
+
+</div>
+
+﻿			</div>
+		</div>
+		<div id="footer" class="content text-centered">
+			<div>Copyright © 2010-2017 www.jeasyui.com</div>
+		</div>
+	</body>
+</html>

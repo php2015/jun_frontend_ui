@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - Tree</title>
+
+    <link href="../../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.messager.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.window.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.dialog.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.tree.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var t = $("#tt");
+
+            $("#btn01").click(function () {
+                var node = t.tree("getSelected");
+                if (node == null) {
+                    return $.easyui.messager.show("请选择一行数据");
+                }
+                return $.easyui.showOption(node);
+            });
+
+            $("#btn02").click(function () {
+                var node = t.tree("getSelected");
+                alert(t.tree("getLevel", node.target));
+            });
+
+            $("#btn11").click(function () {
+                var a = t.tree("find", 1), b = t.tree("find", 11);
+                alert(t.tree("isParent", { target1: a.target, target2: b.target }));
+            });
+
+            $("#btn12").click(function () {
+                var a = t.tree("find", 1), b = t.tree("find", 11);
+                alert(t.tree("isChild", { target1: b.target, target2: a.target }));
+            });
+
+            $("#btn13").click(function () {
+                var a = t.tree("find", 11), b = t.tree("find", 13);
+                alert(t.tree("isSibling", { target1: a.target, target2: b.target }));
+            });
+
+            $("#btn14").click(function () {
+                var a = t.tree("find", 13), b = t.tree("find", 21);
+                alert(t.tree("compare", { target1: a.target, target2: b.target }));
+            });
+
+            $("#btn21").click(function () {
+                var node = t.tree("getSelected"),
+                    other = t.tree("prev", node.target);
+                $.easyui.showOption(other);
+            });
+
+            $("#btn22").click(function () {
+                var node = t.tree("getSelected"),
+                    other = t.tree("next", node.target);
+                $.easyui.showOption(other);
+            });
+
+            $("#btn23").click(function () {
+                var node = t.tree("getSelected"),
+                    others = t.tree("siblings", node.target);
+                alert(others.map(function (val) { return val.text; }).join(","));
+            });
+
+            $("#btn24").click(function () {
+                var node = t.tree("getSelected"),
+                    children = t.tree("getChildren", node.target);
+                alert(children.map(function (val) { return val.text; }).join(","));
+            });
+
+            $("#btn25").click(function () {
+                var node = t.tree("getSelected"),
+                    children = t.tree("getNearChildren", node.target);
+                alert(children.map(function (val) { return val.text; }).join(","));
+            });
+
+            $("#btn31").click(function () {
+                var node = t.tree("getSelected");
+                t.tree("unselect", node.target);
+            });
+
+            $("#btn34").click(function () {
+                t.tree("load");
+            });
+
+            $("#btn41").click(function () {
+                var node = t.tree("getSelected");
+                t.tree("setIcon", { target: node.target, iconCls: "icon-ok" });
+            });
+
+            $("#btn42").click(function () {
+                var node = t.tree("getSelected");
+                t.tree("setText", { target: node.target, text: "aasddf" + node.id });
+            });
+
+        });
+    </script>
+</head>
+<body id="cc" class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <ul id="tt" class="easyui-tree" data-options="
+            url: '../../../data/tree-data.json', method: 'get',
+            loading: 'mask', checkbox: true, cascadeCheck: true, onlyLeafCheck: false,
+            toggleOnClick: false, selectOnContextMenu: true, showOption: true, onlyNodeExpand: false,
+            contextMenu: [
+                {
+                    text: '测试菜单1', iconCls: 'icon-ok',
+                    handler: function (e, menuItemOpts, menuDOM, treeDOM, node) {
+                        $.easyui.showOption(node);
+                    }
+                }
+            ]
+            "></ul>
+        <hr />
+        <input class="easyui-combotree" data-options="
+            url: '../../../data/tree-data.json', method: 'get',
+            loading: 'mask',  multiple: true, cascadeCheck: true, onlyLeafCheck: false,
+            toggleOnClick: true, selectOnContextMenu: true, showOption: true, onlyNodeExpand: true,
+            contextMenu: [
+                {
+                    text: '测试菜单1', iconCls: 'icon-ok',
+                    handler: function (e, menuItemOpts, menuDOM, treeDOM, node) {
+                        $.easyui.showOption(node);
+                    }
+                }
+            ]
+            " />
+        <hr />
+        <a id="btn01" class="easyui-linkbutton">getNode</a>
+        <a id="btn02" class="easyui-linkbutton">getLevel</a>
+        <hr />
+        <a id="btn11" class="easyui-linkbutton">isParent</a>
+        <a id="btn12" class="easyui-linkbutton">isChild</a>
+        <a id="btn13" class="easyui-linkbutton">isSibling</a>
+        <a id="btn14" class="easyui-linkbutton">compare</a>
+        <hr />
+        <a id="btn21" class="easyui-linkbutton">prev</a>
+        <a id="btn22" class="easyui-linkbutton">next</a>
+        <a id="btn23" class="easyui-linkbutton">siblings</a>
+        <a id="btn24" class="easyui-linkbutton">getChildren</a>
+        <a id="btn25" class="easyui-linkbutton">getNearChildren</a>
+        <hr />
+        <a id="btn31" class="easyui-linkbutton">unselect</a>
+        <a id="btn32" class="easyui-linkbutton">move</a>
+        <a id="btn33" class="easyui-linkbutton">shit</a>
+        <a id="btn34" class="easyui-linkbutton">load</a>
+        <hr />
+        <a id="btn41" class="easyui-linkbutton">setIcon</a>
+        <a id="btn42" class="easyui-linkbutton">setText</a>
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+</body>
+</html>
+

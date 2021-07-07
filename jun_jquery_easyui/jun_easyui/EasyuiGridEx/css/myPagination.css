@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* 購買TP 的分頁控件樣式  引用時  記得在body 最後引用*/
+/** 自定義按鈕的樣式*/
+.box_h{text-align:center; line-height:32px; margin: 11px;}
+.box_h .info_z{margin-top:1px;}
+.box_h .box_btn{width:90px; margin:12px auto 0; height:32px}
+.span_f{font-weight:bold;}
+
+.first_last{
+    padding: 4px 9px;
+    border:1px solid #ccc;
+    margin-right:6px
+}
+.first_last:hover{
+	background:#ddd;
+}
+.first_last.over{
+	background:#ddd;
+}
+/* 重寫 原 分頁控件樣式*/
+.l-btn-plain{
+	border:1px solid #ccc;
+	border-radius:0px;
+	margin-right:6px
+}
+.l-btn-plain:hover{
+	border:1px solid #ccc;
+	border-radius:0px;
+	color:#bf1c03
+}
+.l-btn-plain-selected
+{color:#bf1c03}
+.pagination,.datagrid-pager{
+	background: #ffffff;
+	
+}
+.datagrid-header{
+border-color: rgb(255, 255, 255);
+}
+.datagrid .datagrid-pager{
+border-style: hidden;}
+
+.pagination span{font-size:14px}
+
+.pagination-info{font-size:14px}

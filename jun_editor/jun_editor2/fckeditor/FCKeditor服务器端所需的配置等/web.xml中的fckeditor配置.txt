@@ -1,0 +1,12 @@
+	<!-- ~~~~~~~~~~~~  FCKeditor 有关配置  ~~~~~~~~~~~~~~~~~~ -->
+	<servlet>
+		<servlet-name>Connector</servlet-name>
+		<servlet-class>cn.itcast.bbs.fckeditor.ConnectorServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+    
+	<servlet-mapping> 
+		<servlet-name>Connector</servlet-name>
+		<url-pattern>/fckeditor/editor/filemanager/connectors/*</url-pattern>
+	</servlet-mapping>
+	<!-- ~~~~~~~~~~~~~~  FCKeditor 有关配置结束  ~~~~~~~~~~~~~~~~~ -->

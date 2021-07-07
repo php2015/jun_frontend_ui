@@ -1,0 +1,8 @@
+1，把目录 fckeditor/ 拷贝到工程中就可以使用了。
+2，如果要使用文件上传的功能，还需要配置服务器端：
+	1，把相关jar包添加到项目中
+	2，把配置文件fckeditor.properties放在classpath根目录中。
+	3，在web.xml中配置一个接收上传文件的 ConnectorServlet。
+
+
+说明：配置服务器端的样本与jar包在目录 "FCKeditor服务器端所需的配置等" 中。

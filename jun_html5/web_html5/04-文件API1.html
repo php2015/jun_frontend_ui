@@ -1,0 +1,35 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="Scripts/jquery-1.5.1.js"></script>
+<script type="text/javascript">
+
+	function getFileInfo() {
+		var FileList = document.getElementById("file").files;
+		
+		for(var i = 0; i < FileList.length; i++){
+			var file = FileList[i];
+			
+			var name = file.name;
+			var type = file.type;
+			var size = file.size;
+			var lastModifiedDate = file.lastModifiedDate;
+			
+			$("#result").append("<p> name: "+ name +"-----type: "+ type +"----size: "+ size +"-----lastModifiedDate: "+ lastModifiedDate +" </p>");
+		}
+		
+	}
+</script>
+
+</head>
+<body>
+
+<input type="file" multiple="multiple" id="file">
+<input type="button" value="获取文件基本信息" onclick="getFileInfo()">
+
+<div id="result"></div>
+
+</body>
+</html>

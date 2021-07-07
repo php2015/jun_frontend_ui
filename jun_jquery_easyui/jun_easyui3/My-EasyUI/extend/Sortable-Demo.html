@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+	<title>Sortable. No jQuery.</title>
+	<script src="../jquery.min.js"></script>
+	<style type="text/css">
+
+.sortable-chosen {}
+.sortable-ghost {opacity:0.2;}
+.block__list_words{
+	max-width: 360px; background-color: #fff;
+	margin: 0;padding: 0;
+}
+.block__list_words ul {margin: 0;padding: 0;}
+.block__list_words li {
+	margin: 0;padding: 0;list-style: none;
+	background-color: #fff;padding: 10px 40px;
+}
+.block__list_words .sortable-ghost {
+	opacity: 0.4;background-color: #F4E2C9;
+}
+.block__list_words li:first-letter {
+	text-transform: uppercase;
+}
+.drag-handle {
+	margin-right: 10px;font: bold 20px Sans-Serif;color: #5F9EDF;
+	display: inline-block;cursor: move;cursor: -webkit-grabbing;  /* overrides 'move' */
+}
+.block__list-title {
+	margin: 0px 0 0;padding: 10px;text-align: center;background: #5F9EDF;
+}
+.block__list {
+	/*max-width: 360px; background-color: #fff;
+    padding: 0px;margin: 0px;
+	padding: 20px 0;margin-top: -8px;margin-left: 5px;*/
+}
+.block__list li { cursor: move; } /* 加上这个整个li都可以拖动，否则只拖动drag-handle */
+
+
+	
+
+	</style>
+</head>
+<body style="background-image: linear-gradient(to bottom, #F4E2C9 20%, #F4D7C9 100%);">
+<div style="padding:50px 20px 20px 200px;">
+
+		<div class="block__list_words block__list" style="display: inline-block;">
+			<div class="block__list-title">List A</div>
+			<input type="hidden" id="itemlist" name="itemlist" value="11,12,13,14,15,16,17,18">
+			<ul id="my-ui-list">
+				<li data-id='11'><span class="drag-handle">&#9776;</span> 11、бегемот</li>
+				<li data-id='12'><span class="drag-handle">&#9776;</span> 12、корм</li>
+				<li data-id='13'><span class="drag-handle">&#9776;</span> 13、антон</li>
+				<li data-id='14'><span class="drag-handle">&#9776;</span> 14、сало</li>
+				<li data-id='15'><span class="drag-handle">&#9776;</span> 15、железосталь</li>
+				<li data-id='16'><span class="drag-handle">&#9776;</span> 16、валик</li>
+				<li data-id='17'><span class="drag-handle">&#9776;</span> 17、кровать</li>
+				<li data-id='18'><span class="drag-handle">&#9776;</span> 18、краб</li>
+			</ul>
+		</div>
+		
+		<div class="" style="display:inline-block;padding-left:50px; vertical-align: top;">
+		<input type="button" value="变化的序列" onclick="changeList()">
+		<script type="text/javascript">
+		function changeList(){
+			var oldStr = $('#itemlist').val();
+			var oldArr = oldStr.split(',');
+			var newArr = st.toArray();
+			$('#itemlist').val(newArr);	// 注释掉此行则与最开始的顺序比较
+			var changeArr=new Object()
+			for(var i=0; i<newArr.length; i++){
+				if(oldArr[i]!=newArr[i]){
+					changeArr[newArr[i]] = (i+1);
+				}
+			}
+			$("#change-list").append( JSON.stringify(changeArr)+"<br>");
+			//提交后转json处理 $arr = json_decode($str,true);
+		}
+		</script>
+		<div id="change-list"></div>
+
+		</div>
+<br><br>
+jQuery UI 实例: <a href="http://www.runoob.com/jqueryui/example-sortable.html" target="_blank">http://www.runoob.com/jqueryui/example-sortable.html</a>
+<br><br>
+
+
+
+
+
+	<script src="Sortable.min.js"></script>
+	<script>
+// Simple list
+var list = document.getElementById("my-ui-list");
+var st = new Sortable(list,{
+        update: function(){ 
+             var new_order = []; 
+             list.children("li").each(function() { 
+                new_order.push(this.html()); 
+             }); 
+             var newid = new_order.join(','); 
+             var oldid = $orderlist.val(); 
+			 alert(newid);
+			 alert(oldid);
+			 /*
+             $.ajax({ 
+                type: "post", 
+                url: "update.php", //服务端处理程序 
+                data: { id: newid, order: oldid },   //id:新的排列对应的ID,order：原排列顺序 
+                beforeSend: function() { 
+                     $show.html("<img src='load.gif' /> 正在更新"); 
+                }, 
+                success: function(msg) { 
+                     //alert(msg); 
+                     $show.html(""); 
+                } 
+             }); 
+			 */
+        }
+	}); // That's all.
+
+//$("#sortable").sortable(); //将sortable变成可排序的
+//$("#sortable").disableSelection(); //使文本不可被选中
+</script>
+</div>
+</body>
+</html>

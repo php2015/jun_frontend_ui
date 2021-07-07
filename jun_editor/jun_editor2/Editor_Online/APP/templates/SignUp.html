@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+  <div class="container" style="width: 300px;">
+    <form class="form-signin" method="post">
+      <h2 class="form-signin-heading">Please Sign In</h2>
+
+      <label class="sr-only">Email address</label>
+      <span class="text-warning">
+      {% if form.email.errors %}
+        {{ form.email.errors[0] }}
+      {% endif %}
+      </span>
+      {{ form.email(placeholder='Email address', class='form-control') }}
+      <br>
+
+      <label class="sr-only">User Name</label>
+     <span class="text-warning">
+      {% if form.username.errors[0] %}
+        {{ form.username.errors[0] }}
+      {% endif %}
+     </span>
+      {{ form.username(placeholder='Username', class='form-control') }}
+      <br>
+
+      <label class="sr-only">Password</label>
+      <span class="text-warning">
+      {% if form.password.errors %}
+        {{ form.password.errors[0] }}
+      {% endif %}
+      </span>
+      {{ form.password(placeholder='Password', class='form-control') }}
+
+      <br>
+      {{ form.csrf_token }}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in </button>
+
+    </form>
+  </div>
+{% endblock %}

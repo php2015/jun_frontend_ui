@@ -1,0 +1,24 @@
+{
+  "name": "easy-code-front",
+  "description": "easy-code-front",
+  "main": "js/app.js",
+  "authors": [
+    "TaoMingkai"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.9",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.0",
+    "jquery.scrollTo": "~2.1.2"
+  }
+}

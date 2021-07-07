@@ -1,0 +1,1 @@
+<?php $ELEMENT_ARRAY = 'a:0:{}' ?>

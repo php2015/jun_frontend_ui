@@ -1,0 +1,351 @@
+.nt {
+	font-size: 14px;
+}
+pre {
+	font-size: 14px;
+}
+.terminal {
+	font-size: 14px;
+}
+code {
+	font-size: 14px;
+}
+.prop {
+	font-size: 14px;
+}
+.esstring {
+	font-size: 14px;
+}
+.javavalue {
+	font-size: 14px;
+}
+.idlident {
+	font-size: 14px;
+}
+.idlstring {
+	font-size: 14px;
+}
+.xattr {
+	font-size: 14px;
+}
+.regex {
+	font-size: 14px;
+}
+.prod-number {
+	font-size: 14px;
+}
+.prod-lines {
+	font-size: 14px;
+}
+.prod-mid {
+	font-size: 14px;
+}
+pre code {
+	font-size: 14px !important;
+}
+.prod-lines .nt {
+	font-size: 14px !important;
+}
+.terminal {
+	background: rgb(217, 232, 255);
+}
+code {
+	background: rgb(217, 232, 255);
+}
+.prop {
+	background: rgb(217, 232, 255);
+}
+.esstring {
+	background: rgb(217, 232, 255);
+}
+.javavalue {
+	background: rgb(217, 232, 255);
+}
+.idlident {
+	background: rgb(217, 232, 255);
+}
+.idlstring {
+	background: rgb(217, 232, 255);
+}
+.example {
+	background: rgb(217, 232, 255);
+}
+.note {
+	background: rgb(217, 232, 255);
+}
+blockquote {
+	background: rgb(217, 232, 255);
+}
+td code {
+	background: inherit;
+}
+.example blockquote {
+	background: rgb(240, 246, 255);
+}
+table.grammar {
+	background: rgb(238, 238, 238);
+}
+.ednote {
+	background: rgb(248, 238, 238); margin: 1em 2em; padding: 0px 1em; border-top-color: red; border-bottom-color: red; border-top-width: 3px; border-bottom-width: 3px; border-top-style: solid; border-bottom-style: solid;
+}
+.ednoteHeader {
+	padding-top: 0.5em; font-weight: bold; display: block;
+}
+.toc ul li {
+	margin-top: 0px; margin-bottom: 0px; list-style-type: none;
+}
+.toc ul {
+	margin-bottom: 0.5em;
+}
+.terminal {
+	font-family: monospace !important;
+}
+code {
+	font-family: monospace !important;
+}
+.prop {
+	font-family: monospace !important;
+}
+.esstring {
+	font-family: monospace !important;
+}
+.javavalue {
+	font-family: monospace !important;
+}
+.idlident {
+	font-family: monospace !important;
+}
+.idlstring {
+	font-family: monospace !important;
+}
+.input {
+	font-family: monospace !important;
+}
+pre.code code {
+	background: inherit;
+}
+.propattrset {
+	
+}
+.xattr {
+	font-family: monospace;
+}
+table {
+	border-style: hidden hidden none; border-collapse: collapse;
+}
+table thead {
+	border-bottom-color: currentColor; border-bottom-width: medium; border-bottom-style: solid;
+}
+table tbody th:first-child {
+	border-left-color: currentColor; border-left-width: medium; border-left-style: solid;
+}
+table td {
+	padding: 0.2em; vertical-align: top; border-right-color: currentColor; border-bottom-color: currentColor; border-left-color: currentColor; border-right-width: medium; border-bottom-width: thin; border-left-width: medium; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;
+}
+table th {
+	padding: 0.2em; vertical-align: top; border-right-color: currentColor; border-bottom-color: currentColor; border-left-color: currentColor; border-right-width: medium; border-bottom-width: thin; border-left-width: medium; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;
+}
+.nt {
+	font-family: monospace; white-space: nowrap;
+}
+.prod-lines {
+	font-family: monospace; white-space: nowrap;
+}
+.idltype {
+	font-weight: bold;
+}
+.idlvalue {
+	font-weight: bold;
+}
+.idlop {
+	font-weight: bold;
+}
+.esvalue {
+	font-weight: bold;
+}
+.estype {
+	font-weight: bold;
+}
+.javatype {
+	font-weight: bold;
+}
+.javapkg {
+	font-weight: bold;
+}
+.regex {
+	font-family: monospace; white-space: nowrap;
+}
+.typevar {
+	font-style: italic;
+}
+.example {
+	margin: 1em 2em; padding: 0px 1em; border-top-color: rgb(0, 90, 156); border-bottom-color: rgb(0, 90, 156); border-top-width: 3px; border-bottom-width: 3px; border-top-style: solid; border-bottom-style: solid;
+}
+.note {
+	margin: 1em 2em; padding: 0px 1em; border-top-color: rgb(0, 90, 156); border-bottom-color: rgb(0, 90, 156); border-top-width: 3px; border-bottom-width: 3px; border-top-style: solid; border-bottom-style: solid;
+}
+.exampleHeader {
+	color: black; padding-top: 0.5em; font-weight: bold; display: block;
+}
+.noteHeader {
+	color: black; padding-top: 0.5em; font-weight: bold; display: block;
+}
+pre {
+	margin: 0px; overflow: auto; font-family: monospace;
+}
+pre.code {
+	margin: 0px 0px 1em; padding: 0px 1em;
+}
+.block {
+	background: rgb(240, 246, 255); border-width: 1px medium; border-style: solid none; border-color: rgb(144, 184, 222) currentColor; margin: 1em 2em; padding: 0px 0.5em 0.5em;
+}
+.blockTitleDiv {
+	text-align: left;
+}
+.blockTitle {
+	background: rgb(144, 184, 222); padding: 0.25em 1em; left: -1.5em; top: -0.75em; color: white; font-size: 80%; font-weight: bold; position: relative;
+}
+dfn {
+	font-style: italic; font-weight: bold;
+}
+.dfnref {
+	
+}
+li {
+	margin-top: 0.5em; margin-bottom: 0.5em;
+}
+ul > li {
+	list-style-type: disc;
+}
+.norm {
+	font-style: italic;
+}
+.rfc2119 {
+	text-transform: lowercase; font-variant: small-caps;
+}
+dfn var {
+	font-style: normal;
+}
+blockquote {
+	padding: 1px 1em; margin-right: 2em; margin-left: 2em;
+}
+a.placeholder {
+	color: rgb(0, 0, 238);
+}
+dl.changes > dd {
+	margin-left: 0px;
+}
+dd > :first-child {
+	margin-top: 0px;
+}
+caption {
+	font-weight: bold; margin-top: 1em; caption-side: bottom;
+}
+body {
+	line-height: 1.3;
+}
+.section-link {
+	display: none;
+}
+.section-link {
+	width: 1px; height: 1px; overflow: visible; font-size: 10pt; font-style: normal; visibility: hidden;
+}
+.section-link a {
+	color: rgb(102, 102, 102); font-weight: bold; text-decoration: none;
+}
+.section-link a:hover {
+	color: rgb(204, 0, 0);
+}
+.section > *:hover > .section-link {
+	visibility: visible;
+}
+div.set {
+	text-indent: -1em; margin-left: 3em;
+}
+ol.algorithm ol {
+	margin-left: 1em; border-left-color: rgb(144, 184, 222); border-left-width: 1px; border-left-style: solid;
+}
+dl.switch > dd > ol.only {
+	margin-left: 0px;
+}
+dl.switch {
+	padding-left: 2em;
+}
+dl.switch > dt {
+	text-indent: -1.5em; margin-top: 1em;
+}
+dl.switch > dt + dt {
+	margin-top: 0px;
+}
+dl.switch > dt::before {
+	padding: 0px 0.5em 0px 0px; width: 1em; text-align: right; line-height: 0.5em; display: inline-block; content: "\21AA";
+}
+.diagram {
+	text-align: center;
+}
+iframe {
+	border: 0px currentColor;
+}
+.ignore {
+	opacity: 0.5;
+}
+.comment {
+	color: rgb(0, 90, 156);
+}
+.matrix {
+	margin-right: auto; margin-left: auto; border-collapse: collapse;
+}
+.matrix th {
+	background: rgb(217, 232, 255); text-align: right;
+}
+.matrix td {
+	padding: 4px; border: 1px solid rgb(144, 184, 222);
+}
+.matrix th {
+	padding: 4px; border: 1px solid rgb(144, 184, 222);
+}
+.matrix th.corner {
+	border: 0px currentColor;
+}
+.matrix td {
+	background: rgb(240, 246, 255); text-align: center;
+}
+.matrix .belowdiagonal {
+	background: rgb(221, 221, 221);
+}
+ul.notes {
+	padding-left: 0px; font-size: 90%;
+}
+ul.notes li {
+	list-style-type: none;
+}
+ul.notes .note-link {
+	vertical-align: super;
+}
+.note-link {
+	font-size: 90%;
+}
+.code var {
+	color: rgb(255, 68, 68);
+}
+body.dfnEnabled dfn {
+	cursor: pointer;
+}
+.dfnPanel {
+	background: rgb(221, 221, 221); font: small/normal sans-serif; padding: 0.5em 0.75em; border: 0.2em outset currentColor; width: auto; height: auto; color: black; display: inline; position: absolute; cursor: default; font-size-adjust: none; font-stretch: normal;
+}
+.dfnPanel * {
+	font: inherit; margin: 0px; padding: 0px; text-indent: 0px; font-size-adjust: inherit; font-stretch: inherit;
+}
+.dfnPanel :link {
+	color: black;
+}
+.dfnPanel :visited {
+	color: black;
+}
+.dfnPanel p {
+	font-weight: bolder;
+}
+.dfnPanel li {
+	list-style-position: inside;
+}

@@ -1,0 +1,16 @@
+
+异常：java.lang.ClassCastException: org.apache.catalina.util.DefaultAnnotationProcessor
+解决：删除work下的临时文件
+
+java.lang.LinkageError: loader constraints violated when linking javax/el/ExpressionFactory class
+解决：错误的原因是tomcat/lib下的el-api.jar与项目WEB-INF/lib目录下的el-api.jar冲突，把项目目录下的el-api.jar删除即可
+
+
+异常：java.lang.ClassNotFoundException: org.jbpm.web.JobExecutorLauncher
+解决：Upgrading jBPM from 3.1.2 to 3.2.3
+
+
+异常：Caused by: java.lang.UnsupportedClassVersionError: Bad version number in .class file
+解决：将eclipse的编译器版本修改下
+
+

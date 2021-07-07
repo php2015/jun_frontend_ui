@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>layout后台布局 - Layui</title>
+<!-- layui 1.0.9 -->
+<link rel="stylesheet" href="plugins/layui/css/layui.css">
+<link rel="stylesheet" href="plugins/layui/css/global.css">
+<!-- Bootstrap 3.3.5 -->
+<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.css">
+<!-- 字体图标 http://fontawesome.dashgame.com/ -->
+<link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- Tab -->
+<link rel="stylesheet" href="plugins/bootstrap-multitabs/css/style.css">
+<!-- 自写 -->
+<link rel="stylesheet" href="css/css.css">
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="plugins/pace/pace.min.js"></script>
+	
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+	<!--div class="layui-header header header-demo"-->
+	<div class="layui-header shu-header">
+		<!--头部区域-->
+		<div class="shu-logo">
+			<a href="#">Admin</a>
+		</div>
+		<div class="shu-an">
+			<div class="admin-side-toggle">
+				<i class="fa fa-bars"></i>
+			</div>
+			<div class="admin-side-full">
+				<i class="fa fa-dot-circle-o"></i>
+			</div>
+		</div>
+		<div class="shu-header-right">
+		<ul class="layui-nav">
+			<li class="layui-nav-item">
+				<a href="javascript:;">清除缓存</a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">浏览网站</a>
+			</li>
+			<li class="layui-nav-item" id="video1">
+				<a href="javascript:;">视频</a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="javascript:;" class="admin-header-user">
+					<img src="images/0.jpg" />
+					<span>Admin</span>
+				</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a href="javascript:;"><i class="fa fa-user-circle-o" style="font-size:10px;"></i> 个人信息</a>
+					</dd>
+					<dd>
+						<a href="javascript:;"><i class="fa fa-cog" style="padding-right: 1px;"></i> 设置</a>
+					</dd>
+					<dd id="lock">
+						<a href="javascript:;">
+							<i class="fa fa-lock" style="padding-right: 3px; padding-left:1px;"></i> 锁屏 (Alt+L)
+						</a>
+					</dd>
+					<dd>
+						<a href="login.html"><i class="fa fa-reply"></i> 注销</a>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="shu-mobile">
+			<li class="layui-nav-item">
+				<a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+			</li>
+		</ul>
+	</div>
+	</div>
+	
+	<div class="layui-side layui-bg-black shu-left">
+		<div class="layui-side-scroll">
+			<ul class="layui-nav layui-nav-tree" lay-filter="ce">
+				<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+				<li class="layui-nav-item layui-nav-itemed"> <a href="javascript:;"><i class="fa fa-bars"></i> IFRAME解决方案</a>
+					<dl class="layui-nav-child">
+						<dd><a class="multitabs" href="#pages/home.html" data-content="main"><i class="fa fa-bars"></i> 首页ajax</a></dd>
+						<dd><a class="multitabs" href="#pages/index-1.html" data-content="info" data-iframe="true" ><i class="fa fa-bars"></i> iframe INFO tab 1</a></dd>
+                        <dd><a class="multitabs" href="#pages/index-2.html" data-content="info" data-iframe="true" ><i class="icon-beaker"></i> iframe MAIN tab 2</a></dd>
+                        <dd><a class="multitabs" href="#pages/index-3.html" data-content="info" data-iframe="true" ><i class="icon-beaker"></i> iframe INFO tab 3</a></dd>
+                        <dd><a class="multitabs" href="pages/index-4.html" data-content="info" data-iframe="true"><i class="icon-beaker"></i> iframe INFO tab 4</a></dd>
+                        <dd><a class="multitabs" href="pages/index-5.html" data-content="info" data-iframe="true"><i class="icon-beaker"></i> iframe INFO tab 5</a></dd>
+                        <dd><a class="multitabs" href="pages/index-6.html" data-content="info" data-iframe="true"><i class="icon-beaker"></i> iframe INFO tab 6</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item"> <a href="javascript:;">AJAX解决方案</a>
+					<dl class="layui-nav-child">
+						<dd><a class="multitabs" href="pages/index-ajax-1.html" data-content="info">ajax-1 info</a></dd>
+						<dd><a class="multitabs" href="pages/index-ajax-2.html" data-content="info">ajax-2 info</a></dd>
+						<dd><a class="multitabs" href="pages/index-ajax-3.html" data-content="info">ajax-3 info</a></dd>
+						<dd><a class="multitabs" href="pages/index-ajax-4.html" data-content="info">ajax-4 info</a></dd>
+						<dd><a class="multitabs" href="pages/index-ajax-5.html" data-content="info">ajax-5 info</a></dd>
+						<dd><a class="multitabs" href="pages/index-ajax-6.html" data-content="info">ajax-6 info</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+
+	 
+	<!-- 内容主体区域 --> 
+	<div class="shu-body content-wrapper" id="content_wrapper"></div>
+	 
+	
+	<div class="layui-footer shu-footer"> 
+		<!-- 底部固定区域 --> 
+		<div class="layui-main">
+			<p>2017 &copy;
+				我只是一个底部
+			</p>
+		</div>
+	</div>
+	<div class="site-tree-mobile layui-hide">
+		<i class="layui-icon">&#xe602;</i>
+	</div>
+	<div class="site-mobile-shade"></div>
+</div>
+<script src="plugins/layui/layui.js"></script>
+<!-- jQuery 2.2.0 -->
+<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- Multi Tabs -->
+<script src="plugins/bootstrap-multitabs/js/multitabs.js"></script>
+<script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use(['element','layer'], function(){
+	var element = layui.element();
+
+	
+	//定义侧边栏
+	$('.admin-side-toggle').on('click', function() {
+		var sideWidth = $('.layui-side').width();
+		if(sideWidth === 200) {
+			$(".shu-body").css({"margin-left":"0px"});
+			$('.layui-footer').animate({left: '0'});
+			$('.layui-side').animate({width: '0'});
+		} else {
+			$(".shu-body").css({"margin-left":"200px"});
+			$('.layui-footer').css({left: '200px'});
+			$('.layui-side').css({width: '200px'});
+		}
+	});
+	//定义侧边栏END
+	//定义全屏
+	$('.admin-side-full').on('click', function() {
+		var docElm = document.documentElement;
+		//W3C  
+		if(docElm.requestFullscreen) {
+			docElm.requestFullscreen();
+		}
+		//FireFox  
+		else if(docElm.mozRequestFullScreen) {
+			docElm.mozRequestFullScreen();
+		}
+		//Chrome等  
+		else if(docElm.webkitRequestFullScreen) {
+			docElm.webkitRequestFullScreen();
+		}
+		//IE11
+		else if(elem.msRequestFullscreen) {
+			elem.msRequestFullscreen();
+		}
+		layer.msg('按Esc即可退出全屏');
+	});
+	//全屏END
+	//视频弹窗
+	$('#video1').on('click', function() {
+		layer.open({
+			title: 'YouTube',
+			maxmin: true,
+			type: 2,
+			content: 'video.html',
+			area: ['800px', '500px']
+		});
+	});
+	//视频弹窗END
+	//锁屏
+	$(document).on('keydown', function() {
+		var e = window.event;
+		if(e.keyCode === 76 && e.altKey) {
+			//alert("你按下了alt+l");
+			lock($, layer);
+		}
+	});
+	$('#lock').on('click', function() {
+		lock($, layer);
+	});
+
+	//手机设备的简单适配
+	var treeMobile = $('.site-tree-mobile'),
+		shadeMobile = $('.site-mobile-shade');
+	treeMobile.on('click', function() {
+		$('body').addClass('site-mobile');
+	});
+	shadeMobile.on('click', function() {
+		$('body').removeClass('site-mobile');
+	});
+  //…
+});
+
+////锁屏
+var isShowLock = false;
+function lock($, layer) {
+	if(isShowLock)
+		return;
+	//自定页
+	layer.open({
+		title: false,
+		type: 1,
+		closeBtn: 0,
+		anim: 6,
+		content: $('#lock-temp').html(),
+		shade: [0.9, '#393D49'],
+		success: function(layero, lockIndex) {
+			isShowLock = true;
+			//给显示用户名赋值
+			layero.find('div#lockUserName').text('admin');
+			layero.find('input[name=lockPwd]').on('focus', function() {
+					var $this = $(this);
+					if($this.val() === '输入密码解锁..') {
+						$this.val('').attr('type', 'password');
+					}
+				})
+				.on('blur', function() {
+					var $this = $(this);
+					if($this.val() === '' || $this.length === 0) {
+						$this.attr('type', 'text').val('输入密码解锁..');
+					}
+				});
+			//在此处可以写一个请求到服务端删除相关身份认证，因为考虑到如果浏览器被强制刷新的时候，身份验证还存在的情况			
+			//do something...
+			//e.g. 
+			/*
+			 $.post(url,params,callback,'json');
+			 */
+			//绑定解锁按钮的点击事件
+			layero.find('button#unlock').on('click', function() {
+				var $lockBox = $('div#lock-box');
+
+				var userName = $lockBox.find('div#lockUserName').text();
+				var pwd = $lockBox.find('input[name=lockPwd]').val();
+				if(pwd === '输入密码解锁..' || pwd.length === 0) {
+					layer.msg('请输入密码..', {
+						icon: 2,
+						time: 1000
+					});
+					return;
+				}
+				unlock(userName, pwd);
+			});
+			/**
+			 * 解锁操作方法
+			 * @param {String} 用户名
+			 * @param {String} 密码
+			 */
+			var unlock = function(un, pwd) {
+				//这里可以使用ajax方法解锁
+				/*$.post('api/xx',{username:un,password:pwd},function(data){
+				 	//验证成功
+					if(data.success){
+						//关闭锁屏层
+						layer.close(lockIndex);
+					}else{
+						layer.msg('密码输入错误..',{icon:2,time:1000});
+					}					
+				},'json');
+				*/
+				isShowLock = false;
+				//演示：默认输入密码都算成功
+				//关闭锁屏层
+				layer.close(lockIndex);
+			};
+		}
+	});
+};
+</script>
+<!--锁屏模板 start-->
+<script type="text/template" id="lock-temp">
+	<div class="admin-header-lock" id="lock-box">
+		<div class="admin-header-lock-img">
+			<img src="images/0.jpg"/>
+		</div>
+		<div class="admin-header-lock-name" id="lockUserName">beginner</div>
+		<input type="text" class="admin-header-lock-input" value="输入密码解锁.." name="lockPwd" id="lockPwd" />
+		<button class="layui-btn layui-btn-small" id="unlock">解锁</button>
+	</div>
+</script>
+<!--锁屏模板 end -->
+<!--tab-->
+<script>
+    var multitabs = $('#content_wrapper').multitabs();
+</script>
+<!--tab end-->
+</body>
+</html>

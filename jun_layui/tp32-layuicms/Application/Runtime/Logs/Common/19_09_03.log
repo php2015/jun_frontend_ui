@@ -1,0 +1,48 @@
+[ 2019-09-03T06:21:07+08:00 ] ::1 /tp32-layuicms/index.php/json/newsList.json?page=1&limit=20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000362s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002620s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T06:29:38+08:00 ] ::1 /tp32-layuicms/index.php/json/newsList.json?page=1&limit=20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000872s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T06:30:15+08:00 ] ::1 /tp32-layuicms/index.php/json/newsList.json?page=1&limit=20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000843s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T06:30:38+08:00 ] ::1 /tp32-layuicms/index.php/json/newsList.json?page=1&limit=20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000734s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T06:31:16+08:00 ] ::1 /tp32-layuicms/index.php/json/newsList.json?page=1&limit=20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001147s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T14:08:06+08:00 ] ::1 /tp32-layuicms/index.php/json/userface.json?[object%20FormData]
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001012s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T15:27:35+08:00 ] ::1 /tp32-layuicms/index.php/json/userface.json?[object%20FormData]
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000193s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002713s ]
+ERR: 无法加载模块:Json
+
+[ 2019-09-03T23:22:50+08:00 ] ::1 /tp32-layuicms/index.php/images/userface1.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001380s ]
+ERR: 无法加载模块:Images
+

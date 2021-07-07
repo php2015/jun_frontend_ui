@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Content</title>
+</head>
+<body>
+<p style="font-size:14px">业态工程2.0研发规范</p>
+<ul>
+    <li>1. idea插件：由于工程中用到了lombok注解代码生成，需要在IDE中安装对应的lombok插件；</li>
+    <li>
+        2. Controller层：仅能包含数据的封装逻辑，一切业务逻辑降级到Service层，尽量保证Controller每个方法代码行数最多不超过20；<br>
+        &nbsp;&nbsp;（1）Controller类通过@ClassDoc来标注所属功能模块；<br>
+        &nbsp;&nbsp;（2）Controller类中方法通过@MethodDoc来标注请求方法明细；<br>
+        &nbsp;&nbsp;（3）APP请求token授权：如果Controller中的接口方法，需要APP Token校验授权，必须使用@HttpAuth(isRequireAuth = true,
+        isNeedReLoginWhenExpire = true)注解进行标示；<br>
+    </li>
+    <li>3. Service层：包含所有的业务逻辑处理，不能包含任何HttpServlet API；</li>
+    <li>4. 异常处理：Controller层，Service层中的代码不包含任何异常处理语句，一律将异常向上层抛出；</li>
+    <li>5. 请求加密：已在请求的拦截层做了处理，开发者无需关心；</li>
+    <li>6. 请求/响应JSON数据统一：已在请求的拦截层做了处理，开发者无需关心；</li>
+    <li>
+        7. App Version控制：Version控制已降级到Service处理，不同版本之间如果发生如下变化：<br>
+        &nbsp;&nbsp;（1）Controller URL改变：直接新增Controller方法处理，即可；<br>
+        &nbsp;&nbsp;（2）Controller URL没变，Service 入参没变，内部逻辑处理发生改变：如1.2.0 => list(), 1.3.0 => list1_3_0(),带有app
+        version版本号的请求会优先调用listX_X_X(),如果找不到，直接调用默认list()方法；<br>
+        &nbsp;&nbsp;（3）Controller URL没变，Service
+        入参改变，内部逻辑处理发生改变：直接新增Controller方法处理，即可；【尽量不要发生这种情况，会涉及到前端改动，所以设计Service层接口时，方法签名尽量保证版本兼容性。】<br>
+    </li>
+    <li>
+        8. 代码规范：<br>
+        &nbsp;&nbsp;（1）Controller层：包名：com.qding.xxx.controller，类名：XxxController，方法名：list=查询列表，page=分页列表，save=保存，modify=修改，remove=删除，detail=详情；<br>
+        &nbsp;&nbsp;（2）Service层：包名：com.qding.xxx.service，接口：XxxService，实现类：XxxServiceImpl，方法名：find=参数查询，getById=主键ID查询，findByIds=根据主键ids查询，page=分页查询，count=参数查询总数，findFirst=参数查询第一个，save=保存，batchSave=批量保存，saveSelective=选择保存，modify=修改，modifySelective=选择修改，remove=删除，batchRemove=批量删除；<br>
+        &nbsp;&nbsp;（3）DAO层：包名：com.qding.xxx.dao，接口：XxxDAO，方法名：insert=插入，insertBatch=批量插入，insertSelective=选择插入，selectByPrimaryKey=按主键查询，updateByPrimaryKeySelective=按主键选择更新，updateByPrimaryKey=按主键更新，selectByParams=按参数查询，selectFirstByParams=按参数查询第一个，countByParams=按参数查询数量，deleteByPrimaryKey=按主键删除，deleteBatchByPrimaryKey=按主键批量删除；<br>
+    </li>
+    <li>9. fast-server：一款轻量级WEB服务器，fast-server依赖于jetty-server嵌入式容器，可实现应用的快速启动，热部署等机制。使用方式：请修改对应的Main.java类，并通过主方法直接启动即可。</li>
+    <li>
+        10. <b>产品研发SVN规范：</b><br>
+        &nbsp;&nbsp;（1）项目提交：[项目名称]功能模块—简要描述，如：[千丁车保养]洗衣订单-订单列表；<br>
+        &nbsp;&nbsp;（2）Bug修改：[项目名称]Bug:bug号已修复，如：[千丁车保养]Bug:1902,1903,1904已修复；<br>
+        <br>
+        <b>API接口格式参照：</b>
+        <a href="http://wiki.qdingnet.com/pages/viewpage.action?pageId=6881518">http://wiki.qdingnet.com/pages/viewpage.action?pageId=6881518</a>
+    </li>
+</ul>
+</body>
+</html>

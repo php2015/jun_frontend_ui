@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jacarrichan.demo.lemur.mapper.CatMapper" >
+  <resultMap id="BaseResultMap" type="com.jacarrichan.demo.lemur.models.CatPo" >
+    <id column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="cat_name" property="catName" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cat_id, cat_name, color
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_cat
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByQuery" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_cat
+    <if test="catId != null">
+	    where cat_id = #{catId,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_cat
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jacarrichan.demo.lemur.models.CatPo" >
+    insert into tb_cat (cat_id, cat_name, color
+      )
+    values (#{catId,jdbcType=INTEGER}, #{catName,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jacarrichan.demo.lemur.models.CatPo" >
+    insert into tb_cat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="catName != null" >
+        cat_name,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="catName != null" >
+        #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jacarrichan.demo.lemur.models.CatPo" >
+    update tb_cat
+    <set >
+      <if test="catName != null" >
+        cat_name = #{catName,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jacarrichan.demo.lemur.models.CatPo" >
+    update tb_cat
+    set cat_name = #{catName,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR}
+    where cat_id = #{catId,jdbcType=INTEGER}
+  </update>
+</mapper>

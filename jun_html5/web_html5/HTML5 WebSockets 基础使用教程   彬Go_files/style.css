@@ -1,0 +1,303 @@
+/*  
+Theme Name: Illacrimo
+Theme URI: http://wp-themes.designdisease.com/illacrimo/
+Description: Designed by <a href="http://www.designdisease.com">Elena G.</a>.
+Version: 1.1
+Author: Design Disease
+Author URI: http://wp-themes.designdisease.com/
+*/
+body { background: #1a3265; font-family:"微软雅黑","宋体"，Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 0.75em; padding: 0px; margin: 0px; color:#35383d;}
+
+html { padding: 0; margin: 0;}
+
+a:link { text-decoration: none; color : #00a0e3; border: 0px;}
+a:active { text-decoration: underline; color : #00a0e3; border: 0px;}
+a:visited { text-decoration: none; color : #00a0e3; border: 0px;}
+a:hover	{ text-decoration: underline; color : #003399; border: 0px;} 
+a:focus { outline: none;}
+
+h1, h2, h3, h4 { font-family: "Trebuchet MS";}
+
+img { padding: 0px; margin: 0px; border: none; text-align: center;}
+hr { border-left:0px solid #abb0b5; border-right:0px solid #abb0b5; border-top:1px dotted #abb0b5; border-bottom:0px solid #abb0b5; height : 1px;  }
+
+form { padding: 0px; margin: 0px;}
+input { font-family: 'Verdana'; color: #282b31; font-size: 12px;}
+textarea { font-family: 'Verdana'; color: #282b31; font-size: 12px;}
+select { font-family: 'Verdana'; color: #282b31; font-size: 12px;}
+
+/* BGContainer +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.BGC { width: 1000px; margin: 0 auto; padding: 0px; position: relative; }
+
+/* Header +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/**/ * html .Header { height: 98px;} /* */ 
+.Header { background: url(images/HeaderBkg.jpg) repeat-x left top; width: 1000px; position: relative; clear: left; padding: 0px; min-height:98px;}
+
+.Header h1 { font-size: 28px; line-height: 28px; letter-spacing: -1px; padding: 27px 5px 0px 100px; margin: 0px; font-weight: normal;}
+.Header h1 a { color:#fff; text-decoration: none; }
+.Header h1 a:visited { color:#fff; text-decoration: none; }
+.Header h1 a:hover { color:#fff; text-decoration: none; }
+.Header .Desc { color:#75c0d9; font-size: 14px; line-height: 14px; font-weight: bold; letter-spacing: -1px; font-family: 'Arial'; padding: 0px; margin: 0px 0px 0px 100px;}
+.Header .LS { position: absolute; top: 30px; left: 30px; background: url(images/LogoIcon.png) no-repeat left top; width: 40px; height: 43px;}
+
+/* Menu +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Menu { background: #0097ca; width: 1000px;position: relative; float: left; height: 35px;}
+.Menu em { display: none}
+.Menu ul { list-style: none; margin: 0px; padding: 10px 0px 0px 30px;height: 35px !important; height: 30px; position:static !important;position: relative;top:16px;}
+.Menu ul li ul { display: none;}
+.Menu li { padding: 0px; margin: 0px; display: inline; font-size: 12px;height:auto !important;height: 25px;}
+.Menu a { padding: 0px 0px 0px 3px; margin-right: 2px; background: url(images/MLeft.png) no-repeat left top; float: left;}
+.Menu a span { padding: 6px 9px 6px 6px;height: 13px;display:block !important;display:inline; background: url(images/MRight.png) no-repeat right top; float: right; }
+.Menu a span { float: none; color: #FFF;}
+.Menu a:hover span { color: #FFF;}
+.Menu a:hover { background-position: 0% -25px ; color:#003399; text-decoration: none;cursor:pointer;}
+.Menu a:hover span { background-position: 100% -25px!important;background-position: 100% -21px; color:#003399;cursor:pointer;}
+.Menu .on { background: url(images/MLeft.png) no-repeat left bottom;background-position:0% -25px; color:#003399;}
+.Menu .on span { background: url(images/MRight.png) no-repeat right top;background-position:100% -25px !important;background-position: 100% -21px; color:#003399;}
+
+.Menu #feedCount {position:absolute;right:48px;top:5px;}
+
+.MTL { position: absolute; top: 0px; left: 0px; background: url(images/MTL.gif) no-repeat left top; height: 8px; width: 8px;}
+.MTR { position: absolute; top: 0px; right: 0px; background: url(images/MTR.gif) no-repeat left top; height: 8px; width: 8px;}
+
+/* Container +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.CON { background: #fff url(images/BGC.gif) repeat-y center; width: 1000px; float: left; position: relative; padding: 0px}
+
+/* Side Central Single +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.SCS { width: 500px; float: left; padding: 15px 20px 15px 20px; }
+.SCS h1 { font-size: 20px; font-weight: normal; background: url(images/PostHead.gif) repeat-x bottom; padding-bottom: 10px; letter-spacing: -1px; }
+.SCS h2 { font-size: 1.5em; font-weight: normal; }
+.SCS h3 { font-size: 1.16em; font-weight: bold; }
+
+.SCS p { font-size: 1em; line-height: 17px;}
+.SCS p strong {}
+.SCS img {}
+.SCS ul { padding: 10px 0px; margin: 0px; }
+.SCS li { padding: 2px 0px 2px 15px; list-style-type: none; background: url(images/PostContentLiIco.png) no-repeat left top; font-size: 1em; line-height: 1.25em; color:#4c4c4c; }
+.SCS blockquote { padding: 2px 10px; background: #e9f8ff; margin: 0px; color:#336699;}
+.SCS blockquote p { font-size: 1em; padding: 5px 0px; margin: 5px 0px; line-height: 1.25em;}
+.SCS blockquote li { padding: 2px 0px 2px 15px; list-style-type: none; background: url(images/PostContentBlockLiIco.png) no-repeat left top; font-size: 1em; line-height: 1.25em; color:#336699; }
+.SCS blockquote a { color:#0080ca; }
+.SCS blockquote a:visited { color:#0080ca; }
+.SCS blockquote a:hover { color:#003399; }
+.SCS a { text-decoration: underline;}
+
+/* Side Central +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.SC { width: 510px; float: left; padding: 15px 15px 15px 15px;}
+.SC h2 { font-weight: normal;}
+.pagetitle { font-size: 20px; font-weight: normal; letter-spacing: -1px; border-bottom: solid 1px #000; padding-bottom: 15px;}
+
+/* Post +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Post {	padding: 0px; position: relative; clear: left;}
+.PostHead { position: relative; clear: left; background: url(images/PostHead.gif) repeat-x bottom; padding-bottom: 10px;width:500px;margin-bottom:10px;}.PostHead h1 { font:bold 1.7em 微软雅黑; line-height: 1.1em; letter-spacing: 0px; padding: 0px 0px 1px 0px; margin: 0 0 3px 0; color:#cc6600;}
+.PostHead h1 a { color: #007ac8; text-decoration: none;}
+.PostHead h1 a:visited { color: #007ac8; text-decoration: none;}
+.PostHead h1 a:hover { color:#cc6600; text-decoration: none;}
+
+.PostAuthor { padding: 1px 0; margin: 0px; font-size: 1em; color:#8a98a2;}
+.PostDate { margin: 0px; position: absolute; top: 2px; left: 440px; text-align: center; padding: 0px 0px 6px 0px; width:80px; color:#999;}
+.PostDate small { font-size: 12px; color:#8a98a2; font-weight: bold; }
+.PostDate .month {font-size: 12px;}
+.PostDate .day {  font-size: 12px; line-height: 24px; font-family: 'Arial'; letter-spacing: -1px; font-weight: normal; color:#4a5a65;}
+.PostDate .year { display:block;}
+
+.PostContent {width:510px; padding: 0px 0px 5px 0px; line-height: 17px; background: url(images/PostHead.gif) repeat-x bottom; overflow:hidden;}
+.PostContent p { font-size: 1.2em; line-height: 1.4em; color:#000;letter-spacing:0.05em; }
+.PostContent p strong {}
+.PostContent img {padding:3px;border:1px solid #d3d3d3;}
+.PostContent img.more_pic {padding:0;border-width:0;}
+.PostContent span.more_txt {font:bold 14px 微软雅黑;}
+.PostContent h3 { display: block; width: 510px; height: 1.4em; border-bottom: 2px solid #e4e4e4; font:bold 1.6em "微软雅黑"; overflow: hidden;}
+.PostContent h3 a:link {text-decoration:none;} 
+.PostContent h3 a:visited {text-decoration:none;} 
+.PostContent h3 a:hover {text-decoration:underline;}
+.PostContent ul {padding:0; margin:0; }
+.PostContent ul li { padding: 2px 0px 2px 15px; list-style-type: none; background: url(images/PostContentLiIco.png) no-repeat left top; font-size: 14px; line-height: 15px; color:#4c4c4c; }
+.PostContent blockquote { font:normal 1em Arial;letter-spacing:0.06em;line-height: 17px;padding: 2px 10px; background: #e9f8ff; margin: 0px; color:#336699;border-left: 4px solid #94d6f5;}
+.PostContent blockquote p { font-size: 1em;padding: 5px 0px; margin: 5px 0px; }
+.PostContent blockquote li { padding: 2px 0px 2px 15px; list-style-type: none; background: url(images/PostContentBlockLiIco.png) no-repeat left top; font-size: 12px; line-height: 15px; color:#336699; }
+.PostContent blockquote a { color:#0080ca; }
+.PostContent blockquote a:visited { color:#0080ca; }
+.PostContent blockquote a:hover { color:#003399; }
+.PostContent a { text-decoration: underline;}
+.PostContent pre {font-size: 1.2em;}
+
+.PostDet { padding-top: 15px;}
+.PostDet ul { padding: 0; margin: 0;}
+.PostDet li { padding: 5px 0 5px 18px; margin: 0px 10px 0px 0px; list-style-type: none; display: inline; color:#336699; font-size: 1em; } 
+.PostDet li a { text-decoration: underline;} 
+.PostCateg { background: url(images/PostCateg.png) no-repeat left center;}
+.PostCom { background: url(images/PostCom.png) no-repeat left center; }
+
+/* Note ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+.Note { padding: 0px; margin: 0px;}
+.Note li { padding: 2px 0px 2px 15px; margin: 0px; list-style-type: none; font-size: 1em;}
+.NoteRss { background: url(images/NoteRss.png) no-repeat left top;}
+.NoteTrackBack { background: url(images/NoteTrackBack.png) no-repeat left top;}
+.Note li a { color:#cc6600;}
+
+/* Navigation - PlugIn +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Nav a { padding: 2px 5px 2px 3px; background: #fff; border-right: solid 1px #ccc; font-size: 12px;}
+.Nav a:visited { padding: 2px 5px 2px 3px; border-right: solid 1px #ccc;}
+.Nav a:hover { padding: 2px 5px 2px 3px; border-right: solid 1px #ccc; text-decoration: none;}
+.Nav span { padding: 2px 5px 2px 0px; color:#666; border-right: solid 1px #ccc; }
+.Nav .on { padding: 2px 5px 2px 3px; border-right: solid 1px #ccc; font-size: 12px; color:#000;}
+
+/* Comments ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Comments { margin: 20px 0px 0px 0px;}
+
+/* Comments List  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Comments .List h3 { font-size: 1.16em; font-weight: bold; margin: 0px 0px 5px 0px; padding: 5px 0px; color:#000; }
+.Comments .List ol { padding: 0px; margin: 0px;}
+.Comments .List li { position: relative; padding: 15px 5px 10px 5px; margin: 0px 0px 20px 0px; list-style-type: none;}
+.Comments .List .ComListLi { background: #f6f1de url(images/ComListLiBottom.gif) no-repeat left bottom; }
+/**/ * html .Comments .List .ComListLiTop { left: -5px;} /**/ 
+.Comments .List .ComListLiTop { position: absolute; background: url(images/ComListLiTop.gif) no-repeat left top; height: 15px; width: 510px; left: 0px; top: 0px;}
+
+/**/ * html .Comments .List .ListNr { left: -55px;} /**/ 
+.Comments .List .ListNr { color:#bec9d1; position: absolute; top: 15px; font-size: 24px; line-height: 24px; font-family: 'Arial'; font-weight: normal; letter-spacing: -1px; padding: 0px; left: -55px; }
+
+/**/ * html .Comments .List .ListGrav { left: 10px;} /* */ 
+.Comments .List .ListGrav { position: absolute; top: 15px; left: 15px;}
+.Comments .List .ListGrav img { border: solid 1px #fff;}
+
+.Comments .List big { margin: 0px; padding: 0px 0px 0px 42px; font-size: 1em; line-height: 11px; letter-spacing: -1px; color:#333; font-weight: bold; display: block;}
+.Comments .List small { color:#a19a80; padding: 0px 0px 0px 42px; margin: 0px; font-size: 1em; }
+.Comments .List small a { color:#a19a80; text-decoration: none;}
+.Comments .List small a:visited { text-decoration: none;}
+
+.Comments .List .ListContent { margin: 15px 0px 0px 0px; padding: 5px 10px; font-size: 1em; line-height: 1.25em; background: #fff url(images/ComListContent.gif) no-repeat left top; display: block;}
+
+
+/* Comments Form ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Comments .Form h3 { font-size: 1.16em; font-weight: bold; letter-spacing: -1px; margin: 0px; padding: 5px 0px 10px 0px; color:#333;}
+
+.Comments .Form { background: #bbe9ff url(images/ComFormBottom.gif) no-repeat left bottom; padding: 10px 15px 20px 15px; position: relative;}
+/**/ * html .Comments .FormTop  { left: -15px;} /**/ 
+
+.Comments .FormTop { background: url(images/ComFormTop.gif) no-repeat left top; position: absolute; top: 0px; left: 0px; width: 510px; height: 7px;}
+.Comments .Form form {margin: 0px; padding: 0px;}
+.Comments .Form a { text-decoration: underline;}
+.Comments .Form p { padding: 0px; margin: 0px; font-size: 1em; color:#336699; }
+.Comments .Form p small strong { font-size: 1em; font-weight: bold; color:#FF3300;}
+.Comments .Form p small { font-size: 1em; display: block; padding: 5px 0px;}
+.Comments .Form .TextField { background: #fff; border: solid 1px #9dc0d0; padding: 5px 4px; font-size: 1em; display: block;}
+.Comments .Form .TextArea { background: #fff; border: solid 1px #9dc0d0; padding: 4px; font-size: 1em;}
+
+.Comments .Form input.SubmitComment { width: 257px; height: 26px; background: url(images/SubmitComment.png) no-repeat; margin-top: 8px;}
+.Comments .Form input.SubmitComment:hover { background: url(images/SubmitComment.png) no-repeat 0 -26px; margin-top: 8px;}
+.Comments .Form input.SubmitCommentIE { width: 257px; height: 26px; background: url(images/SubmitComment.png) no-repeat 0 -26px; margin-top: 10px; margin-top: 8px;}
+
+
+/* Side Right +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.SR { width: 450px; float: right; position: relative; }
+.SR h2 { font-size: 1.16em; letter-spacing: normal; font-weight: bold; color:#fff;}
+
+/* Search ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Search { background: url(images/Search.gif) no-repeat left top; position: absolute; top: -63px; width: 280px; left: -9px;}
+.Search  form { padding: 30px 20px 10px 30px; margin: 0px;}
+.Search  input { border: none; color: #330033; font-size: 12px;}
+.Search  input.search { width: 24px; height: 23px; background: url(./images/SearchButton.gif) no-repeat;}
+.Search  input.keyword { background: none; border: none; padding: 5px 0px 5px 8px; width: 200px; border: none; } /**/ * html #buttonsearch { margin: -24px 0px 0px 203px; } /* */ 
+#buttonsearch { padding: 0px; margin: -23px 0px 0px 203px; top: 0px; background: none; }
+
+
+/* Flickr RSS - PlugIn ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Flickr { margin-bottom: 10px;}
+.Flickr h2 { background: url(images/FlickrH3.gif) no-repeat left top; padding: 0px 0px 5px 20px; margin: 0px 0px 10px 0px; border-bottom: dashed 1px #7bb9d9; }
+.Flickr ul { padding: 0px; margin: 0px;}
+.Flickr li { padding: 0px; margin: 0px 6px 0px 0px; list-style-type: none; display: inline;}
+.Flickr li a img { background: #000; padding: 1px; border: solid 4px #127aae; width: 60px; height: 60px; margin-bottom: 5px;}
+.Flickr li a:hover img { background: #fff; padding: 1px; border: solid 4px #09182a; margin-bottom: 5px;}
+
+/* Syndicate ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Syn { background: #09182a url(images/SynBottom.gif) no-repeat left bottom; margin-bottom: 10px; position: relative; padding: 10px 15px; }
+/**/ * html .SynTop { left: -15px;} /* */ 
+.SynTop { position: absolute; background: url(images/SynTop.gif) no-repeat left top; left: 0px; top: 0px; width: 230px; height: 8px; }
+.Syn ul { margin: 0px; padding: 0px;}
+.Syn li { margin: 0px; padding: 3px 0px 3px 10px; list-style-type: none; font-size: 12px; color:#0097ca;}
+.Syn li.rss_havebtn {background: url(images/SynIco.gif) no-repeat 10px center; padding: 3px 0px 3px 30px;}
+.Syn li a { color:#fff; font-size: 12px; }
+
+
+/* Side Right Left +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.SR .SRL { width: 230px; float: left; padding: 15px 20px 15px 20px; color:#abcee1;}
+
+.SR .SRL a { color:#FFF; font-size: 1em; }
+.SR .SRL a:visited { color:#FFF; }
+.SR .SRL a:hover { color:#abcee1;}
+
+.SR .SRL .widget { margin-bottom: 20px; color:#fff;}
+.SR .SRL .widget h2 { background: url(images/CategH3.gif) no-repeat left top; padding: 0px 0px 5px 20px; margin: 0px; border-bottom: dashed 1px #7bb9d9; }
+.SR .SRL .widget ul { margin: 0px; padding: 0px;}
+.SR .SRL .widget li { margin: 0px; padding-left:15px; list-style-type: none; font-size: 1em; background: url(images/CategLi.png) no-repeat left top; border-bottom: solid 1px #106899;}
+.SR .SRL .widget li a { display:block;padding: 2px 0px 3px 0px;height:auto !important;height:1.5em; }
+.SR .SRL .widget li a:hover {background-color: #05659b;}
+
+.SR .SRL .widget_categories .children ul { margin: 2px 0px 0px 0px; padding: 0px; list-style-type: none; }
+.SR .SRL .widget_categories .children li { margin: 0px; padding: 0 0 0 12px; list-style-type: none; border-bottom: none; font-size: 1em; background: url(images/CategLiChild.gif) no-repeat left top;border-top: dotted 1px #106899; }
+
+.SR .SRL .widget_tag_cloud { font-family: "Trebuchet MS"; line-height: 18px;}
+
+.SR .SRL .widget_calendar table { width: 100%;}
+.SR .SRL .widget_calendar table td { text-align: center; padding: 3px; }
+.SR .SRL .widget_calendar caption { background: #006dab; padding: 5px 0px;}
+.SR .SRL .widget_calendar #today { background: #006dab;}
+
+.SR .SRL .widget_search #s { width: 160px; border: solid 1px #006dab; padding: 3px; margin-bottom: 5px;}
+
+
+
+/* Side Right Right +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.SR .SRR { width: 160px; float: right; padding: 10px;}
+
+.SR .SRR .widget { margin-bottom: 10px; color:#7a8fa4;}
+.SR .SRR .widget h2 { background: url(images/SRRH3.gif) repeat-x left bottom; color:#abcee1; padding: 0px 0px 5px 0px; margin: 0px 0px 5px 0px; }
+.SR .SRR ul { padding: 0px; margin: 0px;}
+.SR .SRR li { padding: 0px 0px 0px 10px; margin: 0px; list-style-type: none; background: url(images/SRRIco.png) no-repeat left top;}
+.SR .SRR li a { color:#7a8fa4; font-size: 1em; }
+.SR .SRR li a:visited { color:#7a8fa4; }
+.SR .SRR li a:hover { color:#fff;}
+
+
+/* Footer ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.Footer { width: 970px; position: relative; clear: left; padding: 10px 15px;}
+.FL { position: absolute; top: -8px; left: 0px; height: 8px; width: 8px; background: url(images/FL.gif) no-repeat left top; }
+.FR { position: absolute; top: -8px; right: 0px; height: 8px; width: 8px; background: url(images/FR.gif) no-repeat left top; }
+.Footer p { font-size: 1em; color:#92b8cd; padding: 0px; margin: 0px; }
+.Footer a { color:#92b8cd; text-decoration: underline;}
+
+/* pre_next ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.post-pre {
+float:left;
+}
+.post-next {
+float:right;
+}
+.post-left {
+width:500px;
+float:left;
+clear:both;
+}
+.clear {
+clear:both;
+}

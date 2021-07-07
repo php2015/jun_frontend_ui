@@ -1,0 +1,10 @@
+{
+  "total":5,
+  "rows":[
+    {"id":1,"isFileUp":1,"isHref":1,"width":200,"height":40,"name":"首页焦点图","desc":"焦点图描述"},
+    {"id":2,"isFileUp":1,"isHref":0,"width":200,"height":40,"name":"首页焦点图","desc":"焦点图描述"},
+    {"id":3,"isFileUp":0,"isHref":0,"width":0,"height":0,"name":"首页焦点图","desc":"焦点图描述"},
+    {"id":4,"isFileUp":1,"isHref":0,"width":500,"height":0,"name":"首页焦点图","desc":"焦点图描述"},
+    {"id":5,"isFileUp":0,"isHref":0,"width":"-","height":"-","name":"首页焦点图","desc":"焦点图描述"}
+  ]
+}

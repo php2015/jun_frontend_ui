@@ -1,0 +1,76 @@
+<div class="clearfix">
+    <div class="pull-left">
+        <ol class="breadcrumb">
+            <li><a route="/.index">首页</a></li>
+            <li><a route="/.advertising">广告位</a></li>
+            <li class="active">添加广告位</li>
+        </ol>
+    </div>
+    <div class="pull-right">
+        <a route="/.advertising" class="btn btn-sm btn-default">返回</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-lg-3"></div>
+    <div class="col-md-8 col-lg-6 well">
+        <form action="" name="adForm" class="form-horizontal" form-check="ad" novalidate>
+            <h4><strong>上传设置</strong></h4>
+            <div class="well">
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="isFileUp" value="0" ng-model="ad.isFileUp">
+                        <small ng-show="ad.isFileUp" class="text-success">开启图片上传</small>
+                        <code ng-hide="ad.isFileUp">关闭图片上传</code>
+                    </label>
+                </div>
+                <hr ng-show="ad.isFileUp"/>
+                <div class="form-group">
+                    <label class="checkbox-inline" ng-show="ad.isFileUp">
+                        <input type="checkbox" name="isHref" value="0" ng-model="ad.isHref">
+                        <small ng-show="ad.isHref" class="text-success">开启图片链接</small>
+                        <code ng-hide="ad.isHref">关闭图片链接</code>
+                    </label>
+                </div>
+                <hr ng-show="ad.isFileUp"/>
+                <div class="row" ng-show="ad.isFileUp">
+                    <div class="col-xs-5">
+                        <div class="form-group has-feedback {{info.width.color}}" >
+                            <label class="control-label">图片宽度:</label>
+                            <small class="pull-right {{info.width.msgColor}}">{{info.width.msg}}</small>
+                            <input type="number" name="width" class="form-control" placeholder="图片宽度" ng-model="ad.width" max="1920">
+                            <span class="glyphicon form-control-feedback {{info.width.icon}}" aria-hidden="true"></span>
+                            <span id="widthStatus" class="sr-only"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-5">
+                        <div class="form-group has-feedback {{info.height.color}}">
+                            <label class="control-label">图片高度:</label>
+                            <small class="pull-right {{info.height.msgColor}}">{{info.height.msg}}</small>
+                            <input type="number" name="height" class="form-control" placeholder="图片高度" ng-model="ad.height" max="900">
+                            <span class="glyphicon form-control-feedback {{info.height.icon}}" aria-hidden="true"></span>
+                            <span id="heightStatus" class="sr-only"></span>
+                        </div>
+                    </div>
+                    <code>不输入或0，不限制</code>
+                </div>
+            </div>
+            <div class="form-group has-feedback {{info.name.color}}">
+                <label for="name" class="control-label">广告位名称:</label>
+                <small class="pull-right {{info.name.msgColor}}">{{info.name.msg}}</small>
+                <input class="form-control" type="text" id="name" name="name" ng-model="ad.name" aria-describedby="nameStatus" required ng-minlength="6" ng-maxlength="30"/>
+                <span class="glyphicon form-control-feedback {{info.name.icon}}" aria-hidden="true"></span>
+                <span id="nameStatus" class="sr-only"></span>
+            </div>
+            <div class="form-group  {{info.desc.color}}">
+                <label for="desc" class="control-label">广告位描述:</label>
+                <small class="pull-right {{info.desc.msgColor}}">{{info.desc.msg}}</small>
+                <textarea name="desc" id="desc" class="form-control" ng-maxlength="150" ng-model="ad.desc"></textarea>
+            </div>
+            <div class="form-group text-right">
+                <button class="btn btn-primary" ng-disabled="!adForm.$valid">保存</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2 col-lg-3"></div>
+</div>

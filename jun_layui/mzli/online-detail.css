@@ -1,0 +1,26 @@
+.online-detail{
+    transition: all .5s ease;
+	margin-top: 15px;
+	height: calc(100vh - 215px);
+	height: -webkit-calc(100vh - 215px);
+    overflow: auto; /*  新加的 */
+}
+
+.play-source{
+    position: absolute;
+    top: 2px;
+    right: 20px;
+    font-size: 12px;
+}
+
+.episode{
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+    margin-bottom: 20px !important;
+    padding: 0;
+    width: 45px!important;
+    height: 30px!important;
+}
+
+@media screen and (min-width:1200px) {
+}

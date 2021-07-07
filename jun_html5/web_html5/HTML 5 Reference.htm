@@ -1,0 +1,3698 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://dev.w3.org/html5/html-author/ -->
+<html lang="en-AU"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>HTML 5 Reference</title>
+	<style type="text/css">
+	.element { margin: 1em 0; border: 3px solid lightgreen; }
+	.element .summary { padding: 1px 0; position: relative; }
+
+	.element h1, .element h2, .element h3,
+	.element h4, .element h5, .element h6 { background: #CFC; margin: 0; padding: .5em 0 .5em .5em; }
+
+	.element .summary .desc { border-bottom: 3px solid #CFC; margin: 0 0 .5em 0; padding: .8em .5em; }
+
+	.element .html-tags { position: absolute; top: 0; right: 0; margin: -1.5em .5em 0; padding: 0; }
+	.element .html-tags dt, .element .html-tags dd { display: inline; margin: 0; padding: 0; }
+
+	.element .summary .kinds-of-content { margin: 0; padding: 0; width: 100%; border-spacing: .5em .2em; }
+	.element .summary th, .element .summary td { padding: .2em 0; text-align: left; vertical-align: top; }
+	.element .summary th { width: 20%; }
+	.element .summary table ul { margin: 0; padding: 0; }
+	.element .properties { display: table; width: 100%; border-collapse: collapse; }
+	.element .attributes, .element .dom { display: table-cell; width: 50%; }
+	.element .dom { border-left: 3px solid #CFC; }
+
+	.element .summary ul { list-style: none; margin: .5em; padding: 0; }
+	.element .summary li { margin: .2em; padding: 0; }
+
+	.proposal { border: blue solid; padding: 1em; }
+
+	table.index { border-collapse: collapse; border: 1px solid silver; width: 100%; }
+	table.index td { border-right: 1px solid silver; border-left: 1px solid silver; padding: .2em; }
+	table.index thead tr, table.index tbody tr:nth-of-type(2n) { background: #F0F0F0; }
+	table.index tbody tr:hover { background: #F0F0E0; }
+	
+	table.index .strict, table.index .active { background: #9F9; }
+	table.index .transitional, table.index .frameset { background: #FF9; }
+	table.index .none, table.index .obsolete { background: #F99; }
+
+
+	.example { padding: .1em 0 .1em 1em; background: #EFF; border-left: 3px solid #0CF; }
+	.example.html { background: #EEF; border-color: #06F; }
+	.example.xhtml { background: #FFC; border-color: gold; }
+	.example.error { background: #FDD; border-color: red; }
+
+	.note { font-style: italic; color: green; }
+	.issue { color: red; }
+	.big-issue, .XXX { color: #E50000; background: white; border: solid red; padding: 0.5em; margin: 1em 0; }
+	.big-issue > :first-child, .XXX > :first-child { margin-top: 0; }
+	p .big-issue, p .XXX { line-height: 3em; }
+
+	dfn { font-style:normal; font-weight:bold }
+	code { color:orangered }
+	code :link, code :visited { color:inherit }
+	pre code { color:inherit }
+	pre mark, pre strong { background: yellow; font-weight: normal; }
+
+	.case-insensitive:hover { text-transform: lowercase; }
+	.case-insensitive.lower:hover { text-transform: uppercase; }
+
+
+
+	</style>
+	<link href="./HTML 5 Reference_files/W3C-ED" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="head">
+	<header>
+		<!--begin-logo--><p><a href="http://www.w3.org/"><img alt="W3C" src="./HTML 5 Reference_files/w3c_home"></a></p><!--end-logo-->
+		<h1>HTML 5 Reference</h1>
+		<h2 class="no-num no-toc">A Web Developer’s Guide to HTML 5</h2>
+		<h2 class="no-num no-toc">W3C Editor’s Draft 23 March 2009</h2>
+
+		<dl>
+			<dt>This version:</dt>
+			<dd><a href="">http://www.w3.org/TR/2009/ED-html5-author-20090323</a></dd>
+			<dt>Latest version:</dt>
+			<dd><a href="http://www.w3.org/TR/">http://www.w3.org/TR/</a></dd>
+			<dt>Previous version:</dt>
+			<dd>No previous versions.</dd>
+			<dt>Editors:</dt>
+			<dd><a href="http://lachy.id.au/">Lachlan Hunt</a> (<a href="http://www.opera.com/">Opera Software ASA</a>)
+			    <a href="mailto:lachlan.hunt@lachy.id.au">lachlan.hunt@lachy.id.au</a></dd>
+		</dl>
+
+		<p>[<a href="http://lists.w3.org/Archives/Public/spec-prod/2007OctDec/0007.html">Copyright licence pending</a>]</p>
+		<hr title="Separator for header">
+	</header>
+</div>
+
+<section>
+	<h2 class="no-num no-toc" id="abstract">Abstract</h2>
+	<p>This document illustrates how to write HTML 5 documents, focussing on
+	   simplicity and practical applications for beginners while also providing
+	   in depth information for more advanced web developers.</p>
+</section>
+
+<!-- Status -->
+<section>
+	<h2 class="no-num no-toc" id="status">Status of this document</h2>
+	<p><em>This section describes the status of this document at the time of its
+	   publication. Other documents may supersede this document. A list of
+	   current W3C publications and the latest revision of this technical report
+	   can be found in the <a href="http://www.w3.org/TR/">W3C technical reports
+	   index</a> at http://www.w3.org/TR/.</em></p>
+
+	<p>This document is an Editors Draft of the “HTML 5 Reference”
+	   produced by the <a href="http://www.w3.org/html/wg/">HTML Working Group</a>,
+	   part of the <a href="http://www.w3.org/MarkUp/Activity">HTML Activity</a>.
+	   The working group is working on HTML 5 (see the
+	   <a href="http://www.w3.org/html/wg/html5/">HTML&nbsp;5 Editor's draft</a>).
+	   The appropriate forum for comments on this document is
+	   <a href="mailto:public-html-comments@w3.org">public-html-comments@w3.org</a>
+	   (<a href="http://lists.w3.org/Archives/Public/public-html-comments/" title="Archive for HTML comments mailing-list">public archive</a>)
+	   or <a href="mailto:public-html@w3.org">public-html@w3.org</a>
+	   (<a href="http://lists.w3.org/Archives/Public/public-html/" title="Archive for HTML mailing-list">public archive</a>).</p>
+
+	<p>Publication as a Working Group Note does not imply endorsement by the W3C
+	   Membership. This is a draft document and may be updated, replaced or
+	   obsoleted by other documents at any time. It is inappropriate to cite
+	   this document as other than work in progress.</p>
+
+	<p>This document was produced by a group operating under the
+	   <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>.
+	   W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/40318/status" rel="disclosure">public list of any patent disclosures</a>
+	   made in connection with the deliverables of the group; that page also
+	   includes instructions for disclosing a patent. An individual who has
+	   actual knowledge of a patent which the individual believes contains
+	   <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a>
+	   must disclose the information in accordance with
+	   <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
+</section>
+
+<!-- Table of Contents -->
+<section>
+	<h2 class="no-num no-toc" id="contents">Table of contents</h2>
+	
+<!--begin-toc-->
+<ol class="toc">
+ <li><a href="http://dev.w3.org/html5/html-author/#introduction"><span class="secno">1 </span>Introduction</a></li>
+ <li><a href="http://dev.w3.org/html5/html-author/#getting-started-with-html-5"><span class="secno">2 </span>Getting Started with HTML 5</a>
+  <ol class="toc">
+   <li><a href="http://dev.w3.org/html5/html-author/#a-basic-document"><span class="secno">2.1 </span>A Basic Document</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#understanding-semantics"><span class="secno">2.2 </span>Understanding Semantics</a></li></ol></li>
+ <li><a href="http://dev.w3.org/html5/html-author/#the-html-and-xhtml-syntax"><span class="secno">3 </span>The HTML and XHTML Syntax</a>
+  <ol class="toc">
+   <li><a href="http://dev.w3.org/html5/html-author/#syntactic-overview"><span class="secno">3.1 </span>Syntactic Overview</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#the-syntax"><span class="secno">3.2 </span>The Syntax</a>
+    <ol class="toc">
+     <li><a href="http://dev.w3.org/html5/html-author/#doctype-declaration"><span class="secno">3.2.1 </span>DOCTYPE Declaration</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#historical-notes"><span class="secno">3.2.1.1 </span>Historical Notes</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#elements"><span class="secno">3.2.2 </span>Elements</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#attributes"><span class="secno">3.2.3 </span>Attributes</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#empty-attr"><span class="secno">3.2.3.1 </span>Empty Attributes</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#unquoted-attr"><span class="secno">3.2.3.2 </span>Unquoted Attribute Values</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#double-quote-attr"><span class="secno">3.2.3.3 </span>Double-Quoted Attribute Values</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#single-quote-attr"><span class="secno">3.2.3.4 </span>Single-Quoted Attribute Values</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#comments"><span class="secno">3.2.4 </span>Comments</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#text"><span class="secno">3.2.5 </span>Text</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#cdata-sections"><span class="secno">3.2.6 </span>CDATA Sections</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#character-references"><span class="secno">3.2.7 </span>Character References</a></li></ol></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#understanding-mime-types"><span class="secno">3.3 </span>Understanding MIME Types</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#character-encoding"><span class="secno">3.4 </span>Character Encoding</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#choosing-html-or-xhtml"><span class="secno">3.5 </span>Choosing HTML or XHTML</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#polyglot-documents"><span class="secno">3.6 </span>Polyglot Documents</a></li></ol></li>
+ <li><a href="http://dev.w3.org/html5/html-author/#the-html-vocabulary-and-apis"><span class="secno">4 </span>The HTML Vocabulary and APIs</a>
+  <ol class="toc">
+   <li><a href="http://dev.w3.org/html5/html-author/#categories"><span class="secno">4.1 </span>Categories</a>
+    <ol class="toc">
+     <li><a href="http://dev.w3.org/html5/html-author/#metadata-content"><span class="secno">4.1.1 </span>Metadata Content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#flow-content"><span class="secno">4.1.2 </span>Flow content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#sectioning-root"><span class="secno">4.1.3 </span>Sectioning root</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#sectioning-content"><span class="secno">4.1.4 </span>Sectioning content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#heading-content"><span class="secno">4.1.5 </span>Heading content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#phrasing-content"><span class="secno">4.1.6 </span>Phrasing content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#embedded-content"><span class="secno">4.1.7 </span>Embedded content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#interactive-content"><span class="secno">4.1.8 </span>Interactive content</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#transparent-content-models"><span class="secno">4.1.9 </span>Transparent Content Models</a></li></ol></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#global-attributes"><span class="secno">4.2 </span>Global Attributes</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#the-elements"><span class="secno">4.3 </span>The Elements</a>
+    <ol class="toc">
+     <li><a href="http://dev.w3.org/html5/html-author/#the-root-element"><span class="secno">4.3.1 </span>The Root Element</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-html-element"><span class="secno">4.3.1.1 </span>The <code>html</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#document-metadata"><span class="secno">4.3.2 </span>Document Metadata</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-head-element"><span class="secno">4.3.2.1 </span>The <code>head</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-title-element"><span class="secno">4.3.2.2 </span>The <code>title</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-base-element"><span class="secno">4.3.2.3 </span>The <code>base</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-link-element"><span class="secno">4.3.2.4 </span>The <code>link</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-meta-element"><span class="secno">4.3.2.5 </span>The <code>meta</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-style-element"><span class="secno">4.3.2.6 </span>The <code>style</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#scripting"><span class="secno">4.3.3 </span>Scripting</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-script-element"><span class="secno">4.3.3.1 </span>The <code>script</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-noscript-element"><span class="secno">4.3.3.2 </span>The <code>noscript</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#sections"><span class="secno">4.3.4 </span>Sections</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-body-element"><span class="secno">4.3.4.1 </span>The <code>body</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-section-element"><span class="secno">4.3.4.2 </span>The <code>section</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-nav-element"><span class="secno">4.3.4.3 </span>The <code>nav</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-article-element"><span class="secno">4.3.4.4 </span>The <code>article</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-aside-element"><span class="secno">4.3.4.5 </span>The <code>aside</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements"><span class="secno">4.3.4.6 </span>The <code>h1</code>, <code>h2</code>,
+	  <code>h3</code>, <code>h4</code>,
+	  <code>h5</code>, and <code>h6</code>
+	  elements</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-header-element"><span class="secno">4.3.4.7 </span>The <code>header</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-footer-element"><span class="secno">4.3.4.8 </span>The <code>footer</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-address-element"><span class="secno">4.3.4.9 </span>The <code>address</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#grouping-content"><span class="secno">4.3.5 </span>Grouping Content</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-p-element"><span class="secno">4.3.5.1 </span>The <code>p</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-hr-element"><span class="secno">4.3.5.2 </span>The <code>hr</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-br-element"><span class="secno">4.3.5.3 </span>The <code>br</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-pre-element"><span class="secno">4.3.5.4 </span>The <code>pre</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-dialog-element"><span class="secno">4.3.5.5 </span>The <code>dialog</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-blockquote-element"><span class="secno">4.3.5.6 </span>The <code>blockquote</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-ol-element"><span class="secno">4.3.5.7 </span>The <code>ol</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-ul-element"><span class="secno">4.3.5.8 </span>The <code>ul</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-li-element"><span class="secno">4.3.5.9 </span>The <code>li</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-dl-element"><span class="secno">4.3.5.10 </span>The <code>dl</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-dt-element"><span class="secno">4.3.5.11 </span>The <code>dt</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-dd-element"><span class="secno">4.3.5.12 </span>The <code>dd</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#text-level-semantics"><span class="secno">4.3.6 </span>Text-Level Semantics</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-a-element"><span class="secno">4.3.6.1 </span>The <code>a</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-q-element"><span class="secno">4.3.6.2 </span>The <code>q</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-cite-element"><span class="secno">4.3.6.3 </span>The <code>cite</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-em-element"><span class="secno">4.3.6.4 </span>The <code>em</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-strong-element"><span class="secno">4.3.6.5 </span>The <code>strong</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-small-element"><span class="secno">4.3.6.6 </span>The <code>small</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-mark-element"><span class="secno">4.3.6.7 </span>The <code>mark</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-dfn-element"><span class="secno">4.3.6.8 </span>The <code>dfn</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-abbr-element"><span class="secno">4.3.6.9 </span>The <code>abbr</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-time-element"><span class="secno">4.3.6.10 </span>The <code>time</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-progress-element"><span class="secno">4.3.6.11 </span>The <code>progress</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-meter-element"><span class="secno">4.3.6.12 </span>The <code>meter</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-code-element"><span class="secno">4.3.6.13 </span>The <code>code</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-var-element"><span class="secno">4.3.6.14 </span>The <code>var</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-samp-element"><span class="secno">4.3.6.15 </span>The <code>samp</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-kbd-element"><span class="secno">4.3.6.16 </span>The <code>kbd</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-sub-and-sup-elements"><span class="secno">4.3.6.17 </span>The <code>sub</code> and <code>sup</code> elements</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-span-element"><span class="secno">4.3.6.18 </span>The <code>span</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-i-element"><span class="secno">4.3.6.19 </span>The <code>i</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-b-element"><span class="secno">4.3.6.20 </span>The <code>b</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-bdo-element"><span class="secno">4.3.6.21 </span>The <code>bdo</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-ruby-element"><span class="secno">4.3.6.22 </span>The <code>ruby</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-rt-element"><span class="secno">4.3.6.23 </span>The <code>rt</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-rp-element"><span class="secno">4.3.6.24 </span>The <code>rp</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#edits"><span class="secno">4.3.7 </span>Edits</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-ins-element"><span class="secno">4.3.7.1 </span>The <code>ins</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-del-element"><span class="secno">4.3.7.2 </span>The <code>del</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#embedded-content-0"><span class="secno">4.3.8 </span>Embedded Content</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-figure-element"><span class="secno">4.3.8.1 </span>The <code>figure</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-img-element"><span class="secno">4.3.8.2 </span>The <code>img</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-iframe-element"><span class="secno">4.3.8.3 </span>The <code>iframe</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-embed-element"><span class="secno">4.3.8.4 </span>The <code>embed</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-object-element"><span class="secno">4.3.8.5 </span>The <code>object</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-param-element"><span class="secno">4.3.8.6 </span>The <code>param</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-video-element"><span class="secno">4.3.8.7 </span>The <code>video</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-audio-element"><span class="secno">4.3.8.8 </span>The <code>audio</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-source-element"><span class="secno">4.3.8.9 </span>The <code>source</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-canvas-element"><span class="secno">4.3.8.10 </span>The <code>canvas</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-map-element"><span class="secno">4.3.8.11 </span>The <code>map</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-area-element"><span class="secno">4.3.8.12 </span>The <code>area</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#tabular-data"><span class="secno">4.3.9 </span>Tabular Data</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-table-element"><span class="secno">4.3.9.1 </span>The <code>table</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-caption-element"><span class="secno">4.3.9.2 </span>The <code>caption</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-colgroup-element"><span class="secno">4.3.9.3 </span>The <code>colgroup</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-col-element"><span class="secno">4.3.9.4 </span>The <code>col</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-tbody-element"><span class="secno">4.3.9.5 </span>The <code>tbody</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-thead-element"><span class="secno">4.3.9.6 </span>The <code>thead</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-tfoot-element"><span class="secno">4.3.9.7 </span>The <code>tfoot</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-tr-element"><span class="secno">4.3.9.8 </span>The <code>tr</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-td-element"><span class="secno">4.3.9.9 </span>The <code>td</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-th-element"><span class="secno">4.3.9.10 </span>The <code>th</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#forms"><span class="secno">4.3.10 </span>Forms</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-form-element"><span class="secno">4.3.10.1 </span>The <code>form</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-fieldset-element"><span class="secno">4.3.10.2 </span>The <code>fieldset</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-label-element"><span class="secno">4.3.10.3 </span>The <code>label</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-input-element"><span class="secno">4.3.10.4 </span>The <code>input</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-button-element"><span class="secno">4.3.10.5 </span>The <code>button</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-select-element"><span class="secno">4.3.10.6 </span>The <code>select</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-datalist-element"><span class="secno">4.3.10.7 </span>The <code>datalist</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-optgroup-element"><span class="secno">4.3.10.8 </span>The <code>optgroup</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-option-element"><span class="secno">4.3.10.9 </span>The <code>option</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-textarea-element"><span class="secno">4.3.10.10 </span>The <code>textarea</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-output-element"><span class="secno">4.3.10.11 </span>The <code>output</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#interactive-elements"><span class="secno">4.3.11 </span>Interactive Elements</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-details-element"><span class="secno">4.3.11.1 </span>The <code>details</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-command-element"><span class="secno">4.3.11.2 </span>The <code>command</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-bb-element"><span class="secno">4.3.11.3 </span>The <code>bb</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-menu-element"><span class="secno">4.3.11.4 </span>The <code>menu</code> element</a></li></ol></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#miscellaneous-elements"><span class="secno">4.3.12 </span>Miscellaneous Elements</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#the-legend-element"><span class="secno">4.3.12.1 </span>The <code>legend</code> element</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#the-div-element"><span class="secno">4.3.12.2 </span>The <code>div</code> element</a></li></ol></li></ol></li></ol></li>
+ <li><a href="http://dev.w3.org/html5/html-author/#index-of-elements"><span class="secno">5 </span>Index of Elements</a>
+  <ol class="toc">
+   <li><a href="http://dev.w3.org/html5/html-author/#conforming-elements"><span class="secno">5.1 </span>Conforming Elements</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#obsolete-elements"><span class="secno">5.2 </span>Obsolete Elements</a></li>
+   <li><a href="http://dev.w3.org/html5/html-author/#comparison-of-html-4.01-and-html-5-elements"><span class="secno">5.3 </span>Comparison of HTML 4.01 and HTML 5 Elements</a></li></ol></li>
+ <li><a href="http://dev.w3.org/html5/html-author/#how-to-read-this-guide"><span class="secno">6 </span>How to Read This Guide</a>
+  <ol class="toc">
+   <li><a href="http://dev.w3.org/html5/html-author/#conventions"><span class="secno">6.1 </span>Conventions</a>
+    <ol class="toc">
+     <li><a href="http://dev.w3.org/html5/html-author/#notes,-tips-and-warnings"><span class="secno">6.1.1 </span>Notes, Tips and Warnings</a></li>
+     <li><a href="http://dev.w3.org/html5/html-author/#example-markup"><span class="secno">6.1.2 </span>Example Markup</a>
+      <ol class="toc">
+       <li><a href="http://dev.w3.org/html5/html-author/#attributes-95"><span class="secno">6.1.2.1 </span>Attributes</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#void-elements"><span class="secno">6.1.2.2 </span>Void Elements</a></li>
+       <li><a href="http://dev.w3.org/html5/html-author/#namespaces"><span class="secno">6.1.2.3 </span>Namespaces</a></li></ol></li></ol></li></ol></li></ol>
+<!--end-toc-->
+</section>
+
+<!-- Introduction -->
+<section>
+	<h2 id="introduction"><span class="secno">1 </span>Introduction</h2>
+	
+	<p>This document serves as a reference guide for the HTML syntax,
+	   vocabulary and its associated DOM APIs and is intended for web site
+	   and application developers, publishers, tutorial writers and teachers
+	   and their students. That is, people who write documents using HTML,
+	   or who teach others to do so. This guide is structured into three
+	   major sections.</p>
+
+	<p>The first provides an introductory tutorial on writing HTML,
+	   explaining the basic structure and syntax of an HTML document,
+	   covering the fundamental techniques and best practices, encouraging
+	   the use of clean and valid markup, and the use of quality assurance
+	   tools.</p>
+
+	<p>The second section provides an in depth look at the syntax of HTML
+	   and XHTML documents.  This will investigate both the similarities and
+	   differences between the two alternatives and provides guidance on
+	   choosing which to use for your own projects, depending on your needs.
+	   Additionally, this will also provide details about creating polyglot
+	   documents — that is, documents that conform to both
+	   HTML and XHTML simultaneiously — including issues
+	   related to ensuring stylesheets and scripts work correctly under both
+	   conditions.</p>
+	
+	<p>The third and final section provides a reference for the HTML
+	   vocabulary.  Each element is described, providing details about its
+	   its meaning, allowed attributes, content models and DOM APIs.  Each
+	   is accompanied by clear examples illustrating how the element is
+	   designed to be used for a range of different use cases.</p>
+</section>
+
+<!-- Tutorial -->
+<section>
+	<h2 id="getting-started-with-html-5"><span class="secno">2 </span>Getting Started with HTML 5</h2>
+
+	<p>The most common format for publishing documents on the web and creating
+	   web applications is HTML.  From its beginning as a relatively simple
+	   language primarily designed for describing scientific documents, it has
+	   grown and adapted to a wide variety needs ranging from publishing news
+	   and blogs, to providing the foundation for full blown applications for
+	   email, maps, word processing and spreadsheets.</p>
+
+	<p>As the uses of HTML have grown, the demands placed upon it by authors
+	   have increased and the limitations of HTML become more pronounced.
+	   HTML 5 is represents the next major step in the development of HTML,
+	   introducing a wide range of new features into the language.  Authors who
+	   are familiar with previous versions of HTML are advised to familiarise
+	   themselves with <a href="http://www.w3.org/TR/html5-diff/">the
+	   differences from HTML 4</a> [HTML4DIFF]</p>
+
+	<p>This section provides an introductory tutorial to help get you started
+	   with HTML, and is suitable for beginners.  Experienced authors may choose
+	   to skip this section and proceed to the syntax overview and the element
+	   reference.</p>
+
+	<section>
+		<h3 id="a-basic-document"><span class="secno">2.1 </span>A Basic Document</h3>
+		<p class="XXX">The goal of this section is to walk people though creating
+		   <a href="http://dev.w3.org/html5/html-author/examples/example01.html">example01.html</a></p>
+
+		<p>To begin, we’re going to create a very basic HTML document, which
+		   will also serve as a useful template for future HTML documents.
+		   This document will simply contain a title and short paragraph.</p>
+
+		<p>Open a text editor and create a new, empty file.  I suggest you save
+		   the file as <code>example01.html</code>.</p>
+
+		<p>All HTML documents need to begin with a DOCTYPE.  The DOCTYPE is a
+		   remnant from the early days of the web. For historical reasons, it
+		   is needed to ensure that web browsers interpret the document
+		   correctly, rather than using a special compatibility mode designed to
+		   replicate the behaviour of older browsers.</p>
+			
+		<p>In your text editor, type the following on the first line, and save
+		   the file.</p>
+
+		<div class="html example">
+			<pre>&lt;!DOCTYPE html&gt;</pre>
+		</div>
+
+		<p>Because this is required for all documents, it is good practice to
+		   get in the habit of always typing that as the first line in all new
+		   HTML documents you create, so that it never gets forgotten.</p>
+
+		<p>An HTML document is divided into two main sections. The head, which
+		   is used to contain document metadata, such as the title, stylesheets
+		   and scripts; and the body, which contain all of the page’s content.
+		   The markup itself forms a tree structure, as illustrated in the
+		   following diagram.</p>
+
+	</section>
+
+	<section>
+		<h3 id="understanding-semantics"><span class="secno">2.2 </span>Understanding Semantics</h3>
+
+		<p>In general, the purpose of writing and publishing a document is to convey
+		   information to the readers.  This could be any kind of information, such
+		   as telling a story, reporting news and current affairs or describing
+		   available products and services.  Whatever the information is, it needs
+		   to be conveyed to the reader in a way that can be easily understood.</p>
+
+		<p>A typical document, such as an book, news article, blog entry or letter
+		   is often grouped into different sections containing a variety of
+		   headings, paragraphs, lists, tables, quotes and various other
+		   typographical structures.  All of these structures are important for more
+		   easily conveying information to the reader.  HTML provides the means to
+		   clearly identify each of these structures in a way that can then be
+		   easily presented to the user.  In essence, this is the purpose of
+		   markup, and HTML in particular.</p>
+
+		<p>Markup is a machine readable language that describes aspects of a
+		   document such as its structure, semantics and/or style. Some markup
+		   languages are designed solely for the purpose of describing the
+		   presentation of the document, such as RTF (Rich Text Format). Others,
+		   such as HTML, are more generic and rather than focussing on describing
+		   the presentation, they are designed to focus on describing the meaning or
+		   purpose of the content and leave the presentation for another layer to
+		   deal with.</p>
+
+		<p>HTML provides a wide variety of semantic elements that can be used to
+		   mark up various common typographical structures.  There are heading
+		   elements for marking up different levels of headings, a paragraph (p)
+		   element for paragraph, various list elements for marking up different
+		   types of lists, and a table elements for marking up tables.</p>
+
+		<p>It’s important to distinguish between the structure and semantics of
+		   content, which should be described using HTML, and its presentation. In
+		   one document, a heading may be presented visually in a large bold
+		   typeface with wide margins above and below to separate it from the
+		   surrounding content and make it stand out.  In another document, a
+		   heading may be presented in a light coloured, italic, fancy script
+		   typeface.  But regardless of the presentation, it’s still a heading and
+		   the markup can still uses the same basic elements for identifying common
+		   structures.</p>
+	</section>
+</section>
+
+<!-- The HTML and XHTML Syntax -->
+<section>
+	<h2 id="the-html-and-xhtml-syntax"><span class="secno">3 </span>The HTML and XHTML Syntax</h2>
+
+	<p>It is useful to make a distinction between the vocabulary of an HTML
+	   document—the elements and attributes, and their meanings—and the syntax
+	   in which it is written.</p>
+
+	<p>HTML has a defined set of elements and attributes which can be used in
+	   a document; each designed for a specific purpose with their own meaning.
+	   Consider this set of elements to be analogous to the list of words in a
+	   dictionary.  This includes elements for headings, paragraphs, lists,
+	   tables, links, form controls and many other features.  This is the
+	   vocabulary of HTML. Similarly, just as natural languages have grammatical
+	   rules for how different words can be used, HTML has rules for where and
+	   how each element and attribute can be used.</p>
+
+	<p>The basic structure of elements in an HTML document is a tree structure.
+	   Most elements have at most one parent element, (except for the root
+	   element), and may have any number of child elements. This structure needs
+	   to be reflected in the syntax used to write the document.</p>
+
+	<section>
+		<h3 id="syntactic-overview"><span class="secno">3.1 </span>Syntactic Overview</h3>
+
+		<p>There are two syntaxes that can be used: the traditional HTML syntax,
+		   and the XHTML syntax.  While these are similar, each is optimised for
+		   different needs and authoring habits.  The former is more lenient in
+		   its design and handling requirements, and has a number of convenient
+		   shorthands for authors to use.  The latter is based on XML and has
+		   much stricter syntactic requirements, designed to discourage the
+		   proliferation of syntactic errors.</p>
+
+		<p>The HTML syntax is loosely based upon the older, though very widely
+		   used syntax from HTML 4.01.  Although it is inspired by its SGML
+		   origins, in practice, it really only shares minor syntactic
+		   similarities. This features a range of shorthand syntaxes, designed
+		   to make hand coding more convenient, such as allowing the omission of
+		   some optional tags and attribute values.  Authors are free to choose
+		   whether or not they wish to take advantage of these shorthand
+		   features based upon their own personal preferences.</p>
+
+		<p>The following example illustrates a basic HTML document,
+		   demonstrating some shorthand syntax:</p>
+
+		<div class="example html">
+			<p>HTML Example:</p>
+			<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+   &lt;title&gt;An HTML Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body class=example&gt;
+   &lt;h1&gt;Example&lt;/h1&gt;
+   &lt;p&gt;This is an example HTML document.
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+		</div>
+
+		<p>XHTML, however, is based on the much more strict XML syntax.  While
+		   this too is inspired by SGML, this syntax requires documents to be
+		   well-formed, which some people prefer because of its stricter error
+		   handling, forcing authors to maintain cleaner markup.</p>
+
+		<div class="example xhtml">
+			<p>XHTML Example:</p>
+			<pre>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+ &lt;head&gt;
+   &lt;title&gt;An HTML Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body class="example"&gt;
+   &lt;h1&gt;Example&lt;/h1&gt;
+   &lt;p&gt;This is an example HTML document.&lt;/p&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+		</div>
+
+		<p class="note">Note: The XHTML document does not need to include the
+		   DOCTYPE because XHTML documents that are delivered correctly using an
+		   XML MIME type and are processed as XML by browsers, are always rendered
+		   in <em>no quirks mode</em>. However, the DOCTYPE may optionally be
+		   included, and should be included if the document uses the compatible
+		   subset of markup that is conforming in both HTML and XHTML, and is ever
+		   expected to be used in <code>text/html</code> environments.</p>
+
+		<p>Due to the similarities of both the HTML and XHTML syntaxes, it is
+		   possible to mark up documents using a common subset of the syntax
+		   that is the same in both, while avoiding the syntactic sugar that is
+		   unique to each.  This type of document is known as a polyglot
+		   document because it simultaneously conforms to both syntaxes and may
+		   be handled as either.  There are a number of issues involved with
+		   creating such documents and authors wishing to do so should
+		   familiarise themselves with the similarities and differences between
+		   HTML and XHTML.</p>
+	</section>
+
+	<section>
+		<h3 id="the-syntax"><span class="secno">3.2 </span>The Syntax</h3>
+		<p>There are a number of basic components make up the syntax of HTML,
+		   that are used throughout any document.  These include the
+		   <code>DOCTYPE</code> declaration, elements, attributes, comments,
+		   text and CDATA sections.</p>
+
+		<section>
+			<h4 id="doctype-declaration"><span class="secno">3.2.1 </span>DOCTYPE Declaration</h4>
+			<p>The Document Type Declaration needs to be present at the beginning of a
+			   document that uses the HTML syntax. It may optionally be used within the
+			   XHTML syntax, but it is not required.  The canonical <code>DOCTYPE</code>
+			   that most HTML documents should use is as follows:</p>
+
+			<div class="example">
+				<pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+			</div>
+
+			<p>For compatibility with legacy producers of HTML — that is, software that
+			   outputs HTML documents — an alternative <code>DOCTYPE</code> is available
+			   for use by systems that are unable to output the <code>DOCTYPE</code>
+			   given above. This limitation occurs in software that expects a
+			   <code>DOCTYPE</code> to include either a <code>PUBLIC</code> or
+			   <code>SYSTEM</code> identifier, and is unable to omit them.
+			   The canonical form of this <code>DOCTYPE</code> is as follows:</p>
+
+			<div class="example">
+				<pre><code>&lt;!DOCTYPE html SYSTEM "about:legacy-compat"&gt;</code></pre>
+			</div>
+
+			<p class="note">Note: The term "legacy-compat" refers to compatibility with legacy
+			   producers only.  In particular, it does not refer to compatibility with
+			   legacy browsers, which, in practice, ignore SYSTEM identifiers and DTDs.</p>
+
+			<p>In HTML, the <code>DOCTYPE</code> is case insensitive, except for the quoted string
+			   <code>"about:legacy-compat"</code>, which must be written in lower case.  This quoted
+			   string, however, may also be quoted with single quotes, rather than double quotes.
+			   The emphasised parts below illustrate which parts are case insensitive.</p>
+
+			<div class="html example">
+				<p>HTML Example:</p>
+				<pre><code>&lt;!<mark><strong class="case-insensitive">DOCTYPE </strong><strong class="case-insensitive lower" title="">html</strong></mark>&gt;
+
+&lt;!<mark><strong class="case-insensitive">DOCTYPE</strong> <strong class="case-insensitive lower" title="">html</strong> <strong class="case-insensitive">SYSTEM</strong></mark> "about:legacy-compat"&gt;
+
+&lt;!<mark><strong class="case-insensitive">DOCTYPE</strong> <strong class="case-insensitive lower" title="">html</strong> <strong class="case-insensitive">SYSTEM</strong></mark> 'about:legacy-compat'&gt;
+</code></pre>
+			</div>
+			   <p>The following are also valid alternatives in the HTML syntax:</p>
+
+			<div class="html example">
+				<p>HTML Example:</p>
+				<pre><code>&lt;!doctype html&gt;
+
+&lt;!DOCTYPE HTML&gt;
+
+&lt;!doctype html system 'about:legacy-compat'&gt;
+
+&lt;!Doctype HTML System "about:legacy-compat"&gt;</code></pre>
+			</div>
+
+			<p>For XHTML, it is recommended that the <code>DOCTYPE</code> be
+			   omitted because it is unnecessary. However, should you wish to
+			   use a <code>DOCTYPE</code>, note that the <code>DOCTYPE</code>
+			   is case sensitive, and only the canonical versions of these
+			   <code>DOCTYPE</code>s given above may be used.</p>
+
+			<div class="xhtml example">
+				<p>XHTML Example:</p>
+				<pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;!DOCTYPE html SYSTEM "about:legacy-compat"&gt;
+
+&lt;!DOCTYPE html SYSTEM 'about:legacy-compat'&gt;</code></pre>
+			</div>
+
+			<p>However, there are no restrictions placed on the use of alternative
+			   <code>DOCTYPE</code>s in XHTML. You may, if you wish, use a custom
+			   <code>DOCTYPE</code> referring to a custom DTD, typically for
+			   validation purposes. Although, be advised that DTDs have a number
+			   of limitations compared with other alternative schema languages
+			   and validation techniques.</p>
+
+			<h5 id="historical-notes"><span class="secno">3.2.1.1 </span>Historical Notes</h5>
+
+			<p class="XXX">This section needs revising and may be moved to an
+			   external document and simply referred to.</p>
+
+			<p>The <code>DOCTYPE</code> originates from HTML’s SGML lineage and,
+			   in previous levels of HTML, was originally used to refer to a
+			   Document Type Definition (DTD) — a formal declaration of the
+			   elements, attributes and syntactic features that could be used
+			   within the document. Those who are familiar with previous levels
+			   of HTML will notice that there is no <code>PUBLIC</code>
+			   identifier present in this <code>DOCTYPE</code>, which were used
+			   to refer to the DTD. Also, note that the <code>about:</code> URI
+			   scheme in the <code>SYSTEM</code> identifier of the latter
+			   <code>DOCTYPE</code> is used specifically because it cannot be
+			   resolved to any specific DTD.</p>
+
+			<p>As HTML5 is no longer formally based upon SGML, the
+			   <code>DOCTYPE</code> no longer serves this purpose, and thus no
+			   longer needs to refer to a DTD. However, due to legacy
+			   constraints, it has gained another very important purpose:
+			   triggering no-quirks mode in browsers.</p>
+
+			<p>HTML 5 defines three modes: <strong>quirks mode</strong>,
+			   <strong>limited quirks mode</strong> and <strong>no quirks mode</strong>,
+			   of which only the latter is considered conforming to use. The reason for
+			   this is due to backwards compatibility. The important thing to understand
+			   is that there are some differences in the way documents are visually
+			   rendered in each of the modes; and to ensure the most standards compliant
+			   rendering, it is important to ensure no-quirks mode is used.</p>
+
+		</section>
+
+		<section>
+			<h4 id="elements"><span class="secno">3.2.2 </span>Elements</h4>
+			<p>Elements are marked up using start tags and end tags. Tags are delimited
+			   using angle brackets with the tag name in between. The difference between
+			   start tags and end tags is that the latter includes a slash before the
+			   tag name.</p>
+
+			<div class="example">
+				<p>Example:</p>
+				<p>This example paragraph illustrates the use of start tags and end tags.</p>
+				<pre><code>&lt;p&gt;The quick brown fox jumps over the lazy dog.&lt;/p&gt;</code></pre>
+			</div>
+
+			<p>In both tags, whitespace is permitted between the tag name and the
+			   closing right angle bracket, however it is usually omitted because it’s
+			   redundant.</p>
+
+			<p>In XHTML, tag names are <em>case sensitive</em> and are usually defined
+			   to be written in lowercase. In HTML, however, tag names are case
+			   insensitive and may be written in all uppercase or mixed case, although
+			   the most common convention is to stick with lowercase. The case
+			   of the start and end tags do not have to be the same, but being
+			   consistent does make the code look cleaner.</p>
+
+			<div class="html example">
+				<p>HTML Example:</p>
+				<pre><code>&lt;DIV&gt;...&lt;/DIV&gt;</code></pre>
+			</div>
+
+			<p>An empty element is any element that does not contain any content within
+			   it. In general, an empty element is just one with a start tag immediately
+			   followed by its associated end tag. In both HTML and XHTML syntaxes, this
+			   can be represented in the same way.</p>
+
+			<div class="example">
+				<p>Example:</p>
+				<pre><code>&lt;span&gt;&lt;/span&gt;</code></pre>
+			</div>
+
+			<p>Some elements, however, are forbidden from containing any content at all.
+			   These are known as <em>void elements</em>. In HTML, the above syntax
+			   cannot be used for void elements. For such elements, the end tag must be
+			   omitted because the element is automatically closed by the parser. Such
+			   elements include, among others, <code><a href="http://dev.w3.org/html5/html-author/#the-br-element">br</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-hr-element">hr</a></code>,
+			   <code><a href="http://dev.w3.org/html5/html-author/#the-link-element">link</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-meta-element">meta</a></code></p>
+
+			<div class="example html">
+				<p>HTML Example:</p>
+				<pre><code>&lt;link type="text/css" rel="stylesheet" href="style.css"&gt;</code></pre>
+			</div>
+
+			<p>In XHTML, the XML syntactic requirements dictate that this must be made
+			   explicit using either an explicit end tag, as above, or the empty element
+			   syntax. This is achieved by inserting a slash at the end of the start tag
+			   immediately before the right angle bracket.</p>
+
+			<div class="example">
+				<p>Example:</p>
+				<pre><code>&lt;link type="text/css" href="style.css"/&gt;</code></pre>
+			</div>
+
+			<p>Authors may optionally choose to use this same syntax for void elements
+			   in the HTML syntax as well. Some authors also choose to include
+			   whitespace before the slash, however this is not necessary. (Using
+			   whitespace in that fashion is a convention inherited from the
+			   compatibility guidelines in XHTML 1.0, Appendix C.)</p>
+		</section>
+
+		<section>
+			<h4 id="attributes"><span class="secno">3.2.3 </span>Attributes</h4>
+
+			<p>Elements may contain attributes that are used to set various properties
+			   of an element. Some attributes are defined globally and can be used on
+			   any element, while others are defined for specific elements only. All
+			   attributes have a name and a value and look like this.</p>
+
+			<div class="example">
+				<p>Example:</p>
+				<p>This example illustrates how to mark up a <code><a href="http://dev.w3.org/html5/html-author/#the-div-element">div</a></code> element
+				   with an attribute named <code>class</code> using a value of
+				   <code>"example"</code>.</p>
+				<pre><code>&lt;div class="example"&gt;...&lt;/div&gt;</code></pre>
+			</div>
+
+			<p>Attributes may only be specified within start tags and must never be used
+			   in end tags.</p>
+
+			<div class="example error">
+				<p>Erroneous Example:</p>
+				<pre><code>&lt;section id="example"&gt;...&lt;/section <mark>id="example"</mark>&gt;</code></pre>
+			</div>
+
+			<p>In XHTML, attribute names are case sensitive and most are defined to be
+			   lowercase. In HTML, attribute names are case insensitive, and so they
+			   could be written in all uppercase or mixed case, depending on your own
+			   preferences. It is conventional, however, to use the same case as would
+			   be used in XHTML, which is generally all lowercase.</p>
+
+			<div class="html example">
+				<p>HTML Example:</p>
+				<pre><code>&lt;div CLASS="example"&gt;</code></pre>
+			</div>
+
+			<p>In general, the values of attributes can contain any text or
+			   character references, although depending on the syntax used, some
+			   additional restrictions apply, which are outlined below.</p>
+
+			<p>There are four slightly different syntaxes that may be used for
+			   attributes in HTML: empty, unquoted, single-quoted and double-quoted. All
+			   four syntaxes may be used in the HTML syntax, depending on what is needed
+			   for each specific attribute.  However, in the XHTML syntax, attribute
+			   values must always be quoted using either single or double quotes.</p>
+
+			<h5 id="empty-attr"><span class="secno">3.2.3.1 </span>Empty Attributes</h5>
+
+			<p>An empty attribute is one where the value has been omitted. This is a
+			   syntactic shorthand for specifying the attribute with an empty value,
+			   and is commonly used for boolean attributes. This syntax may be used in
+			   the HTML syntax, but not in the XHTML syntax.</p>
+
+			<p class="note">Note: In previous editions of HTML, which were formally
+			   based on SGML, it was technically an attribute’s name that could be
+			   omitted where the value was a unique enumerated value specified in the
+			   DTD. However, due to legacy constraints, this has been changed in HTML5
+			   to reflect the way implementations really work.</p>
+
+			<div class="html example">
+				<p>HTML Example:</p>
+				<pre><code>&lt;input disabled&gt;...&lt;/div&gt;</code></pre>
+
+				<p>The previous example is equivalent to specifying the attribute with
+				   an empty string as the value.</p>
+				<pre><code>&lt;input disabled=""&gt;...&lt;/div&gt;</code></pre>		
+			</div>
+
+			<p class="note">Note: The previous example is semantically equivalent to
+			   specifying the attribute with the value <code>"disabled"</code>, but it
+			   is not exactly the same.</p>
+
+			<div class="html example">
+				<p>Example:</p>
+				<pre><code>&lt;img src="decoration.png" alt&gt;</code></pre>
+
+				<p>The previous example is equivalent to specifying the attribute with
+				   an empty string as the value.</p>
+				<pre><code>&lt;img src="decoration.png" alt=""&gt;</code></pre>
+			</div>
+
+			<h5 id="unquoted-attr"><span class="secno">3.2.3.2 </span>Unquoted Attribute Values</h5>
+
+			<p>In HTML, but not in XHTML, the quotes surrounding the value may also be
+			   omitted in most cases. The value may contain any characters except for
+			   spaces, single or double quotes (<code>'</code> or <code>"</code>), an
+			   equals sign (<code>=</code>) or a greater-than symbol
+			   (<code>&gt;</code>). If you need an attribute to contain those
+			   characters, they either need to be escaped using character references, or
+			   you need to use either the <span title="single-quote-attr">single-</span>
+			   or <span title="double-quote-attr">double-quoted attribute values</span>.</p>
+
+			<p>Some additional characters cannot be used in unquoted attribute values,
+			   including space characters, single (<code>'</code>) or double
+			   (<code>"</code>) quotation marks, equals signs (<code>=</code>) or
+			   greater than signs  (<code>&gt;</code>).</p>
+
+			<div class="html example">
+				<p>HTML Example:</p>
+				<pre><code>&lt;div class=example&gt;</code></pre>
+			</div>
+
+			<h5 id="double-quote-attr"><span class="secno">3.2.3.3 </span>Double-Quoted Attribute Values</h5>
+
+			<p>In both HTML and XHTML, attribute values may be surrounded with double
+			   quotes.</p>
+
+			<p>By quoting attributes, the value may contain the additional characters
+			   that can’t be used in unquoted attribute values, but for obvious reasons,
+			   these attributes cannot contain additional double quotation marks within
+			   the value.</p>
+
+			<div class="example">
+				<p>Example:</p>
+				<pre><code>&lt;div class="example class names"&gt;...&lt;/div&gt;</code></pre>
+			</div>
+
+
+			<h5 id="single-quote-attr"><span class="secno">3.2.3.4 </span>Single-Quoted Attribute Values</h5>
+
+			<p>In both HTML and XHTML, attribute values may be surrounded with single
+			   quotes.</p>
+
+			<p>By quoting attributes, the value may contain the additional characters
+			   that can’t be used in unquoted attribute values, but for obvious reasons,
+			   these attributes cannot contain additional single quotation marks within
+			   the value.</p>
+
+			<div class="example">
+				<p>Example:</p>
+				<pre><code>&lt;div class='example class names'&gt;...&lt;/div&gt;</code></pre>
+			</div>
+		</section>
+
+		<section>
+			<h4 id="comments"><span class="secno">3.2.4 </span>Comments</h4>
+			<p class="issue">...</p>
+		</section>
+
+		<section>
+			<h4 id="text"><span class="secno">3.2.5 </span>Text</h4>
+			<p class="issue">...</p>
+		</section>
+
+		<section>
+			<h4 id="cdata-sections"><span class="secno">3.2.6 </span>CDATA Sections</h4>
+			<p class="issue">...</p>
+		</section>
+
+		<section>
+			<h4 id="character-references"><span class="secno">3.2.7 </span>Character References</h4>
+			<p class="issue">Discuss numeric and named character reference
+			   syntax.  May link to the list of entity references in a
+			   separate document, rather than trying to list them all in here.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3 id="understanding-mime-types"><span class="secno">3.3 </span>Understanding MIME Types</h3>
+		<p class="issue">Discuss <code>text/html</code>, <code>application/xhtml+xml</code>, etc.</p>
+	</section>
+
+	<section>
+		<h3 id="character-encoding"><span class="secno">3.4 </span>Character Encoding</h3>
+		<p class="issue">Overview of Unicode, character repertoires, encodings, etc.
+		  Declaring the encoding with the Content-Type header, BOM, <code><a href="http://dev.w3.org/html5/html-author/#the-meta-element">meta</a></code>, etc.</p>
+	</section>
+
+	<section>
+		<h3 id="choosing-html-or-xhtml"><span class="secno">3.5 </span>Choosing HTML or XHTML</h3>
+		<p>The choice of HTML or XHTML syntax is largely dependent upon a number
+		   of factors the, including needs of a given project, the skill set of
+		   the developers involved, level of support in browsers used by the
+		   site’s target audience, or it may simply be a matter of personal
+		   preference.</p>
+
+		<p>The important thing to understand is that there are valid reasons to
+		   choose both, and that authors are encouraged to make an informed
+		   decision.</p>
+
+		<p class="issue">Need to develop guidelines to help authors make this choice.</p>
+	</section>
+
+	<section>
+		<h3 id="polyglot-documents"><span class="secno">3.6 </span>Polyglot Documents</h3>
+
+		<p>A polyglot HTML document is a document that conforms to both the
+		   HTML and XHTML syntactic requirements, and which can be processed
+		   as either by browsers, depending on the MIME type used. This works
+		   by using a common subset of the syntax that is shared by both HTML
+		   and XHTML.</p>
+
+		<p>Polyglot documents are useful to create for situations where a
+		   document is intended to be served as either HTML or XHTML,
+		   depending on the support in particular browsers, or when it is
+		   not known at the time of creation, which MIME type the document
+		   will ultimately be served as.</p>
+
+		<p>In order to successfully create and maintain polyglot documents,
+		   authors need to be familiar with both the similarities and
+		   differences between the two syntaxes.  This includes not only
+		   syntactic differences, but also differences in the way stylesheets,
+		   and scripts are handled, and the way in which character encodings
+		   are detected.</p>
+		
+		<p>This section will provide the details about each of these similarities
+		   and differences, and provide guidelines on the creation of polyglot
+		   documents.</p>
+
+		<p class="issue">Base this on the <a href="http://wiki.whatwg.org/wiki/HTML_vs._XHTML" title="HTML vs. XHTML - WHATWG Wiki">HTML vs. XHTML</a> article.</p>
+	</section>
+</section>
+
+<!-- The HTML Vocabulary and APIs -->
+<section>
+	<h2 id="the-html-vocabulary-and-apis"><span class="secno">4 </span>The HTML Vocabulary and APIs</h2>
+
+	<section>
+		<h3 id="categories"><span class="secno">4.1 </span>Categories</h3>
+		<p>Each element in HTML falls into zero or more categories that group
+		   elements with similar characteristics together. The following categories
+		   are used in this guide:</p>
+
+		<ul>
+			<li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#sectioning-root">Sectioning root</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#sectioning-content">Sectioning content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#heading-content">Heading content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#embedded-content">Embedded content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#interactive-content">Interactive content</a></li>
+			<li><a href="http://dev.w3.org/html5/html-author/#transparent-content-models">Transparent</a></li>
+		</ul>
+
+		<p>Some elements have unique requirements and do not fit into any particular
+		   category.</p>
+
+		<p>These categories are related as follows:</p>
+	
+		<p><object data="http://dev.w3.org/html5/html-author/images/content-venn.svg" height="288" width="512"><img alt="Sectioning content, heading content, phrasing content, and
+			  embedded content are all types of flow content. Embedded content is
+			  also a type of phrasing content." src="./HTML 5 Reference_files/content-venn.png"></object></p>
+
+		<p class="issue">[Create and link to some sort of index of elements that
+		   lists each element in each category.]</p>
+
+		<h4 id="metadata-content"><span class="secno">4.1.1 </span><dfn>Metadata Content</dfn></h4>
+		<p>Metadata content includes elements for marking up document metadata;
+		   marking up or linking to resources that describe the behaviour or
+		   presentation of the document; or indicate relationships with other
+		   documents.</p>
+
+		<p>Metadata elements appear within the <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> of a document. Some
+		   common examples of metadata elements include: <code><a href="http://dev.w3.org/html5/html-author/#the-title-element">title</a></code>,
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-meta-element">meta</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-link-element">link</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-script-element">script</a></code> and
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-style-element">style</a></code>.</p>
+
+		<h4 id="flow-content"><span class="secno">4.1.2 </span><dfn>Flow content</dfn></h4>
+		<p>Most elements that are used in the body of documents and applications are
+		   categorised as flow content. Most of the elements used to mark up the
+		   main content in the body of a page are considered to be flow content.
+		   In general, this includes elements that are presented visually as either
+		   block level or inline level.</p>
+
+		<p>Some common flow content includes elements like <code><a href="http://dev.w3.org/html5/html-author/#the-div-element">div</a></code>,
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-p-element">p</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-em-element">em</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-strong-element">strong</a></code>.</p>
+
+		<p class="note">Elements categorised as heading content, phrasing content or
+		   embedded content are also considered to be flow content.</p>
+
+		<h4 id="sectioning-root"><span class="secno">4.1.3 </span><dfn>Sectioning root</dfn></h4>
+		<p class="issue">[This description needs improving.]</p>
+		<p>These elements can have their own outlines, but the sections and
+		   headers inside these elements do not contribute to the outlines of
+		   their ancestors.</p>
+
+		<p>Some common sectioning root elements include, among others,
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-body-element">body</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-blockquote-element">blockquote</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-figure-element">figure</a></code>.</p>
+
+		<h4 id="sectioning-content"><span class="secno">4.1.4 </span><dfn>Sectioning content</dfn></h4>
+		<p>Sectioning content is used for structuring a document into sections,
+		   each of which generally has its own heading.  These elements provide a
+		   scope within which associated headers, footers and contact information
+		   apply.</p>
+
+		<p>Some common sectioning elements include, among others,
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-section-element">section</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-article-element">article</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-nav-element">nav</a></code>.</p>
+
+		<p class="note">Most sectioning elements, with the exception of the body
+		   element, are also classified as flow content.</p>
+
+		<h4 id="heading-content"><span class="secno">4.1.5 </span><dfn>Heading content</dfn></h4>
+
+		<p>Heading content includes the elements for marking up headers. Headings,
+		   in conjunction with the sectioning elements, are used to describe the the
+		   structure of the document.</p>
+
+		<p>Heading content includes the <code><a href="http://dev.w3.org/html5/html-author/#the-header-element">header</a></code> element and the
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h1</a></code> to <code><a href="http://dev.w3.org/html5/html-author/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h6</a></code> elements.</p>
+
+		<p class="note">Elements categorised as heading content are considered to be
+		   flow content.</p>
+
+		<h4 id="phrasing-content"><span class="secno">4.1.6 </span><dfn>Phrasing content</dfn></h4>
+		<p>Phrasing content includes text and text-level markup. This is similar to
+		   the concept of inline level elements in HTML 4.01.  Most elements that
+		   are categorised as phrasing content can only contain other phrasing
+		   content.</p>
+
+		<p>Some common examples of phrasing content elements include <code><a href="http://dev.w3.org/html5/html-author/#the-abbr-element">abbr</a></code>,
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-em-element">em</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-strong-element">strong</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-span-element">span</a></code></p>
+
+		<p class="note">Elements categorised as phrasing content are considered to
+		   be flow content.</p>
+
+		<h4 id="embedded-content"><span class="secno">4.1.7 </span><dfn>Embedded content</dfn></h4>
+		<p>Embedded content includes elements that load external resources into the
+		   document. Such external resources include, for example, images, videos
+		   and Flash-based content. Some embedded content elements include
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-img-element">img</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-object-element">object</a></code>, <code><a href="http://dev.w3.org/html5/html-author/#the-embed-element">embed</a></code> and
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-video-element">video</a></code>.</p>
+
+		<p class="note">Elements categorised as embedded content are considered to
+		   be phrasing content, and thus also considered to be flow content.</p>
+
+		<h4 id="interactive-content"><span class="secno">4.1.8 </span><dfn>Interactive content</dfn></h4>
+		<p>Interactive elements are those that allow the user to interact with or
+		   activate in some way.  Depending on the user’s browser and device, this
+		   could be performed using any kind of input device, such as, for example,
+		   a mouse, keyboard, touch screen or voice input.</p>
+
+		<p>Some common examples of interactive content include <code><a href="http://dev.w3.org/html5/html-author/#the-a-element">a</a></code>,
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-audio-element">audio</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-video-element">video</a></code> when used with the
+		   <code>controls</code> attribute, and most form controls using
+		   <code><a href="http://dev.w3.org/html5/html-author/#the-input-element">input</a></code>.</p>
+		
+		<h4 id="transparent-content-models"><span class="secno">4.1.9 </span><dfn>Transparent</dfn> Content Models</h4>
+		
+		<p>Some elements have transparent content models, meaning that their
+		   allowed content depends upon the parent element. They may contain
+		   any content that their parent element may contain, in addition to
+		   any other allowances or exceptions described for the element.</p>
+
+		<p>When the element has no parent, then the content model defaults to
+		   <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a>.</p>
+	</section>
+
+	<section>
+		<h3 id="global-attributes"><span class="secno">4.2 </span>Global Attributes</h3>
+		<p class="XXX">To be completed.</p>
+	</section>
+
+	<!-- The Elements -->
+	<section>
+		<h3 id="the-elements"><span class="secno">4.3 </span>The Elements</h3>
+
+		<p class="XXX">Expect major changes to this section. Each of these
+		   needs longer descriptions and the elements should be divided into
+		   categories. The IDL for the DOM Interfaces is likely to be replaced by something
+		   a lot more reader-friendly in the future; consider it a placeholder
+		   for now. Attributes will likely be accompanied by brief descriptions
+		   within the summary box, in addition to fuller descriptions and examples
+		   afterwards.</p>
+
+<!-- The Root Element -->
+<section>
+	<h4 id="the-root-element"><span class="secno">4.3.1 </span>The Root Element</h4>
+	<!-- The html Element -->
+	<div class="element">
+		<h5 id="the-html-element"><span class="secno">4.3.1.1 </span>The <dfn><code>html</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-html-element">html</a></code> element represents the root of an HTML document.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>optional</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>As the root element of a document.</li><li>Wherever a subdocument fragment is allowed in a compound document.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>A <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element followed by a <code><a href="http://dev.w3.org/html5/html-author/#the-body-element">body</a></code> element.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-0">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-html-manifest"><a href="http://dev.w3.org/html5/html-author/#attr-html-manifest">manifest</a></code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<p>The <code><a href="http://dev.w3.org/html5/html-author/#the-html-element">html</a></code> element is the root element of a document.
+	   Every document must begin with this element, and it must contain
+	   both the <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> and <code><a href="http://dev.w3.org/html5/html-author/#the-body-element">body</a></code> elements.</p>
+	
+	<p>It is considered good practice to specify the primary language of the
+	   document on this element using the <code>lang</code> attribute.</p>
+
+	<div class="html example">
+		<p>HTML Example:</p>
+		<pre><code>&lt;!DOCTYPE html&gt;
+<mark>&lt;html lang="en"&gt;</mark>
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+<mark>&lt;/html&gt;</mark></code></pre>
+	</div>
+
+	<p>In the HTML syntax only, both the start and end tags are optional,
+	   and so for convenience either may be omitted, unless you wish to
+	   specify attributes on this element, in which case, at least the start
+	   tag needs to be included.</p>
+	<div class="html example">
+		<p>HTML Example:</p>
+		<pre><code>&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+  ...
+&lt;/head&gt;
+&lt;body&gt;
+  ...
+&lt;/body&gt;
+</code></pre>
+	</div>
+
+	<p>In the XHTML syntax, the <code>xmlns</code> attribute needs to be
+	   specified on this element to declare that it is in the HTML
+	   namespace.  You may use either the <code>lang</code> or
+	   <code>xml:lang</code> attribute to specify the langauge.</p>
+
+	<div class="xhtml example">
+		<p>XHTML Example:</p>
+		<pre><code>&lt;html <mark>xmlns="http://www.w3.org/1999/xhtml"</mark> <mark>xml:lang="en"</mark>&gt;
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+	</div>
+
+	<dl class="attributes">
+		<dt><dfn id="attr-html-manifest" title="attr-html-manifest"><code>manifest</code></dfn></dt>
+		<dd>The manifest attribute gives the address of the document’s
+		    application cache manifest, if there is one. If the attribute is
+		   present, the attribute’s value must be a valid URL.</dd>
+	</dl>
+
+	<p class="XXX">Need to describe application cache manifests.</p>
+</section>
+
+<!-- Document Metadata -->
+<section>
+	<h4 id="document-metadata"><span class="secno">4.3.2 </span>Document Metadata</h4>
+	<!-- The head Element -->
+	<div class="element">
+		<h5 id="the-head-element"><span class="secno">4.3.2.1 </span>The <dfn><code>head</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element collects the document’s metadata.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>optional</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>As the first element in an <code><a href="http://dev.w3.org/html5/html-author/#the-html-element">html</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>One or more elements of <a href="http://dev.w3.org/html5/html-author/#metadata-content">metadata content</a>, of which exactly one is a <code><a href="http://dev.w3.org/html5/html-author/#the-title-element">title</a></code> element.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-1">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-0">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+	
+	<p>The <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element is the container for the document’s
+	   metadata. Metadata is information about the document itself, such as
+	   it's title, author. Scripts and stylesheets may also be included
+	   within the <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element. Every document must have a
+	   <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element.</p>
+
+	<p>The following examples illustrate the typical usage of the
+	   <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element in HTML and XHTML.</p>
+
+	<div class="example html">
+		<p>HTML Example</p>
+		<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+<mark>&lt;head&gt;</mark>
+  &lt;title&gt;Example&lt;/title&gt;
+<mark>&lt;/head&gt;</mark>
+&lt;body&gt;
+  &lt;h1&gt;Document&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+	</div>
+
+	<div class="example xhtml">
+		<p>XHTML Example</p>
+		<pre>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+<mark>&lt;head&gt;</mark>
+  &lt;title&gt;Example&lt;/title&gt;
+<mark>&lt;/head&gt;</mark>
+&lt;body&gt;
+  &lt;h1&gt;Document&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+	</div>
+
+	<!-- The title Element -->
+	<div class="element">
+		<h5 id="the-title-element"><span class="secno">4.3.2.2 </span>The <dfn><code>title</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-title-element">title</a></code> element represents the document’s title or name, and should be meaningful even when read out of context.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>In a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element containing no other <code><a href="http://dev.w3.org/html5/html-author/#the-title-element">title</a></code> elements.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Text.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-2">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-1">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The base Element -->
+	<div class="element">
+		<h5 id="the-base-element"><span class="secno">4.3.2.3 </span>The <dfn><code>base</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-base-element">base</a></code> element is for specifying a base URL against which relative links will be resolved, and the name of the default target for opening links and form submissions.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>In a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element containing no other <code><a href="http://dev.w3.org/html5/html-author/#the-base-element">base</a></code> elements.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-3">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-base-href">href</code></li><li><code title="attr-base-target">target</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-2">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlbaseelement">HTMLBaseElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-base-href">href</span>;
+           attribute DOMString <span title="dom-base-target">target</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The link Element -->
+	<div class="element">
+		<h5 id="the-link-element"><span class="secno">4.3.2.4 </span>The <dfn><code>link</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-link-element">link</a></code> is for linking to other resources, such as stylesheets, favicons and syndication feeds.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#metadata-content">metadata content</a> is expected.</li><li>In a <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> element that is a child of a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-4">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-link-href">href</code></li><li><code title="attr-link-rel">rel</code></li><li><code title="attr-link-media">media</code></li><li><code title="attr-link-hreflang">hreflang</code></li><li><code title="attr-link-type">type</code></li><li><code title="attr-link-sizes">sizes</code></li><li>Also, the <code title="attr-link-title">title</code> attribute has special semantics on this element.</li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-3">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmllinkelement">HTMLLinkElement</dfn> : <span>HTMLElement</span> {
+           attribute boolean <span title="dom-link-disabled">disabled</span>;
+           attribute DOMString <span title="dom-link-href">href</span>;
+           attribute DOMString <span title="dom-link-rel">rel</span>;
+  readonly attribute DOMTokenList <span title="dom-link-relList">relList</span>;
+           attribute DOMString <span title="dom-link-media">media</span>;
+           attribute DOMString <span title="dom-link-hreflang">hreflang</span>;
+           attribute DOMString <span title="dom-link-type">type</span>;
+           attribute DOMString <span title="dom-link-sizes">sizes</span>;
+};</pre>
+	    <p>The <code>LinkStyle</code> interface must also be implemented
+	    by this element, the <span>styling processing model</span> defines
+	    how. <a href="http://dev.w3.org/html5/html-author/#refsCSSOM">[CSSOM]</a></p></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The meta Element -->
+	<div class="element">
+		<h5 id="the-meta-element"><span class="secno">4.3.2.5 </span>The <dfn><code>meta</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-meta-element">meta</a></code> element is for providing various types of metadata, such as the application-name or specifying the documents character encoding.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>If the <code title="attr-meta-charset">charset</code> attribute is present, or if the element is in the <span title="attr-meta-http-equiv-content-type">Encoding declaration state</span>: in a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element.</li><li>If the <code title="attr-meta-http-equiv">http-equiv</code> attribute is present, and the element is not in the <span title="attr-meta-http-equiv-content-type">Encoding declaration state</span>: in a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element.</li><li>If the <code title="attr-meta-http-equiv">http-equiv</code> attribute is present, and the element is not in the <span title="attr-meta-http-equiv-content-type">Encoding declaration state</span>: in a <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> element that is a child of a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element.</li><li>If the <code title="attr-meta-name">name</code> attribute is present: where <a href="http://dev.w3.org/html5/html-author/#metadata-content">metadata content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-5">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-meta-name">name</code></li><li><code title="attr-meta-http-equiv">http-equiv</code></li><li><code title="attr-meta-content">content</code></li><li><code title="attr-meta-charset">charset</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-4">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlmetaelement">HTMLMetaElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-meta-content">content</span>;
+           attribute DOMString <span title="dom-meta-name">name</span>;
+           attribute DOMString <span title="dom-meta-httpEquiv">httpEquiv</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The style Element -->
+	<div class="element">
+		<h5 id="the-style-element"><span class="secno">4.3.2.6 </span>The <dfn><code>style</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-style-element">style</a></code> element allows authors to embed stylesheets, typically CSS, within their documents.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li><li>If the <code title="attr-style-scoped">scoped</code> attribute is present: <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>If the <code title="attr-style-scoped">scoped</code> attribute is absent: where <a href="http://dev.w3.org/html5/html-author/#metadata-content">metadata content</a> is expected.</li><li>If the <code title="attr-style-scoped">scoped</code> attribute is absent: in a <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> element that is a child of a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element.</li><li>If the <code title="attr-style-scoped">scoped</code> attribute is present: where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected, but before any other <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> other than other <code><a href="http://dev.w3.org/html5/html-author/#the-style-element">style</a></code> elements and <span>inter-element whitespace</span>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Depends on the value of the <code title="attr-style-type">type</code> attribute.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-6">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-style-media">media</code></li><li><code title="attr-style-type">type</code></li><li><code title="attr-style-scoped">scoped</code></li><li>Also, the <code title="attr-style-title">title</code> attribute has special semantics on this element.</li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-5">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlstyleelement">HTMLStyleElement</dfn> : <span>HTMLElement</span> {
+           attribute boolean <span title="dom-style-disabled">disabled</span>;
+           attribute DOMString <span title="dom-style-media">media</span>;
+           attribute DOMString <span title="dom-style-type">type</span>;
+           attribute boolean <span title="dom-style-scoped">scoped</span>;
+};</pre>
+	    <p>The <code>LinkStyle</code> interface must also be implemented
+	    by this element, the <span>styling processing model</span> defines
+	    how. <a href="http://dev.w3.org/html5/html-author/#refsCSSOM">[CSSOM]</a></p></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<!-- Scripting -->
+<section>
+	<h4 id="scripting"><span class="secno">4.3.3 </span>Scripting</h4>
+	<!-- The script Element -->
+	<div class="element">
+		<h5 id="the-script-element"><span class="secno">4.3.3.1 </span>The <dfn><code>script</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-script-element">script</a></code> element allows authors to include scripts, typically javaScript, and data blocks in their documents.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#metadata-content">metadata content</a> is expected.</li><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>If there is no <code title="attr-script-src">src</code>
+	   attribute, depends on the value of the <code title="attr-script-type">type</code> attribute.</li><li>If there <em>is</em> a <code title="attr-script-src">src</code>
+	   attribute, the element must be either empty or contain only
+	   <span>script documentation</span>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-7">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-script-src">src</code></li><li><code title="attr-script-async">async</code></li><li><code title="attr-script-defer">defer</code></li><li><code title="attr-script-type">type</code></li><li><code title="attr-script-charset">charset</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-6">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlscriptelement">HTMLScriptElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-script-src">src</span>;
+           attribute boolean <span title="dom-script-async">async</span>;
+           attribute boolean <span title="dom-script-defer">defer</span>;
+           attribute DOMString <span title="dom-script-type">type</span>;
+           attribute DOMString <span title="dom-script-charset">charset</span>;
+           attribute DOMString <span title="dom-script-text">text</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The noscript Element -->
+	<div class="element">
+		<h5 id="the-noscript-element"><span class="secno">4.3.3.2 </span>The <dfn><code>noscript</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> element is used to provide alternative content for users using browsers that do not support scripting or have it disabled.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#metadata-content">Metadata content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>In a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element of an <span title="HTML documents">HTML document</span>, if there are no ancestor <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> elements.</li><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected in <span>HTML documents</span>, if there are no ancestor <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> elements.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>When <span title="concept-n-noscript">scripting is disabled</span>, in a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element: in any order, zero or more <code><a href="http://dev.w3.org/html5/html-author/#the-link-element">link</a></code> elements, zero or more <code><a href="http://dev.w3.org/html5/html-author/#the-style-element">style</a></code> elements, and zero or more <code><a href="http://dev.w3.org/html5/html-author/#the-meta-element">meta</a></code> elements.</li><li>When <span title="concept-n-noscript">scripting is disabled</span>, not in a <code><a href="http://dev.w3.org/html5/html-author/#the-head-element">head</a></code> element: <a href="http://dev.w3.org/html5/html-author/#transparent-content-models">transparent</a>, but there must be no <code><a href="http://dev.w3.org/html5/html-author/#the-noscript-element">noscript</a></code> element descendants.</li><li>Otherwise: text that conforms to the requirements given in the prose.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-8">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-7">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Sections -->
+<section>
+	<h4 id="sections"><span class="secno">4.3.4 </span>Sections</h4>
+	<!-- The body Element -->
+	<div class="element">
+		<h5 id="the-body-element"><span class="secno">4.3.4.1 </span>The <dfn><code>body</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-body-element">body</a></code> element represents the main content of the document.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>optional</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#sectioning-root">Sectioning root</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>As the second element in an <code><a href="http://dev.w3.org/html5/html-author/#the-html-element">html</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-9">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="handler-window-onbeforeunload">onbeforeunload</code></li><li><code title="handler-window-onerror">onerror</code></li><li><code title="handler-window-onhashchange">onhashchange</code></li><li><code title="handler-window-onload">onload</code></li><li><code title="handler-window-onmessage">onmessage</code></li><li><code title="handler-window-onoffline">onoffline</code></li><li><code title="handler-window-ononline">ononline</code></li><li><code title="handler-window-onpopstate">onpopstate</code></li><li><code title="handler-window-onresize">onresize</code></li><li><code title="handler-window-onstorage">onstorage</code></li><li><code title="handler-window-onunload">onunload</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-8">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlbodyelement">HTMLBodyElement</dfn> : <span>HTMLElement</span> {
+           attribute <span>Function</span> <span title="handler-window-onbeforeunload">onbeforeunload</span>;
+           attribute <span>Function</span> <span title="handler-window-onerror">onerror</span>;
+           attribute <span>Function</span> <span title="handler-window-onhashchange">onhashchange</span>;
+           attribute <span>Function</span> <span title="handler-window-onload">onload</span>;
+           attribute <span>Function</span> <span title="handler-window-onmessage">onmessage</span>;
+           attribute <span>Function</span> <span title="handler-window-onoffline">onoffline</span>;
+           attribute <span>Function</span> <span title="handler-window-ononline">ononline</span>;
+           attribute <span>Function</span> <span title="handler-window-onpopstate">onpopstate</span>;
+           attribute <span>Function</span> <span title="handler-window-onresize">onresize</span>;
+           attribute <span>Function</span> <span title="handler-window-onstorage">onstorage</span>;
+           attribute <span>Function</span> <span title="handler-window-onunload">onunload</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The section Element -->
+	<div class="element">
+		<h5 id="the-section-element"><span class="secno">4.3.4.2 </span>The <dfn><code>section</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-section-element">section</a></code> element represents a generic document or application section. A section, in this context, is a thematic grouping of content, typically with a header and possibly a footer.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#sectioning-content">Sectioning content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-10">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-9">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The nav Element -->
+	<div class="element">
+		<h5 id="the-nav-element"><span class="secno">4.3.4.3 </span>The <dfn><code>nav</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-nav-element">nav</a></code> element represents a section of a page containing primary navigation links to other pages or to parts within the page.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#sectioning-content">Sectioning content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-11">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-10">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The article Element -->
+	<div class="element">
+		<h5 id="the-article-element"><span class="secno">4.3.4.4 </span>The <dfn><code>article</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-article-element">article</a></code> element represents an independent section of a document, page, or site. This could be a forum post, a magazine or newspaper article, a blog entry, a user-submitted comment, or any other independent item of content.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#sectioning-content">Sectioning content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-12">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-11">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The aside Element -->
+	<div class="element">
+		<h5 id="the-aside-element"><span class="secno">4.3.4.5 </span>The <dfn><code>aside</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-aside-element">aside</a></code> element represents a section of a page that consists of content that is tangentially related to the content around the <code><a href="http://dev.w3.org/html5/html-author/#the-aside-element">aside</a></code> element, and which could be considered separate from that content. Such sections are often represented as sidebars in printed typography.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#sectioning-content">Sectioning content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-13">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-12">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The h1 Element -->
+	<div class="element">
+		<h5 id="the-h1,-h2,-h3,-h4,-h5,-and-h6-elements"><span class="secno">4.3.4.6 </span>The <dfn><code>h1</code></dfn>, <dfn><code>h2</code></dfn>,
+	  <dfn><code>h3</code></dfn>, <dfn><code>h4</code></dfn>,
+	  <dfn><code>h5</code></dfn>, and <dfn><code>h6</code></dfn>
+	  elements</h5>
+		<div class="summary">
+			<p class="desc">These elements define headers for their sections.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#heading-content">Heading content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-14">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-13">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The header Element -->
+	<div class="element">
+		<h5 id="the-header-element"><span class="secno">4.3.4.7 </span>The <dfn><code>header</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-header-element">header</a></code> element represents the header of a section, typically containing headings and subheadings, and other metadata about the section.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#heading-content">Heading content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>, including at least one descendant
+	   that is <a href="http://dev.w3.org/html5/html-author/#heading-content">heading content</a>, but no <a href="http://dev.w3.org/html5/html-author/#sectioning-content">sectioning
+	   content</a> descendants, no <code><a href="http://dev.w3.org/html5/html-author/#the-header-element">header</a></code> element
+	   descendants, and no <code><a href="http://dev.w3.org/html5/html-author/#the-footer-element">footer</a></code> element descendants.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-15">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-14">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The footer Element -->
+	<div class="element">
+		<h5 id="the-footer-element"><span class="secno">4.3.4.8 </span>The <dfn><code>footer</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-footer-element">footer</a></code> element represents a footer of a section, typically containing information such as who wrote it, links to related documents, and copyright notices.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>, but with no <a href="http://dev.w3.org/html5/html-author/#heading-content">heading
+	   content</a> descendants, no <a href="http://dev.w3.org/html5/html-author/#sectioning-content">sectioning content</a>
+	   descendants, and no <code><a href="http://dev.w3.org/html5/html-author/#the-footer-element">footer</a></code> element descendants.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-16">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-15">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The address Element -->
+	<div class="element">
+		<h5 id="the-address-element"><span class="secno">4.3.4.9 </span>The <dfn><code>address</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-address-element">address</a></code> element represents the contact information for the section it <a href="http://dev.w3.org/html5/html-author/#applyToSection">applies</a> to. If it applies to <span>the body element</span>, then it instead applies to the document as a whole.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>, but with no <a href="http://dev.w3.org/html5/html-author/#heading-content">heading
+	   content</a> descendants, no <a href="http://dev.w3.org/html5/html-author/#sectioning-content">sectioning content</a>
+	   descendants, no <code><a href="http://dev.w3.org/html5/html-author/#the-footer-element">footer</a></code> element descendants, and no
+	   <code><a href="http://dev.w3.org/html5/html-author/#the-address-element">address</a></code> element descendants.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-17">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-16">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Grouping Content -->
+<section>
+	<h4 id="grouping-content"><span class="secno">4.3.5 </span>Grouping Content</h4>
+
+	<!-- The p Element -->
+	<div class="element">
+		<h5 id="the-p-element"><span class="secno">4.3.5.1 </span>The <dfn><code>p</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-p-element">p</a></code> element represents a <span>paragraph</span>.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-18">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-17">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The hr Element -->
+	<div class="element">
+		<h5 id="the-hr-element"><span class="secno">4.3.5.2 </span>The <dfn><code>hr</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-hr-element">hr</a></code> element represents a <span>paragraph</span>-level thematic break, e.g. a scene change in a story, or a transition to another topic within a section of a reference book.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-19">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-18">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The br Element -->
+	<div class="element">
+		<h5 id="the-br-element"><span class="secno">4.3.5.3 </span>The <dfn><code>br</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-br-element">br</a></code> element represents a line break.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-20">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-19">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The pre Element -->
+	<div class="element">
+		<h5 id="the-pre-element"><span class="secno">4.3.5.4 </span>The <dfn><code>pre</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-pre-element">pre</a></code> element represents a block of preformatted text, in which structure is represented by typographic conventions rather than by elements.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-21">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-20">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The dialog Element -->
+	<div class="element">
+		<h5 id="the-dialog-element"><span class="secno">4.3.5.5 </span>The <dfn><code>dialog</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-dialog-element">dialog</a></code> element represents a conversation.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Zero or more pairs of one <code><a href="http://dev.w3.org/html5/html-author/#the-dt-element">dt</a></code> element followed by
+	   one <code><a href="http://dev.w3.org/html5/html-author/#the-dd-element">dd</a></code> element.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-22">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-21">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The blockquote Element -->
+	<div class="element">
+		<h5 id="the-blockquote-element"><span class="secno">4.3.5.6 </span>The <dfn><code>blockquote</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-blockquote-element">blockquote</a></code> element represents a section that is quoted from another source.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#sectioning-root">Sectioning root</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-23">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-blockquote-cite">cite</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-22">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlquoteelement">HTMLQuoteElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-quote-cite">cite</span>;
+};</pre>
+	    <p class="note">The <code><a href="http://dev.w3.org/html5/html-author/#htmlquoteelement">HTMLQuoteElement</a></code> interface is
+	    also used by the <code><a href="http://dev.w3.org/html5/html-author/#the-q-element">q</a></code> element.</p></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The ol Element -->
+	<div class="element">
+		<h5 id="the-ol-element"><span class="secno">4.3.5.7 </span>The <dfn><code>ol</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-ol-element">ol</a></code> element represents an ordered list.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Zero or more <code><a href="http://dev.w3.org/html5/html-author/#the-li-element">li</a></code> elements.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-24">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-ol-reversed">reversed</code></li><li><code title="attr-ol-start">start</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-23">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlolistelement">HTMLOListElement</dfn> : <span>HTMLElement</span> {
+           attribute boolean <span title="dom-ol-reversed">reversed</span>;
+           attribute long <span title="dom-ol-start">start</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The ul Element -->
+	<div class="element">
+		<h5 id="the-ul-element"><span class="secno">4.3.5.8 </span>The <dfn><code>ul</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-ul-element">ul</a></code> element represents an unordered list.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Zero or more <code><a href="http://dev.w3.org/html5/html-author/#the-li-element">li</a></code> elements.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-25">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-24">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The li Element -->
+	<div class="element">
+		<h5 id="the-li-element"><span class="secno">4.3.5.9 </span>The <dfn><code>li</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-li-element">li</a></code> element represents a list item.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Inside <code><a href="http://dev.w3.org/html5/html-author/#the-ol-element">ol</a></code> elements.</li><li>Inside <code><a href="http://dev.w3.org/html5/html-author/#the-ul-element">ul</a></code> elements.</li><li>Inside <code><a href="http://dev.w3.org/html5/html-author/#the-menu-element">menu</a></code> elements.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-26">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li>If the element is a child of an <code><a href="http://dev.w3.org/html5/html-author/#the-ol-element">ol</a></code> element: <code title="attr-li-value">value</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-25">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmllielement">HTMLLIElement</dfn> : <span>HTMLElement</span> {
+           attribute long <span title="dom-li-value">value</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The dl Element -->
+	<div class="element">
+		<h5 id="the-dl-element"><span class="secno">4.3.5.10 </span>The <dfn><code>dl</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-dl-element">dl</a></code> element introduces an association list containing groups of terms and associated descriptions. (a description list).</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Zero or more groups each consisting of one or more
+	   <code><a href="http://dev.w3.org/html5/html-author/#the-dt-element">dt</a></code> elements followed by one or more <code><a href="http://dev.w3.org/html5/html-author/#the-dd-element">dd</a></code>
+	   elements.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-27">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-26">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The dt Element -->
+	<div class="element">
+		<h5 id="the-dt-element"><span class="secno">4.3.5.11 </span>The <dfn><code>dt</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-dt-element">dt</a></code> element represents the term, or name, part of a term-description group in a description list (<code><a href="http://dev.w3.org/html5/html-author/#the-dl-element">dl</a></code> element), and the talker, or speaker, part of a talker-discourse pair in a conversation (<code><a href="http://dev.w3.org/html5/html-author/#the-dialog-element">dialog</a></code> element).</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Before <code><a href="http://dev.w3.org/html5/html-author/#the-dd-element">dd</a></code> or <code><a href="http://dev.w3.org/html5/html-author/#the-dt-element">dt</a></code> elements inside <code><a href="http://dev.w3.org/html5/html-author/#the-dl-element">dl</a></code> elements.</li><li>Before a <code><a href="http://dev.w3.org/html5/html-author/#the-dd-element">dd</a></code> element inside a <code><a href="http://dev.w3.org/html5/html-author/#the-dialog-element">dialog</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-28">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-27">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The dd Element -->
+	<div class="element">
+		<h5 id="the-dd-element"><span class="secno">4.3.5.12 </span>The <dfn><code>dd</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-dd-element">dd</a></code> element represents the description, definition, or value, part of a term-description group in a description list (<code><a href="http://dev.w3.org/html5/html-author/#the-dl-element">dl</a></code> element), and the discourse, or quote, part in a conversation (<code><a href="http://dev.w3.org/html5/html-author/#the-dialog-element">dialog</a></code> element).</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>optional</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>After <code><a href="http://dev.w3.org/html5/html-author/#the-dt-element">dt</a></code> or <code><a href="http://dev.w3.org/html5/html-author/#the-dd-element">dd</a></code> elements inside <code><a href="http://dev.w3.org/html5/html-author/#the-dl-element">dl</a></code> elements.</li><li>After a <code><a href="http://dev.w3.org/html5/html-author/#the-dt-element">dt</a></code> element inside a <code><a href="http://dev.w3.org/html5/html-author/#the-dialog-element">dialog</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-29">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-28">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h4 id="text-level-semantics"><span class="secno">4.3.6 </span>Text-Level Semantics</h4>
+
+	<!-- The a Element -->
+	<div class="element">
+		<h5 id="the-a-element"><span class="secno">4.3.6.1 </span>The <dfn><code>a</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">If the <code><a href="http://dev.w3.org/html5/html-author/#the-a-element">a</a></code> element has an <code title="attr-hyperlink-href">href</code> attribute, then it represents a <span>hyperlink</span>.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#interactive-content">Interactive content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li>When the element only contains <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a>: <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#transparent-content-models">Transparent</a>, but there must be no <a href="http://dev.w3.org/html5/html-author/#interactive-content">interactive content</a> descendant.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-30">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-hyperlink-href">href</code></li><li><code title="attr-hyperlink-target">target</code></li><li><code title="attr-hyperlink-ping">ping</code></li><li><code title="attr-hyperlink-rel">rel</code></li><li><code title="attr-hyperlink-media">media</code></li><li><code title="attr-hyperlink-hreflang">hreflang</code></li><li><code title="attr-hyperlink-type">type</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-29">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">[Stringifies=href] interface <dfn id="htmlanchorelement">HTMLAnchorElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-a-href">href</span>;
+           attribute DOMString <span title="dom-a-target">target</span>;
+           attribute DOMString <span title="dom-a-ping">ping</span>;
+           attribute DOMString <span title="dom-a-rel">rel</span>;
+  readonly attribute DOMTokenList <span title="dom-a-relList">relList</span>;
+           attribute DOMString <span title="dom-a-media">media</span>;
+           attribute DOMString <span title="dom-a-hreflang">hreflang</span>;
+           attribute DOMString <span title="dom-a-type">type</span>;
+};</pre><!-- XXX also support the URL decomposition attributes -->
+	    <p>The <code title="command-ro">Command</code> interface must also be implemented by
+	    this element.</p></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The q Element -->
+	<div class="element">
+		<h5 id="the-q-element"><span class="secno">4.3.6.2 </span>The <dfn><code>q</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-q-element">q</a></code> element represents a phrase quoted from another source.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-31">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-q-cite">cite</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-30">DOM Interface</h6>
+				<ul><li>
+	    The <code><a href="http://dev.w3.org/html5/html-author/#the-q-element">q</a></code> element uses the <code><a href="http://dev.w3.org/html5/html-author/#htmlquoteelement">HTMLQuoteElement</a></code> interface.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The cite Element -->
+	<div class="element">
+		<h5 id="the-cite-element"><span class="secno">4.3.6.3 </span>The <dfn><code>cite</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-cite-element">cite</a></code> element represents the title of a work, such as an article, a book, a poem, a song, a film, or any other creative work.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-32">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-31">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The em Element -->
+	<div class="element">
+		<h5 id="the-em-element"><span class="secno">4.3.6.4 </span>The <dfn><code>em</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-em-element">em</a></code> element represents stress emphasis of its contents.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-33">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-32">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The strong Element -->
+	<div class="element">
+		<h5 id="the-strong-element"><span class="secno">4.3.6.5 </span>The <dfn><code>strong</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-strong-element">strong</a></code> element represents strong importance for its contents.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-34">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-33">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The small Element -->
+	<div class="element">
+		<h5 id="the-small-element"><span class="secno">4.3.6.6 </span>The <dfn><code>small</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-small-element">small</a></code> element represents small print (part of a document often describing legal restrictions, such as copyrights or other disadvantages), or other side comments.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-35">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-34">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The mark Element -->
+	<div class="element">
+		<h5 id="the-mark-element"><span class="secno">4.3.6.7 </span>The <dfn><code>mark</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-mark-element">mark</a></code> element represents a run of text in one document marked or highlighted for reference purposes, due to its relevance in another context.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-36">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-35">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The dfn Element -->
+	<div class="element">
+		<h5 id="the-dfn-element"><span class="secno">4.3.6.8 </span>The <dfn><code>dfn</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-dfn-element">dfn</a></code> element represents the defining instance of a term, where its definition is provided nearby.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>, but there must be no descendant <code><a href="http://dev.w3.org/html5/html-author/#the-dfn-element">dfn</a></code> elements.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-37">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li>Also, the <code title="attr-dfn-title">title</code> attribute has special semantics on this element.</li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-36">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The abbr Element -->
+	<div class="element">
+		<h5 id="the-abbr-element"><span class="secno">4.3.6.9 </span>The <dfn><code>abbr</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-abbr-element">abbr</a></code> element represents an abbreviation or acronym, optionally with its expansion.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-38">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li>Also, the <code title="attr-abbr-title">title</code> attribute has special semantics on this element.</li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-37">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The time Element -->
+	<div class="element">
+		<h5 id="the-time-element"><span class="secno">4.3.6.10 </span>The <dfn><code>time</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-time-element">time</a></code> element represents a date and/or a time.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-39">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-time-datetime">datetime</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-38">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmltimeelement">HTMLTimeElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-time-datetime">dateTime</span>;
+  readonly attribute <span>Date</span> <span title="dom-time-date">date</span>;
+  readonly attribute <span>Date</span> <span title="dom-time-time">time</span>;
+  readonly attribute <span>Date</span> <span title="dom-time-timezone">timezone</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The progress Element -->
+	<div class="element">
+		<h5 id="the-progress-element"><span class="secno">4.3.6.11 </span>The <dfn><code>progress</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-progress-element">progress</a></code> element represents the completion progress of a task.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-40">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-progress-value">value</code></li><li><code title="attr-progress-max">max</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-39">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlprogresselement">HTMLProgressElement</dfn> : <span>HTMLElement</span> {
+           attribute float <span title="dom-progress-value">value</span>;
+           attribute float <span title="dom-progress-max">max</span>;
+  readonly attribute float <span title="dom-progress-position">position</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The meter Element -->
+	<div class="element">
+		<h5 id="the-meter-element"><span class="secno">4.3.6.12 </span>The <dfn><code>meter</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-meter-element">meter</a></code> element represents a scalar measurement within a known range, or a fractional value.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-41">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-meter-value">value</code></li><li><code title="attr-meter-min">min</code></li><li><code title="attr-meter-low">low</code></li><li><code title="attr-meter-high">high</code></li><li><code title="attr-meter-max">max</code></li><li><code title="attr-meter-optimum">optimum</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-40">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlmeterelement">HTMLMeterElement</dfn> : <span>HTMLElement</span> {
+           attribute float <span title="dom-meter-value">value</span>;
+           attribute float <span title="dom-meter-min">min</span>;
+           attribute float <span title="dom-meter-max">max</span>;
+           attribute float <span title="dom-meter-low">low</span>;
+           attribute float <span title="dom-meter-high">high</span>;
+           attribute float <span title="dom-meter-optimum">optimum</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The code Element -->
+	<div class="element">
+		<h5 id="the-code-element"><span class="secno">4.3.6.13 </span>The <dfn><code>code</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-code-element">code</a></code> element represents a fragment of computer code.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-42">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-41">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The var Element -->
+	<div class="element">
+		<h5 id="the-var-element"><span class="secno">4.3.6.14 </span>The <dfn><code>var</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-var-element">var</a></code> element represents a variable, such as in a mathematical expression or programming context, or it could just be a term used as a placeholder in prose.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-43">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-42">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The samp Element -->
+	<div class="element">
+		<h5 id="the-samp-element"><span class="secno">4.3.6.15 </span>The <dfn><code>samp</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-samp-element">samp</a></code> element represents (sample) output from a program or computing system.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-44">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-43">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The kbd Element -->
+	<div class="element">
+		<h5 id="the-kbd-element"><span class="secno">4.3.6.16 </span>The <dfn><code>kbd</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-kbd-element">kbd</a></code> element represents user input (typically keyboard input, although it may also be used to represent other input, such as voice commands).</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-45">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-44">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The sub Element -->
+	<div class="element">
+		<h5 id="the-sub-and-sup-elements"><span class="secno">4.3.6.17 </span>The <dfn><code>sub</code></dfn> and <dfn><code>sup</code></dfn> elements</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-sub-and-sup-elements">sup</a></code> element represents a superscript and the <code><a href="http://dev.w3.org/html5/html-author/#the-sub-and-sup-elements">sub</a></code> element represents a subscript.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-46">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-45">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The span Element -->
+	<div class="element">
+		<h5 id="the-span-element"><span class="secno">4.3.6.18 </span>The <dfn><code>span</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-span-element">span</a></code> element doesn’t mean anything on its own, but can be useful when used together with other attributes, e.g. <code title="attr-class">class</code>, <code title="attr-lang">lang</code>, or <code title="attr-dir">dir</code>.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-47">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-46">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The i Element -->
+	<div class="element">
+		<h5 id="the-i-element"><span class="secno">4.3.6.19 </span>The <dfn><code>i</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-i-element">i</a></code> element represents a span of text in an alternate voice or mood, or otherwise offset from the normal prose, such as a taxonomic designation, a technical term, an idiomatic phrase from another language, a thought, a ship name, or some other prose whose typical typographic presentation is italicized.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-48">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-47">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The b Element -->
+	<div class="element">
+		<h5 id="the-b-element"><span class="secno">4.3.6.20 </span>The <dfn><code>b</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-b-element">b</a></code> element represents a span of text to be stylistically offset from the normal prose without conveying any extra importance, such as key words in a document abstract, product names in a review, or other spans of text whose typical typographic presentation is boldened.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-49">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-48">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The bdo Element -->
+	<div class="element">
+		<h5 id="the-bdo-element"><span class="secno">4.3.6.21 </span>The <dfn><code>bdo</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-bdo-element">bdo</a></code> element allows authors to override the Unicode bidi algorithm by explicitly specifying a direction override. <a href="http://dev.w3.org/html5/html-author/#refsBIDI">[BIDI]</a></p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-50">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li>Also, the <code title="attr-dir">dir</code> global attribute has special semantics on this element.</li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-49">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The ruby Element -->
+	<div class="element">
+		<h5 id="the-ruby-element"><span class="secno">4.3.6.22 </span>The <dfn><code>ruby</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-ruby-element">ruby</a></code> element allows one or more spans of phrasing content to be marked with ruby annotations. Ruby annotations are short runs of text presented alongside base text, primarily used in East Asian typography as a guide for pronounciation or to include other annotations. In Japanese, this form of typography is also known as <i>furigana</i>.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>One or more groups of: <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> followed either by a single <code><a href="http://dev.w3.org/html5/html-author/#the-rt-element">rt</a></code> element, or an <code><a href="http://dev.w3.org/html5/html-author/#the-rp-element">rp</a></code> element, an <code><a href="http://dev.w3.org/html5/html-author/#the-rt-element">rt</a></code> element, and another <code><a href="http://dev.w3.org/html5/html-author/#the-rp-element">rp</a></code> element.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-51">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-50">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The rt Element -->
+	<div class="element">
+		<h5 id="the-rt-element"><span class="secno">4.3.6.23 </span>The <dfn><code>rt</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-rt-element">rt</a></code> element marks the ruby text component of a ruby annotation.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>As a child of a <code><a href="http://dev.w3.org/html5/html-author/#the-ruby-element">ruby</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-52">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-51">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The rp Element -->
+	<div class="element">
+		<h5 id="the-rp-element"><span class="secno">4.3.6.24 </span>The <dfn><code>rp</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-rp-element">rp</a></code> element can be used to provide parentheses around a ruby text component of a ruby annotation, to be shown by user agents that don’t support ruby annotations.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>As a child of a <code><a href="http://dev.w3.org/html5/html-author/#the-ruby-element">ruby</a></code> element, either immediately before or immediately after an <code><a href="http://dev.w3.org/html5/html-author/#the-rt-element">rt</a></code> element.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>If the <code><a href="http://dev.w3.org/html5/html-author/#the-rp-element">rp</a></code> element is immediately after an <code><a href="http://dev.w3.org/html5/html-author/#the-rt-element">rt</a></code> element that is immediately preceded by another <code><a href="http://dev.w3.org/html5/html-author/#the-rp-element">rp</a></code> element: a single character from Unicode character class Pe.</li><li>Otherwise: a single character from Unicode character class Ps.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-53">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-52">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Edits -->
+<section>
+	<h4 id="edits"><span class="secno">4.3.7 </span>Edits</h4>
+	<!-- The ins Element -->
+	<div class="element">
+		<h5 id="the-ins-element"><span class="secno">4.3.7.1 </span>The <dfn><code>ins</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-ins-element">ins</a></code> element represents an addition to the document.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li>When the element only contains <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a>: <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#transparent-content-models">Transparent</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-54">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-mod-cite">cite</code></li><li><code title="attr-mod-datetime">datetime</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-53">DOM Interface</h6>
+				<ul><li>Uses the <code>HTMLModElement</code> interface.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The del Element -->
+	<div class="element">
+		<h5 id="the-del-element"><span class="secno">4.3.7.2 </span>The <dfn><code>del</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-del-element">del</a></code> element represents a removal from the document.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li>When the element only contains <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a>: <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#phrasing-content">phrasing content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#transparent-content-models">Transparent</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-55">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-mod-cite">cite</code></li><li><code title="attr-mod-datetime">datetime</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-54">DOM Interface</h6>
+				<ul><li>Uses the <code>HTMLModElement</code> interface.</li></ul></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Embedded Content -->
+<section>
+	<h4 id="embedded-content-0"><span class="secno">4.3.8 </span>Embedded Content</h4>
+	<!-- The figure Element -->
+	<div class="element">
+		<h5 id="the-figure-element"><span class="secno">4.3.8.1 </span>The <dfn><code>figure</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-figure-element">figure</a></code> element represents some <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a>, optionally with a caption, which can be moved away from the main flow of the document without affecting the document’s meaning.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#sectioning-root">Sectioning root</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Either: one <code><a href="http://dev.w3.org/html5/html-author/#the-legend-element">legend</a></code> element followed by <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a>.</li><li>Or: <a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a> followed by one <code><a href="http://dev.w3.org/html5/html-author/#the-legend-element">legend</a></code> element.</li><li>Or: <a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-56">Attributes</h6>
+				<ul><li><span>Global attributes</span></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-55">DOM Interface</h6>
+				<ul><li>Uses <code>HTMLElement</code>.</li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The img Element -->
+	<div class="element">
+		<h5 id="the-img-element"><span class="secno">4.3.8.2 </span>The <dfn><code>img</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">An <code><a href="http://dev.w3.org/html5/html-author/#the-img-element">img</a></code> element represents an image.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#embedded-content">Embedded content</a>.</li><li>If the element has an <code title="attr-hyperlink-usemap">usemap</code> attribute: <a href="http://dev.w3.org/html5/html-author/#interactive-content">Interactive content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#embedded-content">embedded content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-57">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-img-alt">alt</code></li><li><code title="attr-img-src">src</code></li><li><code title="attr-hyperlink-usemap">usemap</code></li><li><code title="attr-img-ismap">ismap</code></li><li><code title="attr-dim-width">width</code></li><li><code title="attr-dim-height">height</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-56">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">[NamedConstructor=<span title="dom-image">Image</span>(),
+ NamedConstructor=<span title="dom-image-w">Image</span>(in unsigned long width),
+ NamedConstructor=<span title="dom-image-wh">Image</span>(in unsigned long width, in unsigned long height)]
+interface <dfn id="htmlimageelement">HTMLImageElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-img-alt">alt</span>;
+           attribute DOMString <span title="dom-img-src">src</span>;
+           attribute DOMString <span title="dom-img-useMap">useMap</span>;
+           attribute boolean <span title="dom-img-isMap">isMap</span>;
+           attribute unsigned long <span title="dom-img-width">width</span>;
+           attribute unsigned long <span title="dom-img-height">height</span>;
+  readonly attribute boolean <span title="dom-img-complete">complete</span>;
+};</pre></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The iframe Element -->
+	<div class="element">
+		<h5 id="the-iframe-element"><span class="secno">4.3.8.3 </span>The <dfn><code>iframe</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-iframe-element">iframe</a></code> element introduces a new nested <span>browsing context</span>.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#embedded-content">Embedded content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#embedded-content">embedded content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Text that conforms to the requirements given in the prose.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-58">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-iframe-src">src</code></li><li><code title="attr-iframe-name">name</code></li><li><code title="attr-iframe-sandbox">sandbox</code></li><li><code title="attr-iframe-seamless">seamless</code></li><li><code title="attr-dim-width">width</code></li><li><code title="attr-dim-height">height</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-57">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmliframeelement">HTMLIFrameElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-iframe-src">src</span>;
+           attribute DOMString <span title="dom-iframe-name">name</span>;
+           attribute DOMString <span title="dom-iframe-sandbox">sandbox</span>;
+           attribute boolean <span title="dom-iframe-seamless">seamless</span>;
+           attribute DOMString <span title="dom-dim-width">width</span>;
+           attribute DOMString <span title="dom-dim-height">height</span>;
+<!-- XXX we should bring these back since the Window spec has atrophied
+  readonly attribute Document <span title="dom-iframe-contentDocument">contentDocument</span>;
+  readonly attribute <span>WindowProxy</span> <span title="dom-iframe-contentWindow">contentWindow</span>;
+-->};</pre>
+	    <p>Objects implementing the <code><a href="http://dev.w3.org/html5/html-author/#htmliframeelement">HTMLIFrameElement</a></code>
+	    interface must also implement the <code>EmbeddingElement</code>
+	    interface defined in the Window Object specification. <a href="http://dev.w3.org/html5/html-author/#refsWINDOW">[WINDOW]</a></p> <!-- XXX --></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The embed Element -->
+	<div class="element">
+		<h5 id="the-embed-element"><span class="secno">4.3.8.4 </span>The <dfn><code>embed</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-embed-element">embed</a></code> element represents an integration point for an external (typically non-HTML) application or interactive content.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#embedded-content">Embedded content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#embedded-content">embedded content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-59">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-embed-src">src</code></li><li><code title="attr-embed-type">type</code></li><li><code title="attr-dim-width">width</code></li><li><code title="attr-dim-height">height</code></li><li>Any other attribute that has no namespace (see prose).</li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-58">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlembedelement">HTMLEmbedElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-embed-src">src</span>;
+           attribute DOMString <span title="dom-embed-type">type</span>;
+           attribute DOMString <span title="dom-dim-width">width</span>;
+           attribute DOMString <span title="dom-dim-height">height</span>;
+};</pre>
+	    <p>Depending on the type of content instantiated by the
+	    <code><a href="http://dev.w3.org/html5/html-author/#the-embed-element">embed</a></code> element, the node may also support other
+	    interfaces.</p></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The object Element -->
+	<div class="element">
+		<h5 id="the-object-element"><span class="secno">4.3.8.5 </span>The <dfn><code>object</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-object-element">object</a></code> element can represent an external resource, which, depending on the type of the resource, will either be treated as an image, as a nested <span>browsing context</span>, or as an external resource to be processed by a <span>plugin</span>.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>required</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li><a href="http://dev.w3.org/html5/html-author/#flow-content">Flow content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#phrasing-content">Phrasing content</a>.</li><li><a href="http://dev.w3.org/html5/html-author/#embedded-content">Embedded content</a>.</li><li><span title="category-listed">Listed</span>,  <span title="category-submit">submittable</span>, <span>form-associated element</span>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>Where <a href="http://dev.w3.org/html5/html-author/#embedded-content">embedded content</a> is expected.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Zero or more <code><a href="http://dev.w3.org/html5/html-author/#the-param-element">param</a></code> elements, then, <a href="http://dev.w3.org/html5/html-author/#transparent-content-models">transparent</a>.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-60">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-object-data">data</code></li><li><code title="attr-object-type">type</code></li><li><code title="attr-object-name">name</code></li><li><code title="attr-hyperlink-usemap">usemap</code></li><li><code title="attr-fae-form">form</code></li><li><code title="attr-dim-width">width</code></li><li><code title="attr-dim-height">height</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-59">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlobjectelement">HTMLObjectElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-object-data">data</span>;
+           attribute DOMString <span title="dom-object-type">type</span>;
+           attribute DOMString <span title="dom-object-name">name</span>;
+           attribute DOMString <span title="dom-object-useMap">useMap</span>;
+  readonly attribute <a href="http://dev.w3.org/html5/html-author/#htmlformelement">HTMLFormElement</a> <span title="dom-fae-form">form</span>;
+           attribute DOMString <span title="dom-dim-width">width</span>;
+           attribute DOMString <span title="dom-dim-height">height</span>;
+<!-- XXX we should bring these back since the Window spec has atrophied
+  readonly attribute Document <span title="dom-object-contentDocument">contentDocument</span>;
+  readonly attribute <span>WindowProxy</span> <span title="dom-object-contentWindow">contentWindow</span>;
+-->};</pre>
+	    <p>Objects implementing the <code><a href="http://dev.w3.org/html5/html-author/#htmlobjectelement">HTMLObjectElement</a></code>
+	    interface must also implement the <code>EmbeddingElement</code>
+	    interface defined in the Window Object specification. <a href="http://dev.w3.org/html5/html-author/#refsWINDOW">[WINDOW]</a></p>
+	    <p>Depending on the type of content instantiated by the
+	    <code><a href="http://dev.w3.org/html5/html-author/#the-object-element">object</a></code> element, the node may also support other
+	    interfaces.</p></li></ul></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The param Element -->
+	<div class="element">
+		<h5 id="the-param-element"><span class="secno">4.3.8.6 </span>The <dfn><code>param</code></dfn> element</h5>
+		<div class="summary">
+			<p class="desc">The <code><a href="http://dev.w3.org/html5/html-author/#the-param-element">param</a></code> element defines parameters for plugins invoked by <code><a href="http://dev.w3.org/html5/html-author/#the-object-element">object</a></code> elements.</p>
+
+			<dl class="html-tags">
+				<dt>Start tag:</dt> <dd>required</dd>
+				<dt>End tag:</dt> <dd>empty</dd>
+			</dl>
+
+			<table class="kinds-of-content">
+				<tbody><tr>
+					<th>Categories:</th>
+					<td><ul><li>None.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Contained By:</th>
+					<td><ul><li>As a child of an <code><a href="http://dev.w3.org/html5/html-author/#the-object-element">object</a></code> element, before any <a href="http://dev.w3.org/html5/html-author/#flow-content">flow content</a>.</li></ul></td>
+				</tr>
+				<tr>
+					<th>Content Model:</th>
+					<td><ul><li>Empty.</li></ul></td>
+				</tr>
+			</tbody></table>
+
+			<div class="properties">
+				<div class="attributes">
+					<h6 class="no-num no-toc" id="attributes-61">Attributes</h6>
+				<ul><li><span>Global attributes</span></li><li><code title="attr-param-name">name</code></li><li><code title="attr-param-value">value</code></li></ul></div>
+				<div class="dom">
+					<h6 class="no-num no-toc" id="dom-interface-60">DOM Interface</h6>
+				<ul><li>
+<pre class="idl">interface <dfn id="htmlparamelement">HTMLParamElement</dfn> : <span>HTMLElement</span> {
+           attribute DOMString <span title="dom-param-name">name</span>;
+           attribute DOMString <span title="dom-param-value">value</span>;
+};</pre></li></ul></div></div></div></div></section></section></section></body></html>

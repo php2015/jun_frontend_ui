@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('图片管理','')"></head>
+<body class="childrenBody">
+<form class="layui-form">
+	<blockquote class="layui-elem-quote news_search">
+		<div class="layui-inline">
+			<input type="checkbox" name="selectAll" id="selectAll" lay-filter="selectAll" lay-skin="primary" title="全选">
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-sm layui-btn-danger batchDel">批量删除</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-sm uploadImage">上传新图片</a>
+		</div>
+	</blockquote>
+	<ul class="layer-photos-demo" id="Images"></ul>
+</form>
+<div th:include="common/includeAdmin::footer"></div>
+<script type="text/javascript" src="/js/page/image/imageList.js"></script>
+</body>
+</html>

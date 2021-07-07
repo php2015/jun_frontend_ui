@@ -1,0 +1,138 @@
+body {
+	background-color: 	#000000;
+	margin: 			0px;
+	overflow: 			hidden;
+	color: 				#fff;
+	font-family: 		Helvetica, Arial, sans;
+	font-size: 			11px;	
+}
+
+#container{
+	display:			none;
+	margin-left: 		260px	
+}
+
+#renderer {
+}
+
+#stats {
+	margin:				5px;
+}
+
+#info {
+	position: 			absolute;
+	bottom:				0px;
+	left:				10px;
+    width: 				500px;
+	padding: 			5px;
+	
+	font-family: 		Verdana;
+	font-size: 			11px;
+}
+
+#vt {
+	display:			none;
+	position: 			absolute;
+	top:				10px;
+	left:				400px;
+	width:				400px;
+}
+#vt, #vt a { color:orange; }
+
+
+#logo {
+	position: 			absolute;
+	top:				10px;
+	right:				10px;
+}
+
+#colorbar {
+	position: 			absolute;
+	top:				120px;
+	right:				15px;
+}
+
+#colorbar p {
+	margin-top:			0px;
+	margin-left:		3px;
+	font-weight:		bold;
+	font-size: 			12px;
+}
+
+canvas{
+	border: 			0px solid #222;
+}
+
+input 
+{
+	margin: 			0px;
+	vertical-align: 	bottom;
+}
+
+.label {
+	position:			relative;
+	margin-right:		10px;
+	margin-left: 		0px;
+	width:				80px;
+	float:				left;
+}
+	
+.fullslider {
+	position: 			relative;
+	height:				21px;
+}
+
+.slider {
+	position: 			relative;
+	width:				110px;
+	float:				right;
+}
+
+.spanVal {
+	position: 			absolute;
+	left: 				75px;
+	width:				20px;
+}
+
+div.outer {
+	position: 			absolute;
+	top:				0px;
+	left:				0px;
+	width:				240px;
+	margin-left:		10px;
+	margin-right:		10px;
+	margin-top:			8px;
+	font-family:		Helvetica, Arial, sans-serif;
+
+}
+
+div.border {
+	margin-bottom:		10px;
+	background-color: 	#333;
+	border-radius: 		8px;
+	width:				220px;
+	padding: 			10px;
+	float: 				left;
+}
+
+div.inner {
+	border-radius: 		0;
+	margin: 			0px 0px 0px 0px;
+	padding: 			0px;
+	float: 				none;
+}
+
+div.inner h3 {
+	margin-bottom: 		10px;
+}
+
+h3 {margin:0px;}
+h4 {margin:0px;}
+	
+a {
+	color: 				#ffffff;
+    text-decoration:	none;
+} 
+a:hover {
+	text-decoration: 	underline;
+}

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - Combo</title>
+
+    <link href="../../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.validatebox.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.textbox.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.combo.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            
+            $("#btn01").click(function () { $("#t1").combo("setIconCls", "icon-search"); });
+
+            $("#btn02").click(function () { $("#t1").combo("setIcon", { index: 0, iconCls: "icon-ok", handler: function () { alert("duang"); } }); });
+
+
+        });
+    </script>
+</head>
+<body id="cc" class="easyui-layout" data-options="fit: true">
+    <div data-options="region: 'north', title: 'north', split: true" style="height: 100px;"></div>
+    <div data-options="region: 'west', title: 'west', split: true" style="width: 200px;"></div>
+
+    <div data-options="region: 'center', title: 'center', split: true" style="padding: 20px;">
+
+        <div class="easyui-panel" data-options="
+             title: 'test panel title', width: 600, height: 360,
+             iniframe: true, href: 'jEasyUIExtensions-Combo-SubPage.html'
+             "></div>
+        <hr />
+        <input id="t1" class="easyui-combo" data-options="autoFocus: true, autoShowPanel: true" />
+        <input id="t2" class="easyui-combo" data-options="autoFocus: true, autoShowPanel: true, iconCls: 'icon-search'" />
+        <input id="t3" class="easyui-datebox" data-options="width: 180, panelWidth: 180" />
+        <input id="t4" class="easyui-textbox" data-options="width: 180" />
+        <hr />
+        <a id="btn01" class="easyui-linkbutton">setIconCls</a>
+        <a id="btn02" class="easyui-linkbutton">setIcon-1</a>
+        <a id="btn03" class="easyui-linkbutton">setIcon-2</a>
+
+    </div>
+
+    <div data-options="region: 'east', title: 'east', split: true" style="width: 200px;"></div>
+    <div data-options="region: 'south', title: 'south', split: true" style="height: 100px;"></div>
+
+</body>
+</html>
+

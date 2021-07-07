@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    function func(a,b,...params){
+        console.log(params);
+        params.forEach(function(item,index){
+            console.log(item,index);
+        })
+    }
+
+    func(2,4,5,6);
+
+    let arr1=[2,3];
+    let arr2=[1,...arr1,4];
+    console.log(arr2);
+    console.log(...arr1);
+</script>
+</body>
+</html>

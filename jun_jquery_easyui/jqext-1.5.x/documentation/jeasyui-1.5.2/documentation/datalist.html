@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="html5,jquery,ui,widgets,ajax,ria,web framekwork,web development,easy,easyui,datagrid,treegrid,tree">
+		<meta name="description" content="jQuery EasyUI is a complete framework for HTML5 web page. It provides easy to use components for building modern, interactive, javascript applications that work on pc and mobile devices.">
+		<title>datalist - Documentation - jQuery EasyUI</title>
+        <link rel="stylesheet" href="/css/kube.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../prettify/prettify.css">
+		<script type="text/javascript" src="../../prettify/prettify.js"></script>
+		<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+								$('textarea[name="code-datalist"]').each(function(){
+					var data = $(this).val();
+					data = data.replace(/(\r\n|\r|\n)/g, '\n');
+					if (data.indexOf('\t') == 0){
+						data = data.replace(/^\t/, '');
+						data = data.replace(/\n\t/g, '\n');
+					}
+					data = data.replace(/\t/g, '    ');
+					var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
+					pre.text(data);
+					$(this).remove();
+				});
+				prettyPrint();
+			});
+		</script>
+	</head>
+	<body>
+		<div id="header" class="group wrap header">
+			<div class="content">
+	<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+		<span>EasyUI</span>
+	</div>
+	<div id="elogo" class="navbar navbar-left">
+		<ul>
+			<li>
+				<a href="/index.php"><img src="/images/logo2.png" alt="jQuery EasyUI"/></a>
+			</li>
+		</ul>
+	</div>
+	<div id="navbar-1" class="navbar navbar-right">
+		<ul>
+			<li><a href="/index.php">Home</a></li>
+			<li><a href="/demo/main/index.php">Demo</a></li>
+			<li><a href="/tutorial/index.php">Tutorial</a></li>
+			<li><a href="/documentation/index.php">Documentation</a></li>
+			<li><a href="/download/index.php">Download</a></li>
+			<li><a href="/extension/index.php">Extension</a></li>
+			<li><a href="/contact.php">Contact</a></li>
+			<li><a href="/forum/index.php">Forum</a></li>
+		</ul>
+	</div>
+	<div style="clear:both"></div>
+</div>
+<script type="text/javascript">
+	function setNav(){
+		var demosubmenu = $('#demo-submenu');
+		if (demosubmenu.length){
+			if ($(window).width() < 450){
+				demosubmenu.find('a:last').hide();
+			} else {
+				demosubmenu.find('a:last').show();
+			}
+		}
+		if ($(window).width() < 767){
+			$('.navigation-toggle').each(function(){
+				$(this).show();
+				var target = $(this).attr('data-target');
+				$(target).hide();
+				setDemoNav();
+			});
+		} else {
+			$('.navigation-toggle').each(function(){
+				$(this).hide();
+				var target = $(this).attr('data-target');
+				$(target).show();
+			});
+		}
+	}
+	function setDemoNav(){
+		$('.navigation-toggle').each(function(){
+			var target = $(this).attr('data-target');
+			if (target == '#navbar-demo'){
+				if ($(target).is(':visible')){
+					$(this).css('margin-bottom', 0);
+				} else {
+					$(this).css('margin-bottom', '2.3em');
+				}
+			}
+		});
+	}
+	$(function(){
+		setNav();
+		$(window).bind('resize', function(){
+			setNav();
+		});
+		$('.navigation-toggle').bind('click', function(){
+			var target = $(this).attr('data-target');
+			$(target).toggle();
+			setDemoNav();
+		});
+	})
+</script>		</div>
+		<div id="mainwrap">
+			<div id="content" class="content">
+			
+
+<div style="padding:10px">
+
+<h3>DataList</h3>
+<p>Extend from $.fn.datagrid.defaults. Override defaults with $.fn.datalist.defaults.</p>
+<p>
+The datalist renders items in a list.
+It is a special datagrid that displays data in one column.
+You can define the column format and style for each rows.
+</p>
+<img src="images/datalist.png"/>
+
+<h4>Dependencies</h4>
+<ul>
+	<li>datagrid</li>
+</ul>
+
+<h4>Usage Example</h4>
+<p>Create datalist from markup.</p>
+<textarea name="code-datalist" class="html">
+	<ul class="easyui-datalist" title="DataList" style="width:400px;height:250px">
+		<li value="AL">Alabama</li>
+		<li value="AK">Alaska</li>
+		<li value="AZ">Arizona</li>
+		<li value="AR">Arkansas</li>
+		<li value="CA">California</li>
+		<li value="CO">Colorado</li>
+	</ul>
+</textarea>
+<p>Create datalist using javascript.</p>
+<textarea name="code-datalist" class="html">
+	<div id="dl"></div>
+</textarea>
+<textarea name="code-datalist" class="js">
+$('#dl').datalist({
+	url: 'datalist_data1.json',
+	checkbox: true,
+	lines: true
+});
+</textarea>
+
+
+<h4>Properties</h4>
+<p>The properties extend from datagrid, below is the added properties for datalist.</p>
+<table class="doc-table">
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+<tr>
+<td>lines</td>
+<td>boolean</td>
+<td>Defines if to display the row lines.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>checkbox</td>
+<td>boolean</td>
+<td>Defines if to display checkbox for each rows.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>valueField</td>
+<td>string</td>
+<td>The field value name to bind to the row.</td>
+<td>value</td>
+</tr>
+<tr>
+<td>textField</td>
+<td>string</td>
+<td>The field name to display on the row.</td>
+<td>text</td>
+</tr>
+<tr>
+<td>groupField</td>
+<td>string</td>
+<td>Indicate what field to be grouped.</td>
+<td></td>
+</tr>
+<tr>
+<td>textFormatter</td>
+<td>function(value,row,index)</td>
+<td>
+The text field formater function, takes three parameters:<br>
+value: the field value.<br>
+row: the row record data.<br>
+index: the row index.
+</td>
+<td></td>
+</tr>
+<tr>
+<td>groupFormatter</td>
+<td>function(value,rows)</td>
+<td>
+The formatter function to return the group content, takes two parameters:<br>
+value: the group value defined by 'groupField' property.<br>
+rows: the data rows according to the specified group value.
+</td>
+<td></td>
+</tr>
+</table>
+
+<h4>Events</h4>
+<p>The events extend from datagrid.</p>
+
+<h4>Methods</h4>
+<p>The methods extend from datagrid.</p>
+
+
+</div>
+
+﻿			</div>
+		</div>
+		<div id="footer" class="content text-centered">
+			<div>Copyright © 2010-2017 www.jeasyui.com</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head_script %}
+  <script src="../static/ckeditor/ckeditor.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block title %}
+  Editor
+{% endblock %}
+
+{% block index_redirction %}
+  {{ url_for('home_page') }}
+{% endblock %}
+
+
+{% block nav_extends %}
+
+  <li><a href="{{ url_for('home_page') }}">HomePage</a></li>
+  {{ super() }}
+  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <form action="{{ url_for('view', it=post.id) }}" method="POST">
+      {{ form.hidden_tag() }}
+      {{ form.title(class='form-control', placeholder='Title', type='text') }}
+      <br>
+      {{ form.ckdemo(class='ckeditor', placeholder='Body') }}
+
+      <script type="text/javascript">
+        CKEDITOR.replace("ckdemo", {
+          filebrowserUploadUrl: '/ckupload/',
+          filebrowserImageUploadUrl: '/ckupload/'
+        });
+      </script>
+
+      <div style="text-align: right">
+        <br>
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </form>
+    <br>
+
+    <div style="text-align: right; margin-bottom: 30px">
+      <a href="{{ url_for('delete_post', it=post.id) }}">
+        <button class="btn btn-info">Delete</button>
+      </a>
+    </div>
+
+  </div>
+
+{% endblock %}

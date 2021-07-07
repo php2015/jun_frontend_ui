@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery EasyUI Extensions - DataGrid</title>
+
+    <link href="../../../jquery-easyui-themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../../jquery-easyui-themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../../../icons/icon-all.css" rel="stylesheet" />
+
+    <script src="../../../jquery/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <script src="../../../jquery-extensions/jquery.jdirk.js" type="text/javascript"></script>
+    <link href="../../../jeasyui-extensions/jeasyui.extensions.css" rel="stylesheet" />
+
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.messager.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.linkbutton.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.window.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.dialog.js"></script>
+    <script src="../../../jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var t = $("#tt");
+
+            $("#btn01").click(function () { t.datagrid("setColumnTitle", { field: "Code", title: "编号啪啪啪" }); });
+
+            $("#btn02").click(function () { t.datagrid("resizeColumn", { field: "ID", width: 180 }); });
+
+            $("#btn03").click(function () { t.datagrid("highlightColumn", "ID"); });
+
+            $("#btn04").click(function () { t.datagrid("unhighlightColumn", "ID"); });
+
+
+            $("#btn11").click(function () { t.datagrid("highlightSearch", /A/i); });
+
+            $("#btn12").click(function () { t.datagrid("highlightSearch", "陈"); });
+
+            $("#btn13").click(function () { t.datagrid("highlightSearch", ""); });
+
+            $("#btn14").click(function () { t.datagrid("highlightSearch", { field: "Code" }); });
+
+
+            $("#btn21").click(function () { t.datagrid("deleteColumn", "Code"); });
+
+
+            $("#btn31").click(function () { t.datagrid("moveColumn", { source: "Code", target: "Name", point: "after" }); });
+
+            $("#btn32").click(function () { t.datagrid("moveColumn", { source: "Code", target: "ID", point: "before" }); });
+
+            $("#btn33").click(function () { t.datagrid("moveColumn", { source: "ID", target: "Name", point: "after" }); });
+
+            $("#btn34").click(function () { t.datagrid("moveColumn", { source: "Weight", target: "ID", point: "after" }); });
+
+
+            $("#btn41").click(function () { t.datagrid("showFilterDialog", "Name"); });
+
+
+        });
+    </script>
+</head>
+<body style="padding: 20px;">
+
+    <table id="tt" class="easyui-datagrid" data-options="
+           width: 1100, height: 580, rownumbers: true, pagination: true,
+           striped: false, ctrlSelect: true,
+           url: '../../../data/datagrid-data.json', method: 'get', remoteSort: false,
+           selectOnRowContextMenu: true, movingMenu: { submenu: true },
+           autoBindDblClickRow: false, autoEditing: true, finishEditOnBlur: true,
+           rowDnd: true, headerDnd: true,
+           rowTooltip: true, autoWrapEdit: true, cancelEditOnEsc: true,
+           autoHighlightColumn: false,
+           rowContextMenu: [
+                {
+                    text: 'test menu1', iconCls: 'icon-ok', disabled: function () { return false; },
+                    handler: function (e, menuItem, menu, target, index, row) {
+                        $.easyui.showOption(row);
+                    }
+                }
+           ]
+           ">
+        <thead data-options="frozen: true">
+            <tr>
+                <th data-options="field: 'ck', checkbox: true"></th>
+                <th data-options="field: 'ID', width: 80, sortable: true">ID</th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th rowspan="1" data-options="field: 'Code', halign: 'center', width: 120, tooltip: true, editor: 'textbox', sortable: true">编号(Code)</th>
+                <th rowspan="1" data-options="field: 'Name', halign: 'center', width: 140, tooltip: true, editor: 'textbox', filter: 'livebox', sortable: true">名称(Name)</th>
+                <!--<th colspan="3" data-options="field: 'PersonalInfo', halign: 'center'">个人信息</th>-->
+                <th data-options="field: 'Age', halign: 'center', width: 120, filterable: false, sortable: true">年龄(Age)</th>
+                <th data-options="field: 'Height', halign: 'center', width: 140, filter: 'caps', sortable: true">身高(Height)</th>
+                <th data-options="field: 'Weight', halign: 'center', width: 140, filter: 'lower', sortable: true">体重(Weight)</th>
+                <th rowspan="1" data-options="field: 'CreateDate', width: 180, sortable: true" , sortable true>创建日期(CreateDate)</th>
+                <th rowspan="1" data-options="field: 'undefined', width: 150">测试(不存在的字段)</th>
+            </tr>
+            <!--<tr>
+                <th data-options="field: 'Age', halign: 'center', width: 120, filterable: false, sortable: true">年龄(Age)</th>
+                <th data-options="field: 'Height', halign: 'center', width: 140, filter: 'caps', sortable: true">身高(Height)</th>
+                <th data-options="field: 'Weight', halign: 'center', width: 140, filter: 'lower', sortable: true">体重(Weight)</th>
+            </tr>-->
+        </thead>
+    </table>
+    <hr />
+    <a id="btn01" class="easyui-linkbutton">setColumnTitle</a>
+    <a id="btn02" class="easyui-linkbutton">resizeColumn</a>
+    <a id="btn03" class="easyui-linkbutton">highlightColumn</a>
+    <a id="btn04" class="easyui-linkbutton">unhighlightColumn</a>
+    <hr />
+    <a id="btn11" class="easyui-linkbutton">livesearch-1</a>
+    <a id="btn12" class="easyui-linkbutton">livesearch-2</a>
+    <a id="btn13" class="easyui-linkbutton">livesearch-clear-all</a>
+    <a id="btn14" class="easyui-linkbutton">livesearch-clear-Code</a>
+    <hr />
+    <a id="btn21" class="easyui-linkbutton">deleteColumn</a>
+    <hr />
+    <a id="btn31" class="easyui-linkbutton">moveColumn(Code-after-Name)</a>
+    <a id="btn32" class="easyui-linkbutton">moveColumn(Code-before-ID)</a>
+    <a id="btn33" class="easyui-linkbutton">moveColumn(ID-after-Name)</a>
+    <a id="btn34" class="easyui-linkbutton">moveColumn(Weight-after-ID)</a>
+    <hr />
+    <a id="btn41" class="easyui-linkbutton">showFilterDialog</a>
+
+</body>
+</html>

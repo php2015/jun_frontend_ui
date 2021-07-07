@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ext.serializeObj</title>
+	<link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/2.3.1/css/bootstrap.min.css" type="text/css"></link>
+	<link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/2.3.1/css/bootstrap-responsive.min.css" type="text/css"></link>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script type="text/javascript" src="http://lib.sinaapp.com/js/bootstrap/2.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../requires/json2.js"></script>
+	<script type="text/javascript" src="ext.serializeObj.js"></script>
+	<script>
+		$(function(){
+			$("#fetch").click(function(){
+				var vals = $("#ff").serializeObj();
+				$("#rs").text(JSON.stringify(vals));
+			});
+		});
+	</script>
+</head>
+<body style="padding:20px;">
+	<h2>ext.serializeObj</h2>
+	<div class="demo-info">
+		<div class="demo-tip icon-tip"></div>
+		<div>序列化表单元素 (类似 '.serialize()' 方法) 返回 JSON 数据结构数据。</div>
+	</div>
+	<div style="background:#fafafa;padding:10px;width:300px;">
+	    <form id="ff" method="post" novalidate>
+	        <div>
+	            <label for="name">Name:</label>
+	            <input  type="text" name="name" data-options="required:true"></input>
+	        </div>
+	        <div>
+	            <label for="email">Email:</label>
+	            <input  type="text" name="email" data-options="validType:'email'"></input>
+	        </div>
+	        <div>
+	            <label for="subject">Subject:</label>
+	            <input  type="text" name="subject"></input>
+	        </div>
+	        <div>
+	            <label for="message">Message:</label>
+	            <textarea name="message" style="height:60px;"></textarea>
+	        </div>
+			<div>
+	            <label for="Language">Language:</label>
+	            <select name="Language" multiple="multiple">
+					<option>中文</option>
+					<option>英文</option>
+				</select>
+	        </div>
+	        <div>
+	            <button class="btn btn-large btn-primary" type="button" id="fetch">获取表单值</button>
+	        </div>
+	    </form>
+	</div>
+	<div id="rs" class="demo-info"></div>
+</body>
+</html>

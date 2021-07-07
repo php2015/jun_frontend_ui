@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>用户管理${base}</title>
+	<base href="${base}/">
+	<meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <#include "/management/index/common.html">  
+
+	<script type="text/javascript">
+	
+		var $dg;
+			var $temp;
+			var $grid;
+			$(function() {
+				$dg = $("#dg");
+				$grid=$dg.datagrid({
+					url : "management/security/user/list",
+					width : 'auto',
+					height :  $(this).height()-90,
+					pagination:true,
+					rownumbers:true,
+					border:false,
+					singleSelect:true,
+					striped:true,
+					sortName:"create_time",
+					sortOrder:"desc",
+					columns : [ [ {field : 'username',title : '登录名',width : parseInt($(this).width()*0.1),align : 'left',editor : "text"},
+					              {field : 'realname',title : '姓名',width : parseInt($(this).width()*0.1),align : 'left',editor : "text"},
+					              {field : 'email',title : '邮箱',width : parseInt($(this).width()*0.1),editor : {type:'validatebox',options:{required:true}}},
+					              {field : 'phone',title : '电话',width : parseInt($(this).width()*0.1),editor : "validatebox"},
+					              {field : 'tel',title : '角色',width : parseInt($(this).width()*0.1),align : 'left',editor : "text",
+					              		formatter:function(value,row){
+					              			var roles = "";
+					              			var data = row.userRoles;
+					              			for(var x in data){
+					              				roles += data[x].role.name + "&nbsp;&nbsp;";
+					              			}
+						            	  	return roles;  
+										}
+					              },
+					              {field : 'orgId',title : '所在组织',width : parseInt($(this).width()*0.1),align : 'left',
+					            	    formatter:function(value,row){
+						            	  	return row.organization.name;  
+										},
+										editor:{
+											type:'combotree',
+											options:{
+												 url:'orgz/organizationAction!findOrganizationList.action',  
+											 	 idFiled:'id',
+											 	 textFiled:'name',
+											 	 parentField:'pid',
+											 	onSelect:updCellTree,
+												 required:true
+											}}
+								  }, 
+								  {field : 'status',title : '账户状态',width : parseInt($(this).width()*0.1),align : 'left',editor : "text",
+								  	 	formatter:function(value,row){
+						            	  	return row.status == "enabled" ? "可用":"不可用";  
+										}
+								  },
+					              {field : 'create_time',title : '创建时间',width : parseInt($(this).width()*0.15),align : 'left',resizable:true,sortable:true}
+					              ] ],toolbar:'#tb'
+				});
+				
+					//搜索框
+				$("#searchbox").searchbox({ 
+					 menu:"#mm", 
+					 prompt :'模糊查询',
+				     searcher:function(value,name){   
+				    	var str="{\"" + name + "\":\"" + value + "\"}";
+				    	alert(str);
+			            var obj = eval('('+str+')');
+			            $dg.datagrid('reload',obj); 
+				    }
+				});
+
+	})
+	
+		function updCellTree(record){
+				/*var rows = $dg.datagrid('getSelections');
+				$.each(rows,function(i,row){
+					if (row) {
+						var rowIndex = $dg.datagrid('getRowIndex', row);
+						$dg.datagrid('getEditor',{'index':rowIndex,'field':'organizeName'}).target.val(record.text);
+					}
+				});*/
+				var rowIdx = $dg.datagrid('getRowIndex',$dg.datagrid('getSelected'));
+				 $dg.datagrid('getEditor',{'index':rowIdx,'field':'organizeName'}).target.val(record.text);
+
+			}
+	</script>
+	
+  </head>
+  
+  <body>
+  <div class="well well-small" style="margin-left: 5px;margin-top: 5px">
+				<span class="badge">提示</span>
+				<p>
+					在此你可以对<span class="label-info"><strong>用户</strong></span>进行编辑!
+				</p>
+			</div>
+  <div id="tb" style="padding:2px 0">
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="padding-left:2px;padding-bottom: 10px;">
+					<@shiro.hasPermission name="User:save">
+						<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addRowsOpenDlg();">添加</a>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="User:edit:User拥有的资源">
+						<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="updRowsOpenDlg();">编辑</a>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="User:delete:User拥有的资源">
+						<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delRows();">删除</a>
+					</@shiro.hasPermission>
+				</td>
+				<td style="padding-left:2px">
+					<input id="searchbox" type="text"/>
+				</td>
+				<td style="padding-left:2px">
+					<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="userSearch();">高级查询</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="mm">
+			<div name="search_username">登录名</div>
+			<div name="search_realname">姓名</div>
+			<div name="search_email">邮箱</div>
+			<div name="search_phone">电话</div>
+	</div>
+   	<table id="dg" title="用户管理"></table>
+  </body>
+</html>

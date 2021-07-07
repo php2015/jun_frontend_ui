@@ -1,0 +1,84 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	
+	function getReadAsDataURL() {
+		var file = document.getElementById("file").files[0];
+		var resultDiv = document.getElementById("result");
+		resultDiv.innerHTML = "";
+		
+		if(file){
+			var reader = new FileReader();
+			
+			reader.readAsDataURL(file);
+			
+			reader.onload = function (e) {
+				var data = reader.result;
+				
+				
+				resultDiv.innerHTML = "<img src='"+ data +"'><\img>";
+			};
+		}
+		
+		
+	}
+	function getReadAsBinaryString() {
+		var file = document.getElementById("file").files[0];
+		var resultDiv = document.getElementById("result");
+		resultDiv.innerHTML = "";
+		
+		if(file){
+			var reader = new FileReader();
+			
+			reader.readAsBinaryString(file);
+			
+			reader.onload = function (e) {
+				var data = reader.result;
+				
+				resultDiv.innerHTML = data;
+				
+			}
+			
+		}
+		
+		
+	}
+	function getReadAsText() {
+		
+		var file = document.getElementById("file").files[0];
+		var resultDiv = document.getElementById("result");
+		resultDiv.innerHTML = "";
+		
+		if(file){
+			var reader = new FileReader();
+			
+			reader.readAsText(file, "gb2312");
+			
+			reader.onload = function (e) {
+				var data = reader.result;
+				
+				resultDiv.innerHTML = data;
+				
+			}
+		}
+	}
+	
+	
+</script>
+
+</head>
+<body>
+
+<input type="file" id="file">
+<input type="button" value="readAsDataURL" onclick="getReadAsDataURL()">
+<input type="button" value="readAsBinaryString" onclick="getReadAsBinaryString()">
+<input type="button" value="readAsText" onclick="getReadAsText()">
+
+<div id="result"></div>
+
+</body>
+</html>
