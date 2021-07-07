@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.javabb.content.mapper.BlogMapper">
+
+	<resultMap type="cn.javabb.content.entity.Blog" id="blogResultMap">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="title" jdbcType="VARCHAR" column="title" />
+		<result property="blogDesc" jdbcType="VARCHAR" column="blog_desc" />
+		<result property="blogImg" jdbcType="VARCHAR" column="blog_img" />
+		<result property="blogTop" jdbcType="INTEGER" column="blog_top" />
+		<result property="blogHot" jdbcType="INTEGER" column="blog_hot" />
+		<result property="readCount" jdbcType="INTEGER" column="read_count" />
+		<result property="blogState" jdbcType="INTEGER" column="blog_state" />
+		<result property="seriesId" jdbcType="INTEGER" column="series_id" />
+		<result property="userName" jdbcType="VARCHAR" column="user_name" />
+		<result property="createDate" jdbcType="TIMESTAMP" column="create_date" />
+		<result property="updateDate" jdbcType="TIMESTAMP" column="update_date" />
+		<!-- 关联分类信息 -->
+		<association property="catalog" javaType="cn.javabb.content.entity.Catalog">
+			<result property="catalogId" jdbcType="INTEGER" column="catalog_id" />
+			<result property="catalogName" jdbcType="VARCHAR" column="catalog_name" />
+			<result property="catalogType" jdbcType="VARCHAR" column="catalog_type" />
+		</association>
+		<!-- 关联分类信息 -->
+		<association property="series" javaType="cn.javabb.content.entity.Series">
+			<result property="id" jdbcType="INTEGER" column="series_id" />
+			<result property="seriesName" jdbcType="VARCHAR" column="series_name" />
+			<result property="seriesDesc" jdbcType="VARCHAR" column="series_desc" />
+		</association>
+		<!-- 关联内容信息 -->
+		<association property="content" javaType="cn.javabb.content.entity.Content">
+			<result property="contentId" jdbcType="INTEGER" column="content_id" />
+			<result property="content" jdbcType="VARCHAR" column="content" />
+			<result property="keywords" jdbcType="VARCHAR" column="keywords" />
+			<result property="description" jdbcType="VARCHAR" column="description"></result>
+		</association>
+		<!-- 一对多关联  -->
+		<collection property="tags" column="id" javaType="ArrayList" ofType="cn.javabb.content.entity.Tag" 
+		select="cn.javabb.content.mapper.TagMapper.listTagByPostId">
+			<result property="tagId" jdbcType="INTEGER" column="tag_id"/>
+			<result property="tagName" jdbcType="VARCHAR" column="tag_name"/>
+		</collection>
+	</resultMap>
+
+
+	<select id="listBlogWithAll" resultMap="blogResultMap">
+		SELECT
+		b.*, u.user_name,
+		cat.catalog_name,
+		ser.series_name,
+		con.content,
+		con.keywords,
+		con.description
+		FROM
+		bms_blog b
+		LEFT JOIN bms_catalog cat ON b.catalog_id = cat.catalog_id
+		LEFT JOIN bms_series ser ON b.series_id = ser.id
+		LEFT JOIN bms_content con ON b.content_id = con.content_id
+		LEFT JOIN sys_user u ON b.blog_author = u.id
+		<if test="tagId != null">
+			INNER JOIN bms_post_tag pt on pt.post_id=b.id and pt.tag_id =#{tagId}
+		</if>
+		WHERE
+		cat.catalog_type = 'blog'
+		<if test="blogId !=null">
+			and b.id=#{blogId}
+		</if>
+		<if test="catalogId !=null">
+			and b.catalog_id=#{catalogId}
+		</if>
+		<if test="seriesId !=null">
+			and b.series_id=#{seriesId}
+		</if>
+		<!-- <choose>
+			<when test="tagIds != null">
+				AND pt.tag_id IN (
+					<foreach collection="tagIds" item="tagId" separator=",">
+						#{tagId}
+					</foreach>
+				)
+			</when>
+			<otherwise>
+				<if test="tagId != null">
+					and	pt.tag_id = #{tagId}
+				</if>
+			</otherwise>
+		</choose> -->
+		order by b.create_date desc
+	</select>
+	
+	<select id="listHotBlogs" resultMap="blogResultMap" parameterType="Map">
+		select * from bms_blog b where b.blog_state = 1 and b.blog_hot = 1 order by update_date desc limit 0,5
+	</select>
+	<select id="listTopBlogs" resultMap="blogResultMap" parameterType="Map">
+		select * from bms_blog b where b.blog_state = 1 and b.blog_top = 1 order by update_date desc limit 0,5
+	</select>
+	<select id="listBlogWithTagId" resultMap="blogResultMap">
+		select * from bms_blog b where b.blog_state = 1 and b.blog_top = 1 order by update_date desc limit 0,5
+	</select>
+</mapper>

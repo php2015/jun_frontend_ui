@@ -1,0 +1,126 @@
+﻿/*首页三个按钮DIV样式*/
+.user-action
+{
+    position: absolute;
+    right: 15px;
+    top: 25px;
+}
+/*首页三个按钮DIV文字样式*/
+.user-action a
+{
+    color: #fff;
+    font-size: 16px;
+}
+/*左侧列表页选中效果*/
+.router-link-active
+{
+    font-weight: bold;
+    background: #009688;
+}
+
+/*-------------------------------------------------------------*/
+
+/*标签基类*/
+.Ly-label
+{
+    padding: 3px 5px;
+    line-height: 14px;
+    font-size: 11pt;
+    vertical-align: middle;
+}
+/*青色1*/
+.Ly-wan
+{
+    background-color: #009688;
+    color: #fff;
+    
+}
+/*橙色2*/
+.Ly-xuan
+{
+    background-color: #FF5722;
+    color: #fff;
+    margin-left: 30px;
+}
+/*蓝色3*/
+.Ly-tian
+{
+    background-color: #01AAED;
+    color: #fff;
+    margin-left: 45px;
+}
+/*绿色4*/
+.Ly-jing
+{
+    background-color: #5FB878;
+    color: #fff;
+    margin-left: 55px;
+}
+/*灰色5*/
+.Ly-wei
+{
+    background-color: #e2e2e2;
+    color: #000;
+    margin-left:65px;
+}
+/*-------------------------------------------------------------*/
+.logo
+{
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    color: #fff;
+    font-size: 26px;
+}
+.site-tips
+{
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid #0078AD;
+    background-color: #f2f2f2;
+    display: inline-block;
+    min-height: 350px;
+    width: 775px;
+    padding: 10px;
+    margin-left: 10px;
+    vertical-align: top;
+}
+.myshu
+{
+    display: inline-block;
+    margin-left: 10px;
+    width: 200px;
+    min-height: 350px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow: auto;
+}
+/*-------------------------------------------------------------*/
+.updateImg
+{
+    background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+}
+.MyYinCang
+{
+    margin-top:27px;
+    margin-left:235px;
+}
+
+#mydivimg
+{
+    margin-left:10px;
+    width: 39px;
+    height: 35px;
+    cursor:crosshair;
+}
+.mydivimg
+{
+    margin-left:10px;
+    width: 39px;
+    height: 35px;
+    cursor:crosshair;
+}

@@ -1,0 +1,162 @@
+
+
+/* header */
+
+.layui-header {
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-logo {
+    line-height: 55px;
+}
+
+.layui-logo img {
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-nav {
+    float: right;
+    padding: 0;
+    background-color: #fff;
+}
+
+.layui-nav-hide {
+    display: none;
+}
+
+.layui-nav .layui-nav-item {
+    margin: 0 10px;
+    line-height: 45px;
+}
+
+.layui-nav .layui-nav-item a {
+    color: #666;
+    height: 40px;
+    margin: 10px 0 0 0;
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-nav .layui-nav-item a:hover, .layui-nav .layui-this a {
+    color: #666;
+}
+
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+/* 低于450px导航适配 */
+
+@media screen and (max-width: 450px) {
+    .layui-hide-mini {
+        display: none!important;
+    }
+    .layui-show-mini {
+        display: block!important;
+    }
+}
+
+
+/* main */
+
+.layui-main {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.layui-card {
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-card-footer {
+    padding-bottom: 10px;
+}
+
+.layui-article {
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-article-title {
+    font-size: 22px;
+    line-height: 36px;
+}
+
+.layui-article-info {
+    line-height: 40px;
+    font-family: Georgia;
+}
+
+.layui-article-info div {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.layui-article-info i {
+    vertical-align: middle;
+}
+
+.layui-article-content {
+    color: #333;
+    line-height: 25px;
+}
+
+.layui-comment {
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-comment-header {
+    margin-bottom: 20px;
+}
+
+.layui-timeline {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}
+
+.layui-timeline h3 {
+    display: inline;
+}
+
+
+/* link */
+
+.layui-link-body {
+    margin: 20px 0;
+}
+
+.layui-link-body a {
+    margin: 0 10px;
+}
+
+.layui-link-body a img {
+    width: 120px;
+    height: 30px;
+}
+
+
+/* footer */
+
+.layui-footer {
+    height: 60px;
+    line-height: 60px;
+    margin-top: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.35);
+}
+
+
+/* public */
+
+.text-center {
+    text-align: center;
+}
+
+.layui-btn-shadow {
+    border-width: 0;
+    box-shadow: 0 0 25px rgba(40,47,60,.05), 0 20px 25px rgba(40,47,60,.05), 0 3px 4px rgba(40,47,60,.05);
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/includeFront::head"></head>
+<body class="childrenBody">
+
+	<div th:replace="page/front/common/header::header">
+		
+	</div>
+
+	<div class="noFind">
+		<div class="ufo">
+			<i class="seraph icon-test ufo_icon"></i>
+			<i class="layui-icon page_icon">&#xe638;</i>
+		</div>
+		<div class="page404">
+			<i class="layui-icon">&#xe61c;</i>
+			<p>我勒个去，页面被外星人挟持了!</p>
+		</div>
+	</div>
+	
+	
+	<div th:replace="page/front/common/footer::footer"></div>
+	<div th:include="common/includeFront::js"></div>
+</body>
+</html>

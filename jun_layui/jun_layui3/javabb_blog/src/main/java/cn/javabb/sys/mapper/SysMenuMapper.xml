@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.javabb.sys.mapper.SysMenuMapper">
+
+	<resultMap type="cn.javabb.sys.entity.SysMenu" id="resultMap">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="menuName" jdbcType="VARCHAR" column="menu_name" />
+		<result property="menuCode" jdbcType="VARCHAR" column="menu_code" />
+		<result property="menuIco" jdbcType="VARCHAR" column="menu_ico" />
+		<result property="menuDesc" jdbcType="VARCHAR" column="menu_desc" />
+		<result property="menuType" jdbcType="INTEGER" column="menu_type" />
+		<result property="contentId" jdbcType="INTEGER" column="content_id" />
+		<result property="parentId" jdbcType="INTEGER" column="parent_id" />
+		<result property="sort" jdbcType="INTEGER" column="sort" />
+		<result property="state" jdbcType="INTEGER" column="state" />
+		<result property="createDate" jdbcType="TIMESTAMP" column="create_date" />
+		<result property="updateDate" jdbcType="TIMESTAMP" column="update_date" />
+		<!-- 关联内容信息 -->
+		<association property="content" javaType="cn.javabb.content.entity.Content">
+			<result property="contentId" jdbcType="INTEGER" column="content_id" />
+			<result property="content" jdbcType="VARCHAR" column="content" />
+			<result property="keywords" jdbcType="VARCHAR" column="keywords" />
+			<result property="description" jdbcType="VARCHAR" column="description"></result>
+		</association>
+	</resultMap>
+	
+	<select id="listMenus" resultMap="resultMap">
+		SELECT
+			t.*,
+			t1.content,
+			t1.keywords,
+			t1.description
+		FROM
+			sys_menu t
+		LEFT JOIN bms_content t1 ON t.content_id = t1.content_id
+		where 1 = 1
+		<if test = "menuId != null">
+			and t.id = #{menuId}
+		</if>
+		<if test = "menuCode != null and menuCode != ''">
+			and t.menu_code = #{menuCode}
+		</if>		
+		order BY t.sort asc,t.update_date,t.create_date desc
+	</select>
+	
+
+</mapper>

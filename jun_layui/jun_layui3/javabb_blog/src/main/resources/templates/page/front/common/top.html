@@ -1,0 +1,14 @@
+
+<dl th:fragment="topBlogs"
+	class="badge-list fly-panel fly-list-one animated fadeInUp">
+	<dt class="fly-panel-title">
+		<i class="layui-icon" style="font-size: 16px;"></i>&nbsp;置顶文章
+	</dt>
+
+	<dd th:each="blog,iterStat:${application.topBlogs}">
+		<span class="layui-badge" th:text="${iterStat.count}">1</span>&nbsp; <a
+			th:href="'/blog/'+${blog.id}" th:text="${blog.title}">博客标题</a>
+		
+	</dd>
+
+</dl>

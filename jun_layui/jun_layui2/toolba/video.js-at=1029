@@ -1,0 +1,39 @@
+layui.use(['element','form'],function(){
+	var element = layui.element,
+		form = layui.form;
+
+	var active = {
+
+		apiurl:[
+			// 'https://api.sigujx.com/jx/?url=',
+			'https://www.playm3u8.cn/jiexi.php?url=',
+			// 'http://demo.hao0606.com/?url=',
+			'http://api.sumingys.com/index.php?url=',
+			'http://okjx.cc/?url=',
+			// 'http://jx.618ge.com/?url=',
+			'https://z1.m1907.cn/?jx=',
+		],
+
+		goPlay:function(){
+			let videoUrl = $('#videourl').val();
+			if(!videoUrl){
+				return layer.msg('请输入影片播放地址');
+			}
+			let Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/,
+			objExp = new RegExp(Expression);
+			if(objExp.test(videoUrl) == false) {
+				return layer.msg('请输入有效地址');
+			}
+			let apiUrlIndex = $('#apiurl option:selected').val();
+			let apiUrl = active.apiurl[apiUrlIndex]+videoUrl;
+
+			$('#video').attr('src',apiUrl);
+		}
+	}
+
+	$(document).on('click','.button',function(){
+		let event = $(this).data('event');
+		active[event]?active[event].call(this):'';
+	})
+
+})

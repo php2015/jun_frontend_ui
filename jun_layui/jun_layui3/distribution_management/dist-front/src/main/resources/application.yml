@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: false
+          paths: /**
+server:
+  port: 8080
+
+logging:
+  config: classpath:logback.xml
+  path: "/plug.log"
+  level: debug
+dist:
+  server:
+    prefix: http://localhost/
+    secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzE3MjcyNjkxMzIsInBheWxvYWQiOiJcInhpYW9qaWFuZ1wiIn0.OhzV51QMAi2JreuarIvnd1yEZWJLty9f02pkiZjl7M8
+
+

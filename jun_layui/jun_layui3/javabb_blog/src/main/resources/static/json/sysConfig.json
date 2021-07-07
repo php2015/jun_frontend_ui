@@ -1,0 +1,17 @@
+{
+   "code": 1,
+   "msg": "",
+   "count": 1,
+   "data": [
+        {
+            "id": "name",
+            "configCode": "projectName",
+            "configValue": "BMS管理系统 1.0",
+            "configType": "system",
+            "configDesc": "项目名字",
+            "state": 1,
+             "createDate": "2018-05-26 14:52:49",
+             "updateDate": "2018-05-26 14:52:51"
+        }
+    ]
+}

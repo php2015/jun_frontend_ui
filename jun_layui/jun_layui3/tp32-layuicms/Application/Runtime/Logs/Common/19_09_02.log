@@ -1,0 +1,96 @@
+[ 2019-09-02T12:31:41+08:00 ] ::1 /tp32-layuicms/Public/layuicms/layui//tp32-layuicms/Public/layuicms/css/layui.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000853s ]
+ERR: 无法加载模块:Public
+
+[ 2019-09-02T12:31:52+08:00 ] ::1 /tp32-layuicms/Public/layuicms/layui//tp32-layuicms/Public/layuicms/css/layui.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001124s ]
+ERR: 无法加载模块:Public
+
+[ 2019-09-02T12:32:00+08:00 ] ::1 /tp32-layuicms/Public/layuicms/layui//tp32-layuicms/Public/layuicms/css/layui.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000820s ]
+ERR: 无法加载模块:Public
+
+[ 2019-09-02T12:34:21+08:00 ] ::1 /tp32-layuicms/Public/layuicms/layui//tp32-layuicms/Public/layuicms/css/layui.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001134s ]
+ERR: 无法加载模块:Public
+
+[ 2019-09-02T15:48:04+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/userList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001075s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:48:04+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/systemParameter.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000896s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:48:04+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/newsList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001380s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:48:47+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/systemParameter.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000909s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:48:47+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/userList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001017s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:48:47+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/newsList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001162s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:49:20+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/systemParameter.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001544s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:49:20+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/newsList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000800s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:49:20+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/userList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001092s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:49:28+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/systemParameter.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001260s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:49:28+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/newsList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001220s ]
+ERR: 无法加载模块:Publiclayuicms
+
+[ 2019-09-02T15:49:28+08:00 ] ::1 /tp32-layuicms/Publiclayuicms/json/userList.json
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000886s ]
+ERR: 无法加载模块:Publiclayuicms
+

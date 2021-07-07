@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('标签保存','')"></head>
+<body class="childrenBody">
+<form class="layui-form catalogSave">
+	<div class="layui-form-item">
+		<label class="layui-form-label">标签名称</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input tagName" lay-verify="required" placeholder=标签名称 />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">标签类型</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input tagType" lay-verify="required" placeholder="configType" />
+		</div>
+	</div>
+	<!-- <div class="layui-form-item">
+		<button class="layui-btn layui-block" lay-filter="addData" lay-submit>提交</button>
+	</div> -->
+</form>
+<div th:include="common/includeAdmin::footer"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/includeFront::head"></head>
+
+<body>
+	<div th:replace="page/front/common/header::header"></div>
+
+	<div class="layui-container">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-col-md12 ">
+				<div class="fly-panel layui-row animated fadeInUp detail-box" style="margin:10px 0 30px 0;min-height:600px;">
+					<div th:utext="${menu.content.content}"  class="detail-body">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div th:replace="page/front/common/footer::footer"></div>
+	<div th:include="common/includeFront::js"></div>
+
+	<!-- banner end -->
+	<script>
+		
+	</script>
+
+
+</body>
+</html>

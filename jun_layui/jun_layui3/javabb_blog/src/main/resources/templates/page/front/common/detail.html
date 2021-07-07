@@ -1,0 +1,42 @@
+<div th:fragment="detail" class="fly-panel detail-box">
+	<h1 th:text="${blog.title}">博客标题</h1>
+	<div class="fly-detail-info">
+		
+		<span th:if="${blog.blogTop}==1" class="layui-badge layui-bg-black">置顶</span>
+		<span th:if="${blog.blogHot}==1" class="layui-badge layui-bg-red">推荐</span>
+		<span> <i class="fa fa-clock" title="时间"></i><span th:text="'&nbsp;'+${#dates.format(blog.createDate,'yyyy-MM-dd hh:mm:ss')}"></span></span>
+		 <span> <i class="fa fa-user" title="作者"></i><span th:text="'&nbsp;'+${blog.userName}"> admin</span></span>
+		 <span> <i class="fa fa-tasks" title="分类"></i><span th:text="'&nbsp;'+${blog.catalog.catalogName}">Java</span></span> 
+		 <span class="fly-list-nums"> <i class="fa fa-eye" title="浏览"></i><span th:text="${blog.readCount}">99999</span>
+			
+		</span>
+	</div>
+
+	<!-- 内容区 -->
+	<div class="detail-body" th:utext="${blog.content.content}">
+
+	</div>
+	<!-- 内容区结束 -->
+	<!-- 内容结尾声明  begin-->
+	<div class="detail-about">
+		<!--<a class="fly-avatar" href="https://www.yuqh.vip/user/home?userid=1527128798263700">
+								<img src="img/userImg.jpg" alt="">
+							</a>-->
+		<div class="fly-detail-tag">
+			<span>内容标签：</span>
+			<a th:href="'/blog/tag/'+${tag.tagId}" th:each="tag:${blog.tags}" th:text="${tag.tagName}" class="layui-badge layui-bg-cyan layui-hide-xs">JAVA</a>
+		</div>
+		<div class="fly-detail-bq">
+			<span>版权申明：</span> 本站原创文章，于2018年07月18日由Javabb发布，转载请注明出处
+		</div>
+	</div>
+	<!-- 内容结尾声明  end-->
+</div>
+
+<div class="fly-panel detail-box animated fadeInUp" id="flyReply">
+	<fieldset class="layui-elem-field layui-field-title"
+		style="text-align: center;">
+		<legend>回复区</legend>
+	</fieldset>
+	<p>这里是回复区域</p>
+</div>

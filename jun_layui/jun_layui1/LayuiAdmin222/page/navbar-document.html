@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Navbar Document</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/navbar-document.css">
+</head>
+<body>
+    <div class="layui-main">
+        <p class="layui-elem-quote">
+            LayuiAdmin 内置Navbar组件:根据Layui的导航结构渲染的,以快速搭建导航菜单为目的
+        </p>
+        <div class="navbar">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>快速使用(渲染顶部导航栏)</legend>
+            </fieldset>
+            <pre class="layui-code" lay-title="JS结构">
+layui.config({
+    base:'js/'
+}).extend({
+    'navbar' : 'navbar'
+});
+layui.use(['navbar'],function(){
+    var navbar = layui.navbar;
+    navbar.render({
+        data: [{
+            icon : 'fa-envelope-o',
+            badge : 'layui-bg-blue',
+            badgeTitle: 9
+        },{
+            icon : 'fa-bell-o',
+            badgeTitle: 6
+        },{
+            title : '管理人员',
+            badgeTitle: 6,
+            children : [{
+                title : '密码修改'
+            },{
+                title : '退出'
+            }]
+        },{
+            title : '主题设置',
+            class : 'layui-theme',
+            children : [{
+                title : '默认主题',
+                layTheme : 'default'
+            },{
+                title : '浅蓝主题',
+                layTheme : 'blue'
+            },{
+                title : '墨绿主题',
+                layTheme : 'molv'
+            },{
+                title : '藏青主题',
+                layTheme : 'cyan'
+            },{
+                title : '黑色主题',
+                layTheme : 'black'
+            }]
+        }]
+    });
+});
+            </pre>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>快速使用(渲染侧边导航栏)</legend>
+            </fieldset>
+            <pre class="layui-code" lay-title="JS结构">
+layui.config({
+    base:'js/'
+}).extend({
+    'navbar' : 'navbar'
+});
+layui.use(['navbar'],function(){
+    var navbar = layui.navbar;
+    navbar.render({
+        filter : 'side',
+        data : [{
+            title : '组件文档',
+            icon : 'fa-bars',
+            children : [{
+                title : '主题',
+                icon : 'fa-bars',
+                layId : 'theme',
+                layUrl : 'page/theme-document.html'
+            },{
+                title : '导航',
+                icon : 'fa-bars',
+                layId : 'navbar',
+                layUrl : 'page/navbar-document.html'
+            }]
+        },{
+            title : '元市场',
+            icon : 'fa-bars',
+            layId : 'test',
+            layUrl : 'page/test.html'
+        }]
+    });
+});
+            </pre>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>导航动态操作</legend>
+            </fieldset>
+            <pre class="layui-code" lay-title="JS结构">
+layui.config({
+    base:'js/'
+}).extend({
+    'navbar' : 'navbar'
+});
+layui.use(['navbar'],function(){
+    var navbar = layui.navbar;
+    navbar.init();
+});
+            </pre>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>navbar.render(options)</legend>
+            </fieldset>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>参数</th>
+                        <th>默认值</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>elem-绑定元素(建议不填写)</td>
+                        <td>.layui-nav</td>
+                    </tr>
+                    <tr>
+                        <td>filter-渲染对象</td>
+                        <td>navbar</td>
+                    </tr>
+                    <tr>
+                        <td>data-渲染数据</td>
+                        <td>[]</td>
+                    </tr>
+                </tbody>
+            </table>
+            <pre class="layui-code" lay-title="data数据示例">
+[{
+    title : '组件文档',
+    icon : 'fa-bars',
+    children : [{
+        title : '主题',
+        icon : 'fa-bars',
+        layId : 'theme',
+        layUrl : 'page/theme-document.html'
+    },{
+        title : '导航',
+        icon : 'fa-bars',
+        layId : 'navbar',
+        layUrl : 'page/navbar-document.html'
+    }]
+},{
+    title : '元市场',
+    icon : 'fa-bars',
+    layId : 'test',
+}]               
+            </pre>
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>navbar.init(options)</legend>
+            </fieldset>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>参数</th>
+                        <th>默认值</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>navFilter-(监听点击的导航值)</td>
+                        <td>nav(side)</td>
+                    </tr>
+                    <tr>
+                        <td>filter-(选项卡添加的选项卡值)</td>
+                        <td>content</td>
+                    </tr>
+                    <tr>
+                        <td>reload-(刷新页面绑定的元素)</td>
+                        <td>.layui-reload</td>
+                    </tr>
+                    <tr>
+                        <td>closeAllTab-(关闭所有选项卡绑定的元素)</td>
+                        <td>.layui-close-alltab</td>
+                    </tr>
+                    <tr>
+                        <td>closeOtherTab-(关闭其他选项卡绑定的元素)</td>
+                        <td>.layui-close-othertab</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../layui/layui.js"></script>
+    <script src="../js/navbar-document.js"></script>
+</body>
+</html>

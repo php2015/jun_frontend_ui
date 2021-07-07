@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"> 
+<head th:replace="common/includeFront::head"></head>
+
+<body>
+	<div th:replace="page/front/common/header::header">
+		
+	</div>
+
+	<div th:replace="page/front/common/catalog::catalogNav">
+	
+	</div>
+	
+	<div class="layui-container">
+			<div class="layui-row layui-col-space15">
+				<!-- 涓婚閮ㄥ垎  -->
+				<div class="layui-col-md8" style="margin-top:10px;">
+					<div th:replace="page/front/common/banner::banner"></div>
+					<div th:replace="page/front/common/blogs::blogs"></div>
+					<!-- <div th:include="${mainPage}::${mainPageKey}"></div> -->
+				</div>
+				<div class="layui-col-md4">
+				
+					<div th:replace="page/front/common/frontRight::siteInfo"></div>
+					<div th:replace="page/front/common/tag::blogTag"></div>
+					<div th:replace="page/front/common/hot::hotBlogs"></div>
+					<div th:replace="page/front/common/top::topBlogs"></div>
+					<div th:replace="page/front/common/ad::ad"></div>
+					<div th:replace="page/front/common/link::links"></div>
+				</div>
+				
+			</div>
+			
+	</div>
+	<div th:replace="page/front/common/footer::footer"></div>
+	
+<div th:include="common/includeFront::js"></div>
+	
+<!-- banner end -->
+<script>
+layui.use(['carousel','laypage','element'], function(){
+  var carousel = layui.carousel,
+  laypage = layui.laypage,
+  element = layui.element;
+  carousel.render({
+    elem: '#banner'
+    ,width: '100%' //璁剧疆瀹瑰櫒瀹藉害
+    ,arrow: 'always' //濮嬬粓鏄剧ず绠ご
+    //,anim: 'updown' //鍒囨崲鍔ㄧ敾鏂瑰紡
+  });
+});
+</script>	
+
+	
+</body>
+</html>

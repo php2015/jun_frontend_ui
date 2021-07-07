@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/includeFront::head"></head>
+
+<body>
+	<div th:replace="page/front/common/header::header">
+		
+	</div>
+
+	<div th:replace="page/front/common/catalog::catalogNav">
+	
+	</div>
+	
+	<div class="layui-container">
+			<div class="layui-row layui-col-space15">
+				<!-- 主题部分  -->
+				<div class="layui-col-md8">
+					<div th:replace="page/front/common/blogs::blogs"></div>
+					
+				</div>
+				<div class="layui-col-md4">
+					<div th:replace="page/front/common/tag::blogTag"></div>
+					<div th:replace="page/front/common/hot::hotBlogs"></div>
+					<div th:replace="page/front/common/top::topBlogs"></div>
+					<div th:replace="page/front/common/ad::ad"></div>
+					<div th:replace="page/front/common/link::links"></div>
+				</div>
+				
+			</div>
+	</div>
+	<div th:replace="page/front/common/footer::footer"></div>
+	
+<div th:include="common/includeFront::js"></div>
+	
+<!-- banner end -->
+<script>
+/* layui.use(['carousel','laypage'], function(){
+  var carousel = layui.carousel,
+  laypage = layui.laypage;
+  //建造实例
+  carousel.render({
+    elem: '#banner'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+}); */
+</script>	
+
+	
+</body>
+</html>

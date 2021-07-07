@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset=UTF-8"utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="Web工具,开发工具,网页工具,实用工具,ip查询,json格式转换,时间戳转换,随机字符串生成,身份证格式解析,ICO在线图片转换,年龄计算,区号,高校,邮编,城市">
+	<meta name="description" content="全国高校信息数据查询">
+	<meta name="baidu-site-verification" content="code-LKAurxZeyH" />
+	<link href="layui.css" tppabs="http://tools.iters.cn/css/layui.css" rel="stylesheet">
+	<link href="public.css" tppabs="http://tools.iters.cn/css/public.css" rel="stylesheet">
+	<script src="layui.js" tppabs="http://tools.iters.cn/layui.js"></script>
+	<script src="element.js" tppabs="http://tools.iters.cn/lay/modules/element.js"></script>
+	<script src="carousel.js" tppabs="http://tools.iters.cn/lay/modules/carousel.js"></script>
+	<script src="form.js" tppabs="http://tools.iters.cn/lay/modules/form.js"></script>
+	<script src="public.js" tppabs="http://tools.iters.cn/js/public.js"></script>
+		<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "hm.js-bac828962f2e588436573c9bf3463e5b"/*tpa=https://hm.baidu.com/hm.js?bac828962f2e588436573c9bf3463e5b*/;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+		<title>高校信息列表</title>
+</head>
+<body>
+	<div class="layui-header header header-doc" summer="">
+  		<div class="layui-main">
+    		<a class="font-logo " href="index.htm" tppabs="http://tools.iters.cn/">
+      			Web工具    		</a>
+			<ul class="layui-nav" lay-filter="">
+				<li class="layui-nav-item"><a href="index.htm" tppabs="http://tools.iters.cn/">首页</a></li>
+																<li class="layui-nav-item"><a href="index.htm" tppabs="http://tools.iters.cn/ip/index">ip查询</a></li>
+																				<li class="layui-nav-item"><a href="json.htm" tppabs="http://tools.iters.cn/other/json">json格式转换</a></li>
+																				<li class="layui-nav-item"><a href="unix.htm" tppabs="http://tools.iters.cn/other/unix">时间戳转换</a></li>
+																				<li class="layui-nav-item"><a href="index-1.htm" tppabs="http://tools.iters.cn/pwd/index">随机字符串生成</a></li>
+																				<li class="layui-nav-item"><a href="index-2.htm" tppabs="http://tools.iters.cn/idcard/index">身份证格式解析</a></li>
+																				<li class="layui-nav-item"><a href="index-3.htm" tppabs="http://tools.iters.cn/iconv/index">ICO在线图片转换</a></li>
+																								<li class="layui-nav-item">
+				    <a href="javascript:;">计算器</a>
+				    <dl class="layui-nav-child">
+															<dd><a href="index-4.htm" tppabs="http://tools.iters.cn/birthday/index">年龄计算器</a></dd>
+															<dd><a href="fang.htm" tppabs="http://tools.iters.cn/caculator/fang">房贷计算器</a></dd>
+															<dd><a href="tax.htm" tppabs="http://tools.iters.cn/caculator/tax">个税计算器</a></dd>
+										</dl>
+				</li>
+																								<li class="layui-nav-item layui-this">
+				    <a href="javascript:;">常用数据库</a>
+				    <dl class="layui-nav-child">
+															<dd><a href="index-5.htm" tppabs="http://tools.iters.cn/postcode/index">区号&邮编</a></dd>
+															<dd><a href="index-6.htm" tppabs="http://tools.iters.cn/school/index">高校列表</a></dd>
+															<dd><a href="index-7.htm" tppabs="http://tools.iters.cn/city/index">城市列表</a></dd>
+										</dl>
+				</li>
+											</ul>
+		</div>
+	</div>
+<script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+<div class="layui-main">
+	<h1 class="con_tip">
+	  	<span>生命太过短暂，今天放弃了明天不一定能得到。</span>
+	</h1>
+	<div class="layui-fluid layui-fluid-np">
+	  	<div class="layui-row layui-col-space10">
+	  		<div class="layui-col-md9">
+	  			<div class="layui-my-content">
+					<div class="layui-row">
+						<div class="layui-col-md12" style="padding: 10px;">
+							<form class="layui-form" method="get">
+								<div class="layui-inline">
+									<div class="layui-input-inline" style="width: 130px">
+										<input type="text" name="schoolName" class="layui-input" placeholder="输入高校名称查询" value="">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-input-inline" style="width: 100px">
+										<input type="text" name="place" class="layui-input" placeholder="输入省份查询" value="">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<select id="schoolType" name="schoolType" class="layui-input">
+									  <option value="">学术类型</option>
+									  <option value="综合" >综合</option>
+									  <option value="工科" >工科</option>
+									  <option value="体育" >体育</option>
+									  <option value="军事" >军事</option>
+									  <option value="农业" >农业</option>
+									  <option value="医药" >医药</option>
+									  <option value="师范" >师范</option>
+									  <option value="林业" >林业</option>
+									  <option value="政法" >政法</option>
+									  <option value="民族" >民族</option>
+									  <option value="艺术" >艺术</option>
+									  <option value="语言" >语言</option>
+									  <option value="财经" >财经</option>
+									</select>
+								</div>
+								<div class="layui-inline">
+									<select id="properties" name="properties" class="layui-input">
+									  <option value="">高校类别</option>
+									  <option value="本科" >本科</option>
+									  <option value="高职高专" >高职高专</option>
+									  <option value="独立学院" >独立学院</option>
+									  <option value="其它" >其它</option>
+									</select>
+								</div>
+								<div class="layui-inline">
+									<button type="search" class="layui-btn" lay-submit="" lay-filter="formDemoPane">搜索</button>
+								</div>
+							</form>
+						</div>
+					</div>
+		
+					<div class="layui-row">
+						<div style="padding: 10px;" class="layui-col-md12">
+							<div class="layui-table-box layui-border-box">
+								<table class="layui-table" lay-even>
+									<thead>
+										<tr>
+											<th>高校名称</th>
+											<th>省份</th>
+											<th>学术类型</th>
+											<th>学校类型</th>
+										</tr>
+									</thead>
+									<tbody>
+													              												<tr>
+											<td>山西机电职业技术学院</td>
+											<td>山西</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>临汾职业技术学院</td>
+											<td>山西</td>
+											<td>农业</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>山西综合职业技术学院</td>
+											<td>山西</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>太原城市职业技术学院</td>
+											<td>山西</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>山西煤炭职业技术学院</td>
+											<td>山西</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>包头职业技术学院</td>
+											<td>内蒙古</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>内蒙古建筑职业技术学院</td>
+											<td>内蒙古</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>兴安职业技术学院</td>
+											<td>内蒙古</td>
+											<td>师范</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>内蒙古警察职业学院</td>
+											<td>内蒙古</td>
+											<td>政法</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>内蒙古体育职业学院</td>
+											<td>内蒙古</td>
+											<td>体育</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>包头轻工职业技术学院</td>
+											<td>内蒙古</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>呼和浩特职业学院</td>
+											<td>内蒙古</td>
+											<td>综合</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>渤海船舶职业学院</td>
+											<td>辽宁</td>
+											<td>工科</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>盘锦职业技术学院</td>
+											<td>辽宁</td>
+											<td>综合</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>辽宁金融职业学院</td>
+											<td>辽宁</td>
+											<td>财经</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>大连职业技术学院</td>
+											<td>辽宁</td>
+											<td>综合</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>大连商务职业学院</td>
+											<td>辽宁</td>
+											<td>财经</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>辽阳职业技术学院</td>
+											<td>辽宁</td>
+											<td>综合</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>营口职业技术学院</td>
+											<td>辽宁</td>
+											<td>综合</td>
+											<td>高职专科</td>
+				              			</tr>
+				              												<tr>
+											<td>郑州幼儿师范高等专科学校</td>
+											<td>河南</td>
+											<td>师范</td>
+											<td>高职专科</td>
+				              			</tr>
+				              						              											</tbody>
+								</table>
+							</div>
+							<div class='layui-table-page' style='width: unset;'><div id='layui-table-page1'><div class='layui-box layui-laypage layui-laypage-default' id='layui-laypage-1'><a href="index-&page=53-2.htm" tppabs="http://tools.iters.cn/school/index?&page=53" class='layui-laypage-prev'><i class='layui-icon layui-icon-left'> </i></a><a href="index-&page=1-1.htm" tppabs="http://tools.iters.cn/school/index?&page=1" title='首页'>1</a><span class='layui-laypage-spr'>…</span><a href="index-&page=53-2.htm" tppabs="http://tools.iters.cn/school/index?&page=53">53</a><span class='layui-laypage-curr'><em class='layui-laypage-em'></em><em>54</em></span><a href="index-&page=55-2.htm" tppabs="http://tools.iters.cn/school/index?&page=55">55</a><span class='layui-laypage-spr'>…</span><a href="index-&page=129.htm" tppabs="http://tools.iters.cn/school/index?&page=129" class='layui-laypage-last' title='尾页' data-page='129'>129</a><a href="index-&page=55-2.htm" tppabs="http://tools.iters.cn/school/index?&page=55" class='layui-laypage-next'><i class='layui-icon layui-icon-right'> </i></a><span class='layui-laypage-skip'>到第<input id='jumppage' type='text' name='jumppage' min='1' value='54' class='layui-input'>页<button id='jumppagebutton' type='button' name='submit' class='layui-laypage-btn'  onclick='jumpToPage(129,false)'>确定</button></span><span class='layui-laypage-count' style='margin-left:5px;'>共 2575 条</span></div></div></div>			   	 		</div>
+					</div>
+		
+				</div>
+			</div>
+				    	<div class="layui-col-md3 layui-col-xs12 layui-col-sm12">
+												<div class="layui-card cardBody">
+                    <div class="layui-card-header">
+                        <span class="hot-head">使用热度排行</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">1</span>
+                                <span class="hot_title"><a href="tax.htm" tppabs="http://tools.iters.cn/caculator/tax">个税计算器</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">2</span>
+                                <span class="hot_title"><a href="fang.htm" tppabs="http://tools.iters.cn/caculator/fang">房贷计算器</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">3</span>
+                                <span class="hot_title"><a href="index-4.htm" tppabs="http://tools.iters.cn/birthday/index">年龄计算器</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">4</span>
+                                <span class="hot_title"><a href="index-1.htm" tppabs="http://tools.iters.cn/pwd/index">随机字符串生成</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">5</span>
+                                <span class="hot_title"><a href="index-2.htm" tppabs="http://tools.iters.cn/idcard/index">身份证格式解析</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">6</span>
+                                <span class="hot_title"><a href="unix.htm" tppabs="http://tools.iters.cn/other/unix">时间戳转换</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">7</span>
+                                <span class="hot_title"><a href="json.htm" tppabs="http://tools.iters.cn/other/json">json格式转换</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+                                								<div class="layui-carousel" id="ad-carousel">
+				  	<div carousel-item="">
+												<div>
+					    	<a href="javascript:if(confirm('https://www.huangyanfu.com/index.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.huangyanfu.com/index.html'" tppabs="https://www.huangyanfu.com/index.html" target="_blank"><img title="梦回蓝天的博客" src="00eb3b7c587ea1e5dd160b313e648b66_thumb.jpg" tppabs="https://static.huangyanfu.com/blog_cover/201808/00eb3b7c587ea1e5dd160b313e648b66_thumb.jpg"></a>
+					    </div>
+											</div>
+				</div>
+					    	</div>
+	    	
+<script>
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#ad-carousel'
+    ,width: '100%' //设置容器宽度
+    ,height: '150px'
+    ,arrow: 'none' //始终显示箭头
+    ,anim: 'fade' //切换动画方式
+    ,indicator: 'none'
+  });
+});
+</script>
+	  	</div>
+	</div>
+</div>
+<div class="layui-footer">
+	Email：<a href="mailto:huangyan200918@163.com">huangyan200918@163.com</a><br>
+	Copyright&copy;2020 By <a href="index.htm" tppabs="http://tools.iters.cn/">tools.iters.cn.</a> All Rights Reserved.<br>
+			友情链接：
+		<a href="javascript:if(confirm('http://tpl.iters.cn/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://tpl.iters.cn/'" tppabs="http://tpl.iters.cn/" target='_blank'>web模板</a>&nbsp;&nbsp;
+		<a href="javascript:if(confirm('https://www.huangyanfu.com/index.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.huangyanfu.com/index.html'" tppabs="https://www.huangyanfu.com/index.html" target='_blank'>梦回蓝天的博客</a>&nbsp;&nbsp;
+		</div>
+</body>
+</html>
+<script type="text/javascript">
+layui.use('form', function(){
+	var form = layui.form;
+	form.render();
+});
+</script>

@@ -1,0 +1,137 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+<link rel="stylesheet" href="css/myCss.css">
+<script src="../layui/layui.js" charset="utf-8"></script>
+<script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+    //获取图片真实宽高
+    function getImageWidth(url, callback) {
+        var img = new Image();
+        img.src = url;
+
+        // 如果图片被缓存，则直接返回缓存数据
+        if (img.complete) {
+            callback(img.width, img.height);
+        } else {
+            // 完全加载完毕的事件
+            img.onload = function () {
+                callback(img.width, img.height);
+            }
+        }
+    }
+</script>
+  
+    <script type="text/javascript">
+
+        layui.use(['form', 'upload', 'layedit'], function () {
+            var form = layui.form(), layedit = layui.layedit;
+            form.render();
+            layedit.build('content', {
+                height: 320 //设置编辑器高度
+            });
+            layui.upload({
+                url: 'perform/updateImg_do.html'
+                 , before: function (input) {
+
+                     parent.layer.msg('正在上传...', {
+                         icon: 16
+                        , shade: 0.01
+                     });
+                 }
+                , success: function (res) {
+                    $("#mydivimg").show();
+                    $("#mydivimg").attr("src", "../UploadPhotos/" + res.msg);
+                    parent.layer.closeAll('loading'); //关闭等待层
+                    $("#G_Img").val("/UploadPhotos/" + res.msg);
+                    parent.layer.msg("上传成功!", { time: 500 });
+                }
+            });
+            $("#mydivimg").click(function () {
+                parent.layer.open({
+                    type: 1 //Page层类型
+                  , area: ['auto', 'auto']
+                  , title: false
+                  , closeBtn: 1
+                  , shadeClose: true
+                  , skin: 'layui-layer-nobg' //没有背景色
+                  , shade: 0.6 //遮罩透明度
+                  , maxmin: false //允许全屏最小化
+                  , anim: 5 //0-6的动画形式，-1不开启
+                  , content: '<div style="text-align:center"><img style = "max-width:1150px;" src="' + $("#G_Img").val() + '" /></div>'
+                });
+            });
+
+        });
+        
+    </script>
+</head>
+<body>
+<a href="G_informationList.html?type=1&name=新闻" style="margin-left: 12px;" class="layui-btn layui-btn-primary layui-btn-small">
+<i class="layui-icon">&#xe603;</i> 返回列表</a>
+<br/><br/>
+    <form class="layui-form" action="perform/G_informationadd_do.html" method="post">
+    <input type="hidden" id="leix" name="leix" value="" />
+    <input type="hidden" name="typeid" value="" />
+    <input type="hidden" name="G_Img" id="G_Img" value="" />
+    <input type="hidden" name="T_name" value="" />
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="txtG_Name" value="" lay-verify='required'
+                placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            图片</label>
+        <div class="layui-input-block">
+            <input type="file" name="file-demo" lay-type="images" class="layui-upload-file">
+            
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            摘要</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入摘要" name="txtG_jianjie" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            内容</label>
+        <div class="layui-input-block">
+            <textarea name="txtG_instructions" id="content" style="width: 850px; height: 380px;"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            推荐</label>
+        <div class="layui-input-inline">
+            <input type="checkbox" name="txtG_recommended" checked="checked" lay-skin="switch" title="是否推荐">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+            是否在首页显示</div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" name="mybtn">
+                立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">
+                重置</button>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

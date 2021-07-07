@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/includeAdmin::header('404 页面配置','')"></head>
+<body class="childrenBody">
+
+	<div th:replace="page/front/common/header::header">
+		
+	</div>
+	<div class="noFind">
+		<div class="ufo">
+			<i class="seraph icon-test ufo_icon"></i>
+			<i class="layui-icon page_icon">&#xe638;</i>
+		</div>
+		<div class="page404">
+			<i class="layui-icon">&#xe61c;</i>
+			<p>403 我勒个去，页面被外星人挟持了!</p>
+		</div>
+	</div>
+	<div th:include="common/includeAdmin::footer"></div>
+</body>
+</html>

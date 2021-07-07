@@ -1,0 +1,121 @@
+{
+	"contentManagement": [
+		{
+			"title": "博客列表",
+			"icon": "icon-bokexinwen",
+			"href": "/admin/blog/list",
+			"spread": false
+		},
+		{
+			"title": "类型管理",
+			"icon": "icon-manage",
+			"href": "/admin/catalog/list",
+			"spread": false
+		},
+		{
+			"title": "标签管理",
+			"icon": "icon-tags",
+			"href": "/admin/tag/list",
+			"spread": false
+		},
+		{
+			"title": "专题管理",
+			"icon": "icon-zhuanti",
+			"href": "/admin/series/list",
+			"spread": false
+		},
+		{
+			"title": "其他页面",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "404页面",
+					"icon": "&#xe61c;",
+					"href": "/page/404.html",
+					"spread": false
+				},
+				{
+					"title": "登录",
+					"icon": "&#xe609;",
+					"href": "/page/login/login.html",
+					"spread": false,
+					"target": "_blank"
+				}
+			]
+		}
+	],
+	"systemeSttings": [
+		{
+			"title": "系统参数",
+			"icon": "&#xe631;",
+			"href": "/sys/config/list",
+			"spread": false,
+			"children": [
+				{
+					"title": "参数管理",
+					"icon": "&#xe631;",
+					"href": "/sys/config/list",
+					"spread": false
+				},
+				{
+					"title": "参数配置",
+					"icon": "&#xe631;",
+					"href": "/sys/config/sysConfig",
+					"spread": false
+				}
+			]
+		},{
+			"title": "用户中心",
+			"icon": "&#xe612;",
+			"href": "/sys/user",
+			"spread": false
+		},{
+			"title": "菜单管理",
+			"icon": "icon-createtask",
+			"href": "/sys/menu/list",
+			"spread": false
+		},{
+			"title": "系统日志",
+			"icon": "icon-log",
+			"href": "/sys/log",
+			"spread": false
+		},{
+			"title": "友情链接",
+			"icon": "&#xe64c;",
+			"href": "/sys/link/list",
+			"spread": false
+		},{
+			"title": "图标管理",
+			"icon": "&#xe857;",
+			"href": "/sys/icon/list",
+			"spread": false
+		},{
+			"title": "图片管理",
+			"icon": "&#xe634;",
+			"href": "/sys/image/list",
+			"spread": false
+		}
+	],
+	"seraphApi": [
+		{
+			"title": "三级联动模块",
+			"icon": "icon-mokuai",
+			"href": "page/doc/addressDoc.html",
+			"spread": false
+		},{
+			"title": "bodyTab模块",
+			"icon": "icon-mokuai",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},{
+			"title": "三级菜单",
+			"icon": "icon-mokuai",
+			"href": "page/doc/navDoc.html",
+			"spread": false
+		}
+	]
+}
+
+

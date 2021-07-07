@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/mvc">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>FasdOss文件服务器</title>
+
+    <link rel="stylesheet" th:href="@{/assets/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/assets/common.css}">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="layui-container">
+        <div class="layui-logo">
+            <img th:src="@{/assets/images/logo.png}"/><cite>FasdOss<span class="layui-hide-xs">文件服务器</span></cite>
+        </div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" lay-unselect>
+                <a th:href="@{/assets/demo.html}"><i class="layui-icon">&#xe60b;</i> 使用指南</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="layui-container" style="padding-top: 15px;">
+    <div class="layui-card">
+        <div class="layui-card-header">当前位置：<span>/</span><span th:each="f:${fileaddr}"><a th:href="${f.href}"><span
+                th:text="${f.name}"></span></a>/</span>
+            <span style="float: right">
+        磁盘共<span th:text="${file.getTotalSpace()/ 1024 / 1024 / 1024}"></span>G
+        空闲<span th:text="${file.getUsableSpace()/ 1024 / 1024 / 1024}"></span>G
+        使用<span th:text="${(file.getTotalSpace()-file.getUsableSpace())/ 1024 / 1024 / 1024}"></span>G
+                </span>
+        </div>
+        <div class="layui-card-body">
+            <div class="btnDiv">
+                <button id="btnBack" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i class="layui-icon">&#xe65c;</i>返回上级
+                </button>
+                <a id="btnRefresh" href="javascript:location.reload();" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i class="layui-icon">&#xe669;</i>刷新
+                </a>
+                <button id="btnUpload" class="layui-btn layui-btn-sm layui-btn-normal icon-btn"><i class="layui-icon">&#xe681;</i>小文件上传
+                </button>
+                <button id="bigbtnUpload" class="layui-btn layui-btn-sm layui-btn-normal icon-btn"><i class="layui-icon">&#xe681;</i>超大文件上传
+                </button>
+                <button id="btnDilaog" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i class="layui-icon">&#xe621;</i>创建文件夹
+                </button>
+            </div>
+
+            <div class="file-list">
+                <div th:if="${!file.exists()||#lists.isEmpty(file.listFiles())}" class="list-empty">
+                    <i class="layui-icon layui-icon-face-surprised"></i>
+                    <div>没有文件</div>
+                </div>
+
+                <div th:if="${file.exists()}" th:each="d:${file.listFiles()}" th:epath="${epath}" th:file-name="${d.name}" th:data-url="${epath+'/'+d.name}" class="file-list-item">
+                    <div class="file-list-img media">
+                        <img th:if="${d.isDirectory()}" th:src="@{/assets/images/fti/dir.png}"/>
+                        <img th:if="${!d.isDirectory()}"  th:sce="${epath+'/'+d.name}"/>
+                    </div>
+                    <div class="file-list-item-name" th:text="${d.name}">其他</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- 下拉菜单 -->
+<div class="dropdown-menu dropdown-anchor-top-left" id="dropdownFile">
+    <div class="dropdown-anchor"></div>
+    <ul>
+        <li><a id="open"><i class="layui-icon layui-icon-file"></i>&emsp;查看&emsp;</a></li>
+        <!--<li><a id="copy"><i class="layui-icon layui-icon-release"></i>&emsp;复制&emsp;</a></li>-->
+        <li>
+            <a id="del" style="color: red !important;">
+                <i class="layui-icon layui-icon-delete" style="font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;删除&emsp;
+            </a>
+        </li>
+    </ul>
+</div>
+<script type="text/html" id="updatahtml">
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">上传</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="uploader" class="wu-example">
+                        <!--用来存放文件信息-->
+                        <div id="thelist" class="uploader-list"></div>
+                        <div class="btns">
+                            <div id="picker">选择文件</div>
+                            <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/javascript" th:src="@{/assets/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/assets/clipboard.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/config.js}"></script>
+<script>
+    layui.config({
+        base: '[[@{/assets/lib/}]]' ,//假设这是你存放拓展模块的根目录
+    }).use(['jquery', 'layer', 'element', 'upload', 'laytpl', 'util','layUploader'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var element = layui.element;
+        var upload = layui.upload;
+        var laytpl = layui.laytpl;
+        var util = layui.util;
+        var layUploader = layui.layUploader;
+
+
+
+        // 上传文件事件
+        upload.render({
+            elem: '#btnUpload',
+            url: "[[${epath}]]",
+            choose: function (obj) {
+                layer.load(2);
+            },
+            done: function (res, index, upload) {
+                layer.closeAll('loading');
+                if (res.code != 200) {
+                    layer.msg(res.msg, {icon: 2},function () {
+                        location.reload()
+                    });
+                } else {
+                    layer.msg(res.msg, {icon: 1},function () {
+                        location.reload()
+                    });
+
+                }
+            },
+            error: function () {
+                layer.closeAll('loading');
+                layer.msg('上传失败', {icon: 2});
+            },
+            accept: 'file'
+        });
+
+        // 刷新
+        $('#btnRefresh').click(function () {
+            renderList();
+        });
+
+        var mUrl;
+        var filename;
+        // 列表点击事件
+        $('body').on('click', '.file-list-item', function (e) {
+            var isDir = $(this).data('dir');
+            var name = $(this).data('name');
+            filename=$(this).attr("file-name");
+            debugger;
+            mUrl = $(this).data('url');
+            $('#copy').attr('data-clipboard-text', mUrl);
+            if (isDir) {
+                var cDir = $('#tvFP').text();
+                cDir += (cDir == '/' ? name : ('/' + name));
+                $('#tvFP').text(cDir);
+                renderList(cDir);
+            } else {
+                var $target = $(this).find('.file-list-img');
+                $('#dropdownFile').css({
+                    'top': $target.offset().top + 90,
+                    'left': $target.offset().left + 25
+                });
+                $('#dropdownFile').addClass('dropdown-opened');
+                if (e !== void 0) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }
+        });
+
+        // 返回上级
+        $('#btnBack').click(function () {
+
+            location.href='[[${eParent}]]'
+        });
+
+        // 点击空白隐藏下拉框
+        $('html').off('click.dropdown').on('click.dropdown', function () {
+            $('#copy').attr('data-clipboard-text', '');
+            $('#dropdownFile').removeClass('dropdown-opened');
+        });
+
+        // 打开
+        $('#open').click(function () {
+
+                location.href=mUrl.replace("\/\/","\/");
+
+
+        });
+        // 删除
+        $('#del').click(function () {
+            debugger;
+            layer.confirm('确定要删除此文件吗？', function () {
+                layer.load(2);
+                $.ajax({
+                    url:mUrl.replace("\/\/","\/")
+                    ,type:"delete"
+                    ,dataType:"json"
+                    ,headers:{'Content-Type':'application/json;charset=utf8'}
+                    ,success:function (res) {
+                        if (res.code != 200) {
+                            layer.msg("删除成功", {icon: 2},function () {
+                                location.reload()
+                            });
+                        } else {
+                            layer.msg(res.msg, {icon: 1},function () {
+                                location.reload()
+                            });
+
+                        }
+                    }
+                })
+
+            });
+        });
+        // 复制
+        var clipboard = new ClipboardJS('#copy');
+        clipboard.on('success', function (e) {
+            e.clearSelection();
+            layer.msg('文件地址已复制', {icon: 1});
+        });
+        clipboard.on('error', function (e) {
+            layer.msg('复制失败，请手动复制', {icon: 2});
+        });
+
+        // 弹窗模式
+        $('#btnDilaog').click(function () {
+            layer.prompt({title: '新建文件夹',},function(value, index, elem){
+                var s = "[[${epath}]]"+"/"+value;
+                $.post(s.replace("\/\/","\/"),function (res) {
+                    layer.msg(res.msg, {icon: 1},function () {
+                        location.reload()
+                    });
+                })
+            })
+        });
+
+
+
+        $("img[sce]").each(function () {
+            var src = "[[${ebasepath}]]/assets/images/fti/file.png";
+            var sce = $(this).attr("sce").toLocaleString();
+            if(/.(gif|jpg|jpeg|png)$/.test(sce)){
+                src=sce
+            }
+            if(/.(zip|tar|gz|7z)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/zip.png"
+            }
+            if(/.(xls|xlsx)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/xls.png"
+            }
+            if(/.(ppt|pptx)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/ppt.png"
+            }
+            if(/.(mp4)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/mp4.png"
+            }
+            if(/.(mp3)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/mp3.png"
+            }
+            if(/.(htm|html)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/htm.png"
+            }
+            if(/.(flash)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/flash.png"
+            }
+            if(/.(doc|docx)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/doc.png"
+            }
+            if(/.(java|php|jsp|code)$/.test(sce)){
+                src="[[${ebasepath}]]/assets/images/fti/code.png"
+            }
+            $(this).attr("src",src)
+        })
+        $('#bigbtnUpload').click(function () {
+            layUploader.render({
+                url:"[[${epath}]]",//上传文件服务器地址，必填
+                fileType:'*'//允许上传文件格式,有默认值，可不填
+            });
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

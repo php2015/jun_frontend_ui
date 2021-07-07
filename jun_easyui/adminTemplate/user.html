@@ -1,0 +1,169 @@
+<div id="user" style="padding:5px;">
+
+	<div class="easyui-panel" id="userQueryPanel" title="User Query" style="margin-bottom: 5px;">
+            <form action="form1_proc.php" method="get" id="userQueryForm" name="userQueryForm">
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input name="register_number" class="easyui-textbox"></input></td>
+                            <td>Viewname:</td>
+                            <td><input name="juridical_person" class="easyui-textbox"></input></td>
+                            <td>Phone:</td>
+                            <td><input name="col_1008" class="easyui-textbox"></input></td>
+                            <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                            var _queryForm = jQuery('#userQueryForm');
+                            if(_queryForm.form('validate')){
+                              // _queryForm.submit();
+                              // location.href = 'dashboard.html';
+                            }
+                            return false;
+                          }" style="width:80px">Query</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+    <table id="userDatagrid" title="User List" class="easyui-datagrid"
+            data-options="
+            url:'data/user.json',
+            pagination:'true',
+            method:'get',
+            rownumbers:'true',
+            fitColumns:'true',
+            singleSelect:'true',
+            onClickRow: function(index,row){
+                jQuery('#userEditForm').form('load',row);
+            },
+            toolbar: [
+                {
+                    text:'Add',
+                    iconCls:'icon-add',
+                    handler:function(){
+                        jQuery('#userQueryPanel').panel('close',true);
+                        jQuery('#userDatagrid').datagrid('getPanel').panel('close',true);
+                        jQuery('#userCreatePanel').panel('open',true);
+                        jQuery('#userEditPanel').panel('close',true);
+                    }
+                },
+                {
+                    text:'Edit',
+                    iconCls:'icon-edit',
+                    handler:function(){
+                        jQuery('#userQueryPanel').panel('close',true);
+                        jQuery('#userDatagrid').datagrid('getPanel').panel('close',true);
+                        jQuery('#userCreatePanel').panel('close',true);
+                        jQuery('#userEditPanel').panel('open',false);
+                    }
+                },
+                {
+                    text:'Remove',
+                    iconCls:'icon-remove',
+                    handler:function(){
+                        var _param = jQuery('#userQueryForm').serializeJSON();
+                        jQuery('#userDatagrid').datagrid('reload',_param);
+                    }
+                }
+            ]
+            ">
+        <thead>
+            <tr>
+                <th field="register_number" width="50" formatter="">Username</th>
+                <th field="juridical_person" width="50">Viewname</th>
+                <th field="col_1008" width="50">Phone</th>
+            </tr>
+        </thead>
+    </table>
+
+
+    <div class="easyui-panel" id="userCreatePanel" title="User Create" style="margin-bottom: 5px;" data-options="
+        closed: true
+        ">
+            <form action="form1_proc.php" method="POST" id="userQueryForm" name="userQueryForm">
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input name="register_number" class="easyui-textbox"></input></td>
+                            <td>Viewname:</td>
+                            <td><input name="juridical_person" class="easyui-textbox"></input></td>
+                            <td>Phone:</td>
+                            <td><input name="col_1008" class="easyui-textbox"></input></td>
+                            <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                                var _queryForm = jQuery('#userQueryForm');
+                                if(_queryForm.form('validate')){
+                                  // _queryForm.submit();
+                                  // location.href = 'dashboard.html';
+
+                                    jQuery('#userQueryPanel').panel('open',true);
+                                    jQuery('#userDatagrid').datagrid('getPanel').panel('open',true);
+
+                                    jQuery('#userCreatePanel').panel('close',true);
+                                    jQuery('#userEditPanel').panel('close',true);
+
+
+                                }
+                                return false;
+                              }" style="width:80px">Save</a>
+
+
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+
+                                    jQuery('#userQueryPanel').panel('open',true);
+                                    jQuery('#userDatagrid').datagrid('getPanel').panel('open',true);
+
+                                    jQuery('#userCreatePanel').panel('close',true);
+                                    jQuery('#userEditPanel').panel('close',true);
+
+                              }" style="width:80px">Back</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+    <div class="easyui-panel" id="userEditPanel" title="User Edit" style="margin-bottom: 5px;" data-options="
+        closed: true
+        ">
+            <form action="form1_proc.php" method="POST" id="userEditForm" name="userEditForm">
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input name="register_number" class="easyui-textbox"></input></td>
+                            <td>Viewname:</td>
+                            <td><input name="juridical_person" class="easyui-textbox"></input></td>
+                            <td>Phone:</td>
+                            <td><input name="col_1008" class="easyui-textbox"></input></td>
+                            <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                                var _editForm = jQuery('#userEditForm');
+                                if(_editForm.form('validate')){
+                                  // _editForm.submit();
+                                  // location.href = 'dashboard.html';
+
+                                    jQuery('#userQueryPanel').panel('open',true);
+                                    jQuery('#userDatagrid').datagrid('getPanel').panel('open',true);
+                                    
+                                    jQuery('#userCreatePanel').panel('close',true);
+                                    jQuery('#userEditPanel').panel('close',true);
+
+                                }
+                                return false;
+                              }" style="width:80px">Update</a>
+
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                                    jQuery('#userQueryPanel').panel('open',true);
+                                    jQuery('#userDatagrid').datagrid('getPanel').panel('open',true);
+                                    
+                                    jQuery('#userCreatePanel').panel('close',true);
+                                    jQuery('#userEditPanel').panel('close',true);
+                              }" style="width:80px">Back</a>
+
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+</div>

@@ -1,0 +1,163 @@
+
+<div id="group" style="padding:5px;">
+
+	<div class="easyui-panel" id="groupQueryPanel" title="Group Query" style="margin-bottom: 5px;">
+            <form action="form1_proc.php" method="get" id="groupQueryForm" name="groupQueryForm">
+                    <table>
+                        <tr>
+                            <td>Groupname:</td>
+                            <td><input name="groupName" class="easyui-textbox"></input></td>
+                            <td>Viewname:</td>
+                            <td><input name="viewName" class="easyui-textbox"></input></td>
+                            <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                            var _queryForm = jQuery('#groupQueryForm');
+                            if(_queryForm.form('validate')){
+                              // _queryForm.submit();
+                              // location.href = 'dashboard.html';
+                            }
+                            return false;
+                          }" style="width:80px">Query</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+    <table id="groupDatagrid" title="Group List" class="easyui-datagrid"
+            data-options="
+            url:'data/group.json',
+            pagination:'true',
+            method:'get',
+            rownumbers:'true',
+            fitColumns:'true',
+            singleSelect:'true',
+            onClickRow: function(index,row){
+                jQuery('#groupEditForm').form('load',row);
+            },
+            toolbar: [
+                {
+                    text:'Add',
+                    iconCls:'icon-add',
+                    handler:function(){
+                        jQuery('#groupQueryPanel').panel('close',true);
+                        jQuery('#groupDatagrid').datagrid('getPanel').panel('close',true);
+                        jQuery('#groupCreatePanel').panel('open',true);
+                        jQuery('#groupEditPanel').panel('close',true);
+                    }
+                },
+                {
+                    text:'Edit',
+                    iconCls:'icon-edit',
+                    handler:function(){
+                        jQuery('#groupQueryPanel').panel('close',true);
+                        jQuery('#groupDatagrid').datagrid('getPanel').panel('close',true);
+                        jQuery('#groupCreatePanel').panel('close',true);
+                        jQuery('#groupEditPanel').panel('open',false);
+                    }
+                },
+                {
+                    text:'Remove',
+                    iconCls:'icon-remove',
+                    handler:function(){
+                        var _param = jQuery('#groupQueryForm').serializeJSON();
+                        jQuery('#groupDatagrid').datagrid('reload',_param);
+                    }
+                }
+            ]
+            ">
+        <thead>
+            <tr>
+                <th field="groupName" width="50" formatter="">Groupname</th>
+                <th field="viewName" width="50">Viewname</th>
+            </tr>
+        </thead>
+    </table>
+
+
+    <div class="easyui-panel" id="groupCreatePanel" title="Group Create" style="margin-bottom: 5px;" data-options="
+        closed: true
+        ">
+            <form action="form1_proc.php" method="POST" id="groupQueryForm" name="groupQueryForm">
+                    <table>
+                        <tr>
+                            <td>Groupname:</td>
+                            <td><input name="groupName" class="easyui-textbox"></input></td>
+                            <td>Viewname:</td>
+                            <td><input name="viewName" class="easyui-textbox"></input></td>
+                            <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                                var _queryForm = jQuery('#groupQueryForm');
+                                if(_queryForm.form('validate')){
+                                  // _queryForm.submit();
+                                  // location.href = 'dashboard.html';
+
+                                    jQuery('#groupQueryPanel').panel('open',true);
+                                    jQuery('#groupDatagrid').datagrid('getPanel').panel('open',true);
+
+                                    jQuery('#groupCreatePanel').panel('close',true);
+                                    jQuery('#groupEditPanel').panel('close',true);
+
+
+                                }
+                                return false;
+                              }" style="width:80px">Save</a>
+
+
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+
+                                    jQuery('#groupQueryPanel').panel('open',true);
+                                    jQuery('#groupDatagrid').datagrid('getPanel').panel('open',true);
+
+                                    jQuery('#groupCreatePanel').panel('close',true);
+                                    jQuery('#groupEditPanel').panel('close',true);
+
+                              }" style="width:80px">Back</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+    <div class="easyui-panel" id="groupEditPanel" title="Group Edit" style="margin-bottom: 5px;" data-options="
+        closed: true
+        ">
+            <form action="form1_proc.php" method="POST" id="groupEditForm" name="groupEditForm">
+                    <table>
+                        <tr>
+                            <td>Groupname:</td>
+                            <td><input name="groupName" class="easyui-textbox"></input></td>
+                            <td>Viewname:</td>
+                            <td><input name="viewName" class="easyui-textbox"></input></td>
+                            <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                                var _editForm = jQuery('#groupEditForm');
+                                if(_editForm.form('validate')){
+                                  // _editForm.submit();
+                                  // location.href = 'dashboard.html';
+
+                                    jQuery('#groupQueryPanel').panel('open',true);
+                                    jQuery('#groupDatagrid').datagrid('getPanel').panel('open',true);
+                                    
+                                    jQuery('#groupCreatePanel').panel('close',true);
+                                    jQuery('#groupEditPanel').panel('close',true);
+
+                                }
+                                return false;
+                              }" style="width:80px">Update</a>
+
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="{
+                                    jQuery('#groupQueryPanel').panel('open',true);
+                                    jQuery('#groupDatagrid').datagrid('getPanel').panel('open',true);
+                                    
+                                    jQuery('#groupCreatePanel').panel('close',true);
+                                    jQuery('#groupEditPanel').panel('close',true);
+                              }" style="width:80px">Back</a>
+
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+</div>

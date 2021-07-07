@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('用户管理','')"></head>
+<body class="childrenBody">
+	<form class="layui-form">
+		<blockquote class="layui-elem-quote quoteBox">
+			<form class="layui-form">
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input searchVal"
+							placeholder="请输入搜索的用户" />
+					</div>
+					<a class="layui-btn search_btn" data-type="reload">搜索</a>
+				</div>
+				<div class="layui-inline">
+					<a class="layui-btn layui-btn-normal add_btn">新增</a>
+				</div>
+				<div class="layui-inline">
+					<a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
+				</div>
+			</form>
+		</blockquote>
+		<table id="userList" lay-filter="userList"></table>
+
+		<!--操作-->
+		<script type="text/html" id="userBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="usable">
+		{{# if(d.state == "0"){ }}已启用
+		{{#  } else if(d.state == "1" ){ }}
+			已禁用
+		{{#  } }}
+			</a>
+		<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+	</script>
+		<!--状态-->
+		<script type="text/html" id="stateFormat">
+		{{#  if(d.state == "0"){ }}
+		<span class="layui-red">禁用</span>
+		{{#  } else if(d.state == "1" ){ }}
+		<span class="layui-blue">正常</span>
+		{{#  } else { }}
+			未知
+		{{#  }}}
+	</script>
+	</form>
+	<div th:include="common/includeAdmin::footer"></div>
+	<script type="text/javascript">
+	layui.use([ 'form', 'layer', 'table','upload' ], function() {
+		var form = layui.form;
+		var $ = layui.jquery;
+		var layer = parent.layer === undefined ? layui.layer : top.layer;
+		var table = layui.table;
+		var upload = layui.upload;
+		var tableIns = table.render({
+			elem : '#userList',
+			// url : '/json/sysConfig.json',
+			url : "/sys/user/list",
+			page : true,
+			loading : true,
+			height : 'full-110',
+			limit : 10,
+			limits : [ 10, 15, 20, 25 ],
+			id : "userListTable",
+			cols : [ [ {
+				type : 'checkbox'
+			}, {
+				field : 'userName',
+				width : 120,
+				title : '用户名',
+				sort : true
+			}, {
+				field : 'nickName',
+				width : 160,
+				title : '昵称'
+			}, {
+				field : 'userPwd',
+				width : 100,
+				title : '用户密码',
+				sort : true
+			}, {
+				field : 'userImg',
+				title : '用户头像',
+				width : 120
+			}, {
+				field : 'userDesc',
+				title : '用户说明',
+				width : 120
+			} // minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+			, {
+				field : 'createDate',
+				title : '创建时间',
+				width : 120,
+				sort : true,
+				templet : function(d) {
+					return d.createDate.substring(0, 10);
+				}
+			}, {
+				field : 'updateDate',
+				title : '更新时间',
+				minWidth : 130,
+				sort : true,
+				templet : function(d) {
+					return d.updateDate.substring(0, 10);
+				}
+			}, {
+				title : '操作',
+				width : 170,
+				templet : '#userBar',
+				fixed : "right",
+				align : "center"
+			} ] ]
+		});
+		// 列表操作
+		table.on('tool(userList)', function(obj) {
+			var layEvent = obj.event, data = obj.data;
+			var state = 0;
+			if (layEvent === 'edit') { // 编辑
+				addData(data);
+			} else if (layEvent === 'usable') { // 启用禁用
+				var _this = $(this), usableText = "是否确定禁用该配置？", btnText = "已禁用",state = 1;
+				if (data.state == "1") {
+					usableText = "是否确定启用该配置？", btnText = "已启用",state = 0;
+				}
+				layer.confirm(usableText, {
+					icon : 3,
+					title : '系统提示',
+					cancel : function(index) {
+						layer.close(index);
+					}
+				}, function(index) {
+					B.post({
+						url:"/sys/user/updateState",
+						loading:true,
+						data:{"id":data.id,"state":state},
+						success:function(data){
+							_this.text(btnText);
+							layer.close(index);
+							if(data.code==0){
+								B.msg("更新成功");
+								tableIns.reload();
+							}
+						}
+					});
+				}, function(index) {
+					layer.close(index);
+				});
+			} else if (layEvent === 'del') { // 删除
+				layer.confirm('确定删除此用户？', {
+					icon : 3,
+					title : '提示信息'
+				}, function(index) {
+					remove(data.id);
+					tableIns.reload();
+					layer.close(index);
+					// })
+				});
+			}
+		});
+		
+		function addData(edit){
+			 var index = layui.layer.open({
+	             title : '添加用户',
+	             type : 2,
+	             content : '/sys/user/add',
+	             area: ['450px', '400px'],
+	             resize:false,  //是否运行拉伸  true表示允许
+	             scrollbar:false,
+	             anim:5,
+	             btn:['确定','取消'],
+	             yes:function(index,layero){
+	                 //点击确定获取子页面参数
+	             	var body = layui.layer.getChildFrame('body',index);
+	             	//alert("form:"+childrenBody.contents().find('.configAdd'));
+	             	var param ={
+	             			"id":edit==null?"":edit.id,
+	             			"userName":body.find(".userName").val(),
+	             			"userPwd":body.find(".userPwd").val(),
+	             			"userCode":body.find(".userCode").val(),
+	             			"nickName":body.find(".nickName").val(),
+	             			"userImg":body.find(".userImg").val(),
+	             			"userDesc":body.find(".userDesc").val()
+	             	}
+	             	B.post({
+	             		url:"/sys/user/save",
+						loading:true,
+						data:param,
+						success:function(data){
+							if(data.code==0){
+								B.msg("保存成功");
+								tableIns.reload();
+							}
+							layui.layer.close(index);
+						}
+	             	});
+	             },
+	             btn2:function(index,layero){
+	             	layui.layer.close(index);
+	             	//parent.layer.alert('点击了取消');
+	             },
+	             success : function(layero, index){
+	             	var body = layui.layer.getChildFrame('body', index);
+	             	 if(edit){
+		                    body.find(".userName").val(edit.userName);  
+		                    body.find(".nickName").val(edit.nickName);
+		                    body.find(".userPwd").val(edit.userPwd);  
+		                    body.find(".userPwd").val(edit.userPwd);  
+		                    body.find(".userImg").val(edit.userImg);
+		                    body.find("#userImg").attr("src","/images/userface1.jpg");
+		                    body.find(".userDesc").val(edit.userDesc);    
+		                    form.render();
+		                }
+	             	 
+	             	setTimeout(function(){
+	                    layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
+	                        tips: 3
+	                    });
+	                },500)
+					layui.layer.iframeAuto(index);//设置页面自适应
+	             }
+	             
+	         });
+		}
+		function remove(id){
+			B.post({
+				url:"/sys/user/remove/"+id,
+				loading:true,
+				success:function(data){
+					if(data.code==0){
+						B.msg("删除成功");
+						tableIns.reload();
+					}
+				}
+			});
+		}
+		$(".add_btn").click(function(){
+			addData();
+		});
+		$(".search_btn").click(function() {
+			if($(".searchVal").val() != ''){
+	            table.reload("userListTable",{
+	                page: {
+	                    curr: 1 //重新从第 1 页开始
+	                },
+	                where: {
+	                    userName: $(".searchVal").val()  //搜索的关键字
+	                }
+	            })
+	        }else{
+	            B.msg("请输入搜索用户");
+	        }
+		});
+		$('.delAll_btn').click(function(){
+			var checkStatus = table.checkStatus('userListTable'),
+	        data = checkStatus.data,
+	        ids = [];
+		    if(data.length > 0) {
+		        for (var i in data) {
+		            ids.push(data[i].id);
+		        }
+		        layer.confirm('确定删除选中的数据？', {icon: 3, title: '提示信息'}, function (index) {
+		            remove(ids);
+		            tableIns.reload();
+		            layer.close(index);
+		            // })
+		        })
+		    }else{
+		        B.msg("请选择需要删除数据");
+		    }
+		});
+	})
+	</script>
+</body>
+</html>
+

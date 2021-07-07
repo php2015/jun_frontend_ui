@@ -1,0 +1,69 @@
+
+
+<div th:fragment="siteInfo" class="fly-panel animated fadeInRight">
+	<div class="layui-tab layui-tab-brief" lay-filter="siteTab">
+		<ul class="layui-tab-title">
+			<li class="layui-this">用户中心</li>
+			<li>网站信息</li>
+			<li>后台管理</li>
+		</ul>
+		<div class="layui-tab-content">
+			<div class="layui-tab-item layui-show" style="height: 320px">
+				<!-- 用户未登录显示 -->
+
+				<div class="defaultpersion">
+					<img class="erweimaimg layui-anim"
+						src="/images/erweima.png">
+					<h2 class="defaultname">Javabb</h2>
+					<p class="defaultinfo">分享Java前沿技术，面试知识</p>
+					<!-- <p class="persionsite">
+						<span><i class="iconfont icon-chengshi"></i>山东●济南</span>
+					</p> -->
+					<hr>
+				</div>
+
+				<!-- 用户登录显示 -->
+
+			</div>
+			<div class="layui-tab-item">
+				<ul class="fly-panel-main fly-list-static webinfo">
+					<li>网站名称：<span th:text="${application.projectName}">Javabb博客系统</span></li>
+					<li>建站日期：<span>2018-09-08</span></li>
+					<li>网站框架：<span>SpringBoot+Mybatis+Thymeleaf</span></li>
+					<li>数&nbsp;&nbsp;据&nbsp;&nbsp;库：<span>MySQL 5.7</span></li>
+					<li>运行环境：<span>阿里云服务器 Linux CentOS7.4</span></li>
+				</ul>
+				<!-- <ul class="persionresume">
+						<li><a onclick="skills()"
+							class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal">Skills</a>
+						</li>
+						<li><a
+							href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=395078618"
+							tabindex="_blank"
+							class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm">QQ</a>
+						</li>
+						<li><a href="https://github.com/s2011203868" target="_blank"
+							class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger">Git</a>
+						</li>
+						<li><a onclick="wechat()"
+							class="layui-btn layui-btn-sm layui-btn-radius">WX</a></li>
+					</ul> -->
+			</div>
+			<div class="layui-tab-item">
+				<p>
+					<a href="admin" class="layui-btn layui-btn-fluid">后台登录</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<script>
+	layui.use('element', function(){
+	  var element = layui.element;
+	  
+	  //一些事件监听
+	  element.on('tab(siteTab)', function(data){
+	  });
+	});
+	
+	</script>
+</div>

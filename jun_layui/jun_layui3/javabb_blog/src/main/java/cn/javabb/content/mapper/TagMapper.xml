@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.javabb.content.mapper.TagMapper">
+
+	<select id="queryTagListByBlogId" resultType="cn.javabb.content.entity.Tag">
+		SELECT
+			t.*
+		FROM
+			bms_tag t
+		LEFT JOIN bms_post_tag t1 ON t.tag_id = t1.tag_id
+		LEFT JOIN bms_blog t2 ON t2.id = t1.post_id
+		WHERE
+			t2.id = #{blogId}
+	</select>
+	
+	<select id="listTagByPostId" resultType="cn.javabb.content.entity.Tag">
+		select t.* from bms_tag t,bms_post_tag pt where pt.post_id = #{postId} and pt.tag_id = t.tag_id
+	</select>
+	
+</mapper>

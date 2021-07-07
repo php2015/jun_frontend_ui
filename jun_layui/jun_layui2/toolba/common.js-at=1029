@@ -1,0 +1,148 @@
+
+layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util','carousel'], function (exports) {
+
+    var $ = layui.jquery
+        , layer = layui.layer
+        , laytpl = layui.laytpl
+        , form = layui.form
+        , element = layui.element
+        , upload = layui.upload
+        , util = layui.util
+        ,carousel = layui.carousel 
+        , device = layui.device()
+
+        , DISABLED = 'layui-btn-disabled';
+
+    //阻止IE7以下访问
+    if (device.ie && device.ie < 10) {
+        layer.alert('如果您非得使用 IE 浏览器访问，那么请使用 IE10+');
+    }
+
+
+    // $(".xs_li").xs999(6);
+    carousel.render({
+        elem: '.tool-rightline'
+        , interval: 1800
+        , anim: 'fade'
+        , height: '100px',
+        width: '100%'
+    });
+    var elemSponsoringDevelopers = $('.TOOL_Sponsoring_Developers');
+    elemSponsoringDevelopers.on('click', function () {
+        layer.open({
+            type: 1
+            , title: 'Sponsoring Developers'
+            , area: '400px'
+            , shade: 0.5
+            , offset:'auto'
+            , shadeClose: true
+            , content:[" <div class=\"layui-card\">",
+            "        <div class=\"layui-card-header\">关于赞助</div>",
+            "        <div class=\"layui-card-body\">",
+            "<ul class=\"layui-timeline xs_li\">",
+            "  <li class=\"layui-timeline-item\">",
+            "    <i class=\"layui-icon layui-timeline-axis layui-icon-snowflake\"></i>",
+            "    <div class=\"layui-timeline-content layui-text\">",
+            "      <div class=\"layui-timeline-title\">创建这个在线工具，不是为了为此获得多少利益，更多的是一种乐趣，个人爱好。</div>",
+            "    </div>",
+            "  </li>",
+            "  <li class=\"layui-timeline-item\">",
+            "    <i class=\"layui-icon layui-timeline-axis layui-icon-snowflake\"></i>",
+            "    <div class=\"layui-timeline-content layui-text\">",
+            "      <div class=\"layui-timeline-title\">希望给大家分享工作所得，也希望资源都是大家需要的。</div>",
+            "    </div>",
+            "  </li>",
+            "  <li class=\"layui-timeline-item\">",
+            "    <i class=\"layui-icon layui-timeline-axis layui-icon-snowflake\"></i>",
+            "    <div class=\"layui-timeline-content layui-text\">",
+            "      <div class=\"layui-timeline-title\">各位朋友觉得还不错，有你需要的，随意意思一下，请站长喝瓶水、吃包辣条也好</div>",
+            "    </div>",
+            "  </li>",
+            "</ul>",
+            "<hr >",
+            "<div class=\"layui-row layui-col-space5\">",
+            "<div class=\"layui-col-md6 layui-col-xs6 \">",
+            "<div class='tool_zz'>",
+            "<div  class='tool_zz_title'>微信</div>",
+            "<div  class='tool_zz_img'><img src='wxpay.jpg'/*tpa=http://www.toolba.cn/static/res/image/wxpay.jpg*/ /></div>",
+            "</div>",
+            "</div>",
+            "<div class=\"layui-col-md6 layui-col-xs6\">",
+            "<div class='tool_zz'>",
+            "<div  class='tool_zz_title'>支付宝</div>",
+            "<div  class='tool_zz_img'><img src='zfbpay.jpg'/*tpa=http://www.toolba.cn/static/res/image/zfbpay.jpg*/ /></div>",
+            "</div>",
+            "</div>",
+            "<div class='section-title m-t-20'>",
+            "<div class='title-divider'></div>",
+            "<p class='font-size-10 text-warning'>您的赞助是项目推进莫大的动力！</p> </div>",
+            "</div>",
+            "        </div>",
+            "      </div>"].join('')
+        });
+    });
+
+    var active = {
+        toDesktop :function(){
+            // try {
+            //     var WshShell = new ActiveXObject('WScript.Shell');
+            //     var oUrlLink = WshShell.CreateShortcut(WshShell.SpecialFolders('Desktop') + '\\' + document.title + '.url');
+            //     oUrlLink.TargetPath = window.location.href;
+            //     oUrlLink.Save();
+            // } catch (e) {
+            //     console.log(e)
+            //         alert('当前IE安全级别不允许操作！');
+            //     }
+              $.get({
+                  url:'/tools/index/todesktop',
+                  data:{url:window.location.href,title:document.title},
+                  success:function(res){
+                        alert(11);
+                  }
+              },'text')
+            }
+            
+        }
+    
+    $(document).on('click','.tool-btn',function(){
+        event = $(this).data('event');
+        active[event]?active[event].call(this):'';
+    })
+
+    var tip_index = 0;
+    $(".friendship_link").mouseenter(function() {
+        tip_index = layer.tips($(this).data('desc'), this, {
+          tips: [1, "#000"],time: 0
+        });
+    }).mouseout(function(){  
+        layer.close(tip_index);
+    });
+})
+!(function(){
+//     let bg = document.querySelector('.datetime');
+//     function refresh() {
+//         let now = new Date();
+//         let h = now.getHours();
+//         let m = now.getMinutes();
+//         let s = now.getSeconds();
+
+//         if (h <= 9) {
+//             h = '0' + h
+//         }
+//         if (m <= 9) {
+//             m = '0' + m
+//         }
+//         if (s <= 9) {
+//             s = '0' + s
+//         }
+
+//         let color = '#' + h + m + s;
+
+//         bg.style.backgroundColor = color;
+//         bg.innerText = color;
+
+//         setTimeout(refresh, 1000);
+//     }
+//     refresh();
+
+})();

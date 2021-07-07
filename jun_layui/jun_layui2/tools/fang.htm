@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset=UTF-8"utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="Web工具,开发工具,网页工具,实用工具,ip查询,json格式转换,时间戳转换,随机字符串生成,身份证格式解析,ICO在线图片转换,年龄计算,区号,高校,邮编,城市,房贷,计算器,商业贷,商贷,公积金,公转商,贷款,贴息,购房,买房,二手房,房地产">
+	<meta name="description" content="房贷计算器，计算等额本息和等额本金两种还款方式的利息和还款额。">
+	<meta name="baidu-site-verification" content="code-LKAurxZeyH" />
+	<link href="layui.css" tppabs="http://tools.iters.cn/css/layui.css" rel="stylesheet">
+	<link href="public.css" tppabs="http://tools.iters.cn/css/public.css" rel="stylesheet">
+	<script src="layui.js" tppabs="http://tools.iters.cn/layui.js"></script>
+	<script src="element.js" tppabs="http://tools.iters.cn/lay/modules/element.js"></script>
+	<script src="carousel.js" tppabs="http://tools.iters.cn/lay/modules/carousel.js"></script>
+	<script src="form.js" tppabs="http://tools.iters.cn/lay/modules/form.js"></script>
+	<script src="public.js" tppabs="http://tools.iters.cn/js/public.js"></script>
+		<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "hm.js-bac828962f2e588436573c9bf3463e5b"/*tpa=https://hm.baidu.com/hm.js?bac828962f2e588436573c9bf3463e5b*/;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+		<title>房贷计算器</title>
+</head>
+<body>
+	<div class="layui-header header header-doc" summer="">
+  		<div class="layui-main">
+    		<a class="font-logo " href="index.htm" tppabs="http://tools.iters.cn/">
+      			Web工具    		</a>
+			<ul class="layui-nav" lay-filter="">
+				<li class="layui-nav-item"><a href="index.htm" tppabs="http://tools.iters.cn/">首页</a></li>
+																<li class="layui-nav-item"><a href="index.htm" tppabs="http://tools.iters.cn/ip/index">ip查询</a></li>
+																				<li class="layui-nav-item"><a href="json.htm" tppabs="http://tools.iters.cn/other/json">json格式转换</a></li>
+																				<li class="layui-nav-item"><a href="unix.htm" tppabs="http://tools.iters.cn/other/unix">时间戳转换</a></li>
+																				<li class="layui-nav-item"><a href="index-1.htm" tppabs="http://tools.iters.cn/pwd/index">随机字符串生成</a></li>
+																				<li class="layui-nav-item"><a href="index-2.htm" tppabs="http://tools.iters.cn/idcard/index">身份证格式解析</a></li>
+																				<li class="layui-nav-item"><a href="index-3.htm" tppabs="http://tools.iters.cn/iconv/index">ICO在线图片转换</a></li>
+																								<li class="layui-nav-item layui-this">
+				    <a href="javascript:;">计算器</a>
+				    <dl class="layui-nav-child">
+															<dd><a href="index-4.htm" tppabs="http://tools.iters.cn/birthday/index">年龄计算器</a></dd>
+															<dd><a href="fang.htm" tppabs="http://tools.iters.cn/caculator/fang">房贷计算器</a></dd>
+															<dd><a href="tax.htm" tppabs="http://tools.iters.cn/caculator/tax">个税计算器</a></dd>
+										</dl>
+				</li>
+																								<li class="layui-nav-item">
+				    <a href="javascript:;">常用数据库</a>
+				    <dl class="layui-nav-child">
+															<dd><a href="index-5.htm" tppabs="http://tools.iters.cn/postcode/index">区号&邮编</a></dd>
+															<dd><a href="index-6.htm" tppabs="http://tools.iters.cn/school/index">高校列表</a></dd>
+															<dd><a href="index-7.htm" tppabs="http://tools.iters.cn/city/index">城市列表</a></dd>
+										</dl>
+				</li>
+											</ul>
+		</div>
+	</div>
+<script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+<link href="fang.css" tppabs="http://tools.iters.cn/css/fang.css" rel="stylesheet">
+<div class="layui-main">
+	<h1 class="con_tip">
+	  	<b>房贷计算器</b>
+	  	<span>永远不要逃避问题，时间不会给弱者任何回报。</span>
+	</h1>
+	<div class="layui-fluid layui-fluid-np">
+	  	<div class="layui-row layui-col-space10">
+	  		<div class="layui-col-md8">
+	  			<div class="layui-my-content">
+					<div class="layui-row">
+						<div class="layui-col-md12" style="padding: 10px;">
+							<form class="layui-form" method="post">
+								<div class="layui-form-item">
+								    <label class="layui-form-label">贷款方式</label>
+								    <div class="layui-input-block">
+								      	<input type="radio" name="method" value="1" lay-filter="method" title="商业贷款" checked>
+								      	<input type="radio" name="method" value="2" lay-filter="method" title="公积金贷款">
+								      	<input type="radio" name="method" value="3" lay-filter="method" title="组合贷款">
+								      	<input type="radio" name="method" value="4" lay-filter="method" title="公转商贷款">
+								    </div>
+								</div>
+								<div class="layui-form-item" id="total_money_item" style="display: none;">
+							    	<label class="layui-form-label">贷款总额</label>
+							    	<div class="layui-input-inline">
+										<input type="text" name="total_money" id="total_money" class="layui-input" placeholder="请输入大于0的数字" value="">
+									</div>
+									<div class="layui-form-mid layui-word-aux">万元</div>
+								</div>
+								<div class="layui-form-item" id="gjj_money_item" style="display: none;">
+							    	<label class="layui-form-label">公积金贷款金额</label>
+							    	<div class="layui-input-inline">
+										<input type="text" name="gjj_money" id="gjj_money" class="layui-input" placeholder="请输入大于0的数字" value="">
+									</div>
+									<div class="layui-form-mid layui-word-aux">万元</div>
+								</div>
+								<div class="layui-form-item" id="gjj_rate_item" style="display: none;">
+								    <label class="layui-form-label">公积金利率</label>
+								    <div class="layui-input-block">
+								      	<select name="gjj_rate" id="gjj_rate">
+								      		<option value="3.250">基准利率(3.250%)</option>
+								      		<option value="3.575">基准利率上浮10%(3.575%)</option>
+								      		<option value="3.737">基准利率上浮15%(3.737%)</option>
+								      		<option value="3.900">基准利率上浮20%(3.900%)</option>
+								      		<option value="4.063">基准利率上浮25%(4.063%)</option>
+								      		<option value="4.225">基准利率上浮30%(4.225%)</option>
+								      	</select>
+								    </div>
+								</div>
+								<div class="layui-form-item" id="gjj_years_item" style="display: none;">
+								    <label class="layui-form-label">公积金年限</label>
+								    <div class="layui-input-block">
+								      	<select name="gjj_years" id="gjj_years">
+								      									      	<option value="30">30年</option>
+								      									      	<option value="29">29年</option>
+								      									      	<option value="28">28年</option>
+								      									      	<option value="27">27年</option>
+								      									      	<option value="26">26年</option>
+								      									      	<option value="25">25年</option>
+								      									      	<option value="24">24年</option>
+								      									      	<option value="23">23年</option>
+								      									      	<option value="22">22年</option>
+								      									      	<option value="21">21年</option>
+								      									      	<option value="20">20年</option>
+								      									      	<option value="19">19年</option>
+								      									      	<option value="18">18年</option>
+								      									      	<option value="17">17年</option>
+								      									      	<option value="16">16年</option>
+								      									      	<option value="15">15年</option>
+								      									      	<option value="14">14年</option>
+								      									      	<option value="13">13年</option>
+								      									      	<option value="12">12年</option>
+								      									      	<option value="11">11年</option>
+								      									      	<option value="10">10年</option>
+								      									      	<option value="9">9年</option>
+								      									      	<option value="8">8年</option>
+								      									      	<option value="7">7年</option>
+								      									      	<option value="6">6年</option>
+								      									      	<option value="5">5年</option>
+								      									      	<option value="4">4年</option>
+								      									      	<option value="3">3年</option>
+								      									      	<option value="2">2年</option>
+								      									      	<option value="1">1年</option>
+								      									      	</select>
+								    </div>
+								</div>
+								<div class="layui-form-item" id="sy_money_item">
+							    	<label class="layui-form-label">商业贷款金额</label>
+							    	<div class="layui-input-inline">
+										<input type="text" name="sy_money" id="sy_money" class="layui-input" placeholder="请输入大于0的数字" value="">
+									</div>
+									<div class="layui-form-mid layui-word-aux">万元</div>
+								</div>
+								<div class="layui-form-item" id="sy_rate_m_item">
+							    	<label class="layui-form-label">商贷利率方式</label>
+							    	<div class="layui-input-block">
+										<input type="radio" name="sy_rate_m" value="" title="按最新LPR" checked disabled>
+									</div>
+								</div>
+								<div class="layui-form-item" id="sy_lpr_item">
+							    	<label class="layui-form-label">LPR</label>
+							    	<div class="layui-input-inline">
+										<input type="text" name="sy_lpr" id="sy_lpr" class="layui-input" placeholder="" value="4.65">
+									</div>
+									<div class="layui-form-mid layui-word-aux">%</div>
+								</div>
+								<div class="layui-form-item" id="sy_base_p_item">
+							    	<label class="layui-form-label">基点</label>
+							    	<div class="layui-input-inline">
+										<input type="text" name="sy_base_p" id="sy_base_p" class="layui-input" placeholder="0" value="">
+									</div>
+									<div class="layui-form-mid layui-word-aux">BP(‱)</div>
+								</div>
+								<div class="layui-form-item column-3" id="sy_rate_item">
+							    	<label class="layui-form-label">商贷利率</label>
+							    	<div class="layui-input-inline">
+										<input type="text" name="sy_lpr" id="sy_lpr2" class="layui-input" value="4.65" disabled>
+									</div>
+									<div class="layui-form-mid layui-word-aux">% + </div>
+									<div class="layui-input-inline">
+										<input type="text" id="sy_base_p2" class="layui-input" value="0" disabled>
+									</div>
+									<div class="layui-form-mid layui-word-aux">‱  = </div>
+									<div class="layui-input-inline">
+										<input type="text" id="sy_rate" class="layui-input" value="4.65">
+									</div>
+									<div class="layui-form-mid layui-word-aux">%</div>
+								</div>
+								<div class="layui-form-item" id="sy_years_item">
+								    <label class="layui-form-label">商贷年限</label>
+								    <div class="layui-input-block">
+								      	<select name="sy_years" id="sy_years">
+								      									      	<option value="30">30年</option>
+								      									      	<option value="29">29年</option>
+								      									      	<option value="28">28年</option>
+								      									      	<option value="27">27年</option>
+								      									      	<option value="26">26年</option>
+								      									      	<option value="25">25年</option>
+								      									      	<option value="24">24年</option>
+								      									      	<option value="23">23年</option>
+								      									      	<option value="22">22年</option>
+								      									      	<option value="21">21年</option>
+								      									      	<option value="20">20年</option>
+								      									      	<option value="19">19年</option>
+								      									      	<option value="18">18年</option>
+								      									      	<option value="17">17年</option>
+								      									      	<option value="16">16年</option>
+								      									      	<option value="15">15年</option>
+								      									      	<option value="14">14年</option>
+								      									      	<option value="13">13年</option>
+								      									      	<option value="12">12年</option>
+								      									      	<option value="11">11年</option>
+								      									      	<option value="10">10年</option>
+								      									      	<option value="9">9年</option>
+								      									      	<option value="8">8年</option>
+								      									      	<option value="7">7年</option>
+								      									      	<option value="6">6年</option>
+								      									      	<option value="5">5年</option>
+								      									      	<option value="4">4年</option>
+								      									      	<option value="3">3年</option>
+								      									      	<option value="2">2年</option>
+								      									      	<option value="1">1年</option>
+								      									      	</select>
+								    </div>
+								</div>
+								<div class="layui-form-item">
+									<br>
+									<div class="layui-input-block">
+										<button type="button" class="layui-btn do-action">开始计算</button>
+									</div>
+									<br>
+									<div class="layui-input-block">
+										本次计算结果仅供购房参考，具体请按实际贷款情况为准。
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+						<div class="layui-col-md4 layui-col-xs12 layui-col-sm12">
+				<div class="layui-card">
+				  	<div class="layui-card-header layui-bg-black" style="text-align: center;">
+				  		<div class="layui-row">
+					  		<div class="layui-col-md4 layui-col-xs4">类型<i class="layui-icon layui-icon-about" id="about-tips" style="margin-left:30px;"></i></div>
+					  		<div class="layui-col-md4 layui-col-xs4">等额本息还款</div>
+					  		<div class="layui-col-md4 layui-col-xs4">等额本金还款</div>
+				  		</div>
+				  	</div>
+				  	<div class="layui-card-body">
+				    	<div class="layui-row">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">月供</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color month1">0</span>元</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color month2">0</span>元</div>
+				    	</div>
+				    	<div class="layui-row">
+				    		<div class="layui-col-md12 layui-col-xs12" style="text-align: right;padding-right: 15px;font-size:10px;color:#a7a7a7;">每月递减<span class="gray-color month_sub">0</span>元</div>
+				    	</div>
+				    	<div class="layui-row method-0">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">贷款总额</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color moneys">0</span>万元</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color moneys">0</span>万元</div>
+				    	</div>
+				    	<div class="layui-row method-0">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">贷款年限</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color years">0</span>年</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color years">0</span>年</div>
+				    	</div>
+				    	<div class="layui-row method-3" style="display: none;">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">公积金金额</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color gjj_moneys">0</span>万元</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color gjj_moneys">0</span>万元</div>
+				    	</div>
+				    	<div class="layui-row method-3" style="display: none;">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">公积金年限</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color gjj_years">0</span>年</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color gjj_years">0</span>年</div>
+				    	</div>
+				    	<div class="layui-row method-3" style="display: none;">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">商贷金额</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color sy_moneys">0</span>万元</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color sy_moneys">0</span>万元</div>
+				    	</div>
+				    	<div class="layui-row method-3" style="display: none;">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">商贷年限</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color sy_years">0</span>年</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color sy_years">0</span>年</div>
+				    	</div>
+				    	<div class="layui-row">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">利息总额</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color rate_money1">0</span>万元</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color rate_money2">0</span>万元</div>
+				    	</div>
+				    	<div class="layui-row">
+				    		<div class="layui-col-md4 layui-col-xs4 my-card-title">还款总额</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color back_money1">0</span>万元</div>
+				    		<div class="layui-col-md4 layui-col-xs4"><span class="origin-color back_money2">0</span>万元</div>
+				    	</div>
+				  	</div>
+				  	<div class="layui-col-md12 layui-col-xs12 attach-notice-1" style="text-align: left;padding-left: 0;padding-top:5px;font-size:10px;color:#a7a7a7;">注：如有需要，Console 处可查看每月实际支出的本息详情！</div>
+				  	<div class="layui-col-md12 layui-col-xs12 attach-notice-4" style="text-align: left;padding-left: 0;padding-top:5px;font-size:10px;color:#a7a7a7;display:none;">注：如有需要，Console 处可查看公转商等额本息还款法贴息详情！</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+</div>
+<div class="layui-footer">
+	Email：<a href="mailto:huangyan200918@163.com">huangyan200918@163.com</a><br>
+	Copyright&copy;2020 By <a href="index.htm" tppabs="http://tools.iters.cn/">tools.iters.cn.</a> All Rights Reserved.<br>
+			友情链接：
+		<a href="javascript:if(confirm('http://tpl.iters.cn/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://tpl.iters.cn/'" tppabs="http://tpl.iters.cn/" target='_blank'>web模板</a>&nbsp;&nbsp;
+		<a href="javascript:if(confirm('https://www.huangyanfu.com/index.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.huangyanfu.com/index.html'" tppabs="https://www.huangyanfu.com/index.html" target='_blank'>梦回蓝天的博客</a>&nbsp;&nbsp;
+		</div>
+</body>
+</html>
+<script src="jquery.min.js" tppabs="http://tools.iters.cn/js/jquery.min.js"></script>
+<script src="fang.js" tppabs="http://tools.iters.cn/js/fang.js"></script>

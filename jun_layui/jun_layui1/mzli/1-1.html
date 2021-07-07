@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8"utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>æœ€æ–°ç”µå½±-çˆ¬è™«å°å­-ä½ æƒ³è¦çš„æˆ‘éƒ½æœ‰ã€‚</title>
+    <meta name="description" content="å½±è§†çˆ¬è™«,å°è¯´çˆ¬è™«,çˆ¬å–ç½‘ä¸Šèµ„æº"/>
+    <meta name="keywords" content="å½±è§†çˆ¬è™«,å°è¯´çˆ¬è™«,æŠ“å–ç½‘ä¸Šèµ„æº,æ— å¹¿å‘Š,å½±è§†ï¼Œå°è¯´"/>
+    
+    <link rel="shortcut icon" href="/static/image/bg.jfif" type="image/x-icon"/>
+    <link rel="stylesheet" href="layui.css" tppabs="http://mzli.club/static/lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="global.css" tppabs="http://mzli.club/static/css/global.css"/>
+    <link rel="stylesheet" href="index.css" tppabs="http://mzli.club/static/css/index.css"/>
+    <script src="jquery.min.js" tppabs="http://mzli.club/static/lib/jquery/jquery.min.js"></script>
+    <script src="simpler-sidebar.min.js" tppabs="http://mzli.club/static/lib/sidebar/simpler-sidebar.min.js"></script>
+    <script src="layui.js" tppabs="http://mzli.club/static/lib/layui/layui.js" charset="utf-8"></script>
+
+</head>
+<body>
+
+<header>
+    <div>
+        <div class="title">
+            <a href="index.htm" tppabs="http://mzli.club/"><img src="laySearch-white.png" tppabs="http://mzli.club/static/image/laySearch-white.png"/></a>
+        </div>
+        <div class="nav">
+            <ul class="layui-nav layui-hide layui-show-sm-block">
+                <li class="layui-nav-item"><a href="news_hot.html" tppabs="http://mzli.club/news_hot.html">æ—¶äº‹</a></li>
+                <li class="layui-nav-item"><a href="javascript:if(confirm('http://nav.mzli.club/pc/index.html  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://nav.mzli.club/pc/index.html'" tppabs="http://nav.mzli.club/pc/index.html">å¯¼èˆª</a></li>
+                 <li class="layui-nav-item"><a href="javascript:;">ç½‘ç›˜èµ„æº</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="1-1.html" tppabs="http://mzli.club/pan_list/1-1.html">ç”µå½±</a></dd>
+                        <dd><a href="2-1.html" tppabs="http://mzli.club/pan_list/2-1.html">ç¾å‰§</a></dd>
+                        <dd><a href="3-1.html" tppabs="http://mzli.club/pan_list/3-1.html">éŸ©å‰§</a></dd>
+                        <dd><a href="4-1.html" tppabs="http://mzli.club/pan_list/4-1.html">æ—¥å‰§</a></dd>
+                        <dd><a href="5-1.html" tppabs="http://mzli.club/pan_list/5-1.html">æ³°å‰§</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="movies_hot.html" tppabs="http://mzli.club/movies_hot.html">çƒ­æ˜ </a></li>
+                <li class="layui-nav-item"><a href="javascript:if(confirm('https://support.qq.com/products/106759  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://support.qq.com/products/106759'" tppabs="https://support.qq.com/products/106759">åæ§½</a></li>
+                <li class="layui-nav-item" lay-unselect><a href="javascript:getHistory();"
+                                                           id="toggle-sidebar-more">è¶³è¿¹ </a></li>
+            </ul>
+            <div class="clear"></div>
+            <div class="mobile_nav_icon layui-hide-sm">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="mobile_nav" class="layui-hide-sm">
+                <li><a href="news_hot.html" tppabs="http://mzli.club/news_hot.html" target="_blank">æ—¶äº‹</a></li>
+                <li><a href="javascript:if(confirm('http://nav.mzli.club/index.html  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://nav.mzli.club/index.html'" tppabs="http://nav.mzli.club/index.html" target="_blank">å¯¼èˆª</a></li>
+                <li class="layui-nav-item"><a href="1-1.html" tppabs="http://mzli.club/pan_list/1-1.html" target="_blank">ç½‘ç›˜èµ„æº</a></li>
+                <li><a href="movies_hot.html" tppabs="http://mzli.club/movies_hot.html" target="_blank">çƒ­æ˜ </a></li>
+                <li class="layui-nav-item"><a href="javascript:if(confirm('https://support.qq.com/products/106759  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://support.qq.com/products/106759'" tppabs="https://support.qq.com/products/106759">åæ§½</a></li>
+                <li><a href="javascript:getHistory();" id="toggle-sidebar-more-mob">è¶³è¿¹</a></li>
+            </ul>
+        </div>
+        <div class="weixin-tip">
+            <p>
+                <img src="live_weixin.png" tppabs="http://mzli.club/static/image/live_weixin.png" alt="å¾®ä¿¡æ‰“å¼€"/>
+            </p>
+        </div>
+    </div>
+</header>
+<main>
+    <div id="net_info" style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <blockquote class="layui-elem-quote layui-hide-sm" style="background-color: #FFFFFF;">
+	<span class="layui-breadcrumb">
+                    <a href="1-1.html" tppabs="http://mzli.club/pan_list/1-1.html">ç”µå½±</a>
+                    <a href="2-1.html" tppabs="http://mzli.club/pan_list/2-1.html">ç¾å‰§</a>
+                    <a href="3-1.html" tppabs="http://mzli.club/pan_list/3-1.html">éŸ©å‰§</a>
+                    <a href="4-1.html" tppabs="http://mzli.club/pan_list/4-1.html">æ—¥å‰§</a>
+                    <a href="5-1.html" tppabs="http://mzli.club/pan_list/5-1.html">æ³°å‰§</a>
+	</span>
+                </blockquote>
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-fire" style="color: orange"></i>&nbsp;æœ€æ–°ç”µå½±
+                    </div>
+                    <div class="layui-card-body cardBody">
+                        <div class="layui-fluid layadmin-cmdlist-fluid">
+                            <div class="layui-row layui-col-space15" style="text-align: center">
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3028.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gk63ogy2vbj207i0ay74p.jpg" tppabs="https://tva3.sinaimg.cn/large/61ac6637gy1gk63ogy2vbj207i0ay74p.jpg"></div>
+                                        <div>
+                                            å›½ç‹çš„æ¼”è®²
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3021.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gk0aumwfv2j207i0b93z9.jpg" tppabs="https://tva4.sinaimg.cn/large/61ac6637gy1gk0aumwfv2j207i0b93z9.jpg"></div>
+                                        <div>
+                                            çˆ±ä¸æ€ªç‰©
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3018.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gjw8dyukrxj207i0b33z6.jpg" tppabs="https://tva1.sinaimg.cn/large/61ac6637gy1gjw8dyukrxj207i0b33z6.jpg"></div>
+                                        <div>
+                                            èŠåŠ å“¥ä¸ƒå›å­å®¡åˆ¤
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3004.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gjbhbo75qkj207i0al754.jpg" tppabs="https://tva4.sinaimg.cn/large/61ac6637gy1gjbhbo75qkj207i0al754.jpg"></div>
+                                        <div>
+                                            çƒ­è¡€è¡—åŒºç”µå½±ç‰ˆ...
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3003.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gjb6hcpjo2j207i0b4aak.jpg" tppabs="https://tva3.sinaimg.cn/large/61ac6637gy1gjb6hcpjo2j207i0b4aak.jpg"></div>
+                                        <div>
+                                            ä¹é˜Ÿç”·å­©
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3002.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gjb22wi2txj207i0algm1.jpg" tppabs="https://tva4.sinaimg.cn/large/61ac6637gy1gjb22wi2txj207i0algm1.jpg"></div>
+                                        <div>
+                                            å¯„ç”Ÿå…½ï¼šå®Œç»“ç¯‡
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/3001.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gjb1yvjqaej207i0ah0t0.jpg" tppabs="https://tva3.sinaimg.cn/large/61ac6637gy1gjb1yvjqaej207i0ah0t0.jpg"></div>
+                                        <div>
+                                            å¯„ç”Ÿå…½
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/2999.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gj8usz25khj207i0b3jrh.jpg" tppabs="https://tva2.sinaimg.cn/large/61ac6637gy1gj8usz25khj207i0b3jrh.jpg"></div>
+                                        <div>
+                                            ç§‘æ—å°¼æ¡ˆ
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/2996.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gj6lv5x4abj207i0b9t8z.jpg" tppabs="https://tva2.sinaimg.cn/large/61ac6637gy1gj6lv5x4abj207i0b9t8z.jpg"></div>
+                                        <div>
+                                            çƒ­å¸¦é›¨
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/2995.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gj6i7cqqzyj207i0b43ys.jpg" tppabs="https://tva2.sinaimg.cn/large/61ac6637gy1gj6i7cqqzyj207i0b43ys.jpg"></div>
+                                        <div>
+                                            çŒæ€æœ¬Â·æ‹‰ç™»
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/2985.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gius5rgw8xj207i0b9gm1.jpg" tppabs="https://tva2.sinaimg.cn/large/61ac6637gy1gius5rgw8xj207i0b9gm1.jpg"></div>
+                                        <div>
+                                            ç¥å¼ƒä¹‹åœ°
+                                        </div>
+                                    </div>
+                                
+                                    <div class="layui-col-md2 layui-col-xs6 layui-col-sm6 playing_movie"
+                                         style="cursor: pointer" data-url="/pan_detail/2976.html">
+                                        <div><img style="width:130px;height: 180px; margin-top: 20px"
+                                                  src="61ac6637gy1gimi9xndxnj207i0b3mxs.jpg" tppabs="https://tva2.sinaimg.cn/large/61ac6637gy1gimi9xndxnj207i0b3mxs.jpg"></div>
+                                        <div>
+                                            æˆ‘æƒ³ç»“æŸè¿™ä¸€åˆ‡
+                                        </div>
+                                    </div>
+                                
+
+                            </div>
+                        </div>
+                        <center>
+                            <div id="page" style="margin-top: 100px"></div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="sidebar-more" id="sidebar-more">
+    <div class="layui-card-header"><i class="layui-icon layui-icon-log" style=" color: #393D49;"></i>  <span style="font-size: 12px">å†å²è®°å½•</span> <i id="syncData" class="layui-icon layui-icon-cellphone" style="cursor:pointer;margin-left: 160px; color: #393D49;"></i></div>
+    <div class="layui-card-body layui-text histories" style="padding: 0">
+        <p style="text-align: center">æ‚¨è¿˜æ²¡æœ‰è¶³è¿¹!</p>
+    </div>
+</div>
+ï»¿<footer>
+    <p class="layui-text copyright" style="font-size: 13px">&copy;2019~2020 <a href="javascript:if(confirm('http://blog.mzli.club/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://blog.mzli.club/'" tppabs="http://blog.mzli.club/">LeeBlog</a> | <a href="javascript:if(confirm('https://jq.qq.com/?_wv=1027&k=5vVffYK  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://jq.qq.com/?_wv=1027&k=5vVffYK'" tppabs="https://jq.qq.com/?_wv=1027&k=5vVffYK">QQç¾¤</a>
+        | <a href="javascript:if(confirm('http://www.beian.miit.gov.cn/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://www.beian.miit.gov.cn/'" tppabs="http://www.beian.miit.gov.cn/" target="_blank">é—½ICPå¤‡17018180å·-2</a>
+        | <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1266894819'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1266894819%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </p>
+    <p style="font-size: 12px">å…è´£å£°æ˜ï¼šå†…å®¹çš†å–è‡ªäºç½‘ç»œï¼Œæœ¬ç«™ä¸åšå­˜å‚¨</p>
+</footer>
+<script src="global.js" tppabs="http://mzli.club/static/js/global.js"></script>
+<script src="index.js" tppabs="http://mzli.club/static/js/index.js"></script>
+<script src="movies_hot.js" tppabs="http://mzli.club/static/js/movies_hot.js"></script>
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'push.js'/*tpa=https://zz.bdstatic.com/linksubmit/push.js*/
+        } else {
+            bp.src = 'push-1.js'/*tpa=http://push.zhanzhang.baidu.com/push.js*/
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s)
+    })();
+    $('.playing_movie').click(function () {
+        window.open($(this).attr('data-url'))
+    });
+
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+
+        type = 1
+        //æ€»é¡µæ•°å¤§äºé¡µç æ€»æ•°
+        laypage.render({
+            elem: 'page'
+            , limit: 12
+            , curr: 1
+            , count: 1065 //æ•°æ®æ€»æ•°
+            , jump: function (obj, first) {
+                //é¦–æ¬¡ä¸æ‰§è¡Œ
+                if(!first){
+                  //do something
+                    location.href = 'http://mzli.club/pan_list/' + type + '-' + obj.curr + '.html';
+                }
+                console.log(obj)
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

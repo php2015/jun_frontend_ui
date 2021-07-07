@@ -1,0 +1,25 @@
+<head th:fragment="header(title,cssPaths)">
+	<title th:text="${title}">BMS</title>
+	<meta charset="UTF-8"/>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<!-- 基础样式 begin -->
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" th:href="@{/css/page.css}" href="/css/page.css" media="all" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	
+	<!-- 基础样式 end -->
+	<!-- 外部样式 begin -->
+	<link rel="stylesheet" type="text/css" th:each="cssPath,status:${#strings.setSplit(cssPaths,',')}" th:href="@{${cssPath}}"/>
+	<!-- 外部样式 end -->
+</head>
+
+<div th:fragment="footer">
+	<script type="text/javascript" src="/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+	<script type="text/javascript" src="/js/plugin/jquery-1.11.3/jquery-1.11.3.js" th:src="@{/js/plugin/jquery-1.11.3/jquery-1.11.3.js}"></script>
+	<script type="text/javascript" src="/js/utils.js" th:src="@{/js/utils.js}"></script>
+</div>

@@ -1,0 +1,13 @@
+.layui-tab{margin:0;}
+.layui-form-label{width:130px;}
+.layui-form-item {margin-bottom: 0;}
+.my-desc{margin:15px;padding-top:10px;}
+.my-desc-title{color:#20ab07;font-size:18px;margin-bottom:5px;}
+.my-desc-content{color:#565555;}
+.my-desc-item{margin-bottom:20px;}
+.text-r{text-align:right;padding-right: 10px;}
+.wx-form .layui-input-inline{width:120px;}
+.wx-form .layui-form-mid{width:90px;}
+.money_item{margin-left:10px;color:blue;}
+.switch-month-show .layui-table tbody tr:hover{background-color: unset;}
+.switch-month-show .layui-table td{padding:5px 15px;}

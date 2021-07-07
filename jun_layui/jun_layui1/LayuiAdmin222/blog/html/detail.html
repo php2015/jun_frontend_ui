@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+    <div class="layui-header">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-md1 layui-col-sm1 layui-col-xs1">
+                    <div class="layui-logo">
+                        <img src="../image/logo.jpg" alt="logo">
+                    </div>
+                </div>
+                <div class="layui-col-md5 layui-col-sm7 layui-col-md-offset6 layui-col-sm-offset4">
+                    <ul class="layui-nav layui-hide-mini">
+                        <li class="layui-nav-item"><a href="">首页</a></li>
+                        <li class="layui-nav-item"><a href="">文章</a></li>
+                        <li class="layui-nav-item"><a href="">时光线</a></li>
+                        <li class="layui-nav-item"><a href="">用户</a></li>
+                    </ul>
+                    <ul class="layui-nav layui-nav-hide layui-show-mini">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">更多</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="">首页</a></dd>
+                                <dd><a href="">文章</a></dd>
+                                <dd><a href="">时光线</a></dd>
+                                <dd><a href="">用户</a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-main">
+        <div class="layui-container">
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-md9">
+                    <div class="layui-article">
+                        <div class="layui-article-title text-center">layui TreeGrid 树形表格 怎么默认展开 或者默认不展开</div>
+                        <div class="layui-article-info text-center">
+                            <div>
+                                <i class="layui-icon layui-icon-logo"></i>
+                                <span>layui</span>
+                            </div>
+                            <div>
+                                <i class="layui-icon layui-icon-read"></i>
+                                <span>0</span>
+                            </div>
+                            <div>
+                                <i class="layui-icon layui-icon-chat"></i>
+                                <span>0</span>
+                            </div>
+                            <div>
+                                <i class="layui-icon layui-icon-about"></i>
+                                <span>2018-4-5</span>
+                            </div>
+                        </div>
+                        <div class="layui-article-content">
+                            天际黎明的光束袭来，撕裂了夜幕，迷蒙的柔光缓缓遍布大地，窗纱微微发亮。
+                            房间内，一道人影正躺在床上，呼吸可闻。当微光投射在他脸庞之上时，双目却是忽然睁开，起身穿拾衣物，走出了房间，动作行云流水没有丝毫停息。
+                            按照往常的习惯，他沿着一条小路开始了慢跑，步伐稳健。在他前行轨迹的不远处，有一片山林，向着四周蔓延，连绵不断。
+                            随着时间的推移，这方天地越发明亮起来，在接近山林处，却有着两道相距不远的身影在前行。
+                            他也发现了她，脑海中浮现少许关于她的信息。
+                            夕如画，师父手下少有的几个女弟子之一，平时活泼好动。而他与她也仅有只言片语的交谈，之后便再无交流。
+                            转瞬间，两道身影各自进入了山林之中，开启了自己的今天。
+                        </div>
+                    </div>
+                    <div class="layui-comment">
+                        <div class="layui-comment-header text-center"><button class="layui-btn layui-btn-primary layui-btn-shadow">评论</button></div>
+                        <div id="editor"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">文章类型</div>
+                                <div class="layui-card-body layui-btn-container">
+                                    <button class="layui-btn layui-btn-primary">layui</button>
+                                    <button class="layui-btn layui-btn-primary">thinkphp</button>
+                                    <button class="layui-btn layui-btn-primary">生活</button>
+                                    <button class="layui-btn layui-btn-primary">php</button>
+                                    <button class="layui-btn layui-btn-primary">前端</button>
+                                    <button class="layui-btn layui-btn-primary">java</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">推荐文章</div>
+                                <div class="layui-card-body">
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                    <div class="layui-elip">
+                                        <a href="">数据表格加载后只有表头,json数据是正常的</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-footer text-center">
+        © 2018 layui.com MIT license
+    </div>
+    <script src="../layui/layui.js"></script>
+    <script src="../js/global.js"></script>
+</body>
+</html>

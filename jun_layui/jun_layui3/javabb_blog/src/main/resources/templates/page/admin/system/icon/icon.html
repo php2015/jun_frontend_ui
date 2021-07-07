@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('日志管理','')"></head>
+<body class="childrenBody">
+
+	<blockquote class="layui-elem-quote">
+		当前共引入<span class="layui-red iconsLength"></span>个外部图标。<span class="layui-word-aux">【点击可复制】此页面并非后台模版需要的，只是为了让大家了解都引入了哪些外部图标，实际应用中可删除。</span>
+	</blockquote>
+	<textarea id="copyText"></textarea>
+	<ul class="icons layui-row"></ul>
+
+	<div th:include="common/includeAdmin::footer"></div>
+	<script type="text/javascript">
+	layui.use(['form','layer','jquery'],function(){
+	    var form = layui.form,
+	        layer = parent.layer === undefined ? layui.layer : top.layer,
+	        element = layui.element;
+	        $ = layui.jquery;
+	      //外部图标链接
+	   var iconUrl = "https://at.alicdn.com/t/font_796609_fjcy2lzuq05.css";
+	    $.get(iconUrl,function(data){
+	        var iconHtml = '';
+	        for(var i=1;i<data.split(".icon-").length;i++){
+	            iconHtml += "<li class='layui-col-xs4 layui-col-sm3 layui-col-md2 layui-col-lg1'>"+
+	                            "<i class='seraph icon-" + data.split(".icon-")[i].split(":before")[0] + "'></i>" +
+	                            "icon-" + data.split('.icon-')[i].split(':before')[0] +
+	                        "</li>";
+	        }
+	        $(".icons").html(iconHtml);
+	        $(".iconsLength").text(data.split(".icon-").length-1);
+	    })
+
+	    $("body").on("click",".icons li",function(){
+	        var copyText = document.getElementById("copyText");
+	        copyText.innerText = $(this).text();
+	        copyText.select();
+	        document.execCommand("copy");
+	        layer.msg("复制成功",{anim: 2});
+	    })
+	})
+
+	
+	</script>
+</body>
+</html>
+

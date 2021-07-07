@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset=UTF-8"utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="Web工具,开发工具,网页工具,实用工具,ip查询,json格式转换,时间戳转换,随机字符串生成,身份证格式解析,ICO在线图片转换,年龄计算,区号,高校,邮编,城市,个税,个人所得税,个税计算器,个人所得税计算器,年终奖个人所得税计算器,个税计算器2020,个税税率表,个税税率表2020,个人所得税税率表,工资计算器,税后工资计算器,个人所得税计算方法">
+	<meta name="description" content="提供最新专业个人所得税计算器,采用最新个人所得税税率表、起征点、速算扣除数、个人所得税计算方法,包括税后工资计算、年终奖个税计算器等">
+	<meta name="baidu-site-verification" content="code-LKAurxZeyH" />
+	<link href="layui.css" tppabs="http://tools.iters.cn/css/layui.css" rel="stylesheet">
+	<link href="public.css" tppabs="http://tools.iters.cn/css/public.css" rel="stylesheet">
+	<script src="layui.js" tppabs="http://tools.iters.cn/layui.js"></script>
+	<script src="element.js" tppabs="http://tools.iters.cn/lay/modules/element.js"></script>
+	<script src="carousel.js" tppabs="http://tools.iters.cn/lay/modules/carousel.js"></script>
+	<script src="form.js" tppabs="http://tools.iters.cn/lay/modules/form.js"></script>
+	<script src="public.js" tppabs="http://tools.iters.cn/js/public.js"></script>
+		<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "hm.js-bac828962f2e588436573c9bf3463e5b"/*tpa=https://hm.baidu.com/hm.js?bac828962f2e588436573c9bf3463e5b*/;
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+		<title>个税计算器</title>
+</head>
+<body>
+	<div class="layui-header header header-doc" summer="">
+  		<div class="layui-main">
+    		<a class="font-logo " href="index.htm" tppabs="http://tools.iters.cn/">
+      			Web工具    		</a>
+			<ul class="layui-nav" lay-filter="">
+				<li class="layui-nav-item"><a href="index.htm" tppabs="http://tools.iters.cn/">首页</a></li>
+																<li class="layui-nav-item"><a href="index.htm" tppabs="http://tools.iters.cn/ip/index">ip查询</a></li>
+																				<li class="layui-nav-item"><a href="json.htm" tppabs="http://tools.iters.cn/other/json">json格式转换</a></li>
+																				<li class="layui-nav-item"><a href="unix.htm" tppabs="http://tools.iters.cn/other/unix">时间戳转换</a></li>
+																				<li class="layui-nav-item"><a href="index-1.htm" tppabs="http://tools.iters.cn/pwd/index">随机字符串生成</a></li>
+																				<li class="layui-nav-item"><a href="index-2.htm" tppabs="http://tools.iters.cn/idcard/index">身份证格式解析</a></li>
+																				<li class="layui-nav-item"><a href="index-3.htm" tppabs="http://tools.iters.cn/iconv/index">ICO在线图片转换</a></li>
+																								<li class="layui-nav-item layui-this">
+				    <a href="javascript:;">计算器</a>
+				    <dl class="layui-nav-child">
+															<dd><a href="index-4.htm" tppabs="http://tools.iters.cn/birthday/index">年龄计算器</a></dd>
+															<dd><a href="fang.htm" tppabs="http://tools.iters.cn/caculator/fang">房贷计算器</a></dd>
+															<dd><a href="tax.htm" tppabs="http://tools.iters.cn/caculator/tax">个税计算器</a></dd>
+										</dl>
+				</li>
+																								<li class="layui-nav-item">
+				    <a href="javascript:;">常用数据库</a>
+				    <dl class="layui-nav-child">
+															<dd><a href="index-5.htm" tppabs="http://tools.iters.cn/postcode/index">区号&邮编</a></dd>
+															<dd><a href="index-6.htm" tppabs="http://tools.iters.cn/school/index">高校列表</a></dd>
+															<dd><a href="index-7.htm" tppabs="http://tools.iters.cn/city/index">城市列表</a></dd>
+										</dl>
+				</li>
+											</ul>
+		</div>
+	</div>
+<script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+<link href="tax.css" tppabs="http://tools.iters.cn/css/tax.css" rel="stylesheet">
+<div class="layui-main">
+	<h1 class="con_tip">
+	  	<b>个税计算器</b>
+	  	<span>永远不要逃避问题，时间不会给弱者任何回报。</span>
+	</h1>
+	<div class="layui-fluid layui-fluid-np">
+	  	<div class="layui-row layui-col-space10">
+	  		<div class="layui-col-md9">
+	  			<div class="layui-my-content">
+					<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+					  	<ul class="layui-tab-title">
+					    	<li class="layui-this">工资薪金</li>
+					    	<li>年终奖金</li>
+					    	<li>五险一金</li>
+					  	</ul>
+  						<div class="layui-tab-content">
+							<div class="layui-tab-item layui-show">
+								<div class="layui-row switch-all-show">
+									<div class="layui-col-md12" style="padding: 10px;">
+										<form class="layui-form" method="post">
+											<div class="layui-form-item">
+												<div class="layui-inline">
+												    <label class="layui-form-label">当前月份</label>
+												    <div class="layui-input-inline">
+												      	<select name="now_month" id="now_month" lay-filter="month">
+												      													      	<option value="1">1</option>
+												      													      	<option value="2">2</option>
+												      													      	<option value="3">3</option>
+												      													      	<option value="4">4</option>
+												      													      	<option value="5">5</option>
+												      													      	<option value="6">6</option>
+												      													      	<option value="7">7</option>
+												      													      	<option value="8">8</option>
+												      													      	<option value="9">9</option>
+												      													      	<option value="10">10</option>
+												      													      	<option value="11">11</option>
+												      													      	<option value="12">12</option>
+												      													      	</select>
+												    </div>
+												    <div class="layui-form-mid layui-word-aux">
+													<a href="javascript:;" style="color: #3a9601;font-weight:bold;" class="switch-month">切换到逐月计算</a>
+													</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">本月税前工资</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_income" id="now_income" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">累计收入</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="total_income" id="total_income" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">五险一金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_wxyj" id="now_wxyj" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">累计五险一金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="total_wxyj" id="total_wxyj" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">专项附加扣除</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_attach" id="now_attach" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">累计专项附加扣除</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="total_attach" id="total_attach" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">减除费用(起征点)</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_sub" id="now_sub" class="layui-input" value="5000" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">累计减除费用</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="total_sub" id="total_sub" class="layui-input" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<br>
+												<div class="layui-input-block" style="margin-left: 60px;">
+													<button type="button" class="layui-btn do-action">计算</button>
+													<button type="button" class="layui-btn layui-btn-warm do-reset">重置</button>
+												</div>
+												<br>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">应纳税所得额</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_money" id="now_money" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">累计应纳税额</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="total_money" id="total_money" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">税率</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="rate" id="rate" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">%</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">累计已缴税额</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="total_tax" id="total_tax" class="layui-input text-r" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">速算扣除数</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="quick_num" id="quick_num" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">当月个税(应补税额)</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_tax" id="now_tax" class="layui-input text-r" value="" style="color: #f00;" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline" style="float: right;padding-right: 20px;">
+											    	<label class="layui-form-label" style="color: #c34722;">税后工资</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="now_wages" id="now_wages" class="layui-input text-r" value="" style="color: #f00;" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="layui-row switch-month-show" style='display: none;'>
+									<div class="layui-col-md12" style="padding: 10px;">
+										<form class="layui-form" method="post">
+											<div class="layui-form-item">
+												<div class="layui-inline">
+												    <label class="layui-form-label" style="width: 60px;">当前月份</label>
+												    <div class="layui-input-inline">
+												      	<select name="now_month" id="m_now_month" lay-filter="m_month">
+												      													      	<option value="1">1</option>
+												      													      	<option value="2">2</option>
+												      													      	<option value="3">3</option>
+												      													      	<option value="4">4</option>
+												      													      	<option value="5">5</option>
+												      													      	<option value="6">6</option>
+												      													      	<option value="7">7</option>
+												      													      	<option value="8">8</option>
+												      													      	<option value="9">9</option>
+												      													      	<option value="10">10</option>
+												      													      	<option value="11">11</option>
+												      													      	<option value="12">12</option>
+												      													      	</select>
+												    </div>
+												    <div class="layui-form-mid layui-word-aux">
+													<a href="javascript:;" style="color: #3a9601;font-weight:bold;" class="switch-all">返回</a>
+													</div>
+												</div>
+											</div>
+											<table class="layui-table" lay-skin="nob">
+											  	<colgroup>
+												    <col width="50">
+												    <col width="50">
+												    <col width="50">
+												    <col width="50">
+												    <col width="50">
+												    <col width="50">
+												    <col width="50">
+											  	</colgroup>
+											  	<thead>
+											      	<tr>
+												      	<th>月份</th>
+												      	<th>税前工资</th>
+												      	<th>五险一金</th>
+												      	<th>专项附加扣除</th>
+												      	<th>个税</th>
+												      	<th>税后工资</th>
+												      	<th>累计已缴税额</th>
+											      	</tr> 
+											  	</thead>
+											  	<tbody>
+												    <tr class='m_batch_set'>
+													    <td>批量设置</td>
+													    <td><input type="text" class="layui-input m_now_income" value=""></td>
+													    <td><input type="text" class="layui-input m_now_wxyj" value=""></td>
+													    <td><input type="text" class="layui-input m_now_attach" value=""></td>
+													    <td></td>
+													    <td></td>
+													    <td></td>
+												    </tr>
+											  	</tbody>
+											</table>
+											<div class="layui-form-item">
+												<br>
+												<div class="layui-input-block" style="margin-left: 60px;">
+													<button type="button" class="layui-btn do-action1-2">计算</button>
+													<button type="button" class="layui-btn layui-btn-warm do-reset1-2">重置</button>
+												</div>
+												<br>
+											</div>
+										</form>
+									</div>
+								</div>
+								<hr class="layui-bg-green">
+								<div class="my-desc">
+								  	<div class="my-desc-item">
+								  		<div class="my-desc-title">工资薪金收入个税</div>
+								  		<div class="my-desc-content">
+								  		工资、薪金所得，是指个人因任职或受雇而取得的工资、薪金、奖金、年终加薪、劳动分红、津贴、补贴以及与任职或受雇有关的其他所得。
+								    	</div>
+								  	</div>
+								  	<div class="my-desc-item">
+								  		<div class="my-desc-title">工资个税预扣预缴计算公式</div>
+								  		<div class="my-desc-content">
+								  		当月个税 = （累计收入 - 累计五险一金 - 累计专项附加扣除 - 累计减除费用）x 预扣税率 - 速算扣除数 - 累计已缴纳税额<br>
+										应纳税所得额= 累计税前工资收入 - 累计五险一金（个人缴纳部分） - 累计专项附加扣除 - 累计减除费用<br>
+										累计应纳税额 = 应纳税所得额 x 税率 － 速算扣除数<br>
+										当月应纳税额 = 累计应纳税额-累计已缴纳税额<br>
+										累计减除费用 = 员工当年在职月数 x 5000
+								    	</div>
+								  	</div>
+								  	<div class="my-desc-item">
+								  		<div class="my-desc-title">2020年最新个人所得税税率表</div>
+								  		<div class="my-desc-content">
+								  			<table  lay-even class="layui-table">
+								  				<thead>
+										            <tr>
+										                <th>级数</th><th>累计预扣预缴应纳税所得额</th><th>预扣税率</th><th>速算扣除数</th>
+										            </tr>
+									            </thead>
+									            <tbody>
+										            <tr>
+										                <td>1</td><td>不超过36000元的部分</td><td>3%</td><td>0</td>
+										            </tr>
+										            <tr>
+										                <td>2</td><td>超过36000元至144000元的部分</td><td>10%</td><td>2520</td>
+										            </tr>
+										            <tr>
+										                <td>3</td><td>超过144000元至300000元的部分</td><td>20%</td><td>16920</td>
+										            </tr>
+										            <tr>
+										                <td>4</td><td>超过300000元至420000元的部分</td><td>25%</td><td>31920</td>
+										            </tr>
+										            <tr>
+										                <td>5</td><td>超过420000元至660000元的部分</td><td>30%</td><td>52920</td>
+										            </tr>
+										            <tr>
+										                <td>6</td><td>超过660000元至960000元的部分</td><td>35%</td><td>85920</td>
+										            </tr>
+										            <tr>
+										                <td>7</td><td>超过960000元的部分</td><td>45%</td><td>181920</td>
+										            </tr>
+									            </tbody>
+									        </table>
+								    	</div>
+								  	</div>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<div class="layui-row">
+									<div class="layui-col-md12" style="padding: 10px;">
+										<form class="layui-form" method="post">
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">年终奖金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_income" id="reward_income" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元<span id="reward-tip" style="margin-left:20px;color:red;"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<br>
+												<div class="layui-input-block">
+													<button type="button" class="layui-btn do-action2">计算</button>
+													<button type="button" class="layui-btn layui-btn-warm do-reset2">重置</button>
+												</div>
+												<br>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">应纳税所得额</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_money" id="reward_money" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">平均每月</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_month" id="reward_month" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">税率</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_rate" id="reward_rate" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">%</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">速算扣除数</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_quick_num" id="reward_quick_num" class="layui-input text-r" value="" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">应纳税额</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_tax" id="reward_tax" class="layui-input text-r" value="" style="color: #f00;" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label" style="color: #c34722;">税后年终奖</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="reward_wages" id="reward_wages" class="layui-input text-r" value="" style="color: #f00;" disabled>
+													</div>
+													<div class="layui-form-mid layui-word-aux">元</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<hr class="layui-bg-green">
+								<div class="my-desc">
+								  	<div class="my-desc-item">
+								  		<div class="my-desc-title">个人所得税计算公式</div>
+								  		<div class="my-desc-content">
+								  		（一）先将雇员当月内取得的全年一次性奖金，除以12个月，按其商数（平均每月收入），参照下面的个税税率表，确定适用税率和速算扣除数。<br>
+										（二）将雇员个人当月内取得的全年一次性奖金，按上述确定的适用税率和速算扣除数计算征税，计算公式如下：<br>
+										应纳税额=雇员当月取得全年一次性奖金×适用税率-速算扣除数
+										</div>
+								  	</div>
+								  	<div class="my-desc-item">
+								  		<div class="my-desc-title">年终奖个税税率表</div>
+								  		<div class="my-desc-content">
+								  			<table  lay-even class="layui-table">
+								  				<thead>
+										            <tr>
+										                <th>级数</th><th>累计预扣预缴应纳税所得额</th><th>预扣税率</th><th>速算扣除数</th>
+										            </tr>
+									            </thead>
+									            <tbody>
+										            <tr>
+										                <td>1</td><td>不超过3000元的部分</td><td>3%</td><td>0</td>
+										            </tr>
+										            <tr>
+										                <td>2</td><td>超过3000元至12000元的部分</td><td>10%</td><td>210</td>
+										            </tr>
+										            <tr>
+										                <td>3</td><td>超过12000元至25000元的部分</td><td>20%</td><td>1410</td>
+										            </tr>
+										            <tr>
+										                <td>4</td><td>超过25000元至35000元的部分</td><td>25%</td><td>2660</td>
+										            </tr>
+										            <tr>
+										                <td>5</td><td>超过35000元至55000元的部分</td><td>30%</td><td>4410</td>
+										            </tr>
+										            <tr>
+										                <td>6</td><td>超过55000元至80000元的部分</td><td>35%</td><td>7160</td>
+										            </tr>
+										            <tr>
+										                <td>7</td><td>超过80000元的部分</td><td>45%</td><td>15160</td>
+										            </tr>
+									            </tbody>
+									        </table>
+								    	</div>
+								  	</div>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<div class="layui-row">
+									<div class="layui-col-md12" style="padding: 10px;">
+										<form class="layui-form wx-form" method="post">
+											<div class="layui-form-item" style="display: none;">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">基本工资</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="base_income" id="base_income" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元<span id="base-tip" style="margin-left:20px;color:red;"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">社保基数</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="sb_base" id="sb_base" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元<span id="sb-tip" style="margin-left:20px;color:red;"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">住房公积金基数</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="gjj_base" id="gjj_base" class="layui-input" value="">
+													</div>
+													<div class="layui-form-mid layui-word-aux">元<span id="gjj-tip" style="margin-left:20px;color:red;"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<br>
+												<div class="layui-input-block">
+													<button type="button" class="layui-btn do-action3">计算</button>
+													<button type="button" class="layui-btn layui-btn-warm do-reset3">重置</button>
+												</div>
+											</div>
+											<div class="layui-input-block" style="color: #ccc;">
+											注：五险一金中个人和单位的缴交比例请根据所在城市的实际情况填写，计算结果仅供参考！
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">个人缴纳部分</label>
+											    	<div class="layui-input-inline">&nbsp;</div>
+											    	<div class="layui-form-mid layui-word-aux">&nbsp;</div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">单位缴纳部分</label>
+											    	<div class="layui-input-inline">&nbsp;</div>
+											    	<div class="layui-form-mid layui-word-aux">&nbsp;</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">养老保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="person_yanglao" id="person_yanglao" class="layui-input" value="8">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item person_yanglao"></span></div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">养老保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="company_yanglao" id="company_yanglao" class="layui-input" value="12">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item company_yanglao"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">医疗保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="person_yiliao" id="person_yiliao" class="layui-input" value="2">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item person_yiliao"></span></div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">医疗保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="company_yiliao" id="company_yiliao" class="layui-input" value="3">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item company_yiliao"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">失业保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="person_shiye" id="person_shiye" class="layui-input" value="0">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item person_shiye"></span></div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">失业保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="company_shiye" id="company_shiye" class="layui-input" value="0.5">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item company_shiye"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline" style="float: right;padding-right: 8px;">
+											    	<label class="layui-form-label">工伤保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="company_gongshang" id="company_gongshang" class="layui-input" value="0.1">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item company_gongshang"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline" style="float: right;padding-right: 8px;">
+											    	<label class="layui-form-label">生育保险金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="company_shengyu" id="company_shengyu" class="layui-input" value="0.7">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item company_shengyu"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label" style="color: #c34722;">个人保险合计</label>
+											    	<div class="layui-input-inline">&nbsp;</div>
+													<div class="layui-form-mid layui-word-aux"><span class="money_item person_total_wx"></span></div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label" style="color: #c34722;">单位保险合计</label>
+											    	<div class="layui-input-inline">&nbsp;</div>
+													<div class="layui-form-mid layui-word-aux"><span class="money_item company_total_wx"></span></div>
+												</div>
+											</div>
+											<br>
+											<br>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label">住房公积金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="person_gjj" id="person_gjj" class="layui-input" value="10">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item person_gjj"></span></div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label">住房公积金</label>
+											    	<div class="layui-input-inline">
+														<input type="text" name="company_gjj" id="company_gjj" class="layui-input" value="10">
+													</div>
+													<div class="layui-form-mid layui-word-aux">%<span class="money_item company_gjj"></span></div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+											    	<label class="layui-form-label" style="color: #c34722;">个人共计支出</label>
+											    	<div class="layui-input-inline">&nbsp;</div>
+													<div class="layui-form-mid layui-word-aux"><span class="money_item person_total"></span></div>
+												</div>
+												<div class="layui-inline">
+											    	<label class="layui-form-label" style="color: #c34722;">单位共计支出</label>
+											    	<div class="layui-input-inline">&nbsp;</div>
+													<div class="layui-form-mid layui-word-aux"><span class="money_item company_total"></span></div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>    
+				</div>
+			</div>
+				    	<div class="layui-col-md3 layui-col-xs12 layui-col-sm12">
+												<div class="layui-card cardBody">
+                    <div class="layui-card-header">
+                        <span class="hot-head">使用热度排行</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">1</span>
+                                <span class="hot_title"><a href="tax.htm" tppabs="http://tools.iters.cn/caculator/tax">个税计算器</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">2</span>
+                                <span class="hot_title"><a href="fang.htm" tppabs="http://tools.iters.cn/caculator/fang">房贷计算器</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">3</span>
+                                <span class="hot_title"><a href="index-4.htm" tppabs="http://tools.iters.cn/birthday/index">年龄计算器</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">4</span>
+                                <span class="hot_title"><a href="index-1.htm" tppabs="http://tools.iters.cn/pwd/index">随机字符串生成</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">5</span>
+                                <span class="hot_title"><a href="index-2.htm" tppabs="http://tools.iters.cn/idcard/index">身份证格式解析</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">6</span>
+                                <span class="hot_title"><a href="unix.htm" tppabs="http://tools.iters.cn/other/unix">时间戳转换</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                        <li>
+                                <span class="layui-badge-rim hot_num">7</span>
+                                <span class="hot_title"><a href="json.htm" tppabs="http://tools.iters.cn/other/json">json格式转换</a></span>
+                                <span class="hot_look"></span>
+                            </li>
+                                                    </ul>
+                    </div>
+                </div>
+                                								<div class="layui-carousel" id="ad-carousel">
+				  	<div carousel-item="">
+												<div>
+					    	<a href="javascript:if(confirm('https://www.huangyanfu.com/index.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.huangyanfu.com/index.html'" tppabs="https://www.huangyanfu.com/index.html" target="_blank"><img title="梦回蓝天的博客" src="00eb3b7c587ea1e5dd160b313e648b66_thumb.jpg" tppabs="https://static.huangyanfu.com/blog_cover/201808/00eb3b7c587ea1e5dd160b313e648b66_thumb.jpg"></a>
+					    </div>
+											</div>
+				</div>
+					    	</div>
+	    	
+<script>
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#ad-carousel'
+    ,width: '100%' //设置容器宽度
+    ,height: '150px'
+    ,arrow: 'none' //始终显示箭头
+    ,anim: 'fade' //切换动画方式
+    ,indicator: 'none'
+  });
+});
+</script>
+	  	</div>
+	</div>
+</div>
+<div class="layui-footer">
+	Email：<a href="mailto:huangyan200918@163.com">huangyan200918@163.com</a><br>
+	Copyright&copy;2020 By <a href="index.htm" tppabs="http://tools.iters.cn/">tools.iters.cn.</a> All Rights Reserved.<br>
+			友情链接：
+		<a href="javascript:if(confirm('http://tpl.iters.cn/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://tpl.iters.cn/'" tppabs="http://tpl.iters.cn/" target='_blank'>web模板</a>&nbsp;&nbsp;
+		<a href="javascript:if(confirm('https://www.huangyanfu.com/index.html  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='https://www.huangyanfu.com/index.html'" tppabs="https://www.huangyanfu.com/index.html" target='_blank'>梦回蓝天的博客</a>&nbsp;&nbsp;
+		</div>
+</body>
+</html>
+<script src="jquery.min.js" tppabs="http://tools.iters.cn/js/jquery.min.js"></script>
+<script src="tax.js" tppabs="http://tools.iters.cn/js/tax.js"></script>

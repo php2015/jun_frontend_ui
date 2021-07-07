@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="http://assets.hdtyi.com/easyui/1.5.1/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://assets.hdtyi.com/easyui/1.5.1/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script type="text/javascript" src="http://assets.hdtyi.com/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://assets.hdtyi.com/easyui/1.5.1/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="http://assets.hdtyi.com/easyui/1.5.1/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="http://assets.hdtyi.com/jquery.serializeJSON/2.7.2/jquery.serializejson.min.js"></script>
+</head>
+<body class="easyui-layout" >
+        <div data-options="region:'north'" style="height:50px"></div>
+        <div data-options="region:'west', border: false" style="width:200px;">
+          <div class="easyui-accordion" data-options="border: false,fit: true">
+            <div title="System">
+              <ul class="easyui-tree" data-options="
+                onClick: function(node){
+                  var _moduleTabs = jQuery('#moduleTabs').tabs('tabs');
+                  var exists = false;
+                  jQuery.each(_moduleTabs,function(i,e){
+                    var po = jQuery(e).panel('options');
+                    console.log(po,i);
+                    if(po.id == node.id){
+                      jQuery('#moduleTabs').tabs('select',i);
+                      exists = true;
+                      return false;
+                    }
+                  });
+                  if(!exists){
+                    jQuery('#moduleTabs').tabs('add',{
+                      id: node.id,
+                      title : node.text,
+                      closable : true,
+                      href : node.id + '.html'
+                    });
+                  }
+                }
+              ">
+                <li id="user">User</li>
+                <li id="group">Group</li>
+                <li id="role">Role</li>
+                <li id="permission">Permission</li>
+              </ul>
+            </div>
+            <div title="CMS">
+              <ul class="easyui-tree" data-options="
+                onClick: function(node){
+                  var _moduleTabs = jQuery('#moduleTabs').tabs('tabs');
+                  var exists = false;
+                  jQuery.each(_moduleTabs,function(i,e){
+                    var po = jQuery(e).panel('options');
+                    console.log(po,i);
+                    if(po.id == node.id){
+                      jQuery('#moduleTabs').tabs('select',i);
+                      exists = true;
+                      return false;
+                    }
+                  });
+                  if(!exists){
+                    jQuery('#moduleTabs').tabs('add',{
+                      id: node.id,
+                      title : node.text,
+                      closable : true,
+                      href : node.id + '.html'
+                    });
+                  }
+                }
+              ">
+                <li id="channel">Channel</li>
+                <li id="article">Article</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div data-options="region:'center', border: false">
+
+          <div id="moduleTabs" class="easyui-tabs" data-options="fit: true">
+              <div id="dashboard" title="Dashboard" style="padding:5px;">
+                dashboard
+              </div>
+          </div>
+
+        </div>
+ 
+</body>
+</html>

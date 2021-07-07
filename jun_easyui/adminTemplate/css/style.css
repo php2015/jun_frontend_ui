@@ -1,0 +1,7 @@
+/* rewrite easyui.css */
+.tree-node {
+  height: 20px;
+  padding: 2px 0 2px 0;
+  white-space: nowrap;
+  cursor: pointer;
+}

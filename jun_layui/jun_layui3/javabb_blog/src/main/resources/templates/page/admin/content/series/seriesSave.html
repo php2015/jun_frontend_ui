@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="common/includeAdmin::header('类别保存','')"></head>
+<body class="childrenBody">
+<form class="layui-form catalogSave">
+	<div class="layui-form-item">
+		<label class="layui-form-label">专题名称</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input seriesName" lay-verify="required" placeholder=专题名称 />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">专题图片</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input seriesImg" lay-verify="required" placeholder="专题图片" />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">专题描述</label>
+		<div class="layui-input-block">
+			 <textarea name="seriesDesc" placeholder="请输入描述" class="layui-textarea seriesDesc"></textarea>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">排序</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input sort" lay-verify="required" placeholder="排序" />
+		</div>
+	</div>
+	<!-- <div class="layui-form-item">
+		<button class="layui-btn layui-block" lay-filter="addData" lay-submit>提交</button>
+	</div> -->
+</form>
+<div th:include="common/includeAdmin::footer"></div>
+</body>
+</html>

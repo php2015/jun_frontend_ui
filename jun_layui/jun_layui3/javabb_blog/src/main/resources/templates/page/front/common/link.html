@@ -1,0 +1,12 @@
+<div th:fragment="links" class="fly-panel fly-link animated fadeInUp">
+	<h3 class="fly-panel-title">
+		<i class="layui-icon" style="font-size: 16px;"></i>&nbsp;友情链接  <a href="javascript:;" style="color: #34BBF1"
+			target="_blank">申请加入</a>
+	</h3>
+	<dl class="fly-panel-main">
+
+		<dd th:each="link:${application.links}">
+			<a th:href="${link.linkUrl}" target="_blank" th:text="${link.linkName}">友情链接</a>
+		</dd>
+	</dl>
+</div>

@@ -1,0 +1,6 @@
+org.springframework.context.ApplicationListener=\
+com.yitong.fasdmain.listener.StartApplicationStartingEvent,\
+com.yitong.fasdmain.listener.ApplicationPreparedEventListener,\
+com.yitong.fasdmain.listener.ApplicationReadyEventListener,\
+com.yitong.fasdmain.listener.ApplicationStartedEventListener,\
+com.yitong.fasdmain.listener.ApplicationSpringApplicationEvent

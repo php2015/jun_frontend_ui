@@ -1,0 +1,43 @@
+
+<div th:fragment="banner" class="fly-panel animated fadeInLeft"
+	style="height: 260px">
+	<!-- banner start -->
+	<div class="layui-carousel" id="banner" lay-anim=""
+		lay-indicator="inside" lay-arrow="hover"
+		style="width: 100%; height: 260px;">
+		<div carousel-item="">
+			<div class="layui-this">
+				<img src="/images/blog/banner.jpg" alt="宁静的大海" title="宁静的大海"
+					onerror="this.src=&#39;/Blog1.0/blog/res/images/banner/default.jpg;this.onerror=null&#39;"
+					style="width: 100%; height: 100%">
+			</div>
+			<div class="">
+				<img src="/images/blog/banner2.jpg" alt="心旷神怡的大山" title="心旷神怡的大山"
+					onerror="this.src=&#39;/Blog1.0/blog/res/images/banner/default.jpg;this.onerror=null&#39;"
+					style="width: 100%; height: 100%">
+			</div>
+			<div class="">
+				<img src="/images/blog/banner.jpg" alt="夕阳下的另一番风景" title="夕阳下的另一番风景"
+					onerror="this.src=&#39;/Blog1.0/blog/res/images/banner/default.jpg;this.onerror=null&#39;"
+					style="width: 100%; height: 100%">
+			</div>
+			<div class="">
+				<img src="/images/blog/banner2.jpg" alt="广告位1" title="广告位1"
+					onerror="this.src=&#39;/Blog1.0/blog/res/images/banner/default.jpg;this.onerror=null&#39;"
+					style="width: 100%; height: 100%">
+			</div>
+		</div>
+		<div class="layui-carousel-ind">
+			<ul>
+				<li class="layui-this"></li>
+				<li class=""></li>
+				<li class=""></li>
+				<li class=""></li>
+				<li class=""></li>
+			</ul>
+		</div>
+		<button class="layui-icon layui-carousel-arrow" lay-type="sub"></button>
+		<button class="layui-icon layui-carousel-arrow" lay-type="add"></button>
+	</div>
+
+</div>

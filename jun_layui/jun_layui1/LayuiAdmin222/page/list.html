@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/list.css">
+</head>
+<body>
+    <div class="layui-main">
+        <div class="layui-elem-quote">
+            <form action="" class="layui-form layui-form-pane">
+                <div class="layui-inline">
+                    <label class="layui-form-label">搜索关键字</label>
+                    <div class="layui-input-inline">
+                        <input type="text" placeholder="请输入关键字" class="layui-input">       
+                    </div>
+                </div>
+                <button class="layui-btn">搜索</button>
+                <button type="button" class="layui-btn layui-btn-normal">添加</button>
+            </form>
+        </div>
+        <div class="content">
+            <table id="demo"></table>
+        </div>
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-normal layui-btn-mini" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+        </script>
+    </div>
+    <script src="../layui/layui.js"></script>
+    <script src="../js/list.js"></script>
+</body>
+</html>

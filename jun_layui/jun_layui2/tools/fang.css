@@ -1,0 +1,10 @@
+.layui-form-label{width:120px;font-weight:bold;}
+.layui-input-block {margin-left: 150px;}
+.column-3 .layui-input-inline {width: 150px;}
+.layui-card-body .layui-row{margin-bottom:10px;}
+.origin-color{color:#ff8040;margin-right:5px;}
+.gray-color{color:#808080;margin-right:5px;margin-left:5px;}
+.layui-card-body .my-card-title{font-weight:bold;text-align:center;}
+.layui-card {border:2px solid #393D49;}
+.layui-form-item {margin-bottom: 20px;}
+.layui-card .layui-card-body .layui-row .layui-col-md4:not(:first-child){text-align:right;padding-right:15px;}

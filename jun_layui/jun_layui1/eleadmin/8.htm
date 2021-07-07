@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>EleAdminåå°ç®¡ç†æ¨¡æ¿ç³»ç»Ÿ - EasyWeb</title>
+<meta charset=UTF-8"utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="Keywords" content="easyweb,layui,layadmin,admin,åå°æ¨¡æ¿,åå°ç®¡ç†æ¨¡ç‰ˆ,åå°æ¡†æ¶"/>
+<meta name="description" content="EasyWebæ˜¯ä¸€å¥—åŸºäºLayuiçš„é«˜è´¨é‡çš„ç®¡ç†æ¨¡ç‰ˆï¼Œæ‹¥æœ‰ä¼—å¤šåŸåˆ›ç»„ä»¶åŠä¸°å¯Œçš„æ¨¡æ¿ï¼Œåˆ†ä¸ºâ€œiframeç‰ˆâ€å’Œâ€œspaå•é¡µé¢ç‰ˆâ€ï¼Œæ˜¯è¿‘å¹´æ¥å›½å†…æ¯”è¾ƒæµè¡Œçš„ç½‘é¡µåå°åº”ç”¨ç¨‹åºé€Ÿæˆå¼€å‘æ–¹æ¡ˆã€‚"/>
+<link href="/assets/images/favicon.ico" rel="icon">
+<link rel="stylesheet" href="layui.css" tppabs="https://eleadmin.com/assets/layui/css/layui.css"/>
+<link rel="stylesheet" href="main.css-v=202.css" tppabs="https://eleadmin.com/assets/css/main.css?v=202"/>
+<!--[if lt IE 9]>
+<script src="html5shiv.min.js" tppabs="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="respond.min.js" tppabs="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]--></head>
+<body class="page-no-scroll">
+<!-- header -->
+<div class="ew-header">
+    <a class="layui-logo" href="index.htm" tppabs="https://eleadmin.com/">EASY WEB</a>
+    <div class="ew-nav-group">
+        <div class="nav-toggle"><i class="layui-icon layui-icon-more-vertical"></i></div>
+        <ul class="layui-nav" lay-filter="ew-header-nav">
+            <li class="layui-nav-item">
+                <a lay-href="index.htm" tppabs="https://eleadmin.com/index">é¦–é¡µ</a>
+            </li>
+            <li class="layui-nav-item">
+                <a lay-href="index.htm#pricing" tppabs="https://eleadmin.com/index#pricing">æˆæƒ</a>
+            </li>
+            <li class="layui-nav-item">
+                <a lay-href="index.htm#guide" tppabs="https://eleadmin.com/index#guide">æŒ‡å—</a>
+            </li>
+            <li class="layui-nav-item">
+                <a lay-href="index.htm#product" tppabs="https://eleadmin.com/index#product">äº§å“</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="index-1.htm" tppabs="https://eleadmin.com/doc/" target="_blank">æ–‡æ¡£</a>
+            </li>
+            <li class="layui-nav-item ">
+                <a href="javascript:;">æ¼”ç¤º<i class="layui-hide-xs">&emsp;</i></a>
+                <dl class="layui-nav-child">
+                    <dd lay-unselect><a href="javascript:if(confirm('https://demo.eleadmin.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://demo.eleadmin.com/'" tppabs="https://demo.eleadmin.com/" target="_blank">EleAdmin</a></dd>
+                    <dd lay-unselect><a href="javascript:if(confirm('https://demo.easyweb.vip/iframe/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://demo.easyweb.vip/iframe/'" tppabs="https://demo.easyweb.vip/iframe/" target="_blank">iframeç‰ˆ</a></dd>
+                    <dd lay-unselect><a href="javascript:if(confirm('https://demo.easyweb.vip/spa/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://demo.easyweb.vip/spa/'" tppabs="https://demo.easyweb.vip/spa/" target="_blank">spaå•é¡µé¢ç‰ˆ</a></dd>
+                    <dd lay-unselect><a href="javascript:if(confirm('https://demo.easyweb.vip/pro/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://demo.easyweb.vip/pro/'" tppabs="https://demo.easyweb.vip/pro/" target="_blank">å•æ ‡ç­¾ç‰ˆ</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item nav-btn-login"><a href="login.htm" tppabs="https://eleadmin.com/login">ç™»å½•</a></li>
+            <li class="layui-nav-item nav-btn-login"><a href="reg.htm" tppabs="https://eleadmin.com/account/reg">æ³¨å†Œ</a></li>
+        </ul>
+    </div>
+</div>
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- goods-card -->
+<div class="layui-container body-card">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <span class="layui-breadcrumb">
+                        <a href="index.htm" tppabs="https://eleadmin.com/">é¦–é¡µ</a>
+                        <a href="index.htm#product" tppabs="https://eleadmin.com/index#product">å…¨éƒ¨äº§å“</a>
+                        <a><cite>äº§å“è¯¦æƒ…</cite></a>
+                    </span>
+                </div>
+                <div class="layui-card-body goods-desc-card">
+<div style="text-align: center;margin: 35px 0 15px 0;">
+    <span style="padding: 10px 15px;border-top: 2px solid #3EC483;border-bottom: 2px solid #3EC483;display: inline-block;font-size: 16px;color: #555;">
+        é¡¹ç›®ç»“æ„
+    </span>
+</div>
+<div style="padding: 25px 0;">
+    <div style="padding: 20px 35px;color: #555;line-height: 26px;background-color: #F4F7F7;border-radius: 5px;">
+        <pre>
+|-public                               # é™æ€èµ„æº
+|   |-tinymce                          # tinymceç¼–è¾‘å™¨é™æ€èµ„æº
+|   |-favicon.ico                      # faviconå›¾æ ‡
+|   |-index.html                       # htmlæ¨¡æ¿
+|-src
+|   |-assets                           # å›¾ç‰‡ç­‰é™æ€èµ„æº
+|   |-components                       # vueæ‰©å±•ç»„ä»¶
+|   |-config                           # é¡¹ç›®é…ç½®æ–‡ä»¶
+|   |   |-axios.js                     # axiosé…ç½®
+|   |   |-plugins.js                   # é¡¹ç›®æ’ä»¶é…ç½®
+|   |   |-setting.js                   # é¡¹ç›®å…¨å±€é…ç½®
+|   |-router                           # è·¯ç”±é…ç½®
+|   |-store                            # vuexçŠ¶æ€ç®¡ç†
+|   |   |-modules
+|   |   |   |-theme.js                 # ä¸»é¢˜çŠ¶æ€ç®¡ç†
+|   |   |   |-user.js                  # ç™»å½•çŠ¶æ€ç®¡ç†
+|   |   |-getters.js
+|   |   |-index.js
+|   |-styles                           # æ ·å¼
+|   |   |-eleadmin                     # EleAdminæ¡†æ¶æ ·å¼
+|   |   |-theme                        # ä¸»é¢˜
+|   |-utils            
+|   |   |-cityData.js                  # çœå¸‚åŒºæ•°æ®æ¨¡å—
+|   |   |-permission.js                # æƒé™æ§åˆ¶ç»„ä»¶
+|   |   |-printer.js                   # æ‰“å°ç»„ä»¶
+|   |   |-util.js                      # å·¥å…·æ–¹æ³•
+|   |   |-validate.js                  # æ ¼å¼æ ¡éªŒæ–¹æ³•
+|   |-views                            # é¡µé¢
+|   |   |-common                       # å…¬å…±é¡µé¢
+|   |   |   |-exception                # å¼‚å¸¸é¡µé¢
+|   |   |   |-fragment                 # æ¡†æ¶éƒ¨åˆ†æ¶‰åŠç”¨æˆ·ä¿®æ”¹çš„é¡µé¢
+|   |   |   |   |-HeaderRight.vue      # é¡¶æ å³ä¾§æŒ‰é’®
+|   |   |   |   |-Notice.vue           # é¡¶æ æ¶ˆæ¯é€šçŸ¥
+|   |   |   |   |-Password.vue         # ä¿®æ”¹å¯†ç å¼¹çª—
+|   |   |   |   |-Setting.vue          # ä¸»é¢˜è®¾ç½®å¼¹çª—
+|   |   |   |-layout                   # æ¡†æ¶å¸ƒå±€(é€šç”¨çš„ï¼Œä¸éœ€è¦ç”¨æˆ·ä¿®æ”¹çš„)
+|   |   |   |   |-Breadcrumb.vue       # é¢åŒ…å±‘å¯¼èˆª
+|   |   |   |   |-Header.vue           # é¡¶æ 
+|   |   |   |   |-HeaderNav.vue        # é¡¶æ å¯¼èˆªèœå•
+|   |   |   |   |-Layout.vue           # æ¡†æ¶å¸ƒå±€
+|   |   |   |   |-Sidebar.vue          # ä¾§è¾¹æ 
+|   |   |   |   |-SidebarItem.vue      # å¯¼èˆªèœå•item
+|   |   |   |   |-Tabs.vue             # æ ‡ç­¾é¡µ
+|   |   |-dashboard                    # æ§åˆ¶å°
+|   |   |-system                       # ç³»ç»Ÿç®¡ç†
+|   |   |-xxxxxx                       # å…¶ä»–ç¤ºä¾‹é¡µé¢
+|   |-App.vue                          # å…¥å£é¡µé¢
+|   |-main.js                          # å…¥å£js
+|-babel.config.js
+|-package.json
+|-vue.config.js
+        </pre>
+    </div>
+
+<div style="font-size: 15px;line-height: 30px;padding: 5px;">
+    <p>æ›´å¤šåŠŸèƒ½ä»‹ç»è¯·åˆ°å¼€å‘æ–‡æ¡£ä¸­æŸ¥çœ‹ã€‚</p>
+</div>
+
+    <div style="padding: 15px 20px;background-color: #F4F7F7;border-left: 4px solid #3EC483;margin-top: 20px;font-size: 14px;color: #333;">
+        åœ¨çº¿æ¼”ç¤ºåœ°å€ï¼š<a href="javascript:if(confirm('https://demo.eleadmin.com/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://demo.eleadmin.com/'" tppabs="https://demo.eleadmin.com/" style="color:#3EC483;" target="_blank">https://demo.eleadmin.com/</a> ï¼ˆè½¯è‘—ç™»è®°å·ï¼š <a href="javascript:if(confirm('https://cdn.eleadmin.com/20200610/eleadmin-copyright.jpg  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://cdn.eleadmin.com/20200610/eleadmin-copyright.jpg'" tppabs="https://cdn.eleadmin.com/20200610/eleadmin-copyright.jpg" style="color:#3EC483;" target="_blank">2020SR1206931</a>ï¼‰
+    </div>
+
+
+
+    <div style="padding: 15px 20px;background-color: #F4F7F7;border-left: 4px solid #3EC483;margin-top: 20px;font-size: 14px;color: #333;">
+        æˆæƒåä¸‹è½½çš„ä»£ç ä¸åœ¨çº¿æ¼”ç¤ºåœ°å€çš„åŠŸèƒ½ä¸€è‡´ï¼Œæ­¤äº§å“åªæ˜¯å‰ç«¯æ¡†æ¶ï¼Œä¸åŒ…å«åç«¯
+    </div>
+
+<div style="padding: 15px 20px;background-color: #F4F7F7;border-left: 4px solid #f66;margin-top: 20px;font-size: 14px;color: #333;position: relative;">
+                        è¯·ç¡®è®¤æ— è¯¯åå†ä¸‹å•ï¼Œæ–‡æ¡£åªèƒ½åœ¨çº¿æŸ¥çœ‹ï¼Œæ”¯æŒå¼€å‘ç¥¨
+<span style="width:18px;height:18px;background-color:#f66;border-radius:50%;color:#fff;position: absolute;left:-11px;top:50%;margin-top:-9px;text-align:center;font-size:14px;line-height:18px;">!</span>
+                    </div>
+					
+<div style="text-align: center;margin: 35px 0 35px 0;">
+    <span style="padding: 10px 15px;border-top: 2px solid #3EC483;border-bottom: 2px solid #3EC483;display: inline-block;font-size: 16px;color: #555;">
+        è€ç”¨æˆ·äº«ä¼˜æƒ 
+    </span>
+</div>
+
+<div style="font-size: 15px;line-height: 30px;padding: 5px;">
+    <p>&emsp;åœ¨EleAdminä¸Šçº¿ä¹‹å‰æˆæƒè¿‡EasyWebçš„è€ç”¨æˆ·å¯äº«å—ä¼˜æƒ ï¼ŒEasyWebæ°¸ä¹…æˆæƒçš„ç”¨æˆ·å¯ä¼˜æƒ 150å…ƒï¼Œä¸€å¹´æˆæƒä¸”æœªè¿‡æœŸçš„ç”¨æˆ·å¯ä¼˜æƒ 100å…ƒï¼Œä¸€ä¸ªæœˆæˆæƒä¸”æœªè¿‡æœŸçš„ç”¨æˆ·å¯ä¼˜æƒ 50å…ƒã€‚</p>
+</div>
+
+</div>
+<div style="text-align: center;margin: 15px 0 35px 0;">
+    <span style="padding: 10px 15px;border-top: 2px solid #3EC483;border-bottom: 2px solid #3EC483;display: inline-block;font-size: 16px;color: #555;">
+        é¡¹ç›®æˆªå›¾
+    </span>
+</div>
+<img src="eleadmin20201020171233.png" tppabs="https://cdn.eleadmin.com/20200610/eleadmin20201020171233.png"
+     style="max-width: 100%;margin-bottom: 15px;">
+<img src="eleadmin20201020172728.png" tppabs="https://cdn.eleadmin.com/20200610/eleadmin20201020172728.png"
+     style="max-width: 100%;margin-bottom: 15px;">
+<img src="eleadmin20201020172822.png" tppabs="https://cdn.eleadmin.com/20200610/eleadmin20201020172822.png"
+     style="max-width: 100%;margin-bottom: 15px;"></div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">é€‰æ‹©è§„æ ¼</div>
+                <div class="layui-card-body goods-card">
+                    <input type="hidden" id="goodsId" value="8"/>
+                    <div class="goods-cover" style="background-image: url('https://cdn.eleadmin.com/20200610/eleadmin20201020171233.png');"></div>
+                    <h1 class="goods-title">EleAdminåå°ç®¡ç†æ¨¡æ¿ç³»ç»Ÿ</h1>
+                    <p class="goods-desc">ä½¿ç”¨Vue2ã€ElementUIæ­å»ºï¼Œç•Œé¢ç¾è§‚ã€åŠŸèƒ½å®Œå–„</p>
+                    <div class="goods-spec-group">
+                        <div class="goods-spec-item-title">å•†å“è§„æ ¼</div>
+                        <div class="goods-spec-item-list" id="goods-buy-spec">
+                            <div class="goods-spec-item-text" data-id="12">æºç </div>
+                        </div>
+                        <div class="goods-spec-item-title">æˆæƒæ—¶é•¿</div>
+                        <div class="goods-spec-item-list" id="goods-buy-valid">
+                            <div class="goods-spec-item-text" data-id="17">æ°¸ä¹…</div>
+                        </div>
+                    </div>
+                    <div class="goods-price-group" id="goods-buy-price"></div>
+                    <div class="goods-btn-group">
+                        <a href="login.htm" tppabs="https://eleadmin.com/login" class="layui-btn layui-btn-lg layui-btn-fluid layui-btn-warm"
+                           target="_blank">
+                            <i class="layui-icon">&#xe66f;</i>ç™»å½•åè´­ä¹°
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">çƒ­é—¨äº§å“</div>
+                <div class="layui-card-body">
+                    <a class="ew-adv-item" href="1.htm" tppabs="https://eleadmin.com/goods/1">
+                        é™æ€ç‰ˆ - çº¯é™æ€é¡µé¢ï¼Œå“åº”å¼å¸ƒå±€
+                    </a>
+                    <a class="ew-adv-item" href="2.htm" tppabs="https://eleadmin.com/goods/2">
+                        iframeç‰ˆ - æ”¯æŒå¤šæ ‡ç­¾ï¼ŒåŠŸèƒ½ä¸°å¯Œ
+                    </a>
+                    <a class="ew-adv-item" href="3.htm" tppabs="https://eleadmin.com/goods/3">
+                        spaç‰ˆ - æ”¯æŒè·¯ç”±ï¼Œé€‚åˆå‰åç«¯åˆ†ç¦»
+                    </a>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">åœ¨çº¿å®¢æœ</div>
+                <div class="layui-card-body text-center">
+                    <img src="img_qr_qq.png" tppabs="https://eleadmin.com/assets/images/img_qr_qq.png" width="100%" style="max-width: 220px;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div class="ew-footer">
+    <div class="layui-container">
+        <div class="layui-row layui-col-space30">
+            <div class="layui-col-md6">
+                <h3 class="footer-item-title">æŠ€æœ¯äº¤æµç¾¤</h3>
+                <p class="img-group">
+                    <img src="img_qqgroup.png" tppabs="https://eleadmin.com/assets/images/img_qqgroup.png"/>
+                    æ‰«ç å…è´¹åŠ å…¥å‰åç«¯åˆ†ç¦»æŠ€æœ¯äº¤æµQQç¾¤ï¼Œä¸å„ä½å¤§ä½¬ä¸€èµ·äº¤æµæŠ€æœ¯ã€è®¨è®ºé—®é¢˜ã€‚
+                </p>
+            </div>
+            <div class="layui-col-md4">
+                <h3 class="footer-item-title">è”ç³»æˆ‘ä»¬</h3>
+                <p>
+                    <i class="layui-icon layui-icon-login-qq"></i>
+                    <a href="javascript:if(confirm('http://wpa.qq.com/msgrd?v=3&uin=1543859471&site=qq&menu=yes  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='http://wpa.qq.com/msgrd?v=3&uin=1543859471&site=qq&menu=yes'" tppabs="http://wpa.qq.com/msgrd?v=3&uin=1543859471&site=qq&menu=yes" target="_blank"
+                       title="ç‚¹å‡»å‘èµ·èŠå¤©">QQ: 1543859471</a>
+                </p>
+                <p>
+                    <i class="layui-icon layui-icon-dialogue"></i>
+                    <a href="mailto:whvcse@foxmail.com" title="ç‚¹å‡»å‘é€é‚®ä»¶">é‚®ç®±: whvcse@foxmail.com</a>
+                </p>
+                <p>
+                    <i class="layui-icon layui-icon-website"></i>
+                    <a href="index.htm" tppabs="https://eleadmin.com/">https://eleadmin.com</a>
+                </p>
+            </div>
+            <div class="layui-col-md2">
+                <h3 class="footer-item-title">å‹æƒ…é“¾æ¥</h3>
+                <p><a href="javascript:if(confirm('https://demo.easyweb.vip/theme/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://demo.easyweb.vip/theme/'" tppabs="https://demo.easyweb.vip/theme/" target="_blank">ä¸»é¢˜ç”Ÿæˆå™¨</a></p>
+                <p><a href="javascript:if(confirm('https://www.layui.com/doc/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.layui.com/doc/'" tppabs="https://www.layui.com/doc/" target="_blank">Layuiå¼€å‘æ–‡æ¡£</a></p>
+                <p><a href="javascript:if(confirm('https://www.stylefeng.cn/  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://www.stylefeng.cn/'" tppabs="https://www.stylefeng.cn/" target="_blank">Gunså¿«é€Ÿå¼€å‘å¹³å°</a></p>
+                <p><a href="javascript:if(confirm('https://w.url.cn/s/AL5zTDi  \n\n¸ÃÎÄ¼şÎŞ·¨ÓÃ Teleport Ultra ÏÂÔØ, ÒòÎª ËüÊÇÒ»¸öÓò»òÂ·¾¶Íâ²¿±»ÉèÖÃÎªËüµÄÆôÊ¼µØÖ·µÄµØÖ·¡£  \n\nÄãÏëÔÚ·şÎñÆ÷ÉÏ´ò¿ªËü?'))window.location='https://w.url.cn/s/AL5zTDi'" tppabs="https://w.url.cn/s/AL5zTDi" target="_blank">YunGouOSä¸ªäººæ”¯ä»˜</a></p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright Â© 2020 www.eleadmin.com. All rights reserved.</p>
+            <p>é„‚ICPå¤‡20006053å·-1</p>
+        </div>
+    </div>
+</div>
+<!-- jséƒ¨åˆ† -->
+<script type="text/javascript" src="layui.js" tppabs="https://eleadmin.com/assets/layui/layui.js"></script>
+<script type="text/javascript" src="common.js-v=202" tppabs="https://eleadmin.com/assets/js/common.js?v=202"></script><script>
+    layui.use(['layer'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var goodsPriceList = JSON.parse('[{"createTime":1603185608000,"goodsPriceId":27,"goodsSpecId":12,"price":699.0,"updateTime":1603187481000,"validityId":17}]');
+
+        // å•†å“è§„æ ¼ç‚¹å‡»äº‹ä»¶
+        $('#goods-buy-spec>div').click(function () {
+            $('#goods-buy-spec>div').removeClass('active');
+            $(this).addClass('active');
+            showPrice();
+        });
+
+        // æˆæƒæ—¶é•¿ç‚¹å‡»äº‹ä»¶
+        $('#goods-buy-valid>div').click(function () {
+            $('#goods-buy-valid>div').removeClass('active');
+            $(this).addClass('active');
+            showPrice();
+        });
+
+        // æ˜¾ç¤ºä»·æ ¼
+        function showPrice() {
+            $('#goods-buy-price').html('');
+            var $spec = $('#goods-buy-spec>div.active');
+            var $valid = $('#goods-buy-valid>div.active');
+            if ($spec.length == 0 || $valid.length == 0) {
+                return;
+            }
+            var specId = $spec.data('id');
+            var validId = $valid.data('id');
+            for (var i = 0; i < goodsPriceList.length; i++) {
+                var goodsPrice = goodsPriceList[i];
+                if (goodsPrice.goodsSpecId == specId && goodsPrice.validityId == validId) {
+                    var priceHtml = '<div class="goods-price-label">å•†å“ä»·æ ¼ï¼š</div>';
+                    priceHtml += '   <div class="goods-price-text">';
+                    priceHtml += '      <span class="small">ï¿¥</span>' + goodsPrice.price;
+                    if (goodsPrice.originalPrice) {
+                        priceHtml += '   <span class="goods-price-org">ï¿¥' + goodsPrice.originalPrice + '</span>';
+                    }
+                    priceHtml += '   </div>';
+                    if (goodsPrice.originalPrice) {
+                        priceHtml += '<div class="goods-price-desc">' + goodsPrice.discountDesc + '</div>';
+                    }
+                    $('#goods-buy-price').html(priceHtml);
+                    return;
+                }
+            }
+        }
+
+        // è§„æ ¼é»˜è®¤é€‰ä¸­ç¬¬ä¸€ä¸ª
+        $('#goods-buy-spec>div:eq(0)').trigger('click');
+        $('#goods-buy-valid>div:eq(0)').trigger('click');
+
+        // ç«‹å³è´­ä¹°
+        $('#btnBuy').click(function () {
+            var goodsId = $('#goodsId').val();
+            var specId = $('#goods-buy-spec>div.active').data('id');
+            var validityId = $('#goods-buy-valid>div.active').data('id');
+            // location.href = 'login.htm'/*tpa=https://eleadmin.com/goods/buy/*/ + goodsId + '/' + specId + '/' + validityId;
+            window.open('/goods/buy/' + goodsId + '/' + specId + '/' + validityId);
+        });
+
+    });
+</script>
+</body>
+</html>
