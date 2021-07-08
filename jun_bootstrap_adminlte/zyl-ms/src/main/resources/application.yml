@@ -1,8 +1,0 @@
-server:
-  port: 81
-  tomcat:
-    uri-encoding: UTF-8
-    
-spring: 
-  profiles:
-    active: dev_pg
