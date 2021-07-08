@@ -1,7 +1,0 @@
-使用SpringMVC +注解 制作的增删改查，大量的注释，以及一个前端项目
-http://download.csdn.net/detail/xufengclever/8253183
-
-jQuery-EasyUI前端项目,后台框架SpringMVC,赋有详细注释，增删改查应有尽有
-http://download.csdn.net/detail/xufengclever/8253183
-
-
