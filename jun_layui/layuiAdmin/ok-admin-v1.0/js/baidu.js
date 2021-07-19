@@ -1,0 +1,2 @@
+// 百度统计
+var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?e4a38d186cb7e65e5ead3eb3f7eb190e";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();
