@@ -1,0 +1,217 @@
+body {
+	background: url(images/bg.jpg) top repeat-x #711a43;
+	margin: 0px;
+	padding:0px;
+	font: 11px  arial, helvetica;
+	color: #856674;
+	text-align: left;
+}
+h1{
+text-decoration:none;
+padding:15px 0 0 20px;
+margin:2px;
+color:#fff;
+font-size:13px;
+}
+h2{
+text-decoration:none;
+padding:15px 0 0 10px;
+margin:2px;
+color:#4d112d;
+font-size:14px;
+}
+h3{
+text-decoration:none;
+padding:15px 0 0 10px;
+margin:2px;
+color:#FCF7D1;
+font-size:11px;
+}
+h4{
+text-decoration:none;
+padding:0px 0 5px 3px;
+margin:2px;
+color:#FCF7D1;
+font-size:11px;
+}
+p{
+text-align:justify;
+padding:0px;
+margin:0px;
+}
+img.left{
+float:left;
+padding:0px 10px 10px 5px;
+}
+.prod_descr ul{
+padding:0px;
+margin:0px;
+list-style:none;
+}
+.prod_descr li{
+float:left;
+display:block;
+width:300px;
+}
+.prod_descr li a{
+float:left;
+padding:4px 5px 4px 20px;
+text-decoration:none;
+color:#CCCCCC;
+background:url(images/bullet_star.gif) no-repeat left;
+}
+.prod_descr li a:hover{
+float:left;
+padding:4px 5px 4px 20px;
+background:url(images/bullet_star.gif) no-repeat left #6F3254;
+}
+#container{
+width:800px;
+height:auto;
+margin:auto;
+}
+#top_content{
+width:800px;
+height:393px;
+margin:auto;
+background:url(images/top_bg.jpg) no-repeat center top;
+position:relative;
+}
+#down_content{
+width:800px;
+height:auto;
+margin:auto;
+background:url(images/down_bg.jpg) no-repeat center top;
+}
+#logo{
+float:left;
+padding-left:10px;
+}
+
+/*---------------menu-------------*/
+#menu{
+}
+#menu ul{
+margin:0px;
+padding:0px;
+list-style:none;
+}
+#menu li.home a{width:80px;height:99px;float:left; margin:60px 0 0 0;}
+#menu li.home_current a{width:80px;height:99px;float:left; margin:60px 0 0 0;background:url(images/arrow.gif) no-repeat left ;background-position:0px 68px;}
+#menu li.home a:hover{width:80px;height:99px;background:url(images/arrow.gif) no-repeat left ;background-position:0px 68px;}
+#menu li.about a{width:111px;height:103px;float:left;margin:20px 0 0 0;}
+#menu li.about_current a{width:111px;height:103px;float:left;margin:20px 0 0 0;background:url(images/arrow.gif) no-repeat left ;background-position:0px 2px;}
+#menu li.about a:hover{width:111px;height:103px;background:url(images/arrow.gif) no-repeat left ;background-position:0px 2px;}
+#menu li.products a{width:129px;height:86px;float:left;margin:60px 0 0 0;}
+#menu li.products a:hover{width:129px;height:86px;background:url(images/arrow.gif) no-repeat left ;background-position:4px 54px;}
+#menu li.contact a{width:103px;height:79px;float:left;margin:10px 0 0 8px;}
+#menu li.contact_current a{width:103px;height:79px;float:left;margin:10px 0 0 8px;background:url(images/arrow.gif) no-repeat left ;background-position:2px 2px;}
+#menu li.contact a:hover{width:103px;height:79px;background:url(images/arrow.gif) no-repeat left ;background-position:2px 2px;}
+
+
+#middle_content{
+clear:both;
+float:left;
+width: auto;
+height:213px;
+position:absolute;
+bottom:0px;
+left:0px;
+}
+#intro_text{
+float:left;
+width:416px;
+height:213px;
+background:url(images/paper.gif) no-repeat center;
+text-align:left;
+}
+#face{
+width:151px;
+height:213px;
+float:left;
+padding-left:230px;
+background:url(images/face.gif) no-repeat center;
+}
+
+
+/*---------------------down content-------------*/
+.prod_box{
+width:auto;
+float:left;
+height:auto;
+padding:10px 20px 10px 20px;
+}
+.frame{
+width:129px;
+height:131px;
+float:left;
+background:url(images/frame.gif) no-repeat center;
+padding:8px 0 0 30px;
+}
+.catalog_title{
+width:85px;
+height:44px;
+float:left;
+padding:50px 0 0 30px;
+}
+.prod_descr{
+width:auto;
+float:left;
+clear:both;
+width:320px;
+}
+
+
+/*------contact form------*/
+#login{
+float:left;
+width:auto;
+padding:10px 10px 0 30px;
+color:#666666;
+}
+.input{
+width:220px;
+height:12px;
+font-size:10px;
+float:left;
+background:none;
+border:1px #823E67 solid;
+}
+.textarea{
+width:220px;
+height:50px;
+font-size:10px;
+float:left;
+background:none;
+border:1px #823E67 solid;
+}
+.submit{
+float:left;
+margin-left:30px;
+margin-top:5px;
+}
+.clear {
+clear:both;
+overflow:hidden;
+height:4px;
+}
+
+
+
+/*--------------footer----------*/
+#footer{
+clear:both;
+width:800px;
+margin:auto;
+height:50px;
+text-align:center;
+}
+#footer a{
+text-decoration:none;
+color:#CCCCCC;
+}
+.copyright{
+width:auto;
+height:16px;
+color:#CCCCCC;
+}

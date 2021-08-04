@@ -1,0 +1,227 @@
+/* CSS Document */
+/*----------------------General----------------------*/
+body{
+	padding:0px;
+	margin:0px;
+	background:#1D0300 url(images/background-bg.gif) repeat-x left top;
+	color:#1D0300;
+	font:normal 11px/14px Arial, Helvetica, sans-serif;
+	color:#53738D;
+}
+td, p, ul, img{
+	margin:0;
+	padding:0;
+}
+/*----------------------Main-body-border----------------------*/
+.mainbodyborder{
+	border-left:4px solid #A7AC7E;
+	border-right:4px solid #A7AC7E;
+}
+/*---------------------Body-panel----------------------*/
+.rightbodyBg{
+	background:url(images/rightbody-bg.gif) repeat-y left top;
+}
+/*---------------------Navigation-panel----------------------*/
+ul.navigation{
+	list-style-type:none;
+	padding:36px 0 37px 92px;
+	margin:0px;
+}
+ul.navigation li{
+	float:left; padding:0 5px 0 5px;
+}
+ul.navigation li a{
+	text-align:center;
+	font: bold 11px/11px Georgia, "Times New Roman", Times, serif;
+	color:#010100; padding:0 2px 0 2px; text-decoration:none;
+}
+ul.navigation li a:hover{
+	background-color:#D0D5AD; color:#fff;
+	text-decoration:none;
+}
+/*---------------------logo-panel----------------------*/
+.headerPic{
+	background: url(images/header-pic.jpg) no-repeat 0 0;
+	height:299px;
+}
+.logo{
+	margin:42px 46px 0 0;
+}
+/*---------------------Body-text-panel----------------------*/
+.textHeadeing01{
+	padding:0 0 0 42px;
+	font:normal 30px/30px Georgia, "Times New Roman", Times, serif;
+	color:#53738D;
+}
+.headingimg{
+	margin:11px 0 0 0;
+}
+.text01{
+	font:normal 12px/18px Arial, Helvetica, sans-serif;
+	color:#53738D; padding:15px 35px 24px 42px;
+}
+.text01 a{
+	color:#D88D00; text-decoration:none;
+}
+.text01 a:hover{
+	text-decoration:underline;
+}
+.textHeadeing02{
+	padding:0 0 16px 42px;
+	font:normal 30px/30px Georgia, "Times New Roman", Times, serif;
+	color:#53738D;
+}
+.picheadingbg{
+	background:url(images/pic-heading-bg.gif) repeat-x 0 0;
+}
+.picheading a{
+	font:normal 9px/13px Georgia, "Times New Roman", Times, serif;
+	color:#D88D00; text-decoration:none;
+}
+.picheading a:hover{
+	text-decoration:underline;
+}
+.text03{
+	padding:21px 69px 0 42px;
+	font:normal 11px/16px Georgia, "Times New Roman", Times, serif;
+	color:#53738D;
+}
+.viewmore a{
+	padding:0 0 0 42px;
+	font:bold 11px/16px Georgia, "Times New Roman", Times, serif;
+	color:#D88D00; text-decoration:none;
+}
+.viewmore a:hover{
+	color:#D88D00; text-decoration:underline;
+}
+.text04{
+	padding:13px 69px 0 42px;
+	font:normal 11px/16px Georgia, "Times New Roman", Times, serif;
+	color:#53738D;
+}
+/*---------------------Right-panel----------------------*/
+.rightpanelbg{
+	background-color:#CED2A7;
+}
+.todaysart{
+	padding:50px 0 11px 0;
+	font:normal 24px/25px Georgia, "Times New Roman", Times, serif;
+	color:#5E7C93;
+}
+.todaysartText{
+	padding:0 27px 25px 0;
+	font:normal 11px/14px Georgia, "Times New Roman", Times, serif;
+	color:#7B8D5E;
+}
+.bio{
+	padding:0 0 7px 0;
+	font:normal 24px/25px Georgia, "Times New Roman", Times, serif;
+	color:#5E7C93;
+}
+.biotext{
+	padding:6px 17px 11px 9px;
+	font:normal 10px/12px Georgia, "Times New Roman", Times, serif;
+	color:#7B8D5E;
+}
+p.signature{
+	padding:0 0 0 9px;
+	font:normal 10px/10px Georgia, "Times New Roman", Times, serif;
+	color:#53738D;
+	display:block;
+}
+p.signature span{
+	background:url(images/signature.gif) no-repeat 0 4px;
+	display:block; width:76px; height:13px;
+}
+.clickmore{
+	padding:14px 0 30px 0;
+}
+.clickmore a{
+	font:bold 12px/13px Georgia, "Times New Roman", Times, serif;
+	color:#D88D00; text-decoration:none;
+}
+.clickmore a:hover{
+	color:#D88D00; text-decoration:underline;
+}
+.innereye{
+	padding:0 0 12px 0;
+	font:normal 24px/25px Georgia, "Times New Roman", Times, serif;
+	color:#5E7C93;
+}
+p.innereyeText{
+	padding:12px 0 0 0;
+	font:normal 11px/15px Georgia, "Times New Roman", Times, serif;
+	color:#7B8D5E;
+}
+p.innereyeText a{
+	color:#D88D00; text-decoration:none;
+}
+p.innereyeText a:hover{
+	text-decoration:underline;
+}
+p.innereyeText span{
+	display:block;
+	padding:3px 28px 29px 0;
+}
+.artistfourom{
+	padding:0 0 15px 0;
+	font:normal 24px/25px Georgia, "Times New Roman", Times, serif;
+	color:#5E7C93;
+}
+p.artistfouromText{
+	padding:0 25px 14px 0;
+	font:normal 11px/14px Georgia, "Times New Roman", Times, serif;
+	color:#7B8D5E;
+}
+p.artistfouromText a{
+	color:#D88D00; text-decoration:none;
+}
+p.artistfouromText a:hover{
+	text-decoration:underline;
+}
+.joinus{
+	padding:12px 0 4px 0;
+}
+.joinus a{
+	font:bold 12px/13px Georgia, "Times New Roman", Times, serif;
+	color:#D88D00; text-decoration:none;
+}
+.joinus a:hover{
+	color:#D88D00; text-decoration:underline;
+}
+/*---------------------Footer-panel----------------------*/
+.footerBg{
+	background:url(images/footer-bg.gif) repeat-y 0 0;
+	}
+p.footertitle{
+padding:29px 0 7px 42px;
+font:normal 14px/16px Georgia, "Times New Roman", Times, serif; color:#000;
+}
+ul.ftrmenu{
+width:374px; font:normal 11px/16px Georgia, "Times New Roman", Times, serif; color:#D88D00; padding:0 0 0 35px;
+}
+ul.ftrmenu li{
+float:left; line-height:16px; list-style-type:none;
+}
+ul.ftrmenu li a{
+color:#D88D00; text-decoration:none; padding:0 7px 0 7px; 
+}
+ul.ftrmenu li a:hover{
+color:#D88D00; text-decoration:underline;
+}
+p.copyright{
+font-size:9px; line-height:16px; color:#BEC393; font-family:Georgia, "Times New Roman", Times, serif; padding:0 0 27px 42px;
+clear:both;
+}
+p.copyright a{
+color:#D88D00; text-decoration:none; outline:none;
+}
+p.copyright a:hover{
+color:#BEC393;
+}
+.footerrightbg{
+	background-color:#CED2A7;
+}
+.smallBotPad{
+padding-bottom:5px !important;
+}

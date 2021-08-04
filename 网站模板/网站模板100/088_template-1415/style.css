@@ -1,0 +1,285 @@
+body {
+ background: #fbf7f7 url(images/header_bkg.jpg) repeat-x 0% 0%; color: #565656; font-family: "Trebuchet MS", sans-serif; margin: 0; padding: 0; 
+}
+form {
+ border: 0; margin: 0; padding: 0; 
+}
+img {
+ border: 0; margin: 0; padding: 0; vertical-align: top; 
+}
+a {
+ border-bottom: 1px solid #f3e7e7; color: #c34c3f; padding: 0; text-decoration: none; 
+}
+a:hover {
+ border-bottom: 1px solid #E9D1D1; text-decoration: none; 
+}
+.border-t {
+ border-top: 1px solid #f3e7e7; 
+}
+.clearing {
+ clear: both; font: 1px/1px Verdana, Arial, Helvetica, sans-serif; margin: 0; padding: 0; 
+}
+hr {
+ display: none; 
+}
+#container, .wrapper {
+ margin: 0 auto; padding: 0; position: relative; width: 768px; 
+}
+#logo {
+ float: left; margin: 0; padding: 0; width: 508px; 
+}
+#logo h1 {
+ height: 66px; margin: 0; padding: 0; position: relative; 
+}
+#logo a {
+ border: none; color: #FFFFFF; display: block; font-family: Georgia, "Times New Roman", Times, serif; height: 47px; overflow: hidden; position: absolute; top: 30px; width: 213px; 
+}
+#tagline {
+ color: #695655; font-size: 10px; font-weight: lighter; height: 36px; letter-spacing: 1px; margin: 0; padding: 0; position: relative; 
+}
+#menu {
+ float: left; margin: 0; padding: 60px 0 0 56px; width: 180px; 
+}
+#login {
+ background: url(images/login.jpg) no-repeat 0% 0%; border: none; float: left; height: 25px; margin: 0 21px 0 0; padding: 0; text-decoration: none; text-indent: -3000px; width: 16px; 
+}
+#login:hover {
+ background: url(images/login.jpg) no-repeat 0% 100%; 
+}
+#rss-entries {
+ background: url(images/rss_entries.jpg) no-repeat 0% 0%; border: none; float: left; height: 22px; margin: 0 21px 0 0; padding: 0; text-decoration: none; text-indent: -3000px; width: 16px; 
+}
+#rss-entries:hover {
+ background: url(images/rss_entries.jpg) no-repeat 0% 100%; 
+}
+#rss-comments {
+ background: url(images/rss_comments.jpg) no-repeat 0% 0%; border: none; float: left; height: 22px; margin: 0 21px 0 0; padding: 0; text-decoration: none; text-indent: -3000px; width: 16px; 
+}
+#rss-comments:hover {
+ background: url(images/rss_comments.jpg) no-repeat 0% 100%; 
+}
+#nav {
+ background: #564342 url(images/nav_bkg.jpg) repeat-x 0% 0%; float: left; list-style: none; margin: 0; padding: 0; width: 542px; 
+}
+#nav li {
+ float: left; font-size: 11px; margin: 0; padding: 0; text-transform: uppercase; 
+}
+#nav li a {
+ border-bottom: none; border-right: 1px solid #392c2b; color: #d8cbca; float: left; letter-spacing: 1px; padding: 10px 16px; text-decoration: none; 
+}
+#nav li a:hover {
+ background: #433433 url(images/search_bkg.jpg) repeat-x 0% 0%; text-decoration: none; 
+}
+#search {
+ background: #433433 url(images/search_bkg.jpg) repeat-x 0% 0%; float: right; margin: 0; padding: 0 0 3px 11px; width: 214px; 
+}
+#search #s-text {
+ float: left; margin: 0; padding: 0; 
+}
+#s-text>#s {
+ margin: 5px 0 0 0; 
+}
+#s {
+ background: #ffffff url(images/search_box.jpg) no-repeat 0% 0%; border: 0; color: #ae9593; font: 11px "Trebuchet MS", sans-serif; margin: 4px 0 0 0; padding: 5px 0 5px 14px; width: 156px; 
+}
+#search #s-submit {
+ float: left; margin: 5px 0 0 0; padding: 0; 
+}
+#searchsubmit {
+ background: url(images/search_submit.jpg) no-repeat 0% 0%; border: 0; height: 27px; margin: 0; padding: 0; width: 33px; 
+}
+#search label {
+ display: none; 
+}
+#posts {
+ clear: both; float: left; margin: 0 0 35px 0; padding: 55px 0 0 0; width: 508px; 
+}
+.caption {
+ color: #000; font: 21px "Times New Roman", Times, serif; margin: 0; padding: 0 0 25px 0; 
+}
+.post {
+ margin: 0; padding: 0 0 35px 0; 
+}
+.post h2, #comments h2, #post-comments h2 {
+ border-bottom: 1px solid #f3e7e7; color: #705b5a; font: 21px "Times New Roman", Times, serif; margin: 0; padding: 0 0 3px 0; 
+}
+.post h2 a {
+ border: 0; color: #705b5a; text-decoration: none; 
+}
+.post h2 a:hover {
+ border: 0; text-decoration: none; 
+}
+.date {
+ background: url(images/date.gif) no-repeat 0% 50%; color: #9a9a52; font: 10px/1.5em "Lucida Grande", Verdana, sans-serif; margin: 8px 0 0 0; padding: 0 0 0 22px; 
+}
+.entry {
+ color: #565656; font-size: 12px; margin: 0; padding: 20px 0 0 0; 
+}
+.entry blockquote {
+ border-left: 4px solid #9e533f; color: #785a44; margin: 22px 0 22px 22px; padding: 0; 
+}
+.entry blockquote p {
+ padding: 4px 0 4px 10px; 
+}
+.entry ul {
+ list-style: disc; margin: 0; padding: 0 0 18px 22px; 
+}
+.entry li {
+ margin: 0; padding: 0; 
+}
+.entry p {
+ margin: 0; padding: 0 0 12px 0; 
+}
+img.floatleft {
+ float: left; margin: 0 10px 10px 0; 
+}
+.postmetadata {
+ clear: both; color: #565656; font: 10px "Lucida Grande", Verdana, sans-serif; margin: 8px 0 0 0; padding: 0; 
+}
+.tags {
+ background: url(images/tag.gif) no-repeat 0% 50%; border: none; margin: 0; padding: 2px 0 2px 22px; 
+}
+.comments-no {
+ background: url(images/comments.gif) no-repeat 0% 50%; margin: 0; padding: 2px 0 2px 22px; 
+}
+.postmetadata a {
+ border-bottom: 1px solid #f3e7e7; color: #c34c3f; padding: 0 0 2px 0; text-decoration: none; 
+}
+.postmetadata a:hover {
+ border-bottom: 1px solid #E9D1D1; text-decoration: none; 
+}
+#comments {
+ margin: 20px 0 0 0; padding: 0; 
+}
+.add-comment {
+ margin: 8px 0 0 0; padding: 0; 
+}
+.add-comment a {
+ background: url(images/add.gif) no-repeat 0% 50%; border: none; color: #9a9a52; font: 10px/1.5em "Lucida Grande", Verdana, sans-serif; padding: 2px 0 2px 22px; text-decoration: none; 
+}
+.add-comment a:hover {
+ color: #c34c3f; text-decoration: none; 
+}
+#comments ol {
+ color: #888888; font-size: 12px; list-style: none; margin: 0; padding: 0; 
+}
+#comments ol li {
+ clear: both; margin: 0; padding: 0; 
+}
+.author {
+ color: #bbbbbb; float: left; font: 10px/2.5em "Lucida Grande", Verdana, sans-serif; margin: 0; padding: 20px 0 6px 0; width: 170px; 
+}
+.author a {
+ font: 12px "Trebuchet MS", sans-serif; 
+}
+.comment {
+ float: right; margin: 0; padding: 20px 0 6px 0; width: 320px; 
+}
+.comment span, .no-find {
+ background: #F4F29D; color: #862D2D; font-size: 12px; font-style: italic; margin: 0; padding: 2px; 
+}
+.comment p {
+ margin: 0; padding: 0; 
+}
+#post-comments {
+ clear: both; color: #888888; margin: 0; padding: 40px 0 0 0; 
+}
+#reply {
+ font-size: 12px; margin: 20px 0 0 0; padding: 0; 
+}
+.comment-field {
+ margin: 0; padding: 0 0 12px 0; 
+}
+.comment-field textarea {
+ border: 1px solid #CBBCBC; color: #565656; font: 11px "Trebuchet MS", sans-serif; padding: 2px; width: 320px; 
+}
+.comment-field label {
+ float: left; width: 170px; 
+}
+.input-text {
+ border: 1px solid #CBBCBC; color: #565656; font: 11px "Trebuchet MS", sans-serif; padding: 2px; width: 320px; 
+}
+.input-button {
+ color: #565656; margin: 0 0 0 171px; padding: 0 5px; 
+}
+#sidebar {
+ background: url(images/sidebar_top.jpg) no-repeat 0% 36px; float: right; margin: 0; padding: 64px 0 0 0; width: 225px; 
+}
+#sidebar h2 {
+ color: #cc6358; font-size: 11px; font-weight: bold; letter-spacing: 1px; margin: 0; padding: 0 0 0 21px; text-transform: uppercase; 
+}
+#sidebar ul {
+ background: url(images/sidebar_bkg.jpg) repeat-y 0% 0%; font-size: 12px; line-height: 14px; list-style: none; margin: 0; padding: 0; 
+}
+#sidebar ul li {
+ margin: 0; padding: 0; 
+}
+#sidebar ul li ul {
+ margin: 0; padding: 10px 0 15px 0; 
+}
+#sidebar ul li ul li {
+ margin: 0; padding: 0; 
+}
+#sidebar a {
+ background: url(images/arrow.gif) no-repeat 21px 50%; border: none; color: #876F6D; display: block; height: 24px; line-height: 24px; padding: 0 0 0 31px; text-decoration: none; width: 191px; 
+}
+#sidebar a:hover {
+ background: #fbf7f7 url(images/arrow.gif) no-repeat 21px 50%; border-bottom: 1px solid #d3cac9; border-top: 1px solid #d3cac9; color: #98983d; display: block; height: 22px; line-height: 22px; text-decoration: none; width: 191px; 
+}
+.sidebar-bottom {
+ background: url(images/sidebar_bottom.jpg) no-repeat 0% 100%; display: block; height: 23px; margin: 0 0 35px 0; padding: 0; 
+}
+#footer {
+ background: #4e3d3c url(images/footer_bkg.jpg) repeat-x 0% 0%; clear: both; margin: 0; padding: 25px 0 0 0; position: relative; 
+}
+#footer-recent-posts {
+ float: left; margin: 0; overflow: hidden; padding: 0; 
+}
+#footer-recent-comments {
+ float: left; margin: 0 0 0 35px; overflow: hidden; padding: 0; 
+}
+#footer-recent-posts h2, #footer-recent-comments h2 {
+ color: #adb96e; font-size: 11px; font-weight: bold; letter-spacing: 1px; margin: 0; padding: 0; text-transform: uppercase; 
+}
+#footer-recent-posts ul, #footer-recent-comments ul {
+ list-style: none; margin: 0; padding: 4px 0 25px 0; 
+}
+#footer-recent-posts ul li, #footer-recent-comments ul li {
+ margin: 0; padding: 0; 
+}
+#footer-recent-posts a {
+ border-bottom: 1px solid #5c4847; color: #a68887; display: block; font-size: 12px; padding: 8px 0 2px 0; width: 236px; 
+}
+#footer-recent-comments a {
+ border-bottom: 1px solid #5c4847; color: #a68887; display: block; font-size: 12px; height: 48px; padding: 8px 0 2px 0; width: 236px; 
+}
+#footer-recent-posts a:hover, #footer-recent-comments a:hover {
+ border-bottom: 1px solid #7a605e; color: #ccb9b9; text-decoration: none; 
+}
+#footer-recent-posts span, #footer-recent-comments span {
+ color: #786160; font: 10px "Lucida Grande", Verdana, sans-serif; 
+}
+#about {
+ float: left; margin: 0 0 0 35px; padding: 0; width: 225px; 
+}
+#about h2 {
+ color: #adb96e; font-size: 11px; font-weight: bold; letter-spacing: 1px; margin: 0; padding: 0; text-transform: uppercase; 
+}
+#info {
+ color: #866B6A; font-size: 12px; margin: 0; padding: 12px 0 20px 0; 
+}
+#copyright {
+ background: #3c2e2d; color: #786160; font: 10px "Lucida Grande", Verdana, sans-serif; margin: 0; padding: 15px 0 0 5px;line-height: 16px;
+}
+#copyright a, #valid a {
+ border-bottom: 1px solid #5c4847; color: #a68887; padding: 0 0 2px 0; text-decoration: none; 
+}
+#copyright a:hover, #valid a:hover {
+ border-bottom: 1px solid #7a605e; color: #ccb9b9; text-decoration: none; 
+}
+#valid {
+ background: #3c2e2d; color: #786160; font: 10px "Lucida Grande", Verdana, sans-serif; margin: 0; padding: 5px 0 15px 5px; 
+}
+#valid span {
+ background: url(images/check.gif) no-repeat 0% 50%; margin: 0; padding: 0 0 0 14px; 
+}

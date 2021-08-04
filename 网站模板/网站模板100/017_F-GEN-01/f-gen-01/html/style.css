@@ -1,0 +1,128 @@
+/* CSS Document */
+/* --------------------------- default --------------------------- */
+body {
+margin:0; padding:0; background:#413E14 url(images/bodybg.gif) repeat-x 0 0; 
+font:normal 11px/14px Arial, Helvetica, sans-serif; color:#B8A88D;
+}
+td, form, input, p, ul, li, a, h1, h2, h3, img{
+margin:0; padding:0;
+}
+ul,li{ 
+list-style-type:none;
+}
+/* --------------------------- maintable --------------------------- */
+.bg_body {
+background: url(images/bg_body.gif) repeat-y 0 0; 
+}
+.mainbg{
+background: url(images/mainbg.jpg) no-repeat 0 0; 
+}
+/* --------------------------- header --------------------------- */
+ul.toplink{
+width:124px; font:normal 9px/18px Arial, Helvetica, sans-serif; color:#BC8A35; padding:0 25px 0 0;
+}
+ul.toplink li{
+float:left; line-height:18px;
+}
+ul.toplink li span{
+color:#C8BA87; cursor:text; padding: 0 8px 0 0; 
+}
+ul.toplink li a{
+color:#BC8A35; text-decoration:none;  padding:0 8px 0 8px; 
+}
+ul.toplink li a:hover{
+color:#C8BA87; text-decoration:none;
+}
+.logo{
+margin:0 226px 0 0;
+}
+p.hdrtxt{
+padding:0 40px 0 389px;
+}
+p.hdrtxt span{
+font-weight:bold; color:#BC8A35;
+}
+/* --------------------------- body --------------------------- */
+.topbody_pad{
+padding:0 0 0 39px;
+}
+ul.toplist{
+	padding:1px 0 0 0; width:102px; background:url(images/dotline.gif) repeat-x 0 0;
+	font:normal 11px/18px "Trebuchet MS", Tahoma, Arial; margin:0 0 0 30px;
+	}
+	ul.toplist span{
+	color:#460601; font-size:10px;
+	}
+ul.toplist li{
+	background: url(images/dotline.gif) repeat-x 0 100%; height:19px;
+}
+ul.toplist li a{
+	color:#E8D597; text-decoration:none; padding:0 0 0 2px; height:18px; display:block;
+}
+ul.toplist li a:hover{
+	background-color:#8D6122;
+}
+h2.arrivals{
+background:url(images/newarrivals.gif) no-repeat 50% 0; height:79px; text-indent:-2000px; margin:51px 0 15px 0;
+}
+p.bodytxt{
+color:#B8A88D; text-align:center; padding:0 0 10px 0;
+}
+p.bodytxt a{
+color:#BC8A35; font-weight:bold; text-decoration:none;
+}
+p.bodytxt a:hover{
+color:#BC8A35; text-decoration:underline;
+}
+/* --------------------------- gallery --------------------------- */
+ul.gallery {
+margin:0 0 22px 32px;
+}
+ul.gallery li {
+list-style-type:none; float:left; padding:0 30px 0 0; text-align:center; font:normal 14px/11px Arial, Helvetica, sans-serif;
+color:#CBAB64; 
+}
+ul.gallery li p {
+text-align:center; font:normal 14px/11px Arial, Helvetica, sans-serif; color:#CBAB64; padding:0 0 11px 0; 
+}
+ul.gallery li p.order {
+text-align:center; font:normal 9px/18px Arial, Helvetica, sans-serif; 
+}
+ul.gallery li p.order a {
+color:#BC8A35; text-decoration:none;
+}
+ul.gallery li p.order a:hover {
+color:#C8BA87; text-decoration:none;
+}
+ul.gallery li img{
+display:block;
+ } 
+.bg_gal_button {
+background:#9B7C47 url(images/bg_port_button.gif) repeat-x 0 0; display:block; width:154px; height:21px; margin:10px 0 0 0;
+text-align:center; font:bold 14px/21px Arial, Helvetica, sans-serif; color:#FFEECC; 
+}
+/* --------------------------- footer --------------------------- */
+.bg_footer{
+background: url(images/bg_footer.jpg) no-repeat 0 0; height:164px;
+}
+ul.ftrmenu{
+font:normal 11px/16px Arial, Helvetica, sans-serif; color:#CAC4AB; padding:58px 0 31px 365px;
+}
+ul.ftrmenu li{
+float:left; line-height:16px;
+}
+ul.ftrmenu li a{
+color:#E8D597; text-decoration:none; padding:0 7px 0 7px; 
+}
+ul.ftrmenu li a:hover{
+color:#7F2B27; text-decoration:none;
+}
+p.copyright{
+font-size:10px; line-height:21px; color:#BE4B44; text-align:center;
+}
+p.copyright a{
+font-size:10px; line-height:11px; color:#E8D597; text-decoration:none;
+}
+p.copyright a:hover{
+color:#BE4B44;
+}

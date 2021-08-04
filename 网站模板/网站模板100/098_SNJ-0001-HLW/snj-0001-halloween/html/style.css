@@ -1,0 +1,386 @@
+/* CSS Document */
+/*-------------------------general-------------------------*/
+body{
+	padding:0;
+	margin:0;
+	background:url(images/header.jpg) no-repeat center 0 #020100;
+	color:#581B05;
+	font:normal 11px Arial, Helvetica, sans-serif;
+	
+}
+p, a, li, td, form, input {
+	padding:0;
+	margin:0;
+}
+img{
+	padding:0;
+	margin:0;
+	border:none;
+	display:block;
+}
+
+ul{
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+a{
+	text-decoration:none;
+	outline:none;
+}
+/*-------------------------general-------------------------*/
+/*-------------------------Body Left Panel Start-------------------------*/
+.logoPadding{
+	padding:18px 0 114px 0;
+}
+.quickSearchPadding{
+	padding:0 0 26px 0;
+}
+.quickSearch{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 33px;
+	background:url(images/searchBG.jpg) no-repeat 0 0;
+}
+.textBox{
+	width:178px;
+	height:20px;
+	background-color:#421903;
+	color:#FFF;
+	border:1px solid #7E1C02;
+	padding:0 0 0 9px;
+}
+.archive{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 33px;
+	background:url(images/Archive.jpg) no-repeat 0 0;
+}
+ul.archiv{
+	padding:12px 0 30px 0;
+}
+ul.archiv li{
+	background:url(images/BrownDot.gif) repeat-x 0 bottom;
+}
+ul.archiv li.noBrownDot{
+	background-image:none;
+}
+ul.archiv li span{
+	background:url(images/ArchiveArrow.gif) no-repeat 4px 4px;
+	padding:0 0 0 18px;
+}
+ul.archiv li span a{
+	font:normal 11px/22px Arial, Helvetica, sans-serif;
+	color:#AD2001;
+	background-color:inherit;
+}
+ul.archiv li span a:hover{
+	color:#FFF;
+	background-color:inherit;
+}
+.news{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 33px;
+	background:url(images/NewsBullet.jpg) no-repeat 0 0;
+}
+.newsPanelPadding{
+	padding:0 0 38px 0;
+}
+.newsTxtPanelPadding{
+	padding:18px 0 0 0;
+}
+.newsTxtPanelPadding2{
+	padding:24px 0 0 0;
+}
+.newsTxt{
+	font-size:11px;
+	line-height:15px;
+	color:#AD2001;
+	background-color:inherit;
+}
+.newsTxt a{
+	font-weight:bold;
+	color:#F6F306;
+	background-color:inherit;
+}
+.newsTxt a:hover{
+	text-decoration:underline;
+}
+.links{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 38px;
+	background:url(images/LinkBullet.jpg) no-repeat 0 0;
+}
+ul.linkYellow{
+	padding:10px 0 0 0;
+}
+ul.linkYellow li{
+	background:url(images/BrownDot.gif) repeat-x 0 bottom;
+}
+ul.linkYellow li.noBrownDot{
+	background-image:none;
+}
+ul.linkYellow li span{
+	background:url(images/YellowArrow.gif) no-repeat 4px 4px;
+	padding:0 0 0 18px;
+}
+ul.linkYellow li span a{
+	font:normal 11px/22px Arial, Helvetica, sans-serif;
+	color:#F6F306;
+	background-color:inherit;
+}
+ul.linkYellow li span a:hover{
+	color:#B7B506;
+	background-color:inherit;
+}
+
+/*-------------------------Body Left Panel End -------------------------*/
+/*-------------------------Body Middle Panel Start -------------------------*/
+.middleBodyPadding{
+	padding:309px 0 0 0;
+}
+.topnavLeftRoundBG{
+	background:url(images/topnavleftRound.gif) no-repeat 0 0;
+	width:9px;
+	height:35px;
+	display:block;
+}
+.topnavRightRoundBG{
+	background:url(images/topnavRightRound.gif) no-repeat 0 0;
+	width:9px;
+	height:35px;
+	display:block;
+}
+.topnavRepeatBG{
+	background:url(images/topnavRepeatBg.gif) repeat-x 0 0;
+	padding:0 0 4px 0;
+}
+ul.topnav{
+	
+}
+
+ul.topnav li{
+	float:left;
+	padding:0 14px;
+	background:url(images/topnavDivider.gif) no-repeat right 0;
+}
+ul.topnav li.notopodiv{
+	background-image:none;
+}
+ul.topnav li a{
+	font:bold 12px/35px Georgia, "Times New Roman", Times, serif;
+	color:#FFFAF6;
+	background-color:inherit;
+}
+ul.topnav li a:hover{
+	color:#F7EA08;
+	background-color:inherit;
+}
+ul.topnav li a.active{
+	color:#F7EA08;
+	background-color:inherit;
+	cursor:text;
+}
+.welcomeTopBg{
+	background:url(images/welcomeTopBg.gif) no-repeat 0 0;
+	height:30px;
+}
+.welcomeBg{
+	background-color:#F56909;
+	color:#581B05;
+	padding:0 0 29px 0;
+}
+.welcome{
+	font:normal 36px/36px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	background-color:#F56909;
+}
+.welcomeTxt{
+	font-size:18px;
+	line-height:51px;
+	color:#682209;
+	background-color:inherit;
+	/*padding:19px 0 0 0;*/
+}
+.welcomeSmallTxt{
+	font-size:11px;
+	line-height:15px;
+	color:#581B05;
+	background-color:inherit;
+	padding:0 0 17px 0;
+	
+}
+p.welmore{
+	width:52px;
+	height:19px;
+	text-align:center;
+	background:url(images/moreBg.gif) no-repeat 0 0;
+}
+p.welmore a{
+	font-size:11px;
+	line-height:17px;
+	font-weight:bold;
+	color:#F6F306;
+	background-color:inherit;
+}
+p.welmore a:hover{
+	color:#FFF;
+	background-color:inherit;
+}
+.festivals{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	background-color:#F56909;
+	padding:34px 0 14px 0;
+}
+.festivalsTxt{
+	font-size:11px;
+	line-height:15px;
+	font-weight:bold;
+	color:#682209;
+	background-color:inherit;
+	padding:21px 0 7px 0;
+}
+.festivalsImgBG{
+	 background-color:#B33103;
+	 color:#FFF;
+	 padding:11px 0 13px 0;
+}
+.festivalsImg{
+	display:inline;
+}
+/*-------------------------Body Middle Panel End -------------------------*/
+/*-------------------------Body Right Panel Start -------------------------*/
+.bodyrightPanelPadding{
+	padding:269px 0 0 0;
+}
+.memberloginPadding{
+	padding:0 0 25px 0;
+}
+.memberlogin{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 33px;
+	background:url(images/memberBullet.jpg) no-repeat 0 0;
+}
+.membertextBox{
+	width:206px;
+	height:20px;
+	font-size:11px;
+	/*line-height:20px;*/
+	background-color:#421903;
+	color:#FFF;
+	border:1px solid #7E1C02;
+	padding:0 0 0 9px;
+}
+.forgetPassword{
+	background:url(images/ForgetBullet.gif) no-repeat 2px 20px;
+	padding:0 0 0 12px;
+}
+.forgetPassword a{
+	font-size:12px;
+	line-height:15px;
+	color:#F7EA08;
+	background-color:inherit;
+}
+.forgetPassword a:hover{
+	text-decoration:underline;
+}
+.meta{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 33px;
+	background:url(images/metaBullet.jpg) no-repeat 0 0;
+}
+.works{
+	font:normal 24px/24px Georgia, "Times New Roman", Times, serif;
+	color:#FFF;
+	height:28px;
+	background-color:inherit;
+	padding:0 0 0 33px;
+	background:url(images/workBullet.jpg) no-repeat 0 0;
+}
+.bannerPadding{
+	padding:23px 0 0 0;
+}
+ul.workslink{
+	padding:12px 0 0 0;
+}
+ul.workslink li{
+	background:url(images/BrownDot.gif) repeat-x 0 bottom;
+}
+ul.workslink li.noBrownDot{
+	background-image:none;
+}
+ul.workslink li span{
+	background:url(images/ArchiveArrow.gif) no-repeat 4px 4px;
+	padding:0 0 0 18px;
+}
+ul.workslink li span a{
+	font:normal 11px/22px Arial, Helvetica, sans-serif;
+	color:#AD2001;
+	background-color:inherit;
+}
+ul.workslink li span a:hover{
+	color:#FFF;
+	background-color:inherit;
+}
+/*-------------------------Body Right Panel Start -------------------------*/
+/*-------------------------Footer Panel Start -------------------------*/
+.footerPadding{
+	padding:0 0 25px 0;
+}
+ul.footernav{
+	padding:26px 0 0 180px;
+}
+ul.footernav li{
+	float:left;
+	padding:0 17px;
+	background:url(images/FooterDiv.gif) no-repeat right center;
+}
+ul.footernav li.nofooterDiv{
+	background-image:none;
+}
+ul.footernav li a{
+	font:normal 11px/15px Georgia, "Times New Roman", Times, serif;
+	color:#F6F306;
+	background-color:inherit;
+}
+ul.footernav li a:hover{
+	text-decoration:underline;
+}
+p.copyright{
+	width:285px;
+	font-size:11px;
+	line-height:16px;
+	color:#95250D;
+	background-color:inherit;
+	padding:12px 0 0 0;
+}
+p.copyright span{
+	display:block;
+}
+p.copyright span a{
+	color:#F6F306;
+	background-color:inherit;
+}
+p.copyright span a:hover{
+	text-decoration:underline;
+}
+
+/*-------------------------Footer Panel End -------------------------*/
+

@@ -1,0 +1,20 @@
+a {text-decoration: none;}
+a#big {text-align: right; color: #F09;}
+body {background: #111 url(img/bg.gif); text-align: center;}
+body,.image,h1,p {margin: 0; padding: 0;}
+.main {background: #222; width: 720px; margin: 0 auto; border: 10px solid #222; border-bottom: 0; border-top: 0; text-align: left;}
+.content {clear: both; border-top: 10px solid #222; color: #CCC;}
+.content h1 {font: normal 1.4em sans-serif,Arial; padding: 2px 6px; background: #000; color: #FFF;}
+.content h1 span {color: #999;}
+.content p {font: normal 0.8em Verdana,Arial; padding: 6px 6px 10px;}
+.footer {height: 120px; background: #222 url(img/bgfooter.gif) no-repeat; border-top: 10px solid #222; margin: 0 auto; width: 740px; text-align: center; font: bold 0.7em Verdana,Arial; color: #333;}
+.footer a {color: #444;}
+.gfx_header h1 {color: #FFF; margin-top: 182px;}
+.gfx_header h1,a#big {font: normal 4em sans-serif,Arial; background: #000; display: block; margin-top: 8px;}
+.gfx_margin {height: 182px;}
+.gfx_nav {height: 46px; background: #000 url(img/nav.gif) no-repeat;}
+.header_left {float: left; width: 220px; height: 280px; background: #222 url(img/bgleft.png);}
+.header_right {float: right; width: 500px; height: 280px; background: #222 url(img/bgright.png) no-repeat;}
+.menu a {font: normal 1.4em sans-serif,Arial; color: #FFF; background: #000; display: block; margin-top: 8px; width: 220px; height: 26px;}
+.menu a span {padding-left: 4px; color: #FFF;}
+.menu a:hover {color: #F09;}
