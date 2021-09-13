@@ -1,0 +1,136 @@
+{
+	"business": {
+		"title": "业务管理",
+		"icon": "fa fa-address-book",
+		"child": [{
+				"title": "基础数据管理",
+				"href": "",
+				"icon": "fa fa-home",
+				"target": "_self",
+				"spread": true,
+				"child": [{
+						"title": "客户管理",
+						"href": "resources/page/welcome-1.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					},
+					{
+						"title": "供应商管理",
+						"href": "page/welcome-2.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					},
+					{
+						"title": "商品管理",
+						"href": "page/welcome-2.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					}
+				]
+			},
+			{
+				"title": "进货管理",
+				"href": "page/menu.html",
+				"icon": "fa fa-window-maximize",
+				"target": "_self",
+				"child": [{
+						"title": "商品进货",
+						"href": "resources/page/welcome-1.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					},
+					{
+						"title": "商品退货",
+						"href": "page/welcome-2.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					}
+				]
+			},
+			{
+				"title": "销售管理",
+				"href": "page/setting.html",
+				"icon": "fa fa-gears",
+				"target": "_self",
+				"child": [{
+						"title": "销售商品",
+						"href": "resources/page/welcome-1.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					},
+					{
+						"title": "销售退货",
+						"href": "page/welcome-2.html",
+						"icon": "fa fa-tachometer",
+						"target": "_self"
+					}
+				]
+			}
+		]
+	},
+	"system": {
+		"title": "系统管理",
+		"icon": "fa fa-lemon-o",
+		"child": [{
+			"title": "系统管理",
+			"icon": "fa fa-dot-circle-o",
+			"spread": true,
+			"child": [{
+					"title": "部门管理",
+					"href": "page/icon-picker.html",
+					"icon": "fa fa-adn",
+					"target": "_self"
+				},
+				{
+					"title": "菜单管理",
+					"href": "page/color-select.html",
+					"icon": "fa fa-dashboard",
+					"target": "_self"
+				},
+				{
+					"title": "角色管理",
+					"href": "page/table-select.html",
+					"icon": "fa fa-angle-double-down",
+					"target": "_self"
+				},
+				{
+					"title": "用户管理",
+					"href": "page/upload.html",
+					"icon": "fa fa-arrow-up",
+					"target": "_self"
+				}
+			]
+		}]
+	},
+	"other": {
+		"title": "其它管理",
+		"icon": "fa fa-lemon-o",
+		"child": [{
+			"title": "登陆日志",
+			"href": "page/icon-picker.html",
+			"icon": "fa fa-adn",
+			"target": "_self"
+		}, {
+			"title": "德鲁伊数据源监控",
+			"href": "page/icon-picker.html",
+			"icon": "fa fa-adn",
+			"target": "_self"
+		}, {
+			"title": "系统公告",
+			"href": "page/icon-picker.html",
+			"icon": "fa fa-adn",
+			"target": "_self"
+		}, {
+			"title": "图标管理",
+			"href": "page/icon-picker.html",
+			"icon": "fa fa-adn",
+			"target": "_self"
+		}]
+	},
+	"yangbuyi": {
+		"title": "杨不易个人简介",
+		"href": "resources/page/icon-picker.html",
+		"icon": "fa fa-adn",
+		"target": "_self"
+	}
+}

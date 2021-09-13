@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>退货管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+		<!--搜索开始-->
+        <fieldset class="layui-elem-field layuimini-search">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="" id="searchFrm">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">客户名称</label>
+                            <div class="layui-input-inline">
+								<select name="customerid" class="customerSel">
+									<option value ="">请选择客户名称</option>
+								</select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">商品名称</label>
+                            <div class="layui-input-inline">
+								<select name="goodsid" class="goodsSel">
+									<option value ="">请选择商品名称</option>
+								</select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="startTime" id="startTime" readonly="readonly" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">结束时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="endTime" id="endTime" readonly="readonly" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+					</div>
+					<div class="layui-form-item">
+                        <div class="layui-block" style="text-align: center;">
+                            <a class="layui-btn " lay-submit=""  lay-filter="data-search-btn"><label class="layui-icon layui-icon-search"></label>搜索</a>
+							<a class="layui-btn layui-btn-warm" onclick="javascript:$('#searchFrm')[0].reset()" lay-filter="data-search-btn"><label class="layui-icon layui-icon-refresh"></label>重置</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+		<!--搜索结束-->
+		
+		<!--表格开始-->
+        <table class="layui-hide" id="salesbackTable" lay-filter="salesbackTable"></table>
+		<!--表格结束-->
+    </div>
+</div>
+<script src="../../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../../../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+<script src="../../../lib/common/jquery.cookie.min.js" charset="utf-8"></script>
+<script src="../../../lib/common/common.js" charset="utf-8"></script>
+
+<script>
+    layui.use(['form', 'table','laydate','layer'], function () {
+        var form = layui.form;
+        var table = layui.table;
+		var laydate=layui.laydate;
+		var layer=layui.layer;
+
+		//渲染时间选择器
+		laydate.render({
+			elem:'#startTime',
+			type:'datetime'
+		});
+		laydate.render({
+			elem:'#endTime',
+			type:'datetime'
+		});
+
+	//加载查询条件里面的客户的下拉列表
+	$.get(api+"customer/getAllAvailableCustomer",function(res){
+		var search_customerid=$(".customerSel");
+		var html="<option value =''>请选择客户名称</option>";
+		var data=res.data;
+		$.each(data,function(index,item){
+			html+="<option value ="+item.id+">"+item.customername+"</option>"
+		});
+		search_customerid.html(html);
+		form.render("select");
+	});
+	//加载查询条件里面的商品的下拉列表
+	$.get(api+"goods/getAllAvailableGoods",function(res){
+		var search_goodsid=$(".goodsSel");
+		var html="<option value =''>请选择商品</option>";
+		var data=res.data;
+		$.each(data,function(index,item){
+			html+="<option value ="+item.id+">"+item.goodsname+"["+item.size+"]"+"</option>"
+		});
+		search_goodsid.html(html);
+		form.render("select");
+	});
+	
+
+      var tableIns=table.render({
+            elem: '#salesbackTable',
+            url: api+'salesback/loadAllSalesback',
+			cellMinWidth:true,
+			height:'full-220',
+            cols: [[
+                {field: 'id', title: 'ID', align: "center",width:80},
+                {field: 'customername',  title: '客户名称', align: "center",width:150},
+                {field: 'goodsname',  title: '商品名称', align: "center",width:150},
+                {field: 'size',  title: '规格', align: "center",width:150},
+                {field: 'salesbacktime',  title: '退货时间', align: "center",width:180},
+                {field: 'operateperson',  title: '操作人', align: "center",width:120},
+                {field: 'number',  title: '退货数量', align: "center",width:120},
+                {field: 'salebackprice',  title: '退货价格', align: "center",width:120},
+                {field: 'paytype',  title: '支付类型', align: "center",width:120},
+                {field: 'salesid',  title: '销售商品ID', align: "center",width:100},
+                {field: 'remark',  title: '备注', align: "center",width:150},
+            ]],
+            page: true
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+			var params= $("#searchFrm").serialize();
+            //执行搜索重载
+            table.reload('salesbackTable', {
+                page: {
+                    curr: 1
+                }
+                ,url:api+'salesback/loadAllSalesback?'+params
+            });
+            return false;
+        });
+    });
+</script>
+<script>
+
+</script>
+
+</body>
+</html>
